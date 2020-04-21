@@ -105,7 +105,7 @@ You can accomplish via actions. Workflow run cleanup action is the recommended.
 
 > [Workflow run cleanup action · Actions · GitHub Marketplace](https://github.com/marketplace/actions/workflow-run-cleanup-action)
 
-This one is bit too match.
+This one is bit too much.
 
 > [technote\-space/auto\-cancel\-redundant\-job: GitHub Actions to automatically cancel redundant jobs\.](https://github.com/technote-space/auto-cancel-redundant-job)
 
@@ -211,7 +211,7 @@ jobs:
 
 ### timeout for job and step
 
-default timeout is 360min. You should set match more shorten timeout like 15min or 30min to prevent spending a lot build time.
+default timeout is 360min. You should set much more shorten timeout like 15min or 30min to prevent spending a lot build time.
 
 ```yaml
 name: timeout
@@ -319,7 +319,8 @@ jobs:
 
 ### get pushed tag name
 
-You need extract refs to get tag name, then save it to `step context` and refer from other step.
+You need extract refs to get tag name.
+Save it to `step context` and refer from other step or save it to env is much eacher.
 
 ```yaml
 name: tag push only
@@ -336,6 +337,8 @@ jobs:
       - run: echo ::set-output name=SOURCE_TAG::${GITHUB_REF#refs/tags/}
         id: CI_TAG
       - run: echo ${{ steps.CI_TAG.outputs.SOURCE_TAG }}
+      - run: echo ::set-env name=SOURCE_TAG::${GITHUB_REF#refs/tags/}
+      - run: echo ${{ env.SOURCE_TAG }}
 ```
 
 ## Commit handling
