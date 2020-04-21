@@ -202,6 +202,29 @@ jobs:
           GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
 ```
 
+## branch and tag handling
+
+### push run only branch, not on tag
+
+If you want run job only when push to branch, and not for tag push.
+
+```yaml
+name: branch push only
+
+on:
+  push:
+    branches:
+      - "**"
+    tags:
+      - "!*" # not a tag push
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo not run on tag
+```
+
 ## commit handling
 
 ### skip ci

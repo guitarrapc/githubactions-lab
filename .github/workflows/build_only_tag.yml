@@ -1,0 +1,14 @@
+name: tag push only
+
+on:
+  push:
+    branches:
+      - "!*" # not a branch push
+    tags:
+      - "**"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo not run on branch push
