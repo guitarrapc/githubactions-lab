@@ -4,7 +4,7 @@ on: ["pull_request"]
 
 jobs:
   build:
-    if: "!contains(github.event.pull_request.title, '[skip ci]')"
+    if: "!contains(github.event.pull_request.title, '[skip ci]') || !contains(github.event.pull_request.title, '[ci skip]')"
     runs-on: ubuntu-latest
     steps:
       - run: echo $GITHUB_CONTEXT

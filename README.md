@@ -132,7 +132,7 @@ on: ["push"]
 
 jobs:
   build:
-    if: "!contains(github.event.head_commit.message, '[skip ci]')"
+    if: "!contains(github.event.head_commit.message, '[skip ci]') || !contains(github.event.head_commit.message, '[ci skip]')"
     runs-on: ubuntu-latest
     steps:
       - run: echo $COMMIT_MESSAGE
@@ -175,7 +175,7 @@ on: ["pull_request"]
 
 jobs:
   build:
-    if: "!contains(github.event.pull_request.title, '[skip ci]')"
+    if: "!contains(github.event.pull_request.title, '[skip ci]') || !contains(github.event.pull_request.title, '[ci skip]')"
     runs-on: ubuntu-latest
     steps:
       - run: echo $GITHUB_CONTEXT
@@ -184,5 +184,4 @@ jobs:
       - run: echo $TITLE
         env:
           TITLE: ${{ toJson(github.event.pull_request.title) }}
-
 ```
