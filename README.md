@@ -183,6 +183,25 @@ jobs:
         timeout-minutes: 1 # step個別
 ```
 
+### Cancel redundant build
+
+cancelling if `push is not tag` and `push is not branch "master"`.
+It means push to branch will be cancelled.
+
+```yaml
+name: cancel redundant build
+on: push
+
+jobs:
+  cancel:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: rokroskar/workflow-run-cleanup-action@v0.2.2
+        if: "!startsWith(github.ref, 'refs/tags/') && github.ref != 'refs/heads/master'"
+        env:
+          GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+```
+
 ## commit handling
 
 ### skip ci
