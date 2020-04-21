@@ -1,11 +1,11 @@
 name: view github context
 
-on: ['push']
+on: ["push"]
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - run: echo $GITHUB_CONTEXT
-      env: 
-        GITHUB_CONTEXT: ${{ toJson(github) }}
+      - run: echo $GITHUB_CONTEXT
+        env:
+          GITHUB_CONTEXT: ${{ toJson(github) }}
