@@ -1,0 +1,12 @@
+name: build
+
+on:
+  push:
+    tags:
+      - "!*" # not a tag push
+
+jobs:
+  dotnet-console:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo not run on tag
