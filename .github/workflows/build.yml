@@ -49,12 +49,12 @@ jobs:
       # test
       - run: dotnet test ./src/dotnet/console-tests/ -c Debug
       # publish
-      - run: dotnet publish ./src/dotnet/console/ -c Debug -o ./out/dotnet-console
+      - run: dotnet publish ./src/dotnet/console/ -c Debug -o ./out/dotnet-console-container
       # upload
       - uses: actions/upload-artifact@v1
         with:
-          name: dotnet-console
-          path: ./out/dotnet-console
+          name: dotnet-console-container
+          path: ./out/dotnet-console-container
 
   ls:
     runs-on: ubuntu-latest
