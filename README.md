@@ -80,7 +80,7 @@ name: skip ci pr title
 on: ["pull_request"]
 
 jobs:
-  comment:
+  build:
     if: "!contains(github.event.pull_request.title, '[skip ci]')"
     runs-on: ubuntu-latest
     steps:
