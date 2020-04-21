@@ -8,5 +8,5 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - run: echo $COMMIT_MESSAGE
-        env: 
-          COMMIT_MESSAGE: ${{ toJson(github.event.head_commit.message) }}
+      env: 
+        COMMIT_MESSAGE: ${{ toJson(github.event.head_commit.message) }}
