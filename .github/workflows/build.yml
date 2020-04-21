@@ -1,0 +1,24 @@
+name: build
+
+on: [push]
+
+jobs:
+  dotnet-console:
+    strategy:
+      matrix:
+        dotnet: ['3.1.201', '2.2'] # support latest only
+    runs-on: ubuntu-latest
+    env:
+      DOTNET_CLI_TELEMETRY_OPTOUT: 1
+      DOTNET_SKIP_FIRST_TIME_EXPERIENCE: 1
+      NUGET_XMLDOC_MODE: skip
+    steps:
+    - uses: actions/checkout@v2
+    - name: Setup .NET Core ${{ matrix.dotnet }}
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: ${{ matrix.dotnet }}
+    # build
+    - run: dotnet build ./src/dotnet/console/ -c Debug
+    # test
+    - run: dotnet test ./src/dotnet/console-test/ -c Debug
