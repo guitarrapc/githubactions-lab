@@ -21,4 +21,4 @@ jobs:
     # build
     - run: dotnet build ./src/dotnet/console/ -c Debug
     # test
-    - run: dotnet test ./src/dotnet/console-test/ -c Debug
+    - run: dotnet test ./src/dotnet/console-tests/ -c Debug
