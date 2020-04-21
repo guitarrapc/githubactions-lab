@@ -129,6 +129,24 @@ jobs:
         if: failure()
 ```
 
+### timeout for job and step
+
+default timeout is 360min. You should set match more shorten timeout like 15min or 30min to prevent spending a lot build time.
+
+```yaml
+name: timeout
+
+on: ["push"]
+
+jobs:
+  my-job:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - run: echo done before timeout
+        timeout-minutes: 1 # step個別
+```
+
 ## commit handling
 
 ### skip ci

@@ -1,0 +1,11 @@
+name: timeout
+
+on: ["push"]
+
+jobs:
+  my-job:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - run: echo done before timeout
+        timeout-minutes: 1 # step個別
