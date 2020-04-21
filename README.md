@@ -204,7 +204,7 @@ jobs:
 
 ## branch and tag handling
 
-### push run only branch, not on tag
+### run when branch push only, skip on tag push
 
 If you want run job only when push to branch, and not for tag push.
 
@@ -224,6 +224,49 @@ jobs:
     steps:
       - run: echo not run on tag
 ```
+
+### skip when branch push, run on tag push only
+
+If you want run job only when push to tag, and not for branch push.
+
+```yaml
+name: tag push only
+
+on:
+  push:
+    tags:
+      - "**" # only tag
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo not run on branch push
+```
+
+### tag pattern
+
+You can use pattern on `on.push.tags`, but you can't on `step.if`.
+This pattern will match following.
+
+* 0.0.1
+* 1.0.0+preview
+
+```yaml
+name: tag push only pattern
+
+on:
+  push:
+    tags:
+      - "[0-9]+.[0-9]+.[0-9]+*" # only tag with pattern match
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo not run on branch push
+```
+
 
 ## commit handling
 
