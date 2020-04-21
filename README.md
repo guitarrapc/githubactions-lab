@@ -16,6 +16,10 @@ dotnet | ![build](https://github.com/guitarrapc/githubaction-lab/workflows/build
 - [ ] YAML anchor support
   - [Support for YAML anchors \- GitHub Community Forum](https://github.community/t5/GitHub-Actions/Support-for-YAML-anchors/td-p/30336)
 
+## Diff with other CI
+
+* CircleCI: [Migrating from Github Actions \- CircleCI](https://circleci.com/docs/2.0/migrating-from-github/)
+
 ## fundamentals
 
 ### Meta github context
