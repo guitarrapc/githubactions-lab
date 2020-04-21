@@ -46,10 +46,12 @@ jobs:
 
 ### runs only previous job is success
 
-use `needs:` for which you want the job to depends on.
+to accomplish sequential job run, use `needs:` for which you want the job to depends on.
+
+this enforce job to be run when only previous job is **success**.
 
 ```yaml
-name: sequential ci
+name: sequential jobs
 
 on: ["push"]
 
@@ -66,6 +68,34 @@ jobs:
     needs: build
     steps:
       - run: run when only build success
+```
+
+### runs only previous step status is ...
+
+> [job-status-check-functions \- Context and expression syntax for GitHub Actions \- GitHub Help](https://help.github.com/en/actions/reference/context-and-expression-syntax-for-github-actions#job-status-check-functions)
+
+use `if:` you want set step to be run on particular status.
+
+```yaml
+name: status step
+
+on: ["push"]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo $COMMIT_MESSAGES
+        env:
+          COMMIT_MESSAGES: ${{ toJson(github.event.commits.*.message) }}
+      - run: echo run when none of previous steps  have failed or been canceled
+        if: success()
+      - run: echo run even cancelled. it won't run only when critical failure prevents the task.
+        if: always()
+      - run: echo run when Workflow cancelled.
+        if: cancelled()
+      - run: echo run when any previous step of a job fails.
+        if: failure()
 ```
 
 ## commit handling

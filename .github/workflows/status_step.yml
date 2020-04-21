@@ -1,0 +1,19 @@
+name: status step
+
+on: ["push"]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo $COMMIT_MESSAGES
+        env:
+          COMMIT_MESSAGES: ${{ toJson(github.event.commits.*.message) }}
+      - run: echo run when none of previous steps  have failed or been canceled
+        if: success()
+      - run: echo run even cancelled. it won't run only when critical failure prevents the task.
+        if: always()
+      - run: echo run when Workflow cancelled.
+        if: cancelled()
+      - run: echo run when any previous step of a job fails.
+        if: failure()
