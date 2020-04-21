@@ -6,7 +6,7 @@ jobs:
   build:
     if: "contains(toJSON(github.event.commits.*.message), '[build]')"
     runs-on: ubuntu-latest
-  steps:
+    steps:
     - run: echo $COMMIT_MESSAGES
-    env: 
-      COMMIT_MESSAGES: ${{ toJson(github.event.commits.*.message) }}
+        env:
+          COMMIT_MESSAGES: ${{ toJson(github.event.commits.*.message) }}
