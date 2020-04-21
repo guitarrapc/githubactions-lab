@@ -13,4 +13,4 @@ jobs:
           GITHUB_CONTEXT: ${{ toJson(github) }}
       - run: echo $TITLE
         env:
-          TITLE: ${{ toJson(github.event.title) }}
+          TITLE: ${{ toJson(github.event.pull_request.title) }}
