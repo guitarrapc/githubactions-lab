@@ -77,12 +77,11 @@ original `pull_request` event will invoke when activity type is `opened`, `synch
 ```yaml
 name: skip ci pr title
 
-on:
-  pull_request:
-    types: opened, synchronize, labeled
+on: ["pull_request"]
 
 jobs:
   comment:
+    if: "!contains(github.event.pull_request.title, '[skip ci]')"
     runs-on: ubuntu-latest
     steps:
       - run: echo $GITHUB_CONTEXT
@@ -90,5 +89,6 @@ jobs:
           GITHUB_CONTEXT: ${{ toJson(github) }}
       - run: echo $TITLE
         env:
-          TITLE: ${{ toJson(github.event.title) }}
+          TITLE: ${{ toJson(github.event.pull_request.title) }}
+
 ```
