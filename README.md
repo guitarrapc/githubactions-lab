@@ -4,7 +4,25 @@ language | badge
 ---- | ----
 dotnet | ![build](https://github.com/guitarrapc/githubaction-lab/workflows/build/badge.svg?branch=master)
 
+## Not yet support
+
+- [ ] Path Filter
+  - [Path filtering for jobs and steps \- GitHub Community Forum](https://github.community/t5/GitHub-Actions/Path-filtering-for-jobs-and-steps/td-p/33617)
+- [ ] Manual Trigger
+- [ ] Approval
+  - [GitHub Actions Manual Trigger / Approvals \- GitHub Community Forum](https://github.community/t5/GitHub-Actions/GitHub-Actions-Manual-Trigger-Approvals/m-p/31504)
+- [ ] reuse worldflow yaml
+  - [Solved: Is it possible to reuse workflow yaml to setup sim\.\.\. \- GitHub Community Forum](https://github.community/t5/GitHub-Actions/Is-it-possible-to-reuse-workflow-yaml-to-setup-similar-workflows/td-p/40634)
+- [ ] YAML anchor support
+  - [Support for YAML anchors \- GitHub Community Forum](https://github.community/t5/GitHub-Actions/Support-for-YAML-anchors/td-p/30336)
+
 ## fundamentals
+
+### Meta github context
+
+job id, name and others.
+
+> [Context and expression syntax for GitHub Actions \- GitHub Help](https://help.github.com/en/actions/reference/context-and-expression-syntax-for-github-actions#github-context)
 
 ### View Webhook GitHub Context
 
@@ -22,6 +40,29 @@ jobs:
           GITHUB_CONTEXT: ${{ toJson(github) }}
 ```
 
+### runs only previous job is success
+
+use `needs:` for which you want the job to depends on.
+
+```yaml
+name: sequential ci
+
+on: ["push"]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo $COMMIT_MESSAGES
+        env:
+          COMMIT_MESSAGES: ${{ toJson(github.event.commits.*.message) }}
+
+  publish:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - run: run when only build success
+```
 
 ## commit handling
 

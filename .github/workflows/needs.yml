@@ -1,0 +1,17 @@
+name: sequential ci
+
+on: ["push"]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo $COMMIT_MESSAGES
+        env:
+          COMMIT_MESSAGES: ${{ toJson(github.event.commits.*.message) }}
+
+  publish:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - run: run when only build success
