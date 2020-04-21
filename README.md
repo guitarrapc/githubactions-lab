@@ -9,8 +9,9 @@ dotnet | ![build](https://github.com/guitarrapc/githubaction-lab/workflows/build
 - [ ] Manual Trigger
 - [ ] Approval
   - [GitHub Actions Manual Trigger / Approvals \- GitHub Community Forum](https://github.community/t5/GitHub-Actions/GitHub-Actions-Manual-Trigger-Approvals/m-p/31504)
-- [ ] reuse worldflow yaml
+- [ ] reuse workflow/job/step yaml
   - [Solved: Is it possible to reuse workflow yaml to setup sim\.\.\. \- GitHub Community Forum](https://github.community/t5/GitHub-Actions/Is-it-possible-to-reuse-workflow-yaml-to-setup-similar-workflows/td-p/40634)
+  - need use Repository Actions with TypeScript or Docker.
 - [ ] YAML anchor support
   - [Support for YAML anchors \- GitHub Community Forum](https://github.community/t5/GitHub-Actions/Support-for-YAML-anchors/td-p/30336)
 
