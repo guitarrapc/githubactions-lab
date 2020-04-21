@@ -3,10 +3,16 @@ name: skip ci commit
 on: ["push"]
 
 jobs:
-  build:
+  skip:
     if: "!contains(github.event.head_commit.message, '[skip ci]') || !contains(github.event.head_commit.message, '[ci skip]')"
     runs-on: ubuntu-latest
     steps:
       - run: echo $COMMIT_MESSAGE
         env:
           COMMIT_MESSAGE: ${{ toJson(github.event.head_commit.message) }}
+
+  build:
+    runs-on: ubuntu-latest
+    needs: skip
+    steps:
+      - run: echo run when not skipped

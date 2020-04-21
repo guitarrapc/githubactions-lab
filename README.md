@@ -6,8 +6,6 @@ dotnet | ![build](https://github.com/guitarrapc/githubaction-lab/workflows/build
 
 ## Not yet support
 
-- [ ] Path Filter
-  - [Path filtering for jobs and steps \- GitHub Community Forum](https://github.community/t5/GitHub-Actions/Path-filtering-for-jobs-and-steps/td-p/33617)
 - [ ] Manual Trigger
 - [ ] Approval
   - [GitHub Actions Manual Trigger / Approvals \- GitHub Community Forum](https://github.community/t5/GitHub-Actions/GitHub-Actions-Manual-Trigger-Approvals/m-p/31504)
@@ -33,11 +31,24 @@ Better define step in script and call it from step, so that we can reuse same ex
 **skip ci on commit message**
 
 GitHub Actions has no default support for `[skip ci]` or `[ci skip]`. Users require define `jobs.<job_id>.if` or `jobs.<job_id>.steps.run.if`.
+You cannot use commit message `[skip ci]` on `pull_request` event as webhook not contains commits message playload.
+
 
 * GitHub Actions need use `if` for job or step. if you want to handle whole workflow running, create `skip ci` check job and other job refer via `needs`.
-* CircleCI can skip job via `[skip ci]` or `[ci skip]`.
+* CircleCI can skip job via `[skip ci]` or `[ci skip]`. PR commit also skip.
 * Azure Pipeline can skip job via `***NO_CI***`, `[skip ci]` or `[ci skip]`, or [others](https://github.com/Microsoft/azure-pipelines-agent/issues/858#issuecomment-475768046).
 * Jenkins has plugin to support `[skip ci]` or any expression w/pipeline via [SCM Skip \| Jenkins plugin](https://plugins.jenkins.io/scmskip/).
+
+**path filter**
+
+GitHub Actions can use `on.<event>.paths-ignore:` and `on.<event>.paths:` by default.
+
+> [paths - Workflow syntax for GitHub Actions \- GitHub Help](https://help.github.com/en/actions/reference/workflow-syntax-for-github-actions#onpushpull_requestpaths)
+
+* GitHub Actions can set path-filter.
+* CircleCI can not set path-filter.
+* Azure Pipeline can set path-filter.
+* Jenkins ... I think I need filter change from changes?
 
 ## fundamentals
 
