@@ -251,6 +251,12 @@ This pattern will match following.
 
 * 0.0.1
 * 1.0.0+preview
+* 0.0.3-20200421-preview+abcd123408534
+
+not for below.
+
+* v0.0.1
+* release
 
 ```yaml
 name: tag push only pattern
