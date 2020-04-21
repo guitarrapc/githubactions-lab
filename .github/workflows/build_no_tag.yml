@@ -6,7 +6,7 @@ on:
       - "!*" # not a tag push
 
 jobs:
-  dotnet-console:
+  build:
     runs-on: ubuntu-latest
     steps:
       - run: echo not run on tag
