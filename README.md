@@ -18,7 +18,26 @@ dotnet | ![build](https://github.com/guitarrapc/githubaction-lab/workflows/build
 
 ## Diff with other CI
 
-* CircleCI: [Migrating from Github Actions \- CircleCI](https://circleci.com/docs/2.0/migrating-from-github/)
+> CircleCI: [Migrating from Github Actions \- CircleCI](https://circleci.com/docs/2.0/migrating-from-github/)
+
+**job and workflow**
+
+GitHub Actions cannnot reuse yaml and need to write same job for each workflow.
+Better define step in script and call it from step, so that we can reuse same execution from other workflows or jobs.
+
+* GitHub Actions define job inside workflow, and GitHub Actions cannot refer yaml from others.
+* CircleCI define job and conbinate it in workflow. Reusing job is natual way in circleci.
+* Azure Pipeline offer's template to refer stage, job and step from other yaml. This enable user to reuse yaml.
+* Jenkins has pipeline and could refer other pipeline. However a lot case would be define job step in script and reuse script, not pipeline.
+
+**skip ci on commit message**
+
+GitHub Actions has no default support for `[skip ci]` or `[ci skip]`. Users require define `jobs.<job_id>.if` or `jobs.<job_id>.steps.run.if`.
+
+* GitHub Actions need use `if` for job or step. if you want to handle whole workflow running, create `skip ci` check job and other job refer via `needs`.
+* CircleCI can skip job via `[skip ci]` or `[ci skip]`.
+* Azure Pipeline can skip job via `***NO_CI***`, `[skip ci]` or `[ci skip]`, or [others](https://github.com/Microsoft/azure-pipelines-agent/issues/858#issuecomment-475768046).
+* Jenkins has plugin to support `[skip ci]` or any expression w/pipeline via [SCM Skip \| Jenkins plugin](https://plugins.jenkins.io/scmskip/).
 
 ## fundamentals
 
