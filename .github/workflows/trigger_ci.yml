@@ -1,4 +1,4 @@
-name: trigger ci sample
+name: trigger ci commit
 
 on: ["push"]
 

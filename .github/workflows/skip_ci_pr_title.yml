@@ -1,0 +1,16 @@
+name: skip ci pr title
+
+on:
+  pull_request:
+    types: opened, synchronize, labeled
+
+jobs:
+  comment:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo $GITHUB_CONTEXT
+        env:
+          GITHUB_CONTEXT: ${{ toJson(github) }}
+      - run: echo $TITLE
+        env:
+          TITLE: ${{ toJson(github.event.title) }}

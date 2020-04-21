@@ -1,4 +1,4 @@
-name: skip ci sample
+name: skip ci commit
 
 on: ["push"]
 
