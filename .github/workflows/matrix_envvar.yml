@@ -10,5 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       ORG: ${{ matrix.org }}
+      GIT_TAG: "ci-`date '+%Y%m%d-%H%M%S'`+${GITHUB_SHA:0:6}"
     steps:
       - run: echo "${ORG}"
+      - run: echo "${GIT_TAG}"
