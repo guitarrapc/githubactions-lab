@@ -15,3 +15,88 @@ jobs:
       - run: echo ${{ steps.CI_TAG.outputs.SOURCE_TAG }}
       - run: echo ::set-env name=SOURCE_TAG::${GITHUB_REF#refs/tags/}
       - run: echo ${{ env.SOURCE_TAG }}
+
+  dotnet-console:
+    strategy:
+      matrix:
+        dotnet: ["3.1.201"] # support latest only
+    runs-on: ubuntu-latest
+    env:
+      DOTNET_CLI_TELEMETRY_OPTOUT: 1
+      DOTNET_SKIP_FIRST_TIME_EXPERIENCE: 1
+      NUGET_XMLDOC_MODE: skip
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup .NET Core ${{ matrix.dotnet }}
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: ${{ matrix.dotnet }}
+      # build
+      - run: dotnet build ./src/dotnet/console/ -c Debug
+      # test
+      - run: dotnet test ./src/dotnet/console-tests/ -c Debug
+      # publish
+      - run: dotnet publish ./src/dotnet/console/ -c Debug -o ./out/dotnet-console
+      # upload
+      - uses: actions/upload-artifact@v1
+        with:
+          name: dotnet-console
+          path: ./out/dotnet-console
+
+  dotnet-console-container:
+    strategy:
+      matrix:
+        dotnet: ["3.1"] # support latest only
+    runs-on: ubuntu-latest
+    container:
+      image: mcr.microsoft.com/dotnet/core/sdk:3.1
+    env:
+      DOTNET_CLI_TELEMETRY_OPTOUT: 1
+      DOTNET_SKIP_FIRST_TIME_EXPERIENCE: 1
+      NUGET_XMLDOC_MODE: skip
+    steps:
+      - uses: actions/checkout@v2
+      # build
+      - run: dotnet build ./src/dotnet/console/ -c Debug
+      # test
+      - run: dotnet test ./src/dotnet/console-tests/ -c Debug
+      # publish
+      - run: dotnet publish ./src/dotnet/console/ -c Debug -o ./out/dotnet-console-container
+      # upload
+      - uses: actions/upload-artifact@v1
+        with:
+          name: dotnet-console-container
+          path: ./out/dotnet-console-container
+
+  release:
+    runs-on: ubuntu-latest
+    needs:
+      - dotnet-console
+      - dotnet-console-container
+    steps:
+      - uses: actions/download-artifact@v2-preview
+      - run: ls -l
+      # Create Release
+      - uses: actions/create-release@v1
+        id: create_release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: Ver.${{ github.ref }}
+          draft: "true"
+          prerelease: "false"
+      - uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./dotnet-console-container
+          asset_name: dotnet-console-container
+      - uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./dotnet-console
+          asset_name: dotnet-console
