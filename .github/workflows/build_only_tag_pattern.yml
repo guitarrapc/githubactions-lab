@@ -1,4 +1,4 @@
-name: tag push only pattern
+name: tag push only with pattern
 
 on:
   push:
