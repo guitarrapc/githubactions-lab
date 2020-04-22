@@ -76,6 +76,8 @@ jobs:
     steps:
       - uses: actions/download-artifact@v2-preview
       - run: ls -l
+      - run: ls ./dotnet-console-container
+      - run: ls ./dotnet-console
       # Create Release
       - uses: actions/create-release@v1
         id: create_release
