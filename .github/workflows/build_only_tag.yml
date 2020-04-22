@@ -92,6 +92,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./dotnet-console-container
+          asset_path: /home/runner/work/githubaction-lab/githubaction-lab/dotnet-console-container
           asset_name: dotnet-console-container
           asset_content_type: application/octet-stream
