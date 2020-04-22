@@ -75,6 +75,7 @@ jobs:
       - dotnet-console-container
     steps:
       - uses: actions/download-artifact@v2-preview
+      - run: pwd
       - run: ls -l
       # Create Release
       - uses: actions/create-release@v1
