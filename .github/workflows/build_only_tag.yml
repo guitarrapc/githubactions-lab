@@ -100,14 +100,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./dotnet-console-container/console.runtimeconfig.json
-          asset_name: dotnet-console-container
-          asset_content_type: text/plain
-      - uses: actions/upload-release-asset@v1.0.1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
           asset_path: ./dotnet-console.zip
           asset_name: dotnet-console.zip
           asset_content_type: application/zip
