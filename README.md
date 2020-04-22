@@ -368,11 +368,11 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - run: echo ::set-output name=SOURCE_TAG::${GITHUB_REF#refs/tags/}
+      - run: echo ::set-output name=GIT_TAG::${GITHUB_REF#refs/tags/}
         id: CI_TAG
-      - run: echo ${{ steps.CI_TAG.outputs.SOURCE_TAG }}
-      - run: echo ::set-env name=SOURCE_TAG::${GITHUB_REF#refs/tags/}
-      - run: echo ${{ env.SOURCE_TAG }}
+      - run: echo ${{ steps.CI_TAG.outputs.GIT_TAG }}
+      - run: echo ::set-env name=GIT_TAG::${GITHUB_REF#refs/tags/}
+      - run: echo ${{ env.GIT_TAG }}
 ```
 
 ## Commit handling

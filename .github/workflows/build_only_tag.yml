@@ -10,11 +10,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: echo not run on branch push
-      - run: echo ::set-output name=SOURCE_TAG::${GITHUB_REF#refs/tags/}
+      - run: echo ::set-output name=GIT_TAG::${GITHUB_REF#refs/tags/}
         id: CI_TAG
-      - run: echo ${{ steps.CI_TAG.outputs.SOURCE_TAG }}
-      - run: echo ::set-env name=SOURCE_TAG::${GITHUB_REF#refs/tags/}
-      - run: echo ${{ env.SOURCE_TAG }}
+      - run: echo ${{ steps.CI_TAG.outputs.GIT_TAG }}
+      - run: echo ::set-env name=GIT_TAG::${GITHUB_REF#refs/tags/}
+      - run: echo ${{ env.GIT_TAG }}
 
   dotnet-console:
     strategy:
@@ -93,7 +93,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./dotnet-console-container
+          asset_path: dotnet-console-container
           asset_name: dotnet-console-container
           asset_content_type: application/octet-stream
       - uses: actions/upload-release-asset@v1
@@ -101,6 +101,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./dotnet-console
+          asset_path: dotnet-console
           asset_name: dotnet-console
           asset_content_type: application/octet-stream
