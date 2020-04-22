@@ -75,6 +75,7 @@ jobs:
       - dotnet-console-container
     steps:
       - uses: actions/download-artifact@v2-preview
+      - run: ls -l
       # Create Release
       - uses: actions/create-release@v1
         id: create_release
@@ -85,19 +86,11 @@ jobs:
           release_name: Ver.${{ github.ref }}
           draft: "true"
           prerelease: "false"
-      - uses: actions/upload-release-asset@v1
+      - uses: actions/upload-release-asset@v1.0.1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
           asset_path: ./dotnet-console-container
           asset_name: dotnet-console-container
-          asset_content_type: binary/octet-stream
-      - uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./dotnet-console
-          asset_name: dotnet-console
-          asset_content_type: binary/octet-stream
+          asset_content_type: application/octet-stream
