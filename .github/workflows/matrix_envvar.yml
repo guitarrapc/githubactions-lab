@@ -1,0 +1,14 @@
+name: matrix envvar
+
+on: ["push"]
+
+jobs:
+  build:
+    strategy:
+      matrix:
+        org: [apples, bananas, carrots]
+    runs-on: ubuntu-latest
+    env:
+      ORG: ${{ matrix.org }}
+    steps:
+      - run: echo "${ORG}"
