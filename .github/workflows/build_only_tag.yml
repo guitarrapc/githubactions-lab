@@ -75,8 +75,8 @@ jobs:
       - dotnet-console-container
     steps:
       - uses: actions/download-artifact@v2-preview
-      - run: pwd
-      - run: ls -l
+      - run: zip -r dotnet-console.zip ./dotnet-console/
+      - run: zip -r dotnet-console-container.zip ./dotnet-console-container
       # Create Release
       - uses: actions/create-release@v1
         id: create_release
@@ -92,6 +92,30 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: /home/runner/work/githubaction-lab/githubaction-lab/dotnet-console-container
+          asset_path: ./dotnet-console-container/console.dll
           asset_name: dotnet-console-container
           asset_content_type: application/octet-stream
+      - uses: actions/upload-release-asset@v1.0.1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./dotnet-console-container/console.runtimeconfig.json
+          asset_name: dotnet-console-container
+          asset_content_type: application/json
+      - uses: actions/upload-release-asset@v1.0.1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./dotnet-console.zip
+          asset_name: dotnet-console.zip
+          asset_content_type: application/zip
+      - uses: actions/upload-release-asset@v1.0.1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./dotnet-console-container.zip
+          asset_name: dotnet-console-container.zip
+          asset_content_type: application/zip
