@@ -19,6 +19,7 @@ dotnet | ![build](https://github.com/guitarrapc/githubaction-lab/workflows/build
   * [meta github context](#meta-github-context)
   * [view webhook github context](#view-webhook-gitHub-context)
   * [matrix and secret dereference](#matrix-and-secret-dereference)
+  * [matrix and environment variables](#matrix-and-environment-variables)
   * [runs only previous job is success](#runs-only-previous-job-is-success)
   * [runs only when previous step status is specific](#runs-only-when-previous-step-status-is-specific)
   * [timeout for job and step](#timeout-for-job-and-step)
@@ -187,6 +188,31 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: echo "org:${{ matrix.org }} secret:${{ secrets[matrix.secret] }}"
+```
+
+### matrix and environment variables
+
+you can refer matrix in job's `env:` section before steps.
+However you cannot use expression, you must evaluate in step.
+
+```yaml
+name: matrix envvar
+
+on: ["push"]
+
+jobs:
+  build:
+    strategy:
+      matrix:
+        org: [apples, bananas, carrots]
+    runs-on: ubuntu-latest
+    env:
+      ORG: ${{ matrix.org }}
+      # you can not use expression. do it on step.
+      # output on step is -> ci-`date '+%Y%m%d-%H%M%S'`+${GITHUB_SHA:0:6}
+      # GIT_TAG: "ci-`date '+%Y%m%d-%H%M%S'`+${GITHUB_SHA:0:6}"
+    steps:
+      - run: echo "${ORG}"
 ```
 
 ### runs only previous job is success
