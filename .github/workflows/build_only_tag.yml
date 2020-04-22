@@ -75,6 +75,7 @@ jobs:
       - dotnet-console-container
     steps:
       - uses: actions/download-artifact@v2-preview
+      - run: touch ./hoge
       - run: ls -l
       - run: ls ./dotnet-console-container
       - run: ls ./dotnet-console
@@ -88,6 +89,14 @@ jobs:
           release_name: Ver.${{ github.ref }}
           draft: "true"
           prerelease: "false"
+      - uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: "hoge"
+          asset_name: "hoge"
+          asset_content_type: "text/plain"
       - uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
