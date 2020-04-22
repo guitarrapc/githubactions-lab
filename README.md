@@ -18,6 +18,7 @@ dotnet | ![build](https://github.com/guitarrapc/githubaction-lab/workflows/build
 * [Fundamentals](#fundamentals)
   * [meta github context](#meta-github-context)
   * [view webhook github context](#view-webhook-gitHub-context)
+  * [matrix and secret dereference](#matrix-and-secret-dereference)
   * [runs only previous job is success](#runs-only-previous-job-is-success)
   * [runs only when previous step status is specific](#runs-only-when-previous-step-status-is-specific)
   * [timeout for job and step](#timeout-for-job-and-step)
@@ -141,6 +142,8 @@ job id, name and others.
 
 ### view webhook github context
 
+dump context with `toJson()` is a easiest way to dump context.
+
 ```yaml
 name: view github context
 
@@ -153,6 +156,38 @@ jobs:
       - run: echo $GITHUB_CONTEXT
         env:
           GITHUB_CONTEXT: ${{ toJson(github) }}
+```
+
+### matrix and secret dereference
+
+matrix cannot reference `secret` context, so pass secret key in matrix then dereference secret with `secrets[matrix.SECRET_KEY]`.
+
+let's set secrets in settings.
+
+![image](https://user-images.githubusercontent.com/3856350/79934065-99de6c00-848c-11ea-8995-bfe948e6c0fb.png)
+
+```yaml
+name: matrix secret
+
+on: ["push"]
+
+jobs:
+  build:
+    strategy:
+      matrix:
+        org: [apples, bananas, carrots] #Array of org mnemonics to use below
+        include:
+          # includes a new variable for each org (this is effectively a switch statement)
+          - org: apples
+            secret: APPLES
+          - org: bananas
+            secret: BANANAS
+          - org: carrots
+            secret: CARROTS
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: echo "org:${{ matrix.org }} secret:${{ secrets[matrix.secret] }}"
 ```
 
 ### runs only previous job is success
