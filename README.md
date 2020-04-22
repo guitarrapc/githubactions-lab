@@ -186,7 +186,6 @@ jobs:
             secret: CARROTS
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
       - run: echo "org:${{ matrix.org }} secret:${{ secrets[matrix.secret] }}"
 ```
 
