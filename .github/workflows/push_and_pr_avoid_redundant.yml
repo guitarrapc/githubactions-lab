@@ -1,6 +1,7 @@
 name: push and pull_request avoid redundant
 
 on:
+  # prevent push run on pull_request
   push:
     branches:
       - master

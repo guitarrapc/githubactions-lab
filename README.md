@@ -23,7 +23,7 @@ dotnet | ![build](https://github.com/guitarrapc/githubaction-lab/workflows/build
   * [runs only previous job is success](#runs-only-previous-job-is-success)
   * [runs only when previous step status is specific](#runs-only-when-previous-step-status-is-specific)
   * [timeout for job and step](#timeout-for-job-and-step)
-  * [cancel redundant build sample](#cancel-redundant-build-sample)
+  * [suppress redundant build](#suppress-redundant-build)
 * [Branch and tag handling](#branch-and-tag-handling)
   * [run when branch push only but skip on tag push](#run-when-branch-push-only-but-skip-on-tag-push)
   * [skip when branch push but run on tag push only](#skip-when-branch-push-but-run-on-tag-push-only)
@@ -287,10 +287,64 @@ jobs:
         timeout-minutes: 1 # step個別
 ```
 
-### cancel redundant build sample
+### suppress redundant build
+
+This will trouble only when you are runnning private repo, if repo is public, you don't need mind build comsume time.
+
+> Detail: When created `pull_request` then pushed, both `push` and `pull_request/synchronize` event emmit. This trigger duplicate build and waste build time.
+
+**do not trigger push on pull_request**
+
+In this example `push` will trigger only when `master`, default branch, this means push will not run when `pull_request` synchronize event was emmited.
+Simple enough for almost usage.
+
+```yaml
+name: push and pull_request avoid redundant
+
+on:
+  # prevent push run on pull_request
+  push:
+    branches:
+      - master
+  pull_request:
+    types:
+      - synchronize
+      - opened
+      - reopened
+
+jobs:
+  my-job:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo push and pull_request trigger
+```
+
+**redundant build cancel**
+
+Cancel duplicate workflow.
+Make sure cancel will set `Status API` as failure.
+
+```yaml
+name: cancel redundant build
+# when pull_request, both push and pull_request (synchronize) will trigger.
+# this action sample will prevent duplicate run, but run only 1 of them.
+on: [push, pull_request]
+
+jobs:
+  cancel:
+    runs-on: ubuntu-latest
+    steps:
+      # no check for master and tag
+      - uses: rokroskar/workflow-run-cleanup-action@v0.2.2
+        if: "!startsWith(github.ref, 'refs/tags/') && github.ref != 'refs/heads/master'"
+        env:
+          GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+```
+
+**redundant build cancel except master and tag**
 
 cancelling if `push is not tag` and `push is not branch "master"`.
-It means push to branch will be cancelled.
+It means push to branch will be cancelled if duplicated workflow run at once.
 
 ```yaml
 name: cancel redundant build
