@@ -12,13 +12,13 @@ jobs:
           COMMIT_MESSAGE: ${{ toJson(github.event.head_commit.message) }}
       - run: echo ${CONTAINS}
         env:
-          CONTAINS: ${{ "!contains(github.event.head_commit.message, '[skip ci]') || !contains(github.event.head_commit.message, '[ci skip]')" }}
+          CONTAINS: ${{ !contains(github.event.head_commit.message, '[skip ci]') || !contains(github.event.head_commit.message, '[ci skip]') }}
       - run: echo ${CONTAINS}
         env:
-          CONTAINS: ${{ "!contains(github.event.head_commit.message, '[skip ci]')" }}
+          CONTAINS: ${{ !contains(github.event.head_commit.message, '[skip ci]') }}
       - run: echo ${CONTAINS}
         env:
-          CONTAINS: ${{ "!contains(github.event.head_commit.message, '[ci skip]')" }}
+          CONTAINS: ${{ !contains(github.event.head_commit.message, '[ci skip]') }}
 
   build:
     runs-on: ubuntu-latest
