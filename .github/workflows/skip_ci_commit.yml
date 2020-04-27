@@ -10,6 +10,9 @@ jobs:
       - run: echo $COMMIT_MESSAGE
         env:
           COMMIT_MESSAGE: ${{ toJson(github.event.head_commit.message) }}
+      - run: echo "result:${{ "!contains(github.event.head_commit.message, '[skip ci]') || !contains(github.event.head_commit.message, '[ci skip]')" }}"
+      - run: echo "result:${{ "!contains(github.event.head_commit.message, '[skip ci]')" }}"
+      - run: echo "result:${{ "!contains(github.event.head_commit.message, '[ci skip]')" }}"
 
   build:
     runs-on: ubuntu-latest
