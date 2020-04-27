@@ -1,0 +1,17 @@
+name: push and pull_request avoid redundant
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    types:
+      - synchronize
+      - opened
+      - reopened
+
+jobs:
+  my-job:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo push and pull_request trigger
