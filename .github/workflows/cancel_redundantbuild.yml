@@ -1,10 +1,13 @@
 name: cancel redundant build
-on: push
+# when pull_request, both push and pull_request (synchronize) will trigger.
+# this action sample will prevent duplicate run, but run only 1 of them.
+on: [push, pull_request]
 
 jobs:
   cancel:
     runs-on: ubuntu-latest
     steps:
+      # no check for master and tag
       - uses: rokroskar/workflow-run-cleanup-action@v0.2.2
         if: "!startsWith(github.ref, 'refs/tags/') && github.ref != 'refs/heads/master'"
         env:
