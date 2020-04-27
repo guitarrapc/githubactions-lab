@@ -416,7 +416,7 @@ on: ["push"]
 
 jobs:
   build:
-    if: "!contains(github.event.head_commit.message, '[skip ci]') || !contains(github.event.head_commit.message, '[ci skip]')"
+    if: "!(contains(github.event.head_commit.message, '[skip ci]') || contains(github.event.head_commit.message, '[ci skip]'))"
     runs-on: ubuntu-latest
     steps:
       - run: echo $COMMIT_MESSAGE
