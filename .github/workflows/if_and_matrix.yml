@@ -10,6 +10,5 @@ jobs:
     steps:
       - run: echo this if ${{ matrix.sample }}
         if: matrix.sample == 'hoge'
-    steps:
       - run: echo this if ${{ matrix.sample }}
         if: matrix.sample == 'fuga'

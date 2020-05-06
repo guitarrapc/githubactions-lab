@@ -366,7 +366,10 @@ jobs:
 GitHub Actions allow `if` condition for `step`.
 when you want refer `matrix` value on `if` condition, you don't need add `${{}}` to refer matrix.
 
-> matrix cannot refer with `job.if`.
+Make sure `matrix` cannot refer with `job.if`.
+
+
+> [Solved: What is the correct if condition syntax for checki\.\.\. \- GitHub Community Forum](https://github.community/t5/GitHub-Actions/What-is-the-correct-if-condition-syntax-for-checking-matrix-os/td-p/31269)
 
 ```yaml
 name: if and matrix
