@@ -363,8 +363,10 @@ jobs:
 
 ### if and matrix reference
 
-GitHub Actions allow `if` condition for both `job` and `step`.
+GitHub Actions allow `if` condition for `step`.
 when you want refer `matrix` value on `if` condition, you don't need add `${{}}` to refer matrix.
+
+> matrix cannot refer with `job.if`.
 
 ```yaml
 name: if and matrix
@@ -376,10 +378,12 @@ jobs:
       matrix:
         sample: ["hoge", "fuga"]
     runs-on: ubuntu-latest
-    if: ${{ matrix.sample }} == 'hoge'
     steps:
-      - run: echo ${{ matrix.sample }}
+      - run: echo this if ${{ matrix.sample }}
         if: matrix.sample == 'hoge'
+    steps:
+      - run: echo this if ${{ matrix.sample }}
+        if: matrix.sample == 'fuga'
 ```
 
 ## Branch and tag handling
