@@ -3,8 +3,9 @@ on: push
 
 jobs:
   matrix_reference:
-    matrix:
-      sample: ["hoge", "fuga"]
+    strategy:
+      matrix:
+        sample: ["hoge", "fuga"]
     runs-on: ubuntu-latest
     if: matrix.sample == 'hoge'
     steps:
