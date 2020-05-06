@@ -376,7 +376,7 @@ jobs:
       matrix:
         sample: ["hoge", "fuga"]
     runs-on: ubuntu-latest
-    if: matrix.sample == 'hoge'
+    if: ${{ matrix.sample }} == 'hoge'
     steps:
       - run: echo ${{ matrix.sample }}
         if: matrix.sample == 'hoge'
