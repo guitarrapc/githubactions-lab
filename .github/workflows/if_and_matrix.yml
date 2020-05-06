@@ -1,0 +1,12 @@
+name: if and matrix
+on: push
+
+jobs:
+  matrix_reference:
+    matrix:
+      sample: ["hoge", "fuga"]
+    runs-on: ubuntu-latest
+    if: matrix.sample == 'hoge'
+    steps:
+      - run: echo ${{ matrix.sample }}
+        if: matrix.sample == 'hoge'

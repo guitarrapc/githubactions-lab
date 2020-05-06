@@ -24,6 +24,7 @@ dotnet | ![build](https://github.com/guitarrapc/githubaction-lab/workflows/build
   * [runs only when previous step status is specific](#runs-only-when-previous-step-status-is-specific)
   * [timeout for job and step](#timeout-for-job-and-step)
   * [suppress redundant build](#suppress-redundant-build)
+  * [if and matrix reference](#if-and-matrix-reference)
 * [Branch and tag handling](#branch-and-tag-handling)
   * [run when branch push only but skip on tag push](#run-when-branch-push-only-but-skip-on-tag-push)
   * [skip when branch push but run on tag push only](#skip-when-branch-push-but-run-on-tag-push-only)
@@ -358,6 +359,26 @@ jobs:
         if: "!startsWith(github.ref, 'refs/tags/') && github.ref != 'refs/heads/master'"
         env:
           GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+```
+
+### if and matrix reference
+
+GitHub Actions allow `if` condition for both `job` and `step`.
+when you want refer `matrix` value on `if` condition, you don't need add `${{}}` to refer matrix.
+
+```yaml
+name: if and matrix
+on: push
+
+jobs:
+  matrix_reference:
+    matrix:
+      sample: ["hoge", "fuga"]
+    runs-on: ubuntu-latest
+    if: matrix.sample == 'hoge'
+    steps:
+      - run: echo ${{ matrix.sample }}
+        if: matrix.sample == 'hoge'
 ```
 
 ## Branch and tag handling
