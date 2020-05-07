@@ -26,7 +26,7 @@ jobs:
       # publish
       - run: dotnet publish ./src/dotnet/console/ -c Debug -o ./out/dotnet-console
       # upload
-      - uses: actions/upload-artifact@v1
+      - uses: actions/upload-artifact@v2
         with:
           name: dotnet-console
           path: ./out/dotnet-console
@@ -51,7 +51,7 @@ jobs:
       # publish
       - run: dotnet publish ./src/dotnet/console/ -c Debug -o ./out/dotnet-console-container
       # upload
-      - uses: actions/upload-artifact@v1
+      - uses: actions/upload-artifact@v2
         with:
           name: dotnet-console-container
           path: ./out/dotnet-console-container
@@ -62,5 +62,5 @@ jobs:
       - dotnet-console
       - dotnet-console-container
     steps:
-      - uses: actions/download-artifact@v2-preview
+      - uses: actions/download-artifact@v2
       - run: ls -l
