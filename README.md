@@ -30,6 +30,7 @@ dotnet | ![build](https://github.com/guitarrapc/githubaction-lab/workflows/build
   * [skip when branch push but run on tag push only](#skip-when-branch-push-but-run-on-tag-push-only)
   * [build only specific tag pattern](#build-only-specific-tag-pattern)
   * [get pushed tag name](#get-pushed-tag-name)
+  * [schedule job on non-default branch](#schedule-job-on-non-default-branch)
 * [Commit handling](#commit-handling)
   * [skip ci](#skip-ci)
   * [trigger via commit message](#trigger-via-commit-message)
@@ -482,6 +483,30 @@ jobs:
       - run: echo ${{ steps.CI_TAG.outputs.GIT_TAG }}
       - run: echo ::set-env name=GIT_TAG::${GITHUB_REF#refs/tags/}
       - run: echo ${{ env.GIT_TAG }}
+```
+
+### schedule job on non-default branch
+
+Schedule job will offer `Last commit on default branch`.
+
+> ref: [Events that trigger workflows \- GitHub Help](https://help.github.com/en/actions/reference/events-that-trigger-workflows#scheduled-events-schedule)
+
+schedule workflow should merge to default branch to apply workflow change.
+
+Pass branch info when you want run checkout on non-default branch.
+
+```yaml
+name: schedule job
+on: 
+  schedule:
+   - cron: "0 0 * * *"
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          ref: some-branch
 ```
 
 ## Commit handling
