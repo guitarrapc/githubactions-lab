@@ -148,7 +148,7 @@ job id, name and others.
 dump context with `toJson()` is a easiest way to dump context.
 
 ```yaml
-name: view github context
+name: dump context
 
 on: ["push"]
 
@@ -156,9 +156,30 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - run: echo $GITHUB_CONTEXT
+      - name: Dump GitHub context
+        run: echo "$CONTEXT"
         env:
-          GITHUB_CONTEXT: ${{ toJson(github) }}
+          CONTEXT: ${{ toJson(github) }}
+      - name: Dump job context
+        run: echo "$CONTEXT"
+        env:
+          CONTEXT: ${{ toJson(job) }}
+      - name: Dump steps context
+        run: echo "$CONTEXT"
+        env:
+          CONTEXT: ${{ toJson(steps) }}
+      - name: Dump runner context
+        run: echo "$CONTEXT"
+        env:
+          CONTEXT: ${{ toJson(runner) }}
+      - name: Dump strategy context
+        run: echo "$CONTEXT"
+        env:
+          CONTEXT: ${{ toJson(strategy) }}
+      - name: Dump matrix context
+        run: echo "$CONTEXT"
+        env:
+          CONTEXT: ${{ toJson(matrix) }}
 ```
 
 ### matrix and secret dereference
