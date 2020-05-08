@@ -494,6 +494,10 @@ Schedule job will offer `Last commit on default branch`.
 schedule workflow should merge to default branch to apply workflow change.
 
 Pass branch info when you want run checkout on non-default branch.
+Don't forget pretend `refs/heads/` to your branch.
+
+* good: refs/heads/some-branch
+* bad: some-branch
 
 ```yaml
 name: schedule job
@@ -506,7 +510,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
         with:
-          ref: some-branch
+          ref: refs/heads/some-branch
 ```
 
 ## Commit handling
