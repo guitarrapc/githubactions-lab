@@ -15,3 +15,6 @@ jobs:
       # GIT_TAG: "ci-`date '+%Y%m%d-%H%M%S'`+${GITHUB_SHA:0:6}"
     steps:
       - run: echo "${ORG}"
+      - run: echo "${NEW_ORG}"
+        env:
+          NEW_ORG: ${{ env.ORG }}
