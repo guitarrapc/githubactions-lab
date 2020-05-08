@@ -17,4 +17,4 @@ jobs:
       - run: echo "${ORG}"
       - run: echo "${NEW_ORG}"
         env:
-          NEW_ORG: ${{ env.ORG }}
+          NEW_ORG: new-${{ env.ORG }}
