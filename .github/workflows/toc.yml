@@ -1,12 +1,12 @@
 name: toc
 
 on:
-  pull_request:
-    types: [opened, synchronize, reopened, closed]
+  push:
+    branches:
+      - master
 
 jobs:
   toc:
-    if: github.event.pull_request.head.user.id == github.event.pull_request.base.user.id
     runs-on: ubuntu-latest
     timeout-minutes: 3
     steps:
