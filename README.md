@@ -1,8 +1,7 @@
-githubaction-lab
+![dotnet-build](https://github.com/guitarrapc/githubaction-lab/workflows/dotnet-build/badge.svg?branch=master)
 
-language | badge
----- | ----
-dotnet | ![build](https://github.com/guitarrapc/githubaction-lab/workflows/build/badge.svg?branch=master)
+## githubaction-lab
+
 
 ## Index
 

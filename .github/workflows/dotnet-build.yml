@@ -1,4 +1,4 @@
-name: build
+name: dotnet-build
 
 # run on both branch push and tag push
 on: [push]
