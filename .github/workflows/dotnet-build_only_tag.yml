@@ -19,7 +19,7 @@ jobs:
   dotnet-console:
     strategy:
       matrix:
-        dotnet: ["3.1.201"] # support latest only
+        dotnet: ["3.1.202"] # support latest only
     runs-on: ubuntu-latest
     env:
       DOTNET_CLI_TELEMETRY_OPTOUT: 1
