@@ -3,7 +3,9 @@
 ## githubaction-lab
 
 
-## Index
+## Table of Contents
+
+<!-- START doctoc -->
 
 * [Not yet support](#not-yet-support)
 * [Difference from other CI](#difference-from-other-ci)
@@ -35,6 +37,8 @@
   * [trigger via commit message](#trigger-via-commit-message)
 * [Issue and Pull Request handling](#issue-and-pull-request-handling)
   * [skip ci on pull request title](#skip-ci-on-pull-request-title)
+
+<!-- END doctoc -->
 
 ## Not yet support
 
