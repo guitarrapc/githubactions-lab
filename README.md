@@ -1,7 +1,8 @@
 ![dotnet-build](https://github.com/guitarrapc/githubaction-lab/workflows/dotnet-build/badge.svg?branch=master)
 
-## githubaction-lab
+## githubactions-lab
 
+GitHub Actions laboratory.
 
 ## Table of Contents
 
