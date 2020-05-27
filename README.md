@@ -142,7 +142,28 @@ GitHub Actions need to set environment variables with specific syntax, not `KEY=
 * Azure Pipeline use task.setvariable. `echo "##vso[task.setvariable variable=NAME]VALUE"`
 * Jenkins use `Env.` in groovy declarative pipeline.
 
+### set secrets for reposiory
+
+GitHub ACtions offer Secrets for each repository and Organization.
+Secrets will be masked on the log.
+
+* GitHub Actions use Secrets
+* CircleCI offer Environment Variables and Context.
+* Azure Pipeline has Environment Variables and Paramter.
+* Jenkins has Credential Provider.
+
 ## Fundamentals
+
+### secrets
+
+GitHub Actions supports "Indivisual Repository Secrets" and "Organization Secrets"
+
+* You can set secrets for each repository with `Settings > Secrets`.
+* You can set secrets for Organization and filter to selected repository with `Settings > Secrets`.
+
+If same secrets key is exists, `Repository Secrets` > `Organization Secrets`.
+
+When you want spread your secrets with indivisual account, you need set each repository secrets or use [google/secrets\-sync\-action](https://github.com/google/secrets-sync-action).
 
 ### meta github context
 
