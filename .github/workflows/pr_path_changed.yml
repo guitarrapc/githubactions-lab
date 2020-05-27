@@ -2,7 +2,9 @@ name: Lint
 on: [push, pull_request]
 
 jobs:
-  build:
-    - uses: trilom/file-changes-action@v1.2.3
-      id: filechanges
-    - run: echo "${{ steps.filechanges.outputs.files }}"
+  changes:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: trilom/file-changes-action@v1.2.3
+        id: file_changes
+      - run: echo "${{ steps.file_changes.outputs.files }}"
