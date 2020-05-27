@@ -1,0 +1,14 @@
+name: pr path changed
+on: [push, pull_request]
+
+jobs:
+  changes:
+    runs-on: ubuntu-latest
+    steps:
+      - id: file_changes
+        uses: trilom/file-changes-action@v1.2.3
+        with:
+          output: ","
+      - run: echo "${{ steps.file_changes.outputs.files }}"
+      - if: contains(steps.file_changes.outputs.files, '.github/workflows/')
+        run: echo changes contains .github/workflows/
