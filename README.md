@@ -5,40 +5,44 @@
 
 ## Table of Contents
 
-<!-- START doctoc -->
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+<details>
+<summary>Details</summary>
 
-* [Not yet support](#not-yet-support)
-* [Difference from other CI](#difference-from-other-ci)
-  * [migration](#migration)
-  * [job and workflow](#job-and-workflow)
-  * [skip ci on commit message](#skip-ci-on-commit-message)
-  * [path filter](#path-filter)
-  * [job id or other meta values](#job-id-or-other-meta-values)
-  * [cancel redundant builds](#cancel-redundant-builds)
-  * [set environment variables for next step](#set-environment-variables-for-next-step)
-* [Fundamentals](#fundamentals)
-  * [meta github context](#meta-github-context)
-  * [view webhook github context](#view-webhook-gitHub-context)
-  * [matrix and secret dereference](#matrix-and-secret-dereference)
-  * [matrix and environment variables](#matrix-and-environment-variables)
-  * [runs only previous job is success](#runs-only-previous-job-is-success)
-  * [runs only when previous step status is specific](#runs-only-when-previous-step-status-is-specific)
-  * [timeout for job and step](#timeout-for-job-and-step)
-  * [suppress redundant build](#suppress-redundant-build)
-  * [if and matrix reference](#if-and-matrix-reference)
-* [Branch and tag handling](#branch-and-tag-handling)
-  * [run when branch push only but skip on tag push](#run-when-branch-push-only-but-skip-on-tag-push)
-  * [skip when branch push but run on tag push only](#skip-when-branch-push-but-run-on-tag-push-only)
-  * [build only specific tag pattern](#build-only-specific-tag-pattern)
-  * [get pushed tag name](#get-pushed-tag-name)
-  * [schedule job on non-default branch](#schedule-job-on-non-default-branch)
-* [Commit handling](#commit-handling)
-  * [skip ci](#skip-ci)
-  * [trigger via commit message](#trigger-via-commit-message)
-* [Issue and Pull Request handling](#issue-and-pull-request-handling)
-  * [skip ci on pull request title](#skip-ci-on-pull-request-title)
+- [Not yet support](#not-yet-support)
+- [Difference from other CI](#difference-from-other-ci)
+  - [migration](#migration)
+  - [job and workflow](#job-and-workflow)
+  - [skip ci on commit message](#skip-ci-on-commit-message)
+  - [path filter](#path-filter)
+  - [job id or other meta values](#job-id-or-other-meta-values)
+  - [cancel redundant builds](#cancel-redundant-builds)
+  - [set environment variables for next step](#set-environment-variables-for-next-step)
+- [Fundamentals](#fundamentals)
+  - [meta github context](#meta-github-context)
+  - [view webhook github context](#view-webhook-github-context)
+  - [matrix and secret dereference](#matrix-and-secret-dereference)
+  - [matrix and environment variables](#matrix-and-environment-variables)
+  - [runs only previous job is success](#runs-only-previous-job-is-success)
+  - [runs only when previous step status is specific](#runs-only-when-previous-step-status-is-specific)
+  - [timeout for job and step](#timeout-for-job-and-step)
+  - [suppress redundant build](#suppress-redundant-build)
+  - [if and matrix reference](#if-and-matrix-reference)
+- [Branch and tag handling](#branch-and-tag-handling)
+  - [run when branch push only but skip on tag push](#run-when-branch-push-only-but-skip-on-tag-push)
+  - [skip when branch push but run on tag push only](#skip-when-branch-push-but-run-on-tag-push-only)
+  - [build only specific tag pattern](#build-only-specific-tag-pattern)
+  - [get pushed tag name](#get-pushed-tag-name)
+  - [schedule job on non-default branch](#schedule-job-on-non-default-branch)
+- [Commit handling](#commit-handling)
+  - [skip ci](#skip-ci)
+  - [trigger via commit message](#trigger-via-commit-message)
+- [Issue and Pull Request handling](#issue-and-pull-request-handling)
+  - [skip ci on pull request title](#skip-ci-on-pull-request-title)
 
-<!-- END doctoc -->
+</details>
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 ## Not yet support
 
