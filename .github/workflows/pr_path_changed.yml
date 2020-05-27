@@ -3,6 +3,6 @@ on: [push, pull_request]
 
 jobs:
   build:
-    - id: file_changes
-      uses: trilom/file-changes-action@v1.2.3
-    - run: echo "${{ steps.file_changes.outputs.files }}"
+    - uses: trilom/file-changes-action@v1.2.3
+      id: filechanges
+    - run: echo "${{ steps.filechanges.outputs.files }}"
