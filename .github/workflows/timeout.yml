@@ -8,4 +8,4 @@ jobs:
     timeout-minutes: 5
     steps:
       - run: echo done before timeout
-        timeout-minutes: 1 # step個別
+        timeout-minutes: 1 # each step
