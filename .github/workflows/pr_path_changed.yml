@@ -1,5 +1,5 @@
 name: pr path changed
-on: [push, pull_request]
+on: [pull_request]
 
 jobs:
   changes:
@@ -9,6 +9,8 @@ jobs:
         uses: trilom/file-changes-action@v1.2.3
         with:
           output: ","
+          pushBefore: master
+          pushAfter: ${{ github.payload.after }}
       - run: echo "${{ steps.file_changes.outputs.files }}"
       - if: contains(steps.file_changes.outputs.files, '.github/workflows/')
         run: echo changes contains .github/workflows/
