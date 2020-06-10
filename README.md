@@ -43,6 +43,7 @@ GitHub Actions laboratory.
   - [trigger via commit message](#trigger-via-commit-message)
 - [Issue and Pull Request handling](#issue-and-pull-request-handling)
   - [skip ci on pull request title](#skip-ci-on-pull-request-title)
+  - [skip pr from fork repo](#skip-pr-from-fork-repo)
 
 </details>
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
