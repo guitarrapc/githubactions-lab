@@ -14,6 +14,6 @@ jobs:
     runs-on: ubuntu-latest
     # push & my repo will trigger
     # pull_request on my repo will trigger
-    if: "(github.event == 'push' && github.repository_owner == 'guitarrapc') || startsWith(github.event.pull_request.head.label, 'guitarrapc/')"
+    if: "(github.event == 'push' && github.repository_owner == 'guitarrapc') || startsWith(github.event.pull_request.head.label, 'guitarrapc:')"
     steps:
       - run: echo build

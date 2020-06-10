@@ -633,3 +633,30 @@ jobs:
         env:
           TITLE: ${{ toJson(github.event.pull_request.title) }}
 ```
+
+### skip pr from fork repo
+
+default `pull_request` event trigger from even fork repository, however fork pr could not read `secrets` and may fail PR checks.
+To control job to be skip from fork but run on self pr or push, use `if` conditions.
+
+```
+name: skip pr from fork
+
+on:
+  push:
+    branches:
+      - "**"
+  pull_request:
+    types:
+      - opened
+      - synchronize
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    # push & my repo will trigger
+    # pull_request on my repo will trigger
+    if: "(github.event == 'push' && github.repository_owner == 'guitarrapc') || startsWith(github.event.pull_request.head.label, 'guitarrapc:')"
+    steps:
+      - run: echo build
+```
