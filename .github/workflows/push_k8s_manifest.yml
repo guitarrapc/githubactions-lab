@@ -33,4 +33,4 @@ jobs:
           github_token: ${{ secrets.SYNCED_GITHUB_TOKEN_REPO }}
           repository: ${{ env.REPO_MANIFEST }}
           branch: ${{ env.MANIFEST_BRANCH }}
-          direcory: ${{ env.REPO_MANIFEST }}
+          directory: ${{ env.REPO_MANIFEST }}
