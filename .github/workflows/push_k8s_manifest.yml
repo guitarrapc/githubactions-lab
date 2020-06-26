@@ -30,7 +30,7 @@ jobs:
         working-directory: ${{ env.REPO_MANIFEST }}
       - uses: ad-m/github-push-action@master
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          github_token: ${{ secrets.SYNCED_GITHUB_TOKEN_REPO }}
           repository: ${{ env.REPO_MANIFEST }}
           branch: ${{ env.MANIFEST_BRANCH }}
           direcory: ${{ env.REPO_MANIFEST }}
