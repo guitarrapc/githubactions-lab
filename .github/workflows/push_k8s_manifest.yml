@@ -20,7 +20,7 @@ jobs:
           kubectl kustomize ./src/k8s/common/overlays/development > ${REPO_MANIFEST}/${MANIFEST_DIR}/all.yaml
       - run: |
           git config --local user.email "action@github.com"
-          git config --local user.name "github actions bot"
+          git config --local user.name "actions-user"
           git status
           git add dev/*
           ret=$(git status| sed -ne 's|.*\(clean\)|\1|p')
