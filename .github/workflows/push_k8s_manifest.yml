@@ -25,9 +25,13 @@ jobs:
           git add dev/*
           ret=$(git status| sed -ne 's|.*\(clean\)|\1|p')
           if [ -z $ret ];then
-            git commit -m "(dev) update manifests"
+            git commit -m "(dev) update manifests ${PR_REPO}[#${PR_NUMBER}](${PR_URL})"
           fi
         working-directory: ${{ env.REPO_MANIFEST }}
+        env:
+          PR_REPO: ${{ github.event.repository.name }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+          PR_URL: ${{ github.event.pull_request.comments_url }}
       - uses: ad-m/github-push-action@master
         with:
           github_token: ${{ secrets.SYNCED_GITHUB_TOKEN_REPO }}
