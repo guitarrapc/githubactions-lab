@@ -15,8 +15,11 @@ jobs:
           path: ${{ env.REPO_MANIFEST }}
           token: ${{ secrets.GITHUB_TOKEN }}
       - run: |
+          ls
           mkdir -p ./${REPO_MANIFEST}/${MANIFEST_DIR}
           kubectl kustomize ./src/k8s/common/overlays/development > ${REPO_MANIFEST}/${MANIFEST_DIR}/all.yaml
+          ls ${REPO_MANIFEST}/${MANIFEST_DIR}
+          cat ${REPO_MANIFEST}/${MANIFEST_DIR}/all.yaml
       - run: |
           git config --local user.email "action@github.com"
           git config --local user.name "github actions bot"
