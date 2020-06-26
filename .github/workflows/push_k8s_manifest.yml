@@ -5,7 +5,7 @@ jobs:
     env:
       REPO_MANIFEST: guitarrapc/kubernetes-manifest-lab
       MANIFEST_DIR: dev
-      MANIFEST_BRANCH: mater
+      MANIFEST_BRANCH: master
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
