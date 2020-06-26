@@ -1,7 +1,8 @@
 namespace: githubactions-sample-dev
 bases:
   - ../../../frontend/overlays/development
-  - ../../../redis/overlays/development
+  - ../../../redis-master/overlays/development
+  - ../../../redis-slave/overlays/development
 
 resources:
   - namespace.yaml

@@ -2,25 +2,27 @@ apiVersion: apps/v1 #  for k8s versions before 1.9.0 use apps/v1beta2  and befor
 kind: Deployment
 metadata:
   name: redis-master
+  labels:
+    app: redis
+    role: master
 spec:
   selector:
     matchLabels:
       app: redis
       role: master
-      tier: backend
   template:
     metadata:
       labels:
         app: redis
         role: master
-        tier: backend
     spec:
       containers:
-        - name: master
-          image: k8s.gcr.io/redis:e2e # or just image: redis
+        - name: redis-master
+          image: redis:latest
           resources:
             requests:
               cpu: 100m
               memory: 100Mi
           ports:
-            - containerPort: 6379
+            - name: redis-server
+              containerPort: 6379
