@@ -1,9 +1,10 @@
 name: push k8s manifest
-on: [push, pull_request]
+on: [pull_request]
 jobs:
   push_manifest:
     env:
-      REPO_MANIFEST: kubernetes-manifest-lab
+      REPO_MANIFEST: guitarrapc/kubernetes-manifest-lab
+      REPO_MANIFEST_DIR: kubernetes-manifest-lab
       MANIFEST_DIR: dev
       MANIFEST_BRANCH: mater
     runs-on: ubuntu-latest
