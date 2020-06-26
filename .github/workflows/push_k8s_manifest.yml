@@ -11,23 +11,25 @@ jobs:
       - uses: actions/checkout@v2
       - uses: actions/checkout@v2
         with:
+          persist-credentials: false
           repository: ${{ env.REPO_MANIFEST }}
           path: ${{ env.REPO_MANIFEST }}
           token: ${{ secrets.GITHUB_TOKEN }}
       - run: |
-          ls
           mkdir -p ./${REPO_MANIFEST}/${MANIFEST_DIR}
           kubectl kustomize ./src/k8s/common/overlays/development > ${REPO_MANIFEST}/${MANIFEST_DIR}/all.yaml
-          ls ${REPO_MANIFEST}/${MANIFEST_DIR}
-          cat ${REPO_MANIFEST}/${MANIFEST_DIR}/all.yaml
       - run: |
           git config --local user.email "action@github.com"
           git config --local user.name "github actions bot"
-          git commit -m "Add changes" -a
+          git status
+          ret=$(git status| sed -ne 's|.*\(clean\)|\1|p')
+          if [ -z $ret ];then
+            git commit -m "Add changes"
+          fi
         working-directory: ${{ env.REPO_MANIFEST }}
       - uses: ad-m/github-push-action@master
         with:
-          repository: kubernetes-manifest-lab
           github_token: ${{ secrets.GITHUB_TOKEN }}
+          repository: kubernetes-manifest-lab
           branch: ${{ env.MANIFEST_BRANCH }}
           direcory: ${{ env.REPO_MANIFEST }}
