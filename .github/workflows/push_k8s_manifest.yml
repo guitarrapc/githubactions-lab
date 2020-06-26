@@ -29,7 +29,7 @@ jobs:
           fi
         working-directory: ${{ env.REPO_MANIFEST }}
         env:
-          REPO: ${{ github.github.repository }}
+          REPO: ${{ github.repository }}
           PR_NUMBER: ${{ github.event.pull_request.number }}
       - uses: ad-m/github-push-action@master
         with:
