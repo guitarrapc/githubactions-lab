@@ -1,0 +1,8 @@
+name: push k8s manifest
+on: [push, pull_request]
+jobs:
+  my-job:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: kubectl kustomize ./src/k8s/common/overlays/development
