@@ -6,6 +6,7 @@ jobs:
       REPO_MANIFEST: guitarrapc/kubernetes-manifest-lab
       MANIFEST_DIR: dev
       MANIFEST_BRANCH: master
+      NAMESPACE_PREFIX: githubactions-sample-
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -17,7 +18,11 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
       - run: |
           mkdir -p ./${REPO_MANIFEST}/${MANIFEST_DIR}
-          kubectl kustomize ./src/k8s/common/overlays/development > ${REPO_MANIFEST}/${MANIFEST_DIR}/all.yaml
+          kubectl kustomize ./src/k8s/common/overlays/development \
+            && sed -e "s|<namespace>|${NAMESPACE_PREFIX}-${MANIFEST_DIR}|g" \
+            && sed -e "s|<git-sha>|${{ github.sha }}|g" \
+            && sed -e "s|<git-branch>|${{ github.ref }}|g" \
+            && sed -e "s|<git-link>|${{ github.event.pull_request.html_url }}|g" > ${REPO_MANIFEST}/${MANIFEST_DIR}/all.yaml
       - run: |
           git config --local user.email "action@github.com"
           git config --local user.name "actions-user"

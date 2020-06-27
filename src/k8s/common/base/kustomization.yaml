@@ -1,2 +1,2 @@
-commonAnnotations:
-  app: frontend
+resources:
+  - namespace.yaml
