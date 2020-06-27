@@ -3,6 +3,10 @@ on:
   push:
     branches:
       - master
+    paths:
+      - src/k8s/**/*
+      - .github/workflows/k8s*
+
 jobs:
   push_manifest:
     env:
