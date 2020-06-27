@@ -30,6 +30,12 @@ jobs:
         env:
           REF: ${{ github.ref }}
       - run: |
+          git fetch origin ${BRANCH}:${BRANCH}
+          git reset --hard ${BRANCH}
+        working-directory: ${{ env.REPO_MANIFEST }}
+        env:
+          BRANCH: feat/k8s_manifest/${{ env.GIT_BRANCH }}
+      - run: |
           mkdir -p ./${REPO_MANIFEST}/${MANIFEST_DIR}
           kubectl kustomize ./src/k8s/common/overlays/development \
             | sed -e "s|<namespace>|${NAMESPACE_PREFIX}${MANIFEST_DIR}|g" \
