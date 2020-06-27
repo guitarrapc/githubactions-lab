@@ -46,11 +46,20 @@ jobs:
           RUN_ID: ${{ github.run_id }}
           PR_NUMBER: ${{ github.event.pull_request.number }}
           COMPARE_URL: ${{ github.event.compare }}
-      # todo: change to create pr.
-      # uses: peter-evans/create-pull-request@v2
-      - uses: ad-m/github-push-action@master
+      # - uses: ad-m/github-push-action@master
+      #   with:
+      #     github_token: ${{ secrets.SYNCED_GITHUB_TOKEN_REPO }}
+      #     repository: ${{ env.REPO_MANIFEST }}
+      #     branch: ${{ env.GIT_BRANCH }}
+      #     directory: ${{ env.REPO_MANIFEST }}
+      - uses: peter-evans/create-pull-request@v2
+        id: cpr
         with:
-          github_token: ${{ secrets.SYNCED_GITHUB_TOKEN_REPO }}
-          repository: ${{ env.REPO_MANIFEST }}
-          branch: ${{ env.GIT_BRANCH }}
-          directory: ${{ env.REPO_MANIFEST }}
+          token: ${{ secrets.SYNCED_GITHUB_TOKEN_REPO }}
+          title: "(${MANIFEST_DIR}) update manifest"
+          branch: feat/k8s_manifest/${{ env.GIT_BRANCH }}
+          labels: kubernetes
+          path: ${{ env.REPO_MANIFEST }}
+      - run: |
+          echo "Pull Request Number - ${{ env.PULL_REQUEST_NUMBER }}"
+          echo "Pull Request Number - ${{ steps.cpr.outputs.pull-request-number }}"
