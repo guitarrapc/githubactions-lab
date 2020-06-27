@@ -46,12 +46,6 @@ jobs:
           RUN_ID: ${{ github.run_id }}
           PR_NUMBER: ${{ github.event.pull_request.number }}
           COMPARE_URL: ${{ github.event.compare }}
-      # - uses: ad-m/github-push-action@master
-      #   with:
-      #     github_token: ${{ secrets.SYNCED_GITHUB_TOKEN_REPO }}
-      #     repository: ${{ env.REPO_MANIFEST }}
-      #     branch: ${{ env.GIT_BRANCH }}
-      #     directory: ${{ env.REPO_MANIFEST }}
       - uses: peter-evans/create-pull-request@v2
         id: cpr
         with:
