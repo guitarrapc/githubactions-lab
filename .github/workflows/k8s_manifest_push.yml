@@ -7,11 +7,13 @@ on:
       - src/k8s/**/*
       - .github/workflows/k8s*
 
+env:
+  REPO_MANIFEST: guitarrapc/kubernetes-manifest-lab
+  MANIFEST_DIR: dev
+
 jobs:
   push_manifest:
     env:
-      REPO_MANIFEST: guitarrapc/kubernetes-manifest-lab
-      MANIFEST_DIR: dev
       NAMESPACE_PREFIX: githubactions-sample-
     runs-on: ubuntu-latest
     steps:
@@ -50,11 +52,52 @@ jobs:
           RUN_ID: ${{ github.run_id }}
           PR_NUMBER: ${{ github.event.pull_request.number }}
           COMPARE_URL: ${{ github.event.compare }}
+      # #accumerate commit pattern
+      # https://github.com/peter-evans/create-pull-request/issues/169
+      - uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.SYNCED_GITHUB_TOKEN_REPO }}
+          repository: ${{ env.REPO_MANIFEST }}
+          branch: feat/k8s_manifest/${{ env.GIT_BRANCH }}
+          directory: ${{ env.REPO_MANIFEST }}
+      # #force push pattern
+      # - uses: peter-evans/create-pull-request@v2
+      #   id: cpr
+      #   with:
+      #     token: ${{ secrets.SYNCED_GITHUB_TOKEN_REPO }}
+      #     branch: feat/k8s_manifest/${{ env.GIT_BRANCH }}
+      #     labels: kubernetes
+      #     title: "feat: (${{ env.MANIFEST_DIR }}) update manifest on ${{ env.GIT_BRANCH }}"
+      #     body: |
+      #       Automated changed by https://github.com/${{ github.repository }}/tree/${{ env.GIT_BRANCH }}
+      #       ## TL;DR
+      #       * Kubernetes Manifest to deploy app.
+      #       * Source Branch: ${{ env.GIT_BRANCH }}
+      #     path: ${{ env.REPO_MANIFEST }}
+      # - run: |
+      #     echo "Pull Request Number - ${{ env.PULL_REQUEST_NUMBER }}"
+      #     echo "Pull Request Number - ${{ steps.cpr.outputs.pull-request-number }}"
+
+  #if accumerate commit pattern
+  create_pr:
+    needs: push_manifest
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "::set-env name=GIT_BRANCH::$(echo $REF | sed -e 's|refs/heads/||g')"
+      - uses: actions/checkout@v2
+        with:
+          repository: ${{ env.REPO_MANIFEST }}
+          token: ${{ secrets.GITHUB_TOKEN }}
+      - run: |
+          git fetch origin ${BRANCH}:${BRANCH}
+          git reset --hard ${BRANCH}
+        env:
+          BRANCH: feat/k8s_manifest/${{ env.GIT_BRANCH }}
       - uses: peter-evans/create-pull-request@v2
         id: cpr
         with:
           token: ${{ secrets.SYNCED_GITHUB_TOKEN_REPO }}
-          branch: feat/k8s_manifest/${{ env.GIT_BRANCH }}
+          branch: ${BRANCH}
           labels: kubernetes
           title: "feat: (${{ env.MANIFEST_DIR }}) update manifest on ${{ env.GIT_BRANCH }}"
           body: |
@@ -64,6 +107,8 @@ jobs:
             * Kubernetes Manifest to deploy app.
             * Source Branch: ${{ env.GIT_BRANCH }}
           path: ${{ env.REPO_MANIFEST }}
+        env:
+          BRANCH: feat/k8s_manifest/${{ env.GIT_BRANCH }}
       - run: |
           echo "Pull Request Number - ${{ env.PULL_REQUEST_NUMBER }}"
           echo "Pull Request Number - ${{ steps.cpr.outputs.pull-request-number }}"
