@@ -18,7 +18,7 @@ jobs:
           repository: ${{ env.REPO_MANIFEST }}
           path: ${{ env.REPO_MANIFEST }}
           token: ${{ secrets.GITHUB_TOKEN }}
-      - run: echo "::set-env name=GIT_BRANCH::${{ replace(github.ref, "refs/heads/" }}"
+      - run: echo "::set-env name=GIT_BRANCH::${{ replace(github.ref, "refs/heads/") }}"
       - run: |
           mkdir -p ./${REPO_MANIFEST}/${MANIFEST_DIR}
           kubectl kustomize ./src/k8s/common/overlays/development \
