@@ -1,8 +1,12 @@
-namespace: githubactions-sample-dev
+namespace: <namespace>
 bases:
+  - ../../base
   - ../../../frontend/overlays/development
   - ../../../redis-master/overlays/development
   - ../../../redis-slave/overlays/development
 
-resources:
-  - namespace.yaml
+commonAnnotations:
+  git-sha: <git-sha>
+  git-branch: <git-branch>
+  git-link: <git-link>
+  build-id: <build-id>
