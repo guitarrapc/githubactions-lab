@@ -43,6 +43,8 @@ jobs:
           PR_NUMBER: ${{ github.event.pull_request.number }}
           SHA: ${{ github.sha }}
           COMPARE_URL: ${{ github.event.compare }}
+      # todo: change to create pr.
+      # uses: peter-evans/create-pull-request@v2
       - uses: ad-m/github-push-action@master
         with:
           github_token: ${{ secrets.SYNCED_GITHUB_TOKEN_REPO }}
