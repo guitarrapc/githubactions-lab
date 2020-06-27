@@ -118,7 +118,6 @@ jobs:
             ## TL;DR
             * Kubernetes Manifest to deploy app.
             * Source Branch: ${{ env.GIT_BRANCH }}
-          path: ${{ env.REPO_MANIFEST }}
         env:
           BRANCH: feat/k8s_manifest/${{ env.GIT_BRANCH }}
       - run: |
