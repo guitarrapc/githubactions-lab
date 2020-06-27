@@ -19,12 +19,18 @@ jobs:
           path: ${{ env.REPO_MANIFEST }}
           token: ${{ secrets.GITHUB_TOKEN }}
       - run: echo "::set-env name=GIT_BRANCH::$(echo $REF | sed -e 's|refs/heads/||g')"
+        env:
+          REF: ${{ github.ref }}
+      - run: echo "$CONTEXT"
+        env:
+          CONTEXT: ${{ toJson(github) }}
+      - run: echo ${{ github.event.commits.*.url }}
       - run: |
           mkdir -p ./${REPO_MANIFEST}/${MANIFEST_DIR}
           kubectl kustomize ./src/k8s/common/overlays/development \
             | sed -e "s|<namespace>|${NAMESPACE_PREFIX}${MANIFEST_DIR}|g" \
             | sed -e "s|<git-sha>|${{ github.sha }}|g" \
-            | sed -e "s|<git-branch>|${GIT_BRANCH}}|g" \
+            | sed -e "s|<git-branch>|${GIT_BRANCH}|g" \
             | sed -e "s|<git-link>|${{ github.event.commits.url }}|g" \
             | sed -e "s|<build-id>|${{ github.run_id }}|g" > ${REPO_MANIFEST}/${MANIFEST_DIR}/all.yaml
       - run: |
@@ -34,14 +40,13 @@ jobs:
           git add dev/*
           ret=$(git status| sed -ne 's|.*\(clean\)|\1|p')
           if [ -z $ret ];then
-            git commit -m "(${MANIFEST_DIR}) update manifests ${REPO}/commit/${SHA} (${RUN_ID})" -m "compare: ${COMPARE_URL}"
+            git commit -m "(${MANIFEST_DIR}) update manifests ${REPO}/commit/${SHA} ($(git rev-parse --short HEAD))" -m "compare: ${COMPARE_URL}"
           fi
         working-directory: ${{ env.REPO_MANIFEST }}
         env:
           REPO: ${{ github.repository }}
           RUN_ID: ${{ github.run_id }}
           PR_NUMBER: ${{ github.event.pull_request.number }}
-          SHA: ${{ github.sha }}
           COMPARE_URL: ${{ github.event.compare }}
       # todo: change to create pr.
       # uses: peter-evans/create-pull-request@v2

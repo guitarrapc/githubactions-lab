@@ -21,7 +21,7 @@ jobs:
           kubectl kustomize ./src/k8s/common/overlays/development \
             | sed -e "s|<namespace>|${NAMESPACE_PREFIX}${MANIFEST_DIR}|g" \
             | sed -e "s|<git-sha>|${{ github.sha }}|g" \
-            | sed -e "s|<git-branch>|${GIT_BRANCH}}|g" \
+            | sed -e "s|<git-branch>|${GIT_BRANCH}|g" \
             | sed -e "s|<git-link>|${{ github.event.pull_request.html_url }}|g" \
             | sed -e "s|<build-id>|${{ github.run_id }}|g" > ${REPO_MANIFEST}/${MANIFEST_DIR}/all.yaml
       - run: |
