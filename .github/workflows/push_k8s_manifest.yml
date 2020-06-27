@@ -19,10 +19,10 @@ jobs:
       - run: |
           mkdir -p ./${REPO_MANIFEST}/${MANIFEST_DIR}
           kubectl kustomize ./src/k8s/common/overlays/development \
-            && sed -e "s|<namespace>|${NAMESPACE_PREFIX}-${MANIFEST_DIR}|g" \
-            && sed -e "s|<git-sha>|${{ github.sha }}|g" \
-            && sed -e "s|<git-branch>|${{ github.ref }}|g" \
-            && sed -e "s|<git-link>|${{ github.event.pull_request.html_url }}|g" > ${REPO_MANIFEST}/${MANIFEST_DIR}/all.yaml
+            | sed -e "s|<namespace>|${NAMESPACE_PREFIX}-${MANIFEST_DIR}|g" \
+            | sed -e "s|<git-sha>|${{ github.sha }}|g" \
+            | sed -e "s|<git-branch>|${{ github.ref }}|g" \
+            | sed -e "s|<git-link>|${{ github.event.pull_request.html_url }}|g" > ${REPO_MANIFEST}/${MANIFEST_DIR}/all.yaml
       - run: |
           git config --local user.email "action@github.com"
           git config --local user.name "actions-user"
@@ -30,12 +30,13 @@ jobs:
           git add dev/*
           ret=$(git status| sed -ne 's|.*\(clean\)|\1|p')
           if [ -z $ret ];then
-            git commit -m "(dev) update manifests ${REPO}#${PR_NUMBER}"
+            git commit -m "(${MANIFEST_DIR}) update manifests ${REPO}#${PR_NUMBER} (${SHA})"
           fi
         working-directory: ${{ env.REPO_MANIFEST }}
         env:
           REPO: ${{ github.repository }}
           PR_NUMBER: ${{ github.event.pull_request.number }}
+          SHA: ${{ github.sha }}
       - uses: ad-m/github-push-action@master
         with:
           github_token: ${{ secrets.SYNCED_GITHUB_TOKEN_REPO }}
