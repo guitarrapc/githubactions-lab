@@ -18,7 +18,9 @@ jobs:
           repository: ${{ env.REPO_MANIFEST }}
           path: ${{ env.REPO_MANIFEST }}
           token: ${{ secrets.GITHUB_TOKEN }}
-      - run: echo "::set-env name=GIT_BRANCH::$(echo $REF | sed -e 's|refs/heads/||g')"
+      - run: |
+          echo "::set-env name=GIT_BRANCH::$(echo $REF | sed -e 's|refs/heads/||g')"
+          echo "::set-env name=SHORT_SHA::$(git rev-parse --short HEAD)"
         env:
           REF: ${{ github.ref }}
       - run: |
@@ -36,7 +38,7 @@ jobs:
           git add dev/*
           ret=$(git status| sed -ne 's|.*\(clean\)|\1|p')
           if [ -z $ret ];then
-            git commit -m "(${MANIFEST_DIR}) update manifests ${REPO}/commit/$(git rev-parse --short HEAD) (${RUN_ID})" -m "compare: ${COMPARE_URL}"
+            git commit -m "(${MANIFEST_DIR}) update manifests ${REPO}/commit/${SHORT_SHA} (${RUN_ID})" -m "compare: ${COMPARE_URL}"
           fi
         working-directory: ${{ env.REPO_MANIFEST }}
         env:
