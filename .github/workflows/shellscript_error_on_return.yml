@@ -8,3 +8,5 @@ jobs:
       - uses: actions/checkout@v2
       - run: bash -c ./src/shellscript/exit_by_return.sh || echo failed
       - run: bash -c ./src/shellscript/exit_by_exit.sh || echo failed
+      #- run: ./src/shellscript/exit_by_return.sh || echo failed # success fully override with `echo failed`
+      #- run: ./src/shellscript/exit_by_exit.sh || echo failed # error with exit 1. could not override with `echo failed`
