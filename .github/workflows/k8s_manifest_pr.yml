@@ -40,13 +40,13 @@ jobs:
           git add dev/*
           ret=$(git status| sed -ne 's|.*\(clean\)|\1|p')
           if [ -z $ret ];then
-            git commit -m "(${MANIFEST_DIR}) update manifests ${REPO}#${PR_NUMBER} (${RUN_ID})" -m "compare: ${COMPARE_URL}"
+            git commit -m "(${MANIFEST_DIR}) update manifests ${REPO}#${LINK} (${RUN_ID})" -m "compare: ${COMPARE_URL}"
           fi
         working-directory: ${{ env.REPO_MANIFEST }}
         env:
           REPO: ${{ github.repository }}
           RUN_ID: ${{ github.run_id }}
-          PR_NUMBER: ${{ github.event.pull_request.number }}
+          LINK: ${{ github.event.pull_request.number }}
           SHA: ${{ github.sha }}
           COMPARE_URL: https://github.com/${{ github.repository }}/compare/master...${{ github.event.after }}
       - uses: ad-m/github-push-action@master

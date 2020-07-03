@@ -49,16 +49,16 @@ jobs:
           git config --local user.email "action@github.com"
           git config --local user.name "actions-user"
           git status
-          git add dev/*
+          git add "${MANIFEST_DIR}/*"
           ret=$(git status| sed -ne 's|.*\(clean\)|\1|p')
           if [ -z $ret ];then
-            git commit -m "(${MANIFEST_DIR}) update manifests ${REPO}@${SHORT_SHA} (${RUN_ID})" -m "compare: ${COMPARE_URL}"
+            git commit -m "(${MANIFEST_DIR}) update manifests ${REPO}@${LINK} (${RUN_ID})" -m "compare: ${COMPARE_URL}"
           fi
         working-directory: ${{ env.REPO_MANIFEST }}
         env:
           REPO: ${{ github.repository }}
           RUN_ID: ${{ github.run_id }}
-          PR_NUMBER: ${{ github.event.pull_request.number }}
+          LINK: ${{ env.SHORT_SHA }}
           COMPARE_URL: ${{ github.event.compare }}
       # #accumerate commit pattern
       # https://github.com/peter-evans/create-pull-request/issues/169
