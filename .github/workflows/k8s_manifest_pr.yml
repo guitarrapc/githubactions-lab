@@ -53,5 +53,5 @@ jobs:
         with:
           github_token: ${{ secrets.SYNCED_GITHUB_TOKEN_REPO }}
           repository: ${{ env.REPO_MANIFEST }}
-          branch: hoge
+          branch: master
           directory: ${{ env.REPO_MANIFEST }}
