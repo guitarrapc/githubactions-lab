@@ -25,7 +25,7 @@ jobs:
           token: ${{ secrets.SYNCED_GITHUB_TOKEN_REPO }}
       - run: echo "::set-env name=GIT_BRANCH::${{ github.head_ref }}"
       - run: |
-          git fetch origin ${BRANCH}:${BRANCH} || git switch -c ${BRANCH} || git switch ${BRANCH}
+          git fetch origin ${BRANCH}:${BRANCH} || git switch -C ${BRANCH}
           git reset --hard ${BRANCH}
         env:
           BRANCH: master
