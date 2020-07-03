@@ -32,7 +32,7 @@ jobs:
         env:
           REF: ${{ github.ref }}
       - run: |
-          git fetch origin ${BRANCH}:${BRANCH}
+          git fetch origin ${BRANCH}:${BRANCH} || git switch -c ${BRANCH}
           git reset --hard ${BRANCH}
         working-directory: ${{ env.REPO_MANIFEST }}
         env:
