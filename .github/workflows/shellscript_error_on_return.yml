@@ -6,4 +6,5 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - run: . ./src/shellscript/return_exit.sh
+      - run: . ./src/shellscript/exit_by_return.sh || echo failed
+      - run: . ./src/shellscript/exit_by_exit.sh || echo failed
