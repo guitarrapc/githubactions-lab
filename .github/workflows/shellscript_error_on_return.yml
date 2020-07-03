@@ -1,0 +1,9 @@
+name: shellscript error on return
+on: push
+
+jobs:
+  push_manifest:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: . ./src/shellscript/return_exit.sh
