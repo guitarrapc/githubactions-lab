@@ -20,11 +20,16 @@ jobs:
       - uses: actions/checkout@v2
       - uses: actions/checkout@v2
         with:
-          persist-credentials: false
           repository: ${{ env.REPO_MANIFEST }}
           path: ${{ env.REPO_MANIFEST }}
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.SYNCED_GITHUB_TOKEN_REPO }}
       - run: echo "::set-env name=GIT_BRANCH::${{ github.head_ref }}"
+      - run: |
+          git fetch origin ${BRANCH}:${BRANCH} || git switch -c ${BRANCH} || git switch ${BRANCH}
+          git reset --hard ${BRANCH}
+        env:
+          BRANCH: master
+        working-directory: ${{ env.REPO_MANIFEST }}
       - run: |
           mkdir -p ./${REPO_MANIFEST}/${MANIFEST_DIR}
           kubectl kustomize ./src/k8s/common/overlays/development \
@@ -37,7 +42,7 @@ jobs:
           git config --local user.email "action@github.com"
           git config --local user.name "actions-user"
           git status
-          git add dev/*
+          git add "${MANIFEST_DIR}/*"
           ret=$(git status| sed -ne 's|.*\(clean\)|\1|p')
           if [ -z $ret ];then
             git commit -m "(${MANIFEST_DIR}) update manifests ${REPO}#${LINK} (${RUN_ID})" -m "compare: ${COMPARE_URL}"
