@@ -6,6 +6,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: |
-          curl -L https://github.com/garethr/kubeval/releases/download/0.14.0/kubeval-linux-amd64.tar.gz -o kubeval-linux-amd64.tar.gz \
+          curl -Lq https://github.com/garethr/kubeval/releases/download/0.14.0/kubeval-linux-amd64.tar.gz -o kubeval-linux-amd64.tar.gz \
           && tar -C ~/ -xzvf kubeval-linux-amd64.tar.gz \
           && ~/kubeval --version
