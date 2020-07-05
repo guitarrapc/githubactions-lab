@@ -110,6 +110,7 @@ jobs:
         id: cpr
         with:
           token: ${{ secrets.SYNCED_GITHUB_TOKEN_REPO }}
+          base: master
           branch: ${{ env.BRANCH }}
           labels: kubernetes
           title: "feat: (${{ env.MANIFEST_DIR }}) update manifest on ${{ env.GIT_BRANCH }}"
