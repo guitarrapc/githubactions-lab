@@ -65,7 +65,7 @@ jobs:
         with:
           github_token: ${{ secrets.SYNCED_GITHUB_TOKEN_REPO }}
           repository: ${{ env.REPO_MANIFEST }}
-          branch: ${{ github.repository.name }}/${{ env.GIT_BRANCH }}-pr
+          branch: ${{ github.event.repository.name }}/${{ env.GIT_BRANCH }}-pr
           directory: ${{ env.REPO_MANIFEST }}
       # #force push pattern
       # - uses: peter-evans/create-pull-request@v2
@@ -103,13 +103,13 @@ jobs:
           git fetch origin ${BRANCH}:${BRANCH}
           git reset --hard ${BRANCH}
         env:
-          BRANCH: ${{ github.repository.name }}/${{ env.GIT_BRANCH }}-pr
+          BRANCH: ${{ github.event.repository.name }}/${{ env.GIT_BRANCH }}-pr
       - uses: peter-evans/create-pull-request@v2
         id: cpr
         with:
           token: ${{ secrets.SYNCED_GITHUB_TOKEN_REPO }}
-          base: ${{ github.repository.name }}/${{ env.GIT_BRANCH }}
-          branch: ${{ github.repository.name }}/${{ env.GIT_BRANCH }}-pr
+          base: ${{ github.event.repository.name }}/${{ env.GIT_BRANCH }}
+          branch: ${{ github.event.repository.name }}/${{ env.GIT_BRANCH }}-pr
           labels: kubernetes
           title: "feat: (${{ env.MANIFEST_DIR }}) update manifest on ${{ env.GIT_BRANCH }}"
           body: |
