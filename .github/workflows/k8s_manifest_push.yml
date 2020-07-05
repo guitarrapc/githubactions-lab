@@ -110,7 +110,10 @@ jobs:
         run: |
           git fetch origin ${BASE}:${BASE} || git switch -c ${BASE} || git switch ${BASE}
           git reset --hard ${BASE}
-          git push -u origin ${BASE}
+      - uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.SYNCED_GITHUB_TOKEN_REPO }}
+          branch: ${{ env.BASE }}
       - run: |
           git fetch origin ${BRANCH}:${BRANCH} || git switch ${BRANCH
           git reset --hard ${BRANCH}
