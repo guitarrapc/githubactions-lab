@@ -108,7 +108,7 @@ jobs:
         id: cpr
         with:
           token: ${{ secrets.SYNCED_GITHUB_TOKEN_REPO }}
-          base: ${{ github.event.repository.name }}/${{ env.GIT_BRANCH }}
+          base: master
           branch: ${{ github.event.repository.name }}/${{ env.GIT_BRANCH }}-pr
           labels: kubernetes
           title: "feat: (${{ env.MANIFEST_DIR }}) update manifest on ${{ env.GIT_BRANCH }}"
