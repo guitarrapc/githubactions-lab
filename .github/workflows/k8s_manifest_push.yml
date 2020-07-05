@@ -102,7 +102,7 @@ jobs:
       - uses: actions/checkout@v2
         with:
           repository: ${{ env.REPO_MANIFEST }}
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.SYNCED_GITHUB_TOKEN_REPO }}
       - run: |
           git config --local user.email "action@github.com"
           git config --local user.name "actions-user"
@@ -110,11 +110,7 @@ jobs:
         run: |
           git fetch origin ${BASE}:${BASE} || git switch -c ${BASE} || git switch ${BASE}
           git reset --hard ${BASE}
-      - uses: ad-m/github-push-action@master
-        with:
-          github_token: ${{ secrets.SYNCED_GITHUB_TOKEN_REPO }}
-          repository: ${{ env.REPO_MANIFEST }}
-          branch: ${{ env.BASE }}
+          git push -u origin ${BASE}
       - run: |
           git fetch origin ${BRANCH}:${BRANCH} || git switch ${BRANCH
           git reset --hard ${BRANCH}
