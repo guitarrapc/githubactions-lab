@@ -113,7 +113,8 @@ jobs:
       - uses: ad-m/github-push-action@master
         with:
           github_token: ${{ secrets.SYNCED_GITHUB_TOKEN_REPO }}
-          branch: ${{ env.BASE }}
+          repository: ${{ env.REPO_MANIFEST }}
+          branch: ${{ env.BRANCH }}
       - run: |
           git fetch origin ${BRANCH}:${BRANCH} || git switch ${BRANCH
           git reset --hard ${BRANCH}
