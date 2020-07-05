@@ -106,7 +106,13 @@ jobs:
       - run: |
           git config --local user.email "action@github.com"
           git config --local user.name "actions-user"
-          git fetch origin ${BRANCH}:${BRANCH}
+      - name: make sure origin base ${{ env.BASE }} is exists
+        run: |
+          git fetch origin ${BASE}:${BASE} || git switch -c ${BASE} || git switch ${BASE}
+          git reset --hard ${BASE}
+          git push -u origin ${BASE}
+      - run: |
+          git fetch origin ${BRANCH}:${BRANCH} || git switch ${BRANCH
           git reset --hard ${BRANCH}
       - uses: peter-evans/create-pull-request@v2
         id: cpr
