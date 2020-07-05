@@ -93,6 +93,9 @@ jobs:
       - run: echo "::set-env name=GIT_BRANCH::${BRANCH}"
         env:
           BRANCH: ${{ needs.push_manifest.outputs.GIT_BRANCH }}
+      - run: echo "::set-env name=BRANCH::${BRANCH}"
+        env:
+          BRANCH: ${{ github.event.repository.name }}/${{ env.GIT_BRANCH }}-pr
       - uses: actions/checkout@v2
         with:
           repository: ${{ env.REPO_MANIFEST }}
@@ -102,13 +105,11 @@ jobs:
           git config --local user.name "actions-user"
           git fetch origin ${BRANCH}:${BRANCH}
           git reset --hard ${BRANCH}
-        env:
-          BRANCH: ${{ github.event.repository.name }}/${{ env.GIT_BRANCH }}-pr
       - uses: peter-evans/create-pull-request@v2
         id: cpr
         with:
           token: ${{ secrets.SYNCED_GITHUB_TOKEN_REPO }}
-          branch: ${{ github.event.repository.name }}/${{ env.GIT_BRANCH }}-pr
+          branch: ${{ env.BRANCH }}
           labels: kubernetes
           title: "feat: (${{ env.MANIFEST_DIR }}) update manifest on ${{ env.GIT_BRANCH }}"
           body: |
