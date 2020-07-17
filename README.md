@@ -22,6 +22,8 @@ GitHub Actions laboratory.
   - [set environment variables for next step](#set-environment-variables-for-next-step)
   - [set secrets for reposiory](#set-secrets-for-reposiory)
 - [Fundamentals](#fundamentals)
+  - [Manual Trigger and input](#manual-trigger-and-input)
+  - [retry failed workflow](#retry-failed-workflow)
   - [secrets](#secrets)
   - [meta github context](#meta-github-context)
   - [view webhook github context](#view-webhook-github-context)
