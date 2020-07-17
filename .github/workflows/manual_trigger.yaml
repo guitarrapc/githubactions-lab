@@ -2,6 +2,10 @@ name: manual trigger
 on:
   workflow_dispatch:
     inputs:
+      branch:
+        description: "branch name to clone"
+        required: true
+        default: "master"
       logLevel:
         description: "Log level"
         required: true
@@ -9,13 +13,13 @@ on:
       tags:
         description: "Test scenario tags"
         required: false
-      test_var:
-        description: "A test variable"
-        required: true
 jobs:
   printInputs:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v2
+        with:
+          ref: ${{ github.event.inputs.branch }}
       - name: dump github context
         run: echo "$CONTEXT"
         env:
@@ -24,7 +28,6 @@ jobs:
         run: echo "$CONTEXT"
         env:
           CONTEXT: ${{ toJson(github.event.inputs) }}
-      - uses: actions/checkout@v2
       - run: |
           echo "Log level: ${{ github.event.inputs.logLevel }}"
           echo "Tags: ${{ github.event.inputs.tags }}"
