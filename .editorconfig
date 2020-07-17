@@ -4,7 +4,7 @@
 
 root = true
 
-[*.{yml,yaml,sh,md}]
+[*.{yml,yaml,sh,md,txt}]
 trim_trailing_whitespace = false
 
 # Change these settings to your own preference
