@@ -8,7 +8,10 @@ on:
         default: "warning"
       tags:
         description: "Test scenario tags"
-
+        required: false
+      test_var:
+        description: "A test variable"
+        required: true
 jobs:
   printInputs:
     runs-on: ubuntu-latest
@@ -16,6 +19,7 @@ jobs:
       - run: |
           echo "Log level: ${{ github.event.inputs.logLevel }}"
           echo "Tags: ${{ github.event.inputs.tags }}"
+      - run: echo ${INPUT_TEST_VAR}
       - run: export
       - run: |
           echo ::set-env name=INPUT_LOGLEVEL::${{ github.event.inputs.logLevel }}
