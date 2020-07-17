@@ -6,7 +6,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - run: |
-          # suppress error
-          bash -eu .github/scripts/lint-banwords.sh --directory .github/workflows --file-filter k8s.*yml --definition .github/ban-words.txt
-          echo $?
+      - run: bash -eu .github/scripts/lint-banwords.sh --directory .github/workflows --file-filter k8s.*yml --definition .github/ban-words.txt
