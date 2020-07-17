@@ -50,7 +50,6 @@ GitHub Actions laboratory.
 
 ## Not yet support
 
-- [ ] Manual Trigger
 - [ ] Approval
   - [GitHub Actions Manual Trigger / Approvals \- GitHub Community Forum](https://github.community/t5/GitHub-Actions/GitHub-Actions-Manual-Trigger-Approvals/m-p/31504)
 - [ ] reuse workflow/job/step yaml
@@ -102,7 +101,7 @@ GitHub Actions can use `on.<event>.paths-ignore:` and `on.<event>.paths:` by def
 
 ### job id or other meta values
 
-GitHub Actions has Context concept, you can access job specific info via `github`. 
+GitHub Actions has Context concept, you can access job specific info via `github`.
 for example, `github.run_id` is A unique number for each run within a repository.
 Also you can access default environment variables like `GITHUB_RUN_ID`.
 
@@ -157,6 +156,53 @@ Secrets will be masked on the log.
 * Jenkins has Credential Provider.
 
 ## Fundamentals
+
+### Manual Trigger and input
+
+GitHub Actions offer `workflow_dispatch` event to execute workflow manually from WebUI.
+Also you can use [action inputs](https://docs.github.com/en/actions/creating-actions/metadata-syntax-for-github-actions#inputs) to specify value trigger on manual trigger.
+
+```yaml
+name: manual trigger
+on:
+  workflow_dispatch:
+    inputs:
+      logLevel:
+        description: "Log level"
+        required: true
+        default: "warning"
+      tags:
+        description: "Test scenario tags"
+        required: false
+      test_var:
+        description: "A test variable"
+        required: true
+jobs:
+  printInputs:
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          echo "Log level: ${{ github.event.inputs.logLevel }}"
+          echo "Tags: ${{ github.event.inputs.tags }}"
+      # INPUT_ not automatcally generated
+      - run: |
+          echo ${INPUT_TEST_VAR}
+          echo ${TEST_VAR}
+      - run: export
+      - run: |
+          echo ::set-env name=INPUT_LOGLEVEL::${{ github.event.inputs.logLevel }}
+          echo ::set-env name=INPUT_TAGS::${{ github.event.inputs.tags }}
+      - run: |
+          echo "Log level: ${INPUT_LOGLEVEL}"
+          echo "Tags: ${INPUT_TAGS}"
+```
+
+Even if you specify action inputs, input value will not store as ENV var `INPUT_{INPUTS_ID}` as usual.
+
+### retry failed workflow
+
+GitHub Actions support Re-run jobs.
+You can re-run whole workflow again, but you cannot re-run specified job only.
 
 ### secrets
 
@@ -554,7 +600,7 @@ Don't forget pretend `refs/heads/` to your branch.
 
 ```yaml
 name: schedule job
-on: 
+on:
   schedule:
    - cron: "0 0 * * *"
 jobs:
@@ -640,7 +686,7 @@ jobs:
 default `pull_request` event trigger from even fork repository, however fork pr could not read `secrets` and may fail PR checks.
 To control job to be skip from fork but run on self pr or push, use `if` conditions.
 
-```
+```yaml
 name: skip pr from fork
 
 on:
