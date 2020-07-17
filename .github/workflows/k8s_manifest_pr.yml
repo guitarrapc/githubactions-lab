@@ -13,7 +13,7 @@ on:
       branch:
         description: "branch name to clone"
         required: true
-        default: "refs/head/master"
+        default: "master"
       manifest_dir:
         description: "manifest directory to push"
         required: true
@@ -21,6 +21,7 @@ on:
 
 jobs:
   push_manifest_manual:
+    if: "github.event_name == 'workflow_dispatch'"
     env:
       REPO_MANIFEST: guitarrapc/kubernetes-manifest-lab
       MANIFEST_DIR: dev
@@ -80,6 +81,7 @@ jobs:
           directory: ${{ env.REPO_MANIFEST }}
 
   push_manifest:
+    if: "github.event_name == 'pull_request'"
     env:
       REPO_MANIFEST: guitarrapc/kubernetes-manifest-lab
       MANIFEST_DIR: dev
