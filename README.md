@@ -55,7 +55,7 @@ GitHub Actions laboratory.
 - [ ] Approval
   - [GitHub Actions Manual Trigger / Approvals \- GitHub Community Forum](https://github.community/t5/GitHub-Actions/GitHub-Actions-Manual-Trigger-Approvals/m-p/31504)
 - [ ] reuse workflow/job/step yaml
-  - [Solved: Is it possible to reuse workflow yaml to setup sim\.\.\. \- GitHub Community Forum](https://github.community/t5/GitHub-Actions/Is-it-possible-to-reuse-workflow-yaml-to-setup-similar-workflows/td-p/40634)
+  - [reusing/sharing/inheriting steps between jobs declarations](https://github.community/t/reusing-sharing-inheriting-steps-between-jobs-declarations/16851)
   - need use Repository Actions with TypeScript or Docker.
 - [ ] YAML anchor support
   - [Support for YAML anchors \- GitHub Community Forum](https://github.community/t5/GitHub-Actions/Support-for-YAML-anchors/td-p/30336)
