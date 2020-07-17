@@ -6,6 +6,8 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      - name: Dump environment
+        run: export
       - name: Dump GitHub context
         run: echo "$CONTEXT"
         env:
