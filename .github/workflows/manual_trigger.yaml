@@ -18,10 +18,8 @@ jobs:
           echo "Tags: ${{ github.event.inputs.tags }}"
       - run: export
       - run: |
-          echo "Log level: ${INPUT_LOGLEVEL}"
-          echo "Tags: ${INPUT_TAGS}"
-      - run: echo ::set-env name=INPUT_LOGLEVEL::info
-      - run: echo ::set-env name=INPUT_TAGS::changed_v1
+          echo ::set-env name=INPUT_LOGLEVEL::${{ github.event.inputs.logLevel }}
+          echo ::set-env name=INPUT_TAGS::${{ github.event.inputs.tags }}
       - run: |
           echo "Log level: ${INPUT_LOGLEVEL}"
           echo "Tags: ${INPUT_TAGS}"
