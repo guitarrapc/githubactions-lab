@@ -16,6 +16,15 @@ jobs:
   printInputs:
     runs-on: ubuntu-latest
     steps:
+      - name: dump github context
+        run: echo "$CONTEXT"
+        env:
+          CONTEXT: ${{ toJson(github) }}
+      - name: dump inputs context
+        run: echo "$CONTEXT"
+        env:
+          CONTEXT: ${{ toJson(github.event.inputs) }}
+      - uses: actions/checkout@v2
       - run: |
           echo "Log level: ${{ github.event.inputs.logLevel }}"
           echo "Tags: ${{ github.event.inputs.tags }}"
