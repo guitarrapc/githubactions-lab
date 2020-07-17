@@ -1,0 +1,13 @@
+name: env with script
+
+on: push
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: echo "::set-env name=GIT_TAG::${GITHUB_REF#refs/tags/}"
+      - run: echo ${{ env.GIT_TAG }}
+      - run: bash -eux ./github/scripts/setenv.sh --ref "${GITHUB_REF#refs/tags/}"
+      - run: echo ${{ env.GIT_TAG_SCRIPT }}
