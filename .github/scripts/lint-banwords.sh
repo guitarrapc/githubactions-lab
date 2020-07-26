@@ -54,19 +54,19 @@ done
 function app:guard_arguments() {
   DIRECTORY=$1
   if [[ "$1" == "" ]]; then
-    echo "argument --directory missing."
+    console::write_error "error argument --directory missing."
     errorcode=1
   fi
 
   FILTER=$2
   if [[ "$2" == "" ]]; then
-    echo "argument --filter missing."
+    console::write_error "error argument --filter missing."
     errorcode=1
   fi
 
   DEFINITION=$3
   if [[ "$3" == "" ]]; then
-    echo "argument --definition is empty, please specify valid value or no arguments to use default."
+    console::write_error "error argument --definition is empty, please specify valid value or no arguments to use default."
     errorcode=1
   fi
 
@@ -76,7 +76,7 @@ function app:guard_arguments() {
   fi
 
   if [[ "$errorcode" != "0" ]]; then
-    echo "error validating arguments. showing usage."
+    console::write_error "error validating arguments. showing usage."
     usage
     return 1
   fi
