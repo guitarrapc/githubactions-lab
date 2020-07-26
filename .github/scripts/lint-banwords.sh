@@ -136,7 +136,7 @@ function ban::check_word() {
   local file=$1
   local word=$2
   local result=0
-  output=$(file::read_file "${file}" | grep -Fn "${word}") || result=$?
+  output=$(cat "${file}" | grep -Fn "${word}") || result=$?
   if [[ "$result" == "0" ]]; then
     errorcode=1
     console::write_error "X: ban word '${word}' found (${file})"
