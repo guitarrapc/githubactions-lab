@@ -3,32 +3,36 @@
 # summary: lint ban word is not included in the specified file.
 # usage:
 # 1. place line delimited definition file .github/ban-words.txt
-# 2. call ban-word.sh with arguments, see usage.
+# 2. call lint-banwords.sh with arguments, see usage --help.
 
 function usage() {
     cat <<EOF
 $(basename ${0}) is a tool for detect ban-words in the file.
 
 Usage:
-    $(basename ${0}) [<arguments>] [<options>]
+    $(basename ${0}) [<Arguments>] [<Options>]
 
-ARGUMENTS:
+Arguments:
     --directory       target directory to search files.
     --file-filter     regular expression to select target file.
 
-OPTIONS:
+Options:
     --definition      line-delimited ban-words definition file. (default: .github/ban-words.txt)
+    --fixed-word      treat banned-word as fixed word. default is regular expression. (0|1, default: 0)
     --debug           show debug message. (0|1, default: 0)
     --help, -h        print this
 
-EXAMPLES:
-    # search ".github/workflows" directory for file name matches "k8s.*yml" pattern. detect ban words written in ".github/ban-words.txt"
+Examples:
+    # search ".github/workflows" directory for file name matches "k8s.*yml" pattern. detect ban words written in default path, ".github/ban-words.txt".
     $(basename ${0}) --directory .github/workflows --file-filter k8s.*yml
 
-    # search ".github/workflows" directory for file name matches "k8s.*yml" pattern. detect ban words written in ".github/ban-words2.txt"
+    # use detect ban words definition from ".github/ban-words2.txt".
     $(basename ${0}) --directory .github/workflows --file-filter k8s.*yml --definition .github/ban-words2.txt
 
-    # show debug message
+    # enable --fixed-word to treat ban words as fixed word, not regular expression.
+    $(basename ${0}) --directory .github/workflows --file-filter k8s.*yml --fixed-word 1
+
+    # show debug message.
     $(basename ${0}) --directory .github/workflows --file-filter k8s.*yml --debug 1
 EOF
 }
@@ -41,6 +45,8 @@ while [ $# -gt 0 ]; do
         --file-filter) FILTER=$2; shift 2; ;;
         # ban-words definition file
         --definition) DEFINITION=$2; shift 2; ;;
+        # treat ban-words as fixed word, not regular expression.
+        --fixed-word) BAN_WORD_FIXED=$2; shift 2; ;;
         # show debug message
         --debug) DEBUG=$2; shift 2; ;;
         --help) usage; exit 1; ;;
@@ -52,36 +58,46 @@ done
 # summary: guard arguments.
 # return int 1 on error
 function app:guard_arguments() {
+
+  DEBUG=$5
+  if [[ "$5" != "0" ]]; then
+    DEBUG=true
+  fi
+
+  console::write_debug "convert argument --directory '$1' from relative path to absolute path."
   DIRECTORY=$1
   if [[ "$1" == "" ]]; then
-    console::write_error "error argument --directory missing."
+    console::write_error "--directory is missing or empty."
     errorcode=1
+  else
+    DIRECTORY=$(readlink -e $1)
+    if [[ "${DIRECTORY}" == "" ]]; then
+      console::write_error "--directory '$1', directory not found."
+      errorcode=1
+    fi
   fi
 
   FILTER=$2
   if [[ "$2" == "" ]]; then
-    console::write_error "error argument --filter missing."
+    console::write_error "--file-filter is missing or empty."
     errorcode=1
   fi
 
+  console::write_debug "checking argument --definition '$3' is exists or not."
   DEFINITION=$3
-  if [[ "$3" == "" ]]; then
-    console::write_error "error argument --definition is empty, please specify valid value or no arguments to use default."
+  if [[ "$(readlink -e ${DEFINITION})" == "" ]]; then
+    console::write_error "--definition '$3', file not found."
     errorcode=1
   fi
 
-  DEBUG=$4
+  BAN_WORD_FIXED=$4
   if [[ "$4" != "0" ]]; then
-    DEBUG=1
+    console::write_debug "--fixed-word is enabled. banned words will not handle as regular expression."
+    BAN_WORD_FIXED=true
   fi
 
-  if [[ "$errorcode" != "0" ]]; then
-    console::write_error "error validating arguments. showing usage."
-    usage
-    return 1
-  fi
+  return $errorcode
 }
-
 # summary: output error message with color.
 # return void
 function console::write_error() {
@@ -97,9 +113,9 @@ function console::write_success() {
 # summary: output debug message with color.
 # return void
 function console::write_debug() {
-  if [[ "$DEBUG" == "1" ]]; then
+  if [[ "$DEBUG" == "true" ]]; then
     local message=$1
-    echo -e "${YELLOW}${message}${YELLOW}"
+    echo -e "${YELLOW}${message}${NORMAL}"
   fi
 }
 # summary: output message with extra spaces on each line.
@@ -124,23 +140,30 @@ function console::load_colorcode() {
     NORMAL=$(tput sgr0)
   fi
 }
-# summary: cat file without the comments.
+# summary: cat file without comment lines.
 # return array::string
-function file::read_file() {
+function file::readline_wo_comment() {
   local file=$1
   cat "$file" | egrep -v "(^#.*|^$)"
 }
-# summary: check ban word is include in the file.
+# summary: check banned word (regular expression) is included in the file specified.
 # retern void
 function ban::check_word() {
   local file=$1
   local word=$2
-  local result=0
-  output=$(cat "${file}" | grep -Fn "${word}") || result=$?
-  if [[ "$result" == "0" ]]; then
+  local fixed=$3
+  local ban_exists=0
+  if [[ "${fixed}" == "true" ]]; then
+    # search fixed word
+    output=$(cat "${file}" | grep -Fn "${word}") || ban_exists=$?
+  else
+    # search regular expression
+    output=$(cat "${file}" | egrep -n "${word}") || ban_exists=$?
+  fi
+  if [[ "${ban_exists}" == "0" ]]; then
     errorcode=1
-    console::write_error "X: ban word '${word}' found (${file})"
-    console::write_add_space "$output" "   "
+    console::write_error "X: banned word '${word}' found (${file})"
+    console::write_add_space "${output}" "   "
   fi
 }
 
@@ -149,24 +172,32 @@ errorcode=0
 console::load_colorcode
 
 # main
-if app:guard_arguments ${DIRECTORY:-""} ${FILTER:-""} ${DEFINITION:-".github/ban-words.txt"} ${DEBUG:-0}; then
-  console::write_debug "reading definition file ${DEFINITION}"
-  definitions=$(file::read_file "${DEFINITION}")
+if app:guard_arguments "${DIRECTORY:-""}" "${FILTER:-""}" "${DEFINITION:-".github/ban-words.txt"}" "${BAN_WORD_FIXED:-0}" "${DEBUG:-0}"; then
+  console::write_debug "reading definition file from '${DEFINITION}'"
+  definitions=$(file::readline_wo_comment "${DEFINITION}")
 
-  console::write_debug "search target files from directory ${DIRECTORY} filter ${FILTER}"
-  targetfiles=$(ls "${DIRECTORY}" | grep "$FILTER")
+  console::write_debug "search target files from directory '${DIRECTORY}', filter expression '${FILTER}'"
+  targetfiles=$(ls "${DIRECTORY}" | egrep "${FILTER}") || files_missing=$?
+
+  # guard
+  if [[ "${files_missing:-0}" != 0 ]]; then
+    console::write_error "target files not found from '${DIRECTORY}'."
+    errorcode=1
+  fi
 
   # search ban words
   for file in ${targetfiles}; do
-    console::write_debug "checking file ${file}"
+    console::write_debug "  * checking file '${file}'"
     for word in ${definitions}; do
-      ban::check_word "${DIRECTORY}/${file}" "${word}"
+      console::write_debug "    * banned word '${word}',file '${file}'"
+      ban::check_word "${DIRECTORY}/${file}" "${word}" "${BAN_WORD_FIXED}"
     done
   done
 fi
 
 # suuccess result
-if [[ "$errorcode" == "0" ]]; then
-  console::write_success "RESULT: conglaturations!! ban words not found from files in '${DIRECTORY}'\n${targetfiles}"
+if [[ "${errorcode}" == "0" ]]; then
+  console::write_success "RESULT: conglaturations!! ban words not found from files in '${DIRECTORY}'\n${targetfiles:-""}"
 fi
+
 exit $errorcode

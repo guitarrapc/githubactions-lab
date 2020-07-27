@@ -1,4 +1,3 @@
-# case sensitive
-# dev
-# DEV
-staging
+# case sensitive, default regular expression. you can treat as fixed word via --fixed-word
+# dev|DEV
+staging|STAGING
