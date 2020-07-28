@@ -24,16 +24,16 @@ Options:
 
 Examples:
     # search ".github/workflows" directory for file name matches "k8s.*yml" pattern. detect ban words written in default path, ".github/ban-words.txt".
-    $(basename ${0}) --directory .github/workflows --file-filter k8s.*yml
+    $(basename ${0}) --directory .github/workflows --file-filter "k8s.*yml"
 
     # use detect ban words definition from ".github/ban-words2.txt".
-    $(basename ${0}) --directory .github/workflows --file-filter k8s.*yml --definition .github/ban-words2.txt
+    $(basename ${0}) --directory .github/workflows --file-filter "k8s.*yml" --definition .github/ban-words2.txt
 
     # enable --fixed-word to treat ban words as fixed word, not regular expression.
-    $(basename ${0}) --directory .github/workflows --file-filter k8s.*yml --fixed-word 1
+    $(basename ${0}) --directory .github/workflows --file-filter "k8s.*yml" --fixed-word 1
 
     # show debug message.
-    $(basename ${0}) --directory .github/workflows --file-filter k8s.*yml --debug 1
+    $(basename ${0}) --directory .github/workflows --file-filter "k8s.*yml" --debug 1
 EOF
 }
 
