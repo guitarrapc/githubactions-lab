@@ -17,7 +17,7 @@ jobs:
         if: env.APP == matrix.sample
       # github context reference
       - run: echo "this is github if event push"
-        if: github.event_name == push
+        if: github.event_name == 'push'
       # matrix context reference
       - run: echo "this is matrix if for hoge"
         if: matrix.sample == 'hoge'
