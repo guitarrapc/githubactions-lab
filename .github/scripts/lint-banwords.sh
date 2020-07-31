@@ -155,10 +155,10 @@ function ban::check_word() {
   local ban_exists=0
   if [[ "${fixed}" == "true" ]]; then
     # search fixed word
-    output=$(cat "${file}" | grep -Fn "${word}") || ban_exists=$?
+    output=$(file::readline_wo_comment "${file}" | grep -Fn "${word}") || ban_exists=$?
   else
     # search regular expression
-    output=$(cat "${file}" | egrep -n "${word}") || ban_exists=$?
+    output=$(file::readline_wo_comment "${file}" | egrep -n "${word}") || ban_exists=$?
   fi
   if [[ "${ban_exists}" == "0" ]]; then
     errorcode=1
