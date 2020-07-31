@@ -463,18 +463,17 @@ jobs:
           GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
 ```
 
-### if and matrix reference
+### if and context reference
 
 GitHub Actions allow `if` condition for `step`.
-when you want refer `matrix` value on `if` condition, you don't need add `${{}}` to refer matrix.
+when you want refer any context, `env`, `github` and `matrix`, on `if` condition, you don't need add `${{}}` to context reference.
 
-Make sure `matrix` cannot refer with `job.if`.
-
+> NOTE: `matrix` cannot refer with `job.if`.
 
 > [Solved: What is the correct if condition syntax for checki\.\.\. \- GitHub Community Forum](https://github.community/t5/GitHub-Actions/What-is-the-correct-if-condition-syntax-for-checking-matrix-os/td-p/31269)
 
 ```yaml
-name: if and matrix
+name: if and context reference
 on: push
 
 jobs:
@@ -482,12 +481,22 @@ jobs:
     strategy:
       matrix:
         sample: ["hoge", "fuga"]
+    env:
+      APP: hoge
     runs-on: ubuntu-latest
     steps:
-      - run: echo this if ${{ matrix.sample }}
+      # env context reference
+      - run: echo "this is env if for hoge"
+        if: env.APP == matrix.sample
+      - run: echo "this is env if for fuga"
+        if: env.APP == matrix.sample
+      # github context reference
+      - run: echo "this is github if event push"
+        if: github.event_name == push
+      # matrix context reference
+      - run: echo "this is matrix if for hoge"
         if: matrix.sample == 'hoge'
-    steps:
-      - run: echo this if ${{ matrix.sample }}
+      - run: echo "this is matrix if for fuga"
         if: matrix.sample == 'fuga'
 ```
 
