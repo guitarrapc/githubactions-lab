@@ -33,7 +33,7 @@ GitHub Actions laboratory.
   - [runs only when previous step status is specific](#runs-only-when-previous-step-status-is-specific)
   - [timeout for job and step](#timeout-for-job-and-step)
   - [suppress redundant build](#suppress-redundant-build)
-  - [if and matrix reference](#if-and-matrix-reference)
+  - [if and context reference](#if-and-context-reference)
 - [Branch and tag handling](#branch-and-tag-handling)
   - [run when branch push only but skip on tag push](#run-when-branch-push-only-but-skip-on-tag-push)
   - [skip when branch push but run on tag push only](#skip-when-branch-push-but-run-on-tag-push-only)
