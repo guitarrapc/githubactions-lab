@@ -43,6 +43,7 @@ GitHub Actions laboratory.
 - [Commit handling](#commit-handling)
   - [skip ci](#skip-ci)
   - [trigger via commit message](#trigger-via-commit-message)
+  - [commit file handling](#commit-file-handling)
 - [Issue and Pull Request handling](#issue-and-pull-request-handling)
   - [skip ci on pull request title](#skip-ci-on-pull-request-title)
   - [skip pr from fork repo](#skip-pr-from-fork-repo)
