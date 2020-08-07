@@ -1,6 +1,6 @@
-name: dump context
+name: dump context pr
 
-on: ["push"]
+on: pull_request
 
 jobs:
   build:
