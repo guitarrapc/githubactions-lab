@@ -704,6 +704,28 @@ jobs:
           COMMIT_MESSAGES: ${{ toJson(github.event.commits.*.message) }}
 ```
 
+### commit file handling
+
+you can handle commit file handle with github actions [trilom/file\-changes\-action](https://github.com/trilom/file-changes-action).
+
+```yaml
+name: pr path changed
+on: [pull_request]
+
+jobs:
+  changes:
+    runs-on: ubuntu-latest
+    steps:
+      - id: file_changes
+        uses: trilom/file-changes-action@v1.2.4
+        with:
+          output: ","
+          pushBefore: master
+      - run: echo "${{ steps.file_changes.outputs.files }}"
+      - if: contains(steps.file_changes.outputs.files, '.github/workflows/')
+        run: echo changes contains .github/workflows/
+```
+
 
 ## Issue and Pull Request handling
 
