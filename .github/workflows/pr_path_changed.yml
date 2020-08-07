@@ -6,11 +6,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - id: file_changes
-        uses: trilom/file-changes-action@v1.2.3
+        uses: trilom/file-changes-action@v1.2.4
         with:
           output: ","
           pushBefore: master
-          pushAfter: ${{ github.payload.after }}
       - run: echo "${{ steps.file_changes.outputs.files }}"
       - if: contains(steps.file_changes.outputs.files, '.github/workflows/')
         run: echo changes contains .github/workflows/
