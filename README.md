@@ -613,6 +613,64 @@ jobs:
       - run: echo not run on branch push
 ```
 
+### create release
+
+You can create release and upload assets through GitHub Actions.
+Multiple assets upload is supported by running running `actions/upload-release-asset` for each asset.
+
+```yaml
+name: create release
+
+on:
+  push:
+    tags:
+      - "[0-9]+.[0-9]+.[0-9]+*"
+
+jobs:
+  create-release:
+    runs-on: ubuntu-latest
+    env:
+      DOTNET_CLI_TELEMETRY_OPTOUT: 1
+      DOTNET_SKIP_FIRST_TIME_EXPERIENCE: 1
+      NUGET_XMLDOC_MODE: skip
+    steps:
+      # set release tag(*.*.*) to env.GIT_TAG
+      - run: echo ::set-env name=GIT_TAG::${GITHUB_REF#refs/tags/}
+
+      - run: echo "hoge" > hoge.${GIT_TAG}.txt
+      - run: echo "fuga" > fuga.${GIT_TAG}.txt
+      - run: ls -l
+
+      # Create Releases
+      - uses: actions/create-release@v1
+        id: create_release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: Ver.${{ github.ref }}
+
+      # Upload to Releases(hoge)
+      - uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: hoge.${{ env.GIT_TAG }}.txt
+          asset_name: hoge.${{ env.GIT_TAG }}.txt
+          asset_content_type: application/octet-stream
+
+      # Upload to Releases(fuga)
+      - uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: fuga.${{ env.GIT_TAG }}.txt
+          asset_name: fuga.${{ env.GIT_TAG }}.txt
+          asset_content_type: application/octet-stream
+```
+
 ### get pushed tag name
 
 You need extract refs to get tag name.
