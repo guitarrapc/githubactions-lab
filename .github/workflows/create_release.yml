@@ -18,6 +18,7 @@ jobs:
 
       - run: echo "hoge" > hoge.${GIT_TAG}.txt
       - run: echo "fuga" > fuga.${GIT_TAG}.txt
+      - run: ls -l
 
       # Create Releases
       - uses: actions/create-release@v1
@@ -34,7 +35,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./hoge.${GIT_TAG}.txt
+          asset_path: hoge.${GIT_TAG}.txt
           asset_name: hoge.${GIT_TAG}.txt
           asset_content_type: application/octet-stream
 
@@ -44,6 +45,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./fuga.${GIT_TAG}.txt
+          asset_path: fuga.${GIT_TAG}.txt
           asset_name: fuga.${GIT_TAG}.txt
           asset_content_type: application/octet-stream
