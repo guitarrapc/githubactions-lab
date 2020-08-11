@@ -8,9 +8,6 @@ GitHub Actions laboratory.
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-<details>
-<summary>Details</summary>
-
 - [Not yet support](#not-yet-support)
 - [Difference from other CI](#difference-from-other-ci)
   - [migration](#migration)
@@ -48,8 +45,6 @@ GitHub Actions laboratory.
 - [Issue and Pull Request handling](#issue-and-pull-request-handling)
   - [skip ci on pull request title](#skip-ci-on-pull-request-title)
   - [skip pr from fork repo](#skip-pr-from-fork-repo)
-
-</details>
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 ## Not yet support
@@ -614,6 +609,30 @@ jobs:
       - run: echo not run on branch push
 ```
 
+### get pushed tag name
+
+You need extract refs to get tag name.
+Save it to `step context` and refer from other step or save it to env is much eacher.
+
+```yaml
+name: tag push only
+
+on:
+  push:
+    tags:
+      - "**" # only tag
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo ::set-output name=GIT_TAG::${GITHUB_REF#refs/tags/}
+        id: CI_TAG
+      - run: echo ${{ steps.CI_TAG.outputs.GIT_TAG }}
+      - run: echo ::set-env name=GIT_TAG::${GITHUB_REF#refs/tags/}
+      - run: echo ${{ env.GIT_TAG }}
+```
+
 ### create release
 
 You can create release and upload assets through GitHub Actions.
@@ -670,30 +689,6 @@ jobs:
           asset_path: fuga.${{ env.GIT_TAG }}.txt
           asset_name: fuga.${{ env.GIT_TAG }}.txt
           asset_content_type: application/octet-stream
-```
-
-### get pushed tag name
-
-You need extract refs to get tag name.
-Save it to `step context` and refer from other step or save it to env is much eacher.
-
-```yaml
-name: tag push only
-
-on:
-  push:
-    tags:
-      - "**" # only tag
-
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - run: echo ::set-output name=GIT_TAG::${GITHUB_REF#refs/tags/}
-        id: CI_TAG
-      - run: echo ${{ steps.CI_TAG.outputs.GIT_TAG }}
-      - run: echo ::set-env name=GIT_TAG::${GITHUB_REF#refs/tags/}
-      - run: echo ${{ env.GIT_TAG }}
 ```
 
 ### schedule job on non-default branch
