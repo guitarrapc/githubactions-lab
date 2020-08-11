@@ -38,6 +38,7 @@ GitHub Actions laboratory.
   - [run when branch push only but skip on tag push](#run-when-branch-push-only-but-skip-on-tag-push)
   - [skip when branch push but run on tag push only](#skip-when-branch-push-but-run-on-tag-push-only)
   - [build only specific tag pattern](#build-only-specific-tag-pattern)
+  - [create release](#create-release)
   - [get pushed tag name](#get-pushed-tag-name)
   - [schedule job on non-default branch](#schedule-job-on-non-default-branch)
 - [Commit handling](#commit-handling)
