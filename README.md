@@ -8,6 +8,9 @@ GitHub Actions laboratory.
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+<details>
+<summary>Details</summary>
+
 - [Not yet support](#not-yet-support)
 - [Difference from other CI](#difference-from-other-ci)
   - [migration](#migration)
@@ -35,8 +38,8 @@ GitHub Actions laboratory.
   - [run when branch push only but skip on tag push](#run-when-branch-push-only-but-skip-on-tag-push)
   - [skip when branch push but run on tag push only](#skip-when-branch-push-but-run-on-tag-push-only)
   - [build only specific tag pattern](#build-only-specific-tag-pattern)
-  - [create release](#create-release)
   - [get pushed tag name](#get-pushed-tag-name)
+  - [create release](#create-release)
   - [schedule job on non-default branch](#schedule-job-on-non-default-branch)
 - [Commit handling](#commit-handling)
   - [skip ci](#skip-ci)
@@ -45,6 +48,8 @@ GitHub Actions laboratory.
 - [Issue and Pull Request handling](#issue-and-pull-request-handling)
   - [skip ci on pull request title](#skip-ci-on-pull-request-title)
   - [skip pr from fork repo](#skip-pr-from-fork-repo)
+
+</details>
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 ## Not yet support
