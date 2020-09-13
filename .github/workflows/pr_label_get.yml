@@ -1,5 +1,11 @@
 name: pr_label_get
-on: [pull_request]
+on:
+  pull_request:
+    types:
+      - labeled
+      - opened
+      - reopened
+      - synchronize
 
 jobs:
   changes:
