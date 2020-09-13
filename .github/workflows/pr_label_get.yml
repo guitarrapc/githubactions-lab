@@ -10,5 +10,9 @@ on:
 jobs:
   changes:
     runs-on: ubuntu-latest
+    env:
+      IS_HOGE: "false"
     steps:
       - run: echo "${{ toJson(github.event.pull_request.labels.*.name) }}"
+      - run: echo ::set-env name=IS_HOGE::${{ contains(github.event.pull_request.labels.*.name, 'hoge') }}
+      - run: echo "${IS_HOGE}"
