@@ -16,3 +16,5 @@ jobs:
       - run: echo "${{ toJson(github.event.pull_request.labels.*.name) }}"
       - run: echo ::set-env name=IS_HOGE::${{ contains(github.event.pull_request.labels.*.name, 'hoge') }}
       - run: echo "${IS_HOGE}"
+      - run: echo "run!"
+        if: env.IS_HOGE == 'true'
