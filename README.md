@@ -48,6 +48,7 @@ GitHub Actions laboratory.
 - [Issue and Pull Request handling](#issue-and-pull-request-handling)
   - [skip ci on pull request title](#skip-ci-on-pull-request-title)
   - [skip pr from fork repo](#skip-pr-from-fork-repo)
+  - [detect tag on pull request](#detect-tag-on-pull-request)
 
 </details>
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
@@ -840,4 +841,32 @@ jobs:
     if: "(github.event == 'push' && github.repository_owner == 'guitarrapc') || startsWith(github.event.pull_request.head.label, 'guitarrapc:')"
     steps:
       - run: echo build
+```
+
+### detect tag on pull request
+
+`pull_request` event contains tags and you can use it to filter step execution.
+`${{ contains(github.event.pull_request.labels.*.name, 'hoge') }}` will return `true` if tag contains `hoge`.
+
+```yaml
+name: pr_label_get
+on:
+  pull_request:
+    types:
+      - labeled
+      - opened
+      - reopened
+      - synchronize
+
+jobs:
+  changes:
+    runs-on: ubuntu-latest
+    env:
+      IS_HOGE: "false"
+    steps:
+      - run: echo "${{ toJson(github.event.pull_request.labels.*.name) }}"
+      - run: echo ::set-env name=IS_HOGE::${{ contains(github.event.pull_request.labels.*.name, 'hoge') }}
+      - run: echo "${IS_HOGE}"
+      - run: echo "run!"
+        if: env.IS_HOGE == 'true'
 ```
