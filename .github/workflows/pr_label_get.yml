@@ -1,0 +1,8 @@
+name: pr_label_get
+on: [pull_request]
+
+jobs:
+  changes:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "${{ toJson(github.event.pull_request.labels.*.name) }}"
