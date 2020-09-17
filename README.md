@@ -48,6 +48,8 @@ GitHub Actions laboratory.
 - [Issue and Pull Request handling](#issue-and-pull-request-handling)
   - [skip ci on pull request title](#skip-ci-on-pull-request-title)
   - [skip pr from fork repo](#skip-pr-from-fork-repo)
+  - [detect tag on pull request](#detect-tag-on-pull-request)
+  - [skip job when Draft PR](#skip-job-when-draft-pr)
 
 </details>
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
