@@ -48,7 +48,6 @@ GitHub Actions laboratory.
 - [Issue and Pull Request handling](#issue-and-pull-request-handling)
   - [skip ci on pull request title](#skip-ci-on-pull-request-title)
   - [skip pr from fork repo](#skip-pr-from-fork-repo)
-  - [detect tag on pull request](#detect-tag-on-pull-request)
 
 </details>
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
@@ -869,4 +868,21 @@ jobs:
       - run: echo "${IS_HOGE}"
       - run: echo "run!"
         if: env.IS_HOGE == 'true'
+```
+
+### skip job when Draft PR
+
+You can skip job and steps if Pull Request is Draft.
+Unfortunately GitHub Webhook v3 event not provide draft pr type, but `event.pull_request.draft` shows `true` when PR is draft.
+
+```yaml
+name: skip draft pr
+on: pull_request
+
+jobs:
+  build:
+    if: "!(github.event.pull_request.draft)"
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
 ```
