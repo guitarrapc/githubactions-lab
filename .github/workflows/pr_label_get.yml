@@ -1,4 +1,4 @@
-name: pr_label_get
+name: pr label get
 on:
   pull_request:
     types:
@@ -14,7 +14,7 @@ jobs:
       IS_HOGE: "false"
     steps:
       - run: echo "${{ toJson(github.event.pull_request.labels.*.name) }}"
-      - run: echo ::set-env name=IS_HOGE::${{ contains(github.event.pull_request.labels.*.name, 'hoge') }}
+      - run: echo "IS_HOGE=${{ contains(github.event.pull_request.labels.*.name, 'hoge') }}" >> $GITHUB_ENV
       - run: echo "${IS_HOGE}"
       - run: echo "run!"
         if: env.IS_HOGE == 'true'

@@ -37,8 +37,12 @@ jobs:
           echo ${TEST_VAR}
       - run: export
       - run: |
-          echo ::set-env name=INPUT_LOGLEVEL::${{ github.event.inputs.logLevel }}
-          echo ::set-env name=INPUT_TAGS::${{ github.event.inputs.tags }}
+          echo "INPUT_LOGLEVEL=${{ github.event.inputs.logLevel }}" >> $GITHUB_ENV
+          echo "INPUT_TAG=${{ github.event.inputs.tags }}" >> $GITHUB_ENV
+          # deprecated
+          # echo ::set-env name=INPUT_LOGLEVEL::${{ github.event.inputs.logLevel }}
+          # echo ::set-env name=INPUT_TAGS::${{ github.event.inputs.tags }}
+      - run: echo "/path/to/dir" >> $GITHUB_PATH
       - run: |
           echo "Log level: ${INPUT_LOGLEVEL}"
           echo "Tags: ${INPUT_TAGS}"
