@@ -851,7 +851,7 @@ name: skip pr from fork
 on:
   push:
     branches:
-      - "**"
+      - "master"
   pull_request:
     types:
       - opened
