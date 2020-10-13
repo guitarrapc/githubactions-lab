@@ -20,6 +20,7 @@ GitHub Actions laboratory.
   - [job id or other meta values](#job-id-or-other-meta-values)
   - [cancel redundant builds](#cancel-redundant-builds)
   - [set environment variables for next step](#set-environment-variables-for-next-step)
+  - [adding system path](#adding-system-path)
   - [set secrets for reposiory](#set-secrets-for-reposiory)
 - [Fundamentals](#fundamentals)
   - [Manual Trigger and input](#manual-trigger-and-input)
