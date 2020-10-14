@@ -24,9 +24,6 @@ jobs:
           path: ./out/dotnet-console
 
   dotnet-console-container:
-    strategy:
-      matrix:
-        dotnet: ["3.1"] # support latest only
     runs-on: ubuntu-latest
     container:
       image: mcr.microsoft.com/dotnet/core/sdk:3.1
@@ -36,13 +33,9 @@ jobs:
       NUGET_XMLDOC_MODE: skip
     steps:
       - uses: actions/checkout@v2
-      # build
       - run: dotnet build ./src/dotnet/console/ -c Debug
-      # test
       - run: dotnet test ./src/dotnet/console-tests/ -c Debug
-      # publish
       - run: dotnet publish ./src/dotnet/console/ -c Debug -o ./out/dotnet-console-container
-      # upload
       - uses: actions/upload-artifact@v2
         with:
           name: dotnet-console-container
