@@ -868,7 +868,7 @@ jobs:
       - run: echo build
 ```
 
-### detect tag on pull request
+### detect labels on pull request
 
 `pull_request` event contains tags and you can use it to filter step execution.
 `${{ contains(github.event.pull_request.labels.*.name, 'hoge') }}` will return `true` if tag contains `hoge`.
