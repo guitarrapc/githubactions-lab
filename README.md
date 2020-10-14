@@ -20,6 +20,7 @@ GitHub Actions laboratory.
   - [job id or other meta values](#job-id-or-other-meta-values)
   - [cancel redundant builds](#cancel-redundant-builds)
   - [set environment variables for next step](#set-environment-variables-for-next-step)
+  - [adding system path](#adding-system-path)
   - [set secrets for reposiory](#set-secrets-for-reposiory)
 - [Fundamentals](#fundamentals)
   - [Manual Trigger and input](#manual-trigger-and-input)
@@ -48,6 +49,8 @@ GitHub Actions laboratory.
 - [Issue and Pull Request handling](#issue-and-pull-request-handling)
   - [skip ci on pull request title](#skip-ci-on-pull-request-title)
   - [skip pr from fork repo](#skip-pr-from-fork-repo)
+  - [detect tag on pull request](#detect-tag-on-pull-request)
+  - [skip job when Draft PR](#skip-job-when-draft-pr)
 
 </details>
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
@@ -140,14 +143,21 @@ Theses are minimum specs.
 
 ### set environment variables for next step
 
-GitHub Actions need to set environment variables with specific syntax, not `KEY=VALUE` but `::set-env name={name}::{value}`.
+GitHub Actions need to create or update Environment File, it's similar to CircleCI.
 
 > https://help.github.com/en/actions/reference/workflow-commands-for-github-actions#setting-an-environment-variable
 
-* GitHub Actions use `::set-env` syntax
+* GitHub Actions use Environment Files to manage Environment variables, create or update via `echo "{name}={value}" >> $GITHUB_ENV` syntax.
+  * `::set-env` syntax is deprecated for [security reason](https://github.blog/changelog/2020-10-01-github-actions-deprecating-set-env-and-add-path-commands/).
 * CircleCI use redirect to `> BASH_ENV` will automatically load on next step
 * Azure Pipeline use task.setvariable. `echo "##vso[task.setvariable variable=NAME]VALUE"`
 * Jenkins use `Env.` in groovy declarative pipeline.
+
+### adding system path
+
+GitHub Actions need to create or update Environment File, it's similar to CircleCI.
+* GitHub Actions use Environment Files to manage System Path, create or update via `echo "{path}" >> $GITHUB_PATH` syntax.
+  * `::add-path` syntax is deprecated for [security reason](https://github.blog/changelog/2020-10-01-github-actions-deprecating-set-env-and-add-path-commands/).
 
 ### set secrets for reposiory
 
@@ -171,6 +181,10 @@ name: manual trigger
 on:
   workflow_dispatch:
     inputs:
+      branch:
+        description: "branch name to clone"
+        required: true
+        default: "master"
       logLevel:
         description: "Log level"
         required: true
@@ -178,13 +192,21 @@ on:
       tags:
         description: "Test scenario tags"
         required: false
-      test_var:
-        description: "A test variable"
-        required: true
 jobs:
   printInputs:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v2
+        with:
+          ref: ${{ github.event.inputs.branch }}
+      - name: dump github context
+        run: echo "$CONTEXT"
+        env:
+          CONTEXT: ${{ toJson(github) }}
+      - name: dump inputs context
+        run: echo "$CONTEXT"
+        env:
+          CONTEXT: ${{ toJson(github.event.inputs) }}
       - run: |
           echo "Log level: ${{ github.event.inputs.logLevel }}"
           echo "Tags: ${{ github.event.inputs.tags }}"
@@ -194,8 +216,12 @@ jobs:
           echo ${TEST_VAR}
       - run: export
       - run: |
-          echo ::set-env name=INPUT_LOGLEVEL::${{ github.event.inputs.logLevel }}
-          echo ::set-env name=INPUT_TAGS::${{ github.event.inputs.tags }}
+          echo "INPUT_LOGLEVEL=${{ github.event.inputs.logLevel }}" >> $GITHUB_ENV
+          echo "INPUT_TAG=${{ github.event.inputs.tags }}" >> $GITHUB_ENV
+          # deprecated
+          # echo ::set-env name=INPUT_LOGLEVEL::${{ github.event.inputs.logLevel }}
+          # echo ::set-env name=INPUT_TAGS::${{ github.event.inputs.tags }}
+      - run: echo "/path/to/dir" >> $GITHUB_PATH
       - run: |
           echo "Log level: ${INPUT_LOGLEVEL}"
           echo "Tags: ${INPUT_TAGS}"
@@ -634,7 +660,7 @@ jobs:
       - run: echo ::set-output name=GIT_TAG::${GITHUB_REF#refs/tags/}
         id: CI_TAG
       - run: echo ${{ steps.CI_TAG.outputs.GIT_TAG }}
-      - run: echo ::set-env name=GIT_TAG::${GITHUB_REF#refs/tags/}
+      - run: echo "GIT_TAG=${GITHUB_REF#refs/tags/}" >> $GITHUB_ENV
       - run: echo ${{ env.GIT_TAG }}
 ```
 
@@ -660,7 +686,7 @@ jobs:
       NUGET_XMLDOC_MODE: skip
     steps:
       # set release tag(*.*.*) to env.GIT_TAG
-      - run: echo ::set-env name=GIT_TAG::${GITHUB_REF#refs/tags/}
+      - run: echo "GIT_TAG=${GITHUB_REF#refs/tags/}" >> $GITHUB_ENV
 
       - run: echo "hoge" > hoge.${GIT_TAG}.txt
       - run: echo "fuga" > fuga.${GIT_TAG}.txt
@@ -826,7 +852,7 @@ name: skip pr from fork
 on:
   push:
     branches:
-      - "**"
+      - "master"
   pull_request:
     types:
       - opened
@@ -840,4 +866,49 @@ jobs:
     if: "(github.event == 'push' && github.repository_owner == 'guitarrapc') || startsWith(github.event.pull_request.head.label, 'guitarrapc:')"
     steps:
       - run: echo build
+```
+
+### detect tag on pull request
+
+`pull_request` event contains tags and you can use it to filter step execution.
+`${{ contains(github.event.pull_request.labels.*.name, 'hoge') }}` will return `true` if tag contains `hoge`.
+
+```yaml
+name: pr label get
+on:
+  pull_request:
+    types:
+      - labeled
+      - opened
+      - reopened
+      - synchronize
+
+jobs:
+  changes:
+    runs-on: ubuntu-latest
+    env:
+      IS_HOGE: "false"
+    steps:
+      - run: echo "${{ toJson(github.event.pull_request.labels.*.name) }}"
+      - run: echo "IS_HOGE=${{ contains(github.event.pull_request.labels.*.name, 'hoge') }}" >> $GITHUB_ENV
+      - run: echo "${IS_HOGE}"
+      - run: echo "run!"
+        if: env.IS_HOGE == 'true'
+```
+
+### skip job when Draft PR
+
+You can skip job and steps if Pull Request is Draft.
+Unfortunately GitHub Webhook v3 event not provide draft pr type, but `event.pull_request.draft` shows `true` when PR is draft.
+
+```yaml
+name: skip draft pr
+on: pull_request
+
+jobs:
+  build:
+    if: "!(github.event.pull_request.draft)"
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
 ```
