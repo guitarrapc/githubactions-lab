@@ -5,9 +5,6 @@ on: [push]
 
 jobs:
   dotnet-console:
-    strategy:
-      matrix:
-        dotnet: ["3.1.202"] # support latest only
     runs-on: ubuntu-latest
     env:
       DOTNET_CLI_TELEMETRY_OPTOUT: 1
@@ -15,17 +12,12 @@ jobs:
       NUGET_XMLDOC_MODE: skip
     steps:
       - uses: actions/checkout@v2
-      - name: Setup .NET Core ${{ matrix.dotnet }}
-        uses: actions/setup-dotnet@v1
+      - uses: actions/setup-dotnet@v1
         with:
-          dotnet-version: ${{ matrix.dotnet }}
-      # build
+          dotnet-version: 3.1.x
       - run: dotnet build ./src/dotnet/console/ -c Debug
-      # test
       - run: dotnet test ./src/dotnet/console-tests/ -c Debug
-      # publish
       - run: dotnet publish ./src/dotnet/console/ -c Debug -o ./out/dotnet-console
-      # upload
       - uses: actions/upload-artifact@v2
         with:
           name: dotnet-console
