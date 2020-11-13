@@ -30,6 +30,7 @@ GitHub Actions laboratory.
   - [view webhook github context](#view-webhook-github-context)
   - [matrix and secret dereference](#matrix-and-secret-dereference)
   - [matrix and environment variables](#matrix-and-environment-variables)
+  - [set environment variables in script](#set-environment-variables-in-script)
   - [runs only previous job is success](#runs-only-previous-job-is-success)
   - [runs only when previous step status is specific](#runs-only-when-previous-step-status-is-specific)
   - [timeout for job and step](#timeout-for-job-and-step)
