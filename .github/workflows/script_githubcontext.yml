@@ -1,9 +1,0 @@
-name: dump context on script
-on: [push]
-
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - run: bash -eu .github/scripts/github-context.sh

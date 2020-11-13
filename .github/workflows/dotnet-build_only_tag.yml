@@ -13,7 +13,7 @@ jobs:
       - run: echo ::set-output name=GIT_TAG::${GITHUB_REF#refs/tags/}
         id: CI_TAG
       - run: echo ${{ steps.CI_TAG.outputs.GIT_TAG }}
-      - run: echo ::set-env name=GIT_TAG::${GITHUB_REF#refs/tags/}
+      - run: echo "GIT_TAG=${GITHUB_REF#refs/tags/}" >> $GITHUB_ENV
       - run: echo ${{ env.GIT_TAG }}
 
   dotnet-console:

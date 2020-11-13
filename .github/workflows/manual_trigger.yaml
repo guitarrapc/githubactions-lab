@@ -39,9 +39,6 @@ jobs:
       - run: |
           echo "INPUT_LOGLEVEL=${{ github.event.inputs.logLevel }}" >> $GITHUB_ENV
           echo "INPUT_TAGS=${{ github.event.inputs.tags }}" >> $GITHUB_ENV
-          # deprecated
-          # echo ::set-env name=INPUT_LOGLEVEL::${{ github.event.inputs.logLevel }}
-          # echo ::set-env name=INPUT_TAGS::${{ github.event.inputs.tags }}
       - run: |
           echo "Log level: ${INPUT_LOGLEVEL}"
           echo "Tags: ${INPUT_TAGS}"
