@@ -27,14 +27,14 @@ jobs:
           repository: ${{ env.REPO_MANIFEST }}
           path: ${{ env.REPO_MANIFEST }}
           token: ${{ secrets.SYNCED_GITHUB_TOKEN_REPO }}
-      - run: echo "::set-env name=BRANCH::$(echo $REF | sed -e 's|refs/head/||')"
+      - run: echo "BRANCH=$(echo $REF | sed -e 's|refs/head/||')" >> $GITHUB_ENV
         env:
           REF: ${{ github.event.inputs.branch }}
       - run: |
-          echo "::set-env name=GIT_BRANCH::$(echo $BRANCH | sed -e 's|/|-|g' -e 's/_/-/g')"
-          echo "::set-env name=REMOTE_BRANCH::${REMOTE_BRANCH}"
-          echo "::set-env name=SHA::$(git rev-parse HEAD)"
-          echo "::set-env name=SHORT_SHA::$(git rev-parse --short HEAD)"
+          echo "GIT_BRANCH=$(echo $BRANCH | sed -e 's|/|-|g' -e 's/_/-/g')" >> $GITHUB_ENV
+          echo "REMOTE_BRANCH=${REMOTE_BRANCH}" >> $GITHUB_ENV
+          echo "SHA=$(git rev-parse HEAD)" >> $GITHUB_ENV
+          echo "SHORT_SHA=$(git rev-parse --short HEAD)" >> $GITHUB_ENV
         env:
           REMOTE_BRANCH: ${{ github.event.repository.name }}/${{ env.BRANCH }}
       - run: |

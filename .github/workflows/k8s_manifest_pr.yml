@@ -23,10 +23,10 @@ jobs:
           repository: ${{ env.REPO_MANIFEST }}
           path: ${{ env.REPO_MANIFEST }}
           token: ${{ secrets.SYNCED_GITHUB_TOKEN_REPO }}
-      - run: echo "::set-env name=GIT_BRANCH::${REF}"
+      - run: echo "GIT_BRANCH=${REF}" >> $GITHUB_ENV
         env:
           REF: ${{ github.head_ref }}
-      - run: echo "::set-env name=BRANCH::${BRANCH}"
+      - run: echo "BRANCH=${BRANCH}" >> $GITHUB_ENV
         env:
           BRANCH: ${{ github.event.repository.name }}/${{ env.GIT_BRANCH }}
       - run: |

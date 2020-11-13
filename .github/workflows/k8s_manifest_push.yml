@@ -27,11 +27,11 @@ jobs:
           path: ${{ env.REPO_MANIFEST }}
           token: ${{ secrets.SYNCED_GITHUB_TOKEN_REPO }}
       - run: |
-          echo "::set-env name=GIT_BRANCH::$(echo $REF | sed -e 's|refs/heads/||g')"
-          echo "::set-env name=SHORT_SHA::$(git rev-parse --short HEAD)"
+          echo "GIT_BRANCH=$(echo $REF | sed -e 's|refs/heads/||g')" >> $GITHUB_ENV
+          echo "SHORT_SHA=$(git rev-parse --short HEAD)" >> $GITHUB_ENV
         env:
           REF: ${{ github.ref }}
-      - run: echo "::set-env name=BRANCH::${BRANCH}"
+      - run: echo "BRANCH=${BRANCH}" >> $GITHUB_ENV
         env:
           BRANCH: ${{ github.event.repository.name }}/${{ env.GIT_BRANCH }}-pr
       - run: |
@@ -103,11 +103,11 @@ jobs:
 #           path: ${{ env.REPO_MANIFEST }}
 #           token: ${{ secrets.SYNCED_GITHUB_TOKEN_REPO }}
 #       - run: |
-#           echo "::set-env name=GIT_BRANCH::$(echo $REF | sed -e 's|refs/heads/||g')"
-#           echo "::set-env name=SHORT_SHA::$(git rev-parse --short HEAD)"
+#           echo "GIT_BRANCH::$(echo $REF | sed -e 's|refs/heads/||g')"
+#           echo "SHORT_SHA::$(git rev-parse --short HEAD)"
 #         env:
 #           REF: ${{ github.ref }}
-#       - run: echo "::set-env name=BRANCH::${BRANCH}"
+#       - run: echo "BRANCH::${BRANCH}"
 #         env:
 #           BRANCH: ${{ github.event.repository.name }}/${{ env.GIT_BRANCH }}-pr
 #       - run: |
@@ -150,10 +150,10 @@ jobs:
 #     needs: [push_manifest]
 #     runs-on: ubuntu-latest
 #     steps:
-#       - run: echo "::set-env name=GIT_BRANCH::${BRANCH}"
+#       - run: echo "GIT_BRANCH::${BRANCH}"
 #         env:
 #           BRANCH: ${{ needs.push_manifest.outputs.GIT_BRANCH }}
-#       - run: echo "::set-env name=BRANCH::${BRANCH}-pr"
+#       - run: echo "BRANCH::${BRANCH}-pr"
 #         env:
 #           BRANCH: ${{ github.event.repository.name }}/${{ env.GIT_BRANCH }}
 #       - uses: actions/checkout@v2

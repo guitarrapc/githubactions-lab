@@ -149,6 +149,18 @@ GitHub Actions need to create or update Environment File, it's similar to Circle
 
 * GitHub Actions use Environment Files to manage Environment variables, create or update via `echo "{name}={value}" >> $GITHUB_ENV` syntax.
   * `::set-env` syntax is deprecated for [security reason](https://github.blog/changelog/2020-10-01-github-actions-deprecating-set-env-and-add-path-commands/).
+```yaml
+steps:
+  - name: test
+    run: |
+      # new
+      echo "INPUT_LOGLEVEL=${{ github.event.inputs.logLevel }}" >> $GITHUB_ENV
+      echo "INPUT_TAGS=${{ github.event.inputs.tags }}" >> $GITHUB_ENV
+      # deprecated
+      # echo ::set-env name=INPUT_LOGLEVEL::${{ github.event.inputs.logLevel }}
+      # echo ::set-env name=INPUT_TAGS::${{ github.event.inputs.tags }}
+```
+
 * CircleCI use redirect to `> BASH_ENV` will automatically load on next step
 * Azure Pipeline use task.setvariable. `echo "##vso[task.setvariable variable=NAME]VALUE"`
 * Jenkins use `Env.` in groovy declarative pipeline.
@@ -218,9 +230,6 @@ jobs:
       - run: |
           echo "INPUT_LOGLEVEL=${{ github.event.inputs.logLevel }}" >> $GITHUB_ENV
           echo "INPUT_TAG=${{ github.event.inputs.tags }}" >> $GITHUB_ENV
-          # deprecated
-          # echo ::set-env name=INPUT_LOGLEVEL::${{ github.event.inputs.logLevel }}
-          # echo ::set-env name=INPUT_TAGS::${{ github.event.inputs.tags }}
       - run: echo "/path/to/dir" >> $GITHUB_PATH
       - run: |
           echo "Log level: ${INPUT_LOGLEVEL}"
@@ -250,6 +259,39 @@ When you want spread your secrets with indivisual account, you need set each rep
 job id, name and others.
 
 > [Context and expression syntax for GitHub Actions \- GitHub Help](https://help.github.com/en/actions/reference/context-and-expression-syntax-for-github-actions#github-context)
+
+**TIPS**
+
+You can not directly refer github context in script.
+Let's check this behaviour with script `.github/scripts/github-context.sh`.
+
+```sh
+#!/bin/bash
+echo "ref"
+echo ${{ github.ref }}
+```
+
+call it from workflow.
+
+```yaml
+name: dump context on script
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: bash -eu .github/scripts/github-context.sh
+```
+
+Then you will see `${{ github.ref }}: bad substitution` error.
+This is because `${{ github }}` is not bash syntax, but github workflow's syntax.
+
+```sh
+.github/scripts/github-context.sh: line 3: ${{ github.ref }}: bad substitution
+ref
+```
 
 ### view webhook github context
 
@@ -386,6 +428,43 @@ jobs:
     steps:
       - run: echo "${ORG}"
 ```
+
+### set environment variables in script
+
+[set environment variables for next step](#set-environment-variables-for-next-step) explains how to set environment variables for next step.
+This syntax can be write in the script, let's see `.github/scripts/setenv.sh`.
+
+```shell
+#!/bin/bash
+while [ $# -gt 0 ]; do
+    case $1 in
+        --ref) GITHUB_REF=$2; shift 2; ;;
+        *) shift ;;
+    esac
+done
+
+echo GIT_TAG_SCRIPT=${GITHUB_REF#refs/tags/} >> $GITHUB_ENV
+```
+
+Call this script from workflow.
+
+```yaml
+name: env with script
+
+on: push
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: echo "GIT_TAG=${GITHUB_REF#refs/heads/}" >> $GITHUB_ENV
+      - run: echo ${{ env.GIT_TAG }}
+      - run: bash -eux .github/scripts/setenv.sh --ref "${GITHUB_REF#refs/heads/}"
+      - run: echo ${{ env.GIT_TAG_SCRIPT }}
+```
+
+`echo ${{ env.GIT_TAG_SCRIPT }}` will output `chore/context_in_script` as expected.
 
 ### runs only previous job is success
 
