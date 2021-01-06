@@ -9,5 +9,5 @@ jobs:
           mkdir -p $HOME/local \
           && curl -Ls https://github.com/garethr/kubeval/releases/download/0.14.0/kubeval-linux-amd64.tar.gz -o $HOME/kubeval-linux-amd64.tar.gz \
           && tar -C $HOME/local/ -xzvf $HOME/kubeval-linux-amd64.tar.gz \
-          && echo "::add-path::$HOME/local"
+          && echo "$HOME/local" >> $GITHUB_PATH
       - run: kubeval --version
