@@ -18,8 +18,10 @@ jobs:
     runs-on: ubuntu-latest
     env:
       BRANCH: ${{ github.event.inputs.branch }}
+      LOGLEVEL: ${{ github.event.inputs.logLevel }}
+      TAGS: ${{ github.event.inputs.tags }}
     steps:
-      - run: echo ${{ env.BRANCH }}
+      - run: echo ${{ env.BRANCH }} ${{ env.LOGLEVEL }} ${{ env.TAGS }}
       - uses: actions/checkout@v2
         with:
           ref: ${{ github.event.inputs.branch }}
