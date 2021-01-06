@@ -16,7 +16,10 @@ on:
 jobs:
   printInputs:
     runs-on: ubuntu-latest
+    env:
+      BRANCH: ${{ github.event.inputs.branch }}
     steps:
+      - run: echo ${{ env.BRANCH }}
       - uses: actions/checkout@v2
         with:
           ref: ${{ github.event.inputs.branch }}
