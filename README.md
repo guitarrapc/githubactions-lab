@@ -430,6 +430,31 @@ jobs:
       - run: echo "${ORG}"
 ```
 
+### env refer env
+
+You cannot use `${{ env. }}` in `env:` section.
+Following is invalid with error.
+
+> The workflow is not valid. .github/workflows/env_refer_env.yml (Line: 12, Col: 16): Unrecognized named-value: 'env'. Located at position 1 within expression: env.global_env
+
+```yaml
+name: env refer env
+
+on: ["push"]
+
+env:
+  global_env: global
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      job_env: ${{ env.global_env }}
+    steps:
+      - run: echo "${{ env.global_env }}"
+      - run: echo "${{ env.job_env }}"
+```
+
 ### set environment variables in script
 
 [set environment variables for next step](#set-environment-variables-for-next-step) explains how to set environment variables for next step.
