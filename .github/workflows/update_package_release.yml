@@ -32,7 +32,7 @@ jobs:
           git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
           git commit -m "feat: Update package.json to ${{ env.TAG }}" -a
-          echo "::set-output name=commit::$(git rev-parse HEAD)"
+          echo "NEW_COMMIT=$(git rev-parse HEAD)" >> $GITHUB_ENV
         if: env.DRY_RUN == 'false'
       - name: Push changes
         uses: ad-m/github-push-action@master
@@ -40,10 +40,13 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           branch: ${{ github.ref }}
         if: env.DRY_RUN == 'false'
-      - name: Bump version and push tag
-        uses: mathieudutour/github-tag-action@v5.1
+      - uses: actions/github-script@v3
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          custom_tag: ${{ env.TAG }}
-          tag_prefix: ""
-        if: env.DRY_RUN == 'false'
+          github-token: ${{ github.token }}
+          script: |
+            github.git.createRef({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              ref: "refs/tags/${{ env.TAG }}",
+              sha: ${{ env.NEW_COMMIT }}
+            })
