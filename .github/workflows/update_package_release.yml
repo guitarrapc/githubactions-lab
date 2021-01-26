@@ -50,6 +50,6 @@ jobs:
               owner: context.repo.owner,
               repo: context.repo.repo,
               ref: "refs/tags/${{ env.TAG }}",
-              sha: ${{ env.NEW_COMMIT }}
+              sha: context.sha
             })
         if: env.DRY_RUN == 'false'
