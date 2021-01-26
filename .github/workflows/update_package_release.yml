@@ -1,0 +1,48 @@
+name: "Release"
+
+on:
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: "tag: git tag you want create."
+        required: true
+      dry_run:
+        description: "dry_run: true will never create commit/pr."
+        required: true
+        default: "false"
+
+jobs:
+  tag:
+    runs-on: ubuntu-latest
+    env:
+      TAG: ${{ github.event.inputs.tag }}
+      TARGET_FILE: ./src/json/package.json
+      CREATE_PR: ${{ github.event.inputs.create_pr }}
+      DRY_RUN: ${{ github.event.inputs.dry_run }}
+    steps:
+      - uses: actions/checkout@v2
+      - name: before
+        run: cat ${{ env.TARGET_FILE}}
+      - name: update package.json to version ${{ env.TAG }}
+        run: sed -i -e "s/\(\"version\":\) \"\(.*\)\",/\1 \"${{ env.TAG }}\",/" ${{ env.TARGET_FILE }}
+      - name: after
+        run: cat ${{ env.TARGET_FILE}}
+      - name: Commit files
+        run: |
+          git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git commit -m "feat: Update package.json to ${{ env.TAG }}" -a
+          echo "::set-output name=commit::$(git rev-parse HEAD)"
+        if: env.DRY_RUN == 'false'
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: ${{ github.ref }}
+        if: env.DRY_RUN == 'false'
+      - name: Bump version and push tag
+        uses: mathieudutour/github-tag-action@v5.1
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          custom_tag: ${{ env.TAG }}
+          tag_prefix: ""
