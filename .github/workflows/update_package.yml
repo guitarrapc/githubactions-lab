@@ -1,0 +1,38 @@
+name: "Update Package.json"
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: "Unity Package Version you want update to."
+        required: true
+
+jobs:
+  stale:
+    runs-on: ubuntu-latest
+    env:
+      VERSION: ${{ github.event.inputs.version }}
+      TARGET_FILE: ./src/json/package.json
+    steps:
+      - uses: actions/checkout@v2
+      - name: before
+        run: cat ${{ env.TARGET_FILE}}
+      - name: update package.json to version ${{ env.VERSION }}
+        run: sed -i -e "s/\(\"version\":\) \"\(.*\)\",/\1 \"${{ env.VERSION }}\",/" ${{ env.TARGET_FILE }}
+      - name: after
+        run: cat ${{ env.TARGET_FILE}}
+      # - name: Create Pull Request
+      #   id: cpr
+      #   uses: peter-evans/create-pull-request@v3
+      #   with:
+      #     commit-message: "feat: Update package.json to ${{ env.VERSION }}"
+      #     branch: feat/bump_package_json_${{ env.VERSION }}
+      #     title: "Auto-genetaed: Update package.json to ${{ env.VERSION }}"
+      #     body: |
+      #       package.json is updated to new verison ${{ env.VERSION }}
+      #     labels: automated pr
+      #     draft: false
+      # - name: Check outputs
+      #   run: |
+      #     echo "Pull Request Number - ${{ steps.cpr.outputs.pull-request-number }}"
+      #     echo "Pull Request URL - ${{ steps.cpr.outputs.pull-request-url }}"
