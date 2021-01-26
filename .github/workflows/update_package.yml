@@ -6,6 +6,10 @@ on:
       version:
         description: "Unity Package Version you want update to."
         required: true
+      create_pr:
+        description: "true to create pr, false to direct push."
+        required: true
+        default: "false"
 
 jobs:
   stale:
@@ -13,6 +17,7 @@ jobs:
     env:
       VERSION: ${{ github.event.inputs.version }}
       TARGET_FILE: ./src/json/package.json
+      CREATE_PR: ${{ github.event.inputs.create_pr }}
     steps:
       - uses: actions/checkout@v2
       - name: before
@@ -29,10 +34,24 @@ jobs:
           branch: feat/bump_package_json_${{ env.VERSION }}
           title: "Auto-genetaed: Update package.json to ${{ env.VERSION }}"
           body: |
-            package.json is updated to new verison ${{ env.VERSION }}
+            ${{ env.TARGET_FILE }} is updated to new verison ${{ env.VERSION }} :rocket:
           labels: automated pr
           draft: false
+        if: env.CREATE_PR == "true"
       - name: Check outputs
         run: |
           echo "Pull Request Number - ${{ steps.cpr.outputs.pull-request-number }}"
           echo "Pull Request URL - ${{ steps.cpr.outputs.pull-request-url }}"
+        if: env.CREATE_PR == "true"
+      - name: Commit files
+        run: |
+          git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git commit -m "feat: Update package.json to ${{ env.VERSION }}" -a
+        if: env.CREATE_PR != "true"
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: ${{ github.ref }}
+        if: env.CREATE_PR != "true"
