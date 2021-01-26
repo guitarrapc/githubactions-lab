@@ -12,7 +12,7 @@ on:
         default: "false"
 
 jobs:
-  tag:
+  update-tag-release:
     runs-on: ubuntu-latest
     env:
       TAG: ${{ github.event.inputs.tag }}
@@ -42,3 +42,11 @@ jobs:
           branch: ${{ github.ref }}
           tags: true
         if: env.DRY_RUN == 'false'
+      - uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ env.TAG }}
+          release_name: Ver.${{ env.TAG }}
+          draft: "true"
+          prerelease: "false"
