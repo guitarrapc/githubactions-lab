@@ -40,6 +40,8 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           branch: ${{ github.ref }}
         if: env.DRY_RUN == 'false'
+      - name: Wait for upstream share reference update
+        run: sleep 5s
       - uses: actions/github-script@v3
         with:
           github-token: ${{ github.token }}
@@ -50,3 +52,4 @@ jobs:
               ref: "refs/tags/${{ env.TAG }}",
               sha: ${{ env.NEW_COMMIT }}
             })
+        if: env.DRY_RUN == 'false'
