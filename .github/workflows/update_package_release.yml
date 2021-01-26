@@ -50,3 +50,9 @@ jobs:
           release_name: Ver.${{ env.TAG }}
           draft: "true"
           prerelease: "false"
+
+  test:
+    needs: [update-tag-release]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
