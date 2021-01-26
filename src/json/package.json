@@ -1,7 +1,7 @@
 {
   "name": "com.sample.guitarrapc",
   "displayName": "TestPackage",
-  "version": "0.0.2",
+  "version": "0.0.2-alpha",
   "unity": "2018.4",
   "description": "This is test",
   "keywords": [],
