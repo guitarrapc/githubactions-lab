@@ -19,6 +19,8 @@ jobs:
       TARGET_FILE: ./src/json/package.json
       CREATE_PR: ${{ github.event.inputs.create_pr }}
       DRY_RUN: ${{ github.event.inputs.dry_run }}
+    outputs:
+      sha: ${{ steps.commit.outputs.sha }}
     steps:
       - uses: actions/checkout@v2
       - name: before
@@ -28,12 +30,13 @@ jobs:
       - name: after
         run: cat ${{ env.TARGET_FILE}}
       - name: Commit files
+        id: commit
         run: |
           git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
           git commit -m "feat: Update package.json to ${{ env.TAG }}" -a
           git tag ${{ env.TAG }}
-          echo "NEW_COMMIT=$(git rev-parse HEAD)" >> $GITHUB_ENV
+          echo "::set-output name=sha::$(git rev-parse HEAD)"
         if: env.DRY_RUN == 'false'
       - name: Push changes
         uses: ad-m/github-push-action@master
@@ -55,4 +58,7 @@ jobs:
     needs: [update-tag-release]
     runs-on: ubuntu-latest
     steps:
+      - run: echo ${{ needs.update-tag-release.outputs.sha }}
       - uses: actions/checkout@v2
+        with:
+          ref: ${{ needs.update-tag-release.outputs.sha }}
