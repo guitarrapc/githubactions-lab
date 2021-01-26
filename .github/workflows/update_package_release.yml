@@ -46,3 +46,4 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           custom_tag: ${{ env.TAG }}
           tag_prefix: ""
+        if: env.DRY_RUN == 'false'
