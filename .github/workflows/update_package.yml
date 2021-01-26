@@ -11,7 +11,7 @@ on:
         required: true
         default: "false"
       dry_run:
-        description: "dry run. no commit / pr."
+        description: "dry run. true will never create commit/pr."
         required: true
         default: "false"
 
