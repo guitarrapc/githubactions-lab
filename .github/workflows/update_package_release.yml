@@ -53,12 +53,12 @@ jobs:
           branch: ${{ github.ref }}
           tags: true
         if: env.DRY_RUN == 'false'
-      - name: Push changes
+      - name: Push changes (dry_run)
         uses: ad-m/github-push-action@master
         with:
           github_token: ${{ secrets.SYNCED_GITHUB_TOKEN_REPO }} # must use PAT to trigger other workflow
-          branch: ${{ env.DRY_RUN_BRANCH }}
-          tags: true
+          branch: ${{ env.DRY_RUN_BRANCH }}-${{ env.TAG }}
+          tags: false
         if: env.DRY_RUN == 'true'
 
   release:
@@ -87,10 +87,11 @@ jobs:
     needs: [update-tag-release]
     runs-on: ubuntu-latest
     env:
+      TAG: ${{ github.event.inputs.tag }}
       DRY_RUN_BRANCH: ${{ github.event.inputs.dry_run_branch }}
     steps:
       - name: Delete branch
         uses: dawidd6/action-delete-branch@v3
         with:
           github_token: ${{ github.token }}
-          branches: ${{ env.DRY_RUN_BRANCH }}
+          branches: ${{ env.DRY_RUN_BRANCH }}-${{ env.TAG }}
