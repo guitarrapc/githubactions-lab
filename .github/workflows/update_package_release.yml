@@ -10,20 +10,18 @@ on:
         description: "dry_run: true will never create commit/pr."
         required: true
         default: "false"
-      dry_run_branch_prefix:
-        description: "dry_run_branch_prefix: (only for dry_run) push to specific branch, delete branch after execution."
-        required: true
-        default: "test_release"
+
+env:
+  DRY_RUN_BRANCH_PREFIX: "test_release"
 
 jobs:
-  update-tag-release:
+  update-push:
     runs-on: ubuntu-latest
     env:
       TAG: ${{ github.event.inputs.tag }}
       TARGET_FILE: ./src/json/package.json
       CREATE_PR: ${{ github.event.inputs.create_pr }}
       DRY_RUN: ${{ github.event.inputs.dry_run }}
-      DRY_RUN_BRANCH_PREFIX: ${{ github.event.inputs.dry_run_branch_prefix }}
     outputs:
       sha: ${{ steps.commit.outputs.sha }}
     steps:
@@ -88,7 +86,6 @@ jobs:
     runs-on: ubuntu-latest
     env:
       TAG: ${{ github.event.inputs.tag }}
-      DRY_RUN_BRANCH_PREFIX: ${{ github.event.inputs.dry_run_branch_prefix }}
     steps:
       - name: Delete branch
         uses: dawidd6/action-delete-branch@v3
