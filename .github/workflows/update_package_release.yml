@@ -84,7 +84,7 @@ jobs:
 
   cleanup:
     if: github.event.inputs.dry_run == 'true'
-    needs: [update-tag-release]
+    needs: [release]
     runs-on: ubuntu-latest
     env:
       TAG: ${{ github.event.inputs.tag }}
