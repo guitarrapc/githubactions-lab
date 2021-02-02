@@ -52,6 +52,8 @@ jobs:
   release:
     needs: [update-tag-release]
     runs-on: ubuntu-latest
+    env:
+      DRY_RUN: ${{ github.event.inputs.dry_run }}
     steps:
       - run: echo ${{ needs.update-tag-release.outputs.sha }}
       - uses: actions/checkout@v2
@@ -59,7 +61,7 @@ jobs:
           ref: ${{ needs.update-tag-release.outputs.sha }}
       - run: git rev-parse HEAD
       - uses: actions/create-release@v1
-        if: github.event.inputs.dry_run == "false"
+        if: env.DRY_RUN == 'false'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
