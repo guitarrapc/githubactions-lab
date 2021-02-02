@@ -60,15 +60,15 @@ jobs:
         if: env.DRY_RUN == 'true'
 
   release:
-    needs: [update-tag-release]
+    needs: [update-push]
     runs-on: ubuntu-latest
     env:
       DRY_RUN: ${{ github.event.inputs.dry_run }}
     steps:
-      - run: echo ${{ needs.update-tag-release.outputs.sha }}
+      - run: echo ${{ needs.update-push.outputs.sha }}
       - uses: actions/checkout@v2
         with:
-          ref: ${{ needs.update-tag-release.outputs.sha }}
+          ref: ${{ needs.update-push.outputs.sha }}
       - run: git rev-parse HEAD
       - uses: actions/create-release@v1
         if: env.DRY_RUN == 'false'
