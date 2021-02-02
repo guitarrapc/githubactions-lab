@@ -10,6 +10,10 @@ on:
         description: "dry_run: true will never create commit/pr."
         required: true
         default: "false"
+      dry_run_branch:
+        description: "dry_run_branch: (only for dry_run) push to specific branch, delete branch after execution."
+        required: true
+        default: "test_release"
 
 jobs:
   update-tag-release:
@@ -19,6 +23,7 @@ jobs:
       TARGET_FILE: ./src/json/package.json
       CREATE_PR: ${{ github.event.inputs.create_pr }}
       DRY_RUN: ${{ github.event.inputs.dry_run }}
+      DRY_RUN_BRANCH: ${{ github.event.inputs.dry_run_branch }}
     outputs:
       sha: ${{ steps.commit.outputs.sha }}
     steps:
@@ -48,6 +53,13 @@ jobs:
           branch: ${{ github.ref }}
           tags: true
         if: env.DRY_RUN == 'false'
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.SYNCED_GITHUB_TOKEN_REPO }} # must use PAT to trigger other workflow
+          branch: ${{ env.DRY_RUN_BRANCH }}
+          tags: true
+        if: env.DRY_RUN == 'true'
 
   release:
     needs: [update-tag-release]
@@ -69,3 +81,16 @@ jobs:
           release_name: Ver.${{ env.TAG }}
           draft: "true"
           prerelease: "false"
+
+  cleanup:
+    if: github.event.inputs.dry_run == 'true'
+    needs: [update-tag-release]
+    runs-on: ubuntu-latest
+    env:
+      DRY_RUN_BRANCH: ${{ github.event.inputs.dry_run_branch }}
+    steps:
+      - name: Delete branch
+        uses: dawidd6/action-delete-branch@v3
+        with:
+          github_token: ${{ github.token }}
+          branches: ${{ env.DRY_RUN_BRANCH }}
