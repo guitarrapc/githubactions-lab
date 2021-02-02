@@ -15,12 +15,11 @@ env:
   DRY_RUN_BRANCH_PREFIX: "test_release"
 
 jobs:
-  update-push:
+  update-packagejson:
     runs-on: ubuntu-latest
     env:
       TAG: ${{ github.event.inputs.tag }}
       TARGET_FILE: ./src/json/package.json
-      CREATE_PR: ${{ github.event.inputs.create_pr }}
       DRY_RUN: ${{ github.event.inputs.dry_run }}
     outputs:
       sha: ${{ steps.commit.outputs.sha }}
@@ -60,15 +59,15 @@ jobs:
         if: env.DRY_RUN == 'true'
 
   release:
-    needs: [update-push]
+    needs: [update-packagejson]
     runs-on: ubuntu-latest
     env:
       DRY_RUN: ${{ github.event.inputs.dry_run }}
     steps:
-      - run: echo ${{ needs.update-push.outputs.sha }}
+      - run: echo ${{ needs.update-packagejson.outputs.sha }}
       - uses: actions/checkout@v2
         with:
-          ref: ${{ needs.update-push.outputs.sha }}
+          ref: ${{ needs.update-packagejson.outputs.sha }}
       - run: git rev-parse HEAD
       - uses: actions/create-release@v1
         if: env.DRY_RUN == 'false'
