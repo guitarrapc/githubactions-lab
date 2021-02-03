@@ -13,14 +13,14 @@ on:
 
 env:
   DRY_RUN_BRANCH_PREFIX: "test_release"
+  TAG: ${{ github.event.inputs.tag }}
+  DRY_RUN: ${{ github.event.inputs.dry_run }}
 
 jobs:
   update-packagejson:
     runs-on: ubuntu-latest
     env:
-      TAG: ${{ github.event.inputs.tag }}
       TARGET_FILE: ./src/json/package.json
-      DRY_RUN: ${{ github.event.inputs.dry_run }}
     outputs:
       sha: ${{ steps.commit.outputs.sha }}
     steps:
@@ -37,12 +37,14 @@ jobs:
           git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
           git commit -m "feat: Update package.json to ${{ env.TAG }}" -a
-          git tag ${{ env.TAG }}
           echo "::set-output name=sha::$(git rev-parse HEAD)"
       - name: check sha
         run: echo "SHA ${SHA}"
         env:
           SHA: ${{ steps.commit.outputs.sha }}
+      - name: tag
+        run: git tag ${{ env.TAG }}
+        if: env.DRY_RUN == 'false'
       - name: Push changes
         uses: ad-m/github-push-action@master
         with:
@@ -61,9 +63,6 @@ jobs:
   release:
     needs: [update-packagejson]
     runs-on: ubuntu-latest
-    env:
-      TAG: ${{ github.event.inputs.tag }}
-      DRY_RUN: ${{ github.event.inputs.dry_run }}
     steps:
       - run: echo ${{ needs.update-packagejson.outputs.sha }}
       - uses: actions/checkout@v2
@@ -85,8 +84,6 @@ jobs:
     if: github.event.inputs.dry_run == 'true'
     needs: [release]
     runs-on: ubuntu-latest
-    env:
-      TAG: ${{ github.event.inputs.tag }}
     steps:
       - name: Delete branch
         uses: dawidd6/action-delete-branch@v3
