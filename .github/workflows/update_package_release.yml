@@ -78,6 +78,7 @@ jobs:
           release_name: Ver.${{ env.TAG }}
           draft: "true"
           prerelease: "false"
+          commitish: ${{ needs.update-packagejson.outputs.sha }}
 
   cleanup:
     if: github.event.inputs.dry_run == 'true'
