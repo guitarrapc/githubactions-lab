@@ -1,0 +1,30 @@
+name: create tag
+
+on:
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: "tag: git tag you want create."
+        required: true
+      dry_run:
+        description: "dry_run: true will never create commit/pr."
+        required: true
+        default: "false"
+
+env:
+  TAG: ${{ github.event.inputs.tag }}
+  DRY_RUN: ${{ github.event.inputs.dry_run }}
+
+jobs:
+  update-packagejson:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: tag
+        run: git tag ${{ env.TAG }}
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: ${{ github.ref }}
+          tags: true
