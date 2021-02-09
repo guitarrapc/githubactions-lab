@@ -45,7 +45,6 @@ GitHub Actions laboratory.
   - [create release](#create-release)
   - [schedule job on non-default branch](#schedule-job-on-non-default-branch)
 - [Commit handling](#commit-handling)
-  - [skip ci](#skip-ci)
   - [trigger via commit message](#trigger-via-commit-message)
   - [commit file handling](#commit-file-handling)
 - [Issue and Pull Request handling](#issue-and-pull-request-handling)
