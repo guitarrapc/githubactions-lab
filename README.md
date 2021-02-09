@@ -88,11 +88,9 @@ Better define step in script and call it from step, so that we can reuse same ex
 
 ### skip ci on commit message
 
-GitHub Actions has no default support for `[skip ci]` or `[ci skip]`. Users require define `jobs.<job_id>.if` or `jobs.<job_id>.steps.run.if`.
-You cannot use commit message `[skip ci]` on `pull_request` event as webhook not contains commits message playload.
+GitHub Actions support when HEAD commit contains key word like other ci.
 
-
-* GitHub Actions need use `if` for job or step. if you want to handle whole workflow running, create `skip ci` check job and other job refer via `needs`.
+* GitHub Actions can skip workflow via `[skip ci]`, `[ci skip]`, `[no ci]`, `[skip actions]` or `[actions skip]`.
 * CircleCI can skip job via `[skip ci]` or `[ci skip]`. PR commit also skip.
 * Azure Pipeline can skip job via `***NO_CI***`, `[skip ci]` or `[ci skip]`, or [others](https://github.com/Microsoft/azure-pipelines-agent/issues/858#issuecomment-475768046).
 * Jenkins has plugin to support `[skip ci]` or any expression w/pipeline via [SCM Skip \| Jenkins plugin](https://plugins.jenkins.io/scmskip/).
@@ -857,27 +855,6 @@ jobs:
 ```
 
 ## Commit handling
-
-### skip ci
-
-no default handling. use following.
-
-`head_commit` may become null when event is `pull_request` or `push` for tag deletion.
-
-```yaml
-name: skip ci commit
-
-on: ["push"]
-
-jobs:
-  build:
-    if: "!(contains(github.event.head_commit.message, '[skip ci]') || contains(github.event.head_commit.message, '[ci skip]'))"
-    runs-on: ubuntu-latest
-    steps:
-      - run: echo $COMMIT_MESSAGE
-        env:
-          COMMIT_MESSAGE: ${{ toJson(github.event.head_commit.message) }}
-```
 
 ### trigger via commit message
 
