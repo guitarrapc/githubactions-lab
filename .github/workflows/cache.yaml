@@ -29,9 +29,10 @@ jobs:
         with:
           github-token: ${{secrets.GITHUB_TOKEN}}
           script: |
-            github.git.getRef({
+            const result = await github.git.getRef({
               owner: context.repo.owner,
               repo: "githubactions-lab",
               ref: "heads/master"
             })
+            console.log(result)
       - run: echo "${{steps.set-result.outputs.result}}"
