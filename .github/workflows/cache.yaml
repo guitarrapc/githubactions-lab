@@ -24,4 +24,12 @@ jobs:
         run: mkdir -p ~/cache && echo ${SHA} > ~/cache/.sha
       - run: cat ~/cache/.sha
 
-      - run: git ls-remote https://github.com/guitarrapc/testtest.git
+      - uses: actions/github-script@v3
+        with:
+          github-token: ${{secrets.GITHUB_TOKEN}}
+          script: |
+            github.git.getRef({
+              owner: context.repo.owner,
+              repo: testtest,
+              ref: heads/master
+            })
