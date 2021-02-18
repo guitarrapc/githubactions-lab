@@ -54,8 +54,8 @@ jobs:
         run: |
           mkdir ~/cache/
           cat <<EOF > ~/cache/.sha
-          "${{ steps.set-public-result.outputs.result }}"
-          "${{ steps.set-private-result.outputs.result }}"
+          ${{ steps.set-public-result.outputs.result }}
+          ${{ steps.set-private-result.outputs.result }}
           EOF
 
       # cache validation if sha's file has been updated
