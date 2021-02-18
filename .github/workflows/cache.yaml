@@ -16,8 +16,11 @@ env:
   CACHE_VERSION: v1
 
 jobs:
-  build:
+  detect_library_change:
     runs-on: ubuntu-latest
+    outputs:
+      cache-hit: ${{ steps.cache-sha.outputs.cache-hit }}
+    timeout-minutes: 10
     steps:
       # get trigger repo references
       - name: public repo reference
@@ -67,9 +70,14 @@ jobs:
           path: ~/cache
           key: ${{ runner.os }}-${{ env.CACHE_VERSION }}-sha-${{ hashFiles('**/sha.txt') }}
 
+  dispatch:
+    needs: [detect_library_change]
+    if: needs.detect_library_change.outputs.cache-hit != 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
       # dispatch build if cache is not match with previous
       - name: dispatch ${{ matrix.repo }}
-        if: steps.cache-sha.outputs.cache-hit != 'true'
         uses: benc-uk/workflow-dispatch@v1.1
         with:
           repo: ${{ env.DISPATCH_REPO }}
