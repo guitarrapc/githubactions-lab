@@ -77,7 +77,7 @@ jobs:
 
   dispatch:
     needs: [detect_library_change]
-    if: needs.detect_library_change.outputs.cache-hit != 'true'
+    if: (github.event_name == 'push' || github.event_name == 'workflow_dispatch') && needs.detect_library_change.outputs.cache-hit != 'true'
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
