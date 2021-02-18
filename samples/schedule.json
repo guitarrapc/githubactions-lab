@@ -1,0 +1,25 @@
+{
+  "token": "***",
+  "job": "build",
+  "ref": "refs/heads/master",
+  "sha": "5f34b307a816df8c05b9ceb4f96c406d4332fdce",
+  "repository": "guitarrapc/githubactions-lab",
+  "repository_owner": "guitarrapc",
+  "repositoryUrl": "git://github.com/guitarrapc/githubactions-lab.git",
+  "run_id": "578653380",
+  "run_number": "287",
+  "retention_days": "90",
+  "actor": "guitarrapc",
+  "workflow": "schedule job",
+  "head_ref": "",
+  "base_ref": "",
+  "event_name": "schedule",
+  "event": {
+    "schedule": "*/5 * * * *"
+  },
+  "server_url": "https://github.com",
+  "api_url": "https://api.github.com",
+  "graphql_url": "https://api.github.com/graphql",
+  "workspace": "/home/runner/work/githubactions-lab/githubactions-lab",
+  "action": "run"
+}
