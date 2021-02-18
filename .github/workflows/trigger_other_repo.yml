@@ -9,7 +9,7 @@ jobs:
       matrix:
         repo: [testtest] #Array of target repos
         include:
-          - repor: testtest
+          - repo: testtest
             ref: main
             workflow: test.yml
     steps:
