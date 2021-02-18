@@ -1,9 +1,9 @@
-name: trigger other repo
+name: dispatch changes
 on:
   workflow_dispatch:
 
 jobs:
-  build:
+  dispatch:
     runs-on: ubuntu-latest
     steps:
       - run: |
