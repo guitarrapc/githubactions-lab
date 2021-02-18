@@ -1066,7 +1066,7 @@ jobs:
         include:
           - repo: testtest
             ref: main
-            workflow: test.yml
+            workflow: test # workflow name, not file name
     steps:
       - name: dispatch ${{ matrix.repo }}
         uses: benc-uk/workflow-dispatch@v1.1
