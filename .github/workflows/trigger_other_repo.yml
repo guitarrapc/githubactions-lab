@@ -13,7 +13,8 @@ jobs:
             ref: main
             workflow: test.yml
     steps:
-      - run: |
+      - name: dispatch ${{ matrix.repo }}
+        run: |
           curl -f -X POST \
                -H "authorization: Bearer ${{ secrets.SYNCED_GITHUB_TOKEN_REPO }}" \
                -H "Accept: application/vnd.github.everest-preview+json" \
