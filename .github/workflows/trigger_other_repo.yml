@@ -7,11 +7,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: |
-          curl -X POST \
+          curl -f -X POST \
                -H "authorization: Bearer ${{ secrets.SYNCED_GITHUB_TOKEN_REPO }}" \
                -H "Accept: application/vnd.github.everest-preview+json" \
                -H "Content-Type: application/json" \
-               -d '{"ref": "${REF}"}' \
+               -d "{\"ref\": \"${REF}\"}" \
                ${URL}
         env:
           URL: https://api.github.com/repos/guitarrapc/testtest/actions/workflows/test.yml/dispatches
