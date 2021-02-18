@@ -30,6 +30,6 @@ jobs:
           script: |
             github.git.getRef({
               owner: context.repo.owner,
-              repo: testtest,
+              repo: githubactions-lab,
               ref: heads/master
             })
