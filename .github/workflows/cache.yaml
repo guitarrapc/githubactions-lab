@@ -23,3 +23,5 @@ jobs:
         if: steps.cache-sha.outputs.cache-hit != 'true'
         run: mkdir -p ~/cache && echo ${SHA} > ~/cache/.sha
       - run: cat ~/cache/.sha
+
+      - run: git ls-remote https://github.com/guitarrapc/testtest.git
