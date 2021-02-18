@@ -25,6 +25,7 @@ jobs:
       - run: cat ~/cache/.sha
 
       - uses: actions/github-script@v3
+        id: set-result
         with:
           github-token: ${{secrets.GITHUB_TOKEN}}
           script: |
@@ -33,3 +34,4 @@ jobs:
               repo: "githubactions-lab",
               ref: "heads/master"
             })
+      - run: echo "${{steps.set-result.outputs.result}}"
