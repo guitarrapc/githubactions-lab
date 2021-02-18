@@ -24,8 +24,9 @@ jobs:
         run: mkdir -p ~/cache && echo ${SHA} > ~/cache/.sha
       - run: cat ~/cache/.sha
 
-      - uses: actions/github-script@v3
-        id: set-result
+      - name: public repo reference
+        uses: actions/github-script@v3
+        id: set-public-result
         with:
           github-token: ${{secrets.GITHUB_TOKEN}}
           script: |
@@ -36,4 +37,19 @@ jobs:
             })
             console.log(result)
             return result.data.object.sha
-      - run: echo "${{ steps.set-result.outputs.result }}"
+      - run: echo "${{ steps.set-public-result.outputs.result }}"
+
+      - name: private repo reference
+        uses: actions/github-script@v3
+        id: set-private-result
+        with:
+          github-token: ${{secrets.GITHUB_TOKEN}}
+          script: |
+            const result = await github.git.getRef({
+              owner: context.repo.owner,
+              repo: "testtest",
+              ref: "heads/master"
+            })
+            console.log(result)
+            return result.data.object.sha
+      - run: echo "${{ steps.set-private-result.outputs.result }}"
