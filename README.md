@@ -994,3 +994,83 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 ```
+
+## ADVANCED
+
+Advanced tips.
+
+### Dispatch other repo from workflow
+
+You can dispatch this repository to other repository via calling GitHub `workflow_dispatch` event API.
+You don't need use `repository_dispatch` event API anymore.
+
+
+Target repo `testtest`'s workflow `test.yml`.
+
+```
+name: test
+on:
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v2
+```
+
+This repo will dispatch event with following worlflow.
+
+```yaml
+name: dispatch changes
+on:
+  workflow_dispatch:
+
+jobs:
+  dispatch:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        repo: [testtest] #Array of target repos
+        include:
+          - repo: testtest
+            ref: main
+            workflow: test.yml
+    steps:
+      - name: dispatch ${{ matrix.repo }}
+        run: |
+          curl -f -X POST \
+               -H "authorization: Bearer ${{ secrets.SYNCED_GITHUB_TOKEN_REPO }}" \
+               -H "Accept: application/vnd.github.everest-preview+json" \
+               -H "Content-Type: application/json" \
+               -d '{"ref": "${{ matrix.ref }}"}' \
+               https://api.github.com/repos/guitarrapc/${{ matrix.repo }}/actions/workflows/${{ matrix.workflow }}/dispatches
+```
+
+You can use [Workflow Dispatch Action](https://github.com/marketplace/actions/workflow-dispatch) insead, like this.
+
+```yaml
+name: dispatch changes actions
+on:
+  workflow_dispatch:
+
+jobs:
+  dispatch:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        repo: [testtest] #Array of target repos
+        include:
+          - repo: testtest
+            ref: main
+            workflow: test.yml
+    steps:
+      - name: dispatch ${{ matrix.repo }}
+        uses: benc-uk/workflow-dispatch@v1.1
+        with:
+          repo: ${{ matrix.repo }}
+          ref: ${{ matrix.ref }}
+          workflow: ${{ matrix.workflow }}
+          token: ${{ secrets.SYNCED_GITHUB_TOKEN_REPO }}
+```
