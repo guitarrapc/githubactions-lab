@@ -5,14 +5,18 @@ on:
 jobs:
   dispatch:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        repo: [testtest] #Array of target repos
+        include:
+          - repor: testtest
+            ref: main
+            workflow: test.yml
     steps:
       - run: |
           curl -f -X POST \
                -H "authorization: Bearer ${{ secrets.SYNCED_GITHUB_TOKEN_REPO }}" \
                -H "Accept: application/vnd.github.everest-preview+json" \
                -H "Content-Type: application/json" \
-               -d "{\"ref\": \"${REF}\"}" \
-               ${URL}
-        env:
-          URL: https://api.github.com/repos/guitarrapc/testtest/actions/workflows/test.yml/dispatches
-          REF: main
+               -d '{"ref": "${{ matrix.ref }}"}'' \
+               https://api.github.com/repos/guitarrapc/${{ matrix.repo }}/actions/workflows/${{ matrix.workflow }}/dispatches
