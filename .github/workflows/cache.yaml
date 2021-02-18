@@ -22,6 +22,11 @@ jobs:
       cache-hit: ${{ steps.cache-sha.outputs.cache-hit }}
     timeout-minutes: 10
     steps:
+      - name: Dump GitHub context
+        run: echo "$CONTEXT"
+        env:
+          CONTEXT: ${{ toJson(github) }}
+
       # get trigger repo references
       - name: public repo reference
         uses: actions/github-script@v3
