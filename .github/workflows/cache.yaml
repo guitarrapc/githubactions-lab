@@ -5,25 +5,20 @@ on:
       - "master"
   workflow_dispatch:
 
+# tl;dr;
+# push will diff with cache, and dispatch workflow.
+# workflow_dispatch without any repo change will use cache, and not dispatch workflow.
+
+env:
+  DISPATCH_REPO: guitarrapc/testtest
+  DIPATCH_WORKFLOW_NAME: test
+  DISPATCH_BRANCH: main
+
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-
-      - run: echo "SHA=$(git rev-parse HEAD)" >> $GITHUB_ENV
-      - name: Cache sha
-        id: cache-sha
-        uses: actions/cache@v2
-        with:
-          path: ~/cache
-          key: ${{ runner.os }}-sha-${{ env.SHA }}
-
-      - name: Generate sha
-        if: steps.cache-sha.outputs.cache-hit != 'true'
-        run: mkdir -p ~/cache && echo ${SHA} > ~/cache/.sha
-      - run: cat ~/cache/.sha
-
+      # get trigger repo references
       - name: public repo reference
         uses: actions/github-script@v3
         id: set-public-result
@@ -53,3 +48,30 @@ jobs:
             console.log(result)
             return result.data.object.sha
       - run: echo "${{ steps.set-private-result.outputs.result }}"
+
+      # write all repo's sha to single file
+      - name: gen sha hash
+        run: |
+          mkdir ~/cache/
+          cat <<EOF > ~/cache/.sha
+          "${{ steps.set-public-result.outputs.result }}"
+          "${{ steps.set-private-result.outputs.result }}"
+          EOF
+
+      # cache validation if sha's file has been updated
+      - name: Cache sha
+        id: cache-sha
+        uses: actions/cache@v2
+        with:
+          path: ~/cache
+          key: ${{ runner.os }}-sha-${{ hashFiles('~/cache/.sha') }}
+
+      # dispatch build if cache is not match with previous
+      - name: dispatch ${{ matrix.repo }}
+        if: steps.cache-sha.outputs.cache-hit != 'true'
+        uses: benc-uk/workflow-dispatch@v1.1
+        with:
+          repo: ${{ env.DISPATCH_REPO }}
+          ref: ${{ env.DISPATCH_BRANCH }}
+          workflow: ${{ env.DIPATCH_WORKFLOW_NAME }}
+          token: ${{ secrets.SYNCED_GITHUB_TOKEN_REPO }}
