@@ -13,6 +13,7 @@ env:
   DISPATCH_REPO: guitarrapc/testtest
   DIPATCH_WORKFLOW_NAME: test
   DISPATCH_BRANCH: main
+  CACHE_VERSION: v1
 
 jobs:
   build:
@@ -52,8 +53,8 @@ jobs:
       # write all repo's sha to single file
       - name: gen sha hash
         run: |
-          mkdir ~/cache/
-          cat <<EOF > ~/cache/.sha
+          mkdir ./cache/
+          cat <<EOF > ./cache/sha.txt
           ${{ steps.set-public-result.outputs.result }}
           ${{ steps.set-private-result.outputs.result }}
           EOF
@@ -64,7 +65,7 @@ jobs:
         uses: actions/cache@v2
         with:
           path: ~/cache
-          key: ${{ runner.os }}-sha-${{ hashFiles('~/cache/.sha') }}
+          key: ${{ runner.os }}-${{ env.CACHE_VERSION }}-sha-${{ hashFiles('**/sha.txt') }}
 
       # dispatch build if cache is not match with previous
       - name: dispatch ${{ matrix.repo }}
