@@ -8,12 +8,11 @@ jobs:
     steps:
       - run: |
           curl -X POST \
-               -H "Authorization: token ${GITHUB_TOKEN}" \
+               -H "authorization: Bearer ${{ secrets.SYNCED_GITHUB_TOKEN_REPO }}" \
                -H "Accept: application/vnd.github.everest-preview+json" \
                -H "Content-Type: application/json" \
                -d '{"ref": "${REF}"}' \
                ${URL}
         env:
-          GIHUB_TOKEN: ${{ secrets.SYNCED_GITHUB_TOKEN_REPO }}
           URL: https://api.github.com/repos/guitarrapc/testtest/actions/workflows/test.yml/dispatches
           REF: main
