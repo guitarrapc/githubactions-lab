@@ -1,0 +1,25 @@
+name: cache
+on:
+  push:
+    branches:
+      - "master"
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - run: echo "SHA=$(git rev-parse HEAD)" >> $GITHUB_ENV
+      - name: Cache sha
+        id: cache-sha
+        uses: actions/cache@v2
+        with:
+          path: ~/cache
+          key: ${{ runner.os }}-sha-${{ env.SHA }}
+
+      - name: Generate sha
+        if: steps.cache-sha.outputs.cache-hit != 'true'
+        run: echo ${SHA} > ~/cache/.sha
+      - run: cat ~/cache/.sha
