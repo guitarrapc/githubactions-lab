@@ -43,7 +43,7 @@ jobs:
         uses: actions/github-script@v3
         id: set-private-result
         with:
-          github-token: ${{secrets.GITHUB_TOKEN}}
+          github-token: ${{ secrets.SYNCED_GITHUB_TOKEN_REPO }} # must be PAT
           script: |
             const result = await github.git.getRef({
               owner: context.repo.owner,
