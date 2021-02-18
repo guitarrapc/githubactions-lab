@@ -9,7 +9,7 @@ jobs:
       matrix:
         repo: [testtest] #Array of target repos
         include:
-          - repo: testtest
+          - repo: guitarrapc/testtest
             ref: main
             workflow: test
     steps:
