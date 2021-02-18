@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        repo: [testtest] #Array of target repos
+        repo: [guitarrapc/testtest] #Array of target repos
         include:
           - repo: guitarrapc/testtest
             ref: main
