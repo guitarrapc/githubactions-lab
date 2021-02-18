@@ -35,4 +35,5 @@ jobs:
               ref: "heads/master"
             })
             console.log(result)
+            return result
       - run: echo "${{steps.set-result.outputs.result}}"
