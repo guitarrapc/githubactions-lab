@@ -52,6 +52,8 @@ GitHub Actions laboratory.
   - [skip pr from fork repo](#skip-pr-from-fork-repo)
   - [detect labels on pull request](#detect-labels-on-pull-request)
   - [skip job when Draft PR](#skip-job-when-draft-pr)
+- [ADVANCED](#advanced)
+  - [Dispatch other repo from workflow](#dispatch-other-repo-from-workflow)
 
 </details>
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
