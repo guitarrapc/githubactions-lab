@@ -7,11 +7,11 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        repo: [testtest] #Array of target repos
+        repo: [guitarrapc/testtest] #Array of target repos
         include:
-          - repo: testtest
+          - repo: guitarrapc/testtest
             ref: main
-            workflow: test.yml
+            workflow: test
     steps:
       - name: dispatch ${{ matrix.repo }}
         uses: benc-uk/workflow-dispatch@v1.1
