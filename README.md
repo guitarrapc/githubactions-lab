@@ -60,8 +60,6 @@ GitHub Actions laboratory.
 
 ## Not yet support
 
-- [ ] Approval
-  - [GitHub Actions Manual Trigger / Approvals \- GitHub Community Forum](https://github.community/t5/GitHub-Actions/GitHub-Actions-Manual-Trigger-Approvals/m-p/31504)
 - [ ] reuse workflow/job/step yaml
   - [reusing/sharing/inheriting steps between jobs declarations](https://github.community/t/reusing-sharing-inheriting-steps-between-jobs-declarations/16851)
   - need use Repository Actions with TypeScript or Docker.
@@ -181,6 +179,15 @@ Secrets will be masked on the log.
 * CircleCI offer Environment Variables and Context.
 * Azure Pipeline has Environment Variables and Paramter.
 * Jenkins has Credential Provider.
+
+### approval
+
+[TBD]
+
+* GitHub Actions supports Approval.
+* CircleCI supports Approval.
+* Azure Pipelin supports Approval.
+* Jenkins supports Approval.
 
 ## Fundamentals
 
