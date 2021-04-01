@@ -1,0 +1,14 @@
+name: environment deploy
+on:
+  push:
+    branches:
+      - "staging"
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: staging
+      url: https://github.com/guitarrapc/githubactions-lab/tree/staging
+    steps:
+      - run: echo "${GITHUB_REF#refs/heads/}"
