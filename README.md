@@ -22,6 +22,7 @@ GitHub Actions laboratory.
   - [set environment variables for next step](#set-environment-variables-for-next-step)
   - [adding system path](#adding-system-path)
   - [set secrets for reposiory](#set-secrets-for-reposiory)
+  - [approval](#approval)
 - [Fundamentals](#fundamentals)
   - [Manual Trigger and input](#manual-trigger-and-input)
   - [retry failed workflow](#retry-failed-workflow)
