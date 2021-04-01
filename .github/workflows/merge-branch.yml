@@ -37,4 +37,5 @@ jobs:
           type: now
           from_branch: ${{ env.upstream }}
           target_branch: ${{ env.branch }}
-          github_token: ${{ github.token }}
+          github_token: ${{ secrets.SYNCED_GITHUB_TOKEN_REPO }} # enable github actions workflow chain
+          #github_token: ${{ github.token }} # disable github actions workflow chain
