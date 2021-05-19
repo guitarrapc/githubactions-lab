@@ -12,9 +12,15 @@ jobs:
       NUGET_XMLDOC_MODE: skip
     steps:
       - uses: actions/checkout@v2
+      - run: ls -l $HOME/.dotnet
+      - run: dotnet --version
+      - run: dotnet --list-sdks
       - uses: actions/setup-dotnet@v1
         with:
-          dotnet-version: 3.1.x
+          dotnet-version: 5.0.x
+      - run: ls -l $HOME/.dotnet
+      - run: dotnet --version
+      - run: dotnet --list-sdks
       - run: dotnet build ./src/dotnet/console/ -c Debug
       - run: dotnet test ./src/dotnet/console-tests/ -c Debug
       - run: dotnet publish ./src/dotnet/console/ -c Debug -o ./out/dotnet-console
@@ -26,7 +32,7 @@ jobs:
   dotnet-console-container:
     runs-on: ubuntu-latest
     container:
-      image: mcr.microsoft.com/dotnet/core/sdk:3.1
+      image: mcr.microsoft.com/dotnet/core/sdk:5.0
     env:
       DOTNET_CLI_TELEMETRY_OPTOUT: 1
       DOTNET_SKIP_FIRST_TIME_EXPERIENCE: 1
