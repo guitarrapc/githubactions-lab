@@ -22,6 +22,7 @@ GitHub Actions laboratory.
   - [set environment variables for next step](#set-environment-variables-for-next-step)
   - [adding system path](#adding-system-path)
   - [set secrets for reposiory](#set-secrets-for-reposiory)
+  - [approval](#approval)
 - [Fundamentals](#fundamentals)
   - [Manual Trigger and input](#manual-trigger-and-input)
   - [retry failed workflow](#retry-failed-workflow)
@@ -45,7 +46,6 @@ GitHub Actions laboratory.
   - [create release](#create-release)
   - [schedule job on non-default branch](#schedule-job-on-non-default-branch)
 - [Commit handling](#commit-handling)
-  - [skip ci](#skip-ci)
   - [trigger via commit message](#trigger-via-commit-message)
   - [commit file handling](#commit-file-handling)
 - [Issue and Pull Request handling](#issue-and-pull-request-handling)
@@ -53,14 +53,14 @@ GitHub Actions laboratory.
   - [skip pr from fork repo](#skip-pr-from-fork-repo)
   - [detect labels on pull request](#detect-labels-on-pull-request)
   - [skip job when Draft PR](#skip-job-when-draft-pr)
+- [ADVANCED](#advanced)
+  - [Dispatch other repo from workflow](#dispatch-other-repo-from-workflow)
 
 </details>
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 ## Not yet support
 
-- [ ] Approval
-  - [GitHub Actions Manual Trigger / Approvals \- GitHub Community Forum](https://github.community/t5/GitHub-Actions/GitHub-Actions-Manual-Trigger-Approvals/m-p/31504)
 - [ ] reuse workflow/job/step yaml
   - [reusing/sharing/inheriting steps between jobs declarations](https://github.community/t/reusing-sharing-inheriting-steps-between-jobs-declarations/16851)
   - need use Repository Actions with TypeScript or Docker.
@@ -88,12 +88,10 @@ Better define step in script and call it from step, so that we can reuse same ex
 
 ### skip ci on commit message
 
-GitHub Actions has no default support for `[skip ci]` or `[ci skip]`. Users require define `jobs.<job_id>.if` or `jobs.<job_id>.steps.run.if`.
-You cannot use commit message `[skip ci]` on `pull_request` event as webhook not contains commits message playload.
+GitHub Actions support when HEAD commit contains key word like other ci.
 
-
-* GitHub Actions need use `if` for job or step. if you want to handle whole workflow running, create `skip ci` check job and other job refer via `needs`.
-* CircleCI can skip job via `[skip ci]` or `[ci skip]`. PR commit also skip.
+* GitHub Actions can skip workflow via `[skip ci]`, `[ci skip]`, `[no ci]`, `[skip actions]` or `[actions skip]`. If PR last commit message contains `[skip ci]`, then merge commit also skip.
+* CircleCI can skip job via `[skip ci]` or `[ci skip]`. If PR last commit message contains `[skip ci]`, then merge commit also skip.
 * Azure Pipeline can skip job via `***NO_CI***`, `[skip ci]` or `[ci skip]`, or [others](https://github.com/Microsoft/azure-pipelines-agent/issues/858#issuecomment-475768046).
 * Jenkins has plugin to support `[skip ci]` or any expression w/pipeline via [SCM Skip \| Jenkins plugin](https://plugins.jenkins.io/scmskip/).
 
@@ -182,6 +180,15 @@ Secrets will be masked on the log.
 * CircleCI offer Environment Variables and Context.
 * Azure Pipeline has Environment Variables and Paramter.
 * Jenkins has Credential Provider.
+
+### approval
+
+[TBD]
+
+* GitHub Actions supports Approval.
+* CircleCI supports Approval.
+* Azure Pipelin supports Approval.
+* Jenkins supports Approval.
 
 ## Fundamentals
 
@@ -858,27 +865,6 @@ jobs:
 
 ## Commit handling
 
-### skip ci
-
-no default handling. use following.
-
-`head_commit` may become null when event is `pull_request` or `push` for tag deletion.
-
-```yaml
-name: skip ci commit
-
-on: ["push"]
-
-jobs:
-  build:
-    if: "!(contains(github.event.head_commit.message, '[skip ci]') || contains(github.event.head_commit.message, '[ci skip]'))"
-    runs-on: ubuntu-latest
-    steps:
-      - run: echo $COMMIT_MESSAGE
-        env:
-          COMMIT_MESSAGE: ${{ toJson(github.event.head_commit.message) }}
-```
-
 ### trigger via commit message
 
 ```yaml
@@ -1017,4 +1003,84 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+```
+
+## ADVANCED
+
+Advanced tips.
+
+### Dispatch other repo from workflow
+
+You can dispatch this repository to other repository via calling GitHub `workflow_dispatch` event API.
+You don't need use `repository_dispatch` event API anymore.
+
+
+Target repo `testtest`'s workflow `test.yml`.
+
+```
+name: test
+on:
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v2
+```
+
+This repo will dispatch event with following worlflow.
+
+```yaml
+name: dispatch changes
+on:
+  workflow_dispatch:
+
+jobs:
+  dispatch:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        repo: [testtest] #Array of target repos
+        include:
+          - repo: testtest
+            ref: main
+            workflow: test.yml
+    steps:
+      - name: dispatch ${{ matrix.repo }}
+        run: |
+          curl -f -X POST \
+               -H "authorization: Bearer ${{ secrets.SYNCED_GITHUB_TOKEN_REPO }}" \
+               -H "Accept: application/vnd.github.everest-preview+json" \
+               -H "Content-Type: application/json" \
+               -d '{"ref": "${{ matrix.ref }}"}' \
+               https://api.github.com/repos/guitarrapc/${{ matrix.repo }}/actions/workflows/${{ matrix.workflow }}/dispatches
+```
+
+You can use [Workflow Dispatch Action](https://github.com/marketplace/actions/workflow-dispatch) insead, like this.
+
+```yaml
+name: dispatch changes actions
+on:
+  workflow_dispatch:
+
+jobs:
+  dispatch:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        repo: [testtest] #Array of target repos
+        include:
+          - repo: testtest
+            ref: main
+            workflow: test # workflow name, not file name
+    steps:
+      - name: dispatch ${{ matrix.repo }}
+        uses: benc-uk/workflow-dispatch@v1.1
+        with:
+          repo: ${{ matrix.repo }}
+          ref: ${{ matrix.ref }}
+          workflow: ${{ matrix.workflow }}
+          token: ${{ secrets.SYNCED_GITHUB_TOKEN_REPO }}
 ```
