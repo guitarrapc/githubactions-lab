@@ -1,0 +1,15 @@
+name: create release
+
+on:
+  pull_request:
+    type:
+      - closed
+
+jobs:
+  closed:
+    runs-on: ubuntu-latest
+    steps:
+      - name: dump github context
+        run: echo "$CONTEXT"
+        env:
+          CONTEXT: ${{ toJson(github) }}
