@@ -1,4 +1,4 @@
-name: create release
+name: close pull_request
 
 on:
   pull_request:
