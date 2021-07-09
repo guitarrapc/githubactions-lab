@@ -25,7 +25,7 @@ jobs:
       - run: dotnet --version
       - run: dotnet --list-sdks
       - run: dotnet build ./src/dotnet/console/ -c Debug
-      - run: dotnet test ./src/dotnet/console-tests/ -c Debug
+      - run: dotnet test ./src/dotnet/console-tests/ -c Debug --logger GitHubActions
       - run: dotnet publish ./src/dotnet/console/ -c Debug -o ./out/dotnet-console
       - uses: actions/upload-artifact@v2
         with:

@@ -15,5 +15,8 @@ namespace console_tests
             };
             Assert.Equal("hoge", hoge.Name);
         }
+
+        [Fact]
+        public void Test2() => Assert.True(1 == 2, "Let's Fail!!");
     }
 }
