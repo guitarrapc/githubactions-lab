@@ -61,9 +61,6 @@ GitHub Actions laboratory.
 
 ## Not yet support
 
-- [ ] reuse workflow/job/step yaml
-  - [reusing/sharing/inheriting steps between jobs declarations](https://github.community/t/reusing-sharing-inheriting-steps-between-jobs-declarations/16851)
-  - need use Repository Actions with TypeScript or Docker.
 - [ ] YAML anchor support
   - [Support for YAML anchors \- GitHub Community Forum](https://github.community/t5/GitHub-Actions/Support-for-YAML-anchors/td-p/30336)
 
@@ -147,8 +144,10 @@ GitHub Actions need to create or update Environment File, it's similar to Circle
 
 > https://help.github.com/en/actions/reference/workflow-commands-for-github-actions#setting-an-environment-variable
 
-* GitHub Actions use Environment Files to manage Environment variables, create or update via `echo "{name}={value}" >> $GITHUB_ENV` syntax.
-  * `::set-env` syntax is deprecated for [security reason](https://github.blog/changelog/2020-10-01-github-actions-deprecating-set-env-and-add-path-commands/).
+GitHub Actions use Environment Files to manage Environment variables, create or update via `echo "{name}={value}" >> $GITHUB_ENV` syntax, or `echo "{name}={value}" | tee -a $GITHUB_ENV`
+
+> `::set-env` syntax is deprecated for [security reason](https://github.blog/changelog/2020-10-01-github-actions-deprecating-set-env-and-add-path-commands/).
+
 ```yaml
 steps:
   - name: test
@@ -443,7 +442,7 @@ jobs:
 You cannot use `${{ env. }}` in `env:` section.
 Following is invalid with error.
 
-> The workflow is not valid. .github/workflows/env_refer_env.yml (Line: 12, Col: 16): Unrecognized named-value: 'env'. Located at position 1 within expression: env.global_env
+> The workflow is not valid. .github/workflows/env_refer_env.yaml (Line: 12, Col: 16): Unrecognized named-value: 'env'. Located at position 1 within expression: env.global_env
 
 ```yaml
 name: env refer env
@@ -499,6 +498,65 @@ jobs:
 ```
 
 `echo ${{ env.GIT_TAG_SCRIPT }}` will output `chore/context_in_script` as expected.
+
+### reuse yaml actions - composite
+
+To reuse YAML only job, use Repository Actions with `composite`.
+
+* step1. Place your yaml to `.github/actions/your_dir/action.yaml`
+* step2. Write your composite actions yaml.
+
+```yaml
+# local_composite_actions.yaml
+name: YOUR ACTION NAME
+description: |
+  Desctiption of your action
+inputs:
+  foo:
+    description: thi is foo input
+    default: FOO
+    required: false
+runs:
+  using: "composite" # this is key point
+  steps:
+    - name: THIS IS STEP1
+      shell: bash # this is key point
+      run: echo ${{ inputs.foo }}
+```
+
+* step3. Use actions from your workflow.
+
+
+```yaml
+name: reuse local action
+on: push
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: use local action
+        uses: ./.github/actions/local_composite_actions
+        with:
+          foo: BAR
+```
+
+### reuse Node actions - node12
+
+To reuse Node, action, just place action inside `./github/actions/your_dir/` with action.yaml and source codes.
+
+* step1. Place your ation.yaml and src to `.github/actions/your_dir/`
+* step2. Use actions from your workflow.
+
+```yaml
+name: reuse local action
+on: push
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: use local action
+        uses: ./.github/actions/local_node_action
+```
 
 ### runs only previous job is success
 
@@ -1015,7 +1073,7 @@ You can dispatch this repository to other repository via calling GitHub `workflo
 You don't need use `repository_dispatch` event API anymore.
 
 
-Target repo `testtest`'s workflow `test.yml`.
+Target repo `testtest`'s workflow `test.yaml`.
 
 ```
 name: test
