@@ -1,0 +1,14 @@
+name: YOUR ACTION NAME
+description: |
+  Desctiption of your action
+inputs:
+  foo:
+    description: thi is foo input
+    default: FOO
+    required: false
+runs:
+  using: "composite" # this is key point
+  steps:
+    - name: THIS IS STEP1
+      shell: bash # this is key point
+      run: echo ${{ inputs.foo }}
