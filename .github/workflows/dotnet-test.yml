@@ -12,4 +12,5 @@ jobs:
       NUGET_XMLDOC_MODE: skip
     steps:
       - uses: actions/checkout@v2
-      - run: dotnet test ./src/dotnet/console-tests/ -c Debug --logger GitHubActions
+      - run: dotnet test ./src/dotnet/console-fail-tests/ -c Debug --logger GitHubActions
+        continue-on-error: true
