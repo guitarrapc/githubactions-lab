@@ -33,6 +33,8 @@ GitHub Actions laboratory.
   - [matrix and environment variables](#matrix-and-environment-variables)
   - [env refer env](#env-refer-env)
   - [set environment variables in script](#set-environment-variables-in-script)
+  - [reuse yaml actions - composite](#reuse-yaml-actions---composite)
+  - [reuse Node actions - node12](#reuse-node-actions---node12)
   - [runs only previous job is success](#runs-only-previous-job-is-success)
   - [runs only when previous step status is specific](#runs-only-when-previous-step-status-is-specific)
   - [timeout for job and step](#timeout-for-job-and-step)
