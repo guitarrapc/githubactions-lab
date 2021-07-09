@@ -1,0 +1,16 @@
+name: dotnet-fail-test
+
+# run on both branch push and tag push
+on: [push, pull_request]
+
+jobs:
+  dotnet-console:
+    runs-on: ubuntu-latest
+    env:
+      DOTNET_CLI_TELEMETRY_OPTOUT: 1
+      DOTNET_SKIP_FIRST_TIME_EXPERIENCE: 1
+      NUGET_XMLDOC_MODE: skip
+    steps:
+      - uses: actions/checkout@v2
+      - run: dotnet test ./src/dotnet/console-fail-tests/ -c Debug --logger GitHubActions
+        continue-on-error: true

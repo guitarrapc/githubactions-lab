@@ -11,4 +11,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - run: bash -eu .github/scripts/lint-banwords.sh --directory ".github/workflows" --file-filter "k8s.*yml" --definition ".github/ban-words.txt"
+      - run: bash -eu .github/scripts/lint-banwords.sh --directory ".github/workflows" --file-filter "k8s.*yaml" --definition ".github/ban-words.txt"
