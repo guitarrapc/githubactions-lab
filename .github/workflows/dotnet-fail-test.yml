@@ -1,7 +1,7 @@
-name: dotnet-test
+name: dotnet-fail-test
 
 # run on both branch push and tag push
-on: [push]
+on: [push, pull_request]
 
 jobs:
   dotnet-console:
