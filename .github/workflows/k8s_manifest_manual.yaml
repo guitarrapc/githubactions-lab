@@ -11,11 +11,13 @@ on:
         required: true
         default: "dev"
 
+env:
+  REPO_MANIFEST: guitarrapc/kubernetes-manifest-lab
+  MANIFEST_DIR: dev
+
 jobs:
   push_manifest_manual:
     env:
-      REPO_MANIFEST: guitarrapc/kubernetes-manifest-lab
-      MANIFEST_DIR: dev
       NAMESPACE_PREFIX: githubactions-sample-
     runs-on: ubuntu-latest
     steps:
