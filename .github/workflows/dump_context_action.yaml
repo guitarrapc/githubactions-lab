@@ -1,0 +1,9 @@
+name: dump context pr
+
+on: push
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: ./.github/actions/dump_context_actions
