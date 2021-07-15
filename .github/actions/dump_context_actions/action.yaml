@@ -4,6 +4,16 @@ description: |
 runs:
   using: "composite" # this is key point
   steps:
+    - name: Test Group Log
+      shell: bash
+      run: |
+        echo "::group::My title"
+          echo "Inside group"
+        echo "::endgroup::"
+
+        echo "::group::My next title"
+          echo "Inside group"
+        echo "::endgroup::"
     - name: Dump environment
       shell: bash
       run: |
