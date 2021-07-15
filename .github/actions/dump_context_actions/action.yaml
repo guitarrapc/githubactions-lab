@@ -5,35 +5,28 @@ runs:
   using: "composite" # this is key point
   steps:
     - name: Dump environment
-      run: export
       shell: bash
-    - name: Dump GitHub context
-      run: echo "$CONTEXT"
-      env:
-        CONTEXT: ${{ toJson(github) }}
-      shell: bash
-    - name: Dump job context
-      run: echo "$CONTEXT"
-      env:
-        CONTEXT: ${{ toJson(job) }}
-      shell: bash
-    - name: Dump steps context
-      run: echo "$CONTEXT"
-      env:
-        CONTEXT: ${{ toJson(steps) }}
-      shell: bash
-    - name: Dump runner context
-      run: echo "$CONTEXT"
-      env:
-        CONTEXT: ${{ toJson(runner) }}
-      shell: bash
-    - name: Dump strategy context
-      run: echo "$CONTEXT"
-      env:
-        CONTEXT: ${{ toJson(strategy) }}
-      shell: bash
-    - name: Dump matrix context
-      run: echo "$CONTEXT"
-      env:
-        CONTEXT: ${{ toJson(matrix) }}
-      shell: bash
+      run: |
+        echo "::group::Export"
+          export
+        echo "::endgroup::"
+
+        echo "::group::Dump github context"
+          echo ${{ toJson(github) }}
+        echo "::endgroup::"
+
+        echo "::group::Dump job context"
+          echo ${{ toJson(job) }}
+        echo "::endgroup::"
+
+        echo "::group::Dump runner context"
+          echo ${{ toJson(runner) }}
+        echo "::endgroup::"
+
+        echo "::group::Dump strategy context"
+          echo ${{ toJson(strategy) }}
+        echo "::endgroup::"
+
+        echo "::group::Dump matrix context"
+          echo ${{ toJson(matrix) }}
+        echo "::endgroup::"
