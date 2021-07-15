@@ -7,28 +7,27 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Dump environment
-        run: export
-      - name: Dump GitHub context
-        run: echo "$CONTEXT"
-        env:
-          CONTEXT: ${{ toJson(github) }}
-      - name: Dump job context
-        run: echo "$CONTEXT"
-        env:
-          CONTEXT: ${{ toJson(job) }}
-      - name: Dump steps context
-        run: echo "$CONTEXT"
-        env:
-          CONTEXT: ${{ toJson(steps) }}
-      - name: Dump runner context
-        run: echo "$CONTEXT"
-        env:
-          CONTEXT: ${{ toJson(runner) }}
-      - name: Dump strategy context
-        run: echo "$CONTEXT"
-        env:
-          CONTEXT: ${{ toJson(strategy) }}
-      - name: Dump matrix context
-        run: echo "$CONTEXT"
-        env:
-          CONTEXT: ${{ toJson(matrix) }}
+        run: |
+          echo "::group::Export"
+            export
+          echo "::endgroup::"
+
+          echo "::group::Dump github context"
+            echo ${{ toJson(github) }}
+          echo "::endgroup::"
+
+          echo "::group::Dump job context"
+            echo ${{ toJson(job) }}
+          echo "::endgroup::"
+
+          echo "::group::Dump runner context"
+            echo ${{ toJson(runner) }}
+          echo "::endgroup::"
+
+          echo "::group::Dump strategy context"
+            echo ${{ toJson(strategy) }}
+          echo "::endgroup::"
+
+          echo "::group::Dump matrix context"
+            echo ${{ toJson(matrix) }}
+          echo "::endgroup::"
