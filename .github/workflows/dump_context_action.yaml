@@ -1,4 +1,4 @@
-name: dump context pr
+name: dump context action
 
 on: push
 
