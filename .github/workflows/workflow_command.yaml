@@ -4,7 +4,7 @@ name: workflow commands
 on: [workflow_dispatch, push]
 
 jobs:
-  upload:
+  commands:
     runs-on: ubuntu-latest
     steps:
       - run: echo "::set-output name=action_fruit::strawberry"
@@ -13,7 +13,11 @@ jobs:
       - run: echo "::error file=app.js,line=10,col=15::Something went wrong"
       - run: |
           echo "::group::My title"
-          echo "Inside group"
+            echo "Inside group"
+          echo "::endgroup::"
+
+          echo "::group::My next title"
+            echo "Inside group"
           echo "::endgroup::"
       - run: |
           MY_NAME="Mona The Octocat"
