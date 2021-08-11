@@ -13,6 +13,7 @@ jobs:
     steps:
       - run: exit 1
 
+  # wait error1 and error2 and will run when one of them are error
   handler:
     if: failure()
     needs: [error1, error2]
