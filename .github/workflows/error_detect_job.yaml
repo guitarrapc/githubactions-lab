@@ -1,0 +1,21 @@
+name: "error detect job"
+on:
+  push:
+
+jobs:
+  error1:
+    runs-on: ubuntu-latest
+    steps:
+      - run: exit 1
+
+  error2:
+    runs-on: ubuntu-latest
+    steps:
+      - run: exit 1
+
+  handler:
+    if: failure()
+    needs: [error1, error2]
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo error happen
