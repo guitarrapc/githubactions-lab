@@ -1,0 +1,16 @@
+name: "continue on error"
+on:
+  push:
+
+jobs:
+  continue-on-error:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: exit 1
+        continue-on-error: true
+      - run: exit 1
+        continue-on-error: true
+      - run: echo success
+      - if: failure()
+        run: echo error happen
