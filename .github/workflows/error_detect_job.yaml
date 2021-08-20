@@ -1,6 +1,6 @@
 name: "error detect job"
 on:
-  push:
+  workflow_dispatch:
 
 jobs:
   error1:
