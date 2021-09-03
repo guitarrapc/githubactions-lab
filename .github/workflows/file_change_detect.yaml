@@ -1,0 +1,14 @@
+name: file change detect
+on: [pull_request]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - id: file_changes
+        uses: trilom/file-changes-action@v1.2.4
+        with:
+          output: ","
+        #if: ${{ github.event.pull_request.changed_files < 1 }}
+      - run: echo "${{ contains(steps.file_changes.outputs.files, ".github/workflows")}}"  | tee -a $GITHUB_ENV
+      - run: echo "RUN_TEST=${{ contains(steps.file_changes.outputs.files, ".github/workflows") || 'true' }}"  | tee -a $GITHUB_ENV
