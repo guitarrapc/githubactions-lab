@@ -17,4 +17,4 @@ jobs:
       - run: echo "this is hoge FORMAT"
         if: ${{ format('local/{0}', matrix.sample) == 'local/hoge' }}
       - run: echo "this is fuga FORMAT"
-        if: ${{ format('local/{}', matrix.sample) == 'local/fuga' }}
+        if: ${{ format('local/{0}', matrix.sample) == 'local/fuga' }}
