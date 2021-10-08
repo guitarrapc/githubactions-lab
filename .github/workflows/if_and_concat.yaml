@@ -1,0 +1,16 @@
+name: if and concat
+on: push
+
+jobs:
+  matrix_reference:
+    strategy:
+      matrix:
+        sample: ["hoge", "fuga"]
+    env:
+      APP: hoge
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "this is hoge"
+        if: ${{ join('local/', matrix.sample) == 'local/hoge' }}
+      - run: echo "this is fuga"
+        if: ${{ join('local/', matrix.sample) == 'local/fuga' }}
