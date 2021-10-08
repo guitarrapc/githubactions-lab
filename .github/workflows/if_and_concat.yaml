@@ -10,7 +10,11 @@ jobs:
       APP: hoge
     runs-on: ubuntu-latest
     steps:
-      - run: echo "this is hoge"
+      - run: echo "this is hoge JOIN"
         if: ${{ join('local/', matrix.sample) == 'local/hoge' }}
-      - run: echo "this is fuga"
+      - run: echo "this is fuga JOIN"
         if: ${{ join('local/', matrix.sample) == 'local/fuga' }}
+      - run: echo "this is hoge FORMAT"
+        if: ${{ format('local/{0}', matrix.sample) == 'local/hoge' }}
+      - run: echo "this is fuga FORMAT"
+        if: ${{ format('local/{}', matrix.sample) == 'local/fuga' }}
