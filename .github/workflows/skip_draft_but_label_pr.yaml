@@ -1,4 +1,4 @@
-name: skip draft pr
+name: skip draft pr but label
 on:
   pull_request:
     types:
