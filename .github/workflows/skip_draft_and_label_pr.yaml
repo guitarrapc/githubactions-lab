@@ -1,7 +1,11 @@
 name: skip draft pr
 on:
   pull_request:
-  push:
+    types:
+      - synchronize
+      - opened
+      - reopened
+      - ready_for_review
 
 jobs:
   build:
