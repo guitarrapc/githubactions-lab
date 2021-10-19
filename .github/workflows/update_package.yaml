@@ -1,4 +1,4 @@
-name: "Update Package.json"
+name: "update package.json"
 
 on:
   workflow_dispatch:

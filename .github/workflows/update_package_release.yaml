@@ -1,4 +1,4 @@
-name: "Release"
+name: update pacakge release
 
 on:
   workflow_dispatch:
