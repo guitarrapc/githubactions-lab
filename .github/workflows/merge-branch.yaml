@@ -11,18 +11,6 @@ on:
         required: true
         default: "staging"
 
-# <TL;DR>
-# master を sandbox にマージします。
-#
-# <workflow>
-# - merge
-
-# <trigger>
-# web dispatchによって手動で実行される
-
-# <secrets>
-# * GITHUBTOKEN_REPO
-
 jobs:
   merge:
     env:
@@ -32,6 +20,7 @@ jobs:
     timeout-minutes: 10
     steps:
       - uses: actions/checkout@master
+      # merge main to staging
       - uses: devmasx/merge-branch@v1.3.1
         with:
           type: now

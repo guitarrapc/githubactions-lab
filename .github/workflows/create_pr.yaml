@@ -8,11 +8,13 @@ env:
   DOTNET_NOLOGO: true
 
 jobs:
-  lint_csharp:
+  change:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
       - uses: actions/checkout@v2
+
+      # make change
       - name: make changes
         run: date +%s > src/txt/report.txt
 
