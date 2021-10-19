@@ -2,7 +2,7 @@ name: cache
 on:
   push:
     branches:
-      - "master"
+      - "main"
   workflow_dispatch:
 
 # tl;dr;
@@ -37,12 +37,11 @@ jobs:
             const result = await github.git.getRef({
               owner: context.repo.owner,
               repo: "githubactions-lab",
-              ref: "heads/master"
+              ref: "heads/main"
             })
             console.log(result)
             return result.data.object.sha
       - run: echo "${{ steps.set-public-result.outputs.result }}"
-
       - name: private repo reference
         uses: actions/github-script@v3
         id: set-private-result
@@ -57,7 +56,6 @@ jobs:
             console.log(result)
             return result.data.object.sha
       - run: echo "${{ steps.set-private-result.outputs.result }}"
-
       # write all repo's sha to single file
       - name: gen sha hash
         run: |

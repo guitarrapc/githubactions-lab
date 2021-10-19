@@ -9,7 +9,7 @@ jobs:
         uses: trilom/file-changes-action@v1.2.4
         with:
           output: ","
-          pushBefore: master
+          pushBefore: main
       - run: echo "${{ steps.file_changes.outputs.files }}"
       - if: contains(steps.file_changes.outputs.files, '.github/workflows/')
         run: echo changes contains .github/workflows/

@@ -58,7 +58,7 @@ jobs:
           RUN_ID: ${{ github.run_id }}
           LINK: ${{ github.event.pull_request.number }}
           SHA: ${{ github.sha }}
-          COMPARE_URL: https://github.com/${{ github.repository }}/compare/master...${{ github.event.after }}
+          COMPARE_URL: https://github.com/${{ github.repository }}/compare/main...${{ github.event.after }}
       - uses: ad-m/github-push-action@master
         with:
           github_token: ${{ secrets.SYNCED_GITHUB_TOKEN_REPO }}

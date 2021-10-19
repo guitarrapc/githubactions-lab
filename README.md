@@ -1,4 +1,4 @@
-![dotnet-build](https://github.com/guitarrapc/githubaction-lab/workflows/dotnet-build/badge.svg?branch=master)
+![dotnet-build](https://github.com/guitarrapc/githubaction-lab/workflows/dotnet-build/badge.svg?branch=main)
 
 ## githubactions-lab
 
@@ -206,7 +206,7 @@ on:
       branch:
         description: "branch name to clone"
         required: true
-        default: "master"
+        default: "main"
       logLevel:
         description: "Log level"
         required: true
@@ -640,7 +640,7 @@ This will trouble only when you are runnning private repo, if repo is public, yo
 
 **do not trigger push on pull_request**
 
-In this example `push` will trigger only when `master`, default branch, this means push will not run when `pull_request` synchronize event was emmited.
+In this example `push` will trigger only when `main`, default branch, this means push will not run when `pull_request` synchronize event was emmited.
 Simple enough for almost usage.
 
 ```yaml
@@ -650,7 +650,7 @@ on:
   # prevent push run on pull_request
   push:
     branches:
-      - master
+      - main
   pull_request:
     types:
       - synchronize
@@ -679,16 +679,16 @@ jobs:
   cancel:
     runs-on: ubuntu-latest
     steps:
-      # no check for master and tag
+      # no check for main and tag
       - uses: rokroskar/workflow-run-cleanup-action@v0.2.2
-        if: "!startsWith(github.ref, 'refs/tags/') && github.ref != 'refs/heads/master'"
+        if: "!startsWith(github.ref, 'refs/tags/') && github.ref != 'refs/heads/main'"
         env:
           GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
 ```
 
-**redundant build cancel except master and tag**
+**redundant build cancel except main and tag**
 
-cancelling if `push is not tag` and `push is not branch "master"`.
+cancelling if `push is not tag` and `push is not branch "main"`.
 It means push to branch will be cancelled if duplicated workflow run at once.
 
 ```yaml
@@ -700,7 +700,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: rokroskar/workflow-run-cleanup-action@v0.2.2
-        if: "!startsWith(github.ref, 'refs/tags/') && github.ref != 'refs/heads/master'"
+        if: "!startsWith(github.ref, 'refs/tags/') && github.ref != 'refs/heads/main'"
         env:
           GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
 ```
@@ -958,7 +958,7 @@ jobs:
         uses: trilom/file-changes-action@v1.2.4
         with:
           output: ","
-          pushBefore: master
+          pushBefore: main
       - run: echo "${{ steps.file_changes.outputs.files }}"
       - if: contains(steps.file_changes.outputs.files, '.github/workflows/')
         run: echo changes contains .github/workflows/
@@ -1004,7 +1004,7 @@ name: skip pr from fork
 on:
   push:
     branches:
-      - "master"
+      - "main"
   pull_request:
     types:
       - opened

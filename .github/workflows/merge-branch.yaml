@@ -5,7 +5,7 @@ on:
       upstream:
         description: "merge from"
         required: true
-        default: "master"
+        default: "main"
       branch:
         description: "merge to"
         required: true
