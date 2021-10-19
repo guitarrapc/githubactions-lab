@@ -10,21 +10,11 @@ env:
 jobs:
   lint_csharp:
     runs-on: ubuntu-latest
-    env:
-      DOTNET_INCLUDE_PRERELEASE: true
     timeout-minutes: 10
     steps:
       - uses: actions/checkout@v2
-
-      # Add dotnet format error/warning comment on GitHub
-      - name: Add dotnet-format problem matcher
-        uses: xt0rted/dotnet-format-problem-matcher@v1
-
-      # By default, dotnet format ensure the exit code is 0 if nothing detected.
-      # If a file needs to be edited by dotnet format, the exit code will be a non-zero value.
-      - name: Run dotnet format
-        run: dotnet format
-        working-directory: src/dotnet
+      - name: make changes
+        run: date +%s > src/txt/report.txt
 
       # detect changes
       - name: Check for modified files
