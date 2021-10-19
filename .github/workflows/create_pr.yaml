@@ -23,7 +23,7 @@ jobs:
         id: git-check
         run: echo ::set-output name=modified::$(if git diff-index --quiet HEAD --; then echo "false"; else echo "true"; fi)
 
-      # commit & pr if change happen
+      # commit & pr if change happen (force push when branch/pr already exists)
       - name: Create PullRequest
         if: steps.git-check.outputs.modified == 'true'
         uses: peter-evans/create-pull-request@v3
@@ -33,9 +33,9 @@ jobs:
           author: github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>
           committer: github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>
           delete-branch: true
-          title: "[dotnet format] Automated changes"
+          title: "[report.txt] Automated changes"
           body: |
-            dotnet format generated changes :rocket:
+            generated changes :rocket:
           labels: |
             automated pr
 
