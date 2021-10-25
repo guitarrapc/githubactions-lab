@@ -1,0 +1,19 @@
+name: inputs or default
+on:
+  workflow_dispatch:
+    inputs:
+      value:
+        description: "value to input"
+        default: "true"
+        required: false
+  push:
+    branches: ["main"]
+
+env:
+  VALUE: ${{ github.event.inputs.value || "foo" }}
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "VALUE=[{{ env.VALUE }}]"
