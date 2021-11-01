@@ -1,5 +1,10 @@
 name: if and concat
-on: push
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
 
 jobs:
   matrix_reference:

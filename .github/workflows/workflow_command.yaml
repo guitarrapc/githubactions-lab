@@ -1,7 +1,12 @@
 name: workflow commands
 
 # https://docs.github.com/en/actions/reference/workflow-commands-for-github-actions
-on: [workflow_dispatch, push]
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
 
 jobs:
   commands:
