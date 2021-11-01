@@ -19,6 +19,8 @@ jobs:
         id: csproj_list
         run: |
           projects=$(dotnet sln list | tail -n +3 | sort | xargs -n 1 echo '  *')
+          projects="${projects//$'\n'/\\n}"
+          echo "${projects}"
           echo "::set-output name=projects::${projects}"
         working-directory: src/dotnet
       - run: echo "${PROJECTS}"
