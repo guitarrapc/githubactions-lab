@@ -1,0 +1,20 @@
+name: dotnet sln list
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+
+jobs:
+  dotnet-console:
+    runs-on: ubuntu-latest
+    env:
+      DOTNET_CLI_TELEMETRY_OPTOUT: 1
+      DOTNET_SKIP_FIRST_TIME_EXPERIENCE: 1
+      NUGET_XMLDOC_MODE: skip
+    steps:
+      # 対象プロジェクト一覧 (tail -n +3 で出力の最初の2行はヘッダーをスキップ)
+      - name: Obtain csproj to lint
+        run: echo "FORMAT_PROJECTS=$(dotnet sln list | tail -n +3 | sort | xargs -n 1 echo '  *')" | tee --append "$GITHUB_ENV"
+        working-directory: ./src/dotnet
+      - run: echo "${{ env.FORMAT_PROJECTS }}"
