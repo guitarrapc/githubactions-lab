@@ -13,7 +13,7 @@ jobs:
       DOTNET_SKIP_FIRST_TIME_EXPERIENCE: 1
       NUGET_XMLDOC_MODE: skip
     steps:
-      - run: ls -l ./src/dotnet
+      - uses: actions/checkout@v2
       # 対象プロジェクト一覧 (tail -n +3 で出力の最初の2行はヘッダーをスキップ)
       - name: Obtain csproj to lint
         run: echo "FORMAT_PROJECTS=$(dotnet sln list | tail -n +3 | sort | xargs -n 1 echo '  *')" | tee --append "$GITHUB_ENV"
