@@ -16,6 +16,6 @@ jobs:
       - uses: actions/checkout@v2
       # 対象プロジェクト一覧 (tail -n +3 で出力の最初の2行はヘッダーをスキップ)
       - name: Obtain csproj to lint
-        run: echo "FORMAT_PROJECTS=$(dotnet sln list | tail -n +3 | sort | xargs -n 1 echo '*')" | tee --append "$GITHUB_ENV"
+        run: echo "FORMAT_PROJECTS=\"$(dotnet sln list | tail -n +3 | sort | xargs -n 1 echo '  *')\"" | tee --append "$GITHUB_ENV"
         working-directory: src/dotnet
       - run: echo "${{ env.FORMAT_PROJECTS }}"
