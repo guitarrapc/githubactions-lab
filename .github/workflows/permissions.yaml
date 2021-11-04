@@ -4,16 +4,15 @@ on:
     branches: [main]
 
 permissions:
-  actions: write
-  checks: write
+  # actions: write
+  # checks: write
   contents: write
-  deployments: write
-  id-token: write
-  issues: write
-  packages: write
-  pull-requests: write
-  security-events: write
-  statuses: write
+  # id-token: write
+  # issues: write
+  # packages: write
+  # pull-requests: write
+  # security-events: write
+  # statuses: write
 
 jobs:
   build:
