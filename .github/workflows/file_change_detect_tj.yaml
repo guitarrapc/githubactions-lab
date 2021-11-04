@@ -1,4 +1,4 @@
-name: file change detect
+name: file change detect tj
 on:
   workflow_dispatch:
   pull_request:
