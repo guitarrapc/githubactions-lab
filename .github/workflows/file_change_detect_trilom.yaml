@@ -1,4 +1,4 @@
-name: file change detect
+name: file change detect trilom
 on: [pull_request]
 
 jobs:
