@@ -1,7 +1,12 @@
-name: dotnet-build
+name: dotnet build
 
 # run on both branch push and tag push
-on: [push]
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
 
 jobs:
   dotnet-console:

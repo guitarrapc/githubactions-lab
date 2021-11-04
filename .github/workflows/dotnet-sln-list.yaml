@@ -1,0 +1,26 @@
+name: dotnet sln list
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+
+jobs:
+  dotnet-console:
+    runs-on: ubuntu-latest
+    env:
+      DOTNET_CLI_TELEMETRY_OPTOUT: 1
+      DOTNET_SKIP_FIRST_TIME_EXPERIENCE: 1
+      NUGET_XMLDOC_MODE: skip
+    steps:
+      - uses: actions/checkout@v2
+      # list of target project (tail -n +3 = skip first 2 header lines)
+      # https://trstringer.com/github-actions-multiline-strings/
+      - name: Obtain csproj to lint
+        run: |
+          projects=$(dotnet sln list | tail -n +3 | sort | xargs -n 1 echo '  *')
+          echo "FORMAT_PROJECTS<<EOF" >> $GITHUB_ENV
+          echo "${projects}" >> $GITHUB_ENV
+          echo "EOF" >> $GITHUB_ENV
+        working-directory: src/dotnet
+      - run: echo "${{ env.FORMAT_PROJECTS }}"

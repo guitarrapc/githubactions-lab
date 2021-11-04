@@ -1,6 +1,11 @@
 name: timeout
 
-on: ["push"]
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
 
 jobs:
   my-job:

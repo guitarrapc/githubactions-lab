@@ -1,4 +1,4 @@
-name: dotnet-build only tag
+name: dotnet build only tag
 
 on:
   push:

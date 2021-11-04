@@ -1,5 +1,10 @@
 name: if and context reference
-on: push
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
 
 jobs:
   matrix_reference:

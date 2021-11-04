@@ -1,6 +1,8 @@
 name: dump context pr
 
-on: pull_request
+on:
+  pull_request:
+    branches: [main]
 
 jobs:
   build:

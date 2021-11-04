@@ -1,7 +1,12 @@
 name: cancel redundant build
 # when pull_request, both push and pull_request (synchronize) will trigger.
 # this action sample will prevent duplicate run, but run only 1 of them.
-on: [push, pull_request]
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
 
 jobs:
   cancel:
