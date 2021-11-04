@@ -27,6 +27,7 @@ jobs:
         with:
           separator: ","
         if: ${{ github.event.pull_request.changed_files > 10 }}
+      - run: echo "${{ steps.changed-files2.outputs.all_modified_files }}"
       - run: echo "${{ contains(steps.changed-files2.outputs.all_modified_files, '.github/workflows')}}"
       - run: echo "${{ contains(steps.changed-files2.outputs.all_modified_files, '.github/dummy')}}"
       - run: echo "${{ contains(steps.changed-files2.outputs.all_modified_files, '.github/dummy') || 'true' }}"
