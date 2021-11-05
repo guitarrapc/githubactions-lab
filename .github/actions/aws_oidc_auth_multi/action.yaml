@@ -16,8 +16,8 @@ inputs:
   role-session-name:
     description: "AWS IAM Role Session Name. Shown on CloudTrail"
     required: true
-  save-path:
-    description: "Save path for cache"
+  key:
+    description: "key to identify credentials in cache"
     required: true
 runs:
   using: "composite" # this is key point
@@ -38,9 +38,9 @@ runs:
           aws sts get-caller-identity
         echo "::endgroup::"
 
-        mkdir -p ${{ inputs.save-path }}/
-        echo "${{ env.AWS_ACCESS_KEY_ID }}" > ${{ inputs.save-path }}/aws_access_key_id
-        echo "${{ env.AWS_SECRET_ACCESS_KEY }}" > ${{ inputs.save-path }}/aws_secret_access_key
-        echo "${{ env.AWS_SESSION_TOKEN }}" > ${{ inputs.save-path }}/aws_session_token
-        echo "${{ env.AWS_REGION }}" > ${{ inputs.save-path }}/region
-        echo "${{ env.AWS_DEFAULT_REGION }}" > ${{ inputs.save-path }}/default_region
+        mkdir -p ~/.aws/${{ inputs.key }}/
+        echo "${{ env.AWS_ACCESS_KEY_ID }}" > ~/.aws/${{ inputs.key }}/aws_access_key_id
+        echo "${{ env.AWS_SECRET_ACCESS_KEY }}" > ~/.aws/${{ inputs.key }}/aws_secret_access_key
+        echo "${{ env.AWS_SESSION_TOKEN }}" > ~/.aws/${{ inputs.key }}/aws_session_token
+        echo "${{ env.AWS_REGION }}" > ~/.aws/${{ inputs.key }}/region
+        echo "${{ env.AWS_DEFAULT_REGION }}" > ~/.aws/${{ inputs.key }}/default_region

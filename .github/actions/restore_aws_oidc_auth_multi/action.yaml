@@ -3,14 +3,11 @@ name: restore aws oidc auth from cache
 description: |
   restore aws oidc auth from cache
 inputs:
-  cache-path:
-    description: "cache path to restore"
-    required: true
   cache-key:
     description: "cache key to restore"
     required: true
-  save-path:
-    description: "path to restore and set environemnt"
+  key:
+    description: "key to identify credentials in cache"
     required: true
 runs:
   using: "composite"
@@ -20,7 +17,7 @@ runs:
       id: cache-aws
       with:
         path: |
-          ${{ inputs.cache-path }}
+          ~/.aws
         key: ${{ inputs.cache-key }}
     - name: Is Cache Hit
       shell: bash
@@ -28,11 +25,11 @@ runs:
     - name: Restore ENV
       run: |
         set -e
-        echo "AWS_ACCESS_KEY_ID=$(head -n 1 ${{ inputs.save-path }}/aws_access_key_id)" >> "$GITHUB_ENV"
-        echo "AWS_SECRET_ACCESS_KEY=$(head -n 1 ${{ inputs.save-path }}/aws_secret_access_key)" >> "$GITHUB_ENV"
-        echo "AWS_SESSION_TOKEN=$(head -n 1 ${{ inputs.save-path }}/aws_session_token)" >> "$GITHUB_ENV"
-        echo "AWS_REGION=$(head -n 1 ${{ inputs.save-path }}/region)" >> "$GITHUB_ENV"
-        echo "AWS_DEFAULT_REGION=$(head -n 1 ${{ inputs.save-path }}/default_region)" >> "$GITHUB_ENV"
+        echo "AWS_ACCESS_KEY_ID=$(head -n 1 ~/.aws/${{ inputs.key }}/aws_access_key_id)" >> "$GITHUB_ENV"
+        echo "AWS_SECRET_ACCESS_KEY=$(head -n 1 ~/.aws/${{ inputs.key }}/aws_secret_access_key)" >> "$GITHUB_ENV"
+        echo "AWS_SESSION_TOKEN=$(head -n 1 ~/.aws/${{ inputs.key }}/aws_session_token)" >> "$GITHUB_ENV"
+        echo "AWS_REGION=$(head -n 1 ~/.aws/${{ inputs.key }}/region)" >> "$GITHUB_ENV"
+        echo "AWS_DEFAULT_REGION=$(head -n 1 ~/.aws/${{ inputs.key }}/default_region)" >> "$GITHUB_ENV"
       shell: bash
     - name: test auth is valid
       run: aws sts get-caller-identity
