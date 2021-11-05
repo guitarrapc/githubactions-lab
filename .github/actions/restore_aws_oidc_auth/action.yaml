@@ -15,5 +15,7 @@ runs:
           ~/.aws/
         key: ${{ inputs.cache-key }}
     - name: Restore ENV
-      run: echo "AWS_DEFAULT_REGION=$(head -n 1 ~/.aws/default_region)" >> "$GITHUB_ENV"
+      run: |
+        echo "AWS_DEFAULT_REGION=$(head -n 1 ~/.aws/default_region)" >> "$GITHUB_ENV"
+        echo "AWS_REGION=$(head -n 1 ~/.aws/default_region)" >> "$GITHUB_ENV"
       shell: bash
