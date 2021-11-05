@@ -38,14 +38,14 @@ runs:
         echo "::endgroup::"
 
         mkdir -p ~/.aws
-        echo "${{ env.AWS_ACCESS_KEY_ID }}" > ~/.aws/aws_access_key_id
-        echo "${{ env.AWS_SECRET_ACCESS_KEY }}" > ~/.aws/aws_secret_access_key
-        echo "${{ env.AWS_SESSION_TOKEN }}" > ~/.aws/aws_session_token
-        echo "${{ env.AWS_REGION }}" > ~/.aws/region
-        echo "${{ env.AWS_DEFAULT_REGION }}" > ~/.aws/default_region
+        echo "${{ env.AWS_ACCESS_KEY_ID }}" > ~/.aws/${{ inputs.cache-key }}/aws_access_key_id
+        echo "${{ env.AWS_SECRET_ACCESS_KEY }}" > ~/.aws/${{ inputs.cache-key }}/aws_secret_access_key
+        echo "${{ env.AWS_SESSION_TOKEN }}" > ~/.aws/${{ inputs.cache-key }}/aws_session_token
+        echo "${{ env.AWS_REGION }}" > ~/.aws/${{ inputs.cache-key }}/region
+        echo "${{ env.AWS_DEFAULT_REGION }}" > ~/.aws/${{ inputs.cache-key }}/default_region
     - name: Cache aws auth
       uses: actions/cache@v2
       with:
         path: |
-          ~/.aws/
+          ~/.aws/${{ inputs.cache-key }}/
         key: ${{ inputs.cache-key }}

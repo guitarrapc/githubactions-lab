@@ -12,13 +12,13 @@ runs:
       uses: actions/cache@v2
       with:
         path: |
-          ~/.aws/
+          ~/.aws/${{ inputs.cache-key }}/
         key: ${{ inputs.cache-key }}
     - name: Restore ENV
       run: |
-        echo "AWS_ACCESS_KEY_ID=$(head -n 1 ~/.aws/aws_access_key_id)" >> "$GITHUB_ENV"
-        echo "AWS_SECRET_ACCESS_KEY=$(head -n 1 ~/.aws/aws_secret_access_key)" >> "$GITHUB_ENV"
-        echo "AWS_SESSION_TOKEN=$(head -n 1 ~/.aws/aws_session_token)" >> "$GITHUB_ENV"
-        echo "AWS_REGION=$(head -n 1 ~/.aws/region)" >> "$GITHUB_ENV"
-        echo "AWS_DEFAULT_REGION=$(head -n 1 ~/.aws/default_region)" >> "$GITHUB_ENV"
+        echo "AWS_ACCESS_KEY_ID=$(head -n 1 ~/.aws/${{ inputs.cache-key }}/aws_access_key_id)" >> "$GITHUB_ENV"
+        echo "AWS_SECRET_ACCESS_KEY=$(head -n 1 ~/.aws/${{ inputs.cache-key }}/aws_secret_access_key)" >> "$GITHUB_ENV"
+        echo "AWS_SESSION_TOKEN=$(head -n 1 ~/.aws/${{ inputs.cache-key }}/aws_session_token)" >> "$GITHUB_ENV"
+        echo "AWS_REGION=$(head -n 1 ~/.aws/${{ inputs.cache-key }}/region)" >> "$GITHUB_ENV"
+        echo "AWS_DEFAULT_REGION=$(head -n 1 ~/.aws/${{ inputs.cache-key }}/default_region)" >> "$GITHUB_ENV"
       shell: bash
