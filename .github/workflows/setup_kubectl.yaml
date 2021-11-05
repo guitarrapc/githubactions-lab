@@ -1,0 +1,11 @@
+name: setup kubectl
+on:
+  workflow_dispatch:
+jobs:
+  setup:
+    runs-on: ubuntu-latest
+    steps:
+      - run: kubectl version --client
+      - uses: azure/setup-kubectl@v1
+        with:
+          version: "v1.21.2"
