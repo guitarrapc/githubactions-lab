@@ -48,5 +48,5 @@ runs:
       uses: actions/cache@v2
       with:
         path: |
-          ~/.aws/${{ inputs.cache-key }}/
+          ~/.aws/${{ inputs.cache-key }}
         key: ${{ inputs.cache-key }}
