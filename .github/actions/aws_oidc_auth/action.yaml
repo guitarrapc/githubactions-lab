@@ -37,23 +37,12 @@ runs:
           aws sts get-caller-identity
         echo "::endgroup::"
 
-        echo "::group::gen credentials & config"
-          mkdir -p ~/.aws
-
-        cat <<EOF > ~/.aws/credentials
-        [default]
-        aws_access_key_id = ${{ env.AWS_ACCESS_KEY_ID }}
-        aws_secret_access_key = ${{ env.AWS_SECRET_ACCESS_KEY }}
-        aws_session_token = ${{ env.AWS_SESSION_TOKEN }}
-        EOF
-
-        cat <<EOF > ~/.aws/config
-        [default]
-        region = ${{ env.AWS_REGION }}
-        EOF
-
+        mkdir -p ~/.aws
+        echo "${{ env.AWS_ACCESS_KEY_ID }}" > ~/.aws/aws_access_key_id
+        echo "${{ env.AWS_SECRET_ACCESS_KEY }}" > ~/.aws/aws_secret_access_key
+        echo "${{ env.AWS_SESSION_TOKEN }}" > ~/.aws/aws_session_token
+        echo "${{ env.AWS_REGION }}" > ~/.aws/region
         echo "${{ env.AWS_DEFAULT_REGION }}" > ~/.aws/default_region
-        echo "::endgroup::"
     - name: Cache aws auth
       uses: actions/cache@v2
       with:
