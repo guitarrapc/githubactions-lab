@@ -38,7 +38,7 @@ runs:
           aws sts get-caller-identity
         echo "::endgroup::"
 
-        mkdir -p ~/.aws
+        mkdir -p ~/.aws/${{ inputs.cache-key }}/
         echo "${{ env.AWS_ACCESS_KEY_ID }}" > ~/.aws/${{ inputs.cache-key }}/aws_access_key_id
         echo "${{ env.AWS_SECRET_ACCESS_KEY }}" > ~/.aws/${{ inputs.cache-key }}/aws_secret_access_key
         echo "${{ env.AWS_SESSION_TOKEN }}" > ~/.aws/${{ inputs.cache-key }}/aws_session_token
