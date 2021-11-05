@@ -28,7 +28,7 @@ runs:
       uses: aws-actions/configure-aws-credentials@master
       with:
         aws-region: ap-northeast-1
-        role-to-assume: ${{ secrets.AWS_ROLE_TO_ASSUME }}
+        role-to-assume: "arn:aws:iam::158352693096:role/githubactions-oidc-role"
         role-session-name: GitHubActions-${{ github.run_id }}
         role-duration-seconds: 900 # minimum: 900sec, maximum: iam role session duration
     - name: get-caller-identity is allowed to run on role.
