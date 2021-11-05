@@ -57,6 +57,3 @@ runs:
         echo "AWS_ACCESS_KEY_ID=" >> $GITHUB_ENV
         echo "AWS_SECRET_ACCESS_KEY=" >> $GITHUB_ENV
         echo "AWS_SESSION_TOKEN=" >> $GITHUB_ENV
-    - name: check access
-      shell: bash
-      run: aws sts get-caller-identity
