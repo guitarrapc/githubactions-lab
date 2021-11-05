@@ -22,20 +22,20 @@ runs:
     - name: Restore ENV
       run: |
         set -e
-        echo "AWS_ACCESS_KEY_ID=$(head -n 1 ~/.aws/${{ inputs.cache-key }}/aws_access_key_id)" >> "$GITHUB_ENV"
-        echo "::add-mask::${{ env.AWS_ACCESS_KEY_ID }}"
+        AWS_ACCESS_KEY_ID=$(head -n 1 ~/.aws/${{ inputs.cache-key }}/aws_access_key_id)
+        echo "::add-mask::${AWS_ACCESS_KEY_ID}"
+        echo "AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}" >> "$GITHUB_ENV"
 
-        echo "AWS_SECRET_ACCESS_KEY=$(head -n 1 ~/.aws/${{ inputs.cache-key }}/aws_secret_access_key)" >> "$GITHUB_ENV"
-        echo "::add-mask::${{ env.AWS_SECRET_ACCESS_KEY }}"
+        AWS_ACCESS_KEY_ID=$(head -n 1 ~/.aws/${{ inputs.cache-key }}/aws_secret_access_key)
+        echo "::add-mask::${AWS_ACCESS_KEY_ID}"
+        echo "AWS_SECRET_ACCESS_KEY=${AWS_ACCESS_KEY_ID}" >> "$GITHUB_ENV"
 
-        echo "AWS_SESSION_TOKEN=$(head -n 1 ~/.aws/${{ inputs.cache-key }}/aws_session_token)" >> "$GITHUB_ENV"
-        echo "::add-mask::${{ env.AWS_SESSION_TOKEN }}"
+        AWS_SESSION_TOKEN=$(head -n 1 ~/.aws/${{ inputs.cache-key }}/aws_session_token)
+        echo "::add-mask::${AWS_SESSION_TOKEN}"
+        echo "AWS_SESSION_TOKEN=${AWS_SESSION_TOKEN}" >> "$GITHUB_ENV"
 
         echo "AWS_REGION=$(head -n 1 ~/.aws/${{ inputs.cache-key }}/region)" >> "$GITHUB_ENV"
-        echo "::add-mask::${{ env.AWS_REGION }}"
-
         echo "AWS_DEFAULT_REGION=$(head -n 1 ~/.aws/${{ inputs.cache-key }}/default_region)" >> "$GITHUB_ENV"
-        echo "::add-mask::${{ env.AWS_DEFAULT_REGION }}"
       shell: bash
     - name: test auth is valid
       run: aws sts get-caller-identity
