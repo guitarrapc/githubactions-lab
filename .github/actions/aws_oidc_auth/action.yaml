@@ -1,0 +1,54 @@
+name: aws oidc auth with cache
+description: |
+  Get aws oidc auth and cache it.
+  This avoid AWS OIDC AssumeRoleWithWebIdentity parallel request issue.
+  Error: Couldn't retrieve verification key from your identity provider,  please reference AssumeRoleWithWebIdentity documentation for requirements
+
+  see: https://github.com/aws-actions/configure-aws-credentials/issues/299
+inputs:
+  role-to-assume:
+    description: "AWS IAM Role to assume"
+    required: true
+  cache-key:
+    description: "cache key. you must set this key to restore cache."
+    required: true
+runs:
+  using: "composite" # this is key point
+  steps:
+    - name: Configure AWS Credentials
+      # must use "master", not "v1". v1 is not yet released to use latest role-to-assume.
+      # Error: Credentials could not be loaded, please check your action inputs: Could not load credentials from any providers
+      uses: aws-actions/configure-aws-credentials@master
+      with:
+        aws-region: ap-northeast-1
+        role-to-assume: ${{ inputs.role-to-assume }}
+        role-session-name: ${{ inputs.role-session-name }}
+        role-duration-seconds: 900 # minimum: 900sec, maximum: iam role session duration
+    - name: gen auth file
+      shell: bash
+      run: |
+        echo "::group::test auth is valid"
+          aws sts get-caller-identity
+        echo "::endgroup::"
+
+        echo "::group::gen credentials & config"
+          mkdir -p ~/.aws
+
+        cat <<EOF > ~/.aws/credentials
+        [default]
+        aws_access_key_id = ${{ env.AWS_ACCESS_KEY_ID }}
+        aws_secret_access_key = ${{ env.AWS_SECRET_ACCESS_KEY }}
+        aws_session_token = ${{ env.AWS_SESSION_TOKEN }}
+        EOF
+
+        cat <<EOF > ~/.aws/config
+        [default]
+        region = ${{ env.AWS_REGION }}
+        EOF
+        echo "::endgroup::"
+    - name: Cache aws auth
+      uses: actions/cache@v2
+      with:
+        path: |
+          ~/.aws/
+        key: ${{ inputs.cache-key }}

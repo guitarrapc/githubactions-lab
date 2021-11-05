@@ -1,0 +1,16 @@
+name: restore aws oidc auth from cache
+description: |
+  restore aws oidc auth from cache
+inputs:
+  cache-key:
+    description: "cache key to restore"
+    required: true
+runs:
+  using: "composite"
+  steps:
+    - name: Restore aws auth
+      uses: actions/cache@v2
+      with:
+        path: |
+          ~/.aws/
+        key: ${{ inputs.cache-key }}
