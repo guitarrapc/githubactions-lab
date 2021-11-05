@@ -22,15 +22,6 @@ inputs:
 runs:
   using: "composite" # this is key point
   steps:
-    - name: Reset Credentials
-      shell: bash
-      run: |
-        echo "Resetting current aws credentials."
-        echo "AWS_ACCESS_KEY_ID=" >> $GITHUB_ENV
-        echo "AWS_SECRET_ACCESS_KEY=" >> $GITHUB_ENV
-        echo "AWS_SESSION_TOKEN=" >> $GITHUB_ENV
-        echo "AWS_DEFAULT_REGION=" >> $GITHUB_ENV
-        echo "AWS_REGION=" >> $GITHUB_ENV
     - name: Configure AWS Credentials
       # must use "master", not "v1". v1 is not yet released to use latest role-to-assume.
       # Error: Credentials could not be loaded, please check your action inputs: Could not load credentials from any providers
