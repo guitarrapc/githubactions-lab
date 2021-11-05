@@ -1,0 +1,46 @@
+# .github/actions/aws_oidc_auth/action.yaml
+name: aws oidc auth with cache
+description: |
+  Get aws oidc auth and cache it.
+  This avoid AWS OIDC AssumeRoleWithWebIdentity parallel request issue.
+  Error: Couldn't retrieve verification key from your identity provider,  please reference AssumeRoleWithWebIdentity documentation for requirements
+
+  see: https://github.com/aws-actions/configure-aws-credentials/issues/299
+inputs:
+  aws-region:
+    description: "AWS Region"
+    required: true
+  role-to-assume:
+    description: "AWS IAM Role to assume"
+    required: true
+  role-session-name:
+    description: "AWS IAM Role Session Name. Shown on CloudTrail"
+    required: true
+  save-path:
+    description: "Save path for cache"
+    required: true
+runs:
+  using: "composite" # this is key point
+  steps:
+    - name: Configure AWS Credentials
+      # must use "master", not "v1". v1 is not yet released to use latest role-to-assume.
+      # Error: Credentials could not be loaded, please check your action inputs: Could not load credentials from any providers
+      uses: aws-actions/configure-aws-credentials@master
+      with:
+        aws-region: ${{ inputs.aws-region }}
+        role-to-assume: ${{ inputs.role-to-assume }}
+        role-session-name: ${{ inputs.role-session-name }}
+        role-duration-seconds: 900 # minimum: 900sec, maximum: iam role session duration
+    - name: gen auth file
+      shell: bash
+      run: |
+        echo "::group::test auth is valid"
+          aws sts get-caller-identity
+        echo "::endgroup::"
+
+        mkdir -p ${{ inputs.save-path }}/
+        echo "${{ env.AWS_ACCESS_KEY_ID }}" > ${{ inputs.save-path }}/aws_access_key_id
+        echo "${{ env.AWS_SECRET_ACCESS_KEY }}" > ${{ inputs.save-path }}/aws_secret_access_key
+        echo "${{ env.AWS_SESSION_TOKEN }}" > ${{ inputs.save-path }}/aws_session_token
+        echo "${{ env.AWS_REGION }}" > ${{ inputs.save-path }}/region
+        echo "${{ env.AWS_DEFAULT_REGION }}" > ${{ inputs.save-path }}/default_region

@@ -28,3 +28,6 @@ runs:
         echo "AWS_REGION=$(head -n 1 ~/.aws/${{ inputs.cache-key }}/region)" >> "$GITHUB_ENV"
         echo "AWS_DEFAULT_REGION=$(head -n 1 ~/.aws/${{ inputs.cache-key }}/default_region)" >> "$GITHUB_ENV"
       shell: bash
+    - name: test auth is valid
+      run: aws sts get-caller-identity
+      shell: bash
