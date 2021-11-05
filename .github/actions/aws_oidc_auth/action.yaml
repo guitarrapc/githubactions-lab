@@ -1,3 +1,4 @@
+# .github/actions/aws_oidc_auth/action.yaml
 name: aws oidc auth with cache
 description: |
   Get aws oidc auth and cache it.
