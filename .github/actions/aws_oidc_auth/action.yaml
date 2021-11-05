@@ -31,13 +31,12 @@ runs:
         role-to-assume: ${{ inputs.role-to-assume }}
         role-session-name: ${{ inputs.role-session-name }}
         role-duration-seconds: 900 # minimum: 900sec, maximum: iam role session duration
+    - name: get-caller-identity is allowed to run on role.
+      shell: bash
+      run: aws sts get-caller-identity
     - name: gen auth file
       shell: bash
       run: |
-        echo "::group::test auth is valid"
-          aws sts get-caller-identity
-        echo "::endgroup::"
-
         mkdir -p ~/.aws/${{ inputs.cache-key }}/
         echo "${{ env.AWS_ACCESS_KEY_ID }}" > ~/.aws/${{ inputs.cache-key }}/aws_access_key_id
         echo "${{ env.AWS_SECRET_ACCESS_KEY }}" > ~/.aws/${{ inputs.cache-key }}/aws_secret_access_key
