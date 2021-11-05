@@ -27,9 +27,9 @@ runs:
       # Error: Credentials could not be loaded, please check your action inputs: Could not load credentials from any providers
       uses: aws-actions/configure-aws-credentials@master
       with:
-        aws-region: ${{ inputs.aws-region }}
-        role-to-assume: ${{ inputs.role-to-assume }}
-        role-session-name: ${{ inputs.role-session-name }}
+        aws-region: ap-northeast-1
+        role-to-assume: ${{ secrets.AWS_ROLE_TO_ASSUME }}
+        role-session-name: GitHubActions-${{ github.run_id }}
         role-duration-seconds: 900 # minimum: 900sec, maximum: iam role session duration
     - name: get-caller-identity is allowed to run on role.
       shell: bash
