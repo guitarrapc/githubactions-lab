@@ -11,10 +11,14 @@ runs:
   steps:
     - name: Restore aws auth
       uses: actions/cache@v2
+      id: cache-aws
       with:
         path: |
-          ~/.aws/${{ inputs.cache-key }}/
+          ~/.aws/${{ inputs.cache-key }}
         key: ${{ inputs.cache-key }}
+    - name: Is Cache Hit
+      shell: bash
+      run: echo "cache hit? ${{ steps.cache-aws.outputs.cache-hit }}"
     - name: Restore ENV
       run: |
         echo "AWS_ACCESS_KEY_ID=$(head -n 1 ~/.aws/${{ inputs.cache-key }}/aws_access_key_id)" >> "$GITHUB_ENV"
