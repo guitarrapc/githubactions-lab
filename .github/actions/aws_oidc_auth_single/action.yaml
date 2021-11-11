@@ -17,6 +17,12 @@ runs:
         role-to-assume: ${{ inputs.role-to-assume }}
         role-session-name: GitHubActions-${{ github.run_id }}
         role-duration-seconds: 900 # minimum: 900sec, maximum: iam role session duration
+      env:
+        AWS_ACCESS_KEY_ID: ""
+        AWS_SECRET_ACCESS_KEY: ""
+        AWS_SESSION_TOKEN: ""
+        AWS_DEFAULT_REGION: ""
+        AWS_REGION: ""
     - name: get-caller-identity is allowed to run on role.
       run: aws sts get-caller-identity
       shell: bash
