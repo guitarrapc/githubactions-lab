@@ -41,11 +41,13 @@ jobs:
           } >> "$GITHUB_ENV"
         env:
           REMOTE_BRANCH: ${{ github.event.repository.name }}/${{ env.BRANCH }}
-      - run: |
+      - name: git checkout
+        run: |
           git fetch origin "${REMOTE_BRANCH}":"${REMOTE_BRANCH}" || git switch -C "${REMOTE_BRANCH}"
           git reset --hard "${REMOTE_BRANCH}"
         working-directory: ${{ env.REPO_MANIFEST }}
-      - run: |
+      - name: generate manifest
+        run: |
           mkdir -p "./${REPO_MANIFEST}/${MANIFEST_DIR}"
           kubectl kustomize ./src/k8s/common/overlays/development \
             | sed -e "s|<namespace>|${NAMESPACE_PREFIX}${MANIFEST_DIR}|g" \
@@ -55,13 +57,14 @@ jobs:
             | sed -e "s|<build-id>|${{ github.run_id }}|g" > "${REPO_MANIFEST}/${MANIFEST_DIR}/all.yaml"
         env:
           GIT_LINK: ${{ github.event.repository.html_url }}/commit/${{ env.SHA }}
-      - run: |
+      - name: git commit
+        run: |
           git config --local user.email "action@github.com"
           git config --local user.name "actions-user"
           git status
           git add "${MANIFEST_DIR}/*"
           ret=$(git status| sed -ne 's|.*\(clean\)|\1|p')
-          if [ -z $ret ];then
+          if [[ "$ret" != "" ]];then
             git commit -m "(${MANIFEST_DIR}) update manifests ${REPO}@${LINK} (${RUN_ID})" -m "compare: ${COMPARE_URL}"
           fi
         working-directory: ${{ env.REPO_MANIFEST }}
