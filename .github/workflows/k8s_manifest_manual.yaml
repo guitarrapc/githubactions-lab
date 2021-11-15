@@ -33,10 +33,12 @@ jobs:
         env:
           REF: ${{ github.event.inputs.branch }}
       - run: |
-          echo "GIT_BRANCH=$(echo "$BRANCH" | sed -e 's|/|-|g' -e 's/_/-/g')" >> "$GITHUB_ENV"
-          echo "REMOTE_BRANCH=${REMOTE_BRANCH}" >> "$GITHUB_ENV"
-          echo "SHA=$(git rev-parse HEAD)" >> "$GITHUB_ENV"
-          echo "SHORT_SHA=$(git rev-parse --short HEAD)" >> "$GITHUB_ENV"
+          {
+            echo "GIT_BRANCH=$(echo "$BRANCH" | sed -e 's|/|-|g' -e 's/_/-/g')"
+            echo "REMOTE_BRANCH=${REMOTE_BRANCH}"
+            echo "SHA=$(git rev-parse HEAD)"
+            echo "SHORT_SHA=$(git rev-parse --short HEAD)"
+          } >> "$GITHUB_ENV"
         env:
           REMOTE_BRANCH: ${{ github.event.repository.name }}/${{ env.BRANCH }}
       - run: |
