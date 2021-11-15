@@ -9,6 +9,6 @@ jobs:
     if: "contains(toJSON(github.event.commits.*.message), '[build]')"
     runs-on: ubuntu-latest
     steps:
-      - run: echo $COMMIT_MESSAGES
+      - run: echo "$COMMIT_MESSAGES"
         env:
           COMMIT_MESSAGES: ${{ toJson(github.event.commits.*.message) }}

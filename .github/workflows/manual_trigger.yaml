@@ -38,12 +38,12 @@ jobs:
           echo "Tags: ${{ github.event.inputs.tags }}"
       # INPUT_ not automatcally generated
       - run: |
-          echo ${INPUT_TEST_VAR}
-          echo ${TEST_VAR}
-      - run: echo "/path/to/dir" >> $GITHUB_PATH
+          echo "${INPUT_TEST_VAR}"
+          echo "${TEST_VAR}"
+      - run: echo "/path/to/dir" >> "$GITHUB_PATH"
       - run: |
-          echo "INPUT_LOGLEVEL=${{ github.event.inputs.logLevel }}" >> $GITHUB_ENV
-          echo "INPUT_TAGS=${{ github.event.inputs.tags }}" >> $GITHUB_ENV
+          echo "INPUT_LOGLEVEL=${{ github.event.inputs.logLevel }}" >> "$GITHUB_ENV"
+          echo "INPUT_TAGS=${{ github.event.inputs.tags }}" >> "$GITHUB_ENV"
       - run: |
           echo "Log level: ${INPUT_LOGLEVEL}"
           echo "Tags: ${INPUT_TAGS}"

@@ -2,7 +2,7 @@ name: pr close
 
 on:
   pull_request:
-    type:
+    types:
       - closed
 
 jobs:

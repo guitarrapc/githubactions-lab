@@ -7,10 +7,10 @@ jobs:
     if: "!(contains(github.event.pull_request.title, '[skip ci]') || contains(github.event.pull_request.title, '[ci skip]'))"
     runs-on: ubuntu-latest
     steps:
-      - run: echo $GITHUB_CONTEXT
+      - run: echo "$GITHUB_CONTEXT"
         env:
           GITHUB_CONTEXT: ${{ toJson(github) }}
-      - run: echo $TITLE
+      - run: echo "$TITLE"
         env:
           TITLE: ${{ toJson(github.event.pull_request.title) }}
 

@@ -29,28 +29,28 @@ jobs:
           repository: ${{ env.REPO_MANIFEST }}
           path: ${{ env.REPO_MANIFEST }}
           token: ${{ secrets.SYNCED_GITHUB_TOKEN_REPO }}
-      - run: echo "BRANCH=$(echo $REF | sed -e 's|refs/head/||')" >> $GITHUB_ENV
+      - run: echo "BRANCH=${GITHUB_REF##*/}" >> "$GITHUB_ENV"
         env:
           REF: ${{ github.event.inputs.branch }}
       - run: |
-          echo "GIT_BRANCH=$(echo $BRANCH | sed -e 's|/|-|g' -e 's/_/-/g')" >> $GITHUB_ENV
-          echo "REMOTE_BRANCH=${REMOTE_BRANCH}" >> $GITHUB_ENV
-          echo "SHA=$(git rev-parse HEAD)" >> $GITHUB_ENV
-          echo "SHORT_SHA=$(git rev-parse --short HEAD)" >> $GITHUB_ENV
+          echo "GIT_BRANCH=$(echo "$BRANCH" | sed -e 's|/|-|g' -e 's/_/-/g')" >> "$GITHUB_ENV"
+          echo "REMOTE_BRANCH=${REMOTE_BRANCH}" >> "$GITHUB_ENV"
+          echo "SHA=$(git rev-parse HEAD)" >> "$GITHUB_ENV"
+          echo "SHORT_SHA=$(git rev-parse --short HEAD)" >> "$GITHUB_ENV"
         env:
           REMOTE_BRANCH: ${{ github.event.repository.name }}/${{ env.BRANCH }}
       - run: |
-          git fetch origin ${REMOTE_BRANCH}:${REMOTE_BRANCH} || git switch -C ${REMOTE_BRANCH}
-          git reset --hard ${REMOTE_BRANCH}
+          git fetch origin "${REMOTE_BRANCH}":"${REMOTE_BRANCH}" || git switch -C "${REMOTE_BRANCH}"
+          git reset --hard "${REMOTE_BRANCH}"
         working-directory: ${{ env.REPO_MANIFEST }}
       - run: |
-          mkdir -p ./${REPO_MANIFEST}/${MANIFEST_DIR}
+          mkdir -p "./${REPO_MANIFEST}/${MANIFEST_DIR}"
           kubectl kustomize ./src/k8s/common/overlays/development \
             | sed -e "s|<namespace>|${NAMESPACE_PREFIX}${MANIFEST_DIR}|g" \
             | sed -e "s|<git-sha>|${SHA}|g" \
             | sed -e "s|<git-branch>|${GIT_BRANCH}|g" \
             | sed -e "s|<git-link>|${GIT_LINK}|g" \
-            | sed -e "s|<build-id>|${{ github.run_id }}|g" > ${REPO_MANIFEST}/${MANIFEST_DIR}/all.yaml
+            | sed -e "s|<build-id>|${{ github.run_id }}|g" > "${REPO_MANIFEST}/${MANIFEST_DIR}/all.yaml"
         env:
           GIT_LINK: ${{ github.event.repository.html_url }}/commit/${{ env.SHA }}
       - run: |

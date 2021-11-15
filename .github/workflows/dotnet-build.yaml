@@ -26,7 +26,7 @@ jobs:
           dotnet-version: 5.0.x
       - run: which dotnet
       - run: ls /usr/share/dotnet/sdk
-      - run: ls -l $HOME/.dotnet/sdk
+      - run: ls -l "$HOME/.dotnet/sdk"
       - run: dotnet --version
       - run: dotnet --list-sdks
       - run: dotnet build ./src/dotnet/console/ -c Debug

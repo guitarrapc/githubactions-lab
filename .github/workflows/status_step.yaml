@@ -11,7 +11,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - run: echo $COMMIT_MESSAGES
+      - run: echo "$COMMIT_MESSAGES"
         env:
           COMMIT_MESSAGES: ${{ toJson(github.event.commits.*.message) }}
       - run: echo "success() run when none of previous steps  have failed or been canceled"

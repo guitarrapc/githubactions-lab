@@ -6,4 +6,4 @@ while [ $# -gt 0 ]; do
     esac
 done
 
-echo GIT_TAG_SCRIPT=${GITHUB_REF#refs/tags/} >> $GITHUB_ENV
+echo GIT_TAG_SCRIPT=${GITHUB_REF##*/} >> "$GITHUB_ENV"

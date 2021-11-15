@@ -12,5 +12,5 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
-      - run: echo done before timeout
+      - run: echo "done before timeout"
         timeout-minutes: 1 # each step

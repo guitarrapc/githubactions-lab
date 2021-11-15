@@ -27,21 +27,21 @@ jobs:
           path: ${{ env.REPO_MANIFEST }}
           token: ${{ secrets.SYNCED_GITHUB_TOKEN_REPO }}
       - run: |
-          echo "GIT_BRANCH=$(echo $REF | sed -e 's|refs/heads/||g')" >> $GITHUB_ENV
-          echo "SHORT_SHA=$(git rev-parse --short HEAD)" >> $GITHUB_ENV
+          echo "GIT_BRANCH=${GITHUB_REF##*/}" >> "$GITHUB_ENV"
+          echo "SHORT_SHA=$(git rev-parse --short HEAD)" >> "$GITHUB_ENV"
         env:
           REF: ${{ github.ref }}
-      - run: echo "BRANCH=${BRANCH}" >> $GITHUB_ENV
+      - run: echo "BRANCH=${BRANCH}" >> "$GITHUB_ENV"
         env:
           BRANCH: ${{ github.event.repository.name }}/${{ env.GIT_BRANCH }}-pr
       - run: |
-          mkdir -p ./${REPO_MANIFEST}/${MANIFEST_DIR}
+          mkdir -p "./${REPO_MANIFEST}/${MANIFEST_DIR}"
           kubectl kustomize ./src/k8s/common/overlays/development \
             | sed -e "s|<namespace>|${NAMESPACE_PREFIX}${MANIFEST_DIR}|g" \
             | sed -e "s|<git-sha>|${{ github.sha }}|g" \
             | sed -e "s|<git-branch>|${GIT_BRANCH}|g" \
             | sed -e "s|<git-link>|${{ github.event.commits[0].url }}|g" \
-            | sed -e "s|<build-id>|${{ github.run_id }}|g" > ${REPO_MANIFEST}/${MANIFEST_DIR}/all.yaml
+            | sed -e "s|<build-id>|${{ github.run_id }}|g" > "${REPO_MANIFEST}/${MANIFEST_DIR}/all.yaml"
       - run: |
           git config --local user.email "action@github.com"
           git config --local user.name "actions-user"
