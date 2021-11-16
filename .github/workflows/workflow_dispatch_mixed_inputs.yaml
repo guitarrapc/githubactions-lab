@@ -1,0 +1,31 @@
+name: workflow dispatch mixed inputs
+
+on:
+  workflow_dispatch:
+    inputs:
+      name:
+        type: choice
+        description: "name: Who to greet"
+        required: true
+        options:
+          - monalisa
+          - cschleiden
+      message:
+        description: "mnessage: add message"
+        required: true
+      use-emoji:
+        required: true
+        description: Include 🎉🤣 emojis
+        type: boolean
+      environment:
+        required: true
+        description: Select environment
+        type: environment
+
+jobs:
+  greet:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Send greeting
+        run: echo "${{ github.event.inputs.message }} ${{ fromJSON('["", "🥳"]')[github.event.inputs.use-emoji == 'true'] }} ${{ github.event.inputs.name }}"
