@@ -1,10 +1,10 @@
 ![dotnet-build](https://github.com/guitarrapc/githubaction-lab/workflows/dotnet-build/badge.svg?branch=main)
 
-## githubactions-lab
+# githubactions-lab
 
 GitHub Actions laboratory.
 
-## Table of Contents
+# Table of Contents
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
@@ -61,21 +61,21 @@ GitHub Actions laboratory.
 </details>
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
-## Not yet support
+# Not yet support
 
 - [ ] YAML anchor support
   - [Support for YAML anchors \- GitHub Community Forum](https://github.community/t5/GitHub-Actions/Support-for-YAML-anchors/td-p/30336)
 
-## Difference from other CI
+# Difference from other CI
 
-### migration
+## migration
 
 > * GitHub Actions -> CircleCI: [Migrating from Github Actions \- CircleCI](https://circleci.com/docs/2.0/migrating-from-github/)
 > * CircleCI -> GitHub Actions: [Migrating from CircleCI to GitHub Actions \- GitHub Help](https://help.github.com/en/actions/migrating-to-github-actions/migrating-from-circleci-to-github-actions)
 > * Azure pipeline -> GitHub Actions: [Migrating from Azure Pipelines to GitHub Actions \- GitHub Help](https://help.github.com/en/actions/migrating-to-github-actions/migrating-from-azure-pipelines-to-github-actions)
 > * Jenkins -> GitHub Actions: [Migrating from Jenkins to GitHub Actions \- GitHub Help](https://help.github.com/en/actions/migrating-to-github-actions/migrating-from-jenkins-to-github-actions)
 
-### job and workflow
+## job and workflow
 
 GitHub Actions cannnot reuse yaml and need to write same job for each workflow.
 Better define step in script and call it from step, so that we can reuse same execution from other workflows or jobs.
@@ -85,7 +85,7 @@ Better define step in script and call it from step, so that we can reuse same ex
 * Azure Pipeline offer's template to refer stage, job and step from other yaml. This enable user to reuse yaml.
 * Jenkins has pipeline and could refer other pipeline. However a lot case would be define job step in script and reuse script, not pipeline.
 
-### skip ci on commit message
+## skip ci on commit message
 
 GitHub Actions support when HEAD commit contains key word like other ci.
 
@@ -94,7 +94,7 @@ GitHub Actions support when HEAD commit contains key word like other ci.
 * Azure Pipeline can skip job via `***NO_CI***`, `[skip ci]` or `[ci skip]`, or [others](https://github.com/Microsoft/azure-pipelines-agent/issues/858#issuecomment-475768046).
 * Jenkins has plugin to support `[skip ci]` or any expression w/pipeline via [SCM Skip \| Jenkins plugin](https://plugins.jenkins.io/scmskip/).
 
-### path filter
+## path filter
 
 GitHub Actions can use `on.<event>.paths-ignore:` and `on.<event>.paths:` by default.
 
@@ -105,7 +105,7 @@ GitHub Actions can use `on.<event>.paths-ignore:` and `on.<event>.paths:` by def
 * Azure Pipeline can set path-filter.
 * Jenkins ... I think I need filter change from changes?
 
-### job id or other meta values
+## job id or other meta values
 
 GitHub Actions has Context concept, you can access job specific info via `github`.
 for example, `github.run_id` is A unique number for each run within a repository.
@@ -116,7 +116,7 @@ Also you can access default environment variables like `GITHUB_RUN_ID`.
 * Azure Pipeline [environment variable](https://docs.microsoft.com/ja-jp/azure/devops/pipelines/process/run-number?view=azure-devops&tabs=yaml#tokens) `BuildID`.
 * Jenkins [environment vairable](https://wiki.jenkins.io/display/JENKINS/Building+a+software+project) `BUILD_NUMBER`
 
-### cancel redundant builds
+## cancel redundant builds
 
 GitHub Actions not support cancel redundant build as CircleCI do.
 > [Solved: Github actions: Cancel redundant builds \(Not solve\.\.\. \- GitHub Community Forum](https://github.community/t5/GitHub-Actions/Github-actions-Cancel-redundant-builds-Not-solved/td-p/29549)
@@ -140,7 +140,7 @@ Theses are minimum specs.
 * Azure Pipeline not support cancel redundant build
 * Jenkins not support cancel redundant build, you need cancel it from parallel job.
 
-### set environment variables for next step
+## set environment variables for next step
 
 GitHub Actions need to create or update Environment File, it's similar to CircleCI.
 
@@ -166,13 +166,13 @@ steps:
 * Azure Pipeline use task.setvariable. `echo "##vso[task.setvariable variable=NAME]VALUE"`
 * Jenkins use `Env.` in groovy declarative pipeline.
 
-### adding system path
+## adding system path
 
 GitHub Actions need to create or update Environment File, it's similar to CircleCI.
 * GitHub Actions use Environment Files to manage System Path, create or update via `echo "{path}" >> "$GITHUB_PATH"` syntax.
   * `::add-path` syntax is deprecated for [security reason](https://github.blog/changelog/2020-10-01-github-actions-deprecating-set-env-and-add-path-commands/).
 
-### set secrets for reposiory
+## set secrets for reposiory
 
 GitHub ACtions offer Secrets for each repository and Organization.
 Secrets will be masked on the log.
@@ -182,7 +182,7 @@ Secrets will be masked on the log.
 * Azure Pipeline has Environment Variables and Paramter.
 * Jenkins has Credential Provider.
 
-### approval
+## approval
 
 [TBD]
 
@@ -191,9 +191,9 @@ Secrets will be masked on the log.
 * Azure Pipelin supports Approval.
 * Jenkins supports Approval.
 
-## Fundamentals
+# Fundamentals
 
-### Manual Trigger and input
+## Manual Trigger and input
 
 GitHub Actions offer `workflow_dispatch` event to execute workflow manually from WebUI.
 Also you can use [action inputs](https://docs.github.com/en/actions/creating-actions/metadata-syntax-for-github-actions#inputs) to specify value trigger on manual trigger.
@@ -248,12 +248,12 @@ jobs:
 
 Even if you specify action inputs, input value will not store as ENV var `INPUT_{INPUTS_ID}` as usual.
 
-### retry failed workflow
+## retry failed workflow
 
 GitHub Actions support Re-run jobs.
 You can re-run whole workflow again, but you cannot re-run specified job only.
 
-### secrets
+## secrets
 
 GitHub Actions supports "Indivisual Repository Secrets" and "Organization Secrets"
 
@@ -264,7 +264,7 @@ If same secrets key is exists, `Repository Secrets` > `Organization Secrets`.
 
 When you want spread your secrets with indivisual account, you need set each repository secrets or use [google/secrets\-sync\-action](https://github.com/google/secrets-sync-action).
 
-### meta github context
+## meta github context
 
 job id, name and others.
 
@@ -303,7 +303,7 @@ This is because `${{ github }}` is not bash syntax, but github workflow's syntax
 ref
 ```
 
-### view webhook github context
+## view webhook github context
 
 dump context with `toJson()` is a easiest way to dump context.
 
@@ -383,7 +383,7 @@ jobs:
           CONTEXT: ${{ toJson(matrix) }}
 ```
 
-### matrix and secret dereference
+## matrix and secret dereference
 
 matrix cannot reference `secret` context, so pass secret key in matrix then dereference secret with `secrets[matrix.SECRET_KEY]`.
 
@@ -414,7 +414,7 @@ jobs:
       - run: echo "org:${{ matrix.org }} secret:${{ secrets[matrix.secret] }}"
 ```
 
-### matrix and environment variables
+## matrix and environment variables
 
 you can refer matrix in job's `env:` section before steps.
 However you cannot use expression, you must evaluate in step.
@@ -439,7 +439,7 @@ jobs:
       - run: echo "${ORG}"
 ```
 
-### env refer env
+## env refer env
 
 You cannot use `${{ env. }}` in `env:` section.
 Following is invalid with error.
@@ -464,7 +464,7 @@ jobs:
       - run: echo "${{ env.job_env }}"
 ```
 
-### set environment variables in script
+## set environment variables in script
 
 [set environment variables for next step](#set-environment-variables-for-next-step) explains how to set environment variables for next step.
 This syntax can be write in the script, let's see `.github/scripts/setenv.sh`.
@@ -493,15 +493,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - run: echo "GIT_TAG=${GITHUB_REF#refs/heads/}" >> "$GITHUB_ENV"
+      - run: echo "GIT_TAG=${GITHUB_REF##*/}" >> "$GITHUB_ENV"
       - run: echo ${{ env.GIT_TAG }}
-      - run: bash -eux .github/scripts/setenv.sh --ref "${GITHUB_REF#refs/heads/}"
+      - run: bash -eux .github/scripts/setenv.sh --ref "${GITHUB_REF##*/}"
       - run: echo ${{ env.GIT_TAG_SCRIPT }}
 ```
 
 `echo ${{ env.GIT_TAG_SCRIPT }}` will output `chore/context_in_script` as expected.
 
-### reuse yaml actions - composite
+## reuse yaml actions - composite
 
 To reuse YAML only job, use Repository Actions with `composite`.
 
@@ -542,7 +542,7 @@ jobs:
           foo: BAR
 ```
 
-### reuse Node actions - node12
+## reuse Node actions - node12
 
 To reuse Node, action, just place action inside `./github/actions/your_dir/` with action.yaml and source codes.
 
@@ -560,7 +560,7 @@ jobs:
         uses: ./.github/actions/local_node_action
 ```
 
-### runs only previous job is success
+## runs only previous job is success
 
 to accomplish sequential job run, use `needs:` for which you want the job to depends on.
 
@@ -586,7 +586,7 @@ jobs:
       - run: run when only build success
 ```
 
-### runs only when previous step status is specific
+## runs only when previous step status is specific
 
 > [job-status-check-functions \- Context and expression syntax for GitHub Actions \- GitHub Help](https://help.github.com/en/actions/reference/context-and-expression-syntax-for-github-actions#job-status-check-functions)
 
@@ -614,7 +614,7 @@ jobs:
         if: failure()
 ```
 
-### timeout for job and step
+## timeout for job and step
 
 default timeout is 360min. You should set much more shorten timeout like 15min or 30min to prevent spending a lot build time.
 
@@ -632,7 +632,7 @@ jobs:
         timeout-minutes: 1 # step個別
 ```
 
-### suppress redundant build
+## suppress redundant build
 
 This will trouble only when you are runnning private repo, if repo is public, you don't need mind build comsume time.
 
@@ -705,7 +705,7 @@ jobs:
           GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
 ```
 
-### if and context reference
+## if and context reference
 
 GitHub Actions allow `if` condition for `step`.
 when you want refer any context, `env`, `github` and `matrix`, on `if` condition, you don't need add `${{}}` to context reference.
@@ -742,9 +742,9 @@ jobs:
         if: matrix.sample == 'fuga'
 ```
 
-## Branch and tag handling
+# Branch and tag handling
 
-### run when branch push only but skip on tag push
+## run when branch push only but skip on tag push
 
 If you want run job only when push to branch, and not for tag push.
 
@@ -765,7 +765,7 @@ jobs:
       - run: echo not run on tag
 ```
 
-### skip when branch push but run on tag push only
+## skip when branch push but run on tag push only
 
 If you want run job only when push to tag, and not for branch push.
 
@@ -784,7 +784,7 @@ jobs:
       - run: echo not run on branch push
 ```
 
-### build only specific tag pattern
+## build only specific tag pattern
 
 You can use pattern on `on.push.tags`, but you can't on `step.if`.
 This pattern will match following.
@@ -813,7 +813,7 @@ jobs:
       - run: echo not run on branch push
 ```
 
-### get pushed tag name
+## get pushed tag name
 
 You need extract refs to get tag name.
 Save it to `step context` and refer from other step or save it to env is much eacher.
@@ -837,7 +837,7 @@ jobs:
       - run: echo ${{ env.GIT_TAG }}
 ```
 
-### create release
+## create release
 
 You can create release and upload assets through GitHub Actions.
 Multiple assets upload is supported by running running `actions/upload-release-asset` for each asset.
@@ -895,7 +895,7 @@ jobs:
           asset_content_type: application/octet-stream
 ```
 
-### schedule job on non-default branch
+## schedule job on non-default branch
 
 Schedule job will offer `Last commit on default branch`.
 
@@ -923,9 +923,9 @@ jobs:
           ref: refs/heads/some-branch
 ```
 
-## Commit handling
+# Commit handling
 
-### trigger via commit message
+## trigger via commit message
 
 ```yaml
 name: trigger ci commit
@@ -942,7 +942,7 @@ jobs:
           COMMIT_MESSAGES: ${{ toJson(github.event.commits.*.message) }}
 ```
 
-### commit file handling
+## commit file handling
 
 you can handle commit file handle with github actions [trilom/file\-changes\-action](https://github.com/trilom/file-changes-action).
 
@@ -965,11 +965,11 @@ jobs:
 ```
 
 
-## Issue and Pull Request handling
+# Issue and Pull Request handling
 
 use [actions/github\-script](https://github.com/actions/github-script).
 
-### skip ci on pull request title
+## skip ci on pull request title
 
 original `pull_request` event will invoke when activity type is `opened`, `synchronize`, or `reopened`.
 
@@ -993,7 +993,7 @@ jobs:
           TITLE: ${{ toJson(github.event.pull_request.title) }}
 ```
 
-### skip pr from fork repo
+## skip pr from fork repo
 
 default `pull_request` event trigger from even fork repository, however fork pr could not read `secrets` and may fail PR checks.
 To control job to be skip from fork but run on self pr or push, use `if` conditions.
@@ -1020,7 +1020,7 @@ jobs:
       - run: echo build
 ```
 
-### detect labels on pull request
+## detect labels on pull request
 
 `pull_request` event contains tags and you can use it to filter step execution.
 `${{ contains(github.event.pull_request.labels.*.name, 'hoge') }}` will return `true` if tag contains `hoge`.
@@ -1048,7 +1048,7 @@ jobs:
         if: env.IS_HOGE == 'true'
 ```
 
-### skip job when Draft PR
+## skip job when Draft PR
 
 You can skip job and steps if Pull Request is Draft.
 Unfortunately GitHub Webhook v3 event not provide draft pr type, but `event.pull_request.draft` shows `true` when PR is draft.
@@ -1065,11 +1065,11 @@ jobs:
       - uses: actions/checkout@v2
 ```
 
-## ADVANCED
+# ADVANCED
 
 Advanced tips.
 
-### Dispatch other repo from workflow
+## Dispatch other repo from workflow
 
 You can dispatch this repository to other repository via calling GitHub `workflow_dispatch` event API.
 You don't need use `repository_dispatch` event API anymore.
@@ -1144,3 +1144,17 @@ jobs:
           workflow: ${{ matrix.workflow }}
           token: ${{ secrets.SYNCED_GITHUB_TOKEN_REPO }}
 ```
+
+# Cheat Sheet
+
+## Get Tag, Branch
+
+```yaml
+- run: echo "${GITHUB_REF##*/}"
+```
+
+This will remove `refs/heads` or `refs/tags` from `refs/heads/xxxxx` and `refs/tags/v1.0.0`.
+
+* `refs/heads/xxxxx` -> `xxxxx`
+* `refs/tags/v1.0.0` -> `v1.0.0`
+
