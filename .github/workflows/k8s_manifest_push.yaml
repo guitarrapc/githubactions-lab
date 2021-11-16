@@ -43,142 +43,31 @@ jobs:
             | sed -e "s|<git-branch>|${GIT_BRANCH}|g" \
             | sed -e "s|<git-link>|${{ github.event.commits[0].url }}|g" \
             | sed -e "s|<build-id>|${{ github.run_id }}|g" > "${REPO_MANIFEST}/${MANIFEST_DIR}/all.yaml"
-      - name: git commit
-        run: |
-          git config --local user.email "action@github.com"
-          git config --local user.name "actions-user"
-          git status
-          git add "${MANIFEST_DIR}/*"
-          ret=$(git status| sed -ne 's|.*\(clean\)|\1|p')
-          if [[ "$ret" != "" ]];then
-            git commit -m "(${MANIFEST_DIR}) update manifests ${REPO}@${LINK} (${RUN_ID})" -m "compare: ${COMPARE_URL}"
-          fi
-        working-directory: ${{ env.REPO_MANIFEST }}
-        env:
-          REPO: ${{ github.repository }}
-          RUN_ID: ${{ github.run_id }}
-          LINK: ${{ env.SHORT_SHA }}
-          COMPARE_URL: ${{ github.event.compare }}
-      - uses: peter-evans/create-pull-request@v2
+
+      - name: Check for modified files
+        id: git-check
+        run: echo ::set-output name=modified::$(if git diff-index --quiet HEAD --; then echo "false"; else echo "true"; fi)
+
+      - name: Create PullRequest
+        if: steps.git-check.outputs.modified == 'true'
         id: cpr
+        uses: peter-evans/create-pull-request@v3
         with:
-          token: ${{ secrets.SYNCED_GITHUB_TOKEN_REPO }}
+          base: "main"
           branch: ${{ env.BRANCH }}
-          labels: kubernetes
+          author: github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>
+          committer: github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>
+          delete-branch: true
+          commit-message: "update manifests ${{ github.repository }}@${{ env.SHORT_SHA }} (${{ github.run_id }})"
           title: "feat: (${{ env.MANIFEST_DIR }}) update manifest on ${{ env.GIT_BRANCH }}"
           body: |
             Automated changed by https://github.com/${{ github.repository }}/tree/${{ env.GIT_BRANCH }}
-            ## TL;DR
-            * Kubernetes Manifest to deploy app.
-            * Source Branch: ${{ env.GIT_BRANCH }}
-          path: ${{ env.REPO_MANIFEST }}
-      - run: |
-          echo "Pull Request Number - ${{ env.PULL_REQUEST_NUMBER }}"
+          labels: |
+            automated pr
+            kubernetes
+
+      - name: Check outputs
+        if: steps.git-check.outputs.modified == 'true'
+        run: |
           echo "Pull Request Number - ${{ steps.cpr.outputs.pull-request-number }}"
-
-# not work. could not create pr.
-# name: k8s manifest Push
-# on:
-#   push:
-#     branches:
-#       - main
-#     paths:
-#       - src/k8s/**/*
-#       - .github/workflows/k8s*
-
-# env:
-#   REPO_MANIFEST: guitarrapc/kubernetes-manifest-lab
-#   MANIFEST_DIR: dev
-
-# jobs:
-#   push_remote:
-#     env:
-#       NAMESPACE_PREFIX: githubactions-sample-
-#     outputs:
-#       GIT_BRANCH: ${{ env.GIT_BRANCH }}
-#     runs-on: ubuntu-latest
-#     steps:
-#       - uses: actions/checkout@v2
-#       - uses: actions/checkout@v2
-#         with:
-#           repository: ${{ env.REPO_MANIFEST }}
-#           path: ${{ env.REPO_MANIFEST }}
-#           token: ${{ secrets.SYNCED_GITHUB_TOKEN_REPO }}
-#       - run: |
-#           echo "GIT_BRANCH::$(echo $REF | sed -e 's|refs/heads/||g')"
-#           echo "SHORT_SHA::$(git rev-parse --short HEAD)"
-#         env:
-#           REF: ${{ github.ref }}
-#       - run: echo "BRANCH::${BRANCH}"
-#         env:
-#           BRANCH: ${{ github.event.repository.name }}/${{ env.GIT_BRANCH }}-pr
-#       - run: |
-#           git fetch origin ${BRANCH}:${BRANCH} || git switch -c ${BRANCH} || git switch ${BRANCH}
-#           git reset --hard ${BRANCH}
-#         working-directory: ${{ env.REPO_MANIFEST }}
-#       - run: |
-#           mkdir -p ./${REPO_MANIFEST}/${MANIFEST_DIR}
-#           kubectl kustomize ./src/k8s/common/overlays/development \
-#             | sed -e "s|<namespace>|${NAMESPACE_PREFIX}${MANIFEST_DIR}|g" \
-#             | sed -e "s|<git-sha>|${{ github.sha }}|g" \
-#             | sed -e "s|<git-branch>|${GIT_BRANCH}|g" \
-#             | sed -e "s|<git-link>|${{ github.event.commits[0].url }}|g" \
-#             | sed -e "s|<build-id>|${{ github.run_id }}|g" > ${REPO_MANIFEST}/${MANIFEST_DIR}/all.yaml
-#       - run: |
-#           git config --local user.email "action@github.com"
-#           git config --local user.name "actions-user"
-#           git status
-#           git add "${MANIFEST_DIR}/*"
-#           ret=$(git status| sed -ne 's|.*\(clean\)|\1|p')
-#           if [ -z $ret ];then
-#             git commit -m "(${MANIFEST_DIR}) update manifests ${REPO}@${LINK} (${RUN_ID})" -m "compare: ${COMPARE_URL}"
-#           fi
-#         working-directory: ${{ env.REPO_MANIFEST }}
-#         env:
-#           REPO: ${{ github.repository }}
-#           RUN_ID: ${{ github.run_id }}
-#           LINK: ${{ env.SHORT_SHA }}
-#           COMPARE_URL: ${{ github.event.compare }}
-#       # #accumerate commit pattern
-#       # https://github.com/peter-evans/create-pull-request/issues/169
-#       - uses: ad-m/github-push-action@master
-#         with:
-#           github_token: ${{ secrets.SYNCED_GITHUB_TOKEN_REPO }}
-#           repository: ${{ env.REPO_MANIFEST }}
-#           branch: ${{ env.BRANCH }}
-#           directory: ${{ env.REPO_MANIFEST }}
-#   #if accumerate commit pattern
-#   create_pr:
-#     needs: [push_manifest]
-#     runs-on: ubuntu-latest
-#     steps:
-#       - run: echo "GIT_BRANCH::${BRANCH}"
-#         env:
-#           BRANCH: ${{ needs.push_manifest.outputs.GIT_BRANCH }}
-#       - run: echo "BRANCH::${BRANCH}-pr"
-#         env:
-#           BRANCH: ${{ github.event.repository.name }}/${{ env.GIT_BRANCH }}
-#       - uses: actions/checkout@v2
-#         with:
-#           repository: ${{ env.REPO_MANIFEST }}
-#           token: ${{ secrets.SYNCED_GITHUB_TOKEN_REPO }}
-#       - run: |
-#           git config --local user.email "action@github.com"
-#           git config --local user.name "actions-user"
-#           git fetch origin ${BRANCH}:${BRANCH}
-#           git reset --hard ${BRANCH}
-#       - uses: peter-evans/create-pull-request@v2
-#         id: cpr
-#         with:
-#           token: ${{ secrets.SYNCED_GITHUB_TOKEN_REPO }}
-#           branch: ${{ env.BRANCH }}
-#           labels: kubernetes
-#           title: "feat: (${{ env.MANIFEST_DIR }}) update manifest on ${{ env.GIT_BRANCH }}"
-#           body: |
-#             Automated changed by https://github.com/${{ github.repository }}/tree/${{ env.GIT_BRANCH }}
-#             ## TL;DR
-#             * Kubernetes Manifest to deploy app.
-#             * Source Branch: ${{ env.GIT_BRANCH }}
-#       - run: |
-#           echo "Pull Request Number - ${{ env.PULL_REQUEST_NUMBER }}"
-#           echo "Pull Request Number - ${{ steps.cpr.outputs.pull-request-number }}"
+          echo "Pull Request URL - ${{ steps.cpr.outputs.pull-request-url }}"
