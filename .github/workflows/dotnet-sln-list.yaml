@@ -19,8 +19,10 @@ jobs:
       - name: Obtain csproj to lint
         run: |
           projects=$(dotnet sln list | tail -n +3 | sort | xargs -n 1 echo '  *')
-          echo "FORMAT_PROJECTS<<EOF" >> $GITHUB_ENV
-          echo "${projects}" >> $GITHUB_ENV
-          echo "EOF" >> $GITHUB_ENV
+          {
+            echo "FORMAT_PROJECTS<<EOF"
+            echo "${projects}"
+            echo "EOF"
+          } >> "$GITHUB_ENV"
         working-directory: src/dotnet
       - run: echo "${{ env.FORMAT_PROJECTS }}"

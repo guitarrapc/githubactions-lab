@@ -21,10 +21,11 @@ jobs:
       # detect changes
       - name: Check for modified files
         id: git-check
-        run: echo ::set-output name=modified::$(if git diff-index --quiet HEAD --; then echo "false"; else echo "true"; fi)
+        run: echo "::set-output name=modified::$(if git diff-index --quiet HEAD --; then echo "false"; else echo "true"; fi)"
 
       # commit & pr if change happen (force push when branch/pr already exists)
       - name: Create PullRequest
+        id: cpr
         if: steps.git-check.outputs.modified == 'true'
         uses: peter-evans/create-pull-request@v3
         with:

@@ -146,7 +146,7 @@ GitHub Actions need to create or update Environment File, it's similar to Circle
 
 > https://help.github.com/en/actions/reference/workflow-commands-for-github-actions#setting-an-environment-variable
 
-GitHub Actions use Environment Files to manage Environment variables, create or update via `echo "{name}={value}" >> $GITHUB_ENV` syntax, or `echo "{name}={value}" | tee -a $GITHUB_ENV`
+GitHub Actions use Environment Files to manage Environment variables, create or update via `echo "{name}={value}" >> "$GITHUB_ENV"` syntax, or `echo "{name}={value}" | tee -a "$GITHUB_ENV"`
 
 > `::set-env` syntax is deprecated for [security reason](https://github.blog/changelog/2020-10-01-github-actions-deprecating-set-env-and-add-path-commands/).
 
@@ -155,8 +155,8 @@ steps:
   - name: test
     run: |
       # new
-      echo "INPUT_LOGLEVEL=${{ github.event.inputs.logLevel }}" >> $GITHUB_ENV
-      echo "INPUT_TAGS=${{ github.event.inputs.tags }}" >> $GITHUB_ENV
+      echo "INPUT_LOGLEVEL=${{ github.event.inputs.logLevel }}" >> "$GITHUB_ENV"
+      echo "INPUT_TAGS=${{ github.event.inputs.tags }}" >> "$GITHUB_ENV"
       # deprecated
       # echo ::set-env name=INPUT_LOGLEVEL::${{ github.event.inputs.logLevel }}
       # echo ::set-env name=INPUT_TAGS::${{ github.event.inputs.tags }}
@@ -169,7 +169,7 @@ steps:
 ### adding system path
 
 GitHub Actions need to create or update Environment File, it's similar to CircleCI.
-* GitHub Actions use Environment Files to manage System Path, create or update via `echo "{path}" >> $GITHUB_PATH` syntax.
+* GitHub Actions use Environment Files to manage System Path, create or update via `echo "{path}" >> "$GITHUB_PATH"` syntax.
   * `::add-path` syntax is deprecated for [security reason](https://github.blog/changelog/2020-10-01-github-actions-deprecating-set-env-and-add-path-commands/).
 
 ### set secrets for reposiory
@@ -238,9 +238,9 @@ jobs:
           echo ${TEST_VAR}
       - run: export
       - run: |
-          echo "INPUT_LOGLEVEL=${{ github.event.inputs.logLevel }}" >> $GITHUB_ENV
-          echo "INPUT_TAG=${{ github.event.inputs.tags }}" >> $GITHUB_ENV
-      - run: echo "/path/to/dir" >> $GITHUB_PATH
+          echo "INPUT_LOGLEVEL=${{ github.event.inputs.logLevel }}" >> "$GITHUB_ENV"
+          echo "INPUT_TAG=${{ github.event.inputs.tags }}" >> "$GITHUB_ENV"
+      - run: echo "/path/to/dir" >> "$GITHUB_PATH"
       - run: |
           echo "Log level: ${INPUT_LOGLEVEL}"
           echo "Tags: ${INPUT_TAGS}"
@@ -478,7 +478,7 @@ while [ $# -gt 0 ]; do
     esac
 done
 
-echo GIT_TAG_SCRIPT=${GITHUB_REF#refs/tags/} >> $GITHUB_ENV
+echo GIT_TAG_SCRIPT=${GITHUB_REF##*/} >> "$GITHUB_ENV"
 ```
 
 Call this script from workflow.
@@ -493,7 +493,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - run: echo "GIT_TAG=${GITHUB_REF#refs/heads/}" >> $GITHUB_ENV
+      - run: echo "GIT_TAG=${GITHUB_REF#refs/heads/}" >> "$GITHUB_ENV"
       - run: echo ${{ env.GIT_TAG }}
       - run: bash -eux .github/scripts/setenv.sh --ref "${GITHUB_REF#refs/heads/}"
       - run: echo ${{ env.GIT_TAG_SCRIPT }}
@@ -575,7 +575,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - run: echo $COMMIT_MESSAGES
+      - run: echo "$COMMIT_MESSAGES"
         env:
           COMMIT_MESSAGES: ${{ toJson(github.event.commits.*.message) }}
 
@@ -601,7 +601,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - run: echo $COMMIT_MESSAGES
+      - run: echo "$COMMIT_MESSAGES"
         env:
           COMMIT_MESSAGES: ${{ toJson(github.event.commits.*.message) }}
       - run: echo run when none of previous steps  have failed or been canceled
@@ -830,10 +830,10 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - run: echo ::set-output name=GIT_TAG::${GITHUB_REF#refs/tags/}
+      - run: echo ::set-output name=GIT_TAG::${GITHUB_REF##*/}
         id: CI_TAG
       - run: echo ${{ steps.CI_TAG.outputs.GIT_TAG }}
-      - run: echo "GIT_TAG=${GITHUB_REF#refs/tags/}" >> $GITHUB_ENV
+      - run: echo "GIT_TAG=${GITHUB_REF##*/}" >> "$GITHUB_ENV"
       - run: echo ${{ env.GIT_TAG }}
 ```
 
@@ -859,7 +859,7 @@ jobs:
       NUGET_XMLDOC_MODE: skip
     steps:
       # set release tag(*.*.*) to env.GIT_TAG
-      - run: echo "GIT_TAG=${GITHUB_REF#refs/tags/}" >> $GITHUB_ENV
+      - run: echo "GIT_TAG=${GITHUB_REF##*/}" >> "$GITHUB_ENV"
 
       - run: echo "hoge" > hoge.${GIT_TAG}.txt
       - run: echo "fuga" > fuga.${GIT_TAG}.txt
@@ -937,7 +937,7 @@ jobs:
     if: "contains(toJSON(github.event.commits.*.message), '[build]')"
     runs-on: ubuntu-latest
     steps:
-      - run: echo $COMMIT_MESSAGES
+      - run: echo "$COMMIT_MESSAGES"
         env:
           COMMIT_MESSAGES: ${{ toJson(github.event.commits.*.message) }}
 ```
@@ -985,10 +985,10 @@ jobs:
     if: "!contains(github.event.pull_request.title, '[skip ci]') || !contains(github.event.pull_request.title, '[ci skip]')"
     runs-on: ubuntu-latest
     steps:
-      - run: echo $GITHUB_CONTEXT
+      - run: echo "$GITHUB_CONTEXT"
         env:
           GITHUB_CONTEXT: ${{ toJson(github) }}
-      - run: echo $TITLE
+      - run: echo "$TITLE"
         env:
           TITLE: ${{ toJson(github.event.pull_request.title) }}
 ```
@@ -1042,7 +1042,7 @@ jobs:
       IS_HOGE: "false"
     steps:
       - run: echo "${{ toJson(github.event.pull_request.labels.*.name) }}"
-      - run: echo "IS_HOGE=${{ contains(github.event.pull_request.labels.*.name, 'hoge') }}" >> $GITHUB_ENV
+      - run: echo "IS_HOGE=${{ contains(github.event.pull_request.labels.*.name, 'hoge') }}" >> "$GITHUB_ENV"
       - run: echo "${IS_HOGE}"
       - run: echo "run!"
         if: env.IS_HOGE == 'true'
