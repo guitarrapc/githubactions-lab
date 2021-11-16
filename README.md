@@ -57,6 +57,8 @@ GitHub Actions laboratory.
   - [skip job when Draft PR](#skip-job-when-draft-pr)
 - [ADVANCED](#advanced)
   - [Dispatch other repo from workflow](#dispatch-other-repo-from-workflow)
+- [Cheat Sheet](#cheat-sheet)
+  - [Get Tag, Branch](#get-tag-branch)
 
 </details>
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
