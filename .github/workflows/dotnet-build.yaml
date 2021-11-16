@@ -17,14 +17,14 @@ jobs:
       NUGET_XMLDOC_MODE: skip
     steps:
       - uses: actions/checkout@v2
-      - run: which dotnet
+      - run: command -v dotnet
       - run: ls /usr/share/dotnet/sdk
       - run: dotnet --version
       - run: dotnet --list-sdks
       - uses: actions/setup-dotnet@v1
         with:
           dotnet-version: 5.0.x
-      - run: which dotnet
+      - run: command -v dotnet
       - run: ls /usr/share/dotnet/sdk
       - run: ls -l "$HOME/.dotnet/sdk"
       - run: dotnet --version
