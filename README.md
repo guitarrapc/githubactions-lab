@@ -59,6 +59,8 @@ GitHub Actions laboratory.
   - [Dispatch other repo from workflow](#dispatch-other-repo-from-workflow)
 - [Cheat Sheet](#cheat-sheet)
   - [Get Tag, Branch](#get-tag-branch)
+  - [Get Workflow Name](#get-workflow-name)
+  - [Get Workflow Url](#get-workflow-url)
 
 </details>
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
