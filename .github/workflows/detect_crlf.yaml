@@ -44,7 +44,7 @@ jobs:
         uses: thollander/actions-comment-pull-request@v1
         with:
           message: |
-            [${{ github.workflow }}](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}) detected CRLF files as follows.
+            [${{ github.workflow }}](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}) found CRLF files as follows.
             ${{ env.CRLF_FILES }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - if: ${{ env.CRLF_FILES != '' }}
