@@ -29,17 +29,16 @@ jobs:
             for file in $(echo "${{ steps.changed-files.outputs.all_modified_files }}" | grep -e "${{ env.FILE_PATTERN }}"); do
               if file "${file}" | grep CRLF > /dev/null; then
                 err=true
-                printf "* ${file}" | tee -a ./__crlf__.txt
+                printf "* %s" "${file}" | tee -a ./__crlf__.txt
               fi
             done
           IFS=$BACK_IFS
 
           if [[ "${err}" == "true" ]]; then
-            {
-              echo "CRLF_FILES<<EOF"
-              cat ./__crlf__.txt
-              echo "EOF"
-            } >> "$GITHUB_ENV"
+            echo "CRLF_FILES<<EOF" >> "$GITHUB_ENV"
+            cat ./__crlf__.txt
+            cat ./__crlf__.txt >> "$GITHUB_ENV"
+            echo "EOF" >> "$GITHUB_ENV"
             rm ./__crlf__.txt
           fi
       - if: ${{ github.event_name == 'pull_request' && env.CRLF_FILES != '' }}
