@@ -2,8 +2,6 @@ name: detect crlf
 
 on:
   workflow_dispatch:
-  push:
-    branches: ["main"]
   pull_request:
     branches: ["main"]
 
@@ -12,6 +10,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      # do not use space in file name.
+      #   OK: foo.bar
+      #   NG: foo 1.bar
       - id: changed-files
         uses: tj-actions/changed-files@v11.5
         with:
@@ -35,7 +36,7 @@ jobs:
               err=true
               echo "'${file}' detected as CRLF."
               if [[ "${crlf_files}" != "" ]]; then crlf_files="${crlf_files}$IFS"; fi
-              crlf_files="${crlf_files} * ${file}"
+              crlf_files="${crlf_files} ${file}"
             fi
           done
 
