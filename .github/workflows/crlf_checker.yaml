@@ -12,6 +12,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+        with:
+          fetch-depth: 2 # detect on push
       # do not use space in file name.
       #   OK: foo.bar
       #   NG: foo 1.bar
