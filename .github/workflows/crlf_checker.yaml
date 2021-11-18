@@ -1,4 +1,4 @@
-name: detect crlf
+name: crlf_checker
 
 on:
   workflow_dispatch:
