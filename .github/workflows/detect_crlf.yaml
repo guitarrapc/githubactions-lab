@@ -27,23 +27,24 @@ jobs:
           for file in $(echo "${{ steps.changed-files.outputs.all_modified_files }}" | grep -e "${{ env.FILE_PATTERN }}" | sed -e "s/,/ /g"); do
             if file "${file}" | grep CRLF > /dev/null; then
               err=true
+              echo "${file} detected as CRLF."
               crlf_files="${crlf_files} * ${file}${IFS}"
             fi
           done
 
           if [[ "${err}" == "true" ]]; then
-          {
-            echo "CRLF_FILES<<EOF"
-            echo "${crlf_files}"
-            echo "EOF"
-          } >> "$GITHUB_ENV"
+            {
+              echo "CRLF_FILES<<EOF"
+              echo "${crlf_files}"
+              echo "EOF"
+            } >> "$GITHUB_ENV"
           fi
       - if: ${{ github.event_name == 'pull_request' && env.CRLF_FILES != '' }}
         name: Comment PR
         uses: thollander/actions-comment-pull-request@v1
         with:
           message: |
-            CRLF files are detected!!
+            ${{ github.workflow }} workflow detected CRLF files as follows.
             ${{ env.CRLF_FILES }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - if: ${{ env.CRLF_FILES != '' }}
