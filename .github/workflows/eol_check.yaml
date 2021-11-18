@@ -27,7 +27,7 @@ jobs:
           for file in $(echo "${{ steps.changed-files.outputs.all_modified_files }}" | grep -e "${{ env.FILE_PATTERN }}" | sed -e "s/,/ /g"); do
             if file "${file}" | grep CRLF > /dev/null; then
               err=true
-              crlf_files="${crlf_files} ${file}"
+              crlf_files="${crlf_files} * ${file}${IFS}"
             fi
           done
 
