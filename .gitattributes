@@ -3,4 +3,4 @@
 *.txt text eol=lf
 *.yml text eol=lf
 *.yaml text eol=lf
-*.foo text eol=crlf
+# *.foo text eol=crlf
