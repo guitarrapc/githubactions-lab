@@ -1,0 +1,51 @@
+name: eol check
+
+on:
+  workflow_dispatch:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+
+env:
+  FILE_PATTERN: ".*"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - id: changed-files
+        uses: tj-actions/changed-files@v11.5
+        with:
+          separator: ","
+      - name: Detect CRLF
+        run: |
+          echo "CRLF_FILES=" >> "$GITHUB_ENV"
+          err=false
+          for file in $(echo "${{ steps.changed-files.outputs.all_modified_files }}" | grep -e "${{ env.FILE_PATTERN }}"); do
+            if file "${file}" | grep CRLF > /dev/null; then
+              err=true
+              echo "* ${file}" | tee -a ./__crlf__.txt
+            fi
+          done
+
+          if [[ "${err}" == "true" ]]; then
+            {
+              echo "CRLF_FILES<<EOF"
+              cat ./__crlf__.txt
+              echo "EOF"
+            } >> "$GITHUB_ENV"
+            rm ./__crlf__.txt
+          fi
+      - if: ${{ github.event_name == 'pull_request' && env.CRLF_FILES != '' }}
+        name: Comment PR
+        uses: thollander/actions-comment-pull-request@v1
+        with:
+          message: |
+            CRLF files are detected!!
+            ${{ env.CRLF_FILES }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - if: ${{ env.CRLF_FILES != '' }}
+        name: Exit action if detected
+        run: exit 1
