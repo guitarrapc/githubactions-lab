@@ -31,12 +31,12 @@ jobs:
           echo "CRLF_FILES=" >> "$GITHUB_ENV"
           err=false
 
-           # use `| grep -e "${{ env.FILE_PATTERN }}"` if you want grep to some pattern.
-          for file in $(echo "${{ steps.changed-files.outputs.all_modified_files }}"); do
+          for file in "${{ steps.changed-files.outputs.all_modified_files }}"; do
             if file "${file}" | grep CRLF > /dev/null; then
               err=true
               echo "'${file}' detected as CRLF."
-              crlf_files="${crlf_files} * ${file}${IFS}"
+              if [[ "${crlf_files}" != "" ]]; then crlf_files="${crlf_files}$IFS"; fi
+              crlf_files="${crlf_files} * ${file}"
             fi
           done
 
@@ -53,7 +53,10 @@ jobs:
         with:
           message: |
             [${{ github.workflow }}](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}) found CRLF files as follows.
+
+            ```
             ${{ env.CRLF_FILES }}
+            ```
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - if: ${{ env.CRLF_FILES != '' }}
         name: Exit action if detected
