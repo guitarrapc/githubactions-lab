@@ -1,5 +1,5 @@
 # Description: Detect if PUSH or PR includes End of Line `CRLF` files.
-name: crlf_checker
+name: crlf checker
 
 on:
   workflow_dispatch:
