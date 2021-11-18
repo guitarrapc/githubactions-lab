@@ -23,12 +23,16 @@ jobs:
         run: |
           echo "CRLF_FILES=" >> "$GITHUB_ENV"
           err=false
-          for file in $(echo "${{ steps.changed-files.outputs.all_modified_files }}" | grep -e "${{ env.FILE_PATTERN }}"); do
-            if file "${file}" | grep CRLF > /dev/null; then
-              err=true
-              echo "* ${file}" | tee -a ./__crlf__.txt
-            fi
-          done
+
+          BACK_IFS=$IFS
+          IFS=','
+            for file in $(echo "${{ steps.changed-files.outputs.all_modified_files }}" | grep -e "${{ env.FILE_PATTERN }}"); do
+              if file "${file}" | grep CRLF > /dev/null; then
+                err=true
+                echo -n "* ${file}\n" | tee -a ./__crlf__.txt
+              fi
+            done
+          IFS=$BACK_IFS
 
           if [[ "${err}" == "true" ]]; then
             {
