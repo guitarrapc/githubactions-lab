@@ -7,9 +7,6 @@ on:
   pull_request:
     branches: ["main"]
 
-env:
-  FILE_PATTERN: ".*"
-
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -18,13 +15,24 @@ jobs:
       - id: changed-files
         uses: tj-actions/changed-files@v11.5
         with:
-          separator: ","
+          files: |
+            my-file.txt
+            test.txt
+            new.txt
+            test_directory
+            \.foo$
+            \.sh$
+            .(png|jpeg)$
+            .(cs|csproj)$
+            ^(mynewfile|custom)
+
       - name: Detect CRLF
         run: |
           echo "CRLF_FILES=" >> "$GITHUB_ENV"
           err=false
 
-          for file in $(echo "${{ steps.changed-files.outputs.all_modified_files }}" | grep -e "${{ env.FILE_PATTERN }}" | sed -e "s/,/ /g"); do
+           # use `| grep -e "${{ env.FILE_PATTERN }}"` if you want grep to some pattern.
+          for file in $(echo "${{ steps.changed-files.outputs.all_modified_files }}"); do
             if file "${file}" | grep CRLF > /dev/null; then
               err=true
               echo "'${file}' detected as CRLF."
