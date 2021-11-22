@@ -12,9 +12,10 @@ namespace console
 
     public class Hoge
     {
-        public string Name { get; set; }
+        public string Name { get; init; }
         private readonly bool foobar = true;
 
+        public Hoge () {}
         public Hoge (bool foobar)
         {
             this.foobar = foobar;
