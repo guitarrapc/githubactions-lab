@@ -34,7 +34,8 @@ jobs:
 
       # dotnet format is build-in from dotnet 6.0 sdk
       - name: Dotnet Format
-        run: dotnet format --verbosity diagnostic --exclude "src/dotnet/console-fail-tests" src/dotnet/console.sln
+        run: dotnet format --verbosity diagnostic --exclude "console-fail-tests" console.sln
+        working-directory: src/dotnet/
 
       # is change happen?
       - name: Check for modified files
