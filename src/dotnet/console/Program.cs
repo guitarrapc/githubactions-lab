@@ -13,5 +13,11 @@ namespace console
     public class Hoge
     {
         public string Name { get; set; }
+        private readonly bool foobar = true;
+
+        public Hoge (bool foobar)
+        {
+            this.foobar = foobar;
+        }
     }
 }
