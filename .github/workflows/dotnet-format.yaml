@@ -23,9 +23,11 @@ jobs:
       - name: Obtain csproj to lint
         run: |
           projects=$(dotnet sln list | tail -n +3 | sort | xargs -n 1 echo '  *')
-          echo "FORMAT_PROJECTS<<EOF" >> $GITHUB_ENV
-          echo "${projects}" >> $GITHUB_ENV
-          echo "EOF" >> $GITHUB_ENV
+          {
+            echo "FORMAT_PROJECTS<<EOF"
+            echo "${projects}"
+            echo "EOF"
+          } >> "$GITHUB_ENV"
 
       - name: Add dotnet-format problem matcher
         uses: xt0rted/dotnet-format-problem-matcher@v1
@@ -37,17 +39,29 @@ jobs:
       # is change happen?
       - name: Check for modified files
         id: git-check
-        run: echo ::set-output name=modified::$(if git diff-index --quiet HEAD --; then echo "false"; else echo "true"; fi)
+        run: echo "::set-output name=modified::$(if git diff-index --quiet HEAD --; then echo "false"; else echo "true"; fi)"
 
       # get directory stats
       - name: List modified directories
         if: steps.git-check.outputs.modified == 'true'
-        id: git-changes
         run: |
           dirs=$(git diff --dirstat=files)
-          echo "CHANGED_DIRS<<EOF" >> $GITHUB_ENV
-          echo "${dirs}" >> $GITHUB_ENV
-          echo "EOF" >> $GITHUB_ENV
+          {
+            echo "CHANGED_DIRS<<EOF"
+            echo "${dirs}"
+            echo "EOF"
+          } >> "$GITHUB_ENV"
+
+      # get files stats
+      - name: List modified files
+        if: steps.git-check.outputs.modified == 'true'
+        run: |
+          files=$(git diff --name-only)
+          {
+            echo "CHANGED_FILES<<EOF"
+            echo "${files}"
+            echo "EOF"
+          } >> "$GITHUB_ENV"
 
       # Commit if change happen, then craete PR. force push when branch/pr already exists.
       - name: Create PullRequest
@@ -74,7 +88,19 @@ jobs:
             ${{ env.CHANGED_DIRS }}
             ```
 
+            ## Files
+
+            <details>
+            <summary>Click to show.</summary>
+
+            ```
+            ${{ env.CHANGED_FILES }}
+            ```
+
+            </details>
+
             ## Target Projects
+
             ${{ env.FORMAT_PROJECTS }}
 
           labels: |
