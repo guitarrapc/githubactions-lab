@@ -28,6 +28,7 @@ jobs:
             echo "${projects}"
             echo "EOF"
           } >> "$GITHUB_ENV"
+        working-directory: src/dotnet/
 
       - name: Add dotnet-format problem matcher
         uses: xt0rted/dotnet-format-problem-matcher@v1
