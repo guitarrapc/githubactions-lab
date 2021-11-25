@@ -34,5 +34,3 @@ jobs:
       - run: echo "${{ contains(steps.changed-files2.outputs.all_modified_files, '.github/dummy') || 'true' }}"
       - run: echo "${{ contains(steps.changed-files2.outputs.all_modified_files, '.github/dummy') && 'true' || 'false' }}"
       - run: echo "RUN_TEST2=${{ contains(steps.changed-files2.outputs.all_modified_files, '.github/workflows') || 'true' }}"  | tee -a "$GITHUB_ENV"
-      # not test
-      - run: echo "${{ steps.changed-files3.outputs.all_modified_files == '' }}"
