@@ -13,7 +13,7 @@ jobs:
       - run: echo "${{ contains(steps.file_changes.outputs.files, '.github/workflows')}}"
       - run: echo "${{ contains(steps.file_changes.outputs.files, '.github/dummy')}}"
       - run: echo "${{ contains(steps.file_changes.outputs.files, '.github/dummy') || 'true' }}"
-      - run: echo "${{ contains(steps.file_changes.outputs.files, '.github/dummy') && 'false' || 'true' }}"
+      - run: echo "${{ contains(steps.file_changes.outputs.files, '.github/dummy') && 'true' || 'false' }}"
       - run: echo "RUN_TEST=${{ contains(steps.file_changes.outputs.files, '.github/workflows') || 'true' }}"  | tee -a "$GITHUB_ENV"
       # test if not exists
       - id: file_changes2
@@ -24,5 +24,5 @@ jobs:
       - run: echo "${{ contains(steps.file_changes2.outputs.files, '.github/workflows')}}"
       - run: echo "${{ contains(steps.file_changes2.outputs.files, '.github/dummy')}}"
       - run: echo "${{ contains(steps.file_changes2.outputs.files, '.github/dummy') || 'true' }}"
-      - run: echo "${{ contains(steps.file_changes2.outputs.files, '.github/dummy') && 'false' || 'true' }}"
+      - run: echo "${{ contains(steps.file_changes2.outputs.files, '.github/dummy') && 'true' || 'false' }}"
       - run: echo "RUN_TEST2=${{ contains(steps.file_changes2.outputs.files, '.github/workflows') || 'true' }}"  | tee -a "$GITHUB_ENV"

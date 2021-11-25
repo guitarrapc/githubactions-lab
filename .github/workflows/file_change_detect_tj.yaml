@@ -20,7 +20,7 @@ jobs:
       - run: echo "${{ contains(steps.changed-files.outputs.all_modified_files, '.github/workflows')}}"
       - run: echo "${{ contains(steps.changed-files.outputs.all_modified_files, '.github/dummy')}}"
       - run: echo "${{ contains(steps.changed-files.outputs.all_modified_files, '.github/dummy') || 'true' }}"
-      - run: echo "${{ contains(steps.changed-files.outputs.all_modified_files, '.github/dummy') && 'false' || 'true' }}"
+      - run: echo "${{ contains(steps.changed-files.outputs.all_modified_files, '.github/dummy') && 'true' || 'false' }}"
       - run: echo "RUN_TEST=${{ contains(steps.changed-files.outputs.all_modified_files, '.github/workflows') || 'true' }}"  | tee -a "$GITHUB_ENV"
       # test if not exists
       - id: changed-files2
@@ -32,5 +32,5 @@ jobs:
       - run: echo "${{ contains(steps.changed-files2.outputs.all_modified_files, '.github/workflows')}}"
       - run: echo "${{ contains(steps.changed-files2.outputs.all_modified_files, '.github/dummy')}}"
       - run: echo "${{ contains(steps.changed-files2.outputs.all_modified_files, '.github/dummy') || 'true' }}"
-      - run: echo "${{ contains(steps.changed-files2.outputs.all_modified_files, '.github/dummy') && 'false' || 'true' }}"
+      - run: echo "${{ contains(steps.changed-files2.outputs.all_modified_files, '.github/dummy') && 'true' || 'false' }}"
       - run: echo "RUN_TEST2=${{ contains(steps.changed-files2.outputs.all_modified_files, '.github/workflows') || 'true' }}"  | tee -a "$GITHUB_ENV"
