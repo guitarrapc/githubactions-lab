@@ -1,0 +1,16 @@
+name: push and not on pull_request
+
+on:
+  # prevent run on pull_request
+  push:
+    branches:
+      - foo
+  pull_request:
+    branches:
+      - "!foo"
+
+jobs:
+  my-job:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo push and pull_request trigger
