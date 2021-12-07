@@ -8,6 +8,7 @@ on:
 env:
   DOTNET_SKIP_FIRST_TIME_EXPERIENCE: 1
   DOTNET_NOLOGO: true
+  SLN_ROOT: src/dotnet/
 
 jobs:
   lint_csharp:
@@ -28,15 +29,15 @@ jobs:
             echo "${projects}"
             echo "EOF"
           } >> "$GITHUB_ENV"
-        working-directory: src/dotnet/
+        working-directory: ${{ env.SLN_ROOT }}
 
       - name: Add dotnet-format problem matcher
         uses: xt0rted/dotnet-format-problem-matcher@v1
 
       # dotnet format is build-in from dotnet 6.0 sdk
       - name: Dotnet Format
-        run: dotnet format --verbosity diagnostic --exclude "console-fail-tests" console.sln
-        working-directory: src/dotnet/
+        run: dotnet format --verbosity diagnostic --exclude "console-fail-tests"
+        working-directory: ${{ env.SLN_ROOT }}
 
       # is change happen?
       - name: Check for modified files
