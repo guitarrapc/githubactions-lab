@@ -20,7 +20,7 @@ jobs:
         with:
           dotnet-version: 6.0.x
 
-      # dotnet format
+      # dotnet list
       - name: Obtain csproj to lint
         run: |
           projects=$(dotnet sln list | tail -n +3 | sort | xargs -n 1 echo '  *')
