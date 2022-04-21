@@ -8,20 +8,25 @@ on:
   pull_request:
     branches: [main]
 
+env:
+  DOTNET_CLI_TELEMETRY_OPTOUT: 1
+  DOTNET_NOLOGO: true
+  DOTNET_SKIP_FIRST_TIME_EXPERIENCE: 1
+  NUGET_XMLDOC_MODE: skip
+  # colour output
+  DOTNET_SYSTEM_CONSOLE_ALLOW_ANSI_COLOR_REDIRECTION: 1
+  TERM: xterm
+
 jobs:
   dotnet-console:
     runs-on: ubuntu-latest
-    env:
-      DOTNET_CLI_TELEMETRY_OPTOUT: 1
-      DOTNET_SKIP_FIRST_TIME_EXPERIENCE: 1
-      NUGET_XMLDOC_MODE: skip
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - run: command -v dotnet
       - run: ls /usr/share/dotnet/sdk
       - run: dotnet --version
       - run: dotnet --list-sdks
-      - uses: actions/setup-dotnet@v1
+      - uses: actions/setup-dotnet@v2
         with:
           dotnet-version: 6.0.x
       - run: command -v dotnet
@@ -41,12 +46,8 @@ jobs:
     runs-on: ubuntu-latest
     container:
       image: mcr.microsoft.com/dotnet/sdk:6.0
-    env:
-      DOTNET_CLI_TELEMETRY_OPTOUT: 1
-      DOTNET_SKIP_FIRST_TIME_EXPERIENCE: 1
-      NUGET_XMLDOC_MODE: skip
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - run: dotnet build ./src/dotnet/console/ -c Debug
       - run: dotnet test ./src/dotnet/console-tests/ -c Debug --logger GitHubActions
       - run: dotnet publish ./src/dotnet/console/ -c Debug -o ./out/dotnet-console-container

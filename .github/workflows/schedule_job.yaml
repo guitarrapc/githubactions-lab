@@ -10,6 +10,6 @@ jobs:
         run: echo "$CONTEXT"
         env:
           CONTEXT: ${{ toJson(github) }}
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         with:
           ref: refs/heads/some-branch

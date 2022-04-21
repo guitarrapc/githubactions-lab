@@ -222,7 +222,7 @@ jobs:
   printInputs:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         with:
           ref: ${{ github.event.inputs.branch }}
       - name: dump github context
@@ -295,7 +295,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - run: bash -eu .github/scripts/github-context.sh
 ```
 
@@ -496,7 +496,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - run: echo "GIT_TAG=${GITHUB_REF##*/}" >> "$GITHUB_ENV"
       - run: echo ${{ env.GIT_TAG }}
       - run: bash -eux .github/scripts/setenv.sh --ref "${GITHUB_REF##*/}"
@@ -922,7 +922,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         with:
           ref: refs/heads/some-branch
 ```
@@ -1066,7 +1066,7 @@ jobs:
     if: "!(github.event.pull_request.draft)"
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 ```
 
 # ADVANCED
@@ -1091,7 +1091,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 ```
 
 This repo will dispatch event with following worlflow.

@@ -24,7 +24,7 @@ jobs:
       CREATE_PR: ${{ github.event.inputs.create_pr }}
       DRY_RUN: ${{ github.event.inputs.dry_run }}
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: before
         run: cat ${{ env.TARGET_FILE}}
       - name: update package.json to version ${{ env.VERSION }}
