@@ -4,7 +4,7 @@ name: crlf checker
 on:
   workflow_dispatch:
   pull_request:
-    branch: ["main"]
+    branches: ["main"]
   push:
     branches: ["main"]
 
@@ -52,7 +52,7 @@ jobs:
               echo "CRLF_FILES<<EOF"
               echo "${crlf_files}"
               echo "EOF"
-            } >> $GITHUB_ENV
+            } >> "$GITHUB_ENV"
           fi
 
       # comment to PR for CRLF files.
