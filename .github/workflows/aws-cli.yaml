@@ -18,3 +18,10 @@ jobs:
         run: aws --version
       - name: where is aws-cli
         run: which aws
+      - name: update aws-cli to latest
+        run: |
+          curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+          unzip awscliv2.zip
+          sudo ./aws/install
+      - name: current aws-cli
+        run: aws --version
