@@ -212,6 +212,22 @@ Use `run: |` to write `run` statement in multiline.
 
 ```yaml
 # .github/workflows/multiline_run.yaml
+
+name: multiline run
+on:
+  workflow_dispatch:
+  push:
+    branches: ["main"]
+
+jobs:
+  push:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - run: |
+          echo "foo"
+          echo "bar"
+
 ```
 
 **if**
@@ -220,6 +236,31 @@ Use `if: >-` to write `if` statement in multiline.
 
 ```yaml
 # .github/workflows/multiline_if.yaml
+
+name: multiline if
+on:
+  workflow_dispatch:
+  push:
+    branches: ["main"]
+
+jobs:
+  push:
+    if: >-
+      github.event_name == 'push' ||
+      github.event.forced == false
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - run: echo "push"
+
+  workflow_dispatch:
+    if: >-
+      github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - run: echo "workflow_dispatch"
+
 ```
 
 
@@ -296,6 +337,39 @@ Workflow dispatch supported input type.
 
 ```yaml
 # .github/workflows/workflow_dispatch_mixed_inputs.yaml
+
+name: workflow dispatch mixed inputs
+
+on:
+  workflow_dispatch:
+    inputs:
+      name:
+        type: choice
+        description: "name: Who to greet"
+        required: true
+        options:
+          - monalisa
+          - cschleiden
+      message:
+        description: "mnessage: add message"
+        required: true
+      use-emoji:
+        type: boolean
+        required: true
+        description: Include 🎉🤣 emojis
+      environment:
+        type: environment
+        required: true
+        description: Select environment
+
+jobs:
+  greet:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Send greeting
+        run: echo "${{ github.event.inputs.message }} ${{ fromJSON('["", "🥳"]')[github.event.inputs.use-emoji == 'true'] }} ${{ github.event.inputs.name }}"
+
 ```
 
 ## Permissions
@@ -308,12 +382,89 @@ Workflow permission can be done with root `permissions:`.
 
 ```yaml
 # .github/workflows/permissions_workflow.yaml
+
+name: permissions
+on:
+  pull_request:
+    branches: ["main"]
+
+permissions:
+  # actions: write
+  # checks: write
+  contents: write
+  # deployments: write
+  # discussions: write
+  # id-token: write
+  # issues: write
+  # packages: write
+  # pages: write
+  # pull-requests: write
+  # repository-projects: write
+  # security-events: write
+  # statuses: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - id: file_changes
+        uses: trilom/file-changes-action@v1.2.4
+        with:
+          output: ","
+      - run: echo "${{ steps.file_changes.outputs.files }}"
+      - run: echo "${{ contains(steps.file_changes.outputs.files, '.github/workflows')}}"
+      - run: echo "${{ contains(steps.file_changes.outputs.files, '.github/dummy')}}"
+      - run: echo "${{ contains(steps.file_changes.outputs.files, '.github/dummy') || 'true' }}"
+      - run: echo "RUN_TEST=${{ contains(steps.file_changes.outputs.files, '.github/workflows') || 'true' }}"  | tee -a "$GITHUB_ENV"
+      # test if not exists
+      - id: file_changes2
+        uses: trilom/file-changes-action@v1.2.4
+        with:
+          output: ","
+        if: ${{ github.event.pull_request.changed_files > 10 }}
+      - run: echo "${{ contains(steps.file_changes2.outputs.files, '.github/workflows')}}"
+      - run: echo "${{ contains(steps.file_changes2.outputs.files, '.github/dummy')}}"
+      - run: echo "${{ contains(steps.file_changes2.outputs.files, '.github/dummy') || 'true' }}"
+      - run: echo "RUN_TEST2=${{ contains(steps.file_changes2.outputs.files, '.github/workflows') || 'true' }}"  | tee -a "$GITHUB_ENV"
+
 ```
 
 job permission can be done with `job.<job_name>.permissions`.
 
 ```yaml
 # .github/workflows/permissions_job.yaml
+
+name: permissions job
+on:
+  pull_request:
+    branches: ["main"]
+
+jobs:
+  build:
+    permissions:
+      contents: write
+    runs-on: ubuntu-latest
+    steps:
+      - id: file_changes
+        uses: trilom/file-changes-action@v1.2.4
+        with:
+          output: ","
+      - run: echo "${{ steps.file_changes.outputs.files }}"
+      - run: echo "${{ contains(steps.file_changes.outputs.files, '.github/workflows')}}"
+      - run: echo "${{ contains(steps.file_changes.outputs.files, '.github/dummy')}}"
+      - run: echo "${{ contains(steps.file_changes.outputs.files, '.github/dummy') || 'true' }}"
+      - run: echo "RUN_TEST=${{ contains(steps.file_changes.outputs.files, '.github/workflows') || 'true' }}"  | tee -a "$GITHUB_ENV"
+      # test if not exists
+      - id: file_changes2
+        uses: trilom/file-changes-action@v1.2.4
+        with:
+          output: ","
+        if: ${{ github.event.pull_request.changed_files > 10 }}
+      - run: echo "${{ contains(steps.file_changes2.outputs.files, '.github/workflows')}}"
+      - run: echo "${{ contains(steps.file_changes2.outputs.files, '.github/dummy')}}"
+      - run: echo "${{ contains(steps.file_changes2.outputs.files, '.github/dummy') || 'true' }}"
+      - run: echo "RUN_TEST2=${{ contains(steps.file_changes2.outputs.files, '.github/workflows') || 'true' }}"  | tee -a "$GITHUB_ENV"
+
 ```
 
 The most important is `id-tokens: write`. It enables job to use OIDC other OIDC providers.
@@ -343,6 +494,40 @@ Make sure you can not refer github context in script.
 
 ```yaml
 # .github/workflows/context_github.yaml
+
+name: context github
+
+on:
+  push:
+    branches: ["main"]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: job
+        run: ${{ github.job }}
+      - name: ref
+        run: ${{ github.ref }}
+      - name: sha
+        run: ${{ github.sha }}
+      - name: repository
+        run: ${{ github.repository }}
+      - name: repository_owner
+        run: ${{ github.repository_owner }}
+      - name: actor
+        run: ${{ github.actor }}
+      - name: run_id
+        run: ${{ github.run_id }}
+      - name: workflow
+        run: ${{ github.workflow }}
+      - name: event_name
+        run: ${{ github.event_name }}
+      - name: event.ref
+        run: ${{ github.event.ref }}
+      - name: action
+        run: ${{ github.action }}
+
 ```
 
 **JSON output**
@@ -353,18 +538,111 @@ To see push context.
 
 ```yaml
 # .github/workflows/dump_context_push.yaml
+
+name: dump context push
+
+on:
+  push:
+    branches: ["main"]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Dump environment
+        run: export
+      - name: Dump GitHub context
+        run: echo "$CONTEXT"
+        env:
+          CONTEXT: ${{ toJson(github) }}
+      - name: Dump job context
+        run: echo "$CONTEXT"
+        env:
+          CONTEXT: ${{ toJson(job) }}
+      - name: Dump steps context
+        run: echo "$CONTEXT"
+        env:
+          CONTEXT: ${{ toJson(steps) }}
+      - name: Dump runner context
+        run: echo "$CONTEXT"
+        env:
+          CONTEXT: ${{ toJson(runner) }}
+      - name: Dump strategy context
+        run: echo "$CONTEXT"
+        env:
+          CONTEXT: ${{ toJson(strategy) }}
+      - name: Dump matrix context
+        run: echo "$CONTEXT"
+        env:
+          CONTEXT: ${{ toJson(matrix) }}
+
 ```
 
 To see pull_request context.
 
 ```yaml
 # .github/workflows/dump_context_pr.yaml
+
+name: dump context pr
+
+on:
+  pull_request:
+    branches: ["main"]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Dump environment
+        run: export
+      - name: Dump GitHub context
+        run: echo "$CONTEXT"
+        env:
+          CONTEXT: ${{ toJson(github) }}
+      - name: Dump job context
+        run: echo "$CONTEXT"
+        env:
+          CONTEXT: ${{ toJson(job) }}
+      - name: Dump steps context
+        run: echo "$CONTEXT"
+        env:
+          CONTEXT: ${{ toJson(steps) }}
+      - name: Dump runner context
+        run: echo "$CONTEXT"
+        env:
+          CONTEXT: ${{ toJson(runner) }}
+      - name: Dump strategy context
+        run: echo "$CONTEXT"
+        env:
+          CONTEXT: ${{ toJson(strategy) }}
+      - name: Dump matrix context
+        run: echo "$CONTEXT"
+        env:
+          CONTEXT: ${{ toJson(matrix) }}
+
 ```
 
 To see local action context.
 
 ```yaml
 # .github/workflows/dump_context_action.yaml
+
+name: dump context action
+
+on:
+  workflow_dispatch:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: ./.github/actions/dump_context_actions
+
 ```
 
 ## View webhook github context
@@ -941,17 +1219,17 @@ jobs:
     steps:
       # env context reference
       - run: echo "this is env if for hoge"
-        if: env.APP == matrix.sample
+        if: ${{ env.APP == matrix.sample }}
       - run: echo "this is env if for fuga"
-        if: env.APP == matrix.sample
+        if: ${{ env.APP == matrix.sample }}
       # github context reference
       - run: echo "this is github if event push"
-        if: github.event_name == 'push'
+        if: ${{ github.event_name == 'push' }}
       # matrix context reference
       - run: echo "this is matrix if for hoge"
-        if: matrix.sample == 'hoge'
+        if: ${{ matrix.sample == 'hoge' }}
       - run: echo "this is matrix if for fuga"
-        if: matrix.sample == 'fuga'
+        if: ${{ matrix.sample == 'fuga' }}
 
 ```
 
