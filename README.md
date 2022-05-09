@@ -208,7 +208,7 @@ GitHub Actions offer `workflow_dispatch` event to execute workflow manually from
 Also you can use [action inputs](https://docs.github.com/en/actions/creating-actions/metadata-syntax-for-github-actions#inputs) to specify value trigger on manual trigger.
 
 ```yaml
-# .github\workflows\manual_trigger.yaml
+# .github/workflows/manual_trigger.yaml
 ```
 
 Even if you specify action inputs, input value will not store as ENV var `INPUT_{INPUTS_ID}` as usual.
@@ -243,13 +243,13 @@ job id, name and others.
 dump context with `toJson()` is a easiest way to dump context.
 
 ```yaml
-# .github\workflows\dump_context_push.yaml
+# .github/workflows/dump_context_push.yaml
 ```
 
 pull request dump.
 
 ```yaml
-# .github\workflows\dump_context_pr.yaml
+# .github/workflows/dump_context_pr.yaml
 ```
 
 ## matrix and secret dereference
@@ -261,7 +261,7 @@ let's set secrets in settings.
 ![image](https://user-images.githubusercontent.com/3856350/79934065-99de6c00-848c-11ea-8995-bfe948e6c0fb.png)
 
 ```yaml
-# .github\workflows\matrix_secret.yaml
+# .github/workflows/matrix_secret.yaml
 ```
 
 ## matrix and environment variables
@@ -270,7 +270,7 @@ you can refer matrix in job's `env:` section before steps.
 However you cannot use expression, you must evaluate in step.
 
 ```yaml
-# .github\workflows\matrix_envvar.yaml
+# .github/workflows/matrix_envvar.yaml
 ```
 
 ## set environment variables in script
@@ -279,13 +279,13 @@ However you cannot use expression, you must evaluate in step.
 This syntax can be write in the script, let's see `.github/scripts/setenv.sh`.
 
 ```bash
-# .github\scripts\setenv.sh
+# .github/scripts/setenv.sh
 ```
 
 Call this script from workflow.
 
 ```yaml
-# .github\workflows\env_with_script.yaml
+# .github/workflows/env_with_script.yaml
 ```
 
 `echo ${{ env.GIT_TAG_SCRIPT }}` will output `chore/context_in_script` as expected.
@@ -299,14 +299,14 @@ Create yaml file inside local action path, then declare `using: "composite"` in 
 * step2. Write your composite actions yaml.
 
 ```yaml
-# .github\actions\local_composite_actions\action.yaml
+# .github/actions/local_composite_actions/action.yaml
 ```
 
 * step3. Use actions from your workflow.
 
 
 ```yaml
-# .github\workflows\reuse_local_actions.yaml
+# .github/workflows/reuse_local_actions.yaml
 ```
 
 ## reuse Node actions - node12
@@ -321,19 +321,19 @@ Next place your node.js source files inside actions directory, you may require `
 * step2. Write your node actions yaml.
 
 ```yaml
-# .github\actions\local_node_actions\action.yaml
+# .github/actions/local_node_actions/action.yaml
 ```
 
 * step3. Write your source code to `.github/actions/YOUR_DIR/*.js`.
 
 ```js
-// .github\actions\local_node_actions\index.js
+// .github/actions/local_node_actions/index.js
 ```
 
 * step4. Use actions from your workflow.
 
 ```yaml
-# .github\workflows\reuse_local_actions_node.yaml
+# .github/workflows/reuse_local_actions_node.yaml
 ```
 
 
@@ -344,17 +344,17 @@ to accomplish sequential job run inside workflow, use `needs:` for which you wan
 this enforce job to be run when only previous job is **success**.
 
 ```yaml
-# .github\workflows\sequential_run.yaml
+# .github/workflows/sequential_run.yaml
 ```
 
 ## runs only when previous step status is specific
 
-> [job-status-check-functions \- Context and expression syntax for GitHub Actions \- GitHub Help](https://help.github.com/en/actions/reference/context-and-expression-syntax-for-github-actions#job-status-check-functions)
+> [job-status-check-functions /- Context and expression syntax for GitHub Actions /- GitHub Help](https://help.github.com/en/actions/reference/context-and-expression-syntax-for-github-actions#job-status-check-functions)
 
 use `if:` you want set step to be run on particular status.
 
 ```yaml
-# .github\workflows\status_step.yaml
+# .github/workflows/status_step.yaml
 ```
 
 ## timeout for job and step
@@ -362,7 +362,7 @@ use `if:` you want set step to be run on particular status.
 default timeout is 360min. You should set much more shorten timeout like 15min or 30min to prevent spending a lot build time.
 
 ```yaml
-# .github\workflows\timeout.yaml
+# .github/workflows/timeout.yaml
 ```
 
 ## concurrent build control
@@ -373,13 +373,13 @@ This help you achieve serial build pipeline control.
 You can use build context like `github.head_ref` or others. This means you can control with commit, branch, workflow and any.
 
 ```yaml
-# .github\workflows\concurrency_control.yaml
+# .github/workflows/concurrency_control.yaml
 ```
 
 Specify `cancel-in-progress: true` will cancel parallel build.
 
 ```yaml
-# .github\workflows\concurrency_control_cancel_in_progress.yaml
+# .github/workflows/concurrency_control_cancel_in_progress.yaml
 ```
 
 ## suppress redundant build
@@ -394,7 +394,7 @@ In this example `push` will trigger only when `main`, default branch. This means
 Simple enough for almost usage.
 
 ```yaml
-# .github\workflows\push_and_pr_avoid_redundant.yaml
+# .github/workflows/push_and_pr_avoid_redundant.yaml
 ```
 
 **redundant build cancel**
@@ -402,7 +402,7 @@ Simple enough for almost usage.
 Cancel duplicate workflow and mark CI failure.
 
 ```yaml
-# .github\workflows\cancel_redundantbuild.yaml
+# .github/workflows/cancel_redundantbuild.yaml
 ```
 
 ## if and context reference
@@ -412,10 +412,10 @@ when you want refer any context, `env`, `github` and `matrix`, on `if` condition
 
 > NOTE: `matrix` cannot refer with `job.if`.
 
-> [Solved: What is the correct if condition syntax for checki\.\.\. \- GitHub Community Forum](https://github.community/t5/GitHub-Actions/What-is-the-correct-if-condition-syntax-for-checking-matrix-os/td-p/31269)
+> [Solved: What is the correct if condition syntax for checki/././. /- GitHub Community Forum](https://github.community/t5/GitHub-Actions/What-is-the-correct-if-condition-syntax-for-checking-matrix-os/td-p/31269)
 
 ```yaml
-# .github\workflows\if_and_context.yaml
+# .github/workflows/if_and_context.yaml
 ```
 
 # BAD PATTERN
@@ -453,7 +453,7 @@ jobs:
 If you want run job only when push to branch, and not for tag push.
 
 ```yaml
-# .github\workflows\branch_push_only.yaml
+# .github/workflows/branch_push_only.yaml
 ```
 
 ## skip when branch push but run on tag push only
@@ -461,7 +461,7 @@ If you want run job only when push to branch, and not for tag push.
 If you want run job only when push to tag, and not for branch push.
 
 ```yaml
-# .github\workflows\tag_push_only.yaml
+# .github/workflows/tag_push_only.yaml
 ```
 
 ## build only specific tag pattern
@@ -479,7 +479,7 @@ not for below.
 * release
 
 ```yaml
-# .github\workflows\tag_push_only_pattern.yaml
+# .github/workflows/tag_push_only_pattern.yaml
 ```
 
 ## get pushed tag name
@@ -488,7 +488,7 @@ You need extract refs to get tag name.
 Save it to `step context` and refer from other step or save it to env is much eacher.
 
 ```yaml
-# .github\workflows\tag_push_only_context.yaml
+# .github/workflows/tag_push_only_context.yaml
 ```
 
 ## create release
@@ -497,14 +497,14 @@ You can create release and upload assets through GitHub Actions.
 Multiple assets upload is supported by running running `actions/upload-release-asset` for each asset.
 
 ```yaml
-# .github\workflows\create_release.yaml
+# .github/workflows/create_release.yaml
 ```
 
 ## schedule job on non-default branch
 
 Schedule job will offer `Last commit on default branch`.
 
-> ref: [Events that trigger workflows \- GitHub Help](https://help.github.com/en/actions/reference/events-that-trigger-workflows#scheduled-events-schedule)
+> ref: [Events that trigger workflows /- GitHub Help](https://help.github.com/en/actions/reference/events-that-trigger-workflows#scheduled-events-schedule)
 
 schedule workflow should merge to default branch to apply workflow change.
 
@@ -515,7 +515,7 @@ Don't forget pretend `refs/heads/` to your branch.
 * bad: some-branch
 
 ```yaml
-# .github\workflows\schedule_job.yaml
+# .github/workflows/schedule_job.yaml
 ```
 
 # Commit handling
@@ -523,15 +523,15 @@ Don't forget pretend `refs/heads/` to your branch.
 ## trigger via commit message
 
 ```yaml
-# .github\workflows\trigger_ci.yaml
+# .github/workflows/trigger_ci.yaml
 ```
 
 ## commit file handling
 
-you can handle commit file handle with github actions [trilom/file\-changes\-action](https://github.com/trilom/file-changes-action).
+you can handle commit file handle with github actions [trilom/file/-changes/-action](https://github.com/trilom/file-changes-action).
 
 ```yaml
-# .github\workflows\pr_path_changed.yaml
+# .github/workflows/pr_path_changed.yaml
 ```
 
 
@@ -543,10 +543,10 @@ use [actions/github\-script](https://github.com/actions/github-script).
 
 original `pull_request` event will invoke when activity type is `opened`, `synchronize`, or `reopened`.
 
-> [Events that trigger workflows \- GitHub Help](https://help.github.com/en/actions/reference/events-that-trigger-workflows#pull-request-event-pull_request)
+> [Events that trigger workflows /- GitHub Help](https://help.github.com/en/actions/reference/events-that-trigger-workflows#pull-request-event-pull_request)
 
 ```yaml
-# .github\workflows\skip_ci_pr_title.yaml
+# .github/workflows/skip_ci_pr_title.yaml
 ```
 
 ## skip pr from fork repo
@@ -555,7 +555,7 @@ default `pull_request` event trigger from even fork repository, however fork pr 
 To control job to be skip from fork but run on self pr or push, use `if` conditions.
 
 ```yaml
-# .github\workflows\skip_pr_from_fork.yaml
+# .github/workflows/skip_pr_from_fork.yaml
 ```
 
 ## detect labels on pull request
@@ -564,7 +564,7 @@ To control job to be skip from fork but run on self pr or push, use `if` conditi
 `${{ contains(github.event.pull_request.labels.*.name, 'hoge') }}` will return `true` if tag contains `hoge`.
 
 ```yaml
-# .github\workflows\pr_label_get.yaml
+# .github/workflows/pr_label_get.yaml
 ```
 
 ## skip job when Draft PR
@@ -573,13 +573,13 @@ You can skip job and steps if Pull Request is Draft.
 Unfortunately GitHub Webhook v3 event not provide draft pr type, but `event.pull_request.draft` shows `true` when PR is draft.
 
 ```yaml
-# .github\workflows\skip_draft_pr.yaml
+# .github/workflows/skip_draft_pr.yaml
 ```
 
 You can control behaviour with PR label.
 
 ```yaml
-# .github\workflows\skip_draft_but_label_pr.yaml
+# .github/workflows/skip_draft_but_label_pr.yaml
 ```
 
 
@@ -611,13 +611,13 @@ jobs:
 This repo will dispatch event with following worlflow.
 
 ```yaml
-# .github\workflows\dispatch_changes_actions.yaml
+# .github/workflows/dispatch_changes_actions.yaml
 ```
 
 You can use [Workflow Dispatch Action](https://github.com/marketplace/actions/workflow-dispatch) insead, like this.
 
 ```yaml
-# .github\workflows\dispatch_changes_actions.yaml
+# .github/workflows/dispatch_changes_actions.yaml
 ```
 
 ## Lint GitHub Actions workflow itself
