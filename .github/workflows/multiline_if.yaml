@@ -1,4 +1,4 @@
-name: if multiline
+name: multiline if
 on:
   workflow_dispatch:
   push:

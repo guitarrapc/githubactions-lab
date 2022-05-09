@@ -73,14 +73,14 @@ GitHub Actions laboratory.
 
 # Difference from other CI
 
-## migration
+## Migration
 
 > * GitHub Actions -> CircleCI: [Migrating from Github Actions \- CircleCI](https://circleci.com/docs/2.0/migrating-from-github/)
 > * CircleCI -> GitHub Actions: [Migrating from CircleCI to GitHub Actions \- GitHub Help](https://help.github.com/en/actions/migrating-to-github-actions/migrating-from-circleci-to-github-actions)
 > * Azure pipeline -> GitHub Actions: [Migrating from Azure Pipelines to GitHub Actions \- GitHub Help](https://help.github.com/en/actions/migrating-to-github-actions/migrating-from-azure-pipelines-to-github-actions)
 > * Jenkins -> GitHub Actions: [Migrating from Jenkins to GitHub Actions \- GitHub Help](https://help.github.com/en/actions/migrating-to-github-actions/migrating-from-jenkins-to-github-actions)
 
-## job and workflow
+## Job and workflow
 
 GitHub Actions cannnot reuse yaml and need to write same job for each workflow.
 Better define step in script and call it from step, so that we can reuse same execution from other workflows or jobs.
@@ -90,7 +90,7 @@ Better define step in script and call it from step, so that we can reuse same ex
 * Azure Pipeline offer's template to refer stage, job and step from other yaml. This enable user to reuse yaml.
 * Jenkins has pipeline and could refer other pipeline. However a lot case would be define job step in script and reuse script, not pipeline.
 
-## skip ci on commit message
+## Skip ci on commit message
 
 GitHub Actions support when HEAD commit contains key word like other ci.
 
@@ -99,7 +99,7 @@ GitHub Actions support when HEAD commit contains key word like other ci.
 * Azure Pipeline can skip job via `***NO_CI***`, `[skip ci]` or `[ci skip]`, or [others](https://github.com/Microsoft/azure-pipelines-agent/issues/858#issuecomment-475768046).
 * Jenkins has plugin to support `[skip ci]` or any expression w/pipeline via [SCM Skip \| Jenkins plugin](https://plugins.jenkins.io/scmskip/).
 
-## path filter
+## Path filter
 
 GitHub Actions can use `on.<event>.paths-ignore:` and `on.<event>.paths:` by default.
 
@@ -110,7 +110,7 @@ GitHub Actions can use `on.<event>.paths-ignore:` and `on.<event>.paths:` by def
 * Azure Pipeline can set path-filter.
 * Jenkins ... I think I need filter change from changes?
 
-## job id or other meta values
+## JobId and other meta values
 
 GitHub Actions has Context concept, you can access job specific info via `github`.
 for example, `github.run_id` is A unique number for each run within a repository.
@@ -121,7 +121,7 @@ Also you can access default environment variables like `GITHUB_RUN_ID`.
 * Azure Pipeline [environment variable](https://docs.microsoft.com/ja-jp/azure/devops/pipelines/process/run-number?view=azure-devops&tabs=yaml#tokens) `BuildID`.
 * Jenkins [environment vairable](https://wiki.jenkins.io/display/JENKINS/Building+a+software+project) `BUILD_NUMBER`
 
-## cancel redundant builds
+## Cancel redundant builds
 
 GitHub Actions not support cancel redundant build as CircleCI do.
 > [Solved: Github actions: Cancel redundant builds \(Not solve\.\.\. \- GitHub Community Forum](https://github.community/t5/GitHub-Actions/Github-actions-Cancel-redundant-builds-Not-solved/td-p/29549)
@@ -336,12 +336,36 @@ When you want spread your secrets with indivisual account, you need set each rep
 
 ## meta github context
 
-job id, name and others.
+Use Context to retrive job id, name and others system info.
+Make sure you can not refer github context in script.
 
-> [Context and expression syntax for GitHub Actions \- GitHub Help](https://help.github.com/en/actions/reference/context-and-expression-syntax-for-github-actions#github-context)
+> see: [Context and expression syntax for GitHub Actions \- GitHub Help](https://help.github.com/en/actions/reference/context-and-expression-syntax-for-github-actions#github-context)
 
-> TIPS: You can not refer github context in script.
+```yaml
+# .github/workflows/context_github.yaml
+```
 
+**JSON output**
+
+Use `toJson(<CONTEXT>)` To show context values in json.
+
+To see push context.
+
+```yaml
+# .github/workflows/dump_context_push.yaml
+```
+
+To see pull_request context.
+
+```yaml
+# .github/workflows/dump_context_pr.yaml
+```
+
+To see local action context.
+
+```yaml
+# .github/workflows/dump_context_action.yaml
+```
 
 ## view webhook github context
 
