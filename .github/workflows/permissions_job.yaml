@@ -1,21 +1,12 @@
-name: permissions
+name: permissions job
 on:
   pull_request:
     branches: ["main"]
 
-permissions:
-  # actions: write
-  # checks: write
-  contents: write
-  # id-token: write
-  # issues: write
-  # packages: write
-  # pull-requests: write
-  # security-events: write
-  # statuses: write
-
 jobs:
   build:
+    permissions:
+      contents: write
     runs-on: ubuntu-latest
     steps:
       - id: file_changes

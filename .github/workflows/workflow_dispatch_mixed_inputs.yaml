@@ -14,13 +14,13 @@ on:
         description: "mnessage: add message"
         required: true
       use-emoji:
+        type: boolean
         required: true
         description: Include 🎉🤣 emojis
-        type: boolean
       environment:
+        type: environment
         required: true
         description: Select environment
-        type: environment
 
 jobs:
   greet:

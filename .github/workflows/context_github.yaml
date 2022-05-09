@@ -1,0 +1,32 @@
+name: context github
+
+on:
+  push:
+    branches: ["main"]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: job
+        run: ${{ github.job }}
+      - name: ref
+        run: ${{ github.ref }}
+      - name: sha
+        run: ${{ github.sha }}
+      - name: repository
+        run: ${{ github.repository }}
+      - name: repository_owner
+        run: ${{ github.repository_owner }}
+      - name: actor
+        run: ${{ github.actor }}
+      - name: run_id
+        run: ${{ github.run_id }}
+      - name: workflow
+        run: ${{ github.workflow }}
+      - name: event_name
+        run: ${{ github.event_name }}
+      - name: event.ref
+        run: ${{ github.event.ref }}
+      - name: action
+        run: ${{ github.action }}
