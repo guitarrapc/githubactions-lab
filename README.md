@@ -277,6 +277,28 @@ Workflow dispatch supported input type.
 # .github/workflows/workflow_dispatch_mixed_inputs.yaml
 ```
 
+## permissions
+
+GitHub supports specify permissions for each job or workflow.
+
+You can turn all permission off with `permissions: {}`.
+
+```yaml
+# .github/workflows/permissions_disabled.yaml
+```
+
+Workflow permission can be done with root `permissions:`.
+
+```yaml
+# .github/workflows/permissions_workflow.yaml
+```
+
+job permission can be done with `job.<job_name>.permissions`.
+
+```yaml
+# .github/workflows/permissions_job.yaml
+```
+
 ## retry failed workflow
 
 GitHub Actions support Re-run jobs.

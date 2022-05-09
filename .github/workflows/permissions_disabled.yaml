@@ -1,0 +1,12 @@
+name: permissions disabled
+on:
+  pull_request:
+    branches: ["main"]
+
+permissions: {}
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "foo"
