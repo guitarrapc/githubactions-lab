@@ -8,6 +8,7 @@ on:
 jobs:
   closed:
     runs-on: ubuntu-latest
+    timeout-minutes: 3
     steps:
       - name: dump github context
         run: echo "$CONTEXT"

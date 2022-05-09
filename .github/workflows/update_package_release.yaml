@@ -19,6 +19,7 @@ env:
 jobs:
   update-packagejson:
     runs-on: ubuntu-latest
+    timeout-minutes: 5
     env:
       TARGET_FILE: ./src/json/package.json
     outputs:
@@ -63,6 +64,7 @@ jobs:
   release:
     needs: [update-packagejson]
     runs-on: ubuntu-latest
+    timeout-minutes: 5
     steps:
       - run: echo ${{ needs.update-packagejson.outputs.sha }}
       - uses: actions/checkout@v3

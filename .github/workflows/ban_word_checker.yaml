@@ -10,6 +10,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    timeout-minutes: 3
     steps:
       - uses: actions/checkout@v3
       - run: bash -eu .github/scripts/lint-banwords.sh --directory ".github/workflows" --file-filter "k8s.*yaml" --definition ".github/ban-words.txt"

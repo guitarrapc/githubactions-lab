@@ -10,6 +10,7 @@ on:
 jobs:
   changes:
     runs-on: ubuntu-latest
+    timeout-minutes: 3
     env:
       IS_HOGE: "false"
     steps:

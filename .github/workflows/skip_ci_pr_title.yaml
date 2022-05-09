@@ -6,6 +6,7 @@ jobs:
   skip:
     if: "!(contains(github.event.pull_request.title, '[skip ci]') || contains(github.event.pull_request.title, '[ci skip]'))"
     runs-on: ubuntu-latest
+    timeout-minutes: 3
     steps:
       - run: echo "$GITHUB_CONTEXT"
         env:
@@ -16,6 +17,7 @@ jobs:
 
   build:
     runs-on: ubuntu-latest
+    timeout-minutes: 3
     needs: skip
     steps:
       - run: echo run when not skipped

@@ -17,6 +17,7 @@ env:
 jobs:
   build:
     runs-on: ubuntu-latest
+    timeout-minutes: 5
     steps:
       - run: echo not run on branch push
       - run: echo "::set-output name=GIT_TAG::${GITHUB_REF##*/}"
@@ -27,6 +28,7 @@ jobs:
 
   dotnet-console:
     runs-on: ubuntu-latest
+    timeout-minutes: 5
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-dotnet@v2
@@ -45,6 +47,7 @@ jobs:
       matrix:
         dotnet: ["6.0.x"] # support latest only
     runs-on: ubuntu-latest
+    timeout-minutes: 5
     container:
       image: mcr.microsoft.com/dotnet/sdk:6.0
     steps:
@@ -66,6 +69,7 @@ jobs:
 
   release:
     runs-on: ubuntu-latest
+    timeout-minutes: 5
     needs:
       - dotnet-console
       - dotnet-console-container

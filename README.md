@@ -293,6 +293,7 @@ on:
 jobs:
   printInputs:
     runs-on: ubuntu-latest
+    timeout-minutes: 3
     env:
       BRANCH: ${{ github.event.inputs.branch }}
       LOGLEVEL: ${{ github.event.inputs.logLevel }}
@@ -368,7 +369,7 @@ on:
 jobs:
   greet:
     runs-on: ubuntu-latest
-
+    timeout-minutes: 3
     steps:
       - name: Send greeting
         run: echo "${{ github.event.inputs.message }} ${{ fromJSON('["", "🥳"]')[github.event.inputs.use-emoji == 'true'] }} ${{ github.event.inputs.name }}"
@@ -409,6 +410,7 @@ permissions:
 jobs:
   build:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
       - id: file_changes
         uses: trilom/file-changes-action@v1.2.4
@@ -447,6 +449,7 @@ jobs:
     permissions:
       contents: write
     runs-on: ubuntu-latest
+    timeout-minutes: 3
     steps:
       - id: file_changes
         uses: trilom/file-changes-action@v1.2.4
@@ -498,38 +501,38 @@ Make sure you can not refer github context in script.
 ```yaml
 # .github/workflows/context_github.yaml
 
-name: context github
-
+name: "context github"
 on:
   push:
     branches: ["main"]
 
 jobs:
-  build:
+  context:
     runs-on: ubuntu-latest
+    timeout-minutes: 3
     steps:
       - name: job
-        run: ${{ github.job }}
+        run: echo ${{ github.job }}
       - name: ref
-        run: ${{ github.ref }}
+        run: echo ${{ github.ref }}
       - name: sha
-        run: ${{ github.sha }}
+        run: echo ${{ github.sha }}
       - name: repository
-        run: ${{ github.repository }}
+        run: echo ${{ github.repository }}
       - name: repository_owner
-        run: ${{ github.repository_owner }}
+        run: echo ${{ github.repository_owner }}
       - name: actor
-        run: ${{ github.actor }}
+        run: echo ${{ github.actor }}
       - name: run_id
-        run: ${{ github.run_id }}
+        run: echo ${{ github.run_id }}
       - name: workflow
-        run: ${{ github.workflow }}
+        run: echo ${{ github.workflow }}
       - name: event_name
-        run: ${{ github.event_name }}
+        run: echo ${{ github.event_name }}
       - name: event.ref
-        run: ${{ github.event.ref }}
+        run: echo ${{ github.event.ref }}
       - name: action
-        run: ${{ github.action }}
+        run: echo ${{ github.action }}
 
 ```
 
@@ -551,6 +554,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    timeout-minutes: 3
     steps:
       - name: Dump environment
         run: export
@@ -595,6 +599,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    timeout-minutes: 3
     steps:
       - name: Dump environment
         run: export
@@ -642,6 +647,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    timeout-minutes: 3
     steps:
       - uses: actions/checkout@v3
       - uses: ./.github/actions/dump_context_actions
@@ -664,6 +670,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    timeout-minutes: 3
     steps:
       - name: Dump environment
         run: export
@@ -708,6 +715,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    timeout-minutes: 3
     steps:
       - name: Dump environment
         run: export
@@ -775,6 +783,7 @@ jobs:
           - org: carrots
             secret: CARROTS
     runs-on: ubuntu-latest
+    timeout-minutes: 3
     steps:
       - run: echo "org:${{ matrix.org }} secret:${{ secrets[matrix.secret] }}"
       - run: echo "org:${{ matrix.org }} secret:${{ secrets[env.secret] }}"
@@ -807,6 +816,7 @@ jobs:
       matrix:
         org: [apples, bananas, carrots]
     runs-on: ubuntu-latest
+    timeout-minutes: 3
     env:
       ORG: ${{ matrix.org }}
       # you can not use expression. do it on step.
@@ -857,6 +867,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    timeout-minutes: 3
     steps:
       - uses: actions/checkout@v3
       - run: echo "GIT_TAG=${GITHUB_REF#refs/heads/}" >> "$GITHUB_ENV"
@@ -913,6 +924,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    timeout-minutes: 3
     steps:
       - uses: actions/checkout@v3
       - name: use local action
@@ -970,6 +982,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    timeout-minutes: 3
     steps:
       - uses: actions/checkout@v3
       - name: use local action
@@ -999,14 +1012,16 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    timeout-minutes: 3
     steps:
       - run: echo "$COMMIT_MESSAGES"
         env:
           COMMIT_MESSAGES: ${{ toJson(github.event.commits.*.message) }}
 
   publish:
-    runs-on: ubuntu-latest
     needs: build
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
     steps:
       - run: echo run when only build success
 
@@ -1033,6 +1048,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    timeout-minutes: 3
     steps:
       - run: echo "$COMMIT_MESSAGES"
         env:
@@ -1156,6 +1172,7 @@ on:
 jobs:
   my-job:
     runs-on: ubuntu-latest
+    timeout-minutes: 3
     steps:
       - run: echo push and pull_request trigger
 
@@ -1219,6 +1236,7 @@ jobs:
     env:
       APP: hoge
     runs-on: ubuntu-latest
+    timeout-minutes: 3
     steps:
       # env context reference
       - run: echo "this is env if for hoge"
@@ -1284,6 +1302,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    timeout-minutes: 3
     steps:
       - run: echo not run on tag
 
@@ -1388,6 +1407,7 @@ on:
 jobs:
   create-release:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
       # set release tag(*.*.*) to env.GIT_TAG
       - run: echo "GIT_TAG=${GITHUB_REF##*/}" >> "$GITHUB_ENV"
@@ -1451,6 +1471,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    timeout-minutes: 3
     steps:
       - name: Dump GitHub context
         run: echo "$CONTEXT"
@@ -1479,6 +1500,7 @@ jobs:
   build:
     if: "contains(toJSON(github.event.commits.*.message), '[build]')"
     runs-on: ubuntu-latest
+    timeout-minutes: 3
     steps:
       - run: echo "$COMMIT_MESSAGES"
         env:
@@ -1499,6 +1521,7 @@ on: [pull_request]
 jobs:
   changes:
     runs-on: ubuntu-latest
+    timeout-minutes: 3
     steps:
       - id: file_changes
         uses: trilom/file-changes-action@v1.2.4
@@ -1533,6 +1556,7 @@ jobs:
   skip:
     if: "!(contains(github.event.pull_request.title, '[skip ci]') || contains(github.event.pull_request.title, '[ci skip]'))"
     runs-on: ubuntu-latest
+    timeout-minutes: 3
     steps:
       - run: echo "$GITHUB_CONTEXT"
         env:
@@ -1543,6 +1567,7 @@ jobs:
 
   build:
     runs-on: ubuntu-latest
+    timeout-minutes: 3
     needs: skip
     steps:
       - run: echo run when not skipped
@@ -1570,10 +1595,11 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
     # push & my repo will trigger
     # pull_request on my repo will trigger
     if: "(github.event == 'push' && github.repository_owner == 'guitarrapc') || startsWith(github.event.pull_request.head.label, 'guitarrapc:')"
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
     steps:
       - run: echo build
 
@@ -1599,6 +1625,7 @@ on:
 jobs:
   changes:
     runs-on: ubuntu-latest
+    timeout-minutes: 3
     env:
       IS_HOGE: "false"
     steps:
@@ -1628,6 +1655,7 @@ jobs:
   build:
     if: "!(github.event.pull_request.draft)"
     runs-on: ubuntu-latest
+    timeout-minutes: 3
     steps:
       - uses: actions/checkout@v3
 
@@ -1654,6 +1682,7 @@ jobs:
     # 2. Not draft, `push` and `non-draft pr`.
     if: ${{ (contains(github.event.pull_request.labels.*.name, 'draft_but_ci')) || !(github.event.pull_request.draft) }}
     runs-on: ubuntu-latest
+    timeout-minutes: 3
     steps:
       - uses: actions/checkout@v3
 
@@ -1697,6 +1726,7 @@ on:
 jobs:
   dispatch:
     runs-on: ubuntu-latest
+    timeout-minutes: 5
     strategy:
       matrix:
         repo: [guitarrapc/testtest] #Array of target repos
@@ -1727,6 +1757,7 @@ on:
 jobs:
   dispatch:
     runs-on: ubuntu-latest
+    timeout-minutes: 5
     strategy:
       matrix:
         repo: [guitarrapc/testtest] #Array of target repos
@@ -1766,6 +1797,7 @@ on:
 jobs:
   actionlint:
     runs-on: ubuntu-latest
+    timeout-minutes: 3
     steps:
       - uses: actions/checkout@v3
       - name: Install actionlint
@@ -1792,6 +1824,7 @@ on:
 jobs:
   actionlint:
     runs-on: ubuntu-latest
+    timeout-minutes: 3
     steps:
       - uses: actions/checkout@v3
       - name: actionlint

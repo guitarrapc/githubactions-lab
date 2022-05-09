@@ -11,6 +11,7 @@ on:
 jobs:
   commands:
     runs-on: ubuntu-latest
+    timeout-minutes: 3
     steps:
       - run: echo "::set-output name=action_fruit::strawberry"
       - run: echo "::debug::Set the Octocat variable"

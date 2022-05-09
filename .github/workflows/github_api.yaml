@@ -6,6 +6,7 @@ on:
 jobs:
   comment:
     runs-on: ubuntu-latest
+    timeout-minutes: 3
     steps:
       - uses: actions/github-script@v1
         with:

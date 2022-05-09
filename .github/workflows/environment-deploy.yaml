@@ -8,6 +8,7 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    timeout-minutes: 3
     environment:
       name: staging
       url: https://github.com/guitarrapc/githubactions-lab/tree/staging

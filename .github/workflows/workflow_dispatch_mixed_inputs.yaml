@@ -25,7 +25,7 @@ on:
 jobs:
   greet:
     runs-on: ubuntu-latest
-
+    timeout-minutes: 3
     steps:
       - name: Send greeting
         run: echo "${{ github.event.inputs.message }} ${{ fromJSON('["", "🥳"]')[github.event.inputs.use-emoji == 'true'] }} ${{ github.event.inputs.name }}"

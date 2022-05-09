@@ -10,6 +10,7 @@ jobs:
 
   error2:
     runs-on: ubuntu-latest
+    timeout-minutes: 3
     steps:
       - run: exit 1
 
@@ -18,5 +19,6 @@ jobs:
     if: failure()
     needs: [error1, error2]
     runs-on: ubuntu-latest
+    timeout-minutes: 3
     steps:
       - run: echo error happen

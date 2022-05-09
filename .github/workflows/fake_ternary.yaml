@@ -18,6 +18,7 @@ env:
 jobs:
   build:
     runs-on: ubuntu-latest
+    timeout-minutes: 3
     steps:
       - run: echo "GROUP=[${{ env.GROUP }}]"
       - run: echo "GROUP2=[${{ env.GROUP2 }}]"

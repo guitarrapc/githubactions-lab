@@ -20,6 +20,7 @@ env:
 jobs:
   dotnet-console:
     runs-on: ubuntu-latest
+    timeout-minutes: 3
     steps:
       - uses: actions/checkout@v3
       - run: command -v dotnet
@@ -44,6 +45,7 @@ jobs:
 
   dotnet-console-container:
     runs-on: ubuntu-latest
+    timeout-minutes: 3
     container:
       image: mcr.microsoft.com/dotnet/sdk:6.0
     steps:
@@ -58,6 +60,7 @@ jobs:
 
   ls:
     runs-on: ubuntu-latest
+    timeout-minutes: 3
     needs:
       - dotnet-console
       - dotnet-console-container
