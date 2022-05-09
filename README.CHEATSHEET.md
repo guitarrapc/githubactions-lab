@@ -1,3 +1,16 @@
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+<details>
+<summary>Details</summary>
+
+- [Cheat Sheet](#cheat-sheet)
+  - [Get Tag, Branch](#get-tag-branch)
+  - [Get Workflow Name](#get-workflow-name)
+  - [Get Workflow Url](#get-workflow-url)
+
+</details>
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 # Cheat Sheet
 
 ## Get Tag, Branch
