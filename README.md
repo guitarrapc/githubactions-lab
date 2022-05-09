@@ -145,7 +145,7 @@ Theses are minimum specs.
 * Azure Pipeline not support cancel redundant build
 * Jenkins not support cancel redundant build, you need cancel it from parallel job.
 
-## set environment variables for next step
+## Set environment variables for next step
 
 GitHub Actions need to create or update Environment File, it's similar to CircleCI.
 
@@ -175,13 +175,13 @@ jobs:
 * Azure Pipeline use task.setvariable. `echo "##vso[task.setvariable variable=NAME]VALUE"`
 * Jenkins use `Env.` in groovy declarative pipeline.
 
-## adding system path
+## Adding system path
 
 GitHub Actions need to create or update Environment File, it's similar to CircleCI.
 * GitHub Actions use Environment Files to manage System Path, create or update via `echo "{path}" >> "$GITHUB_PATH"` syntax.
   * `::add-path` syntax is deprecated for [security reason](https://github.blog/changelog/2020-10-01-github-actions-deprecating-set-env-and-add-path-commands/).
 
-## set secrets for reposiory
+## Set secrets for reposiory
 
 GitHub ACtions offer Secrets for each repository and Organization.
 Secrets will be masked on the log.
@@ -191,7 +191,7 @@ Secrets will be masked on the log.
 * Azure Pipeline has Environment Variables and Paramter.
 * Jenkins has Credential Provider.
 
-## approval
+## Approval
 
 [TBD]
 
@@ -286,7 +286,7 @@ jobs:
 
 Even if you specify action inputs, input value will not store as ENV var `INPUT_{INPUTS_ID}` as usual.
 
-## workflow dispatch with mixed input type
+## Workflow dispatch with mixed input type
 
 Workflow dispatch supported input type.
 
@@ -298,7 +298,7 @@ Workflow dispatch supported input type.
 # .github/workflows/workflow_dispatch_mixed_inputs.yaml
 ```
 
-## permissions
+## Permissions
 
 GitHub supports specify permissions for each job or workflow.
 
@@ -318,12 +318,12 @@ job permission can be done with `job.<job_name>.permissions`.
 
 The most important is `id-tokens: write`. It enables job to use OIDC other OIDC providers.
 
-## retry failed workflow
+## Retry failed workflow
 
 GitHub Actions support Re-run jobs.
 You can re-run whole workflow again, but you cannot re-run specified job only.
 
-## secrets
+## Secrets
 
 GitHub Actions supports "Indivisual Repository Secrets" and "Organization Secrets"
 
@@ -334,7 +334,7 @@ If same secrets key is exists, `Repository Secrets` > `Organization Secrets`.
 
 When you want spread your secrets with indivisual account, you need set each repository secrets or use [google/secrets\-sync\-action](https://github.com/google/secrets-sync-action).
 
-## meta github context
+## Meta github context
 
 Use Context to retrive job id, name and others system info.
 Make sure you can not refer github context in script.
@@ -367,7 +367,7 @@ To see local action context.
 # .github/workflows/dump_context_action.yaml
 ```
 
-## view webhook github context
+## View webhook github context
 
 dump context with `toJson()` is a easiest way to dump context.
 
@@ -457,7 +457,7 @@ jobs:
 
 ```
 
-## matrix and secret dereference
+## Matrix and secret dereference
 
 matrix cannot reference `secret` context, so pass secret key in matrix then dereference secret with `secrets[matrix.SECRET_KEY]`.
 
@@ -503,7 +503,7 @@ jobs:
 
 ```
 
-## matrix and environment variables
+## Matrix and environment variables
 
 you can refer matrix in job's `env:` section before steps.
 However you cannot use expression, you must evaluate in step.
@@ -539,7 +539,7 @@ jobs:
 
 ```
 
-## set environment variables in script
+## Set environment variables in script
 
 [set environment variables for next step](#set-environment-variables-for-next-step) explains how to set environment variables for next step.
 This syntax can be write in the script, let's see `.github/scripts/setenv.sh`.
@@ -587,7 +587,7 @@ jobs:
 
 `echo ${{ env.GIT_TAG_SCRIPT }}` will output `chore/context_in_script` as expected.
 
-## reuse yaml actions - composite
+## Reuse yaml actions - composite
 
 To reuse local job, create local composite action is easiest way to do, this is calls `composite actions`.
 Create yaml file inside local action path, then declare `using: "composite"` in local action.yaml.
@@ -641,7 +641,7 @@ jobs:
 
 ```
 
-## reuse Node actions - node12
+## Reuse Node actions - node12
 
 To reuse local job, create local node action is another way to do, this is calls `node actions`.
 Create yaml file inside local action path, then declare `using: "node12"` in local action.yaml.
@@ -697,7 +697,7 @@ jobs:
 ```
 
 
-## runs only previous job is success
+## Execute run when previous job is success
 
 to accomplish sequential job run inside workflow, use `needs:` for which you want the job to depends on.
 
@@ -731,7 +731,7 @@ jobs:
 
 ```
 
-## runs only when previous step status is specific
+## Execute run when previous step status is specific
 
 > [job-status-check-functions /- Context and expression syntax for GitHub Actions /- GitHub Help](https://help.github.com/en/actions/reference/context-and-expression-syntax-for-github-actions#job-status-check-functions)
 
@@ -767,9 +767,13 @@ jobs:
 
 ```
 
-## timeout for job and step
+## Timeout
 
-default timeout is 360min. You should set much more shorten timeout like 15min or 30min to prevent spending a lot build time.
+You can set timeout for both `job` and `steps`.
+
+default timeout is 360min. (6hours)
+
+It is better set much more shorten timeout like 15min or 30min to prevent spending a lot build time.
 
 ```yaml
 # .github/workflows/timeout.yaml
@@ -793,7 +797,7 @@ jobs:
 
 ```
 
-## concurrent build control
+## Concurrent build control
 
 GitHub Actions built in concurrency control prevent you to run CI at same time.
 This help you achieve serial build pipeline control.
@@ -842,13 +846,13 @@ jobs:
 
 ```
 
-## suppress redundant build
+## Suppress redundant build
 
 Build redundant may trouble when you are runnning Private Repository, bacause there are build time limits. In other words, you don't need mind build comsume time when repo is Public..
 
 > Detail: Created `pull_request` then pushed emmit `push` and `pull_request/synchronize` event. This trigger duplicate build and waste build time.
 
-**avoid push on pull_request trigger on same repo**
+**Avoid push on pull_request trigger on same repo**
 
 In this example `push` will trigger only when `main`, default branch. This means push will not run when `pull_request` synchronize event was emmited.
 Simple enough for almost usage.
@@ -905,10 +909,11 @@ jobs:
 
 ```
 
-## if and context reference
+## Use if and context
 
 GitHub Actions allow `if` condition for `step`.
-when you want refer any context, `env`, `github` and `matrix`, on `if` condition, you don't need add `${{}}` to context reference.
+You can refer any context inside `if` condition.
+You don't need add `${{}}` to context reference. but I do recomment add it for easier read.
 
 > NOTE: `matrix` cannot refer with `job.if`.
 
@@ -952,7 +957,7 @@ jobs:
 
 # BAD PATTERN
 
-## env refer env
+## Env refer env
 
 You cannot use `${{ env. }}` in `env:` section.
 Following is invalid with error.
@@ -980,7 +985,7 @@ jobs:
 
 # Branch and tag handling
 
-## run when branch push only but skip on tag push
+## Run when branch push only but skip on tag push
 
 If you want run job only when push to branch, and not for tag push.
 
@@ -1003,7 +1008,7 @@ jobs:
 
 ```
 
-## skip when branch push but run on tag push only
+## Skip when branch push but run on tag push only
 
 If you want run job only when push to tag, and not for branch push.
 
@@ -1025,7 +1030,7 @@ jobs:
 
 ```
 
-## build only specific tag pattern
+## Build only specific tag pattern
 
 You can use pattern on `on.push.tags`, but you can't on `step.if`.
 This pattern will match following.
@@ -1057,7 +1062,7 @@ jobs:
 
 ```
 
-## get pushed tag name
+## Get pushed tag name
 
 You need extract refs to get tag name.
 Save it to `step context` and refer from other step or save it to env is much eacher.
@@ -1084,7 +1089,7 @@ jobs:
 
 ```
 
-## create release
+## Create release
 
 You can create release and upload assets through GitHub Actions.
 Multiple assets upload is supported by running running `actions/upload-release-asset` for each asset.
@@ -1141,7 +1146,7 @@ jobs:
 
 ```
 
-## schedule job on non-default branch
+## Schedule job on non-default branch
 
 Schedule job will offer `Last commit on default branch`.
 
@@ -1178,7 +1183,7 @@ jobs:
 
 # Commit handling
 
-## trigger via commit message
+## Trigger via commit message
 
 ```yaml
 # .github/workflows/trigger_ci.yaml
@@ -1200,7 +1205,7 @@ jobs:
 
 ```
 
-## commit file handling
+## Commit file handling
 
 you can handle commit file handle with github actions [trilom/file/-changes/-action](https://github.com/trilom/file-changes-action).
 
@@ -1230,7 +1235,7 @@ jobs:
 
 use [actions/github\-script](https://github.com/actions/github-script).
 
-## skip ci on pull request title
+## Skip ci on pull request title
 
 original `pull_request` event will invoke when activity type is `opened`, `synchronize`, or `reopened`.
 
@@ -1263,7 +1268,7 @@ jobs:
 
 ```
 
-## skip pr from fork repo
+## Skip pr from fork repo
 
 default `pull_request` event trigger from even fork repository, however fork pr could not read `secrets` and may fail PR checks.
 To control job to be skip from fork but run on self pr or push, use `if` conditions.
@@ -1293,7 +1298,7 @@ jobs:
 
 ```
 
-## detect labels on pull request
+## Detect labels on pull request
 
 `pull_request` event contains tags and you can use it to filter step execution.
 `${{ contains(github.event.pull_request.labels.*.name, 'hoge') }}` will return `true` if tag contains `hoge`.
@@ -1324,7 +1329,7 @@ jobs:
 
 ```
 
-## skip job when Draft PR
+## Skip job when Draft PR
 
 You can skip job and steps if Pull Request is Draft.
 Unfortunately GitHub Webhook v3 event not provide draft pr type, but `event.pull_request.draft` shows `true` when PR is draft.
