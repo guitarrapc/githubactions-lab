@@ -9,8 +9,4 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "::set-output name=GIT_TAG::${GITHUB_REF##*/}"
-        id: CI_TAG
-      - run: echo ${{ steps.CI_TAG.outputs.GIT_TAG }}
-      - run: echo "GIT_TAG=${GITHUB_REF##*/}" >> "$GITHUB_ENV"
-      - run: echo ${{ env.GIT_TAG }}
+      - run: echo not run on branch push

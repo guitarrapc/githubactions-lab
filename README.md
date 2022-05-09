@@ -489,19 +489,7 @@ echo GIT_TAG_SCRIPT=${GITHUB_REF##*/} >> "$GITHUB_ENV"
 Call this script from workflow.
 
 ```yaml
-name: env with script
-
-on: push
-
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - run: echo "GIT_TAG=${GITHUB_REF##*/}" >> "$GITHUB_ENV"
-      - run: echo ${{ env.GIT_TAG }}
-      - run: bash -eux .github/scripts/setenv.sh --ref "${GITHUB_REF##*/}"
-      - run: echo ${{ env.GIT_TAG_SCRIPT }}
+// .github\workflows\env_with_script.yaml
 ```
 
 `echo ${{ env.GIT_TAG_SCRIPT }}` will output `chore/context_in_script` as expected.
@@ -514,37 +502,14 @@ To reuse YAML only job, use Repository Actions with `composite`.
 * step2. Write your composite actions yaml.
 
 ```yaml
-# local_composite_actions.yaml
-name: YOUR ACTION NAME
-description: |
-  Desctiption of your action
-inputs:
-  foo:
-    description: thi is foo input
-    default: FOO
-    required: false
-runs:
-  using: "composite" # this is key point
-  steps:
-    - name: THIS IS STEP1
-      shell: bash # this is key point
-      run: echo ${{ inputs.foo }}
+// .github\actions\local_composite_actions\action.yaml
 ```
 
 * step3. Use actions from your workflow.
 
 
 ```yaml
-name: reuse local action
-on: push
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - name: use local action
-        uses: ./.github/actions/local_composite_actions
-        with:
-          foo: BAR
+// .github\workflows\reuse_local_actions.yaml
 ```
 
 ## reuse Node actions - node12
@@ -555,40 +520,17 @@ To reuse Node, action, just place action inside `./github/actions/your_dir/` wit
 * step2. Use actions from your workflow.
 
 ```yaml
-name: reuse local action
-on: push
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - name: use local action
-        uses: ./.github/actions/local_node_action
+// .github\workflows\reuse_local_actions_node.yaml
 ```
 
 ## runs only previous job is success
 
-to accomplish sequential job run, use `needs:` for which you want the job to depends on.
+to accomplish sequential job run inside workflow, use `needs:` for which you want the job to depends on.
 
 this enforce job to be run when only previous job is **success**.
 
 ```yaml
-name: sequential jobs
-
-on: ["push"]
-
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - run: echo "$COMMIT_MESSAGES"
-        env:
-          COMMIT_MESSAGES: ${{ toJson(github.event.commits.*.message) }}
-
-  publish:
-    runs-on: ubuntu-latest
-    needs: build
-    steps:
-      - run: run when only build success
+// .github\workflows\sequential_run.yaml
 ```
 
 ## runs only when previous step status is specific
@@ -598,25 +540,7 @@ jobs:
 use `if:` you want set step to be run on particular status.
 
 ```yaml
-name: status step
-
-on: ["push"]
-
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - run: echo "$COMMIT_MESSAGES"
-        env:
-          COMMIT_MESSAGES: ${{ toJson(github.event.commits.*.message) }}
-      - run: echo run when none of previous steps  have failed or been canceled
-        if: success()
-      - run: echo run even cancelled. it won't run only when critical failure prevents the task.
-        if: always()
-      - run: echo run when Workflow cancelled.
-        if: cancelled()
-      - run: echo run when any previous step of a job fails.
-        if: failure()
+// .github\workflows\status_step.yaml
 ```
 
 ## timeout for job and step
@@ -624,90 +548,47 @@ jobs:
 default timeout is 360min. You should set much more shorten timeout like 15min or 30min to prevent spending a lot build time.
 
 ```yaml
-name: timeout
+// .github\workflows\timeout.yaml
+```
 
-on: ["push"]
+## concurrent build control
 
-jobs:
-  my-job:
-    runs-on: ubuntu-latest
-    timeout-minutes: 5
-    steps:
-      - run: echo done before timeout
-        timeout-minutes: 1 # step個別
+GitHub Actions built in concurrency control prevent you to run CI at same time.
+This help you achieve serial build pipeline control.
+
+You can use build context like `github.head_ref` or others. This means you can control with commit, branch, workflow and any.
+
+```yaml
+// .github\workflows\concurrency_control.yaml
+```
+
+Specify `cancel-in-progress: true` will cancel parallel build.
+
+```yaml
+// .github\workflows\concurrency_control_cancel_in_progress.yaml
 ```
 
 ## suppress redundant build
 
-This will trouble only when you are runnning private repo, if repo is public, you don't need mind build comsume time.
+Build redundant may trouble when you are runnning Private Repository, bacause there are build time limits. In other words, you don't need mind build comsume time when repo is Public..
 
-> Detail: When created `pull_request` then pushed, both `push` and `pull_request/synchronize` event emmit. This trigger duplicate build and waste build time.
+> Detail: Created `pull_request` then pushed emmit `push` and `pull_request/synchronize` event. This trigger duplicate build and waste build time.
 
-**do not trigger push on pull_request**
+**avoid push on pull_request trigger on same repo**
 
-In this example `push` will trigger only when `main`, default branch, this means push will not run when `pull_request` synchronize event was emmited.
+In this example `push` will trigger only when `main`, default branch. This means push will not run when `pull_request` synchronize event was emmited.
 Simple enough for almost usage.
 
 ```yaml
-name: push and pull_request avoid redundant
-
-on:
-  # prevent push run on pull_request
-  push:
-    branches:
-      - main
-  pull_request:
-    types:
-      - synchronize
-      - opened
-      - reopened
-
-jobs:
-  my-job:
-    runs-on: ubuntu-latest
-    steps:
-      - run: echo push and pull_request trigger
+// .github\workflows\push_and_pr_avoid_redundant.yaml
 ```
 
 **redundant build cancel**
 
-Cancel duplicate workflow.
-Make sure cancel will set `Status API` as failure.
+Cancel duplicate workflow and mark CI failure.
 
 ```yaml
-name: cancel redundant build
-# when pull_request, both push and pull_request (synchronize) will trigger.
-# this action sample will prevent duplicate run, but run only 1 of them.
-on: [push, pull_request]
-
-jobs:
-  cancel:
-    runs-on: ubuntu-latest
-    steps:
-      # no check for main and tag
-      - uses: rokroskar/workflow-run-cleanup-action@v0.2.2
-        if: "!startsWith(github.ref, 'refs/tags/') && github.ref != 'refs/heads/main'"
-        env:
-          GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
-```
-
-**redundant build cancel except main and tag**
-
-cancelling if `push is not tag` and `push is not branch "main"`.
-It means push to branch will be cancelled if duplicated workflow run at once.
-
-```yaml
-name: cancel redundant build
-on: push
-
-jobs:
-  cancel:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: rokroskar/workflow-run-cleanup-action@v0.2.2
-        if: "!startsWith(github.ref, 'refs/tags/') && github.ref != 'refs/heads/main'"
-        env:
-          GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+// .github\workflows\cancel_redundantbuild.yaml
 ```
 
 ## if and context reference
@@ -720,31 +601,7 @@ when you want refer any context, `env`, `github` and `matrix`, on `if` condition
 > [Solved: What is the correct if condition syntax for checki\.\.\. \- GitHub Community Forum](https://github.community/t5/GitHub-Actions/What-is-the-correct-if-condition-syntax-for-checking-matrix-os/td-p/31269)
 
 ```yaml
-name: if and context reference
-on: push
-
-jobs:
-  matrix_reference:
-    strategy:
-      matrix:
-        sample: ["hoge", "fuga"]
-    env:
-      APP: hoge
-    runs-on: ubuntu-latest
-    steps:
-      # env context reference
-      - run: echo "this is env if for hoge"
-        if: env.APP == matrix.sample
-      - run: echo "this is env if for fuga"
-        if: env.APP == matrix.sample
-      # github context reference
-      - run: echo "this is github if event push"
-        if: github.event_name == push
-      # matrix context reference
-      - run: echo "this is matrix if for hoge"
-        if: matrix.sample == 'hoge'
-      - run: echo "this is matrix if for fuga"
-        if: matrix.sample == 'fuga'
+// .github\workflows\if_and_context.yaml
 ```
 
 # Branch and tag handling
@@ -754,20 +611,7 @@ jobs:
 If you want run job only when push to branch, and not for tag push.
 
 ```yaml
-name: branch push only
-
-on:
-  push:
-    branches:
-      - "**"
-    tags:
-      - "!*" # not a tag push
-
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - run: echo not run on tag
+// .github\workflows\branch_push_only.yaml
 ```
 
 ## skip when branch push but run on tag push only
@@ -775,18 +619,7 @@ jobs:
 If you want run job only when push to tag, and not for branch push.
 
 ```yaml
-name: tag push only
-
-on:
-  push:
-    tags:
-      - "**" # only tag
-
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - run: echo not run on branch push
+// .github\workflows\tag_push_only.yaml
 ```
 
 ## build only specific tag pattern
@@ -804,18 +637,7 @@ not for below.
 * release
 
 ```yaml
-name: tag push only pattern
-
-on:
-  push:
-    tags:
-      - "[0-9]+.[0-9]+.[0-9]+*" # only tag with pattern match
-
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - run: echo not run on branch push
+// .github\workflows\tag_push_only_pattern.yaml
 ```
 
 ## get pushed tag name
@@ -824,22 +646,7 @@ You need extract refs to get tag name.
 Save it to `step context` and refer from other step or save it to env is much eacher.
 
 ```yaml
-name: tag push only
-
-on:
-  push:
-    tags:
-      - "**" # only tag
-
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - run: echo ::set-output name=GIT_TAG::${GITHUB_REF##*/}
-        id: CI_TAG
-      - run: echo ${{ steps.CI_TAG.outputs.GIT_TAG }}
-      - run: echo "GIT_TAG=${GITHUB_REF##*/}" >> "$GITHUB_ENV"
-      - run: echo ${{ env.GIT_TAG }}
+// .github\workflows\tag_push_only_context.yaml
 ```
 
 ## create release
@@ -848,56 +655,7 @@ You can create release and upload assets through GitHub Actions.
 Multiple assets upload is supported by running running `actions/upload-release-asset` for each asset.
 
 ```yaml
-name: create release
-
-on:
-  push:
-    tags:
-      - "[0-9]+.[0-9]+.[0-9]+*"
-
-jobs:
-  create-release:
-    runs-on: ubuntu-latest
-    env:
-      DOTNET_CLI_TELEMETRY_OPTOUT: 1
-      DOTNET_SKIP_FIRST_TIME_EXPERIENCE: 1
-      NUGET_XMLDOC_MODE: skip
-    steps:
-      # set release tag(*.*.*) to env.GIT_TAG
-      - run: echo "GIT_TAG=${GITHUB_REF##*/}" >> "$GITHUB_ENV"
-
-      - run: echo "hoge" > hoge.${GIT_TAG}.txt
-      - run: echo "fuga" > fuga.${GIT_TAG}.txt
-      - run: ls -l
-
-      # Create Releases
-      - uses: actions/create-release@v1
-        id: create_release
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          tag_name: ${{ github.ref }}
-          release_name: Ver.${{ github.ref }}
-
-      # Upload to Releases(hoge)
-      - uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: hoge.${{ env.GIT_TAG }}.txt
-          asset_name: hoge.${{ env.GIT_TAG }}.txt
-          asset_content_type: application/octet-stream
-
-      # Upload to Releases(fuga)
-      - uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: fuga.${{ env.GIT_TAG }}.txt
-          asset_name: fuga.${{ env.GIT_TAG }}.txt
-          asset_content_type: application/octet-stream
+// .github\workflows\create_release.yaml
 ```
 
 ## schedule job on non-default branch
@@ -915,17 +673,7 @@ Don't forget pretend `refs/heads/` to your branch.
 * bad: some-branch
 
 ```yaml
-name: schedule job
-on:
-  schedule:
-   - cron: "0 0 * * *"
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-        with:
-          ref: refs/heads/some-branch
+// .github\workflows\schedule_job.yaml
 ```
 
 # Commit handling
@@ -933,18 +681,7 @@ jobs:
 ## trigger via commit message
 
 ```yaml
-name: trigger ci commit
-
-on: ["push"]
-
-jobs:
-  build:
-    if: "contains(toJSON(github.event.commits.*.message), '[build]')"
-    runs-on: ubuntu-latest
-    steps:
-      - run: echo "$COMMIT_MESSAGES"
-        env:
-          COMMIT_MESSAGES: ${{ toJson(github.event.commits.*.message) }}
+// .github\workflows\trigger_ci.yaml
 ```
 
 ## commit file handling
@@ -952,21 +689,7 @@ jobs:
 you can handle commit file handle with github actions [trilom/file\-changes\-action](https://github.com/trilom/file-changes-action).
 
 ```yaml
-name: pr path changed
-on: [pull_request]
-
-jobs:
-  changes:
-    runs-on: ubuntu-latest
-    steps:
-      - id: file_changes
-        uses: trilom/file-changes-action@v1.2.4
-        with:
-          output: ","
-          pushBefore: main
-      - run: echo "${{ steps.file_changes.outputs.files }}"
-      - if: contains(steps.file_changes.outputs.files, '.github/workflows/')
-        run: echo changes contains .github/workflows/
+// .github\workflows\pr_path_changed.yaml
 ```
 
 
@@ -981,21 +704,7 @@ original `pull_request` event will invoke when activity type is `opened`, `synch
 > [Events that trigger workflows \- GitHub Help](https://help.github.com/en/actions/reference/events-that-trigger-workflows#pull-request-event-pull_request)
 
 ```yaml
-name: skip ci pr title
-
-on: ["pull_request"]
-
-jobs:
-  build:
-    if: "!contains(github.event.pull_request.title, '[skip ci]') || !contains(github.event.pull_request.title, '[ci skip]')"
-    runs-on: ubuntu-latest
-    steps:
-      - run: echo "$GITHUB_CONTEXT"
-        env:
-          GITHUB_CONTEXT: ${{ toJson(github) }}
-      - run: echo "$TITLE"
-        env:
-          TITLE: ${{ toJson(github.event.pull_request.title) }}
+// .github\workflows\skip_ci_pr_title.yaml
 ```
 
 ## skip pr from fork repo
@@ -1004,25 +713,7 @@ default `pull_request` event trigger from even fork repository, however fork pr 
 To control job to be skip from fork but run on self pr or push, use `if` conditions.
 
 ```yaml
-name: skip pr from fork
-
-on:
-  push:
-    branches:
-      - "main"
-  pull_request:
-    types:
-      - opened
-      - synchronize
-
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    # push & my repo will trigger
-    # pull_request on my repo will trigger
-    if: "(github.event == 'push' && github.repository_owner == 'guitarrapc') || startsWith(github.event.pull_request.head.label, 'guitarrapc:')"
-    steps:
-      - run: echo build
+// .github\workflows\skip_pr_from_fork.yaml
 ```
 
 ## detect labels on pull request
@@ -1031,26 +722,7 @@ jobs:
 `${{ contains(github.event.pull_request.labels.*.name, 'hoge') }}` will return `true` if tag contains `hoge`.
 
 ```yaml
-name: pr label get
-on:
-  pull_request:
-    types:
-      - labeled
-      - opened
-      - reopened
-      - synchronize
-
-jobs:
-  changes:
-    runs-on: ubuntu-latest
-    env:
-      IS_HOGE: "false"
-    steps:
-      - run: echo "${{ toJson(github.event.pull_request.labels.*.name) }}"
-      - run: echo "IS_HOGE=${{ contains(github.event.pull_request.labels.*.name, 'hoge') }}" >> "$GITHUB_ENV"
-      - run: echo "${IS_HOGE}"
-      - run: echo "run!"
-        if: env.IS_HOGE == 'true'
+// .github\workflows\pr_label_get.yaml
 ```
 
 ## skip job when Draft PR
@@ -1059,15 +731,13 @@ You can skip job and steps if Pull Request is Draft.
 Unfortunately GitHub Webhook v3 event not provide draft pr type, but `event.pull_request.draft` shows `true` when PR is draft.
 
 ```yaml
-name: skip draft pr
-on: pull_request
+// .github\workflows\skip_draft_pr.yaml
+```
 
-jobs:
-  build:
-    if: "!(github.event.pull_request.draft)"
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
+You can control behaviour with PR label.
+
+```yaml
+// .github\workflows\skip_draft_but_label_pr.yaml
 ```
 
 # ADVANCED
@@ -1098,29 +768,7 @@ jobs:
 This repo will dispatch event with following worlflow.
 
 ```yaml
-name: dispatch changes
-on:
-  workflow_dispatch:
-
-jobs:
-  dispatch:
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        repo: [testtest] #Array of target repos
-        include:
-          - repo: testtest
-            ref: main
-            workflow: test.yml
-    steps:
-      - name: dispatch ${{ matrix.repo }}
-        run: |
-          curl -f -X POST \
-               -H "authorization: Bearer ${{ secrets.SYNCED_GITHUB_TOKEN_REPO }}" \
-               -H "Accept: application/vnd.github.everest-preview+json" \
-               -H "Content-Type: application/json" \
-               -d '{"ref": "${{ matrix.ref }}"}' \
-               https://api.github.com/repos/guitarrapc/${{ matrix.repo }}/actions/workflows/${{ matrix.workflow }}/dispatches
+// .github\workflows\dispatch_changes_actions.yaml
 ```
 
 You can use [Workflow Dispatch Action](https://github.com/marketplace/actions/workflow-dispatch) insead, like this.
@@ -1156,14 +804,14 @@ You can lint GitHub Actions yaml via actionlint.
 
 If you don't need automated PR review, run actionlint is enough.
 
-```yaml:.github/workflows/actionlint.yaml
-
+```yaml
+// .github/workflows/actionlint.yaml
 ```
 
 If you need automated PR review, run actionlint with reviewdog.
 
-```yaml:.github/workflows/actionlint-reviewdog.yaml
-
+```yaml
+// github/workflows/actionlint-reviewdog.yaml
 ```
 
 # Cheat Sheet
