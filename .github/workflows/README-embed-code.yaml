@@ -17,3 +17,13 @@ jobs:
         run: |
           npm install -g embedme
           embedme README.md
+      - name: git-commit
+        run: |
+          git add *
+          git commit -m "Embed code"
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: github-pages
+          force: true
