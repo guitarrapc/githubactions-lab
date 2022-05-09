@@ -163,15 +163,15 @@ jobs:
   printInputs:
     runs-on: ubuntu-latest
       steps:
-          - name: new
-            run: |
-              # new
-              echo "INPUT_LOGLEVEL=${{ github.event.inputs.logLevel }}" >> "$GITHUB_ENV"
-              echo "INPUT_TAGS=${{ github.event.inputs.tags }}" >> "$GITHUB_ENV"
+        - name: new
+          run: |
+            # new
+            echo "INPUT_LOGLEVEL=${{ github.event.inputs.logLevel }}" >> "$GITHUB_ENV"
+            echo "INPUT_TAGS=${{ github.event.inputs.tags }}" >> "$GITHUB_ENV"
 
-              # deprecated
-              echo ::set-env name=INPUT_LOGLEVEL::${{ github.event.inputs.logLevel }}
-              echo ::set-env name=INPUT_TAGS::${{ github.event.inputs.tags }}
+            # deprecated
+            echo ::set-env name=INPUT_LOGLEVEL::${{ github.event.inputs.logLevel }}
+            echo ::set-env name=INPUT_TAGS::${{ github.event.inputs.tags }}
 ```
 
 * CircleCI use redirect to `> BASH_ENV` will automatically load on next step
