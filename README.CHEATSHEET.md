@@ -18,8 +18,6 @@ GitHub Actions cheet sheet.
 </details>
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
-# Cheat Sheet
-
 ## Get Tag, Branch
 
 ```yaml
