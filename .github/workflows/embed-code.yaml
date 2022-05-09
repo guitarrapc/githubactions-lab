@@ -1,0 +1,21 @@
+name: embed-code into README
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  embed-code:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 2
+      - uses: tokusumi/markdown-embed-code@main
+        with:
+          markdown: "README.md"
+          token: ${{ secrets.GITHUB_TOKEN }}
+          message: "Embedding code into Markdown"
+          silent: true
