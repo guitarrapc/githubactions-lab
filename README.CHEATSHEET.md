@@ -13,6 +13,7 @@ GitHub Actions cheet sheet.
   - [Get Tag, Branch](#get-tag-branch)
   - [Get Workflow Name](#get-workflow-name)
   - [Get Workflow Url](#get-workflow-url)
+  - [GitHub Actions commit icon](#github-actions-commit-icon)
 
 </details>
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
