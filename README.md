@@ -156,15 +156,19 @@ GitHub Actions use Environment Files to manage Environment variables, create or 
 > `::set-env` syntax is deprecated for [security reason](https://github.blog/changelog/2020-10-01-github-actions-deprecating-set-env-and-add-path-commands/).
 
 ```yaml
-steps:
-  - name: test
-    run: |
-      # new
-      echo "INPUT_LOGLEVEL=${{ github.event.inputs.logLevel }}" >> "$GITHUB_ENV"
-      echo "INPUT_TAGS=${{ github.event.inputs.tags }}" >> "$GITHUB_ENV"
-      # deprecated
-      # echo ::set-env name=INPUT_LOGLEVEL::${{ github.event.inputs.logLevel }}
-      # echo ::set-env name=INPUT_TAGS::${{ github.event.inputs.tags }}
+jobs:
+  printInputs:
+    runs-on: ubuntu-latest
+      steps:
+          - name: new
+            run: |
+              # new
+              echo "INPUT_LOGLEVEL=${{ github.event.inputs.logLevel }}" >> "$GITHUB_ENV"
+              echo "INPUT_TAGS=${{ github.event.inputs.tags }}" >> "$GITHUB_ENV"
+
+              # deprecated
+              echo ::set-env name=INPUT_LOGLEVEL::${{ github.event.inputs.logLevel }}
+              echo ::set-env name=INPUT_TAGS::${{ github.event.inputs.tags }}
 ```
 
 * CircleCI use redirect to `> BASH_ENV` will automatically load on next step
@@ -204,51 +208,7 @@ GitHub Actions offer `workflow_dispatch` event to execute workflow manually from
 Also you can use [action inputs](https://docs.github.com/en/actions/creating-actions/metadata-syntax-for-github-actions#inputs) to specify value trigger on manual trigger.
 
 ```yaml
-name: manual trigger
-on:
-  workflow_dispatch:
-    inputs:
-      branch:
-        description: "branch name to clone"
-        required: true
-        default: "main"
-      logLevel:
-        description: "Log level"
-        required: true
-        default: "warning"
-      tags:
-        description: "Test scenario tags"
-        required: false
-jobs:
-  printInputs:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-        with:
-          ref: ${{ github.event.inputs.branch }}
-      - name: dump github context
-        run: echo "$CONTEXT"
-        env:
-          CONTEXT: ${{ toJson(github) }}
-      - name: dump inputs context
-        run: echo "$CONTEXT"
-        env:
-          CONTEXT: ${{ toJson(github.event.inputs) }}
-      - run: |
-          echo "Log level: ${{ github.event.inputs.logLevel }}"
-          echo "Tags: ${{ github.event.inputs.tags }}"
-      # INPUT_ not automatcally generated
-      - run: |
-          echo ${INPUT_TEST_VAR}
-          echo ${TEST_VAR}
-      - run: export
-      - run: |
-          echo "INPUT_LOGLEVEL=${{ github.event.inputs.logLevel }}" >> "$GITHUB_ENV"
-          echo "INPUT_TAG=${{ github.event.inputs.tags }}" >> "$GITHUB_ENV"
-      - run: echo "/path/to/dir" >> "$GITHUB_PATH"
-      - run: |
-          echo "Log level: ${INPUT_LOGLEVEL}"
-          echo "Tags: ${INPUT_TAGS}"
+# .github\workflows\manual_trigger.yaml
 ```
 
 Even if you specify action inputs, input value will not store as ENV var `INPUT_{INPUTS_ID}` as usual.
@@ -283,79 +243,13 @@ job id, name and others.
 dump context with `toJson()` is a easiest way to dump context.
 
 ```yaml
-name: dump context push
-
-on: push
-
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Dump environment
-        run: export
-      - name: Dump GitHub context
-        run: echo "$CONTEXT"
-        env:
-          CONTEXT: ${{ toJson(github) }}
-      - name: Dump job context
-        run: echo "$CONTEXT"
-        env:
-          CONTEXT: ${{ toJson(job) }}
-      - name: Dump steps context
-        run: echo "$CONTEXT"
-        env:
-          CONTEXT: ${{ toJson(steps) }}
-      - name: Dump runner context
-        run: echo "$CONTEXT"
-        env:
-          CONTEXT: ${{ toJson(runner) }}
-      - name: Dump strategy context
-        run: echo "$CONTEXT"
-        env:
-          CONTEXT: ${{ toJson(strategy) }}
-      - name: Dump matrix context
-        run: echo "$CONTEXT"
-        env:
-          CONTEXT: ${{ toJson(matrix) }}
+# .github\workflows\dump_context_push.yaml
 ```
 
 pull request dump.
 
 ```yaml
-name: dump context pr
-
-on: pull_request
-
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Dump environment
-        run: export
-      - name: Dump GitHub context
-        run: echo "$CONTEXT"
-        env:
-          CONTEXT: ${{ toJson(github) }}
-      - name: Dump job context
-        run: echo "$CONTEXT"
-        env:
-          CONTEXT: ${{ toJson(job) }}
-      - name: Dump steps context
-        run: echo "$CONTEXT"
-        env:
-          CONTEXT: ${{ toJson(steps) }}
-      - name: Dump runner context
-        run: echo "$CONTEXT"
-        env:
-          CONTEXT: ${{ toJson(runner) }}
-      - name: Dump strategy context
-        run: echo "$CONTEXT"
-        env:
-          CONTEXT: ${{ toJson(strategy) }}
-      - name: Dump matrix context
-        run: echo "$CONTEXT"
-        env:
-          CONTEXT: ${{ toJson(matrix) }}
+# .github\workflows\dump_context_pr.yaml
 ```
 
 ## matrix and secret dereference
@@ -367,26 +261,7 @@ let's set secrets in settings.
 ![image](https://user-images.githubusercontent.com/3856350/79934065-99de6c00-848c-11ea-8995-bfe948e6c0fb.png)
 
 ```yaml
-name: matrix secret
-
-on: ["push"]
-
-jobs:
-  build:
-    strategy:
-      matrix:
-        org: [apples, bananas, carrots] #Array of org mnemonics to use below
-        include:
-          # includes a new variable for each org (this is effectively a switch statement)
-          - org: apples
-            secret: APPLES
-          - org: bananas
-            secret: BANANAS
-          - org: carrots
-            secret: CARROTS
-    runs-on: ubuntu-latest
-    steps:
-      - run: echo "org:${{ matrix.org }} secret:${{ secrets[matrix.secret] }}"
+# .github\workflows\matrix_secret.yaml
 ```
 
 ## matrix and environment variables
@@ -395,48 +270,7 @@ you can refer matrix in job's `env:` section before steps.
 However you cannot use expression, you must evaluate in step.
 
 ```yaml
-name: matrix envvar
-
-on: ["push"]
-
-jobs:
-  build:
-    strategy:
-      matrix:
-        org: [apples, bananas, carrots]
-    runs-on: ubuntu-latest
-    env:
-      ORG: ${{ matrix.org }}
-      # you can not use expression. do it on step.
-      # output on step is -> ci-`date '+%Y%m%d-%H%M%S'`+${GITHUB_SHA:0:6}
-      # GIT_TAG: "ci-`date '+%Y%m%d-%H%M%S'`+${GITHUB_SHA:0:6}"
-    steps:
-      - run: echo "${ORG}"
-```
-
-## env refer env
-
-You cannot use `${{ env. }}` in `env:` section.
-Following is invalid with error.
-
-> The workflow is not valid. .github/workflows/env_refer_env.yaml (Line: 12, Col: 16): Unrecognized named-value: 'env'. Located at position 1 within expression: env.global_env
-
-```yaml
-name: env refer env
-
-on: ["push"]
-
-env:
-  global_env: global
-
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    env:
-      job_env: ${{ env.global_env }}
-    steps:
-      - run: echo "${{ env.global_env }}"
-      - run: echo "${{ env.job_env }}"
+# .github\workflows\matrix_envvar.yaml
 ```
 
 ## set environment variables in script
@@ -565,6 +399,34 @@ when you want refer any context, `env`, `github` and `matrix`, on `if` condition
 ```yaml
 # .github\workflows\if_and_context.yaml
 ```
+
+# BAD PATTERN
+
+## env refer env
+
+You cannot use `${{ env. }}` in `env:` section.
+Following is invalid with error.
+
+> The workflow is not valid. .github/workflows/env_refer_env.yaml (Line: 12, Col: 16): Unrecognized named-value: 'env'. Located at position 1 within expression: env.global_env
+
+```yaml
+name: you can not refer env in env
+
+on: ["push"]
+
+env:
+  global_env: global
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      job_env: ${{ env.global_env }}
+    steps:
+      - run: echo "${{ env.global_env }}"
+      - run: echo "${{ env.job_env }}"
+```
+
 
 # Branch and tag handling
 
@@ -702,6 +564,7 @@ You can control behaviour with PR label.
 # .github\workflows\skip_draft_but_label_pr.yaml
 ```
 
+
 # ADVANCED
 
 Advanced tips.
@@ -736,28 +599,7 @@ This repo will dispatch event with following worlflow.
 You can use [Workflow Dispatch Action](https://github.com/marketplace/actions/workflow-dispatch) insead, like this.
 
 ```yaml
-name: dispatch changes actions
-on:
-  workflow_dispatch:
-
-jobs:
-  dispatch:
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        repo: [testtest] #Array of target repos
-        include:
-          - repo: testtest
-            ref: main
-            workflow: test # workflow name, not file name
-    steps:
-      - name: dispatch ${{ matrix.repo }}
-        uses: benc-uk/workflow-dispatch@v1.1
-        with:
-          repo: ${{ matrix.repo }}
-          ref: ${{ matrix.ref }}
-          workflow: ${{ matrix.workflow }}
-          token: ${{ secrets.SYNCED_GITHUB_TOKEN_REPO }}
+# .github\workflows\dispatch_changes_actions.yaml
 ```
 
 ## Lint GitHub Actions workflow itself
@@ -767,11 +609,11 @@ You can lint GitHub Actions yaml via actionlint.
 If you don't need automated PR review, run actionlint is enough.
 
 ```yaml
-// .github/workflows/actionlint.yaml
+# .github/workflows/actionlint.yaml
 ```
 
 If you need automated PR review, run actionlint with reviewdog.
 
 ```yaml
-// github/workflows/actionlint-reviewdog.yaml
+# .github/workflows/actionlint-reviewdog.yaml
 ```
