@@ -1,3 +1,9 @@
+# Cheet Sheet
+
+GitHub Actions cheet sheet.
+
+# Table of Contents
+
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 <details>
@@ -34,4 +40,13 @@ ${{ github.workflow }}
 
 ```
 ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+```
+
+## GitHub Actions commit icon
+
+Use following git config to commit as GitHub Actions icon.
+
+```shell
+git config user.name github-actions[bot]
+git config user.email 41898282+github-actions[bot]@users.noreply.github.com
 ```
