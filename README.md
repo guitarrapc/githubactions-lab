@@ -292,9 +292,10 @@ Call this script from workflow.
 
 ## reuse yaml actions - composite
 
-To reuse YAML only job, use Repository Actions with `composite`.
+To reuse local job, create local composite action is easiest way to do, this is calls `composite actions`.
+Create yaml file inside local action path, then declare `using: "composite"` in local action.yaml.
 
-* step1. Place your yaml to `.github/actions/your_dir/action.yaml`
+* step1. Place your yaml to `.github/actions/YOUR_DIR/action.yaml`
 * step2. Write your composite actions yaml.
 
 ```yaml
@@ -310,14 +311,31 @@ To reuse YAML only job, use Repository Actions with `composite`.
 
 ## reuse Node actions - node12
 
-To reuse Node, action, just place action inside `./github/actions/your_dir/` with action.yaml and source codes.
+To reuse local job, create local node action is another way to do, this is calls `node actions`.
+Create yaml file inside local action path, then declare `using: "node12"` in local action.yaml.
+Next place your node.js source files inside actions directory, you may require `index.js` for entrypoint.
 
-* step1. Place your ation.yaml and src to `.github/actions/your_dir/`
-* step2. Use actions from your workflow.
+> TIPS: You may find it is useful when you are running on GHE and copy GitHub Actions to your local.
+
+* step1. Place your ation.yaml  to `.github/actions/YOUR_DIR/actions.yaml`
+* step2. Write your node actions yaml.
+
+```yaml
+# .github\actions\local_node_actions\action.yaml
+```
+
+* step3. Write your source code to `.github/actions/YOUR_DIR/*.js`.
+
+```js
+// .github\actions\local_node_actions\index.js
+```
+
+* step4. Use actions from your workflow.
 
 ```yaml
 # .github\workflows\reuse_local_actions_node.yaml
 ```
+
 
 ## runs only previous job is success
 
