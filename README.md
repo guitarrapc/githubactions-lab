@@ -57,6 +57,7 @@ GitHub Actions laboratory.
   - [skip job when Draft PR](#skip-job-when-draft-pr)
 - [ADVANCED](#advanced)
   - [Dispatch other repo from workflow](#dispatch-other-repo-from-workflow)
+  - [Lint GitHub Actions workflow itself](#lint-github-actions-workflow-itself)
 - [Cheat Sheet](#cheat-sheet)
   - [Get Tag, Branch](#get-tag-branch)
   - [Get Workflow Name](#get-workflow-name)
