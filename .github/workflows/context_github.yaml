@@ -5,8 +5,9 @@ on:
     branches: ["main"]
 
 jobs:
-  build:
+  context:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
       - name: job
         run: ${{ github.job }}
