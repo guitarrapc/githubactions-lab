@@ -1,6 +1,7 @@
 name: README embed-code
 
 on:
+  workflow_dispatch:
   pull_request:
     branches: ["main"]
 
@@ -9,9 +10,12 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 3
     steps:
-      - uses: actions/checkout@v3
+      - if: ${{ github.event_name == 'pull_request' }}
+        uses: actions/checkout@v3
         with:
           ref: ${{ github.event.pull_request.head.sha }} # checkout PR HEAD commit instead of merge commit
+      - if: ${{ github.event_name == 'workflow_dispatch' }}
+        uses: actions/checkout@v3
       - name: Embedding Code into README
         run: |
           npm install -g embedme
