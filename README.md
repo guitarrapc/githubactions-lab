@@ -202,6 +202,27 @@ Secrets will be masked on the log.
 
 # Fundamentals
 
+## Multiline
+
+There are many place to support multiline.
+
+**run**
+
+Use `run: |` to write `run` statement in multiline.
+
+```yaml
+# .github/workflows/multiline_run.yaml
+```
+
+**if**
+
+Use `if: >-` to write `if` statement in multiline.
+
+```yaml
+# .github/workflows/multiline_if.yaml
+```
+
+
 ## Manual Trigger and input
 
 GitHub Actions offer `workflow_dispatch` event to execute workflow manually from WebUI.
@@ -283,10 +304,6 @@ GitHub supports specify permissions for each job or workflow.
 
 You can turn all permission off with `permissions: {}`.
 
-```yaml
-# .github/workflows/permissions_disabled.yaml
-```
-
 Workflow permission can be done with root `permissions:`.
 
 ```yaml
@@ -298,6 +315,8 @@ job permission can be done with `job.<job_name>.permissions`.
 ```yaml
 # .github/workflows/permissions_job.yaml
 ```
+
+The most important is `id-tokens: write`. It enables job to use OIDC other OIDC providers.
 
 ## retry failed workflow
 
