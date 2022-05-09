@@ -1,0 +1,17 @@
+name: toc
+
+on:
+  push:
+    branches: ["main"]
+
+jobs:
+  toc:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: technote-space/toc-generator@v2
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          TOC_TITLE: "Details"
+          TOC_MAX_HEADER_LEVEL: "2"
+          FOLDING: true

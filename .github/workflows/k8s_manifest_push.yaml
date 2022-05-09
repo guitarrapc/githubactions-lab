@@ -1,8 +1,7 @@
 name: k8s manifest Push
 on:
   push:
-    branches:
-      - main
+    branches: ["main"]
     paths:
       - src/k8s/**/*
       - .github/workflows/k8s*

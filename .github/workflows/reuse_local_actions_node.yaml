@@ -1,5 +1,4 @@
-name: dump context action
-
+name: reuse local action node
 on:
   workflow_dispatch:
   push:
@@ -12,4 +11,5 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - uses: ./.github/actions/dump_context_actions
+      - name: use local action
+        uses: ./.github/actions/local_node_actions

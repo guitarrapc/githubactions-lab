@@ -2,7 +2,7 @@ name: dump context pr
 
 on:
   pull_request:
-    branches: [main]
+    branches: ["main"]
 
 jobs:
   build:
