@@ -5,6 +5,7 @@ on:
 jobs:
   dispatch:
     runs-on: ubuntu-latest
+    timeout-minutes: 3
     strategy:
       matrix:
         repo: [testtest] #Array of target repos

@@ -16,6 +16,7 @@ on:
 jobs:
   printInputs:
     runs-on: ubuntu-latest
+    timeout-minutes: 3
     env:
       BRANCH: ${{ github.event.inputs.branch }}
       LOGLEVEL: ${{ github.event.inputs.logLevel }}

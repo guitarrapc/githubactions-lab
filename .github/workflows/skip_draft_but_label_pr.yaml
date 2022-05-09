@@ -14,5 +14,6 @@ jobs:
     # 2. Not draft, `push` and `non-draft pr`.
     if: ${{ (contains(github.event.pull_request.labels.*.name, 'draft_but_ci')) || !(github.event.pull_request.draft) }}
     runs-on: ubuntu-latest
+    timeout-minutes: 3
     steps:
       - uses: actions/checkout@v3

@@ -6,6 +6,7 @@ on:
 jobs:
   context:
     runs-on: ubuntu-latest
+    timeout-minutes: 3
     steps:
       - name: job
         run: echo ${{ github.job }}

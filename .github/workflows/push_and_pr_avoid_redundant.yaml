@@ -13,5 +13,6 @@ on:
 jobs:
   my-job:
     runs-on: ubuntu-latest
+    timeout-minutes: 3
     steps:
       - run: echo push and pull_request trigger

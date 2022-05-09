@@ -4,6 +4,7 @@ on: [pull_request]
 jobs:
   changes:
     runs-on: ubuntu-latest
+    timeout-minutes: 3
     steps:
       - id: file_changes
         uses: trilom/file-changes-action@v1.2.4

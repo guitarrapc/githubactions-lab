@@ -14,6 +14,7 @@ jobs:
     env:
       APP: hoge
     runs-on: ubuntu-latest
+    timeout-minutes: 3
     steps:
       # env context reference
       - run: echo "this is env if for hoge"

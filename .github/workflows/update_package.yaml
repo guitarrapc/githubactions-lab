@@ -18,6 +18,7 @@ on:
 jobs:
   update:
     runs-on: ubuntu-latest
+    timeout-minutes: 5
     env:
       VERSION: ${{ github.event.inputs.version }}
       TARGET_FILE: ./src/json/package.json

@@ -21,6 +21,7 @@ permissions:
 jobs:
   build:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
       - id: file_changes
         uses: trilom/file-changes-action@v1.2.4
