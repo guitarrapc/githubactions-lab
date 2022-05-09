@@ -1149,6 +1149,59 @@ jobs:
           token: ${{ secrets.SYNCED_GITHUB_TOKEN_REPO }}
 ```
 
+## Lint GitHub Actions workflow itself
+
+You can lint GitHub Actions yaml via actionlint.
+
+If you don't need automated PR review, run actionlint is enough.
+
+```yaml
+name: actionlint
+
+on:
+  workflow_dispatch:
+  pull_request:
+    branches: ["main"]
+    paths:
+      - ".github/workflows/**"
+
+jobs:
+  actionlint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Install actionlint
+        run: bash <(curl https://raw.githubusercontent.com/rhysd/actionlint/main/scripts/download-actionlint.bash)
+      - name: Run actionlint
+        run: ./actionlint -color -oneline
+```
+
+If you need automated PR review, run actionlint with reviewdog.
+
+```yaml
+name: actionlint (reviewdog)
+
+on:
+  workflow_dispatch:
+  pull_request:
+    branches: ["main"]
+    paths:
+      - ".github/workflows/**"
+
+jobs:
+  actionlint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: actionlint
+        uses: reviewdog/action-actionlint@v1
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          reporter: github-pr-review
+          fail_on_error: true # workflow will fail when actionlint detect warning.
+```
+
+
 # Cheat Sheet
 
 
