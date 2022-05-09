@@ -1,4 +1,4 @@
-name: embed-code into README
+name: README embed-code
 
 on:
   pull_request:
@@ -19,6 +19,8 @@ jobs:
           embedme README.md
       - name: git-commit
         run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "actions-user"
           git add "*"
           git commit -m "Embed code"
       - name: Push changes
