@@ -68,6 +68,8 @@ GitHub Actions laboratory.
 
 - [ ] YAML anchor support
   - [Support for YAML anchors \- GitHub Community Forum](https://github.community/t5/GitHub-Actions/Support-for-YAML-anchors/td-p/30336)
+- [ ] GitHub Actions Grouping
+  - Group GitHub Actions
 
 # Difference from other CI
 
@@ -262,6 +264,18 @@ jobs:
 ```
 
 Even if you specify action inputs, input value will not store as ENV var `INPUT_{INPUTS_ID}` as usual.
+
+## workflow dispatch with mixed input type
+
+Workflow dispatch supported input type.
+
+* boolean: `true` or `false` and Web UI offers checkbox.
+* choice: enum options and Web UI offers selection box.
+* environment: enum GitHub Environments and Web UI offers selection box.
+
+```yaml
+# .github/workflows/workflow_dispatch_mixed_inputs.yaml
+```
 
 ## retry failed workflow
 
