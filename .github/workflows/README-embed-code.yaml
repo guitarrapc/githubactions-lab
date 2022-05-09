@@ -2,8 +2,7 @@ name: README embed-code
 
 on:
   pull_request:
-    branches:
-      - main
+    branches: ["main"]
 
 jobs:
   embed-code:

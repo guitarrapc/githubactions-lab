@@ -2,8 +2,7 @@ name: toc
 
 on:
   push:
-    branches:
-      - main
+    branches: ["main"]
 
 jobs:
   toc:

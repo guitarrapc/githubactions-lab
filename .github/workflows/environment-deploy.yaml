@@ -1,11 +1,9 @@
 name: environment deploy
 on:
   push:
-    branches:
-      - "staging"
+    branches: ["staging"]
   pull_request:
-    branches:
-      - "staging"
+    branches: ["staging"]
 
 jobs:
   deploy:

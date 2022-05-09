@@ -1,6 +1,7 @@
 name: ban word checker
 on:
   push:
+    branches: ["main"]
     paths:
       - .github/workflows/*
       - .github/scripts/lint-banwords.sh

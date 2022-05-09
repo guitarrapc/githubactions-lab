@@ -4,9 +4,9 @@ name: dotnet fail test
 on:
   workflow_dispatch:
   push:
-    branches: [main]
+    branches: ["main"]
   pull_request:
-    branches: [main]
+    branches: ["main"]
 
 env:
   DOTNET_CLI_TELEMETRY_OPTOUT: 1

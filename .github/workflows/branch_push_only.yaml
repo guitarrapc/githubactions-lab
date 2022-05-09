@@ -2,8 +2,7 @@ name: branch push only
 
 on:
   push:
-    branches:
-      - "**"
+    branches: ["main"]
     tags:
       - "!*" # not a tag push
 
