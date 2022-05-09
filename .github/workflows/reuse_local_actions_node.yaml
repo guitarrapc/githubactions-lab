@@ -10,5 +10,6 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v3
       - name: use local action
         uses: ./.github/actions/local_node_action
