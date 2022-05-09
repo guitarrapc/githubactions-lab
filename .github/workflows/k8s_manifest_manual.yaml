@@ -59,8 +59,8 @@ jobs:
           GIT_LINK: ${{ github.event.repository.html_url }}/commit/${{ env.SHA }}
       - name: git commit
         run: |
-          git config --local user.email "action@github.com"
-          git config --local user.name "actions-user"
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
           git status
           git add "${MANIFEST_DIR}/*"
           ret=$(git status| sed -ne 's|.*\(clean\)|\1|p')
