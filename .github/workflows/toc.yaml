@@ -6,7 +6,19 @@ on:
       - main
 
 jobs:
+  embed-code:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: tokusumi/markdown-embed-code@main
+        with:
+          markdown: "README.md"
+          token: ${{ secrets.GITHUB_TOKEN }}
+          message: "Embedding code into Markdown"
+          silent: true
+
   toc:
+    needs: [embed-code]
     runs-on: ubuntu-latest
     timeout-minutes: 3
     steps:
