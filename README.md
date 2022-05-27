@@ -1847,23 +1847,29 @@ You have two choice.
 Below use [jwalton/gh-find-current-pr](https://github.com/jwalton/gh-find-current-pr) to retrieve merge commit info from merge commit.
 
 ```yaml
-# .github/workflows/pr_path_changed.yaml
+# .github/workflows/pr_from_merge_commit.yaml
 
-name: pr path changed
-on: [pull_request]
+name: pr from merge commit
+on:
+  push:
+    branches: ["main"]
 
 jobs:
-  changes:
+  get:
     runs-on: ubuntu-latest
     timeout-minutes: 3
     steps:
-      - id: file_changes
-        uses: trilom/file-changes-action@v1.2.4
+      - uses: actions/checkout@v3
+      - uses: jwalton/gh-find-current-pr@v1
+        id: pr
         with:
-          output: ","
-          pushBefore: main
-      - run: echo "${{ steps.file_changes.outputs.files }}"
-      - if: contains(steps.file_changes.outputs.files, '.github/workflows/')
-        run: echo changes contains .github/workflows/
+          state: closed
+      - if: success() && steps.pr.outputs.number
+        run: |
+          echo "PR #${PR_NUMBER}"
+          echo "PR Title: ${PR_TITLE}"
+        env:
+          PR_NUMBER: ${{ steps.pr.outputs.number }}
+          PR_TITLE: ${{ steps.pr.outputs.title }}
 
 ```
