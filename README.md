@@ -1835,3 +1835,16 @@ jobs:
           fail_on_error: true # workflow will fail when actionlint detect warning.
 
 ```
+
+## Get PR info from Merge Commit
+
+You have two choice.
+
+1. Use git cli and obtain 1st and 3rd line of merge commit.
+2. Use some action to retrieve PR info from merge commit.
+
+Below use [jwalton/gh-find-current-pr](https://github.com/jwalton/gh-find-current-pr) to retrieve merge commit info from merge commit.
+
+```yaml
+# .github/workflows/pr_path_changed.yaml
+```
