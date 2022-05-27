@@ -1841,10 +1841,10 @@ jobs:
 
 You have two choice.
 
-1. Use git cli and obtain 1st and 3rd line of merge commit.
+1. Use git cli. Retrieve 1st and 3rd line of merge commit.
 2. Use some action to retrieve PR info from merge commit.
 
-Below use [jwalton/gh-find-current-pr](https://github.com/jwalton/gh-find-current-pr) to retrieve merge commit info from merge commit.
+Below use [jwalton/gh-find-current-pr](https://github.com/jwalton/gh-find-current-pr) to retrieve PR info from merge commit.
 
 ```yaml
 # .github/workflows/pr_from_merge_commit.yaml
