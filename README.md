@@ -1847,4 +1847,22 @@ Below use [jwalton/gh-find-current-pr](https://github.com/jwalton/gh-find-curren
 
 ```yaml
 # .github/workflows/pr_path_changed.yaml
+
+name: pr path changed
+on: [pull_request]
+
+jobs:
+  changes:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - id: file_changes
+        uses: trilom/file-changes-action@v1.2.4
+        with:
+          output: ","
+          pushBefore: main
+      - run: echo "${{ steps.file_changes.outputs.files }}"
+      - if: contains(steps.file_changes.outputs.files, '.github/workflows/')
+        run: echo changes contains .github/workflows/
+
 ```
