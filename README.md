@@ -1849,4 +1849,27 @@ Below use [jwalton/gh-find-current-pr](https://github.com/jwalton/gh-find-curren
 ```yaml
 # .github/workflows/pr_from_merge_commit.yaml
 
+name: pr from merge commit
+on:
+  push:
+    branches: ["main"]
+
+jobs:
+  get:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v3
+      - uses: jwalton/gh-find-current-pr@v1
+        id: pr
+        with:
+          state: closed
+      - if: success() && steps.pr.outputs.number
+        run: |
+          echo "PR #${PR_NUMBER}"
+          echo "PR Title: ${PR_TITLE}"
+        env:
+          PR_NUMBER: ${{ steps.pr.outputs.number }}
+          PR_TITLE: ${{ steps.pr.outputs.title }}
+
 ```
