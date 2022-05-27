@@ -63,6 +63,7 @@ GitHub Actions laboratory.
 - [ADVANCED](#advanced)
   - [Dispatch other repo from workflow](#dispatch-other-repo-from-workflow)
   - [Lint GitHub Actions workflow itself](#lint-github-actions-workflow-itself)
+  - [Get PR info from Merge Commit](#get-pr-info-from-merge-commit)
 
 </details>
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
