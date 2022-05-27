@@ -16,7 +16,7 @@ jobs:
       - if: success() && steps.pr.outputs.number
         run: |
           echo "PR #${PR_NUMBER}"
-          echo "PR Title: #${PR_TITLE}"
+          echo "PR Title: ${PR_TITLE}"
         env:
           PR_NUMBER: ${{ steps.pr.outputs.number }}
           PR_TITLE: ${{ steps.pr.outputs.title }}
