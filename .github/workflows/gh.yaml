@@ -4,9 +4,9 @@ on:
   push:
     branches: ["main"]
 
-# required pull-requests: write to run gh api for pulls
 # permissions:
-#   pull-requests: write
+#   issues: write # required to run `gh pull --label foo` filter.
+#   pull-requests: write # required to run `gh api` for pulls
 
 jobs:
   gh:
@@ -20,3 +20,5 @@ jobs:
         run: gh pr list --json headRefName --jq ".[].headRefName"
       - name: gh api repos/${{ github.repository }}/pulls
         run: gh api repos/${{ github.repository }}/pulls --jq '.[].head.ref'
+      - name: gh pr list --labels hoge
+        run: gh pr list --labels hoge --json headRefName --jq ".[].headRefName"
