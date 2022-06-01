@@ -15,6 +15,7 @@ jobs:
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     timeout-minutes: 3
     steps:
+      - uses: actions/checkout@v3
       - name: gh pr list
         run: gh pr list --json headRefName --jq ".[].headRefName"
       - name: gh api repos/${{ github.repository }}/pulls
