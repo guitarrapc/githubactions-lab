@@ -20,5 +20,5 @@ jobs:
         run: gh pr list --json headRefName --jq ".[].headRefName"
       - name: gh api repos/${{ github.repository }}/pulls
         run: gh api repos/${{ github.repository }}/pulls --jq '.[].head.ref'
-      - name: gh pr list --labels hoge
-        run: gh pr list --labels hoge --json headRefName --jq ".[].headRefName"
+      - name: gh pr list --label hoge
+        run: gh pr list --label hoge --json headRefName --jq ".[].headRefName"
