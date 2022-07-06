@@ -5,9 +5,11 @@ on:
     inputs:
       username:
         required: true
+        description: username to show
         type: string
     secrets:
       APPLES:
+        description: secrets for APPLES
         required: true
     outputs:
       firstword:
@@ -25,9 +27,9 @@ jobs:
       output2: ${{ steps.step2.outputs.secondword }}
     steps:
       - name: called username
-        run: "called. username: ${{ inputs.username }}"
+        run: echo "called username. ${{ inputs.username }}"
       - name: called secret
-        run: "called. secret: ${{ secrets.APPLES }}"
+        run: echo "called secret. ${{ secrets.APPLES }}"
       - name: output step1
         id: step1
         run: echo "::set-output name=firstword::hello"

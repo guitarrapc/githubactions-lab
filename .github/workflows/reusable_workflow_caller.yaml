@@ -12,7 +12,7 @@ on:
         type: string
 
 env:
-  USERNAME: ${{ inputs.username != "" && inputs.username || "mona" }}
+  USERNAME: ${{ github.event.inputs.username != '' && github.event.inputs.username || 'mona' }}
 
 # reusable workflow limitation.
 # 1. Cannot call reusable workflow from reusable workflow.
