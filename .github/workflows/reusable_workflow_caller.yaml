@@ -1,0 +1,34 @@
+name: reusable workflow caller
+
+on:
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+    inputs:
+      username:
+        required: true
+        description: ""
+        type: string
+
+env:
+  USERNAME: ${{ inputs.username != "" && inputs.username || "mona" }}
+
+# reusable workflow limitation.
+# 1. Cannot call reusable workflow from reusable workflow.
+# 2. Private repo can call same repo's reusable workflow. You can not call other private repo's workflow.
+# 3. Caller Environment Variable never inherit to called reusable workflow.
+# 4. Caller cannot use strategy (=matrix).
+
+jobs:
+  call-workflow-passing-data:
+    uses: .github/workflows/_reusable_workflow_called.yaml
+    with:
+      username: ${{ env.USERNAME }}
+    secrets: inherit
+
+  job2:
+    runs-on: ubuntu-latest
+    needs: call-workflow-passing-data
+    steps:
+      - run: echo ${{ needs.call-workflow-passing-data.outputs.firstword }} ${{ needs.call-workflow-passing-data.outputs.secondword }}

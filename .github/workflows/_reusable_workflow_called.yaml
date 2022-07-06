@@ -1,0 +1,36 @@
+name: reusable workflow called
+
+on:
+  workflow_call:
+    inputs:
+      username:
+        required: true
+        type: string
+    secrets:
+      APPLES:
+        required: true
+    outputs:
+      firstword:
+        description: "The first output string"
+        value: ${{ jobs.reusable_workflow_job.outputs.output1 }}
+      secondword:
+        description: "The second output string"
+        value: ${{ jobs.reusable_workflow_job.outputs.output2 }}
+
+jobs:
+  reusable_workflow_job:
+    runs-on: ubuntu-latest
+    outputs:
+      output1: ${{ steps.step1.outputs.firstword }}
+      output2: ${{ steps.step2.outputs.secondword }}
+    steps:
+      - name: called username
+        run: "called. username: ${{ inputs.username }}"
+      - name: called secret
+        run: "called. secret: ${{ secrets.APPLES }}"
+      - name: output step1
+        id: step1
+        run: echo "::set-output name=firstword::hello"
+      - name: output step2
+        id: step2
+        run: echo "::set-output name=secondword::world"
