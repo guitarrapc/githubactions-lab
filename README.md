@@ -72,8 +72,14 @@ GitHub Actions laboratory.
 
 - [ ] YAML anchor support
   - [Support for YAML anchors \- GitHub Community Forum](https://github.community/t5/GitHub-Actions/Support-for-YAML-anchors/td-p/30336)
+  - Workaround: There are CompositeActions and Reusable workflow to reuse same set of actions.
 - [ ] GitHub Actions Grouping
   - Group GitHub Actions
+  - No workaround.
+- [ ] Test Insight view
+  - Like CircleCI or Azure Pipeline provides.
+- [ ] SSH Debug
+  - Like CircleCI provies.
 
 # Difference from other CI
 
@@ -86,22 +92,94 @@ GitHub Actions laboratory.
 
 ## Job and workflow
 
-GitHub Actions cannnot reuse yaml and need to write same job for each workflow.
-Better define step in script and call it from step, so that we can reuse same execution from other workflows or jobs.
+All CI has yaml definitions.
 
-* GitHub Actions define job inside workflow, and GitHub Actions cannot refer yaml from others.
-* CircleCI define job and conbinate it in workflow. Reusing job is natual way in circleci.
-* Azure Pipeline offer's template to refer stage, job and step from other yaml. This enable user to reuse yaml.
-* Jenkins has pipeline and could refer other pipeline. However a lot case would be define job step in script and reuse script, not pipeline.
+* ✔️: GitHub Actions define jobs inside workflow. Can trigger both Push and PR.
 
-## Skip ci on commit message
+```yaml
+name: workflow name
+on:
+  push:
+    branches: [main]
+
+jobs:
+  Job_Name:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo foo
+```
+
+* ✔️: CircleCI define jobs and conbinate them in workflow. Can not trigger both Push and PR.
+
+```yaml
+version: 2.1
+
+jobs:
+  Job_Name:
+    docker:
+      - image: circleci/<language>:<version TAG>
+    steps:
+      - run: echo foo
+workflows:
+  commit:
+    jobs:
+      - Job_Name
+```
+
+* ✔️: Azure Pipeline define jobs and conbinate them in stage. Can trigger both Push and PR.
+
+```yaml
+trigger:
+- main
+
+stages:
+- stage: StageName
+  jobs:
+  - job: Job_Name
+
+jobs:
+- job: Job_Name
+  pool:
+    vmImage: 'ubuntu-latest'
+  steps:
+  - bash: echo "foo"
+```
+
+* ✔️: Jenkins has Declaretive Pipeline. Trigger needs to be defined outside pipeline.
+
+```groovy
+pipeline {
+  agent any
+  triggers {
+    pollSCM('')
+  }
+  stages {
+    stage('Stage_Name') {
+      steps {
+        sh 'echo foo'
+      }
+    }
+  }
+}
+```
+
+## Reusable job and workflow
+
+Write script is better than directly write on the step, so that we can reuse same execution from other workflows or jobs.
+
+* ✔️: GitHub Actions can reuse yaml and via Reusable workflow or Composite Actions.
+* ✔️: CircleCI can reuse job and also anchor is useul.
+* ✔️: Azure Pipeline has template to refer stage, job and step from other yaml.
+* ✔️: Jenkins has pipeline and could refer other pipeline. However a lot case would be define job step in script and reuse script. Reusing pipeline in Jenkins easily make it complex than other CI.
+
+## Skip CI on commit message
 
 GitHub Actions support when HEAD commit contains key word like other ci.
 
-* GitHub Actions can skip workflow via `[skip ci]`, `[ci skip]`, `[no ci]`, `[skip actions]` or `[actions skip]`. If PR last commit message contains `[skip ci]`, then merge commit also skip.
-* CircleCI can skip job via `[skip ci]` or `[ci skip]`. If PR last commit message contains `[skip ci]`, then merge commit also skip.
-* Azure Pipeline can skip job via `***NO_CI***`, `[skip ci]` or `[ci skip]`, or [others](https://github.com/Microsoft/azure-pipelines-agent/issues/858#issuecomment-475768046).
-* Jenkins has plugin to support `[skip ci]` or any expression w/pipeline via [SCM Skip \| Jenkins plugin](https://plugins.jenkins.io/scmskip/).
+* ✔️: GitHub Actions can skip workflow via `[skip ci]`, `[ci skip]`, `[no ci]`, `[skip actions]` or `[actions skip]`. If PR last commit message contains `[skip ci]`, then merge commit also skip.
+* ✔️: CircleCI can skip job via `[skip ci]` or `[ci skip]`. If PR last commit message contains `[skip ci]`, then merge commit also skip.
+* ✔️: Azure Pipeline can skip job via `***NO_CI***`, `[skip ci]` or `[ci skip]`, or [others](https://github.com/Microsoft/azure-pipelines-agent/issues/858#issuecomment-475768046).
+* ❌: Jenkins not support skip ci on default, but there are plugins to support `[skip ci]` or any expression w/pipeline like [SCM Skip \| Jenkins plugin](https://plugins.jenkins.io/scmskip/).
 
 ## Path filter
 
@@ -109,10 +187,10 @@ GitHub Actions can use `on.<event>.paths-ignore:` and `on.<event>.paths:` by def
 
 > [paths - Workflow syntax for GitHub Actions \- GitHub Help](https://help.github.com/en/actions/reference/workflow-syntax-for-github-actions#onpushpull_requestpaths)
 
-* GitHub Actions can set path-filter.
-* CircleCI can not set path-filter.
-* Azure Pipeline can set path-filter.
-* Jenkins ... I think I need filter change from changes?
+* ✔️: GitHub Actions **CAN** set path-filter.
+* ❌: CircleCI can not set path-filter.
+* ✔️: Azure Pipeline can set path-filter.
+* ❌: Jenkins can not set path-filter. User should prepare by theirself.
 
 ## JobId and other meta values
 
@@ -120,91 +198,59 @@ GitHub Actions has Context concept, you can access job specific info via `github
 for example, `github.run_id` is A unique number for each run within a repository.
 Also you can access default environment variables like `GITHUB_RUN_ID`.
 
-* GitHub Actions [environment variable](https://help.github.com/en/actions/configuring-and-managing-workflows/using-environment-variables#default-environment-variables) `GITHUB_RUN_ID` or [context](https://help.github.com/en/actions/reference/context-and-expression-syntax-for-github-actions#github-context) `github.run_id`
-* CircleCI [environment vairable](https://circleci.com/docs/2.0/env-vars/#built-in-environment-variables) `CIRCLE_BUILD_NUM` and `CIRCLE_WORKFLOW_ID`
-* Azure Pipeline [environment variable](https://docs.microsoft.com/ja-jp/azure/devops/pipelines/process/run-number?view=azure-devops&tabs=yaml#tokens) `BuildID`.
-* Jenkins [environment vairable](https://wiki.jenkins.io/display/JENKINS/Building+a+software+project) `BUILD_NUMBER`
+* ✔️: GitHub Actions [environment variable](https://help.github.com/en/actions/configuring-and-managing-workflows/using-environment-variables#default-environment-variables) `GITHUB_RUN_ID` or [context](https://help.github.com/en/actions/reference/context-and-expression-syntax-for-github-actions#github-context) `github.run_id`
+* ✔️: CircleCI [environment vairable](https://circleci.com/docs/2.0/env-vars/#built-in-environment-variables) `CIRCLE_BUILD_NUM` and `CIRCLE_WORKFLOW_ID`
+* ✔️: Azure Pipeline [environment variable](https://docs.microsoft.com/ja-jp/azure/devops/pipelines/process/run-number?view=azure-devops&tabs=yaml#tokens) `BuildID`.
+* ✔️: Jenkins [environment vairable](https://wiki.jenkins.io/display/JENKINS/Building+a+software+project) `BUILD_NUMBER`
 
 ## Cancel redundant builds
 
-GitHub Actions not support cancel redundant build as CircleCI do.
-> [Solved: Github actions: Cancel redundant builds \(Not solve\.\.\. \- GitHub Community Forum](https://github.community/t5/GitHub-Actions/Github-actions-Cancel-redundant-builds-Not-solved/td-p/29549)
+GitHub Actions not support exact functionality as CircleCI provide, but you can do via concurrency control. Another option is comminity actions like [rokroskar/workflow-run-cleanup-action](https://github.com/marketplace/actions/workflow-run-cleanup-action), [fauguste/auto-cancellation-running-action](https://github.com/marketplace/actions/auto-cancellation-running-action) and [yellowmegaman/gh-build-canceller](https://github.com/marketplace/actions/gh-actions-stale-run-canceller).
 
-You can accomplish via actions. Workflow run cleanup action is the recommended.
+* ✔️: GitHub Actions has concurrency control and it can cancel in progress build. Or your can use Comminity Actions.
+* ✔️: CircleCI support cancel redundant build.
+* ❌: Azure Pipeline not support cancel redundant build.
+* ❌: Jenkins not support cancel redundant build, you need cancel it from parallel job.
 
-> [Workflow run cleanup action · Actions · GitHub Marketplace](https://github.com/marketplace/actions/workflow-run-cleanup-action)
+## Set environment variables for next steps
 
-This one is bit too much.
-
-> [technote\-space/auto\-cancel\-redundant\-job: GitHub Actions to automatically cancel redundant jobs\.](https://github.com/technote-space/auto-cancel-redundant-job)
-
-Theses are minimum specs.
-
-> [auto\-cancellation\-running\-action · Actions · GitHub Marketplace](https://github.com/marketplace/actions/auto-cancellation-running-action)
->
-> [GH actions stale run canceller · Actions · GitHub Marketplace](https://github.com/marketplace/actions/gh-actions-stale-run-canceller)
-
-* GitHub Actions need use some of actions
-* CircleCI support cancel redundant build
-* Azure Pipeline not support cancel redundant build
-* Jenkins not support cancel redundant build, you need cancel it from parallel job.
-
-## Set environment variables for next step
-
-GitHub Actions need to create or update Environment File, it's similar to CircleCI.
+See GitHub Actions environment variable document.
 
 > https://help.github.com/en/actions/reference/workflow-commands-for-github-actions#setting-an-environment-variable
 
-GitHub Actions use Environment Files to manage Environment variables, create or update via `echo "{name}={value}" >> "$GITHUB_ENV"` syntax, or `echo "{name}={value}" | tee -a "$GITHUB_ENV"`
 
-> `::set-env` syntax is deprecated for [security reason](https://github.blog/changelog/2020-10-01-github-actions-deprecating-set-env-and-add-path-commands/).
-
-```yaml
-jobs:
-  printInputs:
-    runs-on: ubuntu-latest
-      steps:
-        - name: new
-          run: |
-            # new
-            echo "INPUT_LOGLEVEL=${{ github.event.inputs.logLevel }}" >> "$GITHUB_ENV"
-            echo "INPUT_TAGS=${{ github.event.inputs.tags }}" >> "$GITHUB_ENV"
-
-            # deprecated
-            echo ::set-env name=INPUT_LOGLEVEL::${{ github.event.inputs.logLevel }}
-            echo ::set-env name=INPUT_TAGS::${{ github.event.inputs.tags }}
-```
-
-* CircleCI use redirect to `> BASH_ENV` will automatically load on next step
-* Azure Pipeline use task.setvariable. `echo "##vso[task.setvariable variable=NAME]VALUE"`
-* Jenkins use `Env.` in groovy declarative pipeline.
+* ✔️: GitHub Actions need to use special Environment variable `$GITHUB_ENV` via `echo "{name}={value}" >> "$GITHUB_ENV"` syntax, or `echo "{name}={value}" | tee -a "$GITHUB_ENV"`
+  * `::set-env` syntax has been deprecated for [security reason](https://github.blog/changelog/2020-10-01-github-actions-deprecating-set-env-and-add-path-commands/).
+* ✔️: CircleCI use redirect to `>> BASH_ENV` via `echo "export GIT_SHA1=$CIRCLE_SHA1" >> $BASH_ENV` syntax.
+* ✔️: Azure Pipeline use task.setvariable via `echo "##vso[task.setvariable variable=NAME]VALUE"` syntax.
+* ✔️: Jenkins use `Env.`.
 
 ## Adding system path
 
-GitHub Actions need to create or update Environment File, it's similar to CircleCI.
-* GitHub Actions use Environment Files to manage System Path, create or update via `echo "{path}" >> "$GITHUB_PATH"` syntax.
-  * `::add-path` syntax is deprecated for [security reason](https://github.blog/changelog/2020-10-01-github-actions-deprecating-set-env-and-add-path-commands/).
+* ✔️: GitHub Actions need to use special Environment variable `$GITHUB_PATH` via `echo "{path}" >> "$GITHUB_PATH"` syntax.
+  * `::add-path` syntax has been deprecated for [security reason](https://github.blog/changelog/2020-10-01-github-actions-deprecating-set-env-and-add-path-commands/).
+* ✔️: CircleCI use redirect to `>> BASH_ENV` via `echo "export PATH=$GOPATH/bin:$PATH" >> $BASH_ENV` syntax.
+* ✔️: Azure Pipeline use task.setvariable via `echo '##vso[task.setvariable variable=path]$(PATH):/dir/to/whatever'` syntax.
+* ✔️: Jenkins use `Env.`.
 
 ## Set secrets for reposiory
 
 GitHub ACtions offer Secrets for each repository and Organization.
 Secrets will be masked on the log.
 
-* GitHub Actions use Secrets
-* CircleCI offer Environment Variables and Context.
-* Azure Pipeline has Environment Variables and Paramter.
-* Jenkins has Credential Provider.
+* ✔️: GitHub Actions use Secrets and Environment Secrets.
+* ✔️: CircleCI offer Environment Variables and Context.
+* ✔️: Azure Pipeline has Environment Variables and Paramter.
+* ✔️: Jenkins has Credential Provider.
 
 ## Approval
 
-[TBD]
+* ✔️: GitHub Actions supports Approval on **Environment**. However Environment cannot use in `GitHub Team` pricing.
+* ✔️: CircleCI supports Approval.
+* ✔️: Azure Pipelin supports Approval.
+* ✔️: Jenkins supports Approval.
 
-* GitHub Actions supports Approval.
-* CircleCI supports Approval.
-* Azure Pipelin supports Approval.
-* Jenkins supports Approval.
-
-# Fundamentals
+# Basic - Fundamentables
 
 ## Multiline
 
@@ -831,7 +877,7 @@ jobs:
 
 ```
 
-## Set environment variables in script
+## Environment variables in script
 
 [set environment variables for next step](#set-environment-variables-for-next-step) explains how to set environment variables for next step.
 This syntax can be write in the script, let's see `.github/scripts/setenv.sh`.
@@ -1144,7 +1190,7 @@ jobs:
 
 ```
 
-## Suppress redundant build
+## Redundant build control
 
 Build redundant may trouble when you are runnning Private Repository, bacause there are build time limits. In other words, you don't need mind build comsume time when repo is Public..
 
@@ -1208,7 +1254,7 @@ jobs:
 
 ```
 
-## Use if and context
+## if and context
 
 GitHub Actions allow `if` condition for `step`.
 You can refer any context inside `if` condition.
@@ -1255,35 +1301,7 @@ jobs:
 
 ```
 
-# BAD PATTERN
-
-## Env refer env
-
-You cannot use `${{ env. }}` in `env:` section.
-Following is invalid with error.
-
-> The workflow is not valid. .github/workflows/env_refer_env.yaml (Line: 12, Col: 16): Unrecognized named-value: 'env'. Located at position 1 within expression: env.global_env
-
-```yaml
-name: you can not refer env in env
-
-on: ["push"]
-
-env:
-  global_env: global
-
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    env:
-      job_env: ${{ env.global_env }}
-    steps:
-      - run: echo "${{ env.global_env }}"
-      - run: echo "${{ env.job_env }}"
-```
-
-
-# Branch and tag handling
+# Basic - Branch and tag handling
 
 ## Run when branch push only but skip on tag push
 
@@ -1484,7 +1502,7 @@ jobs:
 
 ```
 
-# Commit handling
+# Basic - Commit handling
 
 ## Trigger via commit message
 
@@ -1536,7 +1554,7 @@ jobs:
 ```
 
 
-# Issue and Pull Request handling
+# Basic - Issue and Pull Request handling
 
 use [actions/github\-script](https://github.com/actions/github-script).
 
@@ -1690,7 +1708,34 @@ jobs:
 ```
 
 
-# ADVANCED
+# Basic - BAD PATTERN
+
+## Env refer env
+
+You cannot use `${{ env. }}` in `env:` section.
+Following is invalid with error.
+
+> The workflow is not valid. .github/workflows/env_refer_env.yaml (Line: 12, Col: 16): Unrecognized named-value: 'env'. Located at position 1 within expression: env.global_env
+
+```yaml
+name: you can not refer env in env
+
+on: ["push"]
+
+env:
+  global_env: global
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      job_env: ${{ env.global_env }}
+    steps:
+      - run: echo "${{ env.global_env }}"
+      - run: echo "${{ env.job_env }}"
+```
+
+# Advanced
 
 Advanced tips.
 
@@ -1811,7 +1856,7 @@ jobs:
 If you need automated PR review, run actionlint with reviewdog.
 
 ```yaml
-# .github/workflows/actionlint-reviewdog.yaml
+# .github/workflows/actionlint_reviewdog.yaml
 
 name: actionlint (reviewdog)
 
