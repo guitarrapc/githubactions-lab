@@ -870,6 +870,37 @@ If you want call public repository's workflow, you can use `uses: GITHUB_OWNER/R
 
 ```yaml
 # .github/workflows/reusable_workflow_public_caller.yaml
+
+name: reusable workflow public caller
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+    inputs:
+      username:
+        required: true
+        description: ""
+        type: string
+
+jobs:
+  call-workflow-passing-data:
+    uses: guitarrapc/githubactions-lab/.github/workflows/_reusable_workflow_called.yaml@main
+    with:
+      username: ${{ github.event.inputs.username != '' && github.event.inputs.username || 'mona' }}
+    secrets:
+      APPLES: ${{ secrets.APPLES }}
+
+  job2:
+    runs-on: ubuntu-latest
+    needs: call-workflow-passing-data
+    steps:
+      - run: echo ${{ needs.call-workflow-passing-data.outputs.firstword }} ${{ needs.call-workflow-passing-data.outputs.secondword }}
+
 ```
 
 ## Run when previous job is success
