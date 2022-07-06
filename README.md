@@ -793,6 +793,9 @@ on:
         description: "The second output string"
         value: ${{ jobs.reusable_workflow_job.outputs.output2 }}
 
+env:
+  FOO: foo
+
 jobs:
   reusable_workflow_job:
     runs-on: ubuntu-latest
@@ -800,10 +803,13 @@ jobs:
       output1: ${{ steps.step1.outputs.firstword }}
       output2: ${{ steps.step2.outputs.secondword }}
     steps:
+      - uses: actions/checkout@v3
       - name: called username
         run: echo "called username. ${{ inputs.username }}"
       - name: called secret
         run: echo "called secret. ${{ secrets.APPLES }}"
+      - name: called env
+        run: echo "called env. ${{ env.FOO }}"
       - name: output step1
         id: step1
         run: echo "::set-output name=firstword::hello"
@@ -821,6 +827,9 @@ Caller workflow must use `uses: ./.github/workflows/xxxx.yaml` for private repo.
 name: reusable workflow caller
 
 on:
+  push:
+    branches:
+      - main
   pull_request:
     branches:
       - main
@@ -839,7 +848,7 @@ on:
 
 jobs:
   call-workflow-passing-data:
-    uses: ./.github/workflows/_reusable_workflow_called.yaml
+    uses: ./.github/reusables/_reusable_workflow_called.yaml
     with:
       username: ${{ github.event.inputs.username != '' && github.event.inputs.username || 'mona' }}
     secrets:
@@ -1287,10 +1296,7 @@ on:
   push:
     branches: ["main"]
   pull_request:
-    types:
-      - synchronize
-      - opened
-      - reopened
+    branches: ["main"]
 
 jobs:
   my-job:
