@@ -11,9 +11,6 @@ on:
         description: ""
         type: string
 
-env:
-  USERNAME: ${{ github.event.inputs.username != '' && github.event.inputs.username || 'mona' }}
-
 # reusable workflow limitation.
 # 1. Cannot call reusable workflow from reusable workflow.
 # 2. Private repo can call same repo's reusable workflow. You can not call other private repo's workflow.
@@ -24,7 +21,7 @@ jobs:
   call-workflow-passing-data:
     uses: ./.github/workflows/_reusable_workflow_called.yaml
     with:
-      username: ${{ env.USERNAME }}
+      username: ${{ github.event.inputs.username != '' && github.event.inputs.username || 'mona' }}
     secrets:
       APPLES: ${{ secrets.APPLES }}
 
