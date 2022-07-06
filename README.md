@@ -1301,6 +1301,23 @@ jobs:
 
 ```
 
+## Reusable workflow
+
+GitHub Actions allow call workflow.
+You can call local workflow of the same repository (Private repository), and remote workflow of the Public repository.
+
+Callee wokflow must has `on.workflow_call` and yaml file must located under `.github/workflows/`.
+
+```yaml
+# .github/workflows/_reusable_workflow_called.yaml
+```
+
+Caller workflow must use `uses: ./.github/workflows/xxxx.yaml` for private repo.
+
+```yaml
+# .github/workflows/reusable_workflow_caller.yaml
+```
+
 # Basic - Branch and tag handling
 
 ## Run when branch push only but skip on tag push
