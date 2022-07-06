@@ -1,4 +1,4 @@
-name: reusable workflow caller
+name: reusable workflow public caller
 
 on:
   push:
@@ -16,7 +16,7 @@ on:
 
 jobs:
   call-workflow-passing-data:
-    uses: ./.github/workflows/_reusable_workflow_called.yaml
+    uses: guitarrapc/githubactions-lab/.github/workflows/_reusable_workflow_called.yaml@main
     with:
       username: ${{ github.event.inputs.username != '' && github.event.inputs.username || 'mona' }}
     secrets:
