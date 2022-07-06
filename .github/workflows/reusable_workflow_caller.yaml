@@ -22,7 +22,7 @@ on:
 
 jobs:
   call-workflow-passing-data:
-    uses: ./.github/workflows/_reusable_workflow_called.yaml
+    uses: ./.github/reusables/_reusable_workflow_called.yaml
     with:
       username: ${{ github.event.inputs.username != '' && github.event.inputs.username || 'mona' }}
     secrets:
