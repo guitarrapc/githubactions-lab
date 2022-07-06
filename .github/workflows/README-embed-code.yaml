@@ -20,7 +20,7 @@ jobs:
         run: |
           npm install -g embedme
           embedme README.md
-          embedme README.CHEATSEET.md
+          embedme README.CHEATSHEET.md
       - name: git diff
         id: diff
         run: |

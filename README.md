@@ -1738,13 +1738,14 @@ jobs:
 
 Advanced tips.
 
-## Dispatch other repo from workflow
+## Dispatch other repo workflow
 
 You can dispatch this repository to other repository via calling GitHub `workflow_dispatch` event API.
 You don't need use `repository_dispatch` event API anymore.
 
+**Target repository workflow**
 
-Target repo `testtest`'s workflow `test.yaml`.
+Here's target repo `testtest` workflow `test.yaml`.
 
 ```yaml
 name: test
@@ -1759,7 +1760,9 @@ jobs:
       - uses: actions/checkout@v3
 ```
 
-This repo will dispatch event with following worlflow.
+**Dispatcher workflow**
+
+This repo will dispatch event with [Workflow Dispatch Action](https://github.com/marketplace/actions/workflow-dispatch) actions.
 
 ```yaml
 # .github/workflows/dispatch_changes_actions.yaml
@@ -1787,39 +1790,8 @@ jobs:
           ref: ${{ matrix.ref }}
           workflow: ${{ matrix.workflow }}
           token: ${{ secrets.SYNCED_GITHUB_TOKEN_REPO }}
-
 ```
 
-You can use [Workflow Dispatch Action](https://github.com/marketplace/actions/workflow-dispatch) insead, like this.
-
-```yaml
-# .github/workflows/dispatch_changes_actions.yaml
-
-name: dispatch changes actions
-on:
-  workflow_dispatch:
-
-jobs:
-  dispatch:
-    runs-on: ubuntu-latest
-    timeout-minutes: 5
-    strategy:
-      matrix:
-        repo: [guitarrapc/testtest] #Array of target repos
-        include:
-          - repo: guitarrapc/testtest
-            ref: main
-            workflow: test
-    steps:
-      - name: dispatch ${{ matrix.repo }}
-        uses: benc-uk/workflow-dispatch@v1.1
-        with:
-          repo: ${{ matrix.repo }}
-          ref: ${{ matrix.ref }}
-          workflow: ${{ matrix.workflow }}
-          token: ${{ secrets.SYNCED_GITHUB_TOKEN_REPO }}
-
-```
 
 ## Get PR info from Merge Commit
 
