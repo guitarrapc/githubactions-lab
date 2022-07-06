@@ -764,15 +764,25 @@ jobs:
 
 ## Reusable workflow
 
-GitHub Actions allow call workflow.
+GitHub Actions allow call workflow from workflow.
 You can call local workflow of the same repository (Private repository), and remote workflow of the Public repository.
+
+> detail: [Reusing workflows \- GitHub Docs](https://docs.github.com/ja/actions/using-workflows/reusing-workflows)
+
+Threre are some remitations.
+
+1. Cannot call reusable workflow from reusable workflow.
+1. Private repo can call same repo's reusable workflow. You can not call other private repo's workflow.
+1. Caller Environment Variable never inherit to called reusable workflow.
+1. Caller cannot use strategy (=matrix).
+1. Callee workflow must place under `.github/workflows/`. Otherwise caller treated as calling public workflow.
 
 Callee wokflow must has `on.workflow_call` and yaml file must located under `.github/workflows/`.
 
 ```yaml
 # .github/workflows/_reusable_workflow_called.yaml
 
-name: reusable workflow called
+name: _reusable workflow called
 
 on:
   workflow_call:
@@ -793,6 +803,9 @@ on:
         description: "The second output string"
         value: ${{ jobs.reusable_workflow_job.outputs.output2 }}
 
+env:
+  FOO: foo
+
 jobs:
   reusable_workflow_job:
     runs-on: ubuntu-latest
@@ -800,10 +813,13 @@ jobs:
       output1: ${{ steps.step1.outputs.firstword }}
       output2: ${{ steps.step2.outputs.secondword }}
     steps:
+      - uses: actions/checkout@v3
       - name: called username
         run: echo "called username. ${{ inputs.username }}"
       - name: called secret
         run: echo "called secret. ${{ secrets.APPLES }}"
+      - name: called env
+        run: echo "called env. ${{ env.FOO }}"
       - name: output step1
         id: step1
         run: echo "::set-output name=firstword::hello"
@@ -813,7 +829,7 @@ jobs:
 
 ```
 
-Caller workflow must use `uses: ./.github/workflows/xxxx.yaml` for private repo.
+If you want call same repository's workflow, you must use `uses: ./.github/workflows/xxxx.yaml`.
 
 ```yaml
 # .github/workflows/reusable_workflow_caller.yaml
@@ -821,6 +837,9 @@ Caller workflow must use `uses: ./.github/workflows/xxxx.yaml` for private repo.
 name: reusable workflow caller
 
 on:
+  push:
+    branches:
+      - main
   pull_request:
     branches:
       - main
@@ -830,12 +849,6 @@ on:
         required: true
         description: ""
         type: string
-
-# reusable workflow limitation.
-# 1. Cannot call reusable workflow from reusable workflow.
-# 2. Private repo can call same repo's reusable workflow. You can not call other private repo's workflow.
-# 3. Caller Environment Variable never inherit to called reusable workflow.
-# 4. Caller cannot use strategy (=matrix).
 
 jobs:
   call-workflow-passing-data:
@@ -853,6 +866,42 @@ jobs:
 
 ```
 
+If you want call public repository's workflow, you can use `uses: GITHUB_OWNER/REPOSITORY/.github/workflows/xxxx.yaml`.
+
+```yaml
+# .github/workflows/reusable_workflow_public_caller.yaml
+
+name: reusable workflow public caller
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+    inputs:
+      username:
+        required: true
+        description: ""
+        type: string
+
+jobs:
+  call-workflow-passing-data:
+    uses: guitarrapc/githubactions-lab/.github/workflows/_reusable_workflow_called.yaml@main
+    with:
+      username: ${{ github.event.inputs.username != '' && github.event.inputs.username || 'mona' }}
+    secrets:
+      APPLES: ${{ secrets.APPLES }}
+
+  job2:
+    runs-on: ubuntu-latest
+    needs: call-workflow-passing-data
+    steps:
+      - run: echo ${{ needs.call-workflow-passing-data.outputs.firstword }} ${{ needs.call-workflow-passing-data.outputs.secondword }}
+
+```
 
 ## Run when previous job is success
 
@@ -1287,10 +1336,7 @@ on:
   push:
     branches: ["main"]
   pull_request:
-    types:
-      - synchronize
-      - opened
-      - reopened
+    branches: ["main"]
 
 jobs:
   my-job:
