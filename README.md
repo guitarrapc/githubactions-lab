@@ -764,8 +764,18 @@ jobs:
 
 ## Reusable workflow
 
-GitHub Actions allow call workflow.
+GitHub Actions allow call workflow from workflow.
 You can call local workflow of the same repository (Private repository), and remote workflow of the Public repository.
+
+> detail: [Reusing workflows \- GitHub Docs](https://docs.github.com/ja/actions/using-workflows/reusing-workflows)
+
+Threre are some remitations.
+
+1. Cannot call reusable workflow from reusable workflow.
+1. Private repo can call same repo's reusable workflow. You can not call other private repo's workflow.
+1. Caller Environment Variable never inherit to called reusable workflow.
+1. Caller cannot use strategy (=matrix).
+1. Callee workflow must place under `.github/workflows/`. Otherwise caller treated as calling public workflow.
 
 Callee wokflow must has `on.workflow_call` and yaml file must located under `.github/workflows/`.
 
@@ -819,7 +829,7 @@ jobs:
 
 ```
 
-Caller workflow must use `uses: ./.github/workflows/xxxx.yaml` for private repo.
+If you want call same repository's workflow, you must use `uses: ./.github/workflows/xxxx.yaml`.
 
 ```yaml
 # .github/workflows/reusable_workflow_caller.yaml
@@ -862,6 +872,11 @@ jobs:
 
 ```
 
+If you want call public repository's workflow, you can use `uses: GITHUB_OWNER/REPOSITORY/.github/workflows/xxxx.yaml`.
+
+```yaml
+# .github/workflows/reusable_workflow_public_caller.yaml
+```
 
 ## Run when previous job is success
 
