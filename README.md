@@ -1257,7 +1257,7 @@ jobs:
 
 ## Workflow Redundant Control
 
-> **Info**
+> **Note**
 > Consider using Workflow Concurrency control instead of redundant control.
 
 Build redundant may trouble when you are runnning Private Repository, bacause there are build time limits. In other words, you don't need mind build comsume time when repo is Public..
