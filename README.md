@@ -1310,12 +1310,86 @@ Callee wokflow must has `on.workflow_call` and yaml file must located under `.gi
 
 ```yaml
 # .github/workflows/_reusable_workflow_called.yaml
+
+name: reusable workflow called
+
+on:
+  workflow_call:
+    inputs:
+      username:
+        required: true
+        description: username to show
+        type: string
+    secrets:
+      APPLES:
+        description: secrets for APPLES
+        required: true
+    outputs:
+      firstword:
+        description: "The first output string"
+        value: ${{ jobs.reusable_workflow_job.outputs.output1 }}
+      secondword:
+        description: "The second output string"
+        value: ${{ jobs.reusable_workflow_job.outputs.output2 }}
+
+jobs:
+  reusable_workflow_job:
+    runs-on: ubuntu-latest
+    outputs:
+      output1: ${{ steps.step1.outputs.firstword }}
+      output2: ${{ steps.step2.outputs.secondword }}
+    steps:
+      - name: called username
+        run: echo "called username. ${{ inputs.username }}"
+      - name: called secret
+        run: echo "called secret. ${{ secrets.APPLES }}"
+      - name: output step1
+        id: step1
+        run: echo "::set-output name=firstword::hello"
+      - name: output step2
+        id: step2
+        run: echo "::set-output name=secondword::world"
+
 ```
 
 Caller workflow must use `uses: ./.github/workflows/xxxx.yaml` for private repo.
 
 ```yaml
 # .github/workflows/reusable_workflow_caller.yaml
+
+name: reusable workflow caller
+
+on:
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+    inputs:
+      username:
+        required: true
+        description: ""
+        type: string
+
+# reusable workflow limitation.
+# 1. Cannot call reusable workflow from reusable workflow.
+# 2. Private repo can call same repo's reusable workflow. You can not call other private repo's workflow.
+# 3. Caller Environment Variable never inherit to called reusable workflow.
+# 4. Caller cannot use strategy (=matrix).
+
+jobs:
+  call-workflow-passing-data:
+    uses: ./.github/workflows/_reusable_workflow_called.yaml
+    with:
+      username: ${{ github.event.inputs.username != '' && github.event.inputs.username || 'mona' }}
+    secrets:
+      APPLES: ${{ secrets.APPLES }}
+
+  job2:
+    runs-on: ubuntu-latest
+    needs: call-workflow-passing-data
+    steps:
+      - run: echo ${{ needs.call-workflow-passing-data.outputs.firstword }} ${{ needs.call-workflow-passing-data.outputs.secondword }}
+
 ```
 
 # Basic - Branch and tag handling
