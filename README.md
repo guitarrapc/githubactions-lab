@@ -1260,9 +1260,8 @@ jobs:
 > **Note**
 > Consider using Workflow Concurrency control instead of redundant control.
 
-Build redundant may trouble when you are runnning Private Repository, bacause there are build time limits. In other words, you don't need mind build comsume time when repo is Public..
-
-> Detail: Created `pull_request` then pushed emmit `push` and `pull_request/synchronize` event. This trigger duplicate build and waste build time.
+Creating PR emmits two events, `push` and `pull_request/synchronize`. This means duplicate build began and wastes build time.
+Redundant build may trouble when you are runnning Private Repository, bacause there are build time limits. In other words, you don't need mind build comsume time when repo is Public.
 
 **Avoid push on pull_request trigger on same repo**
 
