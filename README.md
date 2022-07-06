@@ -772,7 +772,7 @@ Callee wokflow must has `on.workflow_call` and yaml file must located under `.gi
 ```yaml
 # .github/workflows/_reusable_workflow_called.yaml
 
-name: reusable workflow called
+name: _reusable workflow called
 
 on:
   workflow_call:
@@ -840,15 +840,9 @@ on:
         description: ""
         type: string
 
-# reusable workflow limitation.
-# 1. Cannot call reusable workflow from reusable workflow.
-# 2. Private repo can call same repo's reusable workflow. You can not call other private repo's workflow.
-# 3. Caller Environment Variable never inherit to called reusable workflow.
-# 4. Caller cannot use strategy (=matrix).
-
 jobs:
   call-workflow-passing-data:
-    uses: ./.github/reusables/_reusable_workflow_called.yaml
+    uses: ./.github/workflows/_reusable_workflow_called.yaml
     with:
       username: ${{ github.event.inputs.username != '' && github.event.inputs.username || 'mona' }}
     secrets:
