@@ -778,6 +778,7 @@ Threre are some remitations.
 1. Callee workflow must place under `.github/workflows/`. Otherwise caller treated as calling public workflow.
 
 Callee wokflow must has `on.workflow_call` and yaml file must located under `.github/workflows/`.
+Any `inputs`, `secrets` and `outputs` should define onder on.workflow_call.
 
 ```yaml
 # .github/workflows/_reusable_workflow_called.yaml
@@ -829,7 +830,7 @@ jobs:
 
 ```
 
-If you want call same repository's workflow, you must use `uses: ./.github/workflows/xxxx.yaml`.
+`uses: ./.github/workflows/xxxx.yaml` can call same repository's local workflow.
 
 ```yaml
 # .github/workflows/reusable_workflow_caller.yaml
@@ -866,7 +867,7 @@ jobs:
 
 ```
 
-If you want call public repository's workflow, you can use `uses: GITHUB_OWNER/REPOSITORY/.github/workflows/xxxx.yaml`.
+`uses: GITHUB_OWNER/REPOSITORY/.github/workflows/xxxx.yaml@<ref>` can call public repository's workflow.
 
 ```yaml
 # .github/workflows/reusable_workflow_public_caller.yaml
