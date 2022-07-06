@@ -1,7 +1,18 @@
+name: reuse local action
+on:
+  workflow_dispatch:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+
 jobs:
-  call-workflow-passing-data:
-    uses: octo-org/example-repo/.github/workflows/reusable-workflow.yml@main
-    with:
-      username: mona
-    secrets:
-      envPAT: ${{ secrets.envPAT }}
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v3
+      - name: use local action
+        uses: ./.github/actions/local_composite_actions
+        with:
+          foo: BAR
