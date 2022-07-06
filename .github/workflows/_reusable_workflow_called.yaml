@@ -9,13 +9,13 @@ on:
     secrets:
       APPLES:
         required: true
-    outputs:
-      firstword:
-        description: "The first output string"
-        value: ${{ jobs.reusable_workflow_job.outputs.output1 }}
-      secondword:
-        description: "The second output string"
-        value: ${{ jobs.reusable_workflow_job.outputs.output2 }}
+    # outputs:
+    #   firstword:
+    #     description: "The first output string"
+    #     value: ${{ jobs.reusable_workflow_job.outputs.output1 }}
+    #   secondword:
+    #     description: "The second output string"
+    #     value: ${{ jobs.reusable_workflow_job.outputs.output2 }}
 
 jobs:
   reusable_workflow_job:
