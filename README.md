@@ -913,11 +913,11 @@ jobs:
 
 Reusable Workflow caller cannot use matrix, but callee can use matrix. (see limitation.)
 
-```
+```yaml
 # .github/workflows/reusable_workflow_caller_matrix.yaml
 ```
 
-```
+```yaml
 # .github/workflows/_reusable_workflow_matrix_called.yaml
 ```
 
