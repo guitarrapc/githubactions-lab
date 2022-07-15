@@ -23,6 +23,7 @@ env:
   FOO: foo
 
 jobs:
+  # callee can use matrix.
   reusable_workflow_job:
     strategy:
       matrix:
