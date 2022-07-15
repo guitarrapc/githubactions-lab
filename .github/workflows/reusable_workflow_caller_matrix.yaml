@@ -1,0 +1,26 @@
+name: reusable workflow caller
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+    inputs:
+      username:
+        required: true
+        description: ""
+        type: string
+
+jobs:
+  call-matrix-workflow:
+    # caller cannnot use matrix
+    # strategy:
+    #   matrix: ["foo", "bar"]
+    uses: ./.github/workflows/_reusable_workflow_matrix_called.yaml
+    with:
+      username: ${{ github.event.inputs.username != '' && github.event.inputs.username || 'mona' }}
+    secrets:
+      APPLES: ${{ secrets.APPLES }}

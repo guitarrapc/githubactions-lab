@@ -830,6 +830,8 @@ jobs:
 
 ```
 
+**call same reposity's reusable workflow**
+
 `uses: ./.github/workflows/xxxx.yaml` can call same repository's local workflow.
 
 ```yaml
@@ -867,7 +869,10 @@ jobs:
 
 ```
 
-`uses: GITHUB_OWNER/REPOSITORY/.github/workflows/xxxx.yaml@<ref>` can call public repository's workflow.
+**Call public repository's reusable workflow.
+
+`uses: GITHUB_OWNER/REPOSITORY/.github/workflows/xxxx.yaml@<ref>` can call public repository's reusable workflow.
+You cannot call private repository's reusable workflow. (see limitation.)
 
 ```yaml
 # .github/workflows/reusable_workflow_public_caller.yaml
@@ -903,6 +908,19 @@ jobs:
       - run: echo ${{ needs.call-workflow-passing-data.outputs.firstword }} ${{ needs.call-workflow-passing-data.outputs.secondword }}
 
 ```
+
+**Can not use matrix on caller**
+
+Reusable Workflow caller cannot use matrix, but callee can use matrix. (see limitation.)
+
+```
+# .github/workflows/reusable_workflow_caller_matrix.yaml
+```
+
+```
+# .github/workflows/_reusable_workflow_matrix_called.yaml
+```
+
 
 ## Run when previous job is success
 
