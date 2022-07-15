@@ -948,7 +948,7 @@ jobs:
 ```yaml
 # .github/workflows/_reusable_workflow_matrix_called.yaml
 
-name: _reusable workflow called
+name: _reusable workflow matrix called
 
 on:
   workflow_call:
