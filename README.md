@@ -915,10 +915,90 @@ Reusable Workflow caller cannot use matrix, but callee can use matrix. (see limi
 
 ```yaml
 # .github/workflows/reusable_workflow_caller_matrix.yaml
+
+name: reusable workflow caller
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+    inputs:
+      username:
+        required: true
+        description: ""
+        type: string
+
+jobs:
+  call-matrix-workflow:
+    # caller cannnot use matrix
+    # strategy:
+    #   matrix: ["foo", "bar"]
+    uses: ./.github/workflows/_reusable_workflow_matrix_called.yaml
+    with:
+      username: ${{ github.event.inputs.username != '' && github.event.inputs.username || 'mona' }}
+    secrets:
+      APPLES: ${{ secrets.APPLES }}
+
 ```
 
 ```yaml
 # .github/workflows/_reusable_workflow_matrix_called.yaml
+
+name: _reusable workflow called
+
+on:
+  workflow_call:
+    inputs:
+      username:
+        required: true
+        description: username to show
+        type: string
+    secrets:
+      APPLES:
+        description: secrets for APPLES
+        required: true
+    outputs:
+      firstword:
+        description: "The first output string"
+        value: ${{ jobs.reusable_workflow_job.outputs.output1 }}
+      secondword:
+        description: "The second output string"
+        value: ${{ jobs.reusable_workflow_job.outputs.output2 }}
+
+env:
+  FOO: foo
+
+jobs:
+  # callee can use matrix.
+  reusable_workflow_job:
+    strategy:
+      matrix:
+        org: [apples, bananas, carrots]
+    runs-on: ubuntu-latest
+    outputs:
+      output1: ${{ steps.step1.outputs.firstword }}
+      output2: ${{ steps.step2.outputs.secondword }}
+    steps:
+      - uses: actions/checkout@v3
+      - name: matrix value (${{ matrix.org}})
+        run: echo "${{ matrix.org }}"
+      - name: called username
+        run: echo "called username. ${{ inputs.username }}"
+      - name: called secret
+        run: echo "called secret. ${{ secrets.APPLES }}"
+      - name: called env
+        run: echo "called env. ${{ env.FOO }}"
+      - name: output step1
+        id: step1
+        run: echo "::set-output name=firstword::hello"
+      - name: output step2
+        id: step2
+        run: echo "::set-output name=secondword::world"
+
 ```
 
 
