@@ -865,6 +865,14 @@ jobs:
     steps:
       - run: echo ${{ needs.call-workflow-passing-data.outputs.firstword }} ${{ needs.call-workflow-passing-data.outputs.secondword }}
 
+  # caller cannnot use matrix. callee can use matrix.
+  call-matrix-workflow:
+    uses: ./.github/workflows/_reusable_workflow_matrix_called.yaml
+    with:
+      username: ${{ github.event.inputs.username != '' && github.event.inputs.username || 'mona' }}
+    secrets:
+      APPLES: ${{ secrets.APPLES }}
+
 ```
 
 `uses: GITHUB_OWNER/REPOSITORY/.github/workflows/xxxx.yaml@<ref>` can call public repository's workflow.
