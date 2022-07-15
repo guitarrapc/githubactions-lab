@@ -830,7 +830,7 @@ jobs:
 
 ```
 
-**call same reposity's reusable workflow**
+**Call same reposity's reusable workflow**
 
 `uses: ./.github/workflows/xxxx.yaml` can call same repository's local workflow.
 
@@ -869,7 +869,7 @@ jobs:
 
 ```
 
-**Call public repository's reusable workflow.
+**Call public repository's reusable workflow**
 
 `uses: GITHUB_OWNER/REPOSITORY/.github/workflows/xxxx.yaml@<ref>` can call public repository's reusable workflow.
 You cannot call private repository's reusable workflow. (see limitation.)
@@ -909,7 +909,7 @@ jobs:
 
 ```
 
-**Can not use matrix on caller**
+**Can not use matrix on caller, use matrix on callee**
 
 Reusable Workflow caller cannot use matrix, but callee can use matrix. (see limitation.)
 
