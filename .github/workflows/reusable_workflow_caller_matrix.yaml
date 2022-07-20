@@ -26,6 +26,6 @@ jobs:
     uses: ./.github/workflows/_reusable_workflow_matrix_called.yaml
     with:
       username: ${{ github.event.inputs.username != '' && github.event.inputs.username || 'mona' }}
-      is-valid: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.is-valid || false }}
+      is-valid: ${{ github.event_name == 'workflow_dispatch' && fromJson(github.event.inputs.is-valid) || false }}
     secrets:
       APPLES: ${{ secrets.APPLES }}
