@@ -46,8 +46,12 @@ jobs:
         run: echo "called is-valid. ${{ inputs.is-valid }}"
       - name: called secret
         run: echo "called secret. ${{ secrets.APPLES }}"
-      - name: called env
-        run: echo "called env. ${{ env.FOO }}"
+      - name: called global env
+        run: echo "called global env. ${{ env.FOO }}"
+      - name: set environment variable
+        run: echo "IS_VALID=${{ inputs.is-valid }}" >> "$GITHUB_ENV"
+      - name: called GITHUB_ENV env
+        run: echo "called env. ${{ env.IS_VALID }}"
       - name: output step1
         id: step1
         run: echo "::set-output name=firstword::hello"
