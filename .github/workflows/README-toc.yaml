@@ -13,5 +13,5 @@ jobs:
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           TOC_TITLE: "Details"
-          TOC_MAX_HEADER_LEVEL: "2"
+          MAX_HEADER_LEVEL: "2"
           FOLDING: true
