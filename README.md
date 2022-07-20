@@ -84,9 +84,14 @@ GitHub Actions laboratory.
   - Group GitHub Actions
   - No workaround.
 - [ ] Test Insight view
-  - Like CircleCI or Azure Pipeline provides.
+  - Like [CircleCI](https://circleci.com/docs/insights-tests) and [Azure Pipeline](https://docs.microsoft.com/en-us/azure/devops/pipelines/test/review-continuous-test-results-after-build?view=azure-devops) provides.
+  - No workarround.
 - [ ] SSH Debug
-  - Like CircleCI provies.
+  - Like [CircleCI provides](https://circleci.com/docs/ssh-access-jobs).
+  - Workaround: Use [Debugging with ssh Actions](https://github.com/marketplace/actions/debugging-with-ssh)
+- [ ] Dynamic Config
+  - Like [CircleCI provides](https://circleci.com/docs/dynamic-config).
+  - Workaround: Reusable Workflow / Composite Actions with inputs parameter.
 
 # Difference from other CI
 
