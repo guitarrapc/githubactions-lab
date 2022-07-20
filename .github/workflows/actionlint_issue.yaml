@@ -9,6 +9,12 @@ on:
         type: boolean
 
 jobs:
+  debug:
+    runs-on: ubuntu-latest
+    steps:
+      - name: called is-valid
+        run: echo "${{ fromJSON(github.event.inputs) }}"
+
   issue:
     uses: ./.github/workflows/_reusable.yaml
     with:
