@@ -13,12 +13,17 @@ on:
         required: true
         description: ""
         type: string
+      is-valid:
+        required: true
+        description: "is-valid: true or false"
+        type: boolean
 
 jobs:
   call-workflow-passing-data:
     uses: guitarrapc/githubactions-lab/.github/workflows/_reusable_workflow_called.yaml@main
     with:
       username: ${{ github.event.inputs.username != '' && github.event.inputs.username || 'mona' }}
+      is-valid: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.is-valid || false }}
     secrets:
       APPLES: ${{ secrets.APPLES }}
 

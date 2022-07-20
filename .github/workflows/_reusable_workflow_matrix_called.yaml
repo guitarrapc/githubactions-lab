@@ -7,6 +7,10 @@ on:
         required: true
         description: username to show
         type: string
+      is-valid:
+        required: true
+        description: username to show
+        type: boolean
     secrets:
       APPLES:
         description: secrets for APPLES
@@ -38,6 +42,8 @@ jobs:
         run: echo "${{ matrix.org }}"
       - name: called username
         run: echo "called username. ${{ inputs.username }}"
+      - name: called is-valid
+        run: echo "called is-valid. ${{ inputs.is-valid }}"
       - name: called secret
         run: echo "called secret. ${{ secrets.APPLES }}"
       - name: called env
