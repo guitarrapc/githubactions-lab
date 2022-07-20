@@ -3,6 +3,8 @@ name: README toc
 on:
   push:
     branches: ["main"]
+    paths:
+      - "README.md"
 
 jobs:
   toc:
