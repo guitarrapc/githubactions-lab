@@ -38,13 +38,13 @@ jobs:
         run: echo "called username. ${{ inputs.username }}"
       - name: called is-valid
         run: echo "called is-valid. ${{ inputs.is-valid }}"
-      - name: called secret
-        run: echo "called secret. ${{ secrets.APPLES }}"
-      - name: called global env
+      - name: called secret (dereference)
+        run: echo "called secret. ${{ secrets[matrix.org] }}"
+      - name: called env (global)
         run: echo "called global env. ${{ env.FOO }}"
-      - name: set environment variable
+      - name: set variable (GITHUB_ENV)
         run: echo "IS_VALID=${{ inputs.is-valid }}" >> "$GITHUB_ENV"
-      - name: called GITHUB_ENV env
+      - name: called env (GITHUB_ENV)
         run: echo "called env. ${{ env.IS_VALID }}"
       - name: output step1
         id: step1
