@@ -830,7 +830,7 @@ jobs:
       - name: called secret
         run: echo "called secret. ${{ secrets.APPLES }}"
       - name: called secret (dereference)
-        run: echo "called secret. ${{ secrets["APPLES"] }}"
+        run: echo "called secret. ${{ secrets['APPLES'] }}"
       - name: called env (global)
         run: echo "called global env. ${{ env.FOO }}"
       - name: set variable (GITHUB_ENV)
