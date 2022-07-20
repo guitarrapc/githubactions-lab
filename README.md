@@ -66,11 +66,12 @@ GitHub Actions laboratory.
   - [Dispatch other repo workflow](#dispatch-other-repo-workflow)
   - [Get PR info from Merge Commit](#get-pr-info-from-merge-commit)
   - [Lint GitHub Actions workflow itself](#lint-github-actions-workflow-itself)
-- [Cheet Sheet](#cheet-sheet)
+- [Cheat Sheet](#cheat-sheet)
   - [Get Tag, Branch](#get-tag-branch)
   - [Get Workflow Name](#get-workflow-name)
   - [Get Workflow Url](#get-workflow-url)
   - [GitHub Actions commit icon](#github-actions-commit-icon)
+  - [Type converter with fromJson](#type-converter-with-fromjson)
 
 </details>
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
