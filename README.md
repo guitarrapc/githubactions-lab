@@ -774,13 +774,15 @@ You can call local workflow of the same repository (Private repository), and rem
 
 > detail: [Reusing workflows \- GitHub Docs](https://docs.github.com/ja/actions/using-workflows/reusing-workflows)
 
-Threre are some remitations.
+Threre are some limitations.
 
 1. Cannot call reusable workflow from reusable workflow.
 1. Private repo can call same repo's reusable workflow. You can not call other private repo's workflow.
 1. Caller Environment Variable never inherit to called reusable workflow.
 1. Caller cannot use strategy (=matrix).
 1. Callee workflow must place under `.github/workflows/`. Otherwise caller treated as calling public workflow.
+
+**Callee workflow sample**
 
 Callee wokflow must has `on.workflow_call` and yaml file must located under `.github/workflows/`.
 Any `inputs`, `secrets` and `outputs` should define onder on.workflow_call.
@@ -838,6 +840,9 @@ jobs:
 **Call same reposity's reusable workflow**
 
 `uses: ./.github/workflows/xxxx.yaml` can call same repository's local workflow.
+
+When you want pass `boolean` type of input from workflow_dispatch to workflow_call, use `fromJson(github.event.inputs.YOUR_BOOLEAN_PARAMETER)`.
+This is because boolean parameter changed it's type to `string` in `github.event.inputs` context. `fromJson` is type converter HACK.
 
 ```yaml
 # .github/workflows/reusable_workflow_caller.yaml
