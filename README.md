@@ -842,7 +842,7 @@ jobs:
 `uses: ./.github/workflows/xxxx.yaml` can call same repository's local workflow.
 
 When you want pass `boolean` type of input from workflow_dispatch to workflow_call, use `fromJson(github.event.inputs.YOUR_BOOLEAN_PARAMETER)`.
-This is because boolean parameter changed it's type to `string` in `github.event.inputs` context. `fromJson` is type converter HACK.
+See [Type converter with fromJson](#type-converter-with-fromJson) for the detail.
 
 ```yaml
 # .github/workflows/reusable_workflow_caller.yaml
@@ -2049,7 +2049,7 @@ jobs:
 
 ```
 
-# Cheet Sheet
+# Cheat Sheet
 
 GitHub Actions cheet sheet.
 
@@ -2107,4 +2107,15 @@ Use following git config to commit as GitHub Actions icon.
 ```shell
 git config user.name github-actions[bot]
 git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+```
+
+## Type converter with fromJson
+
+There are some cases you want convert string to other type.
+Consider you want use boolean input `is-valid` with workflow_dispatch, then pass it to workflow_call as boolean.
+`github.event.inputs` context treat all value as `string`, so `github.event.inputs.is-valid` isn't boolean any more.
+`fromJson` expression is the trick to convert type from string to boolean.
+
+```yaml
+${{ fromJson(github.event.inputs.is-valid) }}
 ```
