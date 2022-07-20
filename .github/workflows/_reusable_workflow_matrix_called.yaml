@@ -11,10 +11,6 @@ on:
         required: true
         description: username to show
         type: boolean
-    secrets:
-      APPLES:
-        description: secrets for APPLES
-        required: true
     outputs:
       firstword:
         description: "The first output string"

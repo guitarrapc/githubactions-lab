@@ -800,10 +800,6 @@ on:
         required: true
         description: username to show
         type: boolean
-    secrets:
-      APPLES:
-        description: secrets for APPLES
-        required: true
     outputs:
       firstword:
         description: "The first output string"
@@ -880,8 +876,7 @@ jobs:
     with:
       username: ${{ github.event.inputs.username != '' && github.event.inputs.username || 'mona' }}
       is-valid: ${{ github.event_name == 'workflow_dispatch' && fromJSON(format('{0}', github.event.inputs.is-valid)) || false }}
-    secrets:
-      APPLES: ${{ secrets.APPLES }}
+    secrets: inherit
 
   job2:
     runs-on: ubuntu-latest
@@ -925,8 +920,7 @@ jobs:
     with:
       username: ${{ github.event.inputs.username != '' && github.event.inputs.username || 'mona' }}
       is-valid: ${{ github.event_name == 'workflow_dispatch' && fromJSON(format('{0}', github.event.inputs.is-valid)) || false }}
-    secrets:
-      APPLES: ${{ secrets.APPLES }}
+    secrets: inherit
 
   job2:
     runs-on: ubuntu-latest
@@ -974,8 +968,7 @@ jobs:
       # HACK: actionlint detect fromJSON(bool) and it's invalid warning. However it works.... use format() to suppress warning.
       # is-valid: ${{ github.event_name == 'workflow_dispatch' && fromJson(github.event.inputs.is-valid) || false }}
       is-valid: ${{ github.event_name == 'workflow_dispatch' && fromJSON(format('{0}', github.event.inputs.is-valid)) || false }}
-    secrets:
-      APPLES: ${{ secrets.APPLES }}
+    secrets: inherit
 
 ```
 
@@ -995,10 +988,6 @@ on:
         required: true
         description: username to show
         type: boolean
-    secrets:
-      APPLES:
-        description: secrets for APPLES
-        required: true
     outputs:
       firstword:
         description: "The first output string"
