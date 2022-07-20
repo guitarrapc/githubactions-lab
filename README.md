@@ -89,6 +89,9 @@ GitHub Actions laboratory.
 - [ ] Dynamic Config
   - Like [CircleCI provides](https://circleci.com/docs/dynamic-config).
   - Workaround: Reusable Workflow / Composite Actions with inputs parameter.
+- [ ] Workflow level timeout-minutes
+  - Currently timeout-minutes can set to jobs and steps, but workflow cannot change from default 360min.
+  - No workaround. Please set `timeout-minutes` to every job.
 
 # Difference from other CI
 
