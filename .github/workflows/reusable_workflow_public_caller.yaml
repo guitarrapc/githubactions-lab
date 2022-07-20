@@ -24,8 +24,7 @@ jobs:
     with:
       username: ${{ github.event.inputs.username != '' && github.event.inputs.username || 'mona' }}
       is-valid: ${{ github.event_name == 'workflow_dispatch' && fromJSON(format('{0}', github.event.inputs.is-valid)) || false }}
-    secrets:
-      APPLES: ${{ secrets.APPLES }}
+    secrets: inherit
 
   job2:
     runs-on: ubuntu-latest
