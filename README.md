@@ -10,8 +10,7 @@ GitHub Actions laboratory.
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-<details>
-<summary># Table of Contents</summary>
+# Table of Contents
 
 - [Not yet support](#not-yet-support)
 - [Difference from other CI](#difference-from-other-ci)
@@ -71,7 +70,6 @@ GitHub Actions laboratory.
   - [GitHub Actions commit icon](#github-actions-commit-icon)
   - [Type converter with fromJson](#type-converter-with-fromjson)
 
-</details>
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 # Not yet support
