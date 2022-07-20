@@ -799,6 +799,10 @@ on:
         required: true
         description: username to show
         type: string
+      is-valid:
+        required: true
+        description: username to show
+        type: boolean
     secrets:
       APPLES:
         description: secrets for APPLES
@@ -824,6 +828,8 @@ jobs:
       - uses: actions/checkout@v3
       - name: called username
         run: echo "called username. ${{ inputs.username }}"
+      - name: called is-valid
+        run: echo "called is-valid. ${{ inputs.is-valid }}"
       - name: called secret
         run: echo "called secret. ${{ secrets.APPLES }}"
       - name: called env
@@ -860,14 +866,19 @@ on:
     inputs:
       username:
         required: true
-        description: ""
+        description: "username: user name to show"
         type: string
+      is-valid:
+        required: true
+        description: "is-valid: true or false"
+        type: boolean
 
 jobs:
   call-workflow-passing-data:
     uses: ./.github/workflows/_reusable_workflow_called.yaml
     with:
       username: ${{ github.event.inputs.username != '' && github.event.inputs.username || 'mona' }}
+      is-valid: ${{ github.event_name == 'workflow_dispatch' && fromJson(github.event.inputs.is-valid) || false }}
     secrets:
       APPLES: ${{ secrets.APPLES }}
 
@@ -902,12 +913,17 @@ on:
         required: true
         description: ""
         type: string
+      is-valid:
+        required: true
+        description: "is-valid: true or false"
+        type: boolean
 
 jobs:
   call-workflow-passing-data:
     uses: guitarrapc/githubactions-lab/.github/workflows/_reusable_workflow_called.yaml@main
     with:
       username: ${{ github.event.inputs.username != '' && github.event.inputs.username || 'mona' }}
+      is-valid: ${{ github.event_name == 'workflow_dispatch' && fromJson(github.event.inputs.is-valid) || false }}
     secrets:
       APPLES: ${{ secrets.APPLES }}
 
@@ -941,6 +957,10 @@ on:
         required: true
         description: ""
         type: string
+      is-valid:
+        required: true
+        description: "is-valid: true or false"
+        type: boolean
 
 jobs:
   call-matrix-workflow:
@@ -950,6 +970,7 @@ jobs:
     uses: ./.github/workflows/_reusable_workflow_matrix_called.yaml
     with:
       username: ${{ github.event.inputs.username != '' && github.event.inputs.username || 'mona' }}
+      is-valid: ${{ github.event_name == 'workflow_dispatch' && fromJson(github.event.inputs.is-valid) || false }}
     secrets:
       APPLES: ${{ secrets.APPLES }}
 
@@ -967,6 +988,10 @@ on:
         required: true
         description: username to show
         type: string
+      is-valid:
+        required: true
+        description: username to show
+        type: boolean
     secrets:
       APPLES:
         description: secrets for APPLES
@@ -998,6 +1023,8 @@ jobs:
         run: echo "${{ matrix.org }}"
       - name: called username
         run: echo "called username. ${{ inputs.username }}"
+      - name: called is-valid
+        run: echo "called is-valid. ${{ inputs.is-valid }}"
       - name: called secret
         run: echo "called secret. ${{ secrets.APPLES }}"
       - name: called env
