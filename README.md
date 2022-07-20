@@ -774,13 +774,15 @@ You can call local workflow of the same repository (Private repository), and rem
 
 > detail: [Reusing workflows \- GitHub Docs](https://docs.github.com/ja/actions/using-workflows/reusing-workflows)
 
-Threre are some remitations.
+Threre are some limitations.
 
 1. Cannot call reusable workflow from reusable workflow.
 1. Private repo can call same repo's reusable workflow. You can not call other private repo's workflow.
 1. Caller Environment Variable never inherit to called reusable workflow.
 1. Caller cannot use strategy (=matrix).
 1. Callee workflow must place under `.github/workflows/`. Otherwise caller treated as calling public workflow.
+
+**Callee workflow sample**
 
 Callee wokflow must has `on.workflow_call` and yaml file must located under `.github/workflows/`.
 Any `inputs`, `secrets` and `outputs` should define onder on.workflow_call.
@@ -797,6 +799,10 @@ on:
         required: true
         description: username to show
         type: string
+      is-valid:
+        required: true
+        description: username to show
+        type: boolean
     secrets:
       APPLES:
         description: secrets for APPLES
@@ -822,6 +828,8 @@ jobs:
       - uses: actions/checkout@v3
       - name: called username
         run: echo "called username. ${{ inputs.username }}"
+      - name: called is-valid
+        run: echo "called is-valid. ${{ inputs.is-valid }}"
       - name: called secret
         run: echo "called secret. ${{ secrets.APPLES }}"
       - name: called env
@@ -839,6 +847,9 @@ jobs:
 
 `uses: ./.github/workflows/xxxx.yaml` can call same repository's local workflow.
 
+When you want pass `boolean` type of input from workflow_dispatch to workflow_call, use `fromJson(github.event.inputs.YOUR_BOOLEAN_PARAMETER)`.
+See [Type converter with fromJson](#type-converter-with-fromJson) for the detail.
+
 ```yaml
 # .github/workflows/reusable_workflow_caller.yaml
 
@@ -855,14 +866,19 @@ on:
     inputs:
       username:
         required: true
-        description: ""
+        description: "username: user name to show"
         type: string
+      is-valid:
+        required: true
+        description: "is-valid: true or false"
+        type: boolean
 
 jobs:
   call-workflow-passing-data:
     uses: ./.github/workflows/_reusable_workflow_called.yaml
     with:
       username: ${{ github.event.inputs.username != '' && github.event.inputs.username || 'mona' }}
+      is-valid: ${{ github.event_name == 'workflow_dispatch' && fromJson(github.event.inputs.is-valid) || false }}
     secrets:
       APPLES: ${{ secrets.APPLES }}
 
@@ -897,12 +913,17 @@ on:
         required: true
         description: ""
         type: string
+      is-valid:
+        required: true
+        description: "is-valid: true or false"
+        type: boolean
 
 jobs:
   call-workflow-passing-data:
     uses: guitarrapc/githubactions-lab/.github/workflows/_reusable_workflow_called.yaml@main
     with:
       username: ${{ github.event.inputs.username != '' && github.event.inputs.username || 'mona' }}
+      is-valid: ${{ github.event_name == 'workflow_dispatch' && fromJson(github.event.inputs.is-valid) || false }}
     secrets:
       APPLES: ${{ secrets.APPLES }}
 
@@ -936,6 +957,10 @@ on:
         required: true
         description: ""
         type: string
+      is-valid:
+        required: true
+        description: "is-valid: true or false"
+        type: boolean
 
 jobs:
   call-matrix-workflow:
@@ -945,6 +970,7 @@ jobs:
     uses: ./.github/workflows/_reusable_workflow_matrix_called.yaml
     with:
       username: ${{ github.event.inputs.username != '' && github.event.inputs.username || 'mona' }}
+      is-valid: ${{ github.event_name == 'workflow_dispatch' && fromJson(github.event.inputs.is-valid) || false }}
     secrets:
       APPLES: ${{ secrets.APPLES }}
 
@@ -962,6 +988,10 @@ on:
         required: true
         description: username to show
         type: string
+      is-valid:
+        required: true
+        description: username to show
+        type: boolean
     secrets:
       APPLES:
         description: secrets for APPLES
@@ -993,6 +1023,8 @@ jobs:
         run: echo "${{ matrix.org }}"
       - name: called username
         run: echo "called username. ${{ inputs.username }}"
+      - name: called is-valid
+        run: echo "called is-valid. ${{ inputs.is-valid }}"
       - name: called secret
         run: echo "called secret. ${{ secrets.APPLES }}"
       - name: called env
@@ -2044,7 +2076,7 @@ jobs:
 
 ```
 
-# Cheet Sheet
+# Cheat Sheet
 
 GitHub Actions cheet sheet.
 
@@ -2102,4 +2134,15 @@ Use following git config to commit as GitHub Actions icon.
 ```shell
 git config user.name github-actions[bot]
 git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+```
+
+## Type converter with fromJson
+
+There are some cases you want convert string to other type.
+Consider you want use boolean input `is-valid` with workflow_dispatch, then pass it to workflow_call as boolean.
+`github.event.inputs` context treat all value as `string`, so `github.event.inputs.is-valid` isn't boolean any more.
+`fromJson` expression is the trick to convert type from string to boolean.
+
+```yaml
+${{ fromJson(github.event.inputs.is-valid) }}
 ```
