@@ -829,11 +829,11 @@ jobs:
         run: echo "called is-valid. ${{ inputs.is-valid }}"
       - name: called secret
         run: echo "called secret. ${{ secrets.APPLES }}"
-      - name: called global env
+      - name: called env (global)
         run: echo "called global env. ${{ env.FOO }}"
-      - name: set environment variable
+      - name: set variable (GITHUB_ENV)
         run: echo "IS_VALID=${{ inputs.is-valid }}" >> "$GITHUB_ENV"
-      - name: called GITHUB_ENV env
+      - name: called env (GITHUB_ENV)
         run: echo "called env. ${{ env.IS_VALID }}"
       - name: output step1
         id: step1
@@ -879,7 +879,7 @@ jobs:
     uses: ./.github/workflows/_reusable_workflow_called.yaml
     with:
       username: ${{ github.event.inputs.username != '' && github.event.inputs.username || 'mona' }}
-      is-valid: ${{ github.event_name == 'workflow_dispatch' && fromJson(github.event.inputs.is-valid) || false }}
+      is-valid: ${{ github.event_name == 'workflow_dispatch' && fromJSON(format('{0}', github.event.inputs.is-valid)) || false }}
     secrets:
       APPLES: ${{ secrets.APPLES }}
 
@@ -924,7 +924,7 @@ jobs:
     uses: guitarrapc/githubactions-lab/.github/workflows/_reusable_workflow_called.yaml@main
     with:
       username: ${{ github.event.inputs.username != '' && github.event.inputs.username || 'mona' }}
-      is-valid: ${{ github.event_name == 'workflow_dispatch' && fromJson(github.event.inputs.is-valid) || false }}
+      is-valid: ${{ github.event_name == 'workflow_dispatch' && fromJSON(format('{0}', github.event.inputs.is-valid)) || false }}
     secrets:
       APPLES: ${{ secrets.APPLES }}
 
@@ -971,7 +971,9 @@ jobs:
     uses: ./.github/workflows/_reusable_workflow_matrix_called.yaml
     with:
       username: ${{ github.event.inputs.username != '' && github.event.inputs.username || 'mona' }}
-      is-valid: ${{ github.event_name == 'workflow_dispatch' && fromJson(github.event.inputs.is-valid) || false }}
+      # HACK: actionlint detect fromJSON(bool) and it's invalid warning. However it works.... use format() to suppress warning.
+      # is-valid: ${{ github.event_name == 'workflow_dispatch' && fromJson(github.event.inputs.is-valid) || false }}
+      is-valid: ${{ github.event_name == 'workflow_dispatch' && fromJSON(format('{0}', github.event.inputs.is-valid)) || false }}
     secrets:
       APPLES: ${{ secrets.APPLES }}
 
@@ -1028,11 +1030,13 @@ jobs:
         run: echo "called is-valid. ${{ inputs.is-valid }}"
       - name: called secret
         run: echo "called secret. ${{ secrets.APPLES }}"
-      - name: called global env
+      - name: called secret (dereference)
+        run: echo "called secret. ${{ secrets[matrix.org] }}"
+      - name: called env (global)
         run: echo "called global env. ${{ env.FOO }}"
-      - name: set environment variable
+      - name: set variable (GITHUB_ENV)
         run: echo "IS_VALID=${{ inputs.is-valid }}" >> "$GITHUB_ENV"
-      - name: called GITHUB_ENV env
+      - name: called env (GITHUB_ENV)
         run: echo "called env. ${{ env.IS_VALID }}"
       - name: output step1
         id: step1

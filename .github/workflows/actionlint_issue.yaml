@@ -1,0 +1,21 @@
+name: actionlint issue
+
+on:
+  workflow_dispatch:
+    inputs:
+      is-valid:
+        required: true
+        description: "is-valid: true or false"
+        type: boolean
+
+jobs:
+  debug:
+    runs-on: ubuntu-latest
+    steps:
+      - name: called is-valid
+        run: echo "${{ fromJSON(github.event.inputs) }}"
+
+  issue:
+    uses: ./.github/workflows/_reusable.yaml
+    with:
+      is-valid: ${{ fromJson(github.event.inputs.is-valid) }}

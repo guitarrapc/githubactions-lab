@@ -1,0 +1,16 @@
+name: _reusable
+
+on:
+  workflow_call:
+    inputs:
+      is-valid:
+        required: true
+        description: username to show
+        type: boolean
+
+jobs:
+  reusable_workflow_job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: called is-valid
+        run: echo "called is-valid. ${{ inputs.is-valid }}"
