@@ -19,3 +19,8 @@ jobs:
             first line
             second line
             third line
+
+      - name: singleline strings
+        uses: ./.github/actions/multiline_inputs
+        with:
+          multiline-string: single line
