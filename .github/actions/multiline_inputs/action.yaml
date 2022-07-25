@@ -1,0 +1,22 @@
+name: action multiline input
+description: |
+  local action contains actions
+inputs:
+  multiline-string:
+    description: "input multiline string to enumrate."
+    required: true
+
+runs:
+  using: "composite"
+  steps:
+    - name: Show value
+      shell: bash
+      run: cat << EOF
+        ${{ inputs.multiline-string }}
+        EOF
+    - name: multiline string for
+      shell: bash
+      run: |
+        for line in ${{ inputs.multiline-string }}; do
+          echo "$line (foo)"
+        done

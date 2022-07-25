@@ -1,0 +1,19 @@
+name: multiline inputs
+on:
+  workflow_dispatch:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: ./.github/actions/multiline_inputs
+        with:
+          multiline-string: |
+            first line
+            second line
+            third line
