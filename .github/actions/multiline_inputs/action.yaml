@@ -11,8 +11,9 @@ runs:
   steps:
     - name: Show value
       shell: bash
-      run: cat << EOF
-        ${{ inputs.multiline-string }}
+      run: |
+        cat << EOF
+          ${{ inputs.multiline-string }}
         EOF
     - name: multiline string for
       shell: bash
