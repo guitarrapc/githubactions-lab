@@ -12,12 +12,14 @@ runs:
     - name: Show value
       shell: bash
       run: |
-        cat << EOF
-          ${{ inputs.multiline-string }}
-        EOF
+        MULTILINE_STRINGS=$(cat << EOF
+        ${{ inputs.multiline-string }}
+        EOF)
     - name: multiline string for
       shell: bash
       run: |
-        for line in ${{ inputs.multiline-string }}; do
+        inputs="${{ inputs.multiline-string }}"
+        IFS=$'\n'
+        for line in $inputs; do
           echo "$line (foo)"
         done
