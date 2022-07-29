@@ -714,7 +714,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: use local action
-        uses: ./.github/actions/local_composite_actions
+        uses: ./.github/actions/local-composite-actions
         with:
           foo: BAR
 
