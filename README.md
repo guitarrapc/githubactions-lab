@@ -398,6 +398,12 @@ name: dump context pr
 on:
   pull_request:
     branches: ["main"]
+    types:
+      - closed
+      - labeled
+      - opened
+      - reopened
+      - synchronize
 
 jobs:
   build:
