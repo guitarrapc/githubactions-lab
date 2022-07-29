@@ -5,7 +5,7 @@ on:
     branches: ["main"]
 
 jobs:
-  gh:
+  action:
     runs-on: ubuntu-latest
     timeout-minutes: 3
     steps:

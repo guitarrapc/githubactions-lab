@@ -4,11 +4,10 @@ description: |
 inputs:
   foo:
     description: "foo inputs"
-    default: ${{ env.FOO }}
     required: false
 runs:
-  using: "composite" # this is key point
+  using: "composite"
   steps:
     - name: Output foo input
       shell: bash
-      run: echo "foo is ${{ inputs.foo }}"
+      run: echo "foo is ${{ inputs.foo != '' && inputs.foo || env.FOO }}" # redirect to env when input is empty.
