@@ -1,0 +1,14 @@
+name: action nest action
+description: |
+  local action contains actions
+inputs:
+  foo:
+    description: "foo inputs"
+    default: ${{ env.FOO }}
+    required: false
+runs:
+  using: "composite" # this is key point
+  steps:
+    - name: Output foo input
+      shell: bash
+      run: echo "foo is ${{ inputs.foo }}"
