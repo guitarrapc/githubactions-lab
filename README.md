@@ -2090,6 +2090,19 @@ jobs:
 
 GitHub Actions cheet sheet.
 
+## Actions naming
+
+Follow to `setup-foo` style.
+Use Hyphen `-` instead of Underscore `_`.
+
+* ✔️: `setup-foo`
+* ❌: `setup_foo`
+
+action folder naming also follow this rule.
+
+* ✔️: `.github/actions/setup-foo`
+* ❌: `.github/actions/setup_foo`
+
 ## Get Tag, Branch
 
 ```yaml
