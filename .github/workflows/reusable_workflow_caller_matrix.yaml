@@ -18,6 +18,9 @@ on:
         description: "is-valid: true or false"
         type: boolean
 
+env:
+  CALLER_VALUE: caller
+
 jobs:
   call-matrix-workflow:
     # caller cannnot use matrix
