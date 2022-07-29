@@ -1,4 +1,4 @@
-name: reusable workflow caller
+name: reusable workflow caller (matrix)
 
 on:
   push:
@@ -17,9 +17,6 @@ on:
         required: true
         description: "is-valid: true or false"
         type: boolean
-
-env:
-  CALLER_VALUE: caller
 
 jobs:
   call-matrix-workflow:
