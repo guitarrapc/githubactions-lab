@@ -351,6 +351,9 @@ To see push context.
 name: dump context push
 
 on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 0 * * *"
   push:
     branches: ["main"]
 
@@ -398,6 +401,12 @@ name: dump context pr
 on:
   pull_request:
     branches: ["main"]
+    types:
+      - closed
+      - labeled
+      - opened
+      - reopened
+      - synchronize
 
 jobs:
   build:
