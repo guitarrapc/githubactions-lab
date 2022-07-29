@@ -832,6 +832,8 @@ jobs:
       output2: ${{ steps.step2.outputs.secondword }}
     steps:
       - uses: actions/checkout@v3
+      - name: (Limitation) Callee can not refer caller environment variable.
+        run: echo "caller environment. ${{ env.CALLER_VALUE }}"
       - name: called username
         run: echo "called username. ${{ inputs.username }}"
       - name: called is-valid
@@ -882,6 +884,10 @@ on:
         required: true
         description: "is-valid: true or false"
         type: boolean
+
+# (Limitation) Callee can not refer caller environment variable.
+env:
+  CALLER_VALUE: caller
 
 jobs:
   call-workflow-passing-data:
@@ -950,7 +956,7 @@ Reusable Workflow caller cannot use matrix, but callee can use matrix. (see limi
 ```yaml
 # .github/workflows/reusable_workflow_caller_matrix.yaml
 
-name: reusable workflow caller
+name: reusable workflow caller (matrix)
 
 on:
   push:
