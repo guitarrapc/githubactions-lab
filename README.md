@@ -462,7 +462,7 @@ jobs:
     timeout-minutes: 3
     steps:
       - uses: actions/checkout@v3
-      - uses: ./.github/actions/dump_context_actions
+      - uses: ./.github/actions/dump-context-actions
 
 ```
 
@@ -731,7 +731,7 @@ Next place your node.js source files inside actions directory, you may require `
 * step2. Write your node actions yaml.
 
 ```yaml
-# .github/actions/local_node_actions/action.yaml
+# .github/actions/local-node-actions/action.yaml
 
 name: "Hello World"
 description: |
@@ -745,7 +745,7 @@ runs:
 * step3. Write your source code to `.github/actions/YOUR_DIR/*.js`.
 
 ```js
-// .github/actions/local_node_actions/index.js
+// .github/actions/local-node-actions/index.js
 
 console.log("Hello, World!");
 
@@ -771,7 +771,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: use local action
-        uses: ./.github/actions/local_node_actions
+        uses: ./.github/actions/local-node-actions
 
 ```
 

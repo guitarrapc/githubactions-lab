@@ -537,6 +537,6 @@
   "path": "/home/runner/work/_temp/_runner_file_commands/add_path_45e150fb-9184-4db9-b247-e4170549af57",
   "env": "/home/runner/work/_temp/_runner_file_commands/set_env_45e150fb-9184-4db9-b247-e4170549af57",
   "step_summary": "/home/runner/work/_temp/_runner_file_commands/step_summary_45e150fb-9184-4db9-b247-e4170549af57",
-  "action_path": "/home/runner/work/githubactions-lab/githubactions-lab/./.github/actions/dump_context_actions",
+  "action_path": "/home/runner/work/githubactions-lab/githubactions-lab/./.github/actions/dump-context-actions",
   "action_status": "Success"
 }

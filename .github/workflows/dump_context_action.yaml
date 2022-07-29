@@ -13,4 +13,4 @@ jobs:
     timeout-minutes: 3
     steps:
       - uses: actions/checkout@v3
-      - uses: ./.github/actions/dump_context_actions
+      - uses: ./.github/actions/dump-context-actions

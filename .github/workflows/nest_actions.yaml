@@ -12,4 +12,4 @@ jobs:
     timeout-minutes: 3
     steps:
       - uses: actions/checkout@v3
-      - uses: ./.github/actions/nest_actions
+      - uses: ./.github/actions/nest-actions

@@ -1,4 +1,4 @@
-# .github/actions/restore_aws_oidc_auth/action.yaml
+# .github/actions/restore-aws-oidc-auth/action.yaml
 name: restore aws oidc auth from cache
 description: |
   restore aws oidc auth from cache

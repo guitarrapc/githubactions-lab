@@ -13,7 +13,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: multiline strings
-        uses: ./.github/actions/multiline_inputs
+        uses: ./.github/actions/multiline-inputs
         with:
           multiline-string: |
             first line
@@ -21,6 +21,6 @@ jobs:
             third line
 
       - name: singleline strings
-        uses: ./.github/actions/multiline_inputs
+        uses: ./.github/actions/multiline-inputs
         with:
           multiline-string: single line
