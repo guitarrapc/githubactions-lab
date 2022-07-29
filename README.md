@@ -351,6 +351,9 @@ To see push context.
 name: dump context push
 
 on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 0 * * *"
   push:
     branches: ["main"]
 
