@@ -64,6 +64,7 @@ GitHub Actions laboratory.
   - [Get PR info from Merge Commit](#get-pr-info-from-merge-commit)
   - [Lint GitHub Actions workflow itself](#lint-github-actions-workflow-itself)
 - [Cheat Sheet](#cheat-sheet)
+  - [Actions naming](#actions-naming)
   - [Get Tag, Branch](#get-tag-branch)
   - [Get Workflow Name](#get-workflow-name)
   - [Get Workflow Url](#get-workflow-url)
