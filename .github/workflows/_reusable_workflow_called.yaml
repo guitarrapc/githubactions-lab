@@ -30,7 +30,7 @@ jobs:
       output2: ${{ steps.step2.outputs.secondword }}
     steps:
       - uses: actions/checkout@v3
-      - name: caller environment
+      - name: (Limitation) Callee can not refer caller environment variable.
         run: echo "caller environment. ${{ env.CALLER_VALUE }}"
       - name: called username
         run: echo "called username. ${{ inputs.username }}"

@@ -18,6 +18,7 @@ on:
         description: "is-valid: true or false"
         type: boolean
 
+# (Limitation) Callee can not refer caller environment variable.
 env:
   CALLER_VALUE: caller
 
