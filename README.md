@@ -1942,7 +1942,7 @@ jobs:
 
 Advanced tips.
 
-## More faster checkout
+## More faster checkout with git sparse-checkout
 
 GitHub Actions provides git checkout with [actions/checkout](https://github.com/actions) actions.
 It supported shallow clone, therefore almost cases brings fastest checkout.
