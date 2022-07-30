@@ -60,7 +60,7 @@ GitHub Actions laboratory.
 - [Basic - BAD PATTERN](#basic---bad-pattern)
   - [Env refer env](#env-refer-env)
 - [Advanced](#advanced)
-  - [More faster checkout](#more-faster-checkout)
+  - [More faster checkout with git sparse-checkout](#more-faster-checkout-with-git-sparse-checkout)
   - [Dispatch other repo workflow](#dispatch-other-repo-workflow)
   - [Get PR info from Merge Commit](#get-pr-info-from-merge-commit)
   - [Lint GitHub Actions workflow itself](#lint-github-actions-workflow-itself)
