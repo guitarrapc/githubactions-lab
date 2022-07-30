@@ -1941,6 +1941,31 @@ jobs:
 
 Advanced tips.
 
+## More faster checkout
+
+GitHub Actions provides git checkout with [actions/checkout](https://github.com/actions) actions.
+It supported shallow clone, therefore almost cases brings fastest checkout.
+
+However if Monorepository, like you contains both Server and Unity, number of files effect checkout.
+[git sparse-checkout](https://git-scm.com/docs/git-sparse-checkout) faster your checkout when specific path only, or exlude some path.
+
+**Checkout only selected path**
+
+Below sample checkout only "src/*" path.
+
+```yaml
+# .github/workflows/git_sparsecheckout_only.yaml
+```
+
+**Exclude selected path from checkout**
+
+Below sample checkout with exlude "src/*" path.
+
+```yaml
+# .github/workflows/git_sparsecheckout_exclude.yaml
+```
+
+
 ## Dispatch other repo workflow
 
 You can dispatch this repository to other repository via calling GitHub `workflow_dispatch` event API.
