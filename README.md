@@ -1941,6 +1941,130 @@ jobs:
 
 Advanced tips.
 
+## More faster checkout
+
+GitHub Actions provides git checkout with [actions/checkout](https://github.com/actions) actions.
+It supported shallow clone, therefore almost cases brings fastest checkout.
+
+However if Monorepository, like you contains both Server and Unity, number of files effect checkout.
+[git sparse-checkout](https://git-scm.com/docs/git-sparse-checkout) faster your checkout when specific path only, or exlude some path.
+
+> **Note**
+> Currently actions/checkout not supports `git sparse-checkout`, however it may come when https://github.com/actions/checkout/pull/680 is merged.
+
+**Checkout only selected path**
+
+Below sample checkout only "src/*" path.
+
+```yaml
+# .github/workflows/git_sparsecheckout_only.yaml
+
+name: "git sparse-checkout (exclude)"
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+
+jobs:
+  sparse-checkout:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: sparse checkout
+        run: |
+          git clone --filter=blob:none --no-checkout --depth 1 --sparse "https://${{ env.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git" .
+
+          echo "git sparse-checkout set only directory"
+          git sparse-checkout set --no-cone "${{ env.SPARSECHECKOUT_DIR }}"
+
+          echo "git sparse-checkout without cone" # cone not allow pattern filter, therefore don't use cone.
+          git sparse-checkout init
+
+          echo "git sparse-checkout list"
+          git sparse-checkout list
+
+          echo "git checkout"
+          git checkout "${GITHUB_SHA}"
+
+          # if you have submodules in Private Repo, use PAT instead of secrets.GITHUB_TOKEN
+          if [[ -f ./.gitmodules ]]; then
+            echo "replace submodule url"
+            sed -i -e "s|https://github.com|https://${{ env.GITHUB_TOKEN }}@github.com|g" ./.gitmodules
+
+            echo "submodule update"
+            git submodule update --init --recursive
+
+          fi
+
+          echo "git reset"
+          git reset --hard "${GITHUB_SHA}"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SPARSECHECKOUT_DIR: src/*
+
+      - name: list root folders
+        run: ls -la
+
+```
+
+**Exclude selected path from checkout**
+
+Below sample checkout with exlude "src/*" path.
+
+```yaml
+# .github/workflows/git_sparsecheckout_exclude.yaml
+
+name: "git sparse-checkout (exclude)"
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+
+jobs:
+  sparse-checkout:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: sparse checkout
+        run: |
+          git clone --filter=blob:none --no-checkout --depth 1 --sparse "https://${{ env.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git" .
+
+          echo "git sparse-checkout set exclude directory"
+          git sparse-checkout set --no-cone "${{ env.SPARSECHECKOUT_DIR }}" "/*"
+
+          echo "git sparse-checkout without cone" # cone not allow pattern filter, therefore don't use cone.
+          git sparse-checkout init
+
+          echo "git sparse-checkout list"
+          git sparse-checkout list
+
+          echo "git checkout"
+          git checkout "${GITHUB_SHA}"
+
+          # if you have submodules in Private Repo, use PAT instead of secrets.GITHUB_TOKEN
+          if [[ -f ./.gitmodules ]]; then
+            echo "replace submodule url"
+            sed -i -e "s|https://github.com|https://${{ env.GITHUB_TOKEN }}@github.com|g" ./.gitmodules
+
+            echo "submodule update"
+            git submodule update --init --recursive
+
+          fi
+
+          echo "git reset"
+          git reset --hard "${GITHUB_SHA}"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SPARSECHECKOUT_DIR: "!src/*"
+
+      - name: list root folders
+        run: ls -la
+
+```
+
+
 ## Dispatch other repo workflow
 
 You can dispatch this repository to other repository via calling GitHub `workflow_dispatch` event API.
