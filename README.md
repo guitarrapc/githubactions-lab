@@ -1949,6 +1949,9 @@ It supported shallow clone, therefore almost cases brings fastest checkout.
 However if Monorepository, like you contains both Server and Unity, number of files effect checkout.
 [git sparse-checkout](https://git-scm.com/docs/git-sparse-checkout) faster your checkout when specific path only, or exlude some path.
 
+> **Note**
+> Currently actions/checkout not supports `git sparse-checkout`, however it may come when https://github.com/actions/checkout/pull/680 is merged.
+
 **Checkout only selected path**
 
 Below sample checkout only "src/*" path.
