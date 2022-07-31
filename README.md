@@ -1960,7 +1960,7 @@ Below sample checkout only "src/*" path.
 ```yaml
 # .github/workflows/git_sparsecheckout_only.yaml
 
-name: "git sparse-checkout (exclude)"
+name: "git sparse-checkout (only)"
 on:
   push:
     branches: ["main"]
@@ -1995,7 +1995,6 @@ jobs:
 
             echo "submodule update"
             git submodule update --init --recursive
-
           fi
 
           echo "git reset"
@@ -2051,7 +2050,6 @@ jobs:
 
             echo "submodule update"
             git submodule update --init --recursive
-
           fi
 
           echo "git reset"
