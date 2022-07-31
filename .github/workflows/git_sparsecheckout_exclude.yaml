@@ -33,7 +33,6 @@ jobs:
 
             echo "submodule update"
             git submodule update --init --recursive
-
           fi
 
           echo "git reset"
