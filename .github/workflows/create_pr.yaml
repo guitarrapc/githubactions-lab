@@ -19,9 +19,11 @@ jobs:
         run: date +%s > src/txt/report.txt
 
       # detect changes
+      # o: `git status --porcelain=v1` could get both modified and newly added.
+      # x: `git diff-index --quiet HEAD --` could get modified but not for newly added.
       - name: Check for modified files
         id: git-check
-        run: echo "::set-output name=modified::$(if git diff-index --quiet HEAD --; then echo "false"; else echo "true"; fi)"
+        run: echo "::set-output name=modified::$(if [[ "$(git status --porcelain=v1 2>/dev/null | wc -l)" == "0" ]]; then echo "false"; else echo "true"; fi)"
 
       # commit & pr if change happen (force push when branch/pr already exists)
       - name: Create PullRequest
