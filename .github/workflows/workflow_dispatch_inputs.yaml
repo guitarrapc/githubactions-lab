@@ -21,7 +21,7 @@ jobs:
       - run: echo "${{ inputs.value }}"
 
   matrix:
-    name: matrix - ${{ inputs.value }}
+    name: matrix - ${{ inputs.value }} (${{ matrix.target }})
     strategy:
       fail-fast: false
       matrix:
