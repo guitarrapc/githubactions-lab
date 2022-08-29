@@ -1,0 +1,18 @@
+name: workflow dispatch inputs (${{ inputs.value }})
+
+on:
+  workflow_dispatch:
+    inputs:
+      value:
+        type: choice
+        description: "name: Who to greet"
+        required: true
+        options:
+          - monalisa
+          - cschleiden
+jobs:
+  greet:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - run: echo "${{ inputs.value }}"
