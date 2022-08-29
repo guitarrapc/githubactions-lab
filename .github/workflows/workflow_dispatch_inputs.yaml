@@ -19,3 +19,14 @@ jobs:
     timeout-minutes: 3
     steps:
       - run: echo "${{ inputs.value }}"
+
+  matrix:
+    name: matrix - ${{ inputs.value }}
+    strategy:
+      fail-fast: false
+      matrix:
+        target: ["foo", "bar"]
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - run: echo "${{ inputs.value }}"
