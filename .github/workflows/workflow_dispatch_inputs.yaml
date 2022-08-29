@@ -1,4 +1,5 @@
-name: workflow dispatch inputs (${{ inputs.value }})
+# .name: cannot use ${{ inputs.value }}
+name: workflow dispatch inputs
 
 on:
   workflow_dispatch:
@@ -12,6 +13,8 @@ on:
           - cschleiden
 jobs:
   greet:
+    # .jobs.<job_name>.name: can use ${{ inputs.value }}
+    name: greet (${{ inputs.value }})
     runs-on: ubuntu-latest
     timeout-minutes: 3
     steps:
