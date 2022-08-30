@@ -14,7 +14,7 @@ jobs:
         with:
           fetch-depth: 2
       - id: changed-files
-        uses: tj-actions/changed-files@v11.5
+        uses: tj-actions/changed-files@v11.5 # this action force fetch base branch and compare.
         with:
           separator: ","
       - run: echo "${{ steps.changed-files.outputs.all_modified_files }}"
