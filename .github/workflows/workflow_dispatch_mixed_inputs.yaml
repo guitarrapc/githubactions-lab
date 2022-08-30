@@ -1,5 +1,4 @@
 name: workflow dispatch mixed inputs
-
 on:
   workflow_dispatch:
     inputs:
@@ -15,17 +14,18 @@ on:
         required: true
       use-emoji:
         type: boolean
+        description: "use-emoji: Include 🎉🤣 emojis"
         required: true
-        description: Include 🎉🤣 emojis
       environment:
         type: environment
+        description: "environment: Select environment"
         required: true
-        description: Select environment
-
 jobs:
   greet:
     runs-on: ubuntu-latest
     timeout-minutes: 3
     steps:
       - name: Send greeting
-        run: echo "${{ github.event.inputs.message }} ${{ fromJSON('["", "🥳"]')[github.event.inputs.use-emoji == 'true'] }} ${{ github.event.inputs.name }}"
+        run: echo "${{ github.event.inputs.message }} ${{ fromJSON('[\"\", \"\🥳\"]')[github.event.inputs.use-emoji == 'true'] }} ${{ github.event.inputs.name }}"
+      - name: Emoji
+        run: echo "🥳 😊"
