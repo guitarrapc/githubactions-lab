@@ -10,7 +10,6 @@ on:
         description: "merge to"
         required: true
         default: "staging"
-
 jobs:
   merge:
     env:

@@ -8,11 +8,9 @@ on:
     paths:
       - src/k8s/**/*
       - .github/workflows/k8s*
-
 env:
   REPO_MANIFEST: guitarrapc/kubernetes-manifest-lab
   MANIFEST_DIR: dev
-
 jobs:
   push_manifest:
     env:

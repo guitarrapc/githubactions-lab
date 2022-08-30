@@ -1,15 +1,12 @@
 name: create tag
-
 on:
   workflow_dispatch:
     inputs:
       tag:
         description: "tag: git tag you want create."
         required: true
-
 env:
   TAG: ${{ github.event.inputs.tag }}
-
 jobs:
   tag:
     runs-on: ubuntu-latest

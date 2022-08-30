@@ -2,7 +2,6 @@ name: "context github"
 on:
   push:
     branches: ["main"]
-
 jobs:
   context:
     runs-on: ubuntu-latest

@@ -6,7 +6,6 @@ on:
       - .github/workflows/*
       - .github/scripts/lint-banwords.sh
       - .github/ban-words.txt
-
 jobs:
   build:
     runs-on: ubuntu-latest

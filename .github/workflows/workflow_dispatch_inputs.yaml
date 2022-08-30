@@ -1,6 +1,5 @@
 # .name: cannot use ${{ inputs.value }}
 name: workflow dispatch inputs
-
 on:
   workflow_dispatch:
     inputs:
@@ -19,7 +18,6 @@ jobs:
     timeout-minutes: 3
     steps:
       - run: echo "${{ inputs.value }}"
-
   matrix:
     name: matrix - ${{ inputs.value }} (${{ matrix.target }})
     strategy:

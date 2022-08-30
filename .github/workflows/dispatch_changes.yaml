@@ -1,7 +1,6 @@
 name: dispatch changes
 on:
   workflow_dispatch:
-
 jobs:
   dispatch:
     runs-on: ubuntu-latest

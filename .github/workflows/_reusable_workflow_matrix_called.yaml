@@ -1,5 +1,4 @@
 name: _reusable workflow matrix called
-
 on:
   workflow_call:
     inputs:
@@ -18,10 +17,8 @@ on:
       secondword:
         description: "The second output string"
         value: ${{ jobs.reusable_workflow_job.outputs.output2 }}
-
 env:
   FOO: foo
-
 jobs:
   # callee can use matrix.
   reusable_workflow_job:

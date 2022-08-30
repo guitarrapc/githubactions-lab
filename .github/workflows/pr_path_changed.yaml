@@ -1,6 +1,5 @@
 name: pr path changed
 on: [pull_request]
-
 jobs:
   changes:
     runs-on: ubuntu-latest

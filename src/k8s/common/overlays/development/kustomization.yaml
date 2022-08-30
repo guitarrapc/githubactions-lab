@@ -4,7 +4,6 @@ bases:
   - ../../../frontend/overlays/development
   - ../../../redis-master/overlays/development
   - ../../../redis-slave/overlays/development
-
 commonAnnotations:
   git-sha: <git-sha>
   git-branch: <git-branch>

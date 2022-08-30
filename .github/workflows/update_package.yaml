@@ -1,5 +1,4 @@
 name: "update package.json"
-
 on:
   workflow_dispatch:
     inputs:
@@ -14,7 +13,6 @@ on:
         description: "dry_run: true will never create commit/pr."
         required: true
         default: "false"
-
 jobs:
   update:
     runs-on: ubuntu-latest

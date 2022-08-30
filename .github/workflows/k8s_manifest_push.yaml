@@ -5,11 +5,9 @@ on:
     paths:
       - src/k8s/**/*
       - .github/workflows/k8s*
-
 env:
   REPO_MANIFEST: guitarrapc/kubernetes-manifest-lab
   MANIFEST_DIR: dev
-
 #force push pattern
 jobs:
   creat_pr:
@@ -42,11 +40,9 @@ jobs:
             | sed -e "s|<git-branch>|${GIT_BRANCH}|g" \
             | sed -e "s|<git-link>|${{ github.event.commits[0].url }}|g" \
             | sed -e "s|<build-id>|${{ github.run_id }}|g" > "${REPO_MANIFEST}/${MANIFEST_DIR}/all.yaml"
-
       - name: Check for modified files
         id: git-check
         run: echo "::set-output name=modified::$(if git diff-index --quiet HEAD --; then echo "false"; else echo "true"; fi)"
-
       - name: Create PullRequest
         if: steps.git-check.outputs.modified == 'true'
         id: cpr
@@ -64,7 +60,6 @@ jobs:
           labels: |
             automated pr
             kubernetes
-
       - name: Check outputs
         if: steps.git-check.outputs.modified == 'true'
         run: |

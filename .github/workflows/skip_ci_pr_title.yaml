@@ -1,7 +1,5 @@
 name: skip ci pr title
-
 on: ["pull_request"]
-
 jobs:
   skip:
     if: "!(contains(github.event.pull_request.title, '[skip ci]') || contains(github.event.pull_request.title, '[ci skip]'))"
@@ -14,7 +12,6 @@ jobs:
       - run: echo "$TITLE"
         env:
           TITLE: ${{ toJson(github.event.pull_request.title) }}
-
   build:
     runs-on: ubuntu-latest
     timeout-minutes: 3

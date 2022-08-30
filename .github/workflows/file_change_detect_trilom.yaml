@@ -1,6 +1,5 @@
 name: file change detect trilom
 on: [pull_request]
-
 jobs:
   build:
     runs-on: ubuntu-latest

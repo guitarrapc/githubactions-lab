@@ -1,5 +1,4 @@
 name: dump context pr
-
 on:
   pull_request:
     branches: ["main"]
@@ -9,7 +8,6 @@ on:
       - opened
       - reopened
       - synchronize
-
 jobs:
   build:
     runs-on: ubuntu-latest

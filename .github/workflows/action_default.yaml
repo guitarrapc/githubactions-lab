@@ -3,7 +3,6 @@ on:
   workflow_dispatch:
   push:
     branches: ["main"]
-
 jobs:
   action:
     runs-on: ubuntu-latest

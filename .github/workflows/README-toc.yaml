@@ -1,9 +1,7 @@
 name: README toc
-
 on:
   push:
     branches: ["main"]
-
 jobs:
   toc:
     runs-on: ubuntu-latest

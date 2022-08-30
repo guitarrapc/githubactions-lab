@@ -1,9 +1,7 @@
 name: trigger ci commit
-
 on:
   push:
     branches: ["main"]
-
 jobs:
   build:
     if: "contains(toJSON(github.event.commits.*.message), '[build]')"

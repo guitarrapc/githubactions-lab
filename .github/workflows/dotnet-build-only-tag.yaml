@@ -1,10 +1,8 @@
 name: dotnet build only tag
-
 on:
   push:
     tags:
       - "**" # only tag
-
 env:
   DOTNET_CLI_TELEMETRY_OPTOUT: 1
   DOTNET_NOLOGO: true
@@ -13,7 +11,6 @@ env:
   # colour output
   DOTNET_SYSTEM_CONSOLE_ALLOW_ANSI_COLOR_REDIRECTION: 1
   TERM: xterm
-
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -25,7 +22,6 @@ jobs:
       - run: echo ${{ steps.CI_TAG.outputs.GIT_TAG }}
       - run: echo "GIT_TAG=${GITHUB_REF##*/}" >> "$GITHUB_ENV"
       - run: echo ${{ env.GIT_TAG }}
-
   dotnet-console:
     runs-on: ubuntu-latest
     timeout-minutes: 5
@@ -41,7 +37,6 @@ jobs:
         with:
           name: dotnet-console
           path: ./out/dotnet-console
-
   dotnet-console-container:
     strategy:
       matrix:
@@ -66,7 +61,6 @@ jobs:
         with:
           name: dotnet-console-container
           path: ./out/dotnet-console-container
-
   release:
     runs-on: ubuntu-latest
     timeout-minutes: 5

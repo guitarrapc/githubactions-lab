@@ -1,10 +1,8 @@
 name: tag push only
-
 on:
   push:
     tags:
       - "**" # only tag
-
 jobs:
   build:
     runs-on: ubuntu-latest

@@ -1,10 +1,8 @@
 name: pr close
-
 on:
   pull_request:
     types:
       - closed
-
 jobs:
   closed:
     runs-on: ubuntu-latest

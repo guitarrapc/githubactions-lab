@@ -1,10 +1,8 @@
 name: setup kubectl
 on:
   workflow_dispatch:
-
 env:
   KUBECTL_VERSION: "v1.24.0"
-
 jobs:
   setup:
     runs-on: ubuntu-latest

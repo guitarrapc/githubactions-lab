@@ -1,5 +1,4 @@
 name: reusable workflow caller (matrix)
-
 on:
   push:
     branches:
@@ -17,7 +16,6 @@ on:
         required: true
         description: "is-valid: true or false"
         type: boolean
-
 jobs:
   call-matrix-workflow:
     # caller cannnot use matrix

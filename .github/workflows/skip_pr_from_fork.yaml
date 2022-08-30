@@ -1,5 +1,4 @@
 name: skip pr from fork
-
 on:
   push:
     branches: ["main"]
@@ -8,7 +7,6 @@ on:
     types:
       - opened
       - synchronize
-
 jobs:
   build:
     # push & my repo will trigger

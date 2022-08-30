@@ -10,11 +10,9 @@ on:
         description: "manifest directory to push"
         required: true
         default: "dev"
-
 env:
   REPO_MANIFEST: guitarrapc/kubernetes-manifest-lab
   MANIFEST_DIR: dev
-
 jobs:
   push_manifest_manual:
     env:

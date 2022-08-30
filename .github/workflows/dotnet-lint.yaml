@@ -1,10 +1,8 @@
 name: dotnet lint
-
 on:
   workflow_dispatch:
   schedule:
     - cron: 0 1 * * 1 # At AM10:00 JST on Monday
-
 env:
   DOTNET_CLI_TELEMETRY_OPTOUT: 1
   DOTNET_NOLOGO: true
@@ -14,7 +12,6 @@ env:
   # colour output
   DOTNET_SYSTEM_CONSOLE_ALLOW_ANSI_COLOR_REDIRECTION: 1
   TERM: xterm
-
 jobs:
   lint_csharp:
     runs-on: ubuntu-latest
@@ -24,7 +21,6 @@ jobs:
       - uses: actions/setup-dotnet@v2
         with:
           dotnet-version: 6.0.x
-
       # dotnet list
       - name: Obtain csproj to lint
         run: |
@@ -35,20 +31,16 @@ jobs:
             echo "EOF"
           } >> "$GITHUB_ENV"
         working-directory: ${{ env.SLN_ROOT }}
-
       - name: Add dotnet-format problem matcher
         uses: xt0rted/dotnet-format-problem-matcher@v1
-
       # dotnet format is build-in from dotnet 6.0 sdk
       - name: Dotnet Format
         run: dotnet format --verbosity diagnostic --exclude "console-fail-tests"
         working-directory: ${{ env.SLN_ROOT }}
-
       # is change happen?
       - name: Check for modified files
         id: git-check
         run: echo "::set-output name=modified::$(if git diff-index --quiet HEAD --; then echo "false"; else echo "true"; fi)"
-
       # get directory stats
       - name: List modified directories
         if: steps.git-check.outputs.modified == 'true'
@@ -59,7 +51,6 @@ jobs:
             echo "${dirs}"
             echo "EOF"
           } >> "$GITHUB_ENV"
-
       # get files stats
       - name: List modified files
         if: steps.git-check.outputs.modified == 'true'
@@ -70,7 +61,6 @@ jobs:
             echo "${files}"
             echo "EOF"
           } >> "$GITHUB_ENV"
-
       # Commit if change happen, then craete PR. force push when branch/pr already exists.
       - name: Create PullRequest
         if: steps.git-check.outputs.modified == 'true'
@@ -110,10 +100,8 @@ jobs:
             ## Target Projects
 
             ${{ env.FORMAT_PROJECTS }}
-
           labels: |
             automated pr
-
       - name: Check outputs
         if: steps.git-check.outputs.modified == 'true'
         run: |

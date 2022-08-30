@@ -1,10 +1,8 @@
 name: tag push only pattern
-
 on:
   push:
     tags:
       - "[0-9]+.[0-9]+.[0-9]+*" # only tag with pattern match
-
 jobs:
   build:
     runs-on: ubuntu-latest

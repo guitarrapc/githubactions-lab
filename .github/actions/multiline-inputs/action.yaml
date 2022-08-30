@@ -5,7 +5,6 @@ inputs:
   multiline-string:
     description: "input multiline string to enumrate."
     required: true
-
 runs:
   using: "composite"
   steps:
