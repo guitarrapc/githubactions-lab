@@ -9,10 +9,10 @@ jobs:
   build:
     strategy:
       matrix:
-        includes:
-          - [org: apples]
-          - [org: bananas]
-          - [org: carrots]
+        include:
+          - { org: apples }
+          - { org: bananas }
+          - { org: carrots }
     runs-on: ubuntu-latest
     timeout-minutes: 3
     env:
