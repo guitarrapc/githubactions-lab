@@ -2220,7 +2220,13 @@ Consider you want use boolean input `is-valid` with workflow_dispatch, then pass
 `fromJson` expression is the trick to convert type from string to boolean.
 
 ```yaml
-${{ fromJson(inputs.is-valid) }}
+${{ github.event.inputs.foobar == "true" }} # true. type is string
+${{ fromJson(github.event.inputs.foobar) == true }} # true. string convert to boolean
 ```
 
 Other way is use `inputs.foobar` context. `inputs` have type information and pass exactly as is to other workflow calls.
+
+```yaml
+${{ inputs.foobar == 'true' }} # false. type is not string
+${{ inputs.foobar == true }} # true. type is boolean
+```
