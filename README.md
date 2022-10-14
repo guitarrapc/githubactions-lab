@@ -1408,9 +1408,17 @@ jobs:
     timeout-minutes: 3
     steps:
       - name: Send greeting (github.event.inputs)
-        run: echo "${{ github.event.inputs.message }} ${{ fromJSON('[\"\", \"\🥳\"]')[github.event.inputs.use-emoji == 'true'] }} ${{ github.event.inputs.name }}"
+        run: |
+          echo "message: ${{ github.event.inputs.message }}"
+          echo "name: ${{ github.event.inputs.name }}"
+          echo "use-emoji (string): ${{ github.event.inputs.use-emoji == 'true' }}"
+          echo "use-emoji (bool): ${{ github.event.inputs.use-emoji == true }}"
       - name: Send greeting (inputs)
-        run: echo "${{ inputs.message }} ${{ fromJSON('[\"\", \"\🥳\"]')[inputs.use-emoji == true] }} ${{ inputs.name }}"
+        run: |
+          echo "message: ${{ inputs.message }}"
+          echo "name: ${{ inputs.name }}"
+          echo "use-emoji (string): ${{ inputs.use-emoji == 'true' }}"
+          echo "use-emoji (bool): ${{ inputs.use-emoji == true }}"
       - name: Emoji
         run: echo "🥳 😊"
 
