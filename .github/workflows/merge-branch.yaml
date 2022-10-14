@@ -13,8 +13,8 @@ on:
 jobs:
   merge:
     env:
-      upstream: ${{ github.event.inputs.upstream }}
-      branch: ${{ github.event.inputs.branch }}
+      upstream: ${{ inputs.upstream }}
+      branch: ${{ inputs.branch }}
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:

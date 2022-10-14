@@ -21,7 +21,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
         with:
-          ref: ${{ github.event.inputs.branch }}
+          ref: ${{ inputs.branch }}
       - uses: actions/checkout@v3
         with:
           repository: ${{ env.REPO_MANIFEST }}
@@ -29,7 +29,7 @@ jobs:
           token: ${{ secrets.SYNCED_GITHUB_TOKEN_REPO }}
       - run: echo "BRANCH=${GITHUB_REF##*/}" >> "$GITHUB_ENV"
         env:
-          REF: ${{ github.event.inputs.branch }}
+          REF: ${{ inputs.branch }}
       - run: |
           {
             echo "GIT_BRANCH=$(echo "$BRANCH" | sed -e 's|/|-|g' -e 's/_/-/g')"

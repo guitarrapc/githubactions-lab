@@ -860,7 +860,7 @@ jobs:
 
 `uses: ./.github/workflows/xxxx.yaml` can call same repository's local workflow.
 
-When you want pass `boolean` type of input from workflow_dispatch to workflow_call, use `fromJson(github.event.inputs.YOUR_BOOLEAN_PARAMETER)`.
+When you want pass `boolean` type of input from workflow_dispatch to workflow_call, use `fromJson(inputs.YOUR_BOOLEAN_PARAMETER)`.
 See [Type converter with fromJson](#type-converter-with-fromJson) for the detail.
 
 ```yaml
@@ -894,8 +894,8 @@ jobs:
   call-workflow-passing-data:
     uses: ./.github/workflows/_reusable_workflow_called.yaml
     with:
-      username: ${{ github.event.inputs.username != '' && github.event.inputs.username || 'mona' }}
-      is-valid: ${{ github.event_name == 'workflow_dispatch' && fromJSON(format('{0}', github.event.inputs.is-valid)) || false }}
+      username: ${{ inputs.username != '' && inputs.username || 'mona' }}
+      is-valid: ${{ github.event_name == 'workflow_dispatch' && fromJSON(format('{0}', inputs.is-valid)) || false }}
     secrets: inherit
 
   job2:
@@ -938,8 +938,8 @@ jobs:
   call-workflow-passing-data:
     uses: guitarrapc/githubactions-lab/.github/workflows/_reusable_workflow_called.yaml@main
     with:
-      username: ${{ github.event.inputs.username != '' && github.event.inputs.username || 'mona' }}
-      is-valid: ${{ github.event_name == 'workflow_dispatch' && fromJSON(format('{0}', github.event.inputs.is-valid)) || false }}
+      username: ${{ inputs.username != '' && inputs.username || 'mona' }}
+      is-valid: ${{ github.event_name == 'workflow_dispatch' && fromJSON(format('{0}', inputs.is-valid)) || false }}
     secrets: inherit
 
   job2:
@@ -984,10 +984,10 @@ jobs:
     #   matrix: ["foo", "bar"]
     uses: ./.github/workflows/_reusable_workflow_matrix_called.yaml
     with:
-      username: ${{ github.event.inputs.username != '' && github.event.inputs.username || 'mona' }}
+      username: ${{ inputs.username != '' && inputs.username || 'mona' }}
       # HACK: actionlint detect fromJSON(bool) and it's invalid warning. However it works.... use format() to suppress warning.
-      # is-valid: ${{ github.event_name == 'workflow_dispatch' && fromJson(github.event.inputs.is-valid) || false }}
-      is-valid: ${{ github.event_name == 'workflow_dispatch' && fromJSON(format('{0}', github.event.inputs.is-valid)) || false }}
+      # is-valid: ${{ github.event_name == 'workflow_dispatch' && fromJson(inputs.is-valid) || false }}
+      is-valid: ${{ github.event_name == 'workflow_dispatch' && fromJSON(format('{0}', inputs.is-valid)) || false }}
     secrets: inherit
 
 ```
@@ -1385,14 +1385,14 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 3
     env:
-      BRANCH: ${{ github.event.inputs.branch }}
-      LOGLEVEL: ${{ github.event.inputs.logLevel }}
-      TAGS: ${{ github.event.inputs.tags }}
+      BRANCH: ${{ inputs.branch }}
+      LOGLEVEL: ${{ inputs.logLevel }}
+      TAGS: ${{ inputs.tags }}
     steps:
       - run: echo ${{ env.BRANCH }} ${{ env.LOGLEVEL }} ${{ env.TAGS }}
       - uses: actions/checkout@v3
         with:
-          ref: ${{ github.event.inputs.branch }}
+          ref: ${{ inputs.branch }}
       - name: dump github context
         run: echo "$CONTEXT"
         env:
@@ -1402,16 +1402,16 @@ jobs:
         env:
           CONTEXT: ${{ toJson(github.event.inputs) }}
       - run: |
-          echo "Log level: ${{ github.event.inputs.logLevel }}"
-          echo "Tags: ${{ github.event.inputs.tags }}"
+          echo "Log level: ${{ inputs.logLevel }}"
+          echo "Tags: ${{ inputs.tags }}"
       # INPUT_ not automatcally generated
       - run: |
           echo "${INPUT_TEST_VAR}"
           echo "${TEST_VAR}"
       - run: echo "/path/to/dir" >> "$GITHUB_PATH"
       - run: |
-          echo "INPUT_LOGLEVEL=${{ github.event.inputs.logLevel }}" >> "$GITHUB_ENV"
-          echo "INPUT_TAGS=${{ github.event.inputs.tags }}" >> "$GITHUB_ENV"
+          echo "INPUT_LOGLEVEL=${{ inputs.logLevel }}" >> "$GITHUB_ENV"
+          echo "INPUT_TAGS=${{ inputs.tags }}" >> "$GITHUB_ENV"
       - run: |
           echo "Log level: ${INPUT_LOGLEVEL}"
           echo "Tags: ${INPUT_TAGS}"
@@ -1462,7 +1462,7 @@ jobs:
     timeout-minutes: 3
     steps:
       - name: Send greeting
-        run: echo "${{ github.event.inputs.message }} ${{ fromJSON('["", "🥳"]')[github.event.inputs.use-emoji == 'true'] }} ${{ github.event.inputs.name }}"
+        run: echo "${{ inputs.message }} ${{ fromJSON('["", "🥳"]')[inputs.use-emoji == 'true'] }} ${{ inputs.name }}"
 
 ```
 
@@ -2293,9 +2293,12 @@ git config user.email 41898282+github-actions[bot]@users.noreply.github.com
 
 There are some cases you want convert string to other type.
 Consider you want use boolean input `is-valid` with workflow_dispatch, then pass it to workflow_call as boolean.
+
 `github.event.inputs` context treat all value as `string`, so `github.event.inputs.is-valid` isn't boolean any more.
 `fromJson` expression is the trick to convert type from string to boolean.
 
 ```yaml
-${{ fromJson(github.event.inputs.is-valid) }}
+${{ fromJson(inputs.is-valid) }}
 ```
+
+Other way is use `inputs.foobar` context. `inputs` have type information and pass exactly as is to other workflow calls.

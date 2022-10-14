@@ -18,10 +18,10 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 5
     env:
-      VERSION: ${{ github.event.inputs.version }}
+      VERSION: ${{ inputs.version }}
       TARGET_FILE: ./src/json/package.json
-      CREATE_PR: ${{ github.event.inputs.create_pr }}
-      DRY_RUN: ${{ github.event.inputs.dry_run }}
+      CREATE_PR: ${{ inputs.create_pr }}
+      DRY_RUN: ${{ inputs.dry_run }}
     steps:
       - uses: actions/checkout@v3
       - name: before
