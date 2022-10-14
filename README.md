@@ -310,7 +310,6 @@ name: "context github"
 on:
   push:
     branches: ["main"]
-
 jobs:
   context:
     runs-on: ubuntu-latest
@@ -351,14 +350,12 @@ To see push context.
 # .github/workflows/dump_context_push.yaml
 
 name: dump context push
-
 on:
   workflow_dispatch:
   schedule:
     - cron: "0 0 * * *"
   push:
     branches: ["main"]
-
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -399,7 +396,6 @@ To see pull_request context.
 # .github/workflows/dump_context_pr.yaml
 
 name: dump context pr
-
 on:
   pull_request:
     branches: ["main"]
@@ -409,7 +405,6 @@ on:
       - opened
       - reopened
       - synchronize
-
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -450,14 +445,12 @@ To see local action context.
 # .github/workflows/dump_context_action.yaml
 
 name: dump context action
-
 on:
   workflow_dispatch:
   push:
     branches: ["main"]
   pull_request:
     branches: ["main"]
-
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -494,14 +487,12 @@ Call this script from workflow.
 # .github/workflows/env_with_script.yaml
 
 name: env with script
-
 on:
   workflow_dispatch:
   push:
     branches: ["main"]
   pull_request:
     branches: ["main"]
-
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -538,7 +529,6 @@ on:
     branches: ["main"]
   pull_request:
     branches: ["main"]
-
 jobs:
   matrix_reference:
     strategy:
@@ -581,7 +571,6 @@ name: permissions
 on:
   pull_request:
     branches: ["main"]
-
 permissions:
   # actions: write
   # checks: write
@@ -596,7 +585,6 @@ permissions:
   # repository-projects: write
   # security-events: write
   # statuses: write
-
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -633,7 +621,6 @@ name: permissions job
 on:
   pull_request:
     branches: ["main"]
-
 jobs:
   build:
     permissions:
@@ -707,7 +694,6 @@ on:
     branches: ["main"]
   pull_request:
     branches: ["main"]
-
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -765,7 +751,6 @@ on:
     branches: ["main"]
   pull_request:
     branches: ["main"]
-
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -802,7 +787,6 @@ Any `inputs`, `secrets` and `outputs` should define onder on.workflow_call.
 # .github/workflows/_reusable_workflow_called.yaml
 
 name: _reusable workflow called
-
 on:
   workflow_call:
     inputs:
@@ -821,10 +805,8 @@ on:
       secondword:
         description: "The second output string"
         value: ${{ jobs.reusable_workflow_job.outputs.output2 }}
-
 env:
   FOO: foo
-
 jobs:
   reusable_workflow_job:
     runs-on: ubuntu-latest
@@ -867,7 +849,6 @@ See [Type converter with fromJson](#type-converter-with-fromJson) for the detail
 # .github/workflows/reusable_workflow_caller.yaml
 
 name: reusable workflow caller
-
 on:
   push:
     branches:
@@ -885,11 +866,9 @@ on:
         required: true
         description: "is-valid: true or false"
         type: boolean
-
 # (Limitation) Callee can not refer caller environment variable.
 env:
   CALLER_VALUE: caller
-
 jobs:
   call-workflow-passing-data:
     uses: ./.github/workflows/_reusable_workflow_called.yaml
@@ -897,7 +876,6 @@ jobs:
       username: ${{ inputs.username != '' && inputs.username || 'mona' }}
       is-valid: ${{ github.event_name == 'workflow_dispatch' && fromJSON(format('{0}', inputs.is-valid)) || false }}
     secrets: inherit
-
   job2:
     runs-on: ubuntu-latest
     needs: call-workflow-passing-data
@@ -915,7 +893,6 @@ You cannot call private repository's reusable workflow. (see limitation.)
 # .github/workflows/reusable_workflow_public_caller.yaml
 
 name: reusable workflow public caller
-
 on:
   push:
     branches:
@@ -933,7 +910,6 @@ on:
         required: true
         description: "is-valid: true or false"
         type: boolean
-
 jobs:
   call-workflow-passing-data:
     uses: guitarrapc/githubactions-lab/.github/workflows/_reusable_workflow_called.yaml@main
@@ -941,7 +917,6 @@ jobs:
       username: ${{ inputs.username != '' && inputs.username || 'mona' }}
       is-valid: ${{ github.event_name == 'workflow_dispatch' && fromJSON(format('{0}', inputs.is-valid)) || false }}
     secrets: inherit
-
   job2:
     runs-on: ubuntu-latest
     needs: call-workflow-passing-data
@@ -958,7 +933,6 @@ Reusable Workflow caller cannot use matrix, but callee can use matrix. (see limi
 # .github/workflows/reusable_workflow_caller_matrix.yaml
 
 name: reusable workflow caller (matrix)
-
 on:
   push:
     branches:
@@ -976,7 +950,6 @@ on:
         required: true
         description: "is-valid: true or false"
         type: boolean
-
 jobs:
   call-matrix-workflow:
     # caller cannnot use matrix
@@ -996,7 +969,6 @@ jobs:
 # .github/workflows/_reusable_workflow_matrix_called.yaml
 
 name: _reusable workflow matrix called
-
 on:
   workflow_call:
     inputs:
@@ -1015,10 +987,8 @@ on:
       secondword:
         description: "The second output string"
         value: ${{ jobs.reusable_workflow_job.outputs.output2 }}
-
 env:
   FOO: foo
-
 jobs:
   # callee can use matrix.
   reusable_workflow_job:
@@ -1067,14 +1037,12 @@ this enforce job to be run when only previous job is **success**.
 # .github/workflows/sequential_run.yaml
 
 name: sequential jobs
-
 on:
   workflow_dispatch:
   push:
     branches: ["main"]
   pull_request:
     branches: ["main"]
-
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -1083,7 +1051,6 @@ jobs:
       - run: echo "$COMMIT_MESSAGES"
         env:
           COMMIT_MESSAGES: ${{ toJson(github.event.commits.*.message) }}
-
   publish:
     needs: build
     runs-on: ubuntu-latest
@@ -1103,14 +1070,12 @@ use `if:` you want set step to be run on particular status.
 # .github/workflows/status_step.yaml
 
 name: status step
-
 on:
   workflow_dispatch:
   push:
     branches: ["main"]
   pull_request:
     branches: ["main"]
-
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -1146,7 +1111,6 @@ on:
   workflow_dispatch:
   push:
     branches: ["main"]
-
 jobs:
   push:
     runs-on: ubuntu-latest
@@ -1170,17 +1134,14 @@ on:
   workflow_dispatch:
   push:
     branches: ["main"]
-
 jobs:
   push:
     if: >-
-      github.event_name == 'push' ||
-      github.event.forced == false
+      github.event_name == 'push' || github.event.forced == false
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
       - run: echo "push"
-
   workflow_dispatch:
     if: >-
       github.event_name == 'workflow_dispatch'
@@ -1205,17 +1166,14 @@ let's set secrets in settings.
 # .github/workflows/matrix_secret.yaml
 
 name: matrix secret
-
 on:
   workflow_dispatch:
   push:
     branches: ["main"]
   pull_request:
     branches: ["main"]
-
 env:
   fruit: APPLES
-
 jobs:
   dereference:
     strategy:
@@ -1249,14 +1207,12 @@ However you cannot use expression, you must evaluate in step.
 # .github/workflows/matrix_envvar.yaml
 
 name: matrix envvar
-
 on:
   workflow_dispatch:
   push:
     branches: ["main"]
   pull_request:
     branches: ["main"]
-
 jobs:
   build:
     strategy:
@@ -1290,14 +1246,12 @@ It is better set much more shorten timeout like 15min or 30min to prevent spendi
 # .github/workflows/timeout.yaml
 
 name: timeout
-
 on:
   workflow_dispatch:
   push:
     branches: ["main"]
   pull_request:
     branches: ["main"]
-
 jobs:
   my-job:
     runs-on: ubuntu-latest
@@ -1321,11 +1275,8 @@ You can use build context like `github.head_ref` or others. This means you can c
 name: "concurrency control"
 on:
   workflow_dispatch:
-
 # only ${{ github }} context is available
-
 concurrency: concurrency_${{ github.head_ref }}
-
 jobs:
   long_job:
     runs-on: ubuntu-latest
@@ -1342,13 +1293,10 @@ Specify `cancel-in-progress: true` will cancel parallel build.
 name: "concurrency control cancel in progress"
 on:
   workflow_dispatch:
-
 # only ${{ github }} context is available
-
 concurrency:
   group: concurrency_cancel_in_progress_${{ github.head_ref }}
   cancel-in-progress: true
-
 jobs:
   long_job:
     runs-on: ubuntu-latest
@@ -1433,7 +1381,6 @@ Workflow dispatch supported input type.
 # .github/workflows/workflow_dispatch_mixed_inputs.yaml
 
 name: workflow dispatch mixed inputs
-
 on:
   workflow_dispatch:
     inputs:
@@ -1449,20 +1396,23 @@ on:
         required: true
       use-emoji:
         type: boolean
+        description: "use-emoji: Include 🎉🤣 emojis"
         required: true
-        description: Include 🎉🤣 emojis
       environment:
         type: environment
+        description: "environment: Select environment"
         required: true
-        description: Select environment
-
 jobs:
   greet:
     runs-on: ubuntu-latest
     timeout-minutes: 3
     steps:
-      - name: Send greeting
-        run: echo "${{ inputs.message }} ${{ fromJSON('["", "🥳"]')[inputs.use-emoji == 'true'] }} ${{ inputs.name }}"
+      - name: Send greeting (github.event.inputs)
+        run: echo "${{ github.event.inputs.message }} ${{ fromJSON('[\"\", \"\🥳\"]')[github.event.inputs.use-emoji == 'true'] }} ${{ github.event.inputs.name }}"
+      - name: Send greeting (inputs)
+        run: echo "${{ inputs.message }} ${{ fromJSON('[\"\", \"\🥳\"]')[inputs.use-emoji == true] }} ${{ inputs.name }}"
+      - name: Emoji
+        run: echo "🥳 😊"
 
 ```
 
@@ -1484,14 +1434,12 @@ Simple enough for almost usage.
 # .github/workflows/push_and_pr_avoid_redundant.yaml
 
 name: push and pull_request avoid redundant
-
 on:
   # prevent push run on pull_request
   push:
     branches: ["main"]
   pull_request:
     branches: ["main"]
-
 jobs:
   my-job:
     runs-on: ubuntu-latest
@@ -1517,7 +1465,6 @@ on:
     branches: ["main"]
   pull_request:
     branches: ["main"]
-
 jobs:
   cancel:
     runs-on: ubuntu-latest
@@ -1543,7 +1490,6 @@ you can handle commit file handle with github actions [trilom/file/-changes/-act
 
 name: pr path changed
 on: [pull_request]
-
 jobs:
   changes:
     runs-on: ubuntu-latest
@@ -1607,12 +1553,10 @@ Multiple assets upload is supported by running running `actions/upload-release-a
 # .github/workflows/create_release.yaml
 
 name: create release
-
 on:
   push:
     tags:
       - "[0-9]+.[0-9]+.[0-9]+*"
-
 jobs:
   create-release:
     runs-on: ubuntu-latest
@@ -1620,11 +1564,9 @@ jobs:
     steps:
       # set release tag(*.*.*) to env.GIT_TAG
       - run: echo "GIT_TAG=${GITHUB_REF##*/}" >> "$GITHUB_ENV"
-
       - run: echo "hoge" > "hoge.${GIT_TAG}.txt"
       - run: echo "fuga" > "fuga.${GIT_TAG}.txt"
       - run: ls -l
-
       # Create Releases
       - uses: actions/create-release@v1
         id: create_release
@@ -1633,7 +1575,6 @@ jobs:
         with:
           tag_name: ${{ github.ref }}
           release_name: Ver.${{ github.ref }}
-
       # Upload to Releases(hoge)
       - uses: actions/upload-release-asset@v1
         env:
@@ -1643,7 +1584,6 @@ jobs:
           asset_path: hoge.${{ env.GIT_TAG }}.txt
           asset_name: hoge.${{ env.GIT_TAG }}.txt
           asset_content_type: application/octet-stream
-
       # Upload to Releases(fuga)
       - uses: actions/upload-release-asset@v1
         env:
@@ -1665,13 +1605,11 @@ If you want run job only when push to branch, and not for tag push.
 # .github/workflows/branch_push_only.yaml
 
 name: branch push only
-
 on:
   push:
     branches: ["main"]
     tags:
       - "!*" # not a tag push
-
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -1687,11 +1625,9 @@ jobs:
 # .github/workflows/trigger_ci.yaml
 
 name: trigger ci commit
-
 on:
   push:
     branches: ["main"]
-
 jobs:
   build:
     if: "contains(toJSON(github.event.commits.*.message), '[build]')"
@@ -1713,12 +1649,10 @@ If you want run job only when push to tag, and not for branch push.
 # .github/workflows/tag_push_only.yaml
 
 name: tag push only
-
 on:
   push:
     tags:
       - "**" # only tag
-
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -1745,12 +1679,10 @@ not for below.
 # .github/workflows/tag_push_only_pattern.yaml
 
 name: tag push only pattern
-
 on:
   push:
     tags:
       - "[0-9]+.[0-9]+.[0-9]+*" # only tag with pattern match
-
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -1777,7 +1709,6 @@ on:
       - opened
       - reopened
       - synchronize
-
 jobs:
   changes:
     runs-on: ubuntu-latest
@@ -1803,9 +1734,7 @@ original `pull_request` event will invoke when activity type is `opened`, `synch
 # .github/workflows/skip_ci_pr_title.yaml
 
 name: skip ci pr title
-
 on: ["pull_request"]
-
 jobs:
   skip:
     if: "!(contains(github.event.pull_request.title, '[skip ci]') || contains(github.event.pull_request.title, '[ci skip]'))"
@@ -1818,7 +1747,6 @@ jobs:
       - run: echo "$TITLE"
         env:
           TITLE: ${{ toJson(github.event.pull_request.title) }}
-
   build:
     runs-on: ubuntu-latest
     timeout-minutes: 3
@@ -1837,7 +1765,6 @@ To control job to be skip from fork but run on self pr or push, use `if` conditi
 # .github/workflows/skip_pr_from_fork.yaml
 
 name: skip pr from fork
-
 on:
   push:
     branches: ["main"]
@@ -1846,7 +1773,6 @@ on:
     types:
       - opened
       - synchronize
-
 jobs:
   build:
     # push & my repo will trigger
@@ -1872,7 +1798,6 @@ on:
   pull_request:
   push:
     branches: ["main"]
-
 jobs:
   build:
     if: "!(github.event.pull_request.draft)"
@@ -1896,7 +1821,6 @@ on:
       - opened
       - reopened
       - ready_for_review
-
 jobs:
   build:
     # RUN WHEN
@@ -1966,7 +1890,6 @@ on:
     branches: ["main"]
   pull_request:
     branches: ["main"]
-
 jobs:
   sparse-checkout:
     runs-on: ubuntu-latest
@@ -2002,7 +1925,6 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SPARSECHECKOUT_DIR: src/*
-
       - name: list root folders
         run: ls -la
 
@@ -2021,7 +1943,6 @@ on:
     branches: ["main"]
   pull_request:
     branches: ["main"]
-
 jobs:
   sparse-checkout:
     runs-on: ubuntu-latest
@@ -2057,7 +1978,6 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SPARSECHECKOUT_DIR: "!src/*"
-
       - name: list root folders
         run: ls -la
 
@@ -2096,7 +2016,6 @@ This repo will dispatch event with [Workflow Dispatch Action](https://github.com
 name: dispatch changes actions
 on:
   workflow_dispatch:
-
 jobs:
   dispatch:
     runs-on: ubuntu-latest
@@ -2116,6 +2035,7 @@ jobs:
           ref: ${{ matrix.ref }}
           workflow: ${{ matrix.workflow }}
           token: ${{ secrets.SYNCED_GITHUB_TOKEN_REPO }}
+
 ```
 
 
@@ -2135,7 +2055,6 @@ name: pr from merge commit
 on:
   push:
     branches: ["main"]
-
 jobs:
   get:
     runs-on: ubuntu-latest
@@ -2166,14 +2085,12 @@ If you don't need automated PR review, run actionlint is enough.
 # .github/workflows/actionlint.yaml
 
 name: actionlint
-
 on:
   workflow_dispatch:
   pull_request:
     branches: ["main"]
     paths:
       - ".github/workflows/**"
-
 jobs:
   actionlint:
     runs-on: ubuntu-latest
@@ -2193,14 +2110,12 @@ If you need automated PR review, run actionlint with reviewdog.
 # .github/workflows/actionlint_reviewdog.yaml
 
 name: actionlint (reviewdog)
-
 on:
   workflow_dispatch:
   pull_request:
     branches: ["main"]
     paths:
       - ".github/workflows/**"
-
 jobs:
   actionlint:
     runs-on: ubuntu-latest
@@ -2250,12 +2165,10 @@ Save it to `step context` and refer from other step or save it to env is much ea
 # .github/workflows/tag_push_only_context.yaml
 
 name: tag push context
-
 on:
   push:
     tags:
       - "**" # only tag
-
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -2265,6 +2178,7 @@ jobs:
       - run: echo ${{ steps.CI_TAG.outputs.GIT_TAG }}
       - run: echo "GIT_TAG=${GITHUB_REF##*/}" >> "$GITHUB_ENV"
       - run: echo ${{ env.GIT_TAG }}
+
 ```
 
 
