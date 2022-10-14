@@ -675,7 +675,7 @@ Create yaml file inside local action path, then declare `using: "composite"` in 
 * step2. Write your composite actions yaml.
 
 ```yaml
-# .github/actions/local_composite_actions/action.yaml
+# .github/actions/local-composite-actions/action.yaml
 
 name: YOUR ACTION NAME
 description: |
