@@ -11,8 +11,8 @@ on:
         default: "false"
 env:
   DRY_RUN_BRANCH_PREFIX: "test_release"
-  TAG: ${{ github.event.inputs.tag }}
-  DRY_RUN: ${{ github.event.inputs.dry_run }}
+  TAG: ${{ inputs.tag }}
+  DRY_RUN: ${{ inputs.dry_run }}
 jobs:
   update-packagejson:
     runs-on: ubuntu-latest
@@ -78,7 +78,7 @@ jobs:
           prerelease: "false"
           commitish: ${{ needs.update-packagejson.outputs.sha }}
   cleanup:
-    if: github.event.inputs.dry_run == 'true'
+    if: inputs.dry_run == 'true'
     needs: [release]
     runs-on: ubuntu-latest
     steps:

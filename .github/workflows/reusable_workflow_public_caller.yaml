@@ -20,8 +20,8 @@ jobs:
   call-workflow-passing-data:
     uses: guitarrapc/githubactions-lab/.github/workflows/_reusable_workflow_called.yaml@main
     with:
-      username: ${{ github.event.inputs.username != '' && github.event.inputs.username || 'mona' }}
-      is-valid: ${{ github.event_name == 'workflow_dispatch' && fromJSON(format('{0}', github.event.inputs.is-valid)) || false }}
+      username: ${{ inputs.username != '' && inputs.username || 'mona' }}
+      is-valid: ${{ github.event_name == 'workflow_dispatch' && fromJSON(format('{0}', inputs.is-valid)) || false }}
     secrets: inherit
   job2:
     runs-on: ubuntu-latest

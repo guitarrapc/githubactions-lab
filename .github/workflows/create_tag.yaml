@@ -6,7 +6,7 @@ on:
         description: "tag: git tag you want create."
         required: true
 env:
-  TAG: ${{ github.event.inputs.tag }}
+  TAG: ${{ inputs.tag }}
 jobs:
   tag:
     runs-on: ubuntu-latest
