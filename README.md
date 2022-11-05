@@ -2112,6 +2112,9 @@ on:
     branches: ["main"]
     paths:
       - ".github/workflows/**"
+  schedule:
+    - cron: "0 0 * * *"
+
 jobs:
   actionlint:
     runs-on: ubuntu-latest
@@ -2137,6 +2140,7 @@ on:
     branches: ["main"]
     paths:
       - ".github/workflows/**"
+
 jobs:
   actionlint:
     runs-on: ubuntu-latest

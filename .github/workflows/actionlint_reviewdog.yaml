@@ -5,6 +5,7 @@ on:
     branches: ["main"]
     paths:
       - ".github/workflows/**"
+
 jobs:
   actionlint:
     runs-on: ubuntu-latest
