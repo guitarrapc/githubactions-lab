@@ -23,6 +23,7 @@ GitHub Actions laboratory.
   - [Rerun failed workflow](#rerun-failed-workflow)
   - [Reusable job and workflow](#reusable-job-and-workflow)
   - [Set Environment variables](#set-environment-variables)
+  - [Set Output](#set-output)
   - [Set PATH Environment variables](#set-path-environment-variables)
   - [Set Secrets for Job](#set-secrets-for-job)
   - [Skip CI and commit message](#skip-ci-and-commit-message)
