@@ -265,9 +265,9 @@ See GitHub Actions Output document.
 
 * ✔️: GitHub Actions use redirect to special Environment variable `$GITHUB_OUTPUT` via `echo "{name}={value}" >> "$GITHUB_OUTPUT"` (Linux) or `"{name}=value" >> $env:GITHUB_OUTPUT` (Windows) syntax.
 * `::set-output` syntax has been deprecated for [security reason](https://github.blog/changelog/2022-10-11-github-actions-deprecating-save-state-and-set-output-commands/).
-* ✔️: CircleCI has no equivalent but use Environment Variables.
+* ⚠️: CircleCI has no equivalent but use Environment Variables.
 * ✔️: Azure Pipeline use task.setvariable via `echo "##vso[task.setvariable variable=NAME;isoutput=true]VALUE"` syntax.
-* ✔️: Jenkins has no equivalent but use Environment Variables.
+* ⚠️: Jenkins has no equivalent but use Environment Variables.
 
 ## Set PATH Environment variables
 
