@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 3
     steps:
-      - run: echo "::set-output name=action_fruit::strawberry"
+      - run: echo "action_fruit=strawberry" >> "$GITHUB_OUTPUT"
       - run: echo "::debug::Set the Octocat variable"
       - run: echo "::warning file=app.js,line=1,col=5::Missing semicolon"
       - run: echo "::error file=app.js,line=10,col=15::Something went wrong"

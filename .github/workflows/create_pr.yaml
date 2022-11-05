@@ -18,7 +18,7 @@ jobs:
       # x: `git diff-index --quiet HEAD --` could get modified but not for newly added.
       - name: Check for modified files
         id: git-check
-        run: echo "::set-output name=modified::$(if [[ "$(git status --porcelain=v1 2>/dev/null | wc -l)" == "0" ]]; then echo "false"; else echo "true"; fi)"
+        run: echo "modified=$(if [[ "$(git status --porcelain=v1 2>/dev/null | wc -l)" == "0" ]]; then echo "false"; else echo "true"; fi)" >> "$GITHUB_OUTPUT"
       # commit & pr if change happen (force push when branch/pr already exists)
       - name: Create PullRequest
         id: cpr
