@@ -843,10 +843,10 @@ jobs:
         run: echo "called env. ${{ env.IS_VALID }}"
       - name: output step1
         id: step1
-        run: echo "::set-output name=firstword::hello"
+        run: echo "firstword=hello" >> "$GITHUB_OUTPUT"
       - name: output step2
         id: step2
-        run: echo "::set-output name=secondword::world"
+        run: echo "secondword=world" >> "$GITHUB_OUTPUT"
 
 ```
 
@@ -1031,10 +1031,10 @@ jobs:
         run: echo "called env. ${{ env.IS_VALID }}"
       - name: output step1
         id: step1
-        run: echo "::set-output name=firstword::hello"
+        run: echo "firstword=hello" >> "$GITHUB_OUTPUT"
       - name: output step2
         id: step2
-        run: echo "::set-output name=secondword::world"
+        run: echo "secondword=world" >> "$GITHUB_OUTPUT"
 
 ```
 
@@ -2111,6 +2111,9 @@ on:
     branches: ["main"]
     paths:
       - ".github/workflows/**"
+  schedule:
+    - cron: "0 0 * * *"
+
 jobs:
   actionlint:
     runs-on: ubuntu-latest
@@ -2136,6 +2139,7 @@ on:
     branches: ["main"]
     paths:
       - ".github/workflows/**"
+
 jobs:
   actionlint:
     runs-on: ubuntu-latest
@@ -2193,7 +2197,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "::set-output name=GIT_TAG::${GITHUB_REF##*/}"
+      - run: echo "GIT_TAG=${GITHUB_REF##*/}" >> "$GITHUB_OUTPUT"
         id: CI_TAG
       - run: echo ${{ steps.CI_TAG.outputs.GIT_TAG }}
       - run: echo "GIT_TAG=${GITHUB_REF##*/}" >> "$GITHUB_ENV"
