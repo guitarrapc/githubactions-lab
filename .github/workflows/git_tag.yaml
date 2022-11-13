@@ -1,9 +1,9 @@
-name: git pull
+name: git tag
 
 on:
   push:
     branches:
-      - foo_pull
+      - foo_tag
 
 jobs:
   actionlint:
@@ -13,12 +13,6 @@ jobs:
       - uses: actions/checkout@v3
       - name: sleep
         run: sleep 60s
-      - name: git pull
-        id: commit
-        run: |
-          echo "old_sha=$(git rev-parse HEAD)" | tee -a "$GITHUB_OUTPUT"
-          git pull origin ${{ github.ref }}
-          echo "new_sha=$(git rev-parse HEAD)" | tee -a "$GITHUB_OUTPUT"
       - name: git tag
         run: |
           git tag v${{ github.run_id }}
