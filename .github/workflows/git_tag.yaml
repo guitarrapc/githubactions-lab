@@ -1,9 +1,11 @@
 name: git tag
 
 on:
-  push:
-    branches:
-      - foo_tag
+  workflow_dispatch:
+    inputs:
+      tag:
+        required: true
+        description: input your tag value
 
 jobs:
   actionlint:
@@ -15,5 +17,5 @@ jobs:
         run: sleep 60s
       - name: git tag
         run: |
-          git tag v${{ github.run_id }}
-          git push origin v${{ github.run_id }}
+          git tag ${{ inputs.tag }}
+          git push origin ${{ inputs.tag }}
