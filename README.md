@@ -783,17 +783,68 @@ You can call local workflow of the same repository (Private repository), and rem
 
 > detail: [Reusing workflows \- GitHub Docs](https://docs.github.com/ja/actions/using-workflows/reusing-workflows)
 
-Threre are some limitations.
+### Caller Limitations
 
-1. Cannot call reusable workflow from reusable workflow.
-1. Private repo can call same repo's reusable workflow. You can not call other private repo's workflow.
-1. Caller Environment Variable never inherit to called reusable workflow.
+There are limitations on Reusable workflow caller.
+
+1. Private repo can call same repo's reusable workflow, but can not call other private repo's workflow.
+1. Caller cannot use ${{ env.FOO }} for `with` inputs.
+    ```yaml
+    jobs:
+      bad:
+        runs-on: ubuntu-latest
+        steps:
+          uses: ./.github/workflows/dummy.yaml
+          with:
+            value: ${{ env.FOO }} # caller can not use `env.` in with block.
+          secrets: inherit
+    ```
 1. Caller cannot use strategy (=matrix).
+    ```yaml
+    jobs:
+      bad:
+        strategy: # caller cannnot use matrix
+          matrix: ["foo", "bar"]
+        runs-on: ubuntu-latest
+        steps:
+          uses: ./.github/workflows/dummy.yaml
+          secrets: inherit
+    ```
+
+### Callee Limitations
+
 1. Callee workflow must place under `.github/workflows/`. Otherwise caller treated as calling public workflow.
+    ```bash
+    $ ls -l ./.github/workflows/
+    ```
+1. Callee cannot refer Caller's Environment Variable.
+    ```yaml
+    env:
+      FOO: foo # Reusable workflow callee cannot refer this env.
+    jobs:
+      bad:
+        runs-on: ubuntu-latest
+        steps:
+          uses: ./.github/workflows/dummy.yaml
+    ```
+1. Cannot call reusable workflow from reusable workflow.
+    ```yaml
+    on:
+      workflow_call:
+        inputs:
+          config-path:
+            required: true
+            type: string
+    jobs:
+      bad:
+        runs-on: ubuntu-latest
+        steps:
+          uses: ./.github/workflows/other_workflow.yaml # Reusable workflow cannot call other reusable workflow.
+    ```
 
-**Callee workflow sample**
+### Sample. Reusable workflow definition sample
 
-Callee wokflow must has `on.workflow_call` and yaml file must located under `.github/workflows/`.
+Place Reusable workflow yaml file under `.github/workflows/` then set `on.workflow_call` trigger, you are ready for reusable workflow.
 Any `inputs`, `secrets` and `outputs` should define onder on.workflow_call.
 
 ```yaml
@@ -851,9 +902,7 @@ jobs:
 
 ```
 
-**Call same reposity's reusable workflow**
-
-`uses: ./.github/workflows/xxxx.yaml` can call same repository's local workflow.
+To call Reusable workflow, use `uses: ./.github/workflows/xxxx.yaml`.
 
 When you want pass `boolean` type of input from workflow_dispatch to workflow_call, use `fromJson(inputs.YOUR_BOOLEAN_PARAMETER)`.
 See [Type converter with fromJson](#type-converter-with-fromJson) for the detail.
@@ -897,10 +946,11 @@ jobs:
 
 ```
 
-**Call public repository's reusable workflow**
+### Sample. Call public repository's reusable workflow
 
-`uses: GITHUB_OWNER/REPOSITORY/.github/workflows/xxxx.yaml@<ref>` can call public repository's reusable workflow.
-You cannot call private repository's reusable workflow. (see limitation.)
+Yo call public repository's reusable workflow, use `uses: GITHUB_OWNER/REPOSITORY/.github/workflows/xxxx.yaml@<ref>`.
+
+> **Warning**: To call private repository's reusable workflow, you must use absolute path of self repository.
 
 ```yaml
 # .github/workflows/reusable_workflow_public_caller.yaml
@@ -938,7 +988,7 @@ jobs:
 
 ```
 
-**Can not use matrix on caller, use matrix on callee**
+### Sample. Matrix is allowed for callee only
 
 Reusable Workflow caller cannot use matrix, but callee can use matrix. (see limitation.)
 
