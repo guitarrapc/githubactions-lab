@@ -1,0 +1,17 @@
+name: reusable workflow caller (nest)
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  call-workflow-passing-data:
+    uses: ./.github/workflows/_reusable_workflow_nest.yaml
+    with:
+      username: "foo"
+      is-valid: true
+    secrets: inherit

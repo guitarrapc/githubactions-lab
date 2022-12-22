@@ -816,20 +816,6 @@ There are limitations on Reusable workflow caller.
         steps:
           uses: ./.github/workflows/dummy.yaml
     ```
-1. Cannot call reusable workflow from reusable workflow.
-    ```yaml
-    on:
-      workflow_call:
-        inputs:
-          config-path:
-            required: true
-            type: string
-    jobs:
-      bad:
-        runs-on: ubuntu-latest
-        steps:
-          uses: ./.github/workflows/other_workflow.yaml # Reusable workflow cannot call other reusable workflow.
-    ```
 
 ### Reusable workflow definition sample
 
@@ -888,7 +874,6 @@ jobs:
       - name: output step2
         id: step2
         run: echo "secondword=world" >> "$GITHUB_OUTPUT"
-
 ```
 
 ### Call repository's reusable workflow
@@ -991,6 +976,37 @@ jobs:
     with:
       username: ${{ matrix.username }}
       is-valid: true
+    secrets: inherit
+
+```
+
+### Nest reusable workflow
+
+Reusalbe workflow can call other reusable workflow, it means nested call is supported.
+
+```yaml
+# .github/workflows/_reusable_workflow_nest.yaml
+
+name: _reusable workflow nest
+on:
+  workflow_call:
+    inputs:
+      username:
+        required: true
+        description: username to show
+        type: string
+      is-valid:
+        required: true
+        description: username to show
+        type: boolean
+
+# nested call is supported
+jobs:
+  call-workflow-passing-data:
+    uses: ./.github/workflows/_reusable_workflow_called.yaml
+    with:
+      username: ${{ inputs.username }}
+      is-valid: ${{ inputs.is-valid }}
     secrets: inherit
 
 ```
