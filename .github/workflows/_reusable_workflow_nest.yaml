@@ -14,7 +14,7 @@ on:
 # nested call is supported
 jobs:
   call-workflow-passing-data:
-    uses: ./.github/workflows/_reusable_workflow_internal.yaml
+    uses: ./.github/workflows/_reusable_workflow_called.yaml
     with:
       username: ${{ inputs.username }}
       is-valid: ${{ inputs.is-valid }}
