@@ -799,17 +799,6 @@ There are limitations on Reusable workflow caller.
             value: ${{ env.FOO }} # caller can not use `env.` in with block.
           secrets: inherit
     ```
-1. Caller cannot use strategy (=matrix).
-    ```yaml
-    jobs:
-      bad:
-        strategy: # caller cannnot use matrix
-          matrix: ["foo", "bar"]
-        runs-on: ubuntu-latest
-        steps:
-          uses: ./.github/workflows/dummy.yaml
-          secrets: inherit
-    ```
 
 ### Callee Limitations
 
@@ -842,7 +831,7 @@ There are limitations on Reusable workflow caller.
           uses: ./.github/workflows/other_workflow.yaml # Reusable workflow cannot call other reusable workflow.
     ```
 
-### Sample. Reusable workflow definition sample
+### Reusable workflow definition sample
 
 Place Reusable workflow yaml file under `.github/workflows/` then set `on.workflow_call` trigger, you are ready for reusable workflow.
 Any `inputs`, `secrets` and `outputs` should define onder on.workflow_call.
@@ -902,13 +891,15 @@ jobs:
 
 ```
 
+### Call repository's reusable workflow
+
 To call Reusable workflow, use `uses: ./.github/workflows/xxxx.yaml`.
 
 When you want pass `boolean` type of input from workflow_dispatch to workflow_call, use `fromJson(inputs.YOUR_BOOLEAN_PARAMETER)`.
 See [Type converter with fromJson](#type-converter-with-fromJson) for the detail.
 
 ```yaml
-# .github/workflows/reusable_workflow_caller.yaml
+# .github/workflows/reusable_workflow_caller_internal.yaml
 
 name: reusable workflow caller
 on:
@@ -946,7 +937,7 @@ jobs:
 
 ```
 
-### Sample. Call public repository's reusable workflow
+### Call public repository's reusable workflow
 
 Yo call public repository's reusable workflow, use `uses: GITHUB_OWNER/REPOSITORY/.github/workflows/xxxx.yaml@<ref>`.
 
@@ -964,15 +955,7 @@ on:
     branches:
       - main
   workflow_dispatch:
-    inputs:
-      username:
-        required: true
-        description: ""
-        type: string
-      is-valid:
-        required: true
-        description: "is-valid: true or false"
-        type: boolean
+
 jobs:
   call-workflow-passing-data:
     uses: guitarrapc/githubactions-lab/.github/workflows/_reusable_workflow_called.yaml@main
@@ -988,7 +971,7 @@ jobs:
 
 ```
 
-### Sample. Matrix is allowed for callee only
+### Call reusable workflow with matrix
 
 Reusable Workflow caller cannot use matrix, but callee can use matrix. (see limitation.)
 
@@ -1017,68 +1000,6 @@ jobs:
     secrets: inherit
 
 ```
-
-```yaml
-# .github/workflows/_reusable_workflow_matrix_called.yaml
-
-name: _reusable workflow matrix called
-on:
-  workflow_call:
-    inputs:
-      username:
-        required: true
-        description: username to show
-        type: string
-      is-valid:
-        required: true
-        description: username to show
-        type: boolean
-    outputs:
-      firstword:
-        description: "The first output string"
-        value: ${{ jobs.reusable_workflow_job.outputs.output1 }}
-      secondword:
-        description: "The second output string"
-        value: ${{ jobs.reusable_workflow_job.outputs.output2 }}
-env:
-  FOO: foo
-jobs:
-  # callee can use matrix.
-  reusable_workflow_job:
-    strategy:
-      matrix:
-        org: [apples, bananas, carrots]
-    runs-on: ubuntu-latest
-    outputs:
-      output1: ${{ steps.step1.outputs.firstword }}
-      output2: ${{ steps.step2.outputs.secondword }}
-    steps:
-      - uses: actions/checkout@v3
-      - name: matrix value (${{ matrix.org}})
-        run: echo "${{ matrix.org }}"
-      - name: called username
-        run: echo "called username. ${{ inputs.username }}"
-      - name: called is-valid
-        run: echo "called is-valid. ${{ inputs.is-valid }}"
-      - name: called secret
-        run: echo "called secret. ${{ secrets.APPLES }}"
-      - name: called secret (dereference)
-        run: echo "called secret. ${{ secrets[matrix.org] }}"
-      - name: called env (global)
-        run: echo "called global env. ${{ env.FOO }}"
-      - name: set variable (GITHUB_ENV)
-        run: echo "IS_VALID=${{ inputs.is-valid }}" >> "$GITHUB_ENV"
-      - name: called env (GITHUB_ENV)
-        run: echo "called env. ${{ env.IS_VALID }}"
-      - name: output step1
-        id: step1
-        run: echo "firstword=hello" >> "$GITHUB_OUTPUT"
-      - name: output step2
-        id: step2
-        run: echo "secondword=world" >> "$GITHUB_OUTPUT"
-
-```
-
 
 ## Run when previous job is success
 
