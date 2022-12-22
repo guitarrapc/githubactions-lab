@@ -901,7 +901,7 @@ See [Type converter with fromJson](#type-converter-with-fromJson) for the detail
 ```yaml
 # .github/workflows/reusable_workflow_caller_internal.yaml
 
-name: reusable workflow caller
+name: reusable workflow caller (internal)
 on:
   push:
     branches:
@@ -910,15 +910,7 @@ on:
     branches:
       - main
   workflow_dispatch:
-    inputs:
-      username:
-        required: true
-        description: "username: user name to show"
-        type: string
-      is-valid:
-        required: true
-        description: "is-valid: true or false"
-        type: boolean
+
 # (Limitation) Callee can not refer caller environment variable.
 env:
   CALLER_VALUE: caller
@@ -926,9 +918,10 @@ jobs:
   call-workflow-passing-data:
     uses: ./.github/workflows/_reusable_workflow_called.yaml
     with:
-      username: ${{ inputs.username != '' && inputs.username || 'mona' }}
-      is-valid: ${{ github.event_name == 'workflow_dispatch' && fromJSON(format('{0}', inputs.is-valid)) || false }}
+      username: "foo"
+      is-valid: true
     secrets: inherit
+
   job2:
     runs-on: ubuntu-latest
     needs: call-workflow-passing-data
@@ -946,7 +939,7 @@ Yo call public repository's reusable workflow, use `uses: GITHUB_OWNER/REPOSITOR
 ```yaml
 # .github/workflows/reusable_workflow_public_caller.yaml
 
-name: reusable workflow public caller
+name: reusable workflow caller (public)
 on:
   push:
     branches:
@@ -960,9 +953,10 @@ jobs:
   call-workflow-passing-data:
     uses: guitarrapc/githubactions-lab/.github/workflows/_reusable_workflow_called.yaml@main
     with:
-      username: ${{ inputs.username != '' && inputs.username || 'mona' }}
-      is-valid: ${{ github.event_name == 'workflow_dispatch' && fromJSON(format('{0}', inputs.is-valid)) || false }}
+      username: foo
+      is-valid: true
     secrets: inherit
+
   job2:
     runs-on: ubuntu-latest
     needs: call-workflow-passing-data
