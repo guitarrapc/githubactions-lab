@@ -986,6 +986,29 @@ Reusalbe workflow can call other reusable workflow, it means nested call is supp
 
 ```yaml
 # .github/workflows/_reusable_workflow_nest.yaml
+
+name: _reusable workflow nest
+on:
+  workflow_call:
+    inputs:
+      username:
+        required: true
+        description: username to show
+        type: string
+      is-valid:
+        required: true
+        description: username to show
+        type: boolean
+
+# nested call is supported
+jobs:
+  call-workflow-passing-data:
+    uses: ./.github/workflows/_reusable_workflow_called.yaml
+    with:
+      username: ${{ inputs.username }}
+      is-valid: ${{ inputs.is-valid }}
+    secrets: inherit
+
 ```
 
 ## Run when previous job is success
