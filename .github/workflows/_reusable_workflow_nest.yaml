@@ -1,0 +1,28 @@
+name: _reusable workflow nest
+on:
+  workflow_call:
+    inputs:
+      username:
+        required: true
+        description: username to show
+        type: string
+      is-valid:
+        required: true
+        description: username to show
+        type: boolean
+    outputs:
+      firstword:
+        description: "The first output string"
+        value: ${{ jobs.reusable_workflow_job.outputs.output1 }}
+      secondword:
+        description: "The second output string"
+        value: ${{ jobs.reusable_workflow_job.outputs.output2 }}
+
+# nested call is supported
+jobs:
+  call-workflow-passing-data:
+    uses: ./.github/workflows/_reusable_workflow_internal.yaml
+    with:
+      username: ${{ inputs.username }}
+      is-valid: ${{ inputs.is-valid }}
+    secrets: inherit
