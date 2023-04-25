@@ -7,7 +7,7 @@ permissions:
   pull-requests: read # only read required
 
 jobs:
-  closed:
+  detect:
     runs-on: ubuntu-latest
     timeout-minutes: 3
     steps:
