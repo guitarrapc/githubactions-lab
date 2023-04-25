@@ -12,8 +12,8 @@ jobs:
         with:
           list-files: csv
           filters: |
-            src:
-              - .github/**/*
+            changed:
+              - '**''
       - run: echo "${{ steps.file_changes.outputs.changed_files }}"
       - run: echo "${{ contains(steps.file_changes.outputs.changed_files, '.github/workflows')}}"
       - run: echo "${{ contains(steps.file_changes.outputs.changed_files, '.github/dummy')}}"
