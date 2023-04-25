@@ -1,0 +1,16 @@
+name: prevent file change 3
+on:
+  pull_request:
+    branches: ["main"]
+    paths:
+      - .github/**/*.yml
+      - .github/**/*.yaml
+
+jobs:
+  detect:
+    #if: ${{ ! startsWith(github.event.pull_request.head.label, format('{0}:', github.repository_owner)) }} # allow repository owner to change
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - name: "Prevent file change"
+        run: exit 1
