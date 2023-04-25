@@ -14,7 +14,7 @@ jobs:
         id: changes
         with:
           filters: |
-            .github:
+            src:
               - .github/**/*.yml
               - .github/**/*.yaml
       - name: Run step if any file(s) in the .github folder change
