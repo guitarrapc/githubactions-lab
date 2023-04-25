@@ -7,7 +7,7 @@ permissions:
   pull-requests: read # only read required
 
 jobs:
-  closed:
+  detect:
     runs-on: ubuntu-latest
     timeout-minutes: 3
     steps:
@@ -15,5 +15,5 @@ jobs:
         uses: xalvarez/prevent-file-change-action@v1
         with:
           githubToken: ${{ secrets.GITHUB_TOKEN }}
-          pattern: ^\.github\/.*.y[a]?ml$
-          trustedAuthors: ${{ github.repository_owner }} # , separated
+          pattern: ^\.github\/.*.y[a]?ml$ # -> .github/**/*.yaml
+          trustedAuthors: ${{ github.repository_owner }} # , separated. allow repository owner to change
