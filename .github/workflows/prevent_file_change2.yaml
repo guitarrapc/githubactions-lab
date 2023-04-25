@@ -1,0 +1,25 @@
+name: prevent file change 2
+on:
+  pull_request:
+    branches: ["main"]
+
+jobs:
+  detect:
+    # if: ${{ ! startsWith(github.event.pull_request.head.label, 'guitarrapc:') }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 2 # To retrieve the preceding commit.
+      - name: Get changed files in the .github folder
+        id: changed-files-github
+        uses: tj-actions/changed-files@v35
+        with:
+          files: .github/**/*.{yml,yamll}
+      - name: Run step if any file(s) in the .github folder change
+        if: steps.changed-files-github.outputs.any_changed == 'true'
+        run: |
+          echo "One or more files in the docs folder has changed."
+          echo "List all the files that have changed: ${{ steps.changed-files-github.outputs.all_changed_files }}"
+          exit 1
