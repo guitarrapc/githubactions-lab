@@ -16,7 +16,7 @@ jobs:
         id: changed-files-github
         uses: tj-actions/changed-files@v35
         with:
-          files: .github/**/*.{yml,yamll}
+          files: .github/**/*.{yml,yaml}
       - name: Run step if any file(s) in the .github folder change
         if: steps.changed-files-github.outputs.any_changed == 'true'
         run: |
