@@ -1,0 +1,19 @@
+name: prevent file change
+on:
+  pull_request:
+    branches: ["main"]
+
+permissions:
+  pull-requests: read # only read required
+
+jobs:
+  closed:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - name: Prevent file change for github YAML files.
+        uses: xalvarez/prevent-file-change-action@v1
+        with:
+          githubToken: ${{ secrets.GITHUB_TOKEN }}
+          pattern: ^\.github\/.*.y[a]?ml$
+          trustedAuthors: foobarguitarrapc
