@@ -5,7 +5,7 @@ on:
 
 jobs:
   detect:
-    # if: ${{ ! startsWith(github.event.pull_request.head.label, format('{0}:', github.repository_owner)) }} # allow repository owner to change
+    if: ${{ ! startsWith(github.event.pull_request.head.label, format('{0}:', github.repository_owner)) }} # allow repository owner to change
     runs-on: ubuntu-latest
     timeout-minutes: 3
     steps:
@@ -14,7 +14,7 @@ jobs:
         id: changes
         with:
           filters: |
-            src:
+            .github:
               - .github/**/*.yml
               - .github/**/*.yaml
       - name: Run step if any file(s) in the .github folder change
