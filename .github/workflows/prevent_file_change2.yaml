@@ -5,7 +5,7 @@ on:
 
 jobs:
   detect:
-    # if: ${{ ! startsWith(github.event.pull_request.head.label, 'guitarrapc:') }}
+    if: ${{ ! startsWith(github.event.pull_request.head.label, 'guitarrapc:') }}
     runs-on: ubuntu-latest
     timeout-minutes: 3
     steps:
