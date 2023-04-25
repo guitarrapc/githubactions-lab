@@ -16,4 +16,4 @@ jobs:
         with:
           githubToken: ${{ secrets.GITHUB_TOKEN }}
           pattern: ^\.github\/.*.y[a]?ml$
-          trustedAuthors: foobarguitarrapc
+          trustedAuthors: ${{ github.repository_owner }} # , separated
