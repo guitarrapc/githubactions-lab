@@ -1,4 +1,4 @@
-name: prevent file change 3
+name: prevent file change 4
 on:
   pull_request:
     branches: ["main"]
@@ -12,17 +12,17 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 3
     steps:
-      - uses: actions/checkout@v3
-        with:
-          fetch-depth: 2 # To retrieve the preceding commit.
       - name: Get changed files in the .github folder
-        id: changed-files-github
-        uses: tj-actions/changed-files@v35
+        uses: dorny/paths-filter@v2
+        id: changes
         with:
-          files: .github/**/*.{yml,yaml}
+          filters: |
+            src:
+              - .github/**/*.yml
+              - .github/**/*.yaml
       - name: Run step if any file(s) in the .github folder change
-        if: ${{ steps.changed-files-github.outputs.any_changed == 'true' }}
+        if: ${{ steps.changes.outputs.src == 'true' }}
         run: |
           echo "One or more files has changed."
-          echo "List all the files that have changed: ${{ steps.changed-files-github.outputs.all_changed_files }}"
+          echo "List all the files that have changed: ${{ steps.changes.outputs.changes }}"
           exit 1
