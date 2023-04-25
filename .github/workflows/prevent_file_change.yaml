@@ -15,5 +15,5 @@ jobs:
         uses: xalvarez/prevent-file-change-action@v1
         with:
           githubToken: ${{ secrets.GITHUB_TOKEN }}
-          pattern: ^\.github\/.*.y[a]?ml$
-          trustedAuthors: ${{ github.repository_owner }} # , separated
+          pattern: ^\.github\/.*.y[a]?ml$ # -> .github/**/*.yaml
+          trustedAuthors: ${{ github.repository_owner }} # , separated. allow repository owner to change
