@@ -1,4 +1,4 @@
-name: prevent file change 3
+name: prevent file change 1
 on:
   pull_request:
     branches: ["main"]
