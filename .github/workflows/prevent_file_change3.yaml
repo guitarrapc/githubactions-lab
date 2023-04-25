@@ -2,6 +2,9 @@ name: prevent file change 3
 on:
   pull_request:
     branches: ["main"]
+    paths:
+      - .github/**/*.yml
+      - .github/**/*.yaml
 
 jobs:
   detect:
