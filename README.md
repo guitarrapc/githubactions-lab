@@ -2277,6 +2277,22 @@ action folder naming also follow this rule.
 
 ```yaml
 # .github/workflows/tag_push_only_context.yaml
+
+name: tag push context
+on:
+  push:
+    tags:
+      - "**" # only tag
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "GIT_TAG=${GITHUB_REF##*/}" >> "$GITHUB_OUTPUT"
+        id: CI_TAG
+      - run: echo ${{ steps.CI_TAG.outputs.GIT_TAG }}
+      - run: echo "GIT_TAG=${GITHUB_REF##*/}" >> "$GITHUB_ENV"
+      - run: echo ${{ env.GIT_TAG }}
+
 ```
 
 
