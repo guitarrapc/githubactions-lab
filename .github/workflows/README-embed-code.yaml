@@ -16,20 +16,19 @@ jobs:
         run: |
           npm install -g embedme
           embedme README.md
-
-          git config user.name github-actions[bot]
-          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
-          if git diff --shortstat | grep '[0-9]'; then
-            git add .
-            git commit -m "[auto commit] Embed code"
-            git push
-          fi
+      - name: Commit & Push changes
+        uses: actions-js/push@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          author_email: 41898282+github-actions[bot]@users.noreply.github.com
+          message: "[auto commit] Embed code"
       - name: Generate TOC into README
         uses: technote-space/toc-generator@v4
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           COMMIT_NAME: github-actions[bot]
           COMMIT_EMAIL: 41898282+github-actions[bot]@users.noreply.github.com
+          COMMIT_MESSAGE: "[auto commit] update TOC"
           TOC_TITLE: "# Table of Contents"
           MAX_HEADER_LEVEL: "2"
           FOLDING: false
