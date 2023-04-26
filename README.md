@@ -2069,9 +2069,7 @@ jobs:
 
 ## Lint GitHub Actions workflow itself
 
-You can lint GitHub Actions yaml via actionlint.
-
-If you don't need automated PR review, run actionlint is enough.
+You can lint GitHub Actions yaml via actionlint. If you don't need automated PR review, run actionlint is enough.
 
 ```yaml
 # .github/workflows/actionlint.yaml
