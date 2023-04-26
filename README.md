@@ -2127,6 +2127,28 @@ jobs:
 
 ```
 
+## Prevent Fork user to change workflow
+
+One of GitHub's vulnerable point is Workflow. Editting Workflow shoulbe be requirement when using `secrets` and  authenticate some service on workflow.
+
+Easiest and simple way is use `pull_request` target and path filter, then detect PR is fork or not. There might be many ways to prevent file change. `xalvarez/prevent-file-change-action` can guard change in the step. Using `tj-actions/changed-files`, `dorny/paths-filter`, or others will be flexible way to detect change and do what you want.
+
+```yaml
+# .github/workflows/prevent_file_change1.yaml
+```
+
+```yaml
+# .github/workflows/prevent_file_change2.yaml
+```
+
+```yaml
+# .github/workflows/prevent_file_change3.yaml
+```
+
+```yaml
+# .github/workflows/prevent_file_change4.yaml
+```
+
 # Cheat Sheet
 
 GitHub Actions cheet sheet.
