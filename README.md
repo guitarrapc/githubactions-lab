@@ -2270,35 +2270,13 @@ action folder naming also follow this rule.
 
 ## Get Tag, Branch
 
-```yaml
-- run: echo "${GITHUB_REF##*/}"
-```
-
-This will remove `refs/heads` or `refs/tags` from `refs/heads/xxxxx` and `refs/tags/v1.0.0`.
+`echo "${GITHUB_REF##*/}"` will remove `refs/heads` from `refs/heads/xxxxx`, and `refs/tags` `refs/tags/v1.0.0`.
 
 * `refs/heads/xxxxx` -> `xxxxx`
 * `refs/tags/v1.0.0` -> `v1.0.0`
 
-Save it to `step context` and refer from other step or save it to env is much eacher.
-
 ```yaml
 # .github/workflows/tag_push_only_context.yaml
-
-name: tag push context
-on:
-  push:
-    tags:
-      - "**" # only tag
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - run: echo "GIT_TAG=${GITHUB_REF##*/}" >> "$GITHUB_OUTPUT"
-        id: CI_TAG
-      - run: echo ${{ steps.CI_TAG.outputs.GIT_TAG }}
-      - run: echo "GIT_TAG=${GITHUB_REF##*/}" >> "$GITHUB_ENV"
-      - run: echo ${{ env.GIT_TAG }}
-
 ```
 
 
