@@ -2245,7 +2245,7 @@ There are several way to achieve it. Most simple and easy to understand is `fork
 
 1. Check `fork` boolean.
 
-```yaml
+```
 # Fork
 if: ${{ github.event.pull_request.head.repo.fork }}
 
@@ -2255,7 +2255,7 @@ if: ${{ ! github.event.pull_request.head.repo.fork }}
 
 2. Check `full_name` is match to repo.
 
-```yaml
+```
 # Fork
 if: ${{ github.event.pull_request.head.repo.full_name != 'org/repo' }}
 
@@ -2265,7 +2265,7 @@ if: ${{ github.event.pull_request.head.repo.full_name == 'org/repo' }}
 
 3. Check label is match to owner. Org member commit label is match to owner.
 
-```yaml
+```
 # Fork
 if: ${{ ! startsWith(github.event.pull_request.head.label, format('{0}:', github.repository_owner)) }}
 
