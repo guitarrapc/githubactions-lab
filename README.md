@@ -2268,7 +2268,12 @@ action folder naming also follow this rule.
 * ✔️: `.github/actions/setup-foo`
 * ❌: `.github/actions/setup_foo`
 
-## Get Tag, Branch
+## Get Branch
+
+* pull_request: `${{ github.event.pull_request.head.ref }}`
+* push and others: `${{ github.ref }}`
+
+## Get Tag
 
 `echo "${GITHUB_REF##*/}"` will remove `refs/heads` from `refs/heads/xxxxx`, and `refs/tags` `refs/tags/v1.0.0`.
 
