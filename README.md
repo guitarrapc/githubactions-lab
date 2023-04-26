@@ -2069,9 +2069,7 @@ jobs:
 
 ## Lint GitHub Actions workflow itself
 
-You can lint GitHub Actions yaml via actionlint.
-
-If you don't need automated PR review, run actionlint is enough.
+You can lint GitHub Actions yaml via actionlint. If you don't need automated PR review, run actionlint is enough.
 
 ```yaml
 # .github/workflows/actionlint.yaml
@@ -2124,6 +2122,130 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           reporter: github-pr-review
           fail_on_error: true # workflow will fail when actionlint detect warning.
+
+```
+
+## Prevent Fork user to change workflow
+
+One of GitHub's vulnerable point is Workflow. Editting Workflow shoulbe be requirement when using `secrets` and  authenticate some service on workflow.
+
+Easiest and simple way is use `pull_request` target and path filter, then detect PR is fork or not. There might be many ways to prevent file change. `xalvarez/prevent-file-change-action` can guard change in the step. Using `tj-actions/changed-files`, `dorny/paths-filter`, or others will be flexible way to detect change and do what you want.
+
+```yaml
+# .github/workflows/prevent_file_change1.yaml
+
+name: prevent file change 1
+on:
+  pull_request:
+    branches: ["main"]
+    paths:
+      - .github/**/*.yml
+      - .github/**/*.yaml
+
+jobs:
+  detect:
+    if: ${{ github.event.pull_request.head.repo.fork }} # is Fork
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - name: "Prevent file change"
+        run: exit 1
+
+```
+
+```yaml
+# .github/workflows/prevent_file_change2.yaml
+
+name: prevent file change 2
+on:
+  pull_request:
+    branches: ["main"]
+    paths:
+      - .github/**/*.yml
+      - .github/**/*.yaml
+
+permissions:
+  pull-requests: read # only read required
+
+jobs:
+  detect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - name: Prevent file change for github YAML files.
+        uses: xalvarez/prevent-file-change-action@v1
+        with:
+          githubToken: ${{ secrets.GITHUB_TOKEN }}
+          pattern: ^\.github\/.*.y[a]?ml$ # -> .github/**/*.yaml
+          trustedAuthors: ${{ github.repository_owner }} # , separated. allow repository owner to change
+
+```
+
+```yaml
+# .github/workflows/prevent_file_change3.yaml
+
+name: prevent file change 3
+on:
+  pull_request:
+    branches: ["main"]
+    paths:
+      - .github/**/*.yml
+      - .github/**/*.yaml
+
+jobs:
+  detect:
+    if: ${{ github.event.pull_request.head.repo.fork }} # is Fork
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 2 # To retrieve the preceding commit.
+      - name: Get changed files in the .github folder
+        id: changed-files-github
+        uses: tj-actions/changed-files@v35
+        with:
+          files: .github/**/*.{yml,yaml}
+      - name: Run step if any file(s) in the .github folder change
+        if: ${{ steps.changed-files-github.outputs.any_changed == 'true' }}
+        run: |
+          echo "One or more files has changed."
+          echo "List all the files that have changed: ${{ steps.changed-files-github.outputs.all_changed_files }}"
+          exit 1
+
+```
+
+```yaml
+# .github/workflows/prevent_file_change4.yaml
+
+name: prevent file change 4
+on:
+  pull_request:
+    branches: ["main"]
+    paths:
+      - .github/**/*.yml
+      - .github/**/*.yaml
+
+jobs:
+  detect:
+    if: ${{ github.event.pull_request.head.repo.fork }} # is Fork
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - name: Get changed files in the .github folder
+        uses: dorny/paths-filter@v2
+        id: changes
+        with:
+          filters: |
+            src:
+              - .github/**/*.yml
+              - .github/**/*.yaml
+      - name: Run step if any file(s) in the .github folder change
+        if: ${{ steps.changes.outputs.src == 'true' }}
+        run: |
+          echo "One or more files has changed."
+          echo "List all the files that have changed: ${{ steps.changes.outputs.changes }}"
+          exit 1
 
 ```
 
@@ -2217,4 +2339,38 @@ Other way is use `inputs.foobar` context. `inputs` have type information and pas
 ```yaml
 ${{ inputs.foobar == 'true' }} # false. type is not string
 ${{ inputs.foobar == true }} # true. type is boolean
+```
+
+## Is PullRequest (PR) is from fork
+
+There are several way to achieve it. Most simple and easy to understand is `fork` boolean.
+
+1. Check `fork` boolean.
+
+```
+# Fork
+if: ${{ github.event.pull_request.head.repo.fork }}
+
+# Not Fork
+if: ${{ ! github.event.pull_request.head.repo.fork }}
+```
+
+2. Check `full_name` is match to repo.
+
+```
+# Fork
+if: ${{ github.event.pull_request.head.repo.full_name != 'org/repo' }}
+
+# Not Fork
+if: ${{ github.event.pull_request.head.repo.full_name == 'org/repo' }}
+```
+
+3. Check label is match to owner. Org member commit label is match to owner.
+
+```
+# Fork
+if: ${{ ! startsWith(github.event.pull_request.head.label, format('{0}:', github.repository_owner)) }}
+
+# Not Fork
+if: ${{ startsWith(github.event.pull_request.head.label, format('{0}:', github.repository_owner)) }}
 ```
