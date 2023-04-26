@@ -57,6 +57,7 @@ jobs:
           branch: ${{ env.DRY_RUN_BRANCH_PREFIX }}-${{ env.TAG }}
           tags: false
         if: env.DRY_RUN == 'true'
+
   release:
     needs: [update-packagejson]
     runs-on: ubuntu-latest
@@ -77,6 +78,7 @@ jobs:
           draft: "true"
           prerelease: "false"
           commitish: ${{ needs.update-packagejson.outputs.sha }}
+
   cleanup:
     if: inputs.dry_run == 'true'
     needs: [release]

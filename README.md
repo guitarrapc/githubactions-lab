@@ -68,12 +68,13 @@ GitHub Actions research and test laboratory.
   - [Prevent Fork user to change workflow](#prevent-fork-user-to-change-workflow)
 - [Cheat Sheet](#cheat-sheet)
   - [Actions naming](#actions-naming)
-  - [Get Tag, Branch](#get-tag-branch)
+  - [Get Branch](#get-branch)
+  - [Get Tag](#get-tag)
   - [Get Workflow Name](#get-workflow-name)
   - [Get Workflow Url](#get-workflow-url)
   - [GitHub Actions commit icon](#github-actions-commit-icon)
   - [Type converter with fromJson](#type-converter-with-fromjson)
-  - [Is PullRequest (PR) is from fork](#is-pullrequest-pr-is-from-fork)
+  - [Detect PullRequest (PR) is Fork or not](#detect-pullrequest-pr-is-fork-or-not)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -87,7 +88,7 @@ GitHub Actions research and test laboratory.
   - No workaround.
 - [ ] Test Insight view
   - Like [CircleCI](https://circleci.com/docs/insights-tests) and [Azure Pipeline](https://docs.microsoft.com/en-us/azure/devops/pipelines/test/review-continuous-test-results-after-build?view=azure-devops) provides.
-  - No workarround.
+  - Workaround is use [$GITHUB_STEP_SUMMARY](https://github.blog/2022-05-09-supercharging-github-actions-with-job-summaries/)
 - [ ] SSH Debug
   - Like [CircleCI provides](https://circleci.com/docs/ssh-access-jobs).
   - Workaround: Use [Debugging with ssh Actions](https://github.com/marketplace/actions/debugging-with-ssh)
@@ -2268,18 +2269,17 @@ action folder naming also follow this rule.
 * ✔️: `.github/actions/setup-foo`
 * ❌: `.github/actions/setup_foo`
 
-## Get Tag, Branch
+## Get Branch
 
-```yaml
-- run: echo "${GITHUB_REF##*/}"
-```
+* pull_request: `${{ github.event.pull_request.head.ref }}`
+* push and others: `${{ github.ref }}`
 
-This will remove `refs/heads` or `refs/tags` from `refs/heads/xxxxx` and `refs/tags/v1.0.0`.
+## Get Tag
+
+`echo "${GITHUB_REF##*/}"` will remove `refs/heads` from `refs/heads/xxxxx`, and `refs/tags` `refs/tags/v1.0.0`.
 
 * `refs/heads/xxxxx` -> `xxxxx`
 * `refs/tags/v1.0.0` -> `v1.0.0`
-
-Save it to `step context` and refer from other step or save it to env is much eacher.
 
 ```yaml
 # .github/workflows/tag_push_only_context.yaml
@@ -2343,7 +2343,7 @@ ${{ inputs.foobar == 'true' }} # false. type is not string
 ${{ inputs.foobar == true }} # true. type is boolean
 ```
 
-## Is PullRequest (PR) is from fork
+## Detect PullRequest (PR) is Fork or not
 
 There are several way to achieve it. Most simple and easy to understand is `fork` boolean.
 
