@@ -12,11 +12,12 @@ jobs:
       - uses: actions/checkout@v3
         with:
           ref: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.sha || '' }} # checkout PR HEAD commit instead of merge commit
+      - name: Update to latest
+        run: git pull --rebase
       - name: Embedding Code into README
         run: |
           npm install -g embedme
           embedme README.md
-          git pull --rebase
       - name: Commit & Push changes
         uses: actions-js/push@master
         with:
