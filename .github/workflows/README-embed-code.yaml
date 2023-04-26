@@ -10,6 +10,8 @@ jobs:
     timeout-minutes: 3
     steps:
       - uses: actions/checkout@v3
+        with:
+          ref: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.sha || '' }} # checkout PR HEAD commit instead of merge commit
       - name: Embedding Code into README
         run: |
           npm install -g embedme
@@ -18,7 +20,7 @@ jobs:
         uses: actions-js/push@master
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          branch: ${{ github.ref }}
+          branch: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.ref || github.ref }}
           author_email: 41898282+github-actions[bot]@users.noreply.github.com
           message: "[auto commit] Embed code"
       - name: Generate TOC into README
