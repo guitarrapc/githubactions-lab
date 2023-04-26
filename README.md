@@ -1,8 +1,7 @@
-[![README embed-code](https://github.com/guitarrapc/githubactions-lab/actions/workflows/README-embed-code.yaml/badge.svg)](https://github.com/guitarrapc/githubactions-lab/actions/workflows/README-embed-code.yaml)
-[![README toc](https://github.com/guitarrapc/githubactions-lab/actions/workflows/README-toc.yaml/badge.svg)](https://github.com/guitarrapc/githubactions-lab/actions/workflows/README-toc.yaml)
+[![README auto-doc](https://github.com/guitarrapc/githubactions-lab/actions/workflows/readme_auto_doc.yaml/badge.svg)](https://github.com/guitarrapc/githubactions-lab/actions/workflows/readme_auto_doc.yaml)
 [![actionlint (reviewdog)](https://github.com/guitarrapc/githubactions-lab/actions/workflows/actionlint_reviewdog.yaml/badge.svg)](https://github.com/guitarrapc/githubactions-lab/actions/workflows/actionlint_reviewdog.yaml)
-[![dotnet build](https://github.com/guitarrapc/githubactions-lab/actions/workflows/dotnet-build.yaml/badge.svg)](https://github.com/guitarrapc/githubactions-lab/actions/workflows/dotnet-build.yaml)
-[![dotnet lint](https://github.com/guitarrapc/githubactions-lab/actions/workflows/dotnet-lint.yaml/badge.svg)](https://github.com/guitarrapc/githubactions-lab/actions/workflows/dotnet-lint.yaml)
+[![dotnet build](https://github.com/guitarrapc/githubactions-lab/actions/workflows/dotnet_build.yaml/badge.svg)](https://github.com/guitarrapc/githubactions-lab/actions/workflows/dotnet_build.yaml)
+[![dotnet lint](https://github.com/guitarrapc/githubactions-lab/actions/workflows/dotnet_lint.yaml/badge.svg)](https://github.com/guitarrapc/githubactions-lab/actions/workflows/dotnet_lint.yaml)
 
 # githubactions-lab
 
