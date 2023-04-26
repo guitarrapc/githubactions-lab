@@ -87,7 +87,7 @@ GitHub Actions research and test laboratory.
   - No workaround.
 - [ ] Test Insight view
   - Like [CircleCI](https://circleci.com/docs/insights-tests) and [Azure Pipeline](https://docs.microsoft.com/en-us/azure/devops/pipelines/test/review-continuous-test-results-after-build?view=azure-devops) provides.
-  - No workarround.
+  - Workaround is use [$GITHUB_STEP_SUMMARY](https://github.blog/2022-05-09-supercharging-github-actions-with-job-summaries/)
 - [ ] SSH Debug
   - Like [CircleCI provides](https://circleci.com/docs/ssh-access-jobs).
   - Workaround: Use [Debugging with ssh Actions](https://github.com/marketplace/actions/debugging-with-ssh)
@@ -2321,7 +2321,7 @@ ${{ inputs.foobar == 'true' }} # false. type is not string
 ${{ inputs.foobar == true }} # true. type is boolean
 ```
 
-## Is PullRequest (PR) is from fork
+## Detect PullRequest (PR) is Fork or not
 
 There are several way to achieve it. Most simple and easy to understand is `fork` boolean.
 
