@@ -2133,18 +2133,120 @@ Easiest and simple way is use `pull_request` target and path filter, then detect
 
 ```yaml
 # .github/workflows/prevent_file_change1.yaml
+
+name: prevent file change 1
+on:
+  pull_request:
+    branches: ["main"]
+    paths:
+      - .github/**/*.yml
+      - .github/**/*.yaml
+
+jobs:
+  detect:
+    if: ${{ github.event.pull_request.head.repo.fork }} # is Fork
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - name: "Prevent file change"
+        run: exit 1
+
 ```
 
 ```yaml
 # .github/workflows/prevent_file_change2.yaml
+
+name: prevent file change 2
+on:
+  pull_request:
+    branches: ["main"]
+    paths:
+      - .github/**/*.yml
+      - .github/**/*.yaml
+
+permissions:
+  pull-requests: read # only read required
+
+jobs:
+  detect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - name: Prevent file change for github YAML files.
+        uses: xalvarez/prevent-file-change-action@v1
+        with:
+          githubToken: ${{ secrets.GITHUB_TOKEN }}
+          pattern: ^\.github\/.*.y[a]?ml$ # -> .github/**/*.yaml
+          trustedAuthors: ${{ github.repository_owner }} # , separated. allow repository owner to change
+
 ```
 
 ```yaml
 # .github/workflows/prevent_file_change3.yaml
+
+name: prevent file change 3
+on:
+  pull_request:
+    branches: ["main"]
+    paths:
+      - .github/**/*.yml
+      - .github/**/*.yaml
+
+jobs:
+  detect:
+    if: ${{ github.event.pull_request.head.repo.fork }} # is Fork
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 2 # To retrieve the preceding commit.
+      - name: Get changed files in the .github folder
+        id: changed-files-github
+        uses: tj-actions/changed-files@v35
+        with:
+          files: .github/**/*.{yml,yaml}
+      - name: Run step if any file(s) in the .github folder change
+        if: ${{ steps.changed-files-github.outputs.any_changed == 'true' }}
+        run: |
+          echo "One or more files has changed."
+          echo "List all the files that have changed: ${{ steps.changed-files-github.outputs.all_changed_files }}"
+          exit 1
+
 ```
 
 ```yaml
 # .github/workflows/prevent_file_change4.yaml
+
+name: prevent file change 4
+on:
+  pull_request:
+    branches: ["main"]
+    paths:
+      - .github/**/*.yml
+      - .github/**/*.yaml
+
+jobs:
+  detect:
+    if: ${{ github.event.pull_request.head.repo.fork }} # is Fork
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - name: Get changed files in the .github folder
+        uses: dorny/paths-filter@v2
+        id: changes
+        with:
+          filters: |
+            src:
+              - .github/**/*.yml
+              - .github/**/*.yaml
+      - name: Run step if any file(s) in the .github folder change
+        if: ${{ steps.changes.outputs.src == 'true' }}
+        run: |
+          echo "One or more files has changed."
+          echo "List all the files that have changed: ${{ steps.changes.outputs.changes }}"
+          exit 1
+
 ```
 
 # Cheat Sheet
