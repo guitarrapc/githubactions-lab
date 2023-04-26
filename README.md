@@ -73,7 +73,7 @@ GitHub Actions research and test laboratory.
   - [Get Workflow Url](#get-workflow-url)
   - [GitHub Actions commit icon](#github-actions-commit-icon)
   - [Type converter with fromJson](#type-converter-with-fromjson)
-  - [Is PullRequest (PR) is from fork](#is-pullrequest-pr-is-from-fork)
+  - [Detect PullRequest (PR) is Fork or not](#detect-pullrequest-pr-is-fork-or-not)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
