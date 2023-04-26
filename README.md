@@ -66,14 +66,6 @@ GitHub Actions research and test laboratory.
   - [Get PR info from Merge Commit](#get-pr-info-from-merge-commit)
   - [Lint GitHub Actions workflow itself](#lint-github-actions-workflow-itself)
   - [Prevent Fork user to change workflow](#prevent-fork-user-to-change-workflow)
-- [Cheat Sheet](#cheat-sheet)
-  - [Actions naming](#actions-naming)
-  - [Get Tag, Branch](#get-tag-branch)
-  - [Get Workflow Name](#get-workflow-name)
-  - [Get Workflow Url](#get-workflow-url)
-  - [GitHub Actions commit icon](#github-actions-commit-icon)
-  - [Type converter with fromJson](#type-converter-with-fromjson)
-  - [Is PullRequest (PR) is from fork](#is-pullrequest-pr-is-from-fork)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
