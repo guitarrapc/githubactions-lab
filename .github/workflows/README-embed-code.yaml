@@ -22,6 +22,7 @@ jobs:
           if git diff --shortstat | grep '[0-9]'; then
             git add .
             git commit -m "[auto commit] Embed code"
+            git push
           fi
       - name: Generate TOC into README
         uses: technote-space/toc-generator@v4
