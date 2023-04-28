@@ -232,7 +232,7 @@ GitHub Actions not support exact functionality as CircleCI provide, but you can 
 
 ## Rerun failed workflow
 
-* ✔️: GitHub Actions support Re-run jobs. You can re-run `whole workflow` or `failed job` again.
+* ✔️: GitHub Actions support Re-run jobs. You can re-run for `whole workflow`, `single job` and `failed job`.
 * ✔️: CircleCI support Re-run jobs. You can re-run `whole workflow` or `failed job` again.
 * ⚠️: Azure Pipeline not support Re-run stage but you can not re-run `failed job` only.
 * ✔️: Jenkins Declarative Pipeline support Re-run jobs. You can re-run `Job` or `Stage` again. But you may find it is unstable.
