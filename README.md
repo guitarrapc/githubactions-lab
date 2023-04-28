@@ -248,12 +248,9 @@ Write script is better than directly write on the step, so that we can reuse sam
 
 ## Set Environment variables
 
-See GitHub Actions environment variable document.
+Define `Environment varialbes` in each job step, then reuse it later step is common pattern.
 
-> https://help.github.com/en/actions/reference/workflow-commands-for-github-actions#setting-an-environment-variable
-
-
-* ✔️: GitHub Actions use redirect to special Environment variable `$GITHUB_ENV` via `echo "{environment_variable_name}={value}" >> $GITHUB_ENV` (Linux) or `"{environment_variable_name}={value}" >> $env:GITHUB_ENV` (Windows) syntax.
+* ✔️: GitHub Actions [use redirect to special Environment variable](https://help.github.com/en/actions/reference/workflow-commands-for-github-actions#setting-an-environment-variable) `$GITHUB_ENV` via `echo "{environment_variable_name}={value}" >> $GITHUB_ENV` (Linux) or `"{environment_variable_name}={value}" >> $env:GITHUB_ENV` (Windows) syntax.
 * `::set-env` syntax has been deprecated for [security reason](https://github.blog/changelog/2020-10-01-github-actions-deprecating-set-env-and-add-path-commands/).
 * ✔️: CircleCI use redirect to special Environment variable `$BASH_ENV` via `echo "export GIT_SHA1=$CIRCLE_SHA1" >> $BASH_ENV` syntax.
 * ✔️: Azure Pipeline use task.setvariable via `echo "##vso[task.setvariable variable=NAME]VALUE"` syntax.
@@ -261,16 +258,14 @@ See GitHub Actions environment variable document.
 
 ## Set Output
 
-See GitHub Actions Output document.
+Define `output` in each job step, then reuse it later step is less side-effect than environment variable. Also it can pass value between job via `job output` , and it can't achieve with environment variable pattern.
 
-> https://docs.github.com/en/actions/using-workflows/workflow-commands-for-github-actions#setting-an-output-parameter
-
-* ✔️: GitHub Actions use redirect to special Environment variable `$GITHUB_OUTPUT` via `echo "{name}={value}" >> "$GITHUB_OUTPUT"` (Linux) or `"{name}=value" >> $env:GITHUB_OUTPUT` (Windows) syntax.
+* ✔️: GitHub Actions [use redirect to special Environment variable](https://docs.github.com/en/actions/using-workflows/workflow-commands-for-github-actions#setting-an-output-parameter) `$GITHUB_OUTPUT` via `echo "{name}={value}" >> "$GITHUB_OUTPUT"` (Linux) or `"{name}=value" >> $env:GITHUB_OUTPUT` (Windows) syntax.
 * ⚠️: CircleCI has no equivalent but use Environment Variables.
 * ✔️: Azure Pipeline use task.setvariable via `echo "##vso[task.setvariable variable=NAME;isoutput=true]VALUE"` syntax.
 * ⚠️: Jenkins has no equivalent but use Environment Variables.
 
-> **Warning** GitHub Actions `::set-output` syntax has been deprecated for [security reason](https://github.blog/changelog/2022-10-11-github-actions-deprecating-save-state-and-set-output-commands/).
+> **Info** GitHub Actions `::set-output` syntax has been deprecated for [security reason](https://github.blog/changelog/2022-10-11-github-actions-deprecating-save-state-and-set-output-commands/).
 
 ## Set PATH Environment variables
 
@@ -282,21 +277,20 @@ See GitHub Actions Output document.
 
 ## Set Secrets for Job
 
-GitHub ACtions offer Secrets for each repository and Organization.
-Secrets will be masked on the log.
+GitHub ACtions offer Secrets for each repository and Organization. Secrets will be masked on the log, and also [you can mask desired output in log](https://docs.github.com/en/actions/using-workflows/workflow-commands-for-github-actions#masking-a-value-in-a-log).
 
 * ✔️: GitHub Actions use Secrets and Environment Secrets.
 * ✔️: CircleCI offer Environment Variables and Context.
 * ✔️: Azure Pipeline has Environment Variables and Paramter.
 * ✔️: Jenkins has Credential Provider.
 
-GitHub Actions supports "Indivisual Repository Secrets" and "Organization Secrets".
+GitHub Actions supports "Organization Secrets", "Repository Secrets" and "Environment Secrets".
 
-* You can set secrets for Organization and filter to selected repository with `Settings > Secrets`.
-* You can set secrets for each repository with `Settings > Secrets`.
-* You can set Environment secrets for each repository with `Environment > Secrets`.
+* You can set secrets for Organization and filter to selected repository with `Organization > Settings > Secrets`.
+* You can set secrets for each repository with `Repository > Settings > Secrets`.
+* You can set Environment secrets for each repository with `Repository > Environment > Secrets`.
 
-If same secrets key is exists winner is `Environment Secrets` > `Repository Secrets` > `Organization Secrets`.
+If same secrets key is exists, winner is `Environment Secrets` > `Repository Secrets` > `Organization Secrets`.
 
 If you want spread your secrets with personal account, you need set each repository secrets or use [google/secrets\-sync\-action](https://github.com/google/secrets-sync-action).
 
