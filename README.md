@@ -98,6 +98,12 @@ GitHub Actions research and test laboratory.
   - Currently timeout-minutes can set to jobs and steps, but workflow cannot change from default 360min.
   - No workaround. Please set `timeout-minutes` to every job.
 
+# Functionality limitation
+
+Relax the limit for `GitHub Team Plan` is myu strong expectation.
+
+- [ ] `Environment > Deployment protection rules` is not allowed in GitHub team Plan. You cannot use `Required reviewers` (Approvabl) and `Wait timer`.
+
 # Difference from other CI
 
 ## CI Migration
