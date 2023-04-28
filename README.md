@@ -241,10 +241,10 @@ GitHub Actions not support exact functionality as CircleCI provide, but you can 
 
 Write script is better than directly write on the step, so that we can reuse same execution from other workflows or jobs.
 
-* ✔️: GitHub Actions can reuse yaml and via Reusable workflow or Composite Actions.
-* ✔️: CircleCI can reuse job and also anchor is useul.
+* ✔️: GitHub Actions can reuse yaml via `Reusable workflow`, `Composite Actions` and `Organization workflow`.
+* ✔️: CircleCI can reuse job, and also `YAML anchor` is useul.
 * ✔️: Azure Pipeline has template to refer stage, job and step from other yaml.
-* ⚠️: Jenkins has pipeline and could refer other pipeline. However a lot case would be define job step in script and reuse script. Reusing pipeline in Jenkins easily make it complex than other CI.
+* ⚠️: Jenkins pipeline could refer other pipeline. However a lot case you would prefer define job step in script and reuse it. Reusing pipeline  easily make it complex with Jenkins.
 
 ## Set Environment variables
 
