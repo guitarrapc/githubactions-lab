@@ -1,0 +1,24 @@
+name: multiline inputs
+on:
+  workflow_dispatch:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v3
+      - name: multiline strings
+        uses: ./.github/actions/multiline-inputs
+        with:
+          multiline-string: |
+            first line
+            second line
+            third line
+      - name: singleline strings
+        uses: ./.github/actions/multiline-inputs
+        with:
+          multiline-string: single line

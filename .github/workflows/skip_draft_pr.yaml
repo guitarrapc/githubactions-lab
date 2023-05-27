@@ -1,0 +1,12 @@
+name: skip draft pr
+on:
+  pull_request:
+  push:
+    branches: ["main"]
+jobs:
+  build:
+    if: "!(github.event.pull_request.draft)"
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v3

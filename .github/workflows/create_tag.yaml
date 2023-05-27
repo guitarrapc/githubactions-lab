@@ -1,0 +1,23 @@
+name: create tag
+on:
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: "tag: git tag you want create."
+        required: true
+env:
+  TAG: ${{ inputs.tag }}
+jobs:
+  tag:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v3
+      - name: tag
+        run: git tag ${{ env.TAG }}
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: ${{ github.ref }}
+          tags: true

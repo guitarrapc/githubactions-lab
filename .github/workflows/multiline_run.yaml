@@ -1,0 +1,13 @@
+name: multiline run
+on:
+  workflow_dispatch:
+  push:
+    branches: ["main"]
+jobs:
+  push:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - run: |
+          echo "foo"
+          echo "bar"

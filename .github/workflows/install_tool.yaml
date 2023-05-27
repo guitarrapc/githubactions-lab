@@ -1,0 +1,18 @@
+name: install tool
+on:
+  workflow_dispatch:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - run: |
+          mkdir -p "$HOME/local" \
+          && curl -Ls https://github.com/garethr/kubeval/releases/download/0.14.0/kubeval-linux-amd64.tar.gz -o "$HOME/kubeval-linux-amd64.tar.gz" \
+          && tar -C "$HOME/local/" -xzvf "$HOME/kubeval-linux-amd64.tar.gz" \
+          && echo "$HOME/local" >> "$GITHUB_PATH"
+      - run: kubeval --version

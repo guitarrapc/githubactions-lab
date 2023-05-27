@@ -1,0 +1,67 @@
+name: k8s manifest Push
+on:
+  push:
+    branches: ["main"]
+    paths:
+      - src/k8s/**/*
+      - .github/workflows/k8s*
+env:
+  REPO_MANIFEST: guitarrapc/kubernetes-manifest-lab
+  MANIFEST_DIR: dev
+#force push pattern
+jobs:
+  creat_pr:
+    env:
+      NAMESPACE_PREFIX: githubactions-sample-
+    outputs:
+      GIT_BRANCH: ${{ env.GIT_BRANCH }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/checkout@v3
+        with:
+          repository: ${{ env.REPO_MANIFEST }}
+          path: ${{ env.REPO_MANIFEST }}
+          token: ${{ secrets.SYNCED_GITHUB_TOKEN_REPO }}
+      - run: |
+          echo "GIT_BRANCH=${GITHUB_REF##*/}" >> "$GITHUB_ENV"
+          echo "SHORT_SHA=$(git rev-parse --short HEAD)" >> "$GITHUB_ENV"
+        env:
+          REF: ${{ github.ref }}
+      - run: echo "BRANCH=${BRANCH}" >> "$GITHUB_ENV"
+        env:
+          BRANCH: ${{ github.event.repository.name }}/${{ env.GIT_BRANCH }}-pr
+      - name: generate manifest
+        run: |
+          mkdir -p "./${REPO_MANIFEST}/${MANIFEST_DIR}"
+          kubectl kustomize ./src/k8s/common/overlays/development \
+            | sed -e "s|<namespace>|${NAMESPACE_PREFIX}${MANIFEST_DIR}|g" \
+            | sed -e "s|<git-sha>|${{ github.sha }}|g" \
+            | sed -e "s|<git-branch>|${GIT_BRANCH}|g" \
+            | sed -e "s|<git-link>|${{ github.event.commits[0].url }}|g" \
+            | sed -e "s|<build-id>|${{ github.run_id }}|g" > "${REPO_MANIFEST}/${MANIFEST_DIR}/all.yaml"
+      - name: Check for modified files
+        id: git-check
+        run: echo "modified=$(if git diff-index --quiet HEAD --; then echo "false"; else echo "true"; fi)" >> "$GITHUB_OUTPUT"
+      - name: Create PullRequest
+        if: steps.git-check.outputs.modified == 'true'
+        id: cpr
+        uses: peter-evans/create-pull-request@v3
+        with:
+          base: "main"
+          branch: ${{ env.BRANCH }}
+          author: github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>
+          committer: github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>
+          delete-branch: true
+          commit-message: "update manifests ${{ github.repository }}@${{ env.SHORT_SHA }} (${{ github.run_id }})"
+          title: "feat: (${{ env.MANIFEST_DIR }}) update manifest on ${{ env.GIT_BRANCH }}"
+          body: |
+            Automated changed by https://github.com/${{ github.repository }}/tree/${{ env.GIT_BRANCH }}
+          labels: |
+            automated pr
+            kubernetes
+      - name: Check outputs
+        if: steps.git-check.outputs.modified == 'true'
+        run: |
+          echo "Pull Request Number - ${{ steps.cpr.outputs.pull-request-number }}"
+          echo "Pull Request URL - ${{ steps.cpr.outputs.pull-request-url }}"

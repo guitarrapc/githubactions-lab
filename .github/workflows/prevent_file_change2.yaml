@@ -1,0 +1,22 @@
+name: prevent file change 2
+on:
+  pull_request:
+    branches: ["main"]
+    paths:
+      - .github/**/*.yml
+      - .github/**/*.yaml
+
+permissions:
+  pull-requests: read # only read required
+
+jobs:
+  detect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - name: Prevent file change for github YAML files.
+        uses: xalvarez/prevent-file-change-action@v1
+        with:
+          githubToken: ${{ secrets.GITHUB_TOKEN }}
+          pattern: ^\.github\/.*.y[a]?ml$ # -> .github/**/*.yaml
+          trustedAuthors: ${{ github.repository_owner }} # , separated. allow repository owner to change

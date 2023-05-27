@@ -1,0 +1,42 @@
+# .github/actions/restore-aws-oidc-auth/action.yaml
+name: restore aws oidc auth from cache
+description: |
+  restore aws oidc auth from cache
+inputs:
+  cache-key:
+    description: "cache key to restore"
+    required: true
+runs:
+  using: "composite"
+  steps:
+    - name: Restore aws auth
+      uses: actions/cache@v2
+      id: cache-aws
+      with:
+        path: |
+          ~/.aws/${{ inputs.cache-key }}
+        key: ${{ inputs.cache-key }}
+    - name: Is Cache Hit
+      shell: bash
+      run: echo "cache hit? ${{ steps.cache-aws.outputs.cache-hit }}"
+    - name: Restore ENV
+      run: |
+        set -e
+        AWS_ACCESS_KEY_ID=$(head -n 1 ~/.aws/${{ inputs.cache-key }}/aws_access_key_id)
+        echo "::add-mask::${AWS_ACCESS_KEY_ID}"
+        echo "AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}" >> "$GITHUB_ENV"
+
+        AWS_ACCESS_KEY_ID=$(head -n 1 ~/.aws/${{ inputs.cache-key }}/aws_secret_access_key)
+        echo "::add-mask::${AWS_ACCESS_KEY_ID}"
+        echo "AWS_SECRET_ACCESS_KEY=${AWS_ACCESS_KEY_ID}" >> "$GITHUB_ENV"
+
+        AWS_SESSION_TOKEN=$(head -n 1 ~/.aws/${{ inputs.cache-key }}/aws_session_token)
+        echo "::add-mask::${AWS_SESSION_TOKEN}"
+        echo "AWS_SESSION_TOKEN=${AWS_SESSION_TOKEN}" >> "$GITHUB_ENV"
+
+        echo "AWS_REGION=$(head -n 1 ~/.aws/${{ inputs.cache-key }}/region)" >> "$GITHUB_ENV"
+        echo "AWS_DEFAULT_REGION=$(head -n 1 ~/.aws/${{ inputs.cache-key }}/default_region)" >> "$GITHUB_ENV"
+      shell: bash
+    - name: test auth is valid
+      run: aws sts get-caller-identity
+      shell: bash

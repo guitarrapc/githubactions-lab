@@ -1,0 +1,21 @@
+name: "error detect job"
+on:
+  workflow_dispatch:
+jobs:
+  error1:
+    runs-on: ubuntu-latest
+    steps:
+      - run: exit 1
+  error2:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - run: exit 1
+  # wait error1 and error2 and will run when one of them are error
+  handler:
+    if: failure()
+    needs: [error1, error2]
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - run: echo error happen

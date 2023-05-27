@@ -1,0 +1,23 @@
+name: dispatch changes
+on:
+  workflow_dispatch:
+jobs:
+  dispatch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    strategy:
+      matrix:
+        repo: [testtest] #Array of target repos
+        include:
+          - repo: testtest
+            ref: main
+            workflow: test.yml
+    steps:
+      - name: dispatch ${{ matrix.repo }}
+        run: |
+          curl -f -X POST \
+               -H "authorization: Bearer ${{ secrets.SYNCED_GITHUB_TOKEN_REPO }}" \
+               -H "Accept: application/vnd.github.everest-preview+json" \
+               -H "Content-Type: application/json" \
+               -d '{"ref": "${{ matrix.ref }}"}' \
+               https://api.github.com/repos/guitarrapc/${{ matrix.repo }}/actions/workflows/${{ matrix.workflow }}/dispatches

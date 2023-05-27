@@ -1,0 +1,19 @@
+name: "continue on error"
+on:
+  workflow_dispatch:
+  push:
+    branches: ["main"]
+jobs:
+  continue-on-error:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v3
+      - run: exit 1
+        continue-on-error: true
+      - run: exit 1
+        continue-on-error: true
+      - run: echo success
+      # never call failure(), as continue-on-error treat step error as success.
+      - if: failure()
+        run: echo error happen

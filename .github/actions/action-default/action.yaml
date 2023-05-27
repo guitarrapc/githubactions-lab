@@ -1,0 +1,13 @@
+name: action nest action
+description: |
+  local action contains actions
+inputs:
+  foo:
+    description: "foo inputs"
+    required: false
+runs:
+  using: "composite"
+  steps:
+    - name: Output foo input
+      shell: bash
+      run: echo "foo is ${{ inputs.foo != '' && inputs.foo || env.FOO }}" # redirect to env when input is empty.

@@ -1,0 +1,43 @@
+name: "git sparse-checkout (only)"
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+jobs:
+  sparse-checkout:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: sparse checkout
+        run: |
+          git clone --filter=blob:none --no-checkout --depth 1 --sparse "https://${{ env.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git" .
+
+          echo "git sparse-checkout set only directory"
+          git sparse-checkout set --no-cone "${{ env.SPARSECHECKOUT_DIR }}"
+
+          echo "git sparse-checkout without cone" # cone not allow pattern filter, therefore don't use cone.
+          git sparse-checkout init
+
+          echo "git sparse-checkout list"
+          git sparse-checkout list
+
+          echo "git checkout"
+          git checkout "${GITHUB_SHA}"
+
+          # if you have submodules in Private Repo, use PAT instead of secrets.GITHUB_TOKEN
+          if [[ -f ./.gitmodules ]]; then
+            echo "replace submodule url"
+            sed -i -e "s|https://github.com|https://${{ env.GITHUB_TOKEN }}@github.com|g" ./.gitmodules
+
+            echo "submodule update"
+            git submodule update --init --recursive
+          fi
+
+          echo "git reset"
+          git reset --hard "${GITHUB_SHA}"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SPARSECHECKOUT_DIR: src/*
+      - name: list root folders
+        run: ls -la

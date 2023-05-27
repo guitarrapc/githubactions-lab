@@ -1,0 +1,23 @@
+name: fake ternary
+on:
+  workflow_dispatch:
+    inputs:
+      value:
+        description: "value to input"
+        default: "inputed!!!"
+        required: false
+  push:
+    branches: ["main"]
+env:
+  # ${{ condition && if_true || if_false}}
+  VALUE: ${{ github.event_name == 'workflow_dispatch' && inputs.value || 'default' }}
+  GROUP: ${{ github.ref == 'refs/heads/main' && format('ci-main-{0}', github.sha) || format('ci-{0}', github.ref) }}
+  GROUP2: ${{ github.ref == 'refs/heads/main2' && format('ci2-main-{0}', github.sha) || format('ci2-{0}', github.ref) }}
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - run: echo "GROUP=[${{ env.GROUP }}]"
+      - run: echo "GROUP2=[${{ env.GROUP2 }}]"
+      - run: echo "VALUE=[${{ env.VALUE }}]"

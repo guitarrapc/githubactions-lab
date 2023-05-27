@@ -1,0 +1,21 @@
+name: sequential jobs
+on:
+  workflow_dispatch:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - run: echo "$COMMIT_MESSAGES"
+        env:
+          COMMIT_MESSAGES: ${{ toJson(github.event.commits.*.message) }}
+  publish:
+    needs: build
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - run: echo run when only build success

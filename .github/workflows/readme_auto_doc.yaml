@@ -1,0 +1,35 @@
+name: README auto-doc
+on:
+  workflow_dispatch:
+  pull_request:
+    branches: ["main"]
+
+jobs:
+  embed-code:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          ref: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.sha || '' }} # checkout PR HEAD commit instead of merge commit
+      - name: Embedding Code into README
+        run: |
+          npm install -g embedme
+          embedme README.md
+      - name: Commit & Push changes
+        uses: actions-js/push@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.ref || github.ref }}
+          author_email: 41898282+github-actions[bot]@users.noreply.github.com
+          message: "[auto commit] Embed code"
+      - name: Generate TOC into README
+        uses: technote-space/toc-generator@v4
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          COMMIT_NAME: github-actions[bot]
+          COMMIT_EMAIL: 41898282+github-actions[bot]@users.noreply.github.com
+          COMMIT_MESSAGE: "[auto commit] update TOC"
+          TOC_TITLE: "# Table of Contents"
+          MAX_HEADER_LEVEL: "2"
+          FOLDING: false

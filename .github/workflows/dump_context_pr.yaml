@@ -1,0 +1,41 @@
+name: dump context pr
+on:
+  pull_request:
+    branches: ["main"]
+    types:
+      - closed
+      - labeled
+      - opened
+      - reopened
+      - synchronize
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - name: Dump environment
+        run: export
+      - name: Dump GitHub context
+        run: echo "$CONTEXT"
+        env:
+          CONTEXT: ${{ toJson(github) }}
+      - name: Dump job context
+        run: echo "$CONTEXT"
+        env:
+          CONTEXT: ${{ toJson(job) }}
+      - name: Dump steps context
+        run: echo "$CONTEXT"
+        env:
+          CONTEXT: ${{ toJson(steps) }}
+      - name: Dump runner context
+        run: echo "$CONTEXT"
+        env:
+          CONTEXT: ${{ toJson(runner) }}
+      - name: Dump strategy context
+        run: echo "$CONTEXT"
+        env:
+          CONTEXT: ${{ toJson(strategy) }}
+      - name: Dump matrix context
+        run: echo "$CONTEXT"
+        env:
+          CONTEXT: ${{ toJson(matrix) }}

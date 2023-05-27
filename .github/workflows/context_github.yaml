@@ -1,0 +1,31 @@
+name: "context github"
+on:
+  push:
+    branches: ["main"]
+jobs:
+  context:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - name: job
+        run: echo ${{ github.job }}
+      - name: ref
+        run: echo ${{ github.ref }}
+      - name: sha
+        run: echo ${{ github.sha }}
+      - name: repository
+        run: echo ${{ github.repository }}
+      - name: repository_owner
+        run: echo ${{ github.repository_owner }}
+      - name: actor
+        run: echo ${{ github.actor }}
+      - name: run_id
+        run: echo ${{ github.run_id }}
+      - name: workflow
+        run: echo ${{ github.workflow }}
+      - name: event_name
+        run: echo ${{ github.event_name }}
+      - name: event.ref
+        run: echo ${{ github.event.ref }}
+      - name: action
+        run: echo ${{ github.action }}

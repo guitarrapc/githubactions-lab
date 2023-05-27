@@ -1,0 +1,29 @@
+name: merge-branch
+on:
+  workflow_dispatch:
+    inputs:
+      upstream:
+        description: "merge from"
+        required: true
+        default: "main"
+      branch:
+        description: "merge to"
+        required: true
+        default: "staging"
+jobs:
+  merge:
+    env:
+      upstream: ${{ inputs.upstream }}
+      branch: ${{ inputs.branch }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v3
+      # merge main to staging
+      - uses: devmasx/merge-branch@v1.4.0
+        with:
+          type: now
+          from_branch: ${{ env.upstream }}
+          target_branch: ${{ env.branch }}
+          github_token: ${{ secrets.SYNCED_GITHUB_TOKEN_REPO }} # enable github actions workflow chain
+          #github_token: ${{ github.token }} # disable github actions workflow chain

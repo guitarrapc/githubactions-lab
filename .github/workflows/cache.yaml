@@ -1,20 +1,16 @@
 name: cache
 on:
   push:
-    branches:
-      - "master"
+    branches: ["main"]
   workflow_dispatch:
-
 # tl;dr;
 # push will diff with cache, and dispatch workflow.
 # workflow_dispatch without any repo change will use cache, and not dispatch workflow.
-
 env:
   DISPATCH_REPO: guitarrapc/testtest
   DIPATCH_WORKFLOW_NAME: test
   DISPATCH_BRANCH: main
   CACHE_VERSION: v1
-
 jobs:
   detect_library_change:
     runs-on: ubuntu-latest
@@ -26,7 +22,6 @@ jobs:
         run: echo "$CONTEXT"
         env:
           CONTEXT: ${{ toJson(github) }}
-
       # get trigger repo references
       - name: public repo reference
         uses: actions/github-script@v3
@@ -37,12 +32,11 @@ jobs:
             const result = await github.git.getRef({
               owner: context.repo.owner,
               repo: "githubactions-lab",
-              ref: "heads/master"
+              ref: "heads/main"
             })
             console.log(result)
             return result.data.object.sha
       - run: echo "${{ steps.set-public-result.outputs.result }}"
-
       - name: private repo reference
         uses: actions/github-script@v3
         id: set-private-result
@@ -57,7 +51,6 @@ jobs:
             console.log(result)
             return result.data.object.sha
       - run: echo "${{ steps.set-private-result.outputs.result }}"
-
       # write all repo's sha to single file
       - name: gen sha hash
         run: |
@@ -66,7 +59,6 @@ jobs:
           ${{ steps.set-public-result.outputs.result }}
           ${{ steps.set-private-result.outputs.result }}
           EOF
-
       # cache validation if sha's file has been updated
       - name: Cache sha
         id: cache-sha
@@ -74,7 +66,6 @@ jobs:
         with:
           path: ~/cache
           key: ${{ runner.os }}-${{ env.CACHE_VERSION }}-sha-${{ hashFiles('**/sha.txt') }}
-
   dispatch:
     needs: [detect_library_change]
     if: (github.event_name == 'push' || github.event_name == 'workflow_dispatch') && needs.detect_library_change.outputs.cache-hit != 'true'
@@ -82,8 +73,7 @@ jobs:
     timeout-minutes: 10
     steps:
       # dispatch build if cache is not match with previous
-      - name: dispatch ${{ matrix.repo }}
-        uses: benc-uk/workflow-dispatch@v1.1
+      - uses: benc-uk/workflow-dispatch@v1.1
         with:
           repo: ${{ env.DISPATCH_REPO }}
           ref: ${{ env.DISPATCH_BRANCH }}

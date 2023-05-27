@@ -1,0 +1,42 @@
+name: create pr
+on:
+  workflow_dispatch:
+env:
+  DOTNET_SKIP_FIRST_TIME_EXPERIENCE: 1
+  DOTNET_NOLOGO: true
+jobs:
+  change:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v3
+      # make change
+      - name: make changes
+        run: date +%s > src/txt/report.txt
+      # detect changes
+      # o: `git status --porcelain=v1` could get both modified and newly added.
+      # x: `git diff-index --quiet HEAD --` could get modified but not for newly added.
+      - name: Check for modified files
+        id: git-check
+        run: echo "modified=$(if [[ "$(git status --porcelain=v1 2>/dev/null | wc -l)" == "0" ]]; then echo "false"; else echo "true"; fi)" >> "$GITHUB_OUTPUT"
+      # commit & pr if change happen (force push when branch/pr already exists)
+      - name: Create PullRequest
+        id: cpr
+        if: steps.git-check.outputs.modified == 'true'
+        uses: peter-evans/create-pull-request@v3
+        with:
+          base: "main"
+          branch: "auto/create_pr"
+          author: github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>
+          committer: github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>
+          delete-branch: true
+          title: "[report.txt] Automated changes"
+          body: |
+            generated changes :rocket:
+          labels: |
+            automated pr
+      - name: Check outputs
+        if: steps.git-check.outputs.modified == 'true'
+        run: |
+          echo "Pull Request Number - ${{ steps.cpr.outputs.pull-request-number }}"
+          echo "Pull Request URL - ${{ steps.cpr.outputs.pull-request-url }}"

@@ -1,0 +1,14 @@
+name: pr close
+on:
+  pull_request:
+    types:
+      - closed
+jobs:
+  closed:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - name: dump github context
+        run: echo "$CONTEXT"
+        env:
+          CONTEXT: ${{ toJson(github) }}

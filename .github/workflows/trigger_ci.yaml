@@ -1,0 +1,13 @@
+name: trigger ci commit
+on:
+  push:
+    branches: ["main"]
+jobs:
+  build:
+    if: "contains(toJSON(github.event.commits.*.message), '[build]')"
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - run: echo "$COMMIT_MESSAGES"
+        env:
+          COMMIT_MESSAGES: ${{ toJson(github.event.commits.*.message) }}

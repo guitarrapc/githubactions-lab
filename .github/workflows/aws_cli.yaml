@@ -1,0 +1,25 @@
+name: aws-cli
+on:
+  workflow_dispatch:
+  push:
+    branches: ["main"]
+# allow use id-token
+permissions:
+  id-token: write
+  contents: read
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - name: current aws-cli
+        run: aws --version
+      - name: where is aws-cli
+        run: command -v aws
+      - name: update aws-cli to latest
+        run: |
+          curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+          unzip awscliv2.zip
+          sudo ./aws/install --update
+      - name: current aws-cli
+        run: aws --version

@@ -1,0 +1,91 @@
+name: update pacakge release
+on:
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: "tag: git tag you want create."
+        required: true
+      dry_run:
+        description: "dry_run: true will never create commit/pr."
+        required: true
+        default: "false"
+env:
+  DRY_RUN_BRANCH_PREFIX: "test_release"
+  TAG: ${{ inputs.tag }}
+  DRY_RUN: ${{ inputs.dry_run }}
+jobs:
+  update-packagejson:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    env:
+      TARGET_FILE: ./src/json/package.json
+    outputs:
+      sha: ${{ steps.commit.outputs.sha }}
+    steps:
+      - uses: actions/checkout@v3
+      - name: before
+        run: cat ${{ env.TARGET_FILE}}
+      - name: update package.json to version ${{ env.TAG }}
+        run: sed -i -e "s/\(\"version\":\) \"\(.*\)\",/\1 \"${{ env.TAG }}\",/" ${{ env.TARGET_FILE }}
+      - name: after
+        run: cat ${{ env.TARGET_FILE}}
+      - name: Commit files
+        id: commit
+        run: |
+          git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git commit -m "feat: Update package.json to ${{ env.TAG }}" -a
+          echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+      - name: check sha
+        run: echo "SHA ${SHA}"
+        env:
+          SHA: ${{ steps.commit.outputs.sha }}
+      - name: tag
+        run: git tag ${{ env.TAG }}
+        if: env.DRY_RUN == 'false'
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.SYNCED_GITHUB_TOKEN_REPO }} # must use PAT to trigger other workflow
+          branch: ${{ github.ref }}
+          tags: true
+        if: env.DRY_RUN == 'false'
+      - name: Push changes (dry_run)
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.SYNCED_GITHUB_TOKEN_REPO }} # must use PAT to trigger other workflow
+          branch: ${{ env.DRY_RUN_BRANCH_PREFIX }}-${{ env.TAG }}
+          tags: false
+        if: env.DRY_RUN == 'true'
+
+  release:
+    needs: [update-packagejson]
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - run: echo ${{ needs.update-packagejson.outputs.sha }}
+      - uses: actions/checkout@v3
+        with:
+          ref: ${{ needs.update-packagejson.outputs.sha }}
+      - run: git rev-parse HEAD
+      - uses: actions/create-release@v1
+        if: env.DRY_RUN == 'false'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ env.TAG }}
+          release_name: Ver.${{ env.TAG }}
+          draft: "true"
+          prerelease: "false"
+          commitish: ${{ needs.update-packagejson.outputs.sha }}
+
+  cleanup:
+    if: inputs.dry_run == 'true'
+    needs: [release]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Delete branch
+        uses: dawidd6/action-delete-branch@v3
+        with:
+          github_token: ${{ github.token }}
+          branches: ${{ env.DRY_RUN_BRANCH_PREFIX }}-${{ env.TAG }}

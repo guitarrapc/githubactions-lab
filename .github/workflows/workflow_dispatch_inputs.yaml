@@ -1,0 +1,30 @@
+# .name: cannot use ${{ inputs.value }}
+name: workflow dispatch inputs
+on:
+  workflow_dispatch:
+    inputs:
+      value:
+        type: choice
+        description: "name: Who to greet"
+        required: true
+        options:
+          - monalisa
+          - cschleiden
+jobs:
+  greet:
+    # .jobs.<job_name>.name: can use ${{ inputs.value }}
+    name: greet (${{ inputs.value }})
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - run: echo "${{ inputs.value }}"
+  matrix:
+    name: matrix - ${{ inputs.value }} (${{ matrix.target }})
+    strategy:
+      fail-fast: false
+      matrix:
+        target: ["foo", "bar"]
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - run: echo "${{ inputs.value }}"

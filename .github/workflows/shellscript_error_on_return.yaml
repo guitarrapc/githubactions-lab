@@ -1,0 +1,17 @@
+name: shellscript error on return
+on:
+  workflow_dispatch:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+jobs:
+  push_manifest:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v3
+      - run: bash -c ./src/shellscript/exit_by_return.sh || echo failed
+      - run: bash -c ./src/shellscript/exit_by_exit.sh || echo failed
+    #- run: ./src/shellscript/exit_by_return.sh || echo failed # success fully override with `echo failed`
+    #- run: ./src/shellscript/exit_by_exit.sh || echo failed # error with exit 1. could not override with `echo failed`

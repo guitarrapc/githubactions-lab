@@ -1,0 +1,21 @@
+name: git tag
+
+on:
+  workflow_dispatch:
+    inputs:
+      tag:
+        required: true
+        description: input your tag value
+
+jobs:
+  actionlint:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v3
+      - name: sleep
+        run: sleep 60s
+      - name: git tag
+        run: |
+          git tag ${{ inputs.tag }}
+          git push origin ${{ inputs.tag }}

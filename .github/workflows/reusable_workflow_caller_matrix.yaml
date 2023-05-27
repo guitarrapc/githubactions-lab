@@ -1,0 +1,20 @@
+name: reusable workflow caller (matrix)
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  call-matrix-workflow:
+    strategy:
+      matrix:
+        username: [foo, bar]
+    uses: ./.github/workflows/_reusable_workflow_called.yaml
+    with:
+      username: ${{ matrix.username }}
+      is-valid: true
+    secrets: inherit

@@ -1,9 +1,0 @@
-name: skip draft pr
-on: pull_request
-
-jobs:
-  build:
-    if: "!(github.event.pull_request.draft)"
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2

@@ -1,0 +1,69 @@
+# Description: Detect if PUSH or PR includes End of Line `CRLF` files.
+name: crlf checker
+on:
+  workflow_dispatch:
+  pull_request:
+    branches: ["main"]
+  push:
+    branches: ["main"]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 2 # detect on push
+      # you can specify which file to detect.
+      - id: changed-files
+        uses: tj-actions/changed-files@v11.5
+        with:
+          separator: ","
+          files: |
+            my-file.txt
+            test.txt
+            new.txt
+            test_directory
+            \.foo$
+            \.sh$
+            .(png|jpeg)$
+            .(cs|csproj)$
+            ^(mynewfile|custom)
+      # do not use space in file name.
+      #   OK: foo.bar
+      #   NG: foo 1.bar
+      - name: Detect CRLF
+        run: |
+          err=false
+          for file in $(echo "${{ steps.changed-files.outputs.all_modified_files }}" | sed -e "s/,/ /g"); do
+            if file "${file}" | grep CRLF > /dev/null; then
+              err=true
+              echo "'${file}' detected as CRLF."
+              if [[ "${crlf_files}" != "" ]]; then crlf_files="${crlf_files}$IFS"; fi
+              crlf_files="${crlf_files} ${file}"
+            fi
+          done
+
+          if [[ "${err}" == "true" ]]; then
+            {
+              echo "CRLF_FILES<<EOF"
+              echo "${crlf_files}"
+              echo "EOF"
+            } >> "$GITHUB_ENV"
+          fi
+      # comment to PR for CRLF files.
+      - if: ${{ github.event_name == 'pull_request' && env.CRLF_FILES != '' }}
+        name: Comment PR
+        uses: thollander/actions-comment-pull-request@v1
+        with:
+          message: |
+            [${{ github.workflow }}](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}) found CRLF files as follows.
+
+            ```
+            ${{ env.CRLF_FILES }}
+            ```
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      # Fail action if CRLF file found.
+      - if: ${{ env.CRLF_FILES != '' }}
+        name: Exit action if detected
+        run: exit 1

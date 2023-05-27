@@ -1,0 +1,19 @@
+name: setup kubectl
+on:
+  workflow_dispatch:
+env:
+  KUBECTL_VERSION: "v1.24.0"
+jobs:
+  setup:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - run: kubectl version --client
+      - uses: azure/setup-kubectl@v3
+        with:
+          version: ${{ env.KUBECTL_VERSION }}
+      - run: kubectl version --client
+      - uses: azure/setup-kubectl@v3
+        with:
+          version: "latest"
+      - run: kubectl version --client

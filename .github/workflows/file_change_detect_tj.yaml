@@ -1,0 +1,37 @@
+name: file change detect tj
+on:
+  workflow_dispatch:
+  pull_request:
+    branches: ["main"]
+  push:
+    branches: ["main"]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 2
+      - id: changed-files
+        uses: tj-actions/changed-files@v11.5 # this action force fetch base branch and compare.
+        with:
+          separator: ","
+      - run: echo "${{ steps.changed-files.outputs.all_modified_files }}"
+      - run: echo "${{ contains(steps.changed-files.outputs.all_modified_files, '.github/workflows')}}"
+      - run: echo "${{ contains(steps.changed-files.outputs.all_modified_files, '.github/dummy')}}"
+      - run: echo "${{ contains(steps.changed-files.outputs.all_modified_files, '.github/dummy') || 'true' }}"
+      - run: echo "${{ contains(steps.changed-files.outputs.all_modified_files, '.github/dummy') && 'true' || 'false' }}"
+      - run: echo "RUN_TEST=${{ contains(steps.changed-files.outputs.all_modified_files, '.github/workflows') || 'true' }}"  | tee -a "$GITHUB_ENV"
+      # test if not exists
+      - id: changed-files2
+        uses: tj-actions/changed-files@v11.5
+        with:
+          separator: ","
+        if: ${{ github.event.pull_request.changed_files > 10 }}
+      - run: echo "${{ steps.changed-files2.outputs.all_modified_files }}"
+      - run: echo "${{ contains(steps.changed-files2.outputs.all_modified_files, '.github/workflows')}}"
+      - run: echo "${{ contains(steps.changed-files2.outputs.all_modified_files, '.github/dummy')}}"
+      - run: echo "${{ contains(steps.changed-files2.outputs.all_modified_files, '.github/dummy') || 'true' }}"
+      - run: echo "${{ contains(steps.changed-files2.outputs.all_modified_files, '.github/dummy') && 'true' || 'false' }}"
+      - run: echo "RUN_TEST2=${{ contains(steps.changed-files2.outputs.all_modified_files, '.github/workflows') || 'true' }}"  | tee -a "$GITHUB_ENV"

@@ -1,0 +1,22 @@
+name: file change detect dorny
+on: [pull_request]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v3
+      - name: Get changed files in the .github folder
+        uses: dorny/paths-filter@v2
+        id: file_changes
+        with:
+          list-files: csv
+          filters: |
+            changed:
+              - '**'
+      - run: echo "${{ steps.file_changes.outputs.changed_files }}"
+      - run: echo "${{ contains(steps.file_changes.outputs.changed_files, '.github/workflows')}}"
+      - run: echo "${{ contains(steps.file_changes.outputs.changed_files, '.github/dummy')}}"
+      - run: echo "${{ contains(steps.file_changes.outputs.changed_files, '.github/dummy') || 'true' }}"
+      - run: echo "${{ contains(steps.file_changes.outputs.changed_files, '.github/dummy') && 'true' || 'false' }}"
+      - run: echo "RUN_TEST=${{ contains(steps.file_changes.outputs.files, '.github/workflows') || 'true' }}"  | tee -a "$GITHUB_ENV"

@@ -1,17 +1,23 @@
-﻿using System;
+using System;
 
-namespace console
+namespace console;
+
+class Program
 {
-    class Program
+    static void Main(string[] args)
     {
-        static void Main(string[] args)
-        {
-            Console.WriteLine($"Hello World! {args}");
-        }
+        Console.WriteLine($"Hello World! {args}");
     }
+}
 
-    public class Hoge
+public class Hoge
+{
+    public string Name { get; init; }
+    private readonly bool foobar = true;
+
+    public Hoge() { }
+    public Hoge(bool foobar)
     {
-        public string Name { get; set; }
+        this.foobar = foobar;
     }
 }
