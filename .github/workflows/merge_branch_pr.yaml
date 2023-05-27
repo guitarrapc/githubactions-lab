@@ -33,4 +33,4 @@ jobs:
           pr_draft: false
           pr_label: "auto-pr"
           pr_allow_empty: true # Creates pull request even if there are no changes
-          github_token: ${{ secrets.SYNCED_GITHUB_TOKEN_REPO }} # enable github actions workflow chain
+          github_token: ${{ secrets.SYNCED_GITHUB_TOKEN_REPO }} # enable github actions workflow chain. require pull_request read/write (fine grained), repo (legacy)
