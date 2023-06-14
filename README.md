@@ -1891,6 +1891,27 @@ Below checkout only "src/*" path, but not checkout `.github` and others.
 
 ```yaml
 # .github/workflows/git_sparsecheckout.yaml
+
+name: "git sparse-checkout"
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+jobs:
+  sparse-checkout:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          sparse-checkout: |
+            src
+      - name: list root folders
+        run: ls -la
+      - name: list src folders
+        run: ls -laR ./src
+
 ```
 
 **Sparse checkout exclude path**
@@ -1899,6 +1920,25 @@ Below checkout except "src/*" path.
 
 ```yaml
 # .github/workflows/git_sparsecheckout_exclude.yaml
+
+name: "git sparse-checkout (exclude)"
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+jobs:
+  sparse-checkout:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          sparse-checkout: |
+            !src
+      - name: list root folders
+        run: ls -la
+
 ```
 
 ## Dispatch other repo workflow
