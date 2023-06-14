@@ -12,6 +12,7 @@ GitHub Actions research and test laboratory.
 # Table of Contents
 
 - [Not yet support](#not-yet-support)
+- [Functionality limitation](#functionality-limitation)
 - [Difference from other CI](#difference-from-other-ci)
   - [CI Migration](#ci-migration)
   - [Job and workflow](#job-and-workflow)
@@ -26,6 +27,7 @@ GitHub Actions research and test laboratory.
   - [Set PATH Environment variables](#set-path-environment-variables)
   - [Set Secrets for Job](#set-secrets-for-job)
   - [Skip CI and commit message](#skip-ci-and-commit-message)
+  - [Git Checkout](#git-checkout)
 - [Basic - Fundamentables](#basic---fundamentables)
   - [Dump context metadata](#dump-context-metadata)
   - [Environment variables in script](#environment-variables-in-script)
