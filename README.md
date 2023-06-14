@@ -1879,13 +1879,37 @@ Advanced tips.
 
 ## More faster checkout with git sparse-checkout
 
-GitHub Actions provides git checkout with [actions/checkout](https://github.com/actions) actions.
-It supported shallow clone, therefore almost cases brings fastest checkout.
+[actions/checkout](https://github.com/actions) supports both [shallow-clone](https://git-scm.com/docs/shallow) and [sparse checkout](https://git-scm.com/docs/git-sparse-checkout) which is quite useful for monorepository. Typically, monorepository contains many folders and files, but you may want to checkout only specific folder or files.
 
-However if Monorepository, like you contains both Server and Unity, number of files effect checkout.
-[git sparse-checkout](https://git-scm.com/docs/git-sparse-checkout) faster your checkout when specific path only, or exlude some path.
+* `shallow-clone` offers faster checkout by limiting depth of clone to latest 1 or N commits.
+* `sparse checkout` offers faster checkout by limiting checkout files and folders.
 
 > **Note**: actions/checkout supports `git sparse-checkout`, since 2023/June.
+
+Let's see what is difference between `shallow-clone` and `sparse-checkout`.
+
+**Shallow clone**
+
+Shallow clones use the `--depth=<N>` parameter in git clone to truncate the commit history. Typically, --depth=1 signifies that we only care about the most recent commits. This drastically reduces the amount of data that needs to be fetched, leading to faster clones and less storage of shallow history.
+
+![](https://github.blog/jp/wp-content/uploads/sites/2/2021/01/Image4.png?w=800&resize=800%2C414)
+
+> ref: https://github.blog/2020-12-21-get-up-to-speed-with-partial-clone-and-shallow-clone/
+
+**Sparse checkout**
+
+Sparse checkout use the `git sparse-checkout set <PATH>` before git clone to truncate the checkout files and folders. This amazingly reduces the amount of data that needs to be fetched, leading to faster checkout and less storage of limited paths.
+
+![](https://i0.wp.com/user-images.githubusercontent.com/121322/72286599-50af8e00-35fa-11ea-9025-d7cbb730192c.png?ssl=1)
+
+> ref: https://github.blog/2020-01-17-bring-your-monorepo-down-to-size-with-sparse-checkout/
+
+Sparce checkout has 2 modes, `git sparse-checkout` and `git sparse-checkout --cone`. You can specify `cone` or not with `sparse-checkout-cone-mode` option. So what the difference between `cone` and not `cone`? Normally `sparse-checkout-cone-mode: true` is faster than `sparse-checkout-cone-mode: false`. But `cone` mode has some limitation, you cannot exclude specific folder. So you need to choose which mode is better for you.
+
+* `sparse checkout: src` & `sparse-checkout-cone-mode: true`, checkout `src` folder and root files.
+* `sparse checkout: src/*` & `sparse-checkout-cone-mode: false`, checkout `src` folder only.
+* `sparse checkout: !src` & `sparse-checkout-cone-mode: true`, you can not use `sparse-checkout-cone-mode: true` with exclude folder.
+* `sparse checkout: !src/*` & `sparse-checkout-cone-mode: false`, you can exlude `src` folder from checkout, but you need specify which folder you want to checkout.
 
 **Sparse checkout**
 
