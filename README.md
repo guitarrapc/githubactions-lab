@@ -214,8 +214,6 @@ Also you can access default environment variables like `GITHUB_RUN_ID`.
 * ✔️: Jenkins [environment vairable](https://wiki.jenkins.io/display/JENKINS/Building+a+software+project) `BUILD_NUMBER`
 
 
-
-
 ## Path filter
 
 GitHub Actions can use `on.<event>.paths-ignore:` and `on.<event>.paths:` by default.
@@ -227,6 +225,7 @@ GitHub Actions can use `on.<event>.paths-ignore:` and `on.<event>.paths:` by def
 * ✔️: Azure Pipeline can set path-filter.
 * ❌: Jenkins can not set path-filter. User should prepare by theirself.
 
+
 ## Redundant build cancellation
 
 GitHub Actions not support exact functionality as CircleCI provide, but you can do via concurrency control. Another option is community actions like [rokroskar/workflow-run-cleanup-action](https://github.com/marketplace/actions/workflow-run-cleanup-action), [fauguste/auto-cancellation-running-action](https://github.com/marketplace/actions/auto-cancellation-running-action) and [yellowmegaman/gh-build-canceller](https://github.com/marketplace/actions/gh-actions-stale-run-canceller).
@@ -236,12 +235,14 @@ GitHub Actions not support exact functionality as CircleCI provide, but you can 
 * ❌: Azure Pipeline not support cancel redundant build.
 * ❌: Jenkins not support cancel redundant build, you need cancel it from parallel job.
 
+
 ## Rerun failed workflow
 
 * ✔️: GitHub Actions support Re-run jobs. You can re-run for `whole workflow`, `single job` and `failed job`.
 * ✔️: CircleCI support Re-run jobs. You can re-run `whole workflow` or `failed job` again.
 * ⚠️: Azure Pipeline not support Re-run stage but you can not re-run `failed job` only.
 * ✔️: Jenkins Declarative Pipeline support Re-run jobs. You can re-run `Job` or `Stage` again. But you may find it is unstable.
+
 
 ## Reusable job and workflow
 
@@ -252,6 +253,7 @@ Write script is better than directly write on the step, so that we can reuse sam
 * ✔️: Azure Pipeline has template to refer stage, job and step from other yaml.
 * ⚠️: Jenkins pipeline could refer other pipeline. However a lot case you would prefer define job step in script and reuse it. Reusing pipeline  easily make it complex with Jenkins.
 
+
 ## Set Environment variables
 
 Define `Environment varialbes` in each job step, then reuse it later step is common pattern.
@@ -261,6 +263,7 @@ Define `Environment varialbes` in each job step, then reuse it later step is com
 * ✔️: CircleCI use redirect to special Environment variable `$BASH_ENV` via `echo "export GIT_SHA1=$CIRCLE_SHA1" >> $BASH_ENV` syntax.
 * ✔️: Azure Pipeline use task.setvariable via `echo "##vso[task.setvariable variable=NAME]VALUE"` syntax.
 * ✔️: Jenkins use `Env.`.
+
 
 ## Set Output
 
@@ -273,6 +276,7 @@ Define `output` in each job step, then reuse it later step is less side-effect t
 
 > **Info** GitHub Actions `::set-output` syntax has been deprecated for [security reason](https://github.blog/changelog/2022-10-11-github-actions-deprecating-save-state-and-set-output-commands/).
 
+
 ## Set PATH Environment variables
 
 * ✔️: GitHub Actions use redirect to special Environment variable `$GITHUB_PATH` via `echo "{path}" >> "$GITHUB_PATH"` or `echo "{path}" | tee -a "$GITHUB_PATH"` syntax.
@@ -280,6 +284,7 @@ Define `output` in each job step, then reuse it later step is less side-effect t
 * ✔️: CircleCI use redirect to special Environment variable `$BASH_ENV` wiht name `PATH` via `echo "export PATH=$GOPATH/bin:$PATH" >> $BASH_ENV` syntax.
 * ✔️: Azure Pipeline use task.setvariable via `echo '##vso[task.setvariable variable=path]$(PATH):/dir/to/whatever'` syntax.
 * ✔️: Jenkins use `Env.`.
+
 
 ## Set Secrets for Job
 
@@ -300,6 +305,7 @@ If same secrets key is exists, winner is `Environment Secrets` > `Repository Sec
 
 If you want spread your secrets with personal account, you need set each repository secrets or use [google/secrets\-sync\-action](https://github.com/google/secrets-sync-action).
 
+
 ## Skip CI and commit message
 
 GitHub Actions support when HEAD commit contains key word like other ci.
@@ -309,6 +315,15 @@ GitHub Actions support when HEAD commit contains key word like other ci.
 * ✔️: Azure Pipeline can skip job via `***NO_CI***`, `[skip ci]` or `[ci skip]`, or [others](https://github.com/Microsoft/azure-pipelines-agent/issues/858#issuecomment-475768046).
 * ❌: Jenkins not support skip ci on default, but there are plugins to support `[skip ci]` or any expression w/pipeline like [SCM Skip \| Jenkins plugin](https://plugins.jenkins.io/scmskip/).
 
+
+## Git Checkout
+
+GitHub Actions support checkout by actions and supports variety of checkout options.
+
+* ✔️: GitHub Actions [actions/checkout](https://github.com/actions/checkout) support `ssh` or `https` protocol, `submodule`, `shallow-clone`, `sparse checkout` and `lfs`. `actions/checkout` is default `shallow-clone` (depth 1).
+* ⚠️: CircleCI [checkout](https://circleci.com/docs/configuration-reference/#checkout) support `ssh` or `https` protocol. It missing `submodule`, `shallow-clone`, `sparse-checkout` and `lfs` support. You need write command or use `orb` instead to use these features.
+* ✔️: Azure Pipeline [checkout](https://learn.microsoft.com/en-us/azure/devops/pipelines/yaml-schema/steps-checkout?view=azure-pipelines) support `ssh` or `https` protocol, `submodule`, `shallow-clone` and `lfs`. It missing `sparse-checkout` support. `checkout` is default `shallow-clone` (depth 1) for new pipeline created after the September 2022.
+* ✔️: Jenkins [GitSCM](https://www.jenkins.io/doc/pipeline/steps/params/gitscm/) support `ssh` or `https` protocol, `submodule`, `shallow-clone`, `sparse checkout` and `lfs`. `GitSCM` is default full clone.
 
 # Basic - Fundamentables
 
@@ -1540,7 +1555,6 @@ jobs:
 ```
 
 
-
 You can create release and upload assets through GitHub Actions.
 Multiple assets upload is supported by running running `actions/upload-release-asset` for each asset.
 
@@ -1869,115 +1883,23 @@ It supported shallow clone, therefore almost cases brings fastest checkout.
 However if Monorepository, like you contains both Server and Unity, number of files effect checkout.
 [git sparse-checkout](https://git-scm.com/docs/git-sparse-checkout) faster your checkout when specific path only, or exlude some path.
 
-> **Note**
-> Currently actions/checkout not supports `git sparse-checkout`, however it may come when https://github.com/actions/checkout/pull/680 is merged.
+> **Note**: actions/checkout supports `git sparse-checkout`, since 2023/June.
 
-**Checkout only selected path**
+**Sparse checkout selected path**
 
-Below sample checkout only "src/*" path.
+Below checkout only "src/*" path, but not checkout `.github` and others.
 
 ```yaml
-# .github/workflows/git_sparsecheckout_only.yaml
-
-name: "git sparse-checkout (only)"
-on:
-  push:
-    branches: ["main"]
-  pull_request:
-    branches: ["main"]
-jobs:
-  sparse-checkout:
-    runs-on: ubuntu-latest
-    timeout-minutes: 5
-    steps:
-      - name: sparse checkout
-        run: |
-          git clone --filter=blob:none --no-checkout --depth 1 --sparse "https://${{ env.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git" .
-
-          echo "git sparse-checkout set only directory"
-          git sparse-checkout set --no-cone "${{ env.SPARSECHECKOUT_DIR }}"
-
-          echo "git sparse-checkout without cone" # cone not allow pattern filter, therefore don't use cone.
-          git sparse-checkout init
-
-          echo "git sparse-checkout list"
-          git sparse-checkout list
-
-          echo "git checkout"
-          git checkout "${GITHUB_SHA}"
-
-          # if you have submodules in Private Repo, use PAT instead of secrets.GITHUB_TOKEN
-          if [[ -f ./.gitmodules ]]; then
-            echo "replace submodule url"
-            sed -i -e "s|https://github.com|https://${{ env.GITHUB_TOKEN }}@github.com|g" ./.gitmodules
-
-            echo "submodule update"
-            git submodule update --init --recursive
-          fi
-
-          echo "git reset"
-          git reset --hard "${GITHUB_SHA}"
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          SPARSECHECKOUT_DIR: src/*
-      - name: list root folders
-        run: ls -la
-
+# .github/workflows/git_sparsecheckout.yaml
 ```
 
-**Exclude selected path from checkout**
+**Sparse checkout exclude path**
 
-Below sample checkout with exlude "src/*" path.
+Below checkout except "src/*" path.
 
 ```yaml
 # .github/workflows/git_sparsecheckout_exclude.yaml
-
-name: "git sparse-checkout (exclude)"
-on:
-  push:
-    branches: ["main"]
-  pull_request:
-    branches: ["main"]
-jobs:
-  sparse-checkout:
-    runs-on: ubuntu-latest
-    timeout-minutes: 5
-    steps:
-      - name: sparse checkout
-        run: |
-          git clone --filter=blob:none --no-checkout --depth 1 --sparse "https://${{ env.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git" .
-
-          echo "git sparse-checkout set exclude directory"
-          git sparse-checkout set --no-cone "${{ env.SPARSECHECKOUT_DIR }}" "/*"
-
-          echo "git sparse-checkout without cone" # cone not allow pattern filter, therefore don't use cone.
-          git sparse-checkout init
-
-          echo "git sparse-checkout list"
-          git sparse-checkout list
-
-          echo "git checkout"
-          git checkout "${GITHUB_SHA}"
-
-          # if you have submodules in Private Repo, use PAT instead of secrets.GITHUB_TOKEN
-          if [[ -f ./.gitmodules ]]; then
-            echo "replace submodule url"
-            sed -i -e "s|https://github.com|https://${{ env.GITHUB_TOKEN }}@github.com|g" ./.gitmodules
-
-            echo "submodule update"
-            git submodule update --init --recursive
-          fi
-
-          echo "git reset"
-          git reset --hard "${GITHUB_SHA}"
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          SPARSECHECKOUT_DIR: "!src/*"
-      - name: list root folders
-        run: ls -la
-
 ```
-
 
 ## Dispatch other repo workflow
 
