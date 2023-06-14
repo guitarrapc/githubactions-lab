@@ -1887,9 +1887,9 @@ However if Monorepository, like you contains both Server and Unity, number of fi
 
 > **Note**: actions/checkout supports `git sparse-checkout`, since 2023/June.
 
-**Sparse checkout selected path**
+**Sparse checkout**
 
-Below checkout only "src/*" path, but not checkout `.github` and others.
+Checkout "src/*" and root files, but not checkout any not specified folders.
 
 ```yaml
 # .github/workflows/git_sparsecheckout.yaml
@@ -1920,24 +1920,69 @@ Result is selected `src` folder and root files will checkout.
 
 ```sh
 $ ls -la
-total 100
-drwxr-xr-x 4 runner docker  4096 Jun 14 10:12 .
-drwxr-xr-x 3 runner docker  4096 Jun 14 10:12 ..
--rw-r--r-- 1 runner docker  3557 Jun 14 10:12 .editorconfig
-drwxr-xr-x 8 runner docker  4096 Jun 14 10:12 .git
--rw-r--r-- 1 runner docker   103 Jun 14 10:12 .gitattributes
--rw-r--r-- 1 runner docker     5 Jun 14 10:12 .gitignore
--rw-r--r-- 1 runner docker  1083 Jun 14 10:12 LICENSE.md
--rw-r--r-- 1 runner docker 69385 Jun 14 10:12 README.md
-drwxr-xr-x 8 runner docker  4096 Jun 14 10:12 src
+total 104
+drwxr-xr-x 4 runner docker  4096 Jun 14 10:23 .
+drwxr-xr-x 3 runner docker  4096 Jun 14 10:23 ..
+-rw-r--r-- 1 runner docker  3557 Jun 14 10:23 .editorconfig
+drwxr-xr-x 8 runner docker  4096 Jun 14 10:23 .git
+-rw-r--r-- 1 runner docker   103 Jun 14 10:23 .gitattributes
+-rw-r--r-- 1 runner docker     5 Jun 14 10:23 .gitignore
+-rw-r--r-- 1 runner docker  1083 Jun 14 10:23 LICENSE.md
+-rw-r--r-- 1 runner docker 70249 Jun 14 10:23 README.md
+drwxr-xr-x 8 runner docker  4096 Jun 14 10:23 src
+
+$ ls -laR ./src
+./src:
+total 32
+drwxr-xr-x 8 runner docker 4096 Jun 14 10:23 .
+drwxr-xr-x 4 runner docker 4096 Jun 14 10:23 ..
+drwxr-xr-x 5 runner docker 4096 Jun 14 10:23 dotnet
+drwxr-xr-x 2 runner docker 4096 Jun 14 10:23 json
+drwxr-xr-x 6 runner docker 4096 Jun 14 10:23 k8s
+drwxr-xr-x 2 runner docker 4096 Jun 14 10:23 mermaid
+drwxr-xr-x 2 runner docker 4096 Jun 14 10:23 shellscript
+drwxr-xr-x 2 runner docker 4096 Jun 14 10:23 txt
+
+.... others
+```
+
+**Sparse checkout and specify which file to checkout**
+
+Checkout only "src/*" path. All other files and folders will not checkout.
+
+```yaml
+# .github/workflows/git_sparsecheckout_nocorn.yaml
+```
+
+Result is selected `src` folder and root files will checkout.
+
+```sh
+$ ls -la
+total 16
+drwxr-xr-x 4 runner docker 4096 Jun 14 10:23 .
+drwxr-xr-x 3 runner docker 4096 Jun 14 10:23 ..
+drwxr-xr-x 8 runner docker 4096 Jun 14 10:23 .git
+drwxr-xr-x 8 runner docker 4096 Jun 14 10:23 src
+
+$ ls -laR ./src
+./src:
+total 32
+drwxr-xr-x 8 runner docker 4096 Jun 14 10:23 .
+drwxr-xr-x 4 runner docker 4096 Jun 14 10:23 ..
+drwxr-xr-x 5 runner docker 4096 Jun 14 10:23 dotnet
+drwxr-xr-x 2 runner docker 4096 Jun 14 10:23 json
+drwxr-xr-x 6 runner docker 4096 Jun 14 10:23 k8s
+drwxr-xr-x 2 runner docker 4096 Jun 14 10:23 mermaid
+drwxr-xr-x 2 runner docker 4096 Jun 14 10:23 shellscript
+drwxr-xr-x 2 runner docker 4096 Jun 14 10:23 txt
+
+.... others
 ```
 
 
 **Sparse checkout exclude path**
 
-Below checkout except "src/*" path.
-You need specify `sparse-checkout-cone-mode: false` to use `!` entry, but it has side-effect you need specify which file to checkout.
-Below example use `/*` it means all files excect `src/*` will checkout.
+Checkout except "src/*" path. All other files and folders will checkout by `/*`.
 
 ```yaml
 # .github/workflows/git_sparsecheckout_exclude.yaml
@@ -1969,6 +2014,30 @@ jobs:
 Result is exclude `src` folder and all other files are checkout.
 
 ```sh
+$ ls -la
+total 108
+drwxr-xr-x 5 runner docker  4096 Jun 14 10:23 .
+drwxr-xr-x 3 runner docker  4096 Jun 14 10:23 ..
+-rw-r--r-- 1 runner docker  3557 Jun 14 10:23 .editorconfig
+drwxr-xr-x 8 runner docker  4096 Jun 14 10:23 .git
+-rw-r--r-- 1 runner docker   103 Jun 14 10:23 .gitattributes
+drwxr-xr-x 5 runner docker  4096 Jun 14 10:23 .github
+-rw-r--r-- 1 runner docker     5 Jun 14 10:23 .gitignore
+-rw-r--r-- 1 runner docker  1083 Jun 14 10:23 LICENSE.md
+-rw-r--r-- 1 runner docker 70249 Jun 14 10:23 README.md
+drwxr-xr-x 5 runner docker  4096 Jun 14 10:23 samples
+
+$ ls -laR ./.github
+./.github:
+total 24
+drwxr-xr-x  5 runner docker 4096 Jun 14 10:23 .
+drwxr-xr-x  5 runner docker 4096 Jun 14 10:23 ..
+drwxr-xr-x 12 runner docker 4096 Jun 14 10:23 actions
+-rw-r--r--  1 runner docker  117 Jun 14 10:23 ban-words.txt
+drwxr-xr-x  2 runner docker 4096 Jun 14 10:23 scripts
+drwxr-xr-x  3 runner docker 4096 Jun 14 10:23 workflows
+
+.... others
 ```
 
 
