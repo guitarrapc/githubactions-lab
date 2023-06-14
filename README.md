@@ -1937,7 +1937,7 @@ jobs:
       - uses: actions/checkout@v3
         with:
           sparse-checkout: |
-            !src
+            !src/*
       - name: list root folders
         run: ls -la
 
