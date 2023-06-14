@@ -1908,7 +1908,7 @@ jobs:
       - uses: actions/checkout@v3
         with:
           sparse-checkout: |
-            src/
+            src
       - name: list root folders
         run: ls -la
       - name: list src folders
@@ -1957,9 +1957,12 @@ jobs:
         with:
           sparse-checkout: |
             !src/*
+            /*
           sparse-checkout-cone-mode: false # required for ! entry to work
       - name: list root folders
         run: ls -la
+      - name: list .github folders
+        run: ls -laR ./.github
 
 ```
 
