@@ -1894,7 +1894,7 @@ Below checkout only "src/*" path, but not checkout `.github` and others.
 ```yaml
 # .github/workflows/git_sparsecheckout.yaml
 
-name: "git sparse-checkout"
+name: git sparse-checkout
 on:
   push:
     branches: ["main"]
@@ -1908,7 +1908,7 @@ jobs:
       - uses: actions/checkout@v3
         with:
           sparse-checkout: |
-            src
+            src/
       - name: list root folders
         run: ls -la
       - name: list src folders
@@ -1923,7 +1923,7 @@ Below checkout except "src/*" path.
 ```yaml
 # .github/workflows/git_sparsecheckout_exclude.yaml
 
-name: "git sparse-checkout (exclude)"
+name: git sparse-checkout (exclude)
 on:
   push:
     branches: ["main"]
