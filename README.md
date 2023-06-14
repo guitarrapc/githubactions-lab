@@ -1916,9 +1916,28 @@ jobs:
 
 ```
 
+Result is selected `src` folder and root files will checkout.
+
+```sh
+$ ls -la
+total 100
+drwxr-xr-x 4 runner docker  4096 Jun 14 10:12 .
+drwxr-xr-x 3 runner docker  4096 Jun 14 10:12 ..
+-rw-r--r-- 1 runner docker  3557 Jun 14 10:12 .editorconfig
+drwxr-xr-x 8 runner docker  4096 Jun 14 10:12 .git
+-rw-r--r-- 1 runner docker   103 Jun 14 10:12 .gitattributes
+-rw-r--r-- 1 runner docker     5 Jun 14 10:12 .gitignore
+-rw-r--r-- 1 runner docker  1083 Jun 14 10:12 LICENSE.md
+-rw-r--r-- 1 runner docker 69385 Jun 14 10:12 README.md
+drwxr-xr-x 8 runner docker  4096 Jun 14 10:12 src
+```
+
+
 **Sparse checkout exclude path**
 
 Below checkout except "src/*" path.
+You need specify `sparse-checkout-cone-mode: false` to use `!` entry, but it has side-effect you need specify which file to checkout.
+Below example use `/*` it means all files excect `src/*` will checkout.
 
 ```yaml
 # .github/workflows/git_sparsecheckout_exclude.yaml
@@ -1943,6 +1962,12 @@ jobs:
         run: ls -la
 
 ```
+
+Result is exclude `src` folder and all other files are checkout.
+
+```sh
+```
+
 
 ## Dispatch other repo workflow
 
