@@ -1938,6 +1938,7 @@ jobs:
         with:
           sparse-checkout: |
             !src/*
+          sparse-checkout-cone-mode: false # required for ! entry to work
       - name: list root folders
         run: ls -la
 
