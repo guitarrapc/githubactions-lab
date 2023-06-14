@@ -1952,6 +1952,28 @@ Checkout only "src/*" path. All other files and folders will not checkout.
 
 ```yaml
 # .github/workflows/git_sparsecheckout_nocorn.yaml
+
+name: git sparse-checkout (no corn)
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+jobs:
+  sparse-checkout:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          sparse-checkout: |
+            src/*
+          sparse-checkout-cone-mode: false # required for ! entry to work
+      - name: list root folders
+        run: ls -la
+      - name: list src folders
+        run: ls -laR ./src
+
 ```
 
 Result is selected `src` folder and root files will checkout.
