@@ -1,4 +1,4 @@
-name: "git sparse-checkout (exclude)"
+name: git sparse-checkout (exclude)
 on:
   push:
     branches: ["main"]
