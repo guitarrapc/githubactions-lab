@@ -342,6 +342,7 @@ on:
   schedule:
     - cron: "0 0 * * *"
   workflow_dispatch:
+
 jobs:
   context:
     runs-on: ubuntu-latest
@@ -369,6 +370,7 @@ jobs:
         run: echo ${{ github.event.ref }}
       - name: action
         run: echo ${{ github.action }}
+
 ```
 
 **JSON output**
@@ -378,13 +380,20 @@ Use `toJson(<CONTEXT>)` To show context values in json.
 ```yaml
 # .github/workflows/dump_context.yaml
 
-name: dump context push
+name: dump context pr
 on:
-  workflow_dispatch:
-  schedule:
-    - cron: "0 0 * * *"
+  issue_comment:
+    types: [created]
   push:
     branches: ["main"]
+    tags: ["*"]
+  pull_request:
+    branches: ["main"]
+    types: [opened, synchronize, reopened, closed]
+  schedule:
+    - cron: "0 0 * * *"
+  workflow_dispatch:
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -416,6 +425,7 @@ jobs:
         run: echo "$CONTEXT"
         env:
           CONTEXT: ${{ toJson(matrix) }}
+
 ```
 
 To see local action context.
@@ -425,11 +435,18 @@ To see local action context.
 
 name: dump context action
 on:
-  workflow_dispatch:
+  issue_comment:
+    types: [created]
   push:
     branches: ["main"]
+    tags: ["*"]
   pull_request:
     branches: ["main"]
+    types: [opened, synchronize, reopened, closed]
+  schedule:
+    - cron: "0 0 * * *"
+  workflow_dispatch:
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -437,6 +454,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - uses: ./.github/actions/dump-context-actions
+
 ```
 
 ## Environment variables in script
