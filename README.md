@@ -341,8 +341,17 @@ Make sure you can not refer github context in script.
 
 name: "context github"
 on:
+  issue_comment:
+    types: [created]
   push:
     branches: ["main"]
+    tags: ["*"]
+  pull_request:
+    branches: ["main"]
+    types: [opened, synchronize, reopened, closed]
+  schedule:
+    - cron: "0 0 * * *"
+  workflow_dispatch:
 jobs:
   context:
     runs-on: ubuntu-latest
