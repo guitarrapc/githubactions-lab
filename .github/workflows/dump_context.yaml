@@ -1,13 +1,17 @@
 name: dump context pr
 on:
+  issue_comment:
+    types: [created]
+  push:
+    branches: ["main"]
+    tags: ["*"]
   pull_request:
     branches: ["main"]
-    types:
-      - closed
-      - labeled
-      - opened
-      - reopened
-      - synchronize
+    types: [opened, synchronize, reopened, closed]
+  schedule:
+    - cron: "0 0 * * *"
+  workflow_dispatch:
+
 jobs:
   build:
     runs-on: ubuntu-latest
