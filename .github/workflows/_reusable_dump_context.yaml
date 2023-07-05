@@ -90,4 +90,4 @@ jobs:
           branch: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.ref || github.ref }}
           author_email: 41898282+github-actions[bot]@users.noreply.github.com
           message: "[auto commit] update context"
-        if: ${{ !(github.event_name == 'pull_request' && github.action == 'closed') }}
+        if: ${{ !(github.event_name == 'pull_request' && github.event.action == 'closed') }}
