@@ -32,7 +32,7 @@ jobs:
           mkdir -p "${{ env.OUTPUT_PATH }}"
           echo "$CONTEXT" | tee "${{ env.OUTPUT_PATH }}/${{ github.event_name }}_${{ github.event.action }}.sh"
         env:
-          CONTEXT: ${{ toJson(github) }}
+          CONTEXT: ${{ toJson(env) }}
           OUTPUT_PATH: ${{ inputs.output-path }}/env
       - name: Dump GitHub context
         shell: bash
@@ -41,7 +41,7 @@ jobs:
           echo "$CONTEXT" | tee "${{ env.OUTPUT_PATH }}/${{ github.event_name }}_${{ github.event.action }}.json"
         env:
           CONTEXT: ${{ toJson(github) }}
-          OUTPUT_PATH: ${{ inputs.output-path }}github
+          OUTPUT_PATH: ${{ inputs.output-path }}/github
       - name: Dump job context
         shell: bash
         run: |
