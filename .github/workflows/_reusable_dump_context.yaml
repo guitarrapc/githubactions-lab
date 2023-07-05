@@ -20,73 +20,61 @@ jobs:
       - name: Dump environment
         shell: bash
         run: |
-          echo "::group::Export"
-            mkdir -p "${{ env.OUTPUT_PATH }}"
-            echo "$CONTEXT" | tee "${{ env.OUTPUT_PATH }}/${{ github.event_name }}_${{ github.event.action }}.sh"
-          echo "::endgroup::"
+          mkdir -p "${{ env.OUTPUT_PATH }}"
+          echo "$CONTEXT" | tee "${{ env.OUTPUT_PATH }}/${{ github.event_name }}_${{ github.event.action }}.sh"
         env:
           CONTEXT: ${{ toJson(github) }}
           OUTPUT_PATH: ${{ inputs.output-path }}/env
       - name: Dump GitHub context
         shell: bash
         run: |
-          echo "::group::GitHub Context"
-            mkdir -p "${{ env.OUTPUT_PATH }}"
-            echo "$CONTEXT" | tee "${{ env.OUTPUT_PATH }}/${{ github.event_name }}_${{ github.event.action }}.json"
-          echo "::endgroup::"
+          mkdir -p "${{ env.OUTPUT_PATH }}"
+          echo "$CONTEXT" | tee "${{ env.OUTPUT_PATH }}/${{ github.event_name }}_${{ github.event.action }}.json"
         env:
           CONTEXT: ${{ toJson(github) }}
           OUTPUT_PATH: ${{ inputs.output-path }}github
       - name: Dump job context
         shell: bash
         run: |
-          echo "::group::Job Context"
-            mkdir -p "${{ env.OUTPUT_PATH }}"
-            echo "$CONTEXT" | tee "${{ env.OUTPUT_PATH }}/${{ github.event_name }}_${{ github.event.action }}.json"
-          echo "::endgroup::"
+          mkdir -p "${{ env.OUTPUT_PATH }}"
+          echo "$CONTEXT" | tee "${{ env.OUTPUT_PATH }}/${{ github.event_name }}_${{ github.event.action }}.json"
         env:
           CONTEXT: ${{ toJson(job) }}
           OUTPUT_PATH: ${{ inputs.output-path }}/job
       - name: Dump steps context
         shell: bash
         run: |
-          echo "::group::Step Context"
-            mkdir -p "${{ env.OUTPUT_PATH }}"
-            echo "$CONTEXT" | tee "${{ env.OUTPUT_PATH }}/${{ github.event_name }}_${{ github.event.action }}.json"
-          echo "::endgroup::"
+          mkdir -p "${{ env.OUTPUT_PATH }}"
+          echo "$CONTEXT" | tee "${{ env.OUTPUT_PATH }}/${{ github.event_name }}_${{ github.event.action }}.json"
         env:
           CONTEXT: ${{ toJson(steps) }}
           OUTPUT_PATH: ${{ inputs.output-path }}/step
       - name: Dump runner context
         shell: bash
         run: |
-          echo "::group::Runner Context"
-            mkdir -p "${{ env.OUTPUT_PATH }}"
-            echo "$CONTEXT" | tee "${{ env.OUTPUT_PATH }}/${{ github.event_name }}_${{ github.event.action }}.json"
-          echo "::endgroup::"
+          mkdir -p "${{ env.OUTPUT_PATH }}"
+          echo "$CONTEXT" | tee "${{ env.OUTPUT_PATH }}/${{ github.event_name }}_${{ github.event.action }}.json"
         env:
           CONTEXT: ${{ toJson(runner) }}
           OUTPUT_PATH: ${{ inputs.output-path }}/runner
       - name: Dump strategy context
         shell: bash
         run: |
-          echo "::group::Strategy Context"
-            mkdir -p "${{ env.OUTPUT_PATH }}"
-            echo "$CONTEXT" | tee "${{ env.OUTPUT_PATH }}/${{ github.event_name }}_${{ github.event.action }}.json"
-          echo "::endgroup::"
+          mkdir -p "${{ env.OUTPUT_PATH }}"
+          echo "$CONTEXT" | tee "${{ env.OUTPUT_PATH }}/${{ github.event_name }}_${{ github.event.action }}.json"
         env:
           CONTEXT: ${{ toJson(strategy) }}
           OUTPUT_PATH: ${{ inputs.output-path }}/strategy
       - name: Dump matrix context
         shell: bash
         run: |
-          echo "::group::Matrix Context"
-            mkdir -p "${{ env.OUTPUT_PATH }}"
-            echo "$CONTEXT" | tee "${{ env.OUTPUT_PATH }}/${{ github.event_name }}_${{ github.event.action }}.json"
-          echo "::endgroup::"
+          mkdir -p "${{ env.OUTPUT_PATH }}"
+          echo "$CONTEXT" | tee "${{ env.OUTPUT_PATH }}/${{ github.event_name }}_${{ github.event.action }}.json"
         env:
           CONTEXT: ${{ toJson(matrix) }}
           OUTPUT_PATH: ${{ inputs.output-path }}/matrix
+      - name: update current git to latest
+        run: git pull --rebase
       - name: Commit & Push changes
         uses: actions-js/push@master
         with:
