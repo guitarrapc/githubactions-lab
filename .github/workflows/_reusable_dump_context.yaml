@@ -21,12 +21,12 @@ jobs:
           ref: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.sha || '' }} # checkout PR HEAD commit instead of merge commit
       - name: Wait 30s
         run: sleep 30s
-        if: ${{ !(github.event_name == 'pull_request' && github.action == 'closed') }}
+        if: ${{ !(github.event_name == 'pull_request' && github.event.action == 'closed') }}
       - name: update current git to latest
         run: git pull origin ${{ env.CHECKOUT_REF }} --rebase
         env:
           CHECKOUT_REF: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.ref || github.ref_name }}
-        if: ${{ !(github.event_name == 'pull_request' && github.action == 'closed') }}
+        if: ${{ !(github.event_name == 'pull_request' && github.event.action == 'closed') }}
       - name: Dump environment
         shell: bash
         run: |
