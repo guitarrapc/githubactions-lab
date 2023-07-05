@@ -19,12 +19,13 @@ jobs:
       - uses: actions/checkout@v3
         with:
           ref: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.sha || '' }} # checkout PR HEAD commit instead of merge commit
-      - name: Sleep 30s for other push done.
-        run: sleep 30s
-      - name: update current git to latest
-        run: git pull origin ${{ env.CHECKOUT_REF }} --rebase
+      - name: Wait 30s & update current git to latest
+        run: |
+          sleep 30s
+          git pull origin ${{ env.CHECKOUT_REF }} --rebase
         env:
           CHECKOUT_REF: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.ref || github.ref_name }}
+        if: ${{ !(github.event_name == 'pull_request' && github.action == 'closed') }}
       - name: Dump environment
         shell: bash
         run: |
@@ -88,3 +89,4 @@ jobs:
           branch: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.ref || github.ref }}
           author_email: 41898282+github-actions[bot]@users.noreply.github.com
           message: "[auto commit] update context"
+        if: ${{ !(github.event_name == 'pull_request' && github.action == 'closed') }}
