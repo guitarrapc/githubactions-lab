@@ -20,9 +20,9 @@ jobs:
         with:
           ref: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.sha || '' }} # checkout PR HEAD commit instead of merge commit
       - name: Sleep 1m for other push done.
-        run: sleep 60s
+        run: sleep 40s
       - name: update current git to latest
-        run: git pull --rebase
+        run: git pull origin ${{ github.event_name == 'pull_request' && github.event.pull_request.head.ref || github.ref }} --rebase
       - name: Dump environment
         shell: bash
         run: |
