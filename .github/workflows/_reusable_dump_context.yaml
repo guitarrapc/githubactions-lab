@@ -19,10 +19,11 @@ jobs:
       - uses: actions/checkout@v3
         with:
           ref: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.sha || '' }} # checkout PR HEAD commit instead of merge commit
-      - name: Wait 30s & update current git to latest
-        run: |
-          sleep 30s
-          git pull origin ${{ env.CHECKOUT_REF }} --rebase
+      - name: Wait 30s
+        run: sleep 30s
+        if: ${{ !(github.event_name == 'pull_request' && github.action == 'closed') }}
+      - name: update current git to latest
+        run: git pull origin ${{ env.CHECKOUT_REF }} --rebase
         env:
           CHECKOUT_REF: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.ref || github.ref_name }}
         if: ${{ !(github.event_name == 'pull_request' && github.action == 'closed') }}
@@ -30,10 +31,10 @@ jobs:
         shell: bash
         run: |
           mkdir -p "${{ env.OUTPUT_PATH }}"
-          echo "$CONTEXT" | tee "${{ env.OUTPUT_PATH }}/${{ github.event_name }}_${{ github.event.action }}.sh"
+          export | tee "${{ env.OUTPUT_PATH }}/${{ github.event_name }}_${{ github.event.action }}.sh"
         env:
           CONTEXT: ${{ toJson(env) }}
-          OUTPUT_PATH: ${{ inputs.output-path }}/env
+          OUTPUT_PATH: ${{ inputs.output-path }}/export
       - name: Dump GitHub context
         shell: bash
         run: |

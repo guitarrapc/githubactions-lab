@@ -369,7 +369,6 @@ jobs:
         run: echo ${{ github.event.ref }}
       - name: action
         run: echo ${{ github.action }}
-
 ```
 
 **JSON output**
@@ -425,7 +424,6 @@ jobs:
         run: echo "$CONTEXT"
         env:
           CONTEXT: ${{ toJson(matrix) }}
-
 ```
 
 ## Environment variables in script
@@ -816,7 +814,6 @@ jobs:
       - name: output step2
         id: step2
         run: echo "secondword=world" >> "$GITHUB_OUTPUT"
-
 ```
 
 ### Call repository's reusable workflow
@@ -2249,8 +2246,19 @@ action folder naming also follow this rule.
 
 ## Get Branch
 
+`github.ref` context will return branch name, however it is unsafe to directly reference in ref. It is recommended to use through env.
+
 - pull_request: `${{ github.event.pull_request.head.ref }}`
 - push and others: `${{ github.ref }}`
+
+```yaml
+# .github/workflows/_reusable_dump_context.yaml#L25-L28
+
+- name: update current git to latest
+  run: git pull origin ${{ env.CHECKOUT_REF }} --rebase
+  env:
+    CHECKOUT_REF: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.ref || github.ref_name }}
+```
 
 ## Get Tag
 
