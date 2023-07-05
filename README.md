@@ -1,4 +1,5 @@
-[![README auto-doc](https://github.com/guitarrapc/githubactions-lab/actions/workflows/readme_auto_doc.yaml/badge.svg)](https://github.com/guitarrapc/githubactions-lab/actions/workflows/readme_auto_doc.yaml)
+[![auto doc](https://github.com/guitarrapc/githubactions-lab/actions/workflows/auto_doc.yaml/badge.svg)](https://github.com/guitarrapc/githubactions-lab/actions/workflows/auto_doc.yaml)
+[![auto dump context](https://github.com/guitarrapc/githubactions-lab/actions/workflows/auto_dump_context.yaml/badge.svg)](https://github.com/guitarrapc/githubactions-lab/actions/workflows/auto_dump_context.yaml)
 [![actionlint (reviewdog)](https://github.com/guitarrapc/githubactions-lab/actions/workflows/actionlint_reviewdog.yaml/badge.svg)](https://github.com/guitarrapc/githubactions-lab/actions/workflows/actionlint_reviewdog.yaml)
 [![dotnet build](https://github.com/guitarrapc/githubactions-lab/actions/workflows/dotnet_build.yaml/badge.svg)](https://github.com/guitarrapc/githubactions-lab/actions/workflows/dotnet_build.yaml)
 [![dotnet lint](https://github.com/guitarrapc/githubactions-lab/actions/workflows/dotnet_lint.yaml/badge.svg)](https://github.com/guitarrapc/githubactions-lab/actions/workflows/dotnet_lint.yaml)
@@ -9,6 +10,7 @@ GitHub Actions research and test laboratory.
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+
 # Table of Contents
 
 - [Not yet support](#not-yet-support)
