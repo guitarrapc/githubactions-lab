@@ -17,66 +17,75 @@ jobs:
     timeout-minutes: 5
     steps:
       - uses: actions/checkout@v3
-      - name: Create Directory
-        shell: bash
-        run: |
-          echo "::group::Create Directory"
-            mkdir -p ${{ inputs.output-path }}
-          echo "::endgroup::"
       - name: Dump environment
         shell: bash
         run: |
           echo "::group::Export"
-            export | tee "${{ inputs.output-path }}/export/${{ github.event_name }}_${{ github.event.action }}.sh"
+            mkdir -p "${{ env.OUTPUT_PATH }}"
+            export | tee "${{ env.OUTPUT_PATH }}"
           echo "::endgroup::"
+        env:
+          OUTPUT_PATH: ${{ inputs.output-path }}/export/${{ github.event_name }}_${{ github.event.action }}.sh
       - name: Dump GitHub context
         shell: bash
         run: |
           echo "::group::GitHub Context"
-            echo "$CONTEXT" | tee "${{ inputs.output-path }}/github/${{ github.event_name }}_${{ github.event.action }}.json"
+            mkdir -p "${{ env.OUTPUT_PATH }}"
+            echo "$CONTEXT" | tee "${{ env.OUTPUT_PATH }}"
           echo "::endgroup::"
         env:
           CONTEXT: ${{ toJson(github) }}
+          OUTPUT_PATH: ${{ inputs.output-path }}/github/${{ github.event_name }}_${{ github.event.action }}.json
       - name: Dump job context
         shell: bash
         run: |
           echo "::group::Job Context"
-            echo "$CONTEXT" | tee "${{ inputs.output-path }}/job/${{ github.event_name }}_${{ github.event.action }}.json"
+            mkdir -p "${{ env.OUTPUT_PATH }}"
+            echo "$CONTEXT" | tee "${{ env.OUTPUT_PATH }}"
           echo "::endgroup::"
         env:
           CONTEXT: ${{ toJson(job) }}
+          OUTPUT_PATH: ${{ inputs.output-path }}/job/${{ github.event_name }}_${{ github.event.action }}.json
       - name: Dump steps context
         shell: bash
         run: |
           echo "::group::Step Context"
-            echo "$CONTEXT" | tee "${{ inputs.output-path }}/step/${{ github.event_name }}_${{ github.event.action }}.json"
+            mkdir -p "${{ env.OUTPUT_PATH }}"
+            echo "$CONTEXT" | tee "${{ env.OUTPUT_PATH }}"
           echo "::endgroup::"
         env:
           CONTEXT: ${{ toJson(steps) }}
+          OUTPUT_PATH: ${{ inputs.output-path }}/step/${{ github.event_name }}_${{ github.event.action }}.json
       - name: Dump runner context
         shell: bash
         run: |
           echo "::group::Runner Context"
-            echo "$CONTEXT" | tee "${{ inputs.output-path }}/runner/${{ github.event_name }}_${{ github.event.action }}.json"
+            mkdir -p "${{ env.OUTPUT_PATH }}"
+            echo "$CONTEXT" | tee "${{ env.OUTPUT_PATH }}"
           echo "::endgroup::"
         env:
           CONTEXT: ${{ toJson(runner) }}
+          OUTPUT_PATH: ${{ inputs.output-path }}/runner/${{ github.event_name }}_${{ github.event.action }}.json
       - name: Dump strategy context
         shell: bash
         run: |
           echo "::group::Strategy Context"
-            echo "$CONTEXT" | tee "${{ inputs.output-path }}/strategy/${{ github.event_name }}_${{ github.event.action }}.json"
+            mkdir -p "${{ env.OUTPUT_PATH }}"
+            echo "$CONTEXT" | tee "${{ env.OUTPUT_PATH }}"
           echo "::endgroup::"
         env:
           CONTEXT: ${{ toJson(strategy) }}
+          OUTPUT_PATH: ${{ inputs.output-path }}/strategy/${{ github.event_name }}_${{ github.event.action }}.json
       - name: Dump matrix context
         shell: bash
         run: |
           echo "::group::Matrix Context"
-            echo "$CONTEXT" | tee "${{ inputs.output-path }}/matrix/${{ github.event_name }}_${{ github.event.action }}.json"
+            mkdir -p "${{ env.OUTPUT_PATH }}"
+            echo "$CONTEXT" | tee "${{ env.OUTPUT_PATH }}"
           echo "::endgroup::"
         env:
           CONTEXT: ${{ toJson(matrix) }}
+          OUTPUT_PATH: ${{ inputs.output-path }}/matrix/${{ github.event_name }}_${{ github.event.action }}.json
       - name: Commit & Push changes
         uses: actions-js/push@master
         with:
