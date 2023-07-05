@@ -30,10 +30,10 @@ jobs:
         shell: bash
         run: |
           mkdir -p "${{ env.OUTPUT_PATH }}"
-          echo "$CONTEXT" | tee "${{ env.OUTPUT_PATH }}/${{ github.event_name }}_${{ github.event.action }}.sh"
+          export | tee "${{ env.OUTPUT_PATH }}/${{ github.event_name }}_${{ github.event.action }}.sh"
         env:
           CONTEXT: ${{ toJson(env) }}
-          OUTPUT_PATH: ${{ inputs.output-path }}/env
+          OUTPUT_PATH: ${{ inputs.output-path }}/export
       - name: Dump GitHub context
         shell: bash
         run: |
