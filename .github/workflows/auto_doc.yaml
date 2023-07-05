@@ -16,10 +16,6 @@ jobs:
         run: |
           npm install -g embedme
           embedme README.md
-      - name: Sleep 1m for other push done.
-        run: sleep 60s
-      - name: update current git to latest
-        run: git pull --rebase
       - name: Commit & Push changes
         uses: actions-js/push@master
         with:

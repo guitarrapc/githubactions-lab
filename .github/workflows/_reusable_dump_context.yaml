@@ -17,6 +17,12 @@ jobs:
     timeout-minutes: 5
     steps:
       - uses: actions/checkout@v3
+        with:
+          ref: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.sha || '' }} # checkout PR HEAD commit instead of merge commit
+      - name: Sleep 1m for other push done.
+        run: sleep 60s
+      - name: update current git to latest
+        run: git pull --rebase
       - name: Dump environment
         shell: bash
         run: |
@@ -73,8 +79,6 @@ jobs:
         env:
           CONTEXT: ${{ toJson(matrix) }}
           OUTPUT_PATH: ${{ inputs.output-path }}/matrix
-      - name: update current git to latest
-        run: git pull --rebase
       - name: Commit & Push changes
         uses: actions-js/push@master
         with:
