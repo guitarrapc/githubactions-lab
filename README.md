@@ -9,6 +9,7 @@ GitHub Actions research and test laboratory.
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+
 # Table of Contents
 
 - [Not yet support](#not-yet-support)
@@ -424,36 +425,6 @@ jobs:
         run: echo "$CONTEXT"
         env:
           CONTEXT: ${{ toJson(matrix) }}
-
-```
-
-To see local action context.
-
-```yaml
-# .github/workflows/dump_context_action.yaml
-
-name: dump context action
-on:
-  issue_comment:
-    types: [created]
-  push:
-    branches: ["main"]
-    tags: ["*"]
-  pull_request:
-    branches: ["main"]
-    types: [opened, synchronize, reopened, closed]
-  schedule:
-    - cron: "0 0 * * *"
-  workflow_dispatch:
-
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    timeout-minutes: 3
-    steps:
-      - uses: actions/checkout@v3
-      - uses: ./.github/actions/dump-context-actions
-
 ```
 
 ## Environment variables in script

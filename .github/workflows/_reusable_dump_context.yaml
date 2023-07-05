@@ -1,0 +1,86 @@
+name: (R) Dump Context
+on:
+  workflow_call:
+    inputs:
+      output-path:
+        description: Path to output context
+        required: true
+        type: string
+
+jobs:
+  dump-context:
+    strategy:
+      fail-fast: false
+      matrix:
+        runs-on: [ubuntu-latest]
+    runs-on: ${{ matrix.runs-on }}
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v3
+      - name: Create Directory
+        shell: bash
+        run: |
+          echo "::group::Create Directory"
+            mkdir -p ${{ inputs.output-path }}
+          echo "::endgroup::"
+      - name: Dump environment
+        shell: bash
+        run: |
+          echo "::group::Export"
+            export | tee "${{ inputs.output-path }}/export/${{ github.event_name }}_${{ github.event.action }}.sh"
+          echo "::endgroup::"
+      - name: Dump GitHub context
+        shell: bash
+        run: |
+          echo "::group::GitHub Context"
+            echo "$CONTEXT" | tee "${{ inputs.output-path }}/github/${{ github.event_name }}_${{ github.event.action }}.json"
+          echo "::endgroup::"
+        env:
+          CONTEXT: ${{ toJson(github) }}
+      - name: Dump job context
+        shell: bash
+        run: |
+          echo "::group::Job Context"
+            echo "$CONTEXT" | tee "${{ inputs.output-path }}/job/${{ github.event_name }}_${{ github.event.action }}.json"
+          echo "::endgroup::"
+        env:
+          CONTEXT: ${{ toJson(job) }}
+      - name: Dump steps context
+        shell: bash
+        run: |
+          echo "::group::Step Context"
+            echo "$CONTEXT" | tee "${{ inputs.output-path }}/step/${{ github.event_name }}_${{ github.event.action }}.json"
+          echo "::endgroup::"
+        env:
+          CONTEXT: ${{ toJson(steps) }}
+      - name: Dump runner context
+        shell: bash
+        run: |
+          echo "::group::Runner Context"
+            echo "$CONTEXT" | tee "${{ inputs.output-path }}/runner/${{ github.event_name }}_${{ github.event.action }}.json"
+          echo "::endgroup::"
+        env:
+          CONTEXT: ${{ toJson(runner) }}
+      - name: Dump strategy context
+        shell: bash
+        run: |
+          echo "::group::Strategy Context"
+            echo "$CONTEXT" | tee "${{ inputs.output-path }}/strategy/${{ github.event_name }}_${{ github.event.action }}.json"
+          echo "::endgroup::"
+        env:
+          CONTEXT: ${{ toJson(strategy) }}
+      - name: Dump matrix context
+        shell: bash
+        run: |
+          echo "::group::Matrix Context"
+            echo "$CONTEXT" | tee "${{ inputs.output-path }}/matrix/${{ github.event_name }}_${{ github.event.action }}.json"
+          echo "::endgroup::"
+        env:
+          CONTEXT: ${{ toJson(matrix) }}
+      - name: Commit & Push changes
+        uses: actions-js/push@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.ref || github.ref }}
+          author_email: 41898282+github-actions[bot]@users.noreply.github.com
+          message: "[auto commit] update context"
