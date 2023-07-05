@@ -9,6 +9,7 @@ GitHub Actions research and test laboratory.
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+
 # Table of Contents
 
 - [Not yet support](#not-yet-support)
@@ -369,7 +370,6 @@ jobs:
         run: echo ${{ github.event.ref }}
       - name: action
         run: echo ${{ github.action }}
-
 ```
 
 **JSON output**
@@ -425,7 +425,6 @@ jobs:
         run: echo "$CONTEXT"
         env:
           CONTEXT: ${{ toJson(matrix) }}
-
 ```
 
 ## Environment variables in script
@@ -816,7 +815,6 @@ jobs:
       - name: output step2
         id: step2
         run: echo "secondword=world" >> "$GITHUB_OUTPUT"
-
 ```
 
 ### Call repository's reusable workflow
@@ -2249,8 +2247,14 @@ action folder naming also follow this rule.
 
 ## Get Branch
 
+`github.ref` context will return branch name, however it is unsafe to directly reference in ref. It is recommended to use through env.
+
 - pull_request: `${{ github.event.pull_request.head.ref }}`
 - push and others: `${{ github.ref }}`
+
+```yaml
+# .github/workflows/_reusable_dump_context.yaml#L25-L28
+```
 
 ## Get Tag
 
