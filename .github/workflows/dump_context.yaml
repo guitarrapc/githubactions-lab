@@ -1,4 +1,4 @@
-name: dump context pr
+name: dump context
 on:
   issue_comment:
     types: [created]
@@ -13,10 +13,11 @@ on:
   workflow_dispatch:
 
 jobs:
-  build:
+  dump:
     runs-on: ubuntu-latest
     timeout-minutes: 3
     steps:
+      - uses: actions/checkout@v3
       - name: Dump environment
         run: export
       - name: Dump GitHub context

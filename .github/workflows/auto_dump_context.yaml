@@ -1,4 +1,5 @@
-name: dump context action
+# automate output context to samples/xxxx_context/eventname_action.json
+name: auto dump context
 on:
   issue_comment:
     types: [created]
@@ -13,9 +14,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
-    timeout-minutes: 3
-    steps:
-      - uses: actions/checkout@v3
-      - uses: ./.github/actions/dump-context-actions
+  dump:
+    uses: ./.github/workflows/_reusable_dump_context.yaml
+    with:
+      output-path: contexts

@@ -379,7 +379,7 @@ Use `toJson(<CONTEXT>)` To show context values in json.
 ```yaml
 # .github/workflows/dump_context.yaml
 
-name: dump context pr
+name: dump context
 on:
   issue_comment:
     types: [created]
@@ -394,10 +394,11 @@ on:
   workflow_dispatch:
 
 jobs:
-  build:
+  dump:
     runs-on: ubuntu-latest
     timeout-minutes: 3
     steps:
+      - uses: actions/checkout@v3
       - name: Dump environment
         run: export
       - name: Dump GitHub context
@@ -424,35 +425,6 @@ jobs:
         run: echo "$CONTEXT"
         env:
           CONTEXT: ${{ toJson(matrix) }}
-
-```
-
-To see local action context.
-
-```yaml
-# .github/workflows/dump_context_action.yaml
-
-name: dump context action
-on:
-  issue_comment:
-    types: [created]
-  push:
-    branches: ["main"]
-    tags: ["*"]
-  pull_request:
-    branches: ["main"]
-    types: [opened, synchronize, reopened, closed]
-  schedule:
-    - cron: "0 0 * * *"
-  workflow_dispatch:
-
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    timeout-minutes: 3
-    steps:
-      - uses: actions/checkout@v3
-      - uses: ./.github/actions/dump-context-actions
 
 ```
 
@@ -822,6 +794,8 @@ jobs:
       output2: ${{ steps.step2.outputs.secondword }}
     steps:
       - uses: actions/checkout@v3
+        with:
+          ref: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.ref || '' }} # checkout PR HEAD commit instead of merge commit
       - name: (Limitation) Callee can not refer caller environment variable.
         run: echo "caller environment. ${{ env.CALLER_VALUE }}"
       - name: called username
@@ -842,6 +816,7 @@ jobs:
       - name: output step2
         id: step2
         run: echo "secondword=world" >> "$GITHUB_OUTPUT"
+
 ```
 
 ### Call repository's reusable workflow
