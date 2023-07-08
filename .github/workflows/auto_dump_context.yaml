@@ -1,0 +1,20 @@
+# automate output context to samples/xxxx_context/eventname_action.json
+name: auto dump context
+on:
+  issue_comment:
+    types: [created]
+  push:
+    branches: ["main"]
+    tags: ["*"]
+  pull_request:
+    branches: ["main"]
+    types: [opened, synchronize, reopened, closed]
+  schedule:
+    - cron: "0 0 * * *"
+  workflow_dispatch:
+
+jobs:
+  dump:
+    uses: ./.github/workflows/_reusable_dump_context.yaml
+    with:
+      output-path: contexts

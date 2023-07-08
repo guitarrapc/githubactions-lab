@@ -1,0 +1,36 @@
+name: merge-branch (PR)
+on:
+  workflow_dispatch:
+    inputs:
+      upstream:
+        description: "merge from"
+        required: true
+        default: "main"
+      branch:
+        description: "merge to"
+        required: true
+        default: "staging"
+jobs:
+  merge:
+    env:
+      upstream: ${{ inputs.upstream }}
+      branch: ${{ inputs.branch }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v3
+      # merge main to staging
+      - uses: repo-sync/pull-request@v2
+        name: pull-request
+        with:
+          source_branch: ${{ env.upstream }}
+          destination_branch: ${{ env.branch }}
+          pr_title: "[Automate] Merge ${{ env.upstream }} to ${{ env.branch }}"
+          pr_body: |
+            :crown: *An automated PR*
+
+            _Created by [repo-sync/pull-request](https://github.com/repo-sync/pull-request)_
+          pr_draft: false
+          pr_label: "auto-pr"
+          pr_allow_empty: true # Creates pull request even if there are no changes
+          github_token: ${{ secrets.SYNCED_GITHUB_TOKEN_REPO }} # enable github actions workflow chain. require pull_request read/write (fine grained), repo (legacy)

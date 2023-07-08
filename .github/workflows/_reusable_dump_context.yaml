@@ -1,0 +1,93 @@
+name: _reusable dump context
+on:
+  workflow_call:
+    inputs:
+      output-path:
+        description: Path to output context
+        required: true
+        type: string
+
+jobs:
+  dump-context:
+    strategy:
+      fail-fast: false
+      matrix:
+        runs-on: [ubuntu-latest]
+    runs-on: ${{ matrix.runs-on }}
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          ref: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.sha || '' }} # checkout PR HEAD commit instead of merge commit
+      - name: Wait 30s
+        run: sleep 30s
+        if: ${{ !(github.event_name == 'pull_request' && github.event.action == 'closed') }}
+      - name: update current git to latest
+        run: git pull origin ${{ env.CHECKOUT_REF }} --rebase
+        env:
+          CHECKOUT_REF: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.ref || github.ref_name }}
+        if: ${{ !(github.event_name == 'pull_request' && github.event.action == 'closed') }}
+      - name: Dump environment
+        shell: bash
+        run: |
+          mkdir -p "${{ env.OUTPUT_PATH }}"
+          export | tee "${{ env.OUTPUT_PATH }}/${{ github.event_name }}_${{ github.event.action }}.sh"
+        env:
+          CONTEXT: ${{ toJson(env) }}
+          OUTPUT_PATH: ${{ inputs.output-path }}/export
+      - name: Dump GitHub context
+        shell: bash
+        run: |
+          mkdir -p "${{ env.OUTPUT_PATH }}"
+          echo "$CONTEXT" | tee "${{ env.OUTPUT_PATH }}/${{ github.event_name }}_${{ github.event.action }}.json"
+        env:
+          CONTEXT: ${{ toJson(github) }}
+          OUTPUT_PATH: ${{ inputs.output-path }}/github
+      - name: Dump job context
+        shell: bash
+        run: |
+          mkdir -p "${{ env.OUTPUT_PATH }}"
+          echo "$CONTEXT" | tee "${{ env.OUTPUT_PATH }}/${{ github.event_name }}_${{ github.event.action }}.json"
+        env:
+          CONTEXT: ${{ toJson(job) }}
+          OUTPUT_PATH: ${{ inputs.output-path }}/job
+      - name: Dump steps context
+        shell: bash
+        run: |
+          mkdir -p "${{ env.OUTPUT_PATH }}"
+          echo "$CONTEXT" | tee "${{ env.OUTPUT_PATH }}/${{ github.event_name }}_${{ github.event.action }}.json"
+        env:
+          CONTEXT: ${{ toJson(steps) }}
+          OUTPUT_PATH: ${{ inputs.output-path }}/step
+      - name: Dump runner context
+        shell: bash
+        run: |
+          mkdir -p "${{ env.OUTPUT_PATH }}"
+          echo "$CONTEXT" | tee "${{ env.OUTPUT_PATH }}/${{ github.event_name }}_${{ github.event.action }}.json"
+        env:
+          CONTEXT: ${{ toJson(runner) }}
+          OUTPUT_PATH: ${{ inputs.output-path }}/runner
+      - name: Dump strategy context
+        shell: bash
+        run: |
+          mkdir -p "${{ env.OUTPUT_PATH }}"
+          echo "$CONTEXT" | tee "${{ env.OUTPUT_PATH }}/${{ github.event_name }}_${{ github.event.action }}.json"
+        env:
+          CONTEXT: ${{ toJson(strategy) }}
+          OUTPUT_PATH: ${{ inputs.output-path }}/strategy
+      - name: Dump matrix context
+        shell: bash
+        run: |
+          mkdir -p "${{ env.OUTPUT_PATH }}"
+          echo "$CONTEXT" | tee "${{ env.OUTPUT_PATH }}/${{ github.event_name }}_${{ github.event.action }}.json"
+        env:
+          CONTEXT: ${{ toJson(matrix) }}
+          OUTPUT_PATH: ${{ inputs.output-path }}/matrix
+      - name: Commit & Push changes
+        uses: actions-js/push@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.ref || github.ref }}
+          author_email: 41898282+github-actions[bot]@users.noreply.github.com
+          message: "[auto commit] update context"
+        if: ${{ !(github.event_name == 'pull_request' && github.event.action == 'closed') }}

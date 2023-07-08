@@ -1,4 +1,4 @@
-name: git sparse-checkout (exclude)
+name: git sparse-checkout
 on:
   push:
     branches: ["main"]
@@ -12,10 +12,8 @@ jobs:
       - uses: actions/checkout@v3
         with:
           sparse-checkout: |
-            !src/*
-            /*
-          sparse-checkout-cone-mode: false # required for ! entry to work
+            src
       - name: list root folders
         run: ls -la
-      - name: list .github folders
-        run: ls -laR ./.github
+      - name: list src folders
+        run: ls -laR ./src

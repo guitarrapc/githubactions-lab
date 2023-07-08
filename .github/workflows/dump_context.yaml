@@ -1,0 +1,46 @@
+name: dump context
+on:
+  issue_comment:
+    types: [created]
+  push:
+    branches: ["main"]
+    tags: ["*"]
+  pull_request:
+    branches: ["main"]
+    types: [opened, synchronize, reopened, closed]
+  schedule:
+    - cron: "0 0 * * *"
+  workflow_dispatch:
+
+jobs:
+  dump:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v3
+      - name: Dump environment
+        run: export
+      - name: Dump GitHub context
+        run: echo "$CONTEXT"
+        env:
+          CONTEXT: ${{ toJson(github) }}
+      - name: Dump job context
+        run: echo "$CONTEXT"
+        env:
+          CONTEXT: ${{ toJson(job) }}
+      - name: Dump steps context
+        run: echo "$CONTEXT"
+        env:
+          CONTEXT: ${{ toJson(steps) }}
+      - name: Dump runner context
+        run: echo "$CONTEXT"
+        env:
+          CONTEXT: ${{ toJson(runner) }}
+      - name: Dump strategy context
+        run: echo "$CONTEXT"
+        env:
+          CONTEXT: ${{ toJson(strategy) }}
+      - name: Dump matrix context
+        run: echo "$CONTEXT"
+        env:
+          CONTEXT: ${{ toJson(matrix) }}

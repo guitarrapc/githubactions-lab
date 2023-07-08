@@ -1,4 +1,5 @@
-[![README auto-doc](https://github.com/guitarrapc/githubactions-lab/actions/workflows/readme_auto_doc.yaml/badge.svg)](https://github.com/guitarrapc/githubactions-lab/actions/workflows/readme_auto_doc.yaml)
+[![auto doc](https://github.com/guitarrapc/githubactions-lab/actions/workflows/auto_doc.yaml/badge.svg)](https://github.com/guitarrapc/githubactions-lab/actions/workflows/auto_doc.yaml)
+[![auto dump context](https://github.com/guitarrapc/githubactions-lab/actions/workflows/auto_dump_context.yaml/badge.svg)](https://github.com/guitarrapc/githubactions-lab/actions/workflows/auto_dump_context.yaml)
 [![actionlint (reviewdog)](https://github.com/guitarrapc/githubactions-lab/actions/workflows/actionlint_reviewdog.yaml/badge.svg)](https://github.com/guitarrapc/githubactions-lab/actions/workflows/actionlint_reviewdog.yaml)
 [![dotnet build](https://github.com/guitarrapc/githubactions-lab/actions/workflows/dotnet_build.yaml/badge.svg)](https://github.com/guitarrapc/githubactions-lab/actions/workflows/dotnet_build.yaml)
 [![dotnet lint](https://github.com/guitarrapc/githubactions-lab/actions/workflows/dotnet_lint.yaml/badge.svg)](https://github.com/guitarrapc/githubactions-lab/actions/workflows/dotnet_lint.yaml)
@@ -9,9 +10,11 @@ GitHub Actions research and test laboratory.
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+
 # Table of Contents
 
 - [Not yet support](#not-yet-support)
+- [Functionality limitation](#functionality-limitation)
 - [Difference from other CI](#difference-from-other-ci)
   - [CI Migration](#ci-migration)
   - [Job and workflow](#job-and-workflow)
@@ -26,6 +29,7 @@ GitHub Actions research and test laboratory.
   - [Set PATH Environment variables](#set-path-environment-variables)
   - [Set Secrets for Job](#set-secrets-for-job)
   - [Skip CI and commit message](#skip-ci-and-commit-message)
+  - [Git Checkout](#git-checkout)
 - [Basic - Fundamentables](#basic---fundamentables)
   - [Dump context metadata](#dump-context-metadata)
   - [Environment variables in script](#environment-variables-in-script)
@@ -110,20 +114,20 @@ Relax the limit for `GitHub Team Plan` is myu strong expectation.
 
 There are several documents for migration.
 
-* CircleCI -> GitHub Actions: [Migrating from CircleCI to GitHub Actions \- GitHub Help](https://help.github.com/en/actions/migrating-to-github-actions/migrating-from-circleci-to-github-actions)
-* Azure pipeline -> GitHub Actions: [Migrating from Azure Pipelines to GitHub Actions \- GitHub Help](https://help.github.com/en/actions/migrating-to-github-actions/migrating-from-azure-pipelines-to-github-actions)
-* GitLab -> GitHub Actions: [Migrating from GitLab CI/CD to GitHub Actions \- GitHub Docs](https://docs.github.com/en/actions/migrating-to-github-actions/migrating-from-gitlab-cicd-to-github-actions)
-* Jenkins -> GitHub Actions: [Migrating from Jenkins to GitHub Actions \- GitHub Help](https://help.github.com/en/actions/migrating-to-github-actions/migrating-from-jenkins-to-github-actions)
+- CircleCI -> GitHub Actions: [Migrating from CircleCI to GitHub Actions \- GitHub Help](https://help.github.com/en/actions/migrating-to-github-actions/migrating-from-circleci-to-github-actions)
+- Azure pipeline -> GitHub Actions: [Migrating from Azure Pipelines to GitHub Actions \- GitHub Help](https://help.github.com/en/actions/migrating-to-github-actions/migrating-from-azure-pipelines-to-github-actions)
+- GitLab -> GitHub Actions: [Migrating from GitLab CI/CD to GitHub Actions \- GitHub Docs](https://docs.github.com/en/actions/migrating-to-github-actions/migrating-from-gitlab-cicd-to-github-actions)
+- Jenkins -> GitHub Actions: [Migrating from Jenkins to GitHub Actions \- GitHub Help](https://help.github.com/en/actions/migrating-to-github-actions/migrating-from-jenkins-to-github-actions)
 
 Also you may consider migrate from GitHub Actions.
 
-* GitHub Actions -> CircleCI: [Migrating from Github Actions \- CircleCI](https://circleci.com/docs/migrating-from-github)
+- GitHub Actions -> CircleCI: [Migrating from Github Actions \- CircleCI](https://circleci.com/docs/migrating-from-github)
 
 ## Job and workflow
 
 All CI has yaml definitions.
 
-* ✔️: GitHub Actions define jobs inside workflow. Can trigger both Push and PR.
+- ✔️: GitHub Actions define jobs inside workflow. Can trigger both Push and PR.
 
 ```yaml
 name: workflow name
@@ -138,7 +142,7 @@ jobs:
       - run: echo foo
 ```
 
-* ✔️: CircleCI define jobs and conbinate them in workflow. Can not trigger both Push and PR.
+- ✔️: CircleCI define jobs and conbinate them in workflow. Can not trigger both Push and PR.
 
 ```yaml
 version: 2.1
@@ -155,26 +159,26 @@ workflows:
       - Job_Name
 ```
 
-* ✔️: Azure Pipeline define jobs and conbinate them in stage. Can trigger both Push and PR.
+- ✔️: Azure Pipeline define jobs and conbinate them in stage. Can trigger both Push and PR.
 
 ```yaml
 trigger:
-- main
+  - main
 
 stages:
-- stage: StageName
-  jobs:
-  - job: Job_Name
+  - stage: StageName
+    jobs:
+      - job: Job_Name
 
 jobs:
-- job: Job_Name
-  pool:
-    vmImage: 'ubuntu-latest'
-  steps:
-  - bash: echo "foo"
+  - job: Job_Name
+    pool:
+      vmImage: "ubuntu-latest"
+    steps:
+      - bash: echo "foo"
 ```
 
-* ⚠️: Jenkins has Declaretive Pipeline. Trigger needs to be defined outside pipeline.
+- ⚠️: Jenkins has Declaretive Pipeline. Trigger needs to be defined outside pipeline.
 
 ```groovy
 pipeline {
@@ -196,11 +200,10 @@ pipeline {
 
 This functionality enables you to stop next job until manually approved.
 
-* ⚠️: GitHub Actions supports Approval on **Environment**. However Environment cannot use in `GitHub Team` pricing.
-* ✔️: CircleCI supports Approval.
-* ✔️: Azure Pipelin supports Approval.
-* ✔️: Jenkins supports Approval.
-
+- ⚠️: GitHub Actions supports Approval on **Environment**. However Environment cannot use in `GitHub Team` pricing.
+- ✔️: CircleCI supports Approval.
+- ✔️: Azure Pipelin supports Approval.
+- ✔️: Jenkins supports Approval.
 
 ## Meta values and JobId
 
@@ -208,13 +211,10 @@ GitHub Actions has Context concept, you can access job specific info via `github
 for example, `github.run_id` is A unique number for each run within a repository.
 Also you can access default environment variables like `GITHUB_RUN_ID`.
 
-* ✔️: GitHub Actions [environment variable](https://help.github.com/en/actions/configuring-and-managing-workflows/using-environment-variables#default-environment-variables) `GITHUB_RUN_ID` or [context](https://help.github.com/en/actions/reference/context-and-expression-syntax-for-github-actions#github-context) `github.run_id`
-* ✔️: CircleCI [environment vairable](https://circleci.com/docs/2.0/env-vars/#built-in-environment-variables) `CIRCLE_BUILD_NUM` and `CIRCLE_WORKFLOW_ID`
-* ✔️: Azure Pipeline [environment variable](https://docs.microsoft.com/ja-jp/azure/devops/pipelines/process/run-number?view=azure-devops&tabs=yaml#tokens) `BuildID`.
-* ✔️: Jenkins [environment vairable](https://wiki.jenkins.io/display/JENKINS/Building+a+software+project) `BUILD_NUMBER`
-
-
-
+- ✔️: GitHub Actions [environment variable](https://help.github.com/en/actions/configuring-and-managing-workflows/using-environment-variables#default-environment-variables) `GITHUB_RUN_ID` or [context](https://help.github.com/en/actions/reference/context-and-expression-syntax-for-github-actions#github-context) `github.run_id`
+- ✔️: CircleCI [environment vairable](https://circleci.com/docs/2.0/env-vars/#built-in-environment-variables) `CIRCLE_BUILD_NUM` and `CIRCLE_WORKFLOW_ID`
+- ✔️: Azure Pipeline [environment variable](https://docs.microsoft.com/ja-jp/azure/devops/pipelines/process/run-number?view=azure-devops&tabs=yaml#tokens) `BuildID`.
+- ✔️: Jenkins [environment vairable](https://wiki.jenkins.io/display/JENKINS/Building+a+software+project) `BUILD_NUMBER`
 
 ## Path filter
 
@@ -222,79 +222,79 @@ GitHub Actions can use `on.<event>.paths-ignore:` and `on.<event>.paths:` by def
 
 > [paths - Workflow syntax for GitHub Actions \- GitHub Help](https://help.github.com/en/actions/reference/workflow-syntax-for-github-actions#onpushpull_requestpaths)
 
-* ✔️: GitHub Actions **CAN** set path-filter.
-* ❌: CircleCI can not set path-filter.
-* ✔️: Azure Pipeline can set path-filter.
-* ❌: Jenkins can not set path-filter. User should prepare by theirself.
+- ✔️: GitHub Actions **CAN** set path-filter.
+- ❌: CircleCI can not set path-filter.
+- ✔️: Azure Pipeline can set path-filter.
+- ❌: Jenkins can not set path-filter. User should prepare by theirself.
 
 ## Redundant build cancellation
 
 GitHub Actions not support exact functionality as CircleCI provide, but you can do via concurrency control. Another option is community actions like [rokroskar/workflow-run-cleanup-action](https://github.com/marketplace/actions/workflow-run-cleanup-action), [fauguste/auto-cancellation-running-action](https://github.com/marketplace/actions/auto-cancellation-running-action) and [yellowmegaman/gh-build-canceller](https://github.com/marketplace/actions/gh-actions-stale-run-canceller).
 
-* ✔️: GitHub Actions has concurrency control and it can cancel in progress build. Or your can use community Actions.
-* ✔️: CircleCI support cancel redundant build.
-* ❌: Azure Pipeline not support cancel redundant build.
-* ❌: Jenkins not support cancel redundant build, you need cancel it from parallel job.
+- ✔️: GitHub Actions has concurrency control and it can cancel in progress build. Or your can use community Actions.
+- ✔️: CircleCI support cancel redundant build.
+- ❌: Azure Pipeline not support cancel redundant build.
+- ❌: Jenkins not support cancel redundant build, you need cancel it from parallel job.
 
 ## Rerun failed workflow
 
-* ✔️: GitHub Actions support Re-run jobs. You can re-run for `whole workflow`, `single job` and `failed job`.
-* ✔️: CircleCI support Re-run jobs. You can re-run `whole workflow` or `failed job` again.
-* ⚠️: Azure Pipeline not support Re-run stage but you can not re-run `failed job` only.
-* ✔️: Jenkins Declarative Pipeline support Re-run jobs. You can re-run `Job` or `Stage` again. But you may find it is unstable.
+- ✔️: GitHub Actions support Re-run jobs. You can re-run for `whole workflow`, `single job` and `failed job`.
+- ✔️: CircleCI support Re-run jobs. You can re-run `whole workflow` or `failed job` again.
+- ⚠️: Azure Pipeline not support Re-run stage but you can not re-run `failed job` only.
+- ✔️: Jenkins Declarative Pipeline support Re-run jobs. You can re-run `Job` or `Stage` again. But you may find it is unstable.
 
 ## Reusable job and workflow
 
 Write script is better than directly write on the step, so that we can reuse same execution from other workflows or jobs.
 
-* ✔️: GitHub Actions can reuse yaml via `Reusable workflow`, `Composite Actions` and `Organization workflow`.
-* ✔️: CircleCI can reuse job, and also `YAML anchor` is useul.
-* ✔️: Azure Pipeline has template to refer stage, job and step from other yaml.
-* ⚠️: Jenkins pipeline could refer other pipeline. However a lot case you would prefer define job step in script and reuse it. Reusing pipeline  easily make it complex with Jenkins.
+- ✔️: GitHub Actions can reuse yaml via `Reusable workflow`, `Composite Actions` and `Organization workflow`.
+- ✔️: CircleCI can reuse job, and also `YAML anchor` is useul.
+- ✔️: Azure Pipeline has template to refer stage, job and step from other yaml.
+- ⚠️: Jenkins pipeline could refer other pipeline. However a lot case you would prefer define job step in script and reuse it. Reusing pipeline easily make it complex with Jenkins.
 
 ## Set Environment variables
 
 Define `Environment varialbes` in each job step, then reuse it later step is common pattern.
 
-* ✔️: GitHub Actions [use redirect to special Environment variable](https://help.github.com/en/actions/reference/workflow-commands-for-github-actions#setting-an-environment-variable) `$GITHUB_ENV` via `echo "{environment_variable_name}={value}" >> $GITHUB_ENV` (Linux) or `"{environment_variable_name}={value}" >> $env:GITHUB_ENV` (Windows) syntax.
-* `::set-env` syntax has been deprecated for [security reason](https://github.blog/changelog/2020-10-01-github-actions-deprecating-set-env-and-add-path-commands/).
-* ✔️: CircleCI use redirect to special Environment variable `$BASH_ENV` via `echo "export GIT_SHA1=$CIRCLE_SHA1" >> $BASH_ENV` syntax.
-* ✔️: Azure Pipeline use task.setvariable via `echo "##vso[task.setvariable variable=NAME]VALUE"` syntax.
-* ✔️: Jenkins use `Env.`.
+- ✔️: GitHub Actions [use redirect to special Environment variable](https://help.github.com/en/actions/reference/workflow-commands-for-github-actions#setting-an-environment-variable) `$GITHUB_ENV` via `echo "{environment_variable_name}={value}" >> $GITHUB_ENV` (Linux) or `"{environment_variable_name}={value}" >> $env:GITHUB_ENV` (Windows) syntax.
+- `::set-env` syntax has been deprecated for [security reason](https://github.blog/changelog/2020-10-01-github-actions-deprecating-set-env-and-add-path-commands/).
+- ✔️: CircleCI use redirect to special Environment variable `$BASH_ENV` via `echo "export GIT_SHA1=$CIRCLE_SHA1" >> $BASH_ENV` syntax.
+- ✔️: Azure Pipeline use task.setvariable via `echo "##vso[task.setvariable variable=NAME]VALUE"` syntax.
+- ✔️: Jenkins use `Env.`.
 
 ## Set Output
 
 Define `output` in each job step, then reuse it later step is less side-effect than environment variable. Also it can pass value between job via `job output` , and it can't achieve with environment variable pattern.
 
-* ✔️: GitHub Actions [use redirect to special Environment variable](https://docs.github.com/en/actions/using-workflows/workflow-commands-for-github-actions#setting-an-output-parameter) `$GITHUB_OUTPUT` via `echo "{name}={value}" >> "$GITHUB_OUTPUT"` (Linux) or `"{name}=value" >> $env:GITHUB_OUTPUT` (Windows) syntax.
-* ⚠️: CircleCI has no equivalent but use Environment Variables.
-* ✔️: Azure Pipeline use task.setvariable via `echo "##vso[task.setvariable variable=NAME;isoutput=true]VALUE"` syntax.
-* ⚠️: Jenkins has no equivalent but use Environment Variables.
+- ✔️: GitHub Actions [use redirect to special Environment variable](https://docs.github.com/en/actions/using-workflows/workflow-commands-for-github-actions#setting-an-output-parameter) `$GITHUB_OUTPUT` via `echo "{name}={value}" >> "$GITHUB_OUTPUT"` (Linux) or `"{name}=value" >> $env:GITHUB_OUTPUT` (Windows) syntax.
+- ⚠️: CircleCI has no equivalent but use Environment Variables.
+- ✔️: Azure Pipeline use task.setvariable via `echo "##vso[task.setvariable variable=NAME;isoutput=true]VALUE"` syntax.
+- ⚠️: Jenkins has no equivalent but use Environment Variables.
 
 > **Info** GitHub Actions `::set-output` syntax has been deprecated for [security reason](https://github.blog/changelog/2022-10-11-github-actions-deprecating-save-state-and-set-output-commands/).
 
 ## Set PATH Environment variables
 
-* ✔️: GitHub Actions use redirect to special Environment variable `$GITHUB_PATH` via `echo "{path}" >> "$GITHUB_PATH"` or `echo "{path}" | tee -a "$GITHUB_PATH"` syntax.
-* `::add-path` syntax has been deprecated for [security reason](https://github.blog/changelog/2020-10-01-github-actions-deprecating-set-env-and-add-path-commands/).
-* ✔️: CircleCI use redirect to special Environment variable `$BASH_ENV` wiht name `PATH` via `echo "export PATH=$GOPATH/bin:$PATH" >> $BASH_ENV` syntax.
-* ✔️: Azure Pipeline use task.setvariable via `echo '##vso[task.setvariable variable=path]$(PATH):/dir/to/whatever'` syntax.
-* ✔️: Jenkins use `Env.`.
+- ✔️: GitHub Actions use redirect to special Environment variable `$GITHUB_PATH` via `echo "{path}" >> "$GITHUB_PATH"` or `echo "{path}" | tee -a "$GITHUB_PATH"` syntax.
+- `::add-path` syntax has been deprecated for [security reason](https://github.blog/changelog/2020-10-01-github-actions-deprecating-set-env-and-add-path-commands/).
+- ✔️: CircleCI use redirect to special Environment variable `$BASH_ENV` wiht name `PATH` via `echo "export PATH=$GOPATH/bin:$PATH" >> $BASH_ENV` syntax.
+- ✔️: Azure Pipeline use task.setvariable via `echo '##vso[task.setvariable variable=path]$(PATH):/dir/to/whatever'` syntax.
+- ✔️: Jenkins use `Env.`.
 
 ## Set Secrets for Job
 
 GitHub ACtions offer Secrets for each repository and Organization. Secrets will be masked on the log, and also [you can mask desired output in log](https://docs.github.com/en/actions/using-workflows/workflow-commands-for-github-actions#masking-a-value-in-a-log).
 
-* ✔️: GitHub Actions use Secrets and Environment Secrets.
-* ✔️: CircleCI offer Environment Variables and Context.
-* ✔️: Azure Pipeline has Environment Variables and Paramter.
-* ✔️: Jenkins has Credential Provider.
+- ✔️: GitHub Actions use Secrets and Environment Secrets.
+- ✔️: CircleCI offer Environment Variables and Context.
+- ✔️: Azure Pipeline has Environment Variables and Paramter.
+- ✔️: Jenkins has Credential Provider.
 
 GitHub Actions supports "Organization Secrets", "Repository Secrets" and "Environment Secrets".
 
-* You can set secrets for Organization and filter to selected repository with `Organization > Settings > Secrets`.
-* You can set secrets for each repository with `Repository > Settings > Secrets`.
-* You can set Environment secrets for each repository with `Repository > Environment > Secrets`.
+- You can set secrets for Organization and filter to selected repository with `Organization > Settings > Secrets`.
+- You can set secrets for each repository with `Repository > Settings > Secrets`.
+- You can set Environment secrets for each repository with `Repository > Environment > Secrets`.
 
 If same secrets key is exists, winner is `Environment Secrets` > `Repository Secrets` > `Organization Secrets`.
 
@@ -304,11 +304,19 @@ If you want spread your secrets with personal account, you need set each reposit
 
 GitHub Actions support when HEAD commit contains key word like other ci.
 
-* ✔️: GitHub Actions can skip workflow via `[skip ci]`, `[ci skip]`, `[no ci]`, `[skip actions]` or `[actions skip]`. If PR last commit message contains `[skip ci]`, then merge commit also skip.
-* ✔️: CircleCI can skip job via `[skip ci]` or `[ci skip]`. If PR last commit message contains `[skip ci]`, then merge commit also skip.
-* ✔️: Azure Pipeline can skip job via `***NO_CI***`, `[skip ci]` or `[ci skip]`, or [others](https://github.com/Microsoft/azure-pipelines-agent/issues/858#issuecomment-475768046).
-* ❌: Jenkins not support skip ci on default, but there are plugins to support `[skip ci]` or any expression w/pipeline like [SCM Skip \| Jenkins plugin](https://plugins.jenkins.io/scmskip/).
+- ✔️: GitHub Actions can skip workflow via `[skip ci]`, `[ci skip]`, `[no ci]`, `[skip actions]` or `[actions skip]`. If PR last commit message contains `[skip ci]`, then merge commit also skip.
+- ✔️: CircleCI can skip job via `[skip ci]` or `[ci skip]`. If PR last commit message contains `[skip ci]`, then merge commit also skip.
+- ✔️: Azure Pipeline can skip job via `***NO_CI***`, `[skip ci]` or `[ci skip]`, or [others](https://github.com/Microsoft/azure-pipelines-agent/issues/858#issuecomment-475768046).
+- ❌: Jenkins not support skip ci on default, but there are plugins to support `[skip ci]` or any expression w/pipeline like [SCM Skip \| Jenkins plugin](https://plugins.jenkins.io/scmskip/).
 
+## Git Checkout
+
+GitHub Actions support checkout by actions and supports variety of checkout options include sparse checkout.
+
+- ✔️: GitHub Actions [actions/checkout](https://github.com/actions/checkout) support `ssh` or `https` protocol, `submodule`, `shallow-clone`, `sparse checkout` and `lfs`. `actions/checkout` is default `shallow-clone` (depth 1).
+- ⚠️: CircleCI [checkout](https://circleci.com/docs/configuration-reference/#checkout) support `ssh` or `https` protocol. It missing `submodule`, `shallow-clone`, `sparse-checkout` and `lfs` support. `checkout` is default full clone.
+- ✔️: Azure Pipeline [checkout](https://learn.microsoft.com/en-us/azure/devops/pipelines/yaml-schema/steps-checkout?view=azure-pipelines) support `ssh` or `https` protocol, `submodule`, `shallow-clone` and `lfs`. It missing `sparse-checkout` support. `checkout` is default `shallow-clone` (depth 1) for new pipeline created after the September 2022.
+- ✔️: Jenkins [GitSCM](https://www.jenkins.io/doc/pipeline/steps/params/gitscm/) support `ssh` or `https` protocol, `submodule`, `shallow-clone`, `sparse checkout` and `lfs`. `GitSCM` is default full clone.
 
 # Basic - Fundamentables
 
@@ -324,8 +332,18 @@ Make sure you can not refer github context in script.
 
 name: "context github"
 on:
+  issue_comment:
+    types: [created]
   push:
     branches: ["main"]
+    tags: ["*"]
+  pull_request:
+    branches: ["main"]
+    types: [opened, synchronize, reopened, closed]
+  schedule:
+    - cron: "0 0 * * *"
+  workflow_dispatch:
+
 jobs:
   context:
     runs-on: ubuntu-latest
@@ -353,128 +371,61 @@ jobs:
         run: echo ${{ github.event.ref }}
       - name: action
         run: echo ${{ github.action }}
-
 ```
 
 **JSON output**
 
 Use `toJson(<CONTEXT>)` To show context values in json.
 
-To see push context.
-
 ```yaml
-# .github/workflows/dump_context_push.yaml
+# .github/workflows/dump_context.yaml
 
-name: dump context push
+name: dump context
 on:
-  workflow_dispatch:
+  issue_comment:
+    types: [created]
+  push:
+    branches: ["main"]
+    tags: ["*"]
+  pull_request:
+    branches: ["main"]
+    types: [opened, synchronize, reopened, closed]
   schedule:
     - cron: "0 0 * * *"
-  push:
-    branches: ["main"]
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    timeout-minutes: 3
-    steps:
-      - name: Dump environment
-        run: export
-      - name: Dump GitHub context
-        run: echo "$CONTEXT"
-        env:
-          CONTEXT: ${{ toJson(github) }}
-      - name: Dump job context
-        run: echo "$CONTEXT"
-        env:
-          CONTEXT: ${{ toJson(job) }}
-      - name: Dump steps context
-        run: echo "$CONTEXT"
-        env:
-          CONTEXT: ${{ toJson(steps) }}
-      - name: Dump runner context
-        run: echo "$CONTEXT"
-        env:
-          CONTEXT: ${{ toJson(runner) }}
-      - name: Dump strategy context
-        run: echo "$CONTEXT"
-        env:
-          CONTEXT: ${{ toJson(strategy) }}
-      - name: Dump matrix context
-        run: echo "$CONTEXT"
-        env:
-          CONTEXT: ${{ toJson(matrix) }}
-
-```
-
-To see pull_request context.
-
-```yaml
-# .github/workflows/dump_context_pr.yaml
-
-name: dump context pr
-on:
-  pull_request:
-    branches: ["main"]
-    types:
-      - closed
-      - labeled
-      - opened
-      - reopened
-      - synchronize
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    timeout-minutes: 3
-    steps:
-      - name: Dump environment
-        run: export
-      - name: Dump GitHub context
-        run: echo "$CONTEXT"
-        env:
-          CONTEXT: ${{ toJson(github) }}
-      - name: Dump job context
-        run: echo "$CONTEXT"
-        env:
-          CONTEXT: ${{ toJson(job) }}
-      - name: Dump steps context
-        run: echo "$CONTEXT"
-        env:
-          CONTEXT: ${{ toJson(steps) }}
-      - name: Dump runner context
-        run: echo "$CONTEXT"
-        env:
-          CONTEXT: ${{ toJson(runner) }}
-      - name: Dump strategy context
-        run: echo "$CONTEXT"
-        env:
-          CONTEXT: ${{ toJson(strategy) }}
-      - name: Dump matrix context
-        run: echo "$CONTEXT"
-        env:
-          CONTEXT: ${{ toJson(matrix) }}
-
-```
-
-To see local action context.
-
-```yaml
-# .github/workflows/dump_context_action.yaml
-
-name: dump context action
-on:
   workflow_dispatch:
-  push:
-    branches: ["main"]
-  pull_request:
-    branches: ["main"]
+
 jobs:
-  build:
+  dump:
     runs-on: ubuntu-latest
     timeout-minutes: 3
     steps:
       - uses: actions/checkout@v3
-      - uses: ./.github/actions/dump-context-actions
-
+      - name: Dump environment
+        run: export
+      - name: Dump GitHub context
+        run: echo "$CONTEXT"
+        env:
+          CONTEXT: ${{ toJson(github) }}
+      - name: Dump job context
+        run: echo "$CONTEXT"
+        env:
+          CONTEXT: ${{ toJson(job) }}
+      - name: Dump steps context
+        run: echo "$CONTEXT"
+        env:
+          CONTEXT: ${{ toJson(steps) }}
+      - name: Dump runner context
+        run: echo "$CONTEXT"
+        env:
+          CONTEXT: ${{ toJson(runner) }}
+      - name: Dump strategy context
+        run: echo "$CONTEXT"
+        env:
+          CONTEXT: ${{ toJson(strategy) }}
+      - name: Dump matrix context
+        run: echo "$CONTEXT"
+        env:
+          CONTEXT: ${{ toJson(matrix) }}
 ```
 
 ## Environment variables in script
@@ -519,11 +470,9 @@ jobs:
       - run: echo ${{ env.GIT_TAG }}
       - run: bash -eux .github/scripts/setenv.sh --ref "${GITHUB_REF#refs/heads/}"
       - run: echo ${{ env.GIT_TAG_SCRIPT }}
-
 ```
 
 `echo ${{ env.GIT_TAG_SCRIPT }}` will output `chore/context_in_script` as expected.
-
 
 ## If and context reference
 
@@ -568,9 +517,7 @@ jobs:
         if: ${{ matrix.sample == 'hoge' }}
       - run: echo "this is matrix if for fuga"
         if: ${{ matrix.sample == 'fuga' }}
-
 ```
-
 
 ## Permissions
 
@@ -625,7 +572,6 @@ jobs:
       - run: echo "${{ contains(steps.file_changes2.outputs.files, '.github/dummy')}}"
       - run: echo "${{ contains(steps.file_changes2.outputs.files, '.github/dummy') || 'true' }}"
       - run: echo "RUN_TEST2=${{ contains(steps.file_changes2.outputs.files, '.github/workflows') || 'true' }}"  | tee -a "$GITHUB_ENV"
-
 ```
 
 job permission can be done with `job.<job_name>.permissions`.
@@ -663,19 +609,17 @@ jobs:
       - run: echo "${{ contains(steps.file_changes2.outputs.files, '.github/dummy')}}"
       - run: echo "${{ contains(steps.file_changes2.outputs.files, '.github/dummy') || 'true' }}"
       - run: echo "RUN_TEST2=${{ contains(steps.file_changes2.outputs.files, '.github/workflows') || 'true' }}"  | tee -a "$GITHUB_ENV"
-
 ```
 
 The most important permission is `id-tokens: write`. It enables job to use OIDC like AWS, Azure and GCP.
-
 
 ## Reusable actions written in yaml - composite
 
 To reuse local job, create local composite action is easiest way to do, this is calls `composite actions`.
 Create yaml file inside local action path, then declare `using: "composite"` in local action.yaml.
 
-* step1. Place your yaml to `.github/actions/YOUR_DIR/action.yaml`
-* step2. Write your composite actions yaml.
+- step1. Place your yaml to `.github/actions/YOUR_DIR/action.yaml`
+- step2. Write your composite actions yaml.
 
 ```yaml
 # .github/actions/local-composite-actions/action.yaml
@@ -694,11 +638,9 @@ runs:
     - name: THIS IS STEP1
       shell: bash # this is key point
       run: echo ${{ inputs.foo }}
-
 ```
 
-* step3. Use actions from your workflow.
-
+- step3. Use actions from your workflow.
 
 ```yaml
 # .github/workflows/reuse_local_actions.yaml
@@ -720,7 +662,6 @@ jobs:
         uses: ./.github/actions/local-composite-actions
         with:
           foo: BAR
-
 ```
 
 ## Reusable actions written in node - node12
@@ -731,8 +672,8 @@ Next place your node.js source files inside actions directory, you may require `
 
 > TIPS: You may find it is useful when you are running on GHE and copy GitHub Actions to your local.
 
-* step1. Place your ation.yaml  to `.github/actions/YOUR_DIR/actions.yaml`
-* step2. Write your node actions yaml.
+- step1. Place your ation.yaml to `.github/actions/YOUR_DIR/actions.yaml`
+- step2. Write your node actions yaml.
 
 ```yaml
 # .github/actions/local-node-actions/action.yaml
@@ -743,19 +684,17 @@ description: |
 runs:
   using: "node12"
   main: "index.js"
-
 ```
 
-* step3. Write your source code to `.github/actions/YOUR_DIR/*.js`.
+- step3. Write your source code to `.github/actions/YOUR_DIR/*.js`.
 
 ```js
 // .github/actions/local-node-actions/index.js
 
 console.log("Hello, World!");
-
 ```
 
-* step4. Use actions from your workflow.
+- step4. Use actions from your workflow.
 
 ```yaml
 # .github/workflows/reuse_local_actions_node.yaml
@@ -775,9 +714,7 @@ jobs:
       - uses: actions/checkout@v3
       - name: use local action
         uses: ./.github/actions/local-node-actions
-
 ```
-
 
 ## Reusable workflow
 
@@ -792,33 +729,33 @@ There are limitations on Reusable workflow caller.
 
 1. Private repo can call same repo's reusable workflow, but can not call other private repo's workflow.
 1. Caller cannot use ${{ env.FOO }} for `with` inputs.
-    ```yaml
-    jobs:
-      bad:
-        runs-on: ubuntu-latest
-        steps:
-          uses: ./.github/workflows/dummy.yaml
-          with:
-            value: ${{ env.FOO }} # caller can not use `env.` in with block.
-          secrets: inherit
-    ```
+   ```yaml
+   jobs:
+     bad:
+       runs-on: ubuntu-latest
+       steps:
+         uses: ./.github/workflows/dummy.yaml
+         with:
+           value: ${{ env.FOO }} # caller can not use `env.` in with block.
+         secrets: inherit
+   ```
 
 ### Callee Limitations
 
 1. Callee workflow must place under `.github/workflows/`. Otherwise caller treated as calling public workflow.
-    ```bash
-    $ ls -l ./.github/workflows/
-    ```
+   ```bash
+   $ ls -l ./.github/workflows/
+   ```
 1. Callee cannot refer Caller's Environment Variable.
-    ```yaml
-    env:
-      FOO: foo # Reusable workflow callee cannot refer this env.
-    jobs:
-      bad:
-        runs-on: ubuntu-latest
-        steps:
-          uses: ./.github/workflows/dummy.yaml
-    ```
+   ```yaml
+   env:
+     FOO: foo # Reusable workflow callee cannot refer this env.
+   jobs:
+     bad:
+       runs-on: ubuntu-latest
+       steps:
+         uses: ./.github/workflows/dummy.yaml
+   ```
 
 ### Reusable workflow definition sample
 
@@ -857,6 +794,8 @@ jobs:
       output2: ${{ steps.step2.outputs.secondword }}
     steps:
       - uses: actions/checkout@v3
+        with:
+          ref: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.ref || '' }} # checkout PR HEAD commit instead of merge commit
       - name: (Limitation) Callee can not refer caller environment variable.
         run: echo "caller environment. ${{ env.CALLER_VALUE }}"
       - name: called username
@@ -915,7 +854,6 @@ jobs:
     needs: call-workflow-passing-data
     steps:
       - run: echo ${{ needs.call-workflow-passing-data.outputs.firstword }} ${{ needs.call-workflow-passing-data.outputs.secondword }}
-
 ```
 
 ### Call public repository's reusable workflow
@@ -950,7 +888,6 @@ jobs:
     needs: call-workflow-passing-data
     steps:
       - run: echo ${{ needs.call-workflow-passing-data.outputs.firstword }} ${{ needs.call-workflow-passing-data.outputs.secondword }}
-
 ```
 
 ### Call reusable workflow with matrix
@@ -980,7 +917,6 @@ jobs:
       username: ${{ matrix.username }}
       is-valid: true
     secrets: inherit
-
 ```
 
 ### Nest reusable workflow
@@ -1011,7 +947,6 @@ jobs:
       username: ${{ inputs.username }}
       is-valid: ${{ inputs.is-valid }}
     secrets: inherit
-
 ```
 
 ## Run when previous job is success
@@ -1044,7 +979,6 @@ jobs:
     timeout-minutes: 3
     steps:
       - run: echo run when only build success
-
 ```
 
 ## Run when previous step status is specific
@@ -1079,7 +1013,6 @@ jobs:
         if: cancelled()
       - run: echo "failure() run when any previous step of a job fails."
         if: failure()
-
 ```
 
 ## Run write Multiline code
@@ -1106,7 +1039,6 @@ jobs:
       - run: |
           echo "foo"
           echo "bar"
-
 ```
 
 **if**
@@ -1136,10 +1068,7 @@ jobs:
     timeout-minutes: 5
     steps:
       - run: echo "workflow_dispatch"
-
 ```
-
-
 
 ## Strategy matrix and secret dereference
 
@@ -1182,7 +1111,6 @@ jobs:
         env:
           secret: ${{ matrix.secret }}
       - run: echo "env:${{ env.fruit }} secret:${{ secrets[env.fruit] }}"
-
 ```
 
 ## Strategy matrix and environment variables
@@ -1217,9 +1145,7 @@ jobs:
       - run: echo "${NEW_ORG}"
         env:
           NEW_ORG: new-${{ env.ORG }}
-
 ```
-
 
 ## Timeout settings
 
@@ -1246,7 +1172,6 @@ jobs:
     steps:
       - run: echo "done before timeout"
         timeout-minutes: 1 # each step
-
 ```
 
 ## Workflow Concurrency Control
@@ -1269,7 +1194,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: sleep 60s
-
 ```
 
 Specify `cancel-in-progress: true` will cancel parallel build.
@@ -1289,7 +1213,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: sleep 60s
-
 ```
 
 ## Workflow dispatch and passing input
@@ -1351,7 +1274,6 @@ jobs:
           echo "Log level: ${INPUT_LOGLEVEL}"
           echo "Tags: ${INPUT_TAGS}"
       - run: export
-
 ```
 
 Even if you specify action inputs, input value will not store as ENV var `INPUT_{INPUTS_ID}` as usual.
@@ -1360,9 +1282,9 @@ Even if you specify action inputs, input value will not store as ENV var `INPUT_
 
 Workflow dispatch supported input type.
 
-* boolean: `true` or `false` and Web UI offers checkbox.
-* choice: enum options and Web UI offers selection box.
-* environment: enum GitHub Environments and Web UI offers selection box.
+- boolean: `true` or `false` and Web UI offers checkbox.
+- choice: enum options and Web UI offers selection box.
+- environment: enum GitHub Environments and Web UI offers selection box.
 
 ```yaml
 # .github/workflows/workflow_dispatch_mixed_inputs.yaml
@@ -1408,9 +1330,7 @@ jobs:
           echo "use-emoji (bool): ${{ inputs.use-emoji == true }}"
       - name: Emoji
         run: echo "🥳 😊"
-
 ```
-
 
 ## Workflow Redundant Control
 
@@ -1441,7 +1361,6 @@ jobs:
     timeout-minutes: 3
     steps:
       - run: echo push and pull_request trigger
-
 ```
 
 **redundant build cancel**
@@ -1469,7 +1388,6 @@ jobs:
         if: "!startsWith(github.ref, 'refs/tags/') && github.ref != 'refs/heads/main'"
         env:
           GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
-
 ```
 
 # Basic - Commit, Branch and Tag handling
@@ -1498,10 +1416,7 @@ jobs:
       - run: echo "${{ steps.file_changes.outputs.files }}"
       - if: contains(steps.file_changes.outputs.files, '.github/workflows/')
         run: echo changes contains .github/workflows/
-
 ```
-
-
 
 ## Schedule job on non-default branch
 
@@ -1514,8 +1429,8 @@ schedule workflow should merge to default branch to apply workflow change.
 Pass branch info when you want run checkout on non-default branch.
 Don't forget pretend `refs/heads/` to your branch.
 
-* good: refs/heads/some-branch
-* bad: some-branch
+- good: refs/heads/some-branch
+- bad: some-branch
 
 ```yaml
 # .github/workflows/schedule_job.yaml
@@ -1536,10 +1451,7 @@ jobs:
       - uses: actions/checkout@v3
         with:
           ref: refs/heads/some-branch
-
 ```
-
-
 
 You can create release and upload assets through GitHub Actions.
 Multiple assets upload is supported by running running `actions/upload-release-asset` for each asset.
@@ -1588,9 +1500,7 @@ jobs:
           asset_path: fuga.${{ env.GIT_TAG }}.txt
           asset_name: fuga.${{ env.GIT_TAG }}.txt
           asset_content_type: application/octet-stream
-
 ```
-
 
 ## Trigger branch push only but skip on tag push
 
@@ -1611,7 +1521,6 @@ jobs:
     timeout-minutes: 3
     steps:
       - run: echo not run on tag
-
 ```
 
 ## Trigger commit message
@@ -1632,9 +1541,7 @@ jobs:
       - run: echo "$COMMIT_MESSAGES"
         env:
           COMMIT_MESSAGES: ${{ toJson(github.event.commits.*.message) }}
-
 ```
-
 
 ## Trigger tag push only but skip on branch push
 
@@ -1653,7 +1560,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: echo not run on branch push
-
 ```
 
 ## Trigger for specific tag pattern
@@ -1661,14 +1567,14 @@ jobs:
 You can use pattern on `on.push.tags`, but you can't on `step.if`.
 This pattern will match following.
 
-* 0.0.1
-* 1.0.0+preview
-* 0.0.3-20200421-preview+abcd123408534
+- 0.0.1
+- 1.0.0+preview
+- 0.0.3-20200421-preview+abcd123408534
 
 not for below.
 
-* v0.0.1
-* release
+- v0.0.1
+- release
 
 ```yaml
 # .github/workflows/tag_push_only_pattern.yaml
@@ -1683,7 +1589,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: echo not run on branch push
-
 ```
 
 # Basic - Issue and Pull Request handling
@@ -1716,7 +1621,6 @@ jobs:
       - run: echo "${IS_HOGE}"
       - run: echo "run!"
         if: env.IS_HOGE == 'true'
-
 ```
 
 ## Skip ci on pull request title
@@ -1748,7 +1652,6 @@ jobs:
     needs: skip
     steps:
       - run: echo run when not skipped
-
 ```
 
 ## Skip pr from fork repo
@@ -1777,7 +1680,6 @@ jobs:
     timeout-minutes: 3
     steps:
       - run: echo build
-
 ```
 
 ## Skip job when Draft PR
@@ -1800,7 +1702,6 @@ jobs:
     timeout-minutes: 3
     steps:
       - uses: actions/checkout@v3
-
 ```
 
 You can control behaviour with PR label.
@@ -1826,9 +1727,7 @@ jobs:
     timeout-minutes: 3
     steps:
       - uses: actions/checkout@v3
-
 ```
-
 
 # Basic - BAD PATTERN
 
@@ -1863,23 +1762,46 @@ Advanced tips.
 
 ## More faster checkout with git sparse-checkout
 
-GitHub Actions provides git checkout with [actions/checkout](https://github.com/actions) actions.
-It supported shallow clone, therefore almost cases brings fastest checkout.
+[actions/checkout](https://github.com/actions) supports both [shallow-clone](https://git-scm.com/docs/shallow) and [sparse checkout](https://git-scm.com/docs/git-sparse-checkout) which is quite useful for monorepository. Typically, monorepository contains many folders and files, but you may want to checkout only specific folder or files.
 
-However if Monorepository, like you contains both Server and Unity, number of files effect checkout.
-[git sparse-checkout](https://git-scm.com/docs/git-sparse-checkout) faster your checkout when specific path only, or exlude some path.
+- `shallow-clone` offers faster checkout by limiting depth of clone to latest 1 or N commits.
+- `sparse checkout` offers faster checkout by limiting checkout files and folders.
 
-> **Note**
-> Currently actions/checkout not supports `git sparse-checkout`, however it may come when https://github.com/actions/checkout/pull/680 is merged.
+> **Note**: actions/checkout supports `git sparse-checkout`, since 2023/June.
 
-**Checkout only selected path**
+Let's see what is difference between `shallow-clone` and `sparse-checkout`.
 
-Below sample checkout only "src/*" path.
+**Shallow clone**
+
+Shallow clones use the `--depth=<N>` parameter in git clone to truncate the commit history. Typically, --depth=1 signifies that we only care about the most recent commits. This drastically reduces the amount of data that needs to be fetched, leading to faster clones and less storage of shallow history.
+
+![](https://github.blog/jp/wp-content/uploads/sites/2/2021/01/Image4.png?w=800&resize=800%2C414)
+
+> ref: https://github.blog/2020-12-21-get-up-to-speed-with-partial-clone-and-shallow-clone/
+
+**Sparse checkout**
+
+Sparse checkout use the `git sparse-checkout set <PATH>` before git clone to truncate the checkout files and folders. This amazingly reduces the amount of data that needs to be fetched, leading to faster checkout and less storage of limited paths.
+
+![](https://i0.wp.com/user-images.githubusercontent.com/121322/72286599-50af8e00-35fa-11ea-9025-d7cbb730192c.png?ssl=1)
+
+> ref: https://github.blog/2020-01-17-bring-your-monorepo-down-to-size-with-sparse-checkout/
+
+Sparce checkout has 2 modes, `git sparse-checkout` and `git sparse-checkout --cone`. You can specify `cone` or not with `sparse-checkout-cone-mode` option. So what the difference between `cone` and not `cone`? Normally `sparse-checkout-cone-mode: true` is faster than `sparse-checkout-cone-mode: false`. But `cone` mode has some limitation, you cannot exclude specific folder. So you need to choose which mode is better for you.
+
+- `sparse checkout: src` & `sparse-checkout-cone-mode: true`, checkout `src` folder and root files.
+- `sparse checkout: src/*` & `sparse-checkout-cone-mode: false`, checkout `src` folder only.
+- `sparse checkout: !src` & `sparse-checkout-cone-mode: true`, you can not use `sparse-checkout-cone-mode: true` with exclude folder.
+- `sparse checkout: !src/*` & `sparse-checkout-cone-mode: false`, you can exlude `src` folder from checkout, but you need specify which folder you want to checkout.
+
+**Sparse checkout**
+
+Checkout "src/\*" and root files, but not checkout any not specified folders.
 
 ```yaml
-# .github/workflows/git_sparsecheckout_only.yaml
+# .github/workflows/git_sparsecheckout.yaml
 
-name: "git sparse-checkout (only)"
+name: git sparse-checkout
 on:
   push:
     branches: ["main"]
@@ -1890,49 +1812,108 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
-      - name: sparse checkout
-        run: |
-          git clone --filter=blob:none --no-checkout --depth 1 --sparse "https://${{ env.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git" .
-
-          echo "git sparse-checkout set only directory"
-          git sparse-checkout set --no-cone "${{ env.SPARSECHECKOUT_DIR }}"
-
-          echo "git sparse-checkout without cone" # cone not allow pattern filter, therefore don't use cone.
-          git sparse-checkout init
-
-          echo "git sparse-checkout list"
-          git sparse-checkout list
-
-          echo "git checkout"
-          git checkout "${GITHUB_SHA}"
-
-          # if you have submodules in Private Repo, use PAT instead of secrets.GITHUB_TOKEN
-          if [[ -f ./.gitmodules ]]; then
-            echo "replace submodule url"
-            sed -i -e "s|https://github.com|https://${{ env.GITHUB_TOKEN }}@github.com|g" ./.gitmodules
-
-            echo "submodule update"
-            git submodule update --init --recursive
-          fi
-
-          echo "git reset"
-          git reset --hard "${GITHUB_SHA}"
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          SPARSECHECKOUT_DIR: src/*
+      - uses: actions/checkout@v3
+        with:
+          sparse-checkout: |
+            src
       - name: list root folders
         run: ls -la
-
+      - name: list src folders
+        run: ls -laR ./src
 ```
 
-**Exclude selected path from checkout**
+Result is selected `src` folder and root files will checkout.
 
-Below sample checkout with exlude "src/*" path.
+```sh
+$ ls -la
+total 104
+drwxr-xr-x 4 runner docker  4096 Jun 14 10:23 .
+drwxr-xr-x 3 runner docker  4096 Jun 14 10:23 ..
+-rw-r--r-- 1 runner docker  3557 Jun 14 10:23 .editorconfig
+drwxr-xr-x 8 runner docker  4096 Jun 14 10:23 .git
+-rw-r--r-- 1 runner docker   103 Jun 14 10:23 .gitattributes
+-rw-r--r-- 1 runner docker     5 Jun 14 10:23 .gitignore
+-rw-r--r-- 1 runner docker  1083 Jun 14 10:23 LICENSE.md
+-rw-r--r-- 1 runner docker 70249 Jun 14 10:23 README.md
+drwxr-xr-x 8 runner docker  4096 Jun 14 10:23 src
+
+$ ls -laR ./src
+./src:
+total 32
+drwxr-xr-x 8 runner docker 4096 Jun 14 10:23 .
+drwxr-xr-x 4 runner docker 4096 Jun 14 10:23 ..
+drwxr-xr-x 5 runner docker 4096 Jun 14 10:23 dotnet
+drwxr-xr-x 2 runner docker 4096 Jun 14 10:23 json
+drwxr-xr-x 6 runner docker 4096 Jun 14 10:23 k8s
+drwxr-xr-x 2 runner docker 4096 Jun 14 10:23 mermaid
+drwxr-xr-x 2 runner docker 4096 Jun 14 10:23 shellscript
+drwxr-xr-x 2 runner docker 4096 Jun 14 10:23 txt
+
+.... others
+```
+
+**Sparse checkout and specify which file to checkout**
+
+Checkout only "src/\*" path. All other files and folders will not checkout.
+
+```yaml
+# .github/workflows/git_sparsecheckout_nocorn.yaml
+
+name: git sparse-checkout (no corn)
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+jobs:
+  sparse-checkout:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          sparse-checkout: |
+            src/*
+          sparse-checkout-cone-mode: false # required for ! entry to work
+      - name: list root folders
+        run: ls -la
+      - name: list src folders
+        run: ls -laR ./src
+```
+
+Result is selected `src` folder and root files will checkout.
+
+```sh
+$ ls -la
+total 16
+drwxr-xr-x 4 runner docker 4096 Jun 14 10:23 .
+drwxr-xr-x 3 runner docker 4096 Jun 14 10:23 ..
+drwxr-xr-x 8 runner docker 4096 Jun 14 10:23 .git
+drwxr-xr-x 8 runner docker 4096 Jun 14 10:23 src
+
+$ ls -laR ./src
+./src:
+total 32
+drwxr-xr-x 8 runner docker 4096 Jun 14 10:23 .
+drwxr-xr-x 4 runner docker 4096 Jun 14 10:23 ..
+drwxr-xr-x 5 runner docker 4096 Jun 14 10:23 dotnet
+drwxr-xr-x 2 runner docker 4096 Jun 14 10:23 json
+drwxr-xr-x 6 runner docker 4096 Jun 14 10:23 k8s
+drwxr-xr-x 2 runner docker 4096 Jun 14 10:23 mermaid
+drwxr-xr-x 2 runner docker 4096 Jun 14 10:23 shellscript
+drwxr-xr-x 2 runner docker 4096 Jun 14 10:23 txt
+
+.... others
+```
+
+**Sparse checkout exclude path**
+
+Checkout except "src/_" path. All other files and folders will checkout by `/_`.
 
 ```yaml
 # .github/workflows/git_sparsecheckout_exclude.yaml
 
-name: "git sparse-checkout (exclude)"
+name: git sparse-checkout (exclude)
 on:
   push:
     branches: ["main"]
@@ -1943,41 +1924,46 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
-      - name: sparse checkout
-        run: |
-          git clone --filter=blob:none --no-checkout --depth 1 --sparse "https://${{ env.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git" .
-
-          echo "git sparse-checkout set exclude directory"
-          git sparse-checkout set --no-cone "${{ env.SPARSECHECKOUT_DIR }}" "/*"
-
-          echo "git sparse-checkout without cone" # cone not allow pattern filter, therefore don't use cone.
-          git sparse-checkout init
-
-          echo "git sparse-checkout list"
-          git sparse-checkout list
-
-          echo "git checkout"
-          git checkout "${GITHUB_SHA}"
-
-          # if you have submodules in Private Repo, use PAT instead of secrets.GITHUB_TOKEN
-          if [[ -f ./.gitmodules ]]; then
-            echo "replace submodule url"
-            sed -i -e "s|https://github.com|https://${{ env.GITHUB_TOKEN }}@github.com|g" ./.gitmodules
-
-            echo "submodule update"
-            git submodule update --init --recursive
-          fi
-
-          echo "git reset"
-          git reset --hard "${GITHUB_SHA}"
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          SPARSECHECKOUT_DIR: "!src/*"
+      - uses: actions/checkout@v3
+        with:
+          sparse-checkout: |
+            !src/*
+            /*
+          sparse-checkout-cone-mode: false # required for ! entry to work
       - name: list root folders
         run: ls -la
-
+      - name: list .github folders
+        run: ls -laR ./.github
 ```
 
+Result is exclude `src` folder and all other files are checkout.
+
+```sh
+$ ls -la
+total 108
+drwxr-xr-x 5 runner docker  4096 Jun 14 10:23 .
+drwxr-xr-x 3 runner docker  4096 Jun 14 10:23 ..
+-rw-r--r-- 1 runner docker  3557 Jun 14 10:23 .editorconfig
+drwxr-xr-x 8 runner docker  4096 Jun 14 10:23 .git
+-rw-r--r-- 1 runner docker   103 Jun 14 10:23 .gitattributes
+drwxr-xr-x 5 runner docker  4096 Jun 14 10:23 .github
+-rw-r--r-- 1 runner docker     5 Jun 14 10:23 .gitignore
+-rw-r--r-- 1 runner docker  1083 Jun 14 10:23 LICENSE.md
+-rw-r--r-- 1 runner docker 70249 Jun 14 10:23 README.md
+drwxr-xr-x 5 runner docker  4096 Jun 14 10:23 samples
+
+$ ls -laR ./.github
+./.github:
+total 24
+drwxr-xr-x  5 runner docker 4096 Jun 14 10:23 .
+drwxr-xr-x  5 runner docker 4096 Jun 14 10:23 ..
+drwxr-xr-x 12 runner docker 4096 Jun 14 10:23 actions
+-rw-r--r--  1 runner docker  117 Jun 14 10:23 ban-words.txt
+drwxr-xr-x  2 runner docker 4096 Jun 14 10:23 scripts
+drwxr-xr-x  3 runner docker 4096 Jun 14 10:23 workflows
+
+.... others
+```
 
 ## Dispatch other repo workflow
 
@@ -2030,9 +2016,7 @@ jobs:
           ref: ${{ matrix.ref }}
           workflow: ${{ matrix.workflow }}
           token: ${{ secrets.SYNCED_GITHUB_TOKEN_REPO }}
-
 ```
-
 
 ## Get PR info from Merge Commit
 
@@ -2067,7 +2051,6 @@ jobs:
         env:
           PR_NUMBER: ${{ steps.pr.outputs.number }}
           PR_TITLE: ${{ steps.pr.outputs.title }}
-
 ```
 
 ## Lint GitHub Actions workflow itself
@@ -2097,7 +2080,6 @@ jobs:
         run: bash <(curl https://raw.githubusercontent.com/rhysd/actionlint/main/scripts/download-actionlint.bash)
       - name: Run actionlint
         run: ./actionlint -color -oneline
-
 ```
 
 If you need automated PR review, run actionlint with reviewdog.
@@ -2125,12 +2107,11 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           reporter: github-pr-review
           fail_on_error: true # workflow will fail when actionlint detect warning.
-
 ```
 
 ## Prevent Fork user to change workflow
 
-One of GitHub's vulnerable point is Workflow. Editting Workflow shoulbe be requirement when using `secrets` and  authenticate some service on workflow.
+One of GitHub's vulnerable point is Workflow. Editting Workflow shoulbe be requirement when using `secrets` and authenticate some service on workflow.
 
 Easiest and simple way is use `pull_request` target and path filter, then detect PR is fork or not. There might be many ways to prevent file change. `xalvarez/prevent-file-change-action` can guard change in the step. Using `tj-actions/changed-files`, `dorny/paths-filter`, or others will be flexible way to detect change and do what you want.
 
@@ -2153,7 +2134,6 @@ jobs:
     steps:
       - name: "Prevent file change"
         run: exit 1
-
 ```
 
 ```yaml
@@ -2181,7 +2161,6 @@ jobs:
           githubToken: ${{ secrets.GITHUB_TOKEN }}
           pattern: ^\.github\/.*.y[a]?ml$ # -> .github/**/*.yaml
           trustedAuthors: ${{ github.repository_owner }} # , separated. allow repository owner to change
-
 ```
 
 ```yaml
@@ -2215,7 +2194,6 @@ jobs:
           echo "One or more files has changed."
           echo "List all the files that have changed: ${{ steps.changed-files-github.outputs.all_changed_files }}"
           exit 1
-
 ```
 
 ```yaml
@@ -2249,7 +2227,6 @@ jobs:
           echo "One or more files has changed."
           echo "List all the files that have changed: ${{ steps.changes.outputs.changes }}"
           exit 1
-
 ```
 
 # Cheat Sheet
@@ -2261,25 +2238,36 @@ GitHub Actions cheet sheet.
 Follow to `setup-foo` style.
 Use Hyphen `-` instead of Underscore `_`.
 
-* ✔️: `setup-foo`
-* ❌: `setup_foo`
+- ✔️: `setup-foo`
+- ❌: `setup_foo`
 
 action folder naming also follow this rule.
 
-* ✔️: `.github/actions/setup-foo`
-* ❌: `.github/actions/setup_foo`
+- ✔️: `.github/actions/setup-foo`
+- ❌: `.github/actions/setup_foo`
 
 ## Get Branch
 
-* pull_request: `${{ github.event.pull_request.head.ref }}`
-* push and others: `${{ github.ref }}`
+`github.ref` context will return branch name, however it is unsafe to directly reference in ref. It is recommended to use through env.
+
+- pull_request: `${{ github.event.pull_request.head.ref }}`
+- push and others: `${{ github.ref }}`
+
+```yaml
+# .github/workflows/_reusable_dump_context.yaml#L25-L28
+
+- name: update current git to latest
+  run: git pull origin ${{ env.CHECKOUT_REF }} --rebase
+  env:
+    CHECKOUT_REF: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.ref || github.ref_name }}
+```
 
 ## Get Tag
 
 `echo "${GITHUB_REF##*/}"` will remove `refs/heads` from `refs/heads/xxxxx`, and `refs/tags` `refs/tags/v1.0.0`.
 
-* `refs/heads/xxxxx` -> `xxxxx`
-* `refs/tags/v1.0.0` -> `v1.0.0`
+- `refs/heads/xxxxx` -> `xxxxx`
+- `refs/tags/v1.0.0` -> `v1.0.0`
 
 ```yaml
 # .github/workflows/tag_push_only_context.yaml
@@ -2298,9 +2286,7 @@ jobs:
       - run: echo ${{ steps.CI_TAG.outputs.GIT_TAG }}
       - run: echo "GIT_TAG=${GITHUB_REF##*/}" >> "$GITHUB_ENV"
       - run: echo ${{ env.GIT_TAG }}
-
 ```
-
 
 ## Get Workflow Name
 
@@ -2318,7 +2304,7 @@ ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id
 
 Use following git config to commit as GitHub Actions icon.
 
-```shell
+```bash
 git config user.name github-actions[bot]
 git config user.email 41898282+github-actions[bot]@users.noreply.github.com
 ```
