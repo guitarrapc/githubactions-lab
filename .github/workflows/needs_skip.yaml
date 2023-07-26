@@ -1,0 +1,34 @@
+name: Needs and skip
+on:
+  push:
+    branches: main
+  pull_request:
+    branches: main
+  workflow_dispatch:
+    inputs:
+      skip:
+        description: 'Skip job'
+        required: false
+        default: false
+        type: boolean
+
+jobs:
+  A:
+    if: ${{ github.event_name == 'workflow_dispatch' && !inputs.skip || false }}
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "a"
+  B:
+    if: ${{ github.event_name == 'workflow_dispatch' && !inputs.skip || false }}
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "b"
+  C:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "c"
+  d:
+    needs: [A, B, C]
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "d"
