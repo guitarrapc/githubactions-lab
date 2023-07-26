@@ -8,8 +8,7 @@ GitHub Actions laboratory.
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-<details>
-<summary>Details</summary>
+# Table of Contents
 
 - [Not yet support](#not-yet-support)
 - [Difference from other CI](#difference-from-other-ci)
@@ -65,7 +64,6 @@ GitHub Actions laboratory.
   - [Lint GitHub Actions workflow itself](#lint-github-actions-workflow-itself)
   - [Get PR info from Merge Commit](#get-pr-info-from-merge-commit)
 
-</details>
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 # Not yet support

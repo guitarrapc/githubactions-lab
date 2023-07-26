@@ -6,15 +6,13 @@ GitHub Actions cheet sheet.
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-<details>
-<summary>Details</summary>
+# Table of Contents
 
 - [Get Tag, Branch](#get-tag-branch)
 - [Get Workflow Name](#get-workflow-name)
 - [Get Workflow Url](#get-workflow-url)
 - [GitHub Actions commit icon](#github-actions-commit-icon)
 
-</details>
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 ## Get Tag, Branch
