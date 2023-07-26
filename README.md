@@ -1958,7 +1958,7 @@ jobs:
 
 Advanced tips.
 
-## checkout faster with git sparse-checkout
+## Checkout faster with git sparse-checkout
 
 [actions/checkout](https://github.com/actions) supports both [shallow-clone](https://git-scm.com/docs/shallow) and [sparse checkout](https://git-scm.com/docs/git-sparse-checkout) which is quite useful for monorepository. Typically, monorepository contains many folders and files, but you may want to checkout only specific folder or files.
 
@@ -2216,98 +2216,6 @@ jobs:
           token: ${{ secrets.SYNCED_GITHUB_TOKEN_REPO }}
 ```
 
-## Lint GitHub Actions workflow itself
-
-You can lint GitHub Actions yaml via actionlint. If you don't need automated PR review, run actionlint is enough.
-
-```yaml
-# .github/workflows/actionlint.yaml
-
-name: actionlint
-on:
-  workflow_dispatch:
-  pull_request:
-    branches: ["main"]
-    paths:
-      - ".github/workflows/**"
-  schedule:
-    - cron: "0 0 * * *"
-
-jobs:
-  actionlint:
-    runs-on: ubuntu-latest
-    timeout-minutes: 3
-    steps:
-      - uses: actions/checkout@v3
-      - name: Install actionlint
-        run: bash <(curl https://raw.githubusercontent.com/rhysd/actionlint/main/scripts/download-actionlint.bash)
-      - name: Run actionlint
-        run: ./actionlint -color -oneline
-```
-
-If you need automated PR review, run actionlint with reviewdog.
-
-```yaml
-# .github/workflows/actionlint_reviewdog.yaml
-
-name: actionlint (reviewdog)
-on:
-  workflow_dispatch:
-  pull_request:
-    branches: ["main"]
-    paths:
-      - ".github/workflows/**"
-
-jobs:
-  actionlint:
-    runs-on: ubuntu-latest
-    timeout-minutes: 3
-    steps:
-      - uses: actions/checkout@v3
-      - name: actionlint
-        uses: reviewdog/action-actionlint@v1
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          reporter: github-pr-review
-          fail_on_error: true # workflow will fail when actionlint detect warning.
-```
-
-
-## PR info from Merge Commit
-
-You have two choice.
-
-1. Use git cli. Retrieve 1st and 3rd line of merge commit.
-2. Use some action to retrieve PR info from merge commit.
-
-Below use [jwalton/gh-find-current-pr](https://github.com/jwalton/gh-find-current-pr) to retrieve PR info from merge commit.
-
-```yaml
-# .github/workflows/pr_from_merge_commit.yaml
-
-name: pr from merge commit
-on:
-  push:
-    branches: ["main"]
-jobs:
-  get:
-    runs-on: ubuntu-latest
-    timeout-minutes: 3
-    steps:
-      - uses: actions/checkout@v3
-      - uses: jwalton/gh-find-current-pr@v1
-        id: pr
-        with:
-          state: closed
-      - if: success() && steps.pr.outputs.number
-        run: |
-          echo "PR #${PR_NUMBER}"
-          echo "PR Title: ${PR_TITLE}"
-        env:
-          PR_NUMBER: ${{ steps.pr.outputs.number }}
-          PR_TITLE: ${{ steps.pr.outputs.title }}
-```
-
 ## Fork user workflow change prevention
 
 One of GitHub's vulnerable point is Workflow. Editting Workflow shoulbe be requirement when using `secrets` and authenticate some service on workflow.
@@ -2426,6 +2334,98 @@ jobs:
           echo "One or more files has changed."
           echo "List all the files that have changed: ${{ steps.changes.outputs.changes }}"
           exit 1
+```
+
+## Lint GitHub Actions workflow itself
+
+You can lint GitHub Actions yaml via actionlint. If you don't need automated PR review, run actionlint is enough.
+
+```yaml
+# .github/workflows/actionlint.yaml
+
+name: actionlint
+on:
+  workflow_dispatch:
+  pull_request:
+    branches: ["main"]
+    paths:
+      - ".github/workflows/**"
+  schedule:
+    - cron: "0 0 * * *"
+
+jobs:
+  actionlint:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v3
+      - name: Install actionlint
+        run: bash <(curl https://raw.githubusercontent.com/rhysd/actionlint/main/scripts/download-actionlint.bash)
+      - name: Run actionlint
+        run: ./actionlint -color -oneline
+```
+
+If you need automated PR review, run actionlint with reviewdog.
+
+```yaml
+# .github/workflows/actionlint_reviewdog.yaml
+
+name: actionlint (reviewdog)
+on:
+  workflow_dispatch:
+  pull_request:
+    branches: ["main"]
+    paths:
+      - ".github/workflows/**"
+
+jobs:
+  actionlint:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v3
+      - name: actionlint
+        uses: reviewdog/action-actionlint@v1
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          reporter: github-pr-review
+          fail_on_error: true # workflow will fail when actionlint detect warning.
+```
+
+
+## PR info from Merge Commit
+
+You have two choice.
+
+1. Use git cli. Retrieve 1st and 3rd line of merge commit.
+2. Use some action to retrieve PR info from merge commit.
+
+Below use [jwalton/gh-find-current-pr](https://github.com/jwalton/gh-find-current-pr) to retrieve PR info from merge commit.
+
+```yaml
+# .github/workflows/pr_from_merge_commit.yaml
+
+name: pr from merge commit
+on:
+  push:
+    branches: ["main"]
+jobs:
+  get:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v3
+      - uses: jwalton/gh-find-current-pr@v1
+        id: pr
+        with:
+          state: closed
+      - if: success() && steps.pr.outputs.number
+        run: |
+          echo "PR #${PR_NUMBER}"
+          echo "PR Title: ${PR_TITLE}"
+        env:
+          PR_NUMBER: ${{ steps.pr.outputs.number }}
+          PR_TITLE: ${{ steps.pr.outputs.title }}
 ```
 
 # Cheat Sheet
