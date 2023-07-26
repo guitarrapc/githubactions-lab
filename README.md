@@ -541,6 +541,35 @@ See actual sample.
 
 ```yaml
 # .github/workflows/needs_require_success.yaml
+
+name: Needs requiring successful dependent jobs
+
+on:
+  push:
+    branches: main
+  pull_request:
+    branches: main
+  workflow_dispatch:
+
+jobs:
+  A:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "a"
+
+  B:
+    needs: [A]
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "b"
+
+  # Run only if A and B success
+  C:
+    needs: [A, B]
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "c"
+
 ```
 
 **Not requiring successful dependent jobs**
@@ -561,6 +590,36 @@ See actual sample.
 
 ```yaml
 # .github/workflows/needs_not_require_success.yaml
+
+name: Needs not requiring successful dependent jobs
+
+on:
+  push:
+    branches: main
+  pull_request:
+    branches: main
+  workflow_dispatch:
+
+jobs:
+  A:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "a"
+
+  B:
+    needs: [A]
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "b"
+
+  # always run without A and B result
+  C:
+    needs: [A, B]
+    if: ${{ always() }}
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "c"
+
 ```
 
 ## Job skip handling
@@ -571,12 +630,89 @@ Following workflow expected to run `D` when `C` is invoked. But skipping `A` and
 
 ```yaml
 # .github/workflows/needs_skip_no_handling.yaml
+
+name: Needs skip on dependent jobs
+
+on:
+  push:
+    branches: main
+  pull_request:
+    branches: main
+  workflow_dispatch:
+
+jobs:
+  A:
+    if: ${{ false }}
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "a"
+
+  B:
+    if: ${{ false }}
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "b"
+
+  C:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "c"
+
+  # D will always skip because A and B is skipped
+  D:
+    needs: [A, B, C]
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "d"
+
 ```
 
 To handle `D` to run when `C` is invoked, you need to add `if` condition to `D`. Also handle when no conditional `C` invokation, `A`, `B` and `C` is success, then `D` must run.
 
 ```yaml
 # .github/workflows/needs_skip_handling.yaml
+
+name: Needs run on specific job run
+
+on:
+  push:
+    branches: main
+  pull_request:
+    branches: main
+  workflow_dispatch:
+    inputs:
+      only-c:
+        description: 'Run only Job C'
+        required: false
+        default: false
+        type: boolean
+
+jobs:
+  A:
+    if: ${{ !inputs.only-c }}
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "a"
+
+  B:
+    if: ${{ !inputs.only-c }}
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "b"
+
+  C:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "c"
+
+  # D will run when "C is success" or "all the jobs are success".
+  D:
+    needs: [A, B, C]
+    if: ${{ inputs.only-c && needs.C.result == 'success' || success() }}
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "d"
+
 ```
 
 ## Permissions
