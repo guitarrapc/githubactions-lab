@@ -1,0 +1,28 @@
+name: Needs not requiring successful dependent jobs
+
+on:
+  push:
+    branches: main
+  pull_request:
+    branches: main
+  workflow_dispatch:
+
+jobs:
+  A:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "a"
+
+  B:
+    needs: [A]
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "b"
+
+  # always run without A and B result
+  C:
+    needs: [A, B]
+    if: ${{ always() }}
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "c"

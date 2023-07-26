@@ -1,0 +1,33 @@
+name: Needs skip on dependent jobs
+
+on:
+  push:
+    branches: main
+  pull_request:
+    branches: main
+  workflow_dispatch:
+
+jobs:
+  A:
+    if: ${{ false }}
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "a"
+
+  B:
+    if: ${{ false }}
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "b"
+
+  C:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "c"
+
+  # D will always skip because A and B is skipped
+  D:
+    needs: [A, B, C]
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "d"

@@ -1,0 +1,40 @@
+name: Needs run on specific job run
+
+on:
+  push:
+    branches: main
+  pull_request:
+    branches: main
+  workflow_dispatch:
+    inputs:
+      only-c:
+        description: 'Run only Job C'
+        required: false
+        default: false
+        type: boolean
+
+jobs:
+  A:
+    if: ${{ !inputs.only-c }}
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "a"
+
+  B:
+    if: ${{ !inputs.only-c }}
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "b"
+
+  C:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "c"
+
+  # D will run when "C is success" or "all the jobs are success".
+  D:
+    needs: [A, B, C]
+    if: ${{ inputs.only-c && needs.C.result == 'success' || success() }}
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "d"
