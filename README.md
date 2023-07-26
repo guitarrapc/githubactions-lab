@@ -540,7 +540,7 @@ jobs:
 See actual sample.
 
 ```yaml
-# .github/workflows/needs_requre_success.yaml
+# .github/workflows/needs_require_success.yaml
 ```
 
 **Not requiring successful dependent jobs**
@@ -560,7 +560,7 @@ jobs:
 See actual sample.
 
 ```yaml
-# .github/workflows/needs_not_requre_success.yaml
+# .github/workflows/needs_not_require_success.yaml
 ```
 
 ## Job skip handling
