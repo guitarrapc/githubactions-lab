@@ -27,8 +27,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: echo "c"
-  d:
+  D:
     needs: [A, B, C]
+    if: ${{ always() }}
     runs-on: ubuntu-latest
     steps:
       - run: echo "d"
