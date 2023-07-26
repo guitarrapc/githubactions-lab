@@ -518,9 +518,70 @@ jobs:
         if: ${{ matrix.sample == 'fuga' }}
 ```
 
+## Job needs and dependency
+
+You can handle Job dependency with `needs`.
+
+Basic usage is `needs: <job_name>`. Let's check [official example](https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#jobsjob_idneeds).
+
+**Requiring successful dependent jobs**
+
+Following example shows require successful dependent jobs.`job2` will run after `job1` is success, and `job3` will run after `job1` and `job2` are success. It means `job2` & `job3` never run when `job1` failed, `job3` never run when `job2` failed. In result, jobs are run seqientially in order of `job1` -> `job2` -> `job3`.
+
+```yaml
+jobs:
+  job1:
+  job2:
+    needs: job1
+  job3:
+    needs: [job1, job2]
+```
+
+See actual sample.
+
+```yaml
+# .github/workflows/needs_requre_success.yaml
+```
+
+**Not requiring successful dependent jobs**
+
+`job3` uses the `always()` conditional expression. So that`job3` will run regardless of `job1` and `job2` job result is success or failure. Because of `needs` section, jobs are run seqientially in order of `job1` -> `job2` -> `job3`.
+
+```yaml
+jobs:
+  job1:
+  job2:
+    needs: job1
+  job3:
+    if: ${{ always() }}
+    needs: [job1, job2]
+```
+
+See actual sample.
+
+```yaml
+# .github/workflows/needs_not_requre_success.yaml
+```
+
+## Job skip handling
+
+Job `needs` can be used for skip handling. However skipping dependent job cause trouble.
+
+Following workflow expected to run `D` when `C` is invoked. But skipping `A` and `B` cause `D` skip.
+
+```yaml
+# .github/workflows/needs_skip_no_handling.yaml
+```
+
+To handle `D` to run when `C` is invoked, you need to add `if` condition to `D`. Also handle when no conditional `C` invokation, `A`, `B` and `C` is success, then `D` must run.
+
+```yaml
+# .github/workflows/needs_skip_handling.yaml
+```
+
 ## Permissions
 
-GitHub supports specify permissions for each job or workflow.
+GitHub Actions supports specify permissions for each job or workflow.
 
 You can turn all permission off with `permissions: {}`.
 
@@ -1759,7 +1820,7 @@ jobs:
 
 Advanced tips.
 
-## More faster checkout with git sparse-checkout
+## checkout faster with git sparse-checkout
 
 [actions/checkout](https://github.com/actions) supports both [shallow-clone](https://git-scm.com/docs/shallow) and [sparse checkout](https://git-scm.com/docs/git-sparse-checkout) which is quite useful for monorepository. Typically, monorepository contains many folders and files, but you may want to checkout only specific folder or files.
 
@@ -2017,41 +2078,6 @@ jobs:
           token: ${{ secrets.SYNCED_GITHUB_TOKEN_REPO }}
 ```
 
-## Get PR info from Merge Commit
-
-You have two choice.
-
-1. Use git cli. Retrieve 1st and 3rd line of merge commit.
-2. Use some action to retrieve PR info from merge commit.
-
-Below use [jwalton/gh-find-current-pr](https://github.com/jwalton/gh-find-current-pr) to retrieve PR info from merge commit.
-
-```yaml
-# .github/workflows/pr_from_merge_commit.yaml
-
-name: pr from merge commit
-on:
-  push:
-    branches: ["main"]
-jobs:
-  get:
-    runs-on: ubuntu-latest
-    timeout-minutes: 3
-    steps:
-      - uses: actions/checkout@v3
-      - uses: jwalton/gh-find-current-pr@v1
-        id: pr
-        with:
-          state: closed
-      - if: success() && steps.pr.outputs.number
-        run: |
-          echo "PR #${PR_NUMBER}"
-          echo "PR Title: ${PR_TITLE}"
-        env:
-          PR_NUMBER: ${{ steps.pr.outputs.number }}
-          PR_TITLE: ${{ steps.pr.outputs.title }}
-```
-
 ## Lint GitHub Actions workflow itself
 
 You can lint GitHub Actions yaml via actionlint. If you don't need automated PR review, run actionlint is enough.
@@ -2108,7 +2134,43 @@ jobs:
           fail_on_error: true # workflow will fail when actionlint detect warning.
 ```
 
-## Prevent Fork user to change workflow
+
+## PR info from Merge Commit
+
+You have two choice.
+
+1. Use git cli. Retrieve 1st and 3rd line of merge commit.
+2. Use some action to retrieve PR info from merge commit.
+
+Below use [jwalton/gh-find-current-pr](https://github.com/jwalton/gh-find-current-pr) to retrieve PR info from merge commit.
+
+```yaml
+# .github/workflows/pr_from_merge_commit.yaml
+
+name: pr from merge commit
+on:
+  push:
+    branches: ["main"]
+jobs:
+  get:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v3
+      - uses: jwalton/gh-find-current-pr@v1
+        id: pr
+        with:
+          state: closed
+      - if: success() && steps.pr.outputs.number
+        run: |
+          echo "PR #${PR_NUMBER}"
+          echo "PR Title: ${PR_TITLE}"
+        env:
+          PR_NUMBER: ${{ steps.pr.outputs.number }}
+          PR_TITLE: ${{ steps.pr.outputs.title }}
+```
+
+## Fork user workflow change prevention
 
 One of GitHub's vulnerable point is Workflow. Editting Workflow shoulbe be requirement when using `secrets` and authenticate some service on workflow.
 
