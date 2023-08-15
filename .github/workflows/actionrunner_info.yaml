@@ -21,7 +21,7 @@ jobs:
         run: lscpu
       - name: CPU Name
         run: |
-          cpu=$(cat /proc/cpuinfo | grep -m 1 'model name' | cut -f 2 -d ":")
+          cpu=$(less /proc/cpuinfo | grep -m 1 'model name' | cut -f 2 -d ":")
           echo "name=${cpu:1}"
       - name: Memory Info (/proc/meminfo)
         run: cat /proc/meminfo
