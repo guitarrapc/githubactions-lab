@@ -15,17 +15,22 @@ jobs:
     steps:
       - name: Ubuntu Version
         run: lsb_release -a
-      - name: CPU Info (/proc/cpuinfo)
+      - name: CPU (/proc/cpuinfo)
         run: cat /proc/cpuinfo
-      - name: CPU Info (lscpu)
+      - name: CPU (lscpu)
         run: lscpu
       - name: CPU Name
+        id: cpu
         run: |
           cpu=$(less /proc/cpuinfo | grep -m 1 'model name' | cut -f 2 -d ":")
-          echo "name=${cpu:1}"
+          echo "name=${cpu:1}" | tee -a "${GITHUB_OUTPUT}"
       - name: Memory Info (/proc/meminfo)
         run: cat /proc/meminfo
-      - name: Storage Info (df)
+      - name: Storage (df)
         run: df -h
-      - name: Network Info (ip)
+      - name: Network (ip)
         run: ip -o -f inet addr show
+      - name: User (passwd)
+        run: cat /etc/passwd
+      - name: Group (group)
+        run: cat /etc/group
