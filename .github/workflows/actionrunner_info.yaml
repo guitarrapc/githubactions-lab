@@ -1,0 +1,29 @@
+name: action runner info
+on:
+  workflow_dispatch:
+  push:
+    branches: ["main"]
+  schedule:
+    - cron: "0 0 * * *"
+
+jobs:
+  actionlint:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - name: Ubuntu Version
+        run: lsb_release -a
+      - name: CPU Info (/proc/cpuinfo)
+        run: cat /proc/cpuinfo
+      - name: CPU Info (lscpu)
+        run: lscpu
+      - name: CPU Name
+        run: |
+          cpu=$(cat /proc/cpuinfo | grep -m 1 'model name' | cut -f 2 -d ":")
+          echo "name=${cpu:1}"
+      - name: Memory Info (/proc/meminfo)
+        run: cat /proc/meminfo
+      - name: Storage Info (df)
+        run: df -h
+      - name: Network Info (ip)
+        run: ip -o -f inet addr show
