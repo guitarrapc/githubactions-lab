@@ -59,7 +59,7 @@ jobs:
       - name: Convert to json
         id: json
         run: |
-          $(echo '["${{ matrix.change }}"]' | jq -c 'map(split("|") | {target: .[0], path: .[1]})')" | tee -a "${GITHUB_OUTPUT}"
+          echo "json=$(echo '["${{ matrix.change }}"]' | jq -c 'map(split("|") | {target: .[0], path: .[1]})')" | tee -a "${GITHUB_OUTPUT}"
       - name: Set variables
         run: |
           echo "target=${{ fromJSON(steps.json.outputs.json).target }}" | tee -a "${GITHUB_ENV}"
