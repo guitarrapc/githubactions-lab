@@ -1,0 +1,39 @@
+name: file change detect matrix
+on: [pull_request]
+jobs:
+  changes:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    outputs:
+      changes: ${{ steps.filter.outputs.changes }}
+    steps:
+      - uses: actions/checkout@v3
+      - uses: dorny/paths-filter@v2
+        id: paths-filter
+        with:
+          filters: |
+            workflows,.github/workflows:
+              - .github/workflows/**
+            actions,.github/actions:
+              - .github/actions/**
+            scripts,.github/scripts:
+              - .github/scripts/**
+            dotnet,src/dotnet:
+              - src/dotnet/**
+            json,src/json:
+              - src/json/**
+            k8s,src/k8s:
+              - src/k8s/**
+            mermaid,src/mermaid:
+              - src/mermaid/**
+            shellscript,src/shellscript:
+              - src/shellscript/**
+            txt,src/txt:
+              - src/txt/**
+            README,README.md:
+              - README.md
+      - name: output filter
+        id: filter
+        run: echo changes='${{ steps.paths-filter.outputs.changes }}' >> "$GITHUB_OUTPUT"
+      - name: output
+        run: echo "${{ steps.filter.outputs.changes }}"
