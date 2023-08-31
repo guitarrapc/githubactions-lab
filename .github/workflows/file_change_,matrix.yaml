@@ -39,7 +39,7 @@ jobs:
           echo '${{ steps.paths-filter.outputs.changes }}' | jq -c 'map(split("|") | {target: .[0], path: .[1]})' | tee -a ./changes.json
       - name: output filter
         id: filter
-        run: echo "changes=${{ steps.paths-filter.outputs.changes }}" | tee -a "$GITHUB_OUTPUT"
+        run: echo 'changes=${{ steps.paths-filter.outputs.changes }}' | tee -a "$GITHUB_OUTPUT"
 
   after:
     needs: [changes]
