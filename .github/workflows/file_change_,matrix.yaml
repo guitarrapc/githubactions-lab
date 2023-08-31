@@ -12,25 +12,25 @@ jobs:
         id: paths-filter
         with:
           filters: |
-            workflows,.github/workflows:
+            {"target": "workflows","path": ".github/workflows"}:
               - .github/workflows/**
-            actions,.github/actions:
+            {"target": "actions","path": ".github/actions"}:
               - .github/actions/**
-            scripts,.github/scripts:
+            {"target": "scripts","path": ".github/scripts"}:
               - .github/scripts/**
-            dotnet,src/dotnet:
+            {"target": "dotnet","path": "src/dotnet"}:
               - src/dotnet/**
-            json,src/json:
+            {"target": "json","path": "src/json"}:
               - src/json/**
-            k8s,src/k8s:
+            {"target": "k8s","path": "src/k8s"}:
               - src/k8s/**
-            mermaid,src/mermaid:
+            {"target": "mermaid","path": "src/mermaid"}:
               - src/mermaid/**
-            shellscript,src/shellscript:
+            {"target": "shellscript","path": "src/shellscript"}:
               - src/shellscript/**
-            txt,src/txt:
+            {"target": "txt","path": "src/txt"}:
               - src/txt/**
-            README,README.md:
+            {"target": "README","path": "README.md"}:
               - README.md
       - name: output filter
         id: filter
