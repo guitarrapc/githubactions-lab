@@ -41,19 +41,14 @@ jobs:
         id: filter
         run: echo 'changes=${{ steps.paths-filter.outputs.changes }}' | tee -a "$GITHUB_OUTPUT"
 
-  after:
+  json_convert:
     needs: [changes]
     strategy:
       max-parallel: 1 # let's run sequencial
       matrix:
         change: ${{ fromJSON(needs.changes.outputs.changes) }}
-    # env:
-    #   CURRENT_TARGET: ${{ matrix.changes.target }}
     runs-on: ubuntu-latest
     timeout-minutes: 60
-    # defaults:
-    #   run:
-    #     working-directory: "terraform/${{ matrix.path }}"
     steps:
       - uses: actions/checkout@v3
       - name: Convert to json
@@ -64,3 +59,20 @@ jobs:
         run: |
           echo "target=${{ fromJSON(steps.json.outputs.json).target }}" | tee -a "${GITHUB_ENV}"
           echo "workking-dir=${{ fromJSON(steps.json.outputs.json).path }}" | tee -a "${GITHUB_ENV}"
+
+  string_convert:
+    needs: [changes]
+    strategy:
+      max-parallel: 1 # let's run sequencial
+      matrix:
+        change: ${{ fromJSON(needs.changes.outputs.changes) }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set variables from matrix
+        run: |
+          input="${{ matrix.change }}"
+          IFS='|' read -r target path <<< "$input"
+          echo "target=$target" | tee -a "${GITHUB_ENV}"
+          echo "working_dir=$path" | tee -a "${GITHUB_ENV}"
