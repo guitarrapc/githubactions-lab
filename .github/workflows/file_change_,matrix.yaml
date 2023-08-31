@@ -36,29 +36,10 @@ jobs:
               - README.md
       - name: Convert to json
         run: |
-          echo '${{ steps.paths-filter.outputs.changes }}' | jq -c -R 'split(",") | map(split("|")) | map({"target": .[0], "path": .[1]})' > changes.json
+          echo '${{ steps.paths-filter.outputs.changes }}' | jq -c 'map(split("|") | {target: .[0], path: .[1]})' | tee -a ./changes.json
       - name: output filter
         id: filter
-        run: echo changes="$(cat ./changes.json)" >> "$GITHUB_OUTPUT"
-      - name: output
-        run: echo "${{ steps.filter.outputs.changes }}"
-
-# want to create json from following string by bash.
-# "workflows|.github/workflows,scripts|.github/scripts"
-
-# // [
-# //   {
-# //     "target": "workflows",
-# //     "path", ".github/workflows"
-# //   },
-# //   {
-# //     "target": "scripts",
-# //     "path", ".github/scripts"
-# //   }
-# // ]
-
-# q: how to create json string from following string in bash script? "workflows|.github/workflows,scripts|.github/scripts"
-# a: echo "workflows|.github/workflows,scripts|.github/scripts" | jq -R 'split(",") | map(split("|")) | map({"target": .[0], "path": .[1]})'
+        run: echo "changes=$(cat ./changes.json)" | tee -a "$GITHUB_OUTPUT"
 
   # after:
   #   needs: changes
