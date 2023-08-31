@@ -36,7 +36,7 @@ jobs:
               - README.md
       - name: Convert to json
         run: |
-          echo "${{ steps.paths-filter.outputs.changes }}" | jq -c -R 'split(",") | map(split("|")) | map({"target": .[0], "path": .[1]})' > changes.json
+          echo '${{ steps.paths-filter.outputs.changes }}' | jq -c -R 'split(",") | map(split("|")) | map({"target": .[0], "path": .[1]})' > changes.json
       - name: output filter
         id: filter
         run: echo changes="$(cat ./changes.json)" >> "$GITHUB_OUTPUT"
