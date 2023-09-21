@@ -54,7 +54,7 @@ jobs:
           git commit -m "feat: Update package.json to ${{ env.VERSION }}" -a
         if: env.DRY_RUN == 'false' && env.CREATE_PR != 'true'
       - name: Push changes
-        uses: ad-m/github-push-action@master
+        uses: ad-m/github-push-action@29f05e01bb17e6f28228b47437e03a7b69e1f9ef
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           branch: ${{ github.ref }}
