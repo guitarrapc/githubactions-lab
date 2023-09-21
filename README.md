@@ -65,7 +65,7 @@ GitHub Actions research and test laboratory.
 - [Basic - BAD PATTERN](#basic---bad-pattern)
   - [Env refer env](#env-refer-env)
 - [Advanced](#advanced)
-  - [Checkout faster with git sparse-checkout](#checkout-faster-with-git-sparse-checkout)
+  - [Checkout faster with Git sparse-checkout](#checkout-faster-with-git-sparse-checkout)
   - [Dispatch other repo workflow](#dispatch-other-repo-workflow)
   - [Fork user workflow change prevention](#fork-user-workflow-change-prevention)
   - [Lint GitHub Actions workflow itself](#lint-github-actions-workflow-itself)
