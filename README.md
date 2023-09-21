@@ -65,11 +65,12 @@ GitHub Actions research and test laboratory.
 - [Basic - BAD PATTERN](#basic---bad-pattern)
   - [Env refer env](#env-refer-env)
 - [Advanced](#advanced)
-  - [Checkout faster with git sparse-checkout](#checkout-faster-with-git-sparse-checkout)
+  - [Checkout faster with Git sparse-checkout](#checkout-faster-with-git-sparse-checkout)
   - [Dispatch other repo workflow](#dispatch-other-repo-workflow)
   - [Fork user workflow change prevention](#fork-user-workflow-change-prevention)
   - [Lint GitHub Actions workflow itself](#lint-github-actions-workflow-itself)
   - [PR info from Merge Commit](#pr-info-from-merge-commit)
+  - [Telemetry for GitHub Workflow execution](#telemetry-for-github-workflow-execution)
 - [Cheat Sheet](#cheat-sheet)
   - [Actions naming](#actions-naming)
   - [Get Branch](#get-branch)
@@ -324,7 +325,7 @@ GitHub Actions support checkout by actions and supports variety of checkout opti
 ## Dump context metadata
 
 Use Context to retrive job id, name and others system info.
-Make sure you can not refer github context in script.
+Make sure you can not refer `gitHub` context in script.
 
 > see: [Context and expression syntax for GitHub Actions \- GitHub Help](https://help.github.com/en/actions/reference/context-and-expression-syntax-for-github-actions#github-context)
 
@@ -866,7 +867,7 @@ jobs:
 
 To reuse local job, create local node action is another way to do, this is calls `node actions`.
 Create yaml file inside local action path, then declare `using: "node12"` in local action.yaml.
-Next place your node.js source files inside actions directory, you may require `index.js` for entrypoint.
+Next place your Node.js source files inside actions directory, you may require `index.js` for entrypoint.
 
 > TIPS: You may find it is useful when you are running on GHE and copy GitHub Actions to your local.
 
@@ -1415,7 +1416,7 @@ jobs:
 
 ## Workflow dispatch and passing input
 
-GitHub Actions offer `workflow_dispatch` event to execute workflow manually from WebUI.
+GitHub Actions offer `workflow_dispatch` event to execute workflow manually from Web UI.
 Also you can use [action inputs](https://docs.github.com/en/actions/creating-actions/metadata-syntax-for-github-actions#inputs) to specify value trigger on manual trigger.
 
 ```yaml
@@ -1594,7 +1595,7 @@ jobs:
 
 ## Detect file changed
 
-you can handle commit file handle with github actions [trilom/file/-changes/-action](https://github.com/trilom/file-changes-action).
+you can handle commit file handle with GitHub actions [trilom/file/-changes/-action](https://github.com/trilom/file-changes-action).
 
 ```yaml
 # .github/workflows/pr_path_changed.yaml
@@ -1958,7 +1959,7 @@ jobs:
 
 Advanced tips.
 
-## Checkout faster with git sparse-checkout
+## Checkout faster with Git sparse-checkout
 
 [actions/checkout](https://github.com/actions) supports both [shallow-clone](https://git-scm.com/docs/shallow) and [sparse checkout](https://git-scm.com/docs/git-sparse-checkout) which is quite useful for monorepository. Typically, monorepository contains many folders and files, but you may want to checkout only specific folder or files.
 
@@ -1971,7 +1972,7 @@ Let's see what is difference between `shallow-clone` and `sparse-checkout`.
 
 **Shallow clone**
 
-Shallow clones use the `--depth=<N>` parameter in git clone to truncate the commit history. Typically, --depth=1 signifies that we only care about the most recent commits. This drastically reduces the amount of data that needs to be fetched, leading to faster clones and less storage of shallow history.
+Shallow clones use the `--depth=<N>` parameter in `git clone` to truncate the commit history. Typically, --depth=1 signifies that we only care about the most recent commits. This drastically reduces the amount of data that needs to be fetched, leading to faster clones and less storage of shallow history.
 
 ![](https://github.blog/jp/wp-content/uploads/sites/2/2021/01/Image4.png?w=800&resize=800%2C414)
 
@@ -1979,7 +1980,7 @@ Shallow clones use the `--depth=<N>` parameter in git clone to truncate the comm
 
 **Sparse checkout**
 
-Sparse checkout use the `git sparse-checkout set <PATH>` before git clone to truncate the checkout files and folders. This amazingly reduces the amount of data that needs to be fetched, leading to faster checkout and less storage of limited paths.
+Sparse checkout use the `git sparse-checkout set <PATH>` before `git clone` to truncate the checkout files and folders. This amazingly reduces the amount of data that needs to be fetched, leading to faster checkout and less storage of limited paths.
 
 ![](https://i0.wp.com/user-images.githubusercontent.com/121322/72286599-50af8e00-35fa-11ea-9025-d7cbb730192c.png?ssl=1)
 
@@ -2397,7 +2398,7 @@ jobs:
 
 You have two choice.
 
-1. Use git cli. Retrieve 1st and 3rd line of merge commit.
+1. Use Git cli. Retrieve 1st and 3rd line of merge commit.
 2. Use some action to retrieve PR info from merge commit.
 
 Below use [jwalton/gh-find-current-pr](https://github.com/jwalton/gh-find-current-pr) to retrieve PR info from merge commit.
@@ -2427,6 +2428,54 @@ jobs:
           PR_NUMBER: ${{ steps.pr.outputs.number }}
           PR_TITLE: ${{ steps.pr.outputs.title }}
 ```
+
+
+## Telemetry for GitHub Workflow execution
+
+GitHub Actions [runforesight/workflow-telemetry-action](https://github.com/runforesight/workflow-telemetry-action) offers workflow telemetry. Telemetry indicate which step consume much Execution Time, CPU, Memory and Network I/O. Default settings post telemetry result to PR comment and JOB Summary.
+
+
+To enable telemetry, set `runforesight/workflow-telemetry-action@v1` on the first step of your job, then action collect telemetry for later steps.
+
+```yaml
+# .github/workflows/workflow_telemetry.yaml
+
+name: workflow telemetry
+# run on both branch push and tag push
+on:
+  workflow_dispatch:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+
+jobs:
+  dotnet-console:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - name: Collect Workflow Telemetry
+        uses: runforesight/workflow-telemetry-action@v1
+        with:
+          theme: dark # or light. dark generate charts compatible with Github dark mode.
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: 6.0.x
+      - name: dotnet build
+        run: dotnet build ./src/dotnet/console/ -c Debug
+      - name: dotnet test
+        run: dotnet test ./src/dotnet/console-tests/ -c Debug --logger GitHubActions
+      - name: dotnet publish
+        run: dotnet publish ./src/dotnet/console/ -c Debug -o ./out/dotnet-console
+
+```
+
+Here's telemetry posted to [PR comment](https://github.com/guitarrapc/githubactions-lab/pull/109).
+
+![image](https://github.com/guitarrapc/githubactions-lab/assets/3856350/c1194994-a3ef-4ccb-a4d4-9a0e1bf287fd)
+
+You can find same telemetry result on [Job Summary](https://github.com/guitarrapc/githubactions-lab/actions/runs/6266182534), either.
 
 # Cheat Sheet
 
@@ -2501,7 +2550,7 @@ ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id
 
 ## GitHub Actions commit icon
 
-Use following git config to commit as GitHub Actions icon.
+Use following Git config to commit as GitHub Actions icon.
 
 ```bash
 git config user.name github-actions[bot]
