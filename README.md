@@ -2474,6 +2474,8 @@ jobs:
 
 Telemetry is posted to [Job Summary](https://github.com/guitarrapc/githubactions-lab/actions/runs/6266182534).
 
+![image](https://github.com/guitarrapc/githubactions-lab/assets/3856350/76e10d30-ec4b-4449-84d8-e8bbbfc3664c)
+
 Also if workflow ran with `pull_request` trigger, then you can enable [PR comment](https://github.com/guitarrapc/githubactions-lab/pull/109) by default or set `comment_on_pr: true`.
 
 ![image](https://github.com/guitarrapc/githubactions-lab/assets/3856350/c1194994-a3ef-4ccb-a4d4-9a0e1bf287fd)
