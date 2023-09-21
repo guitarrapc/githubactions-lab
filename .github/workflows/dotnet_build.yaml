@@ -19,7 +19,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 3
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - run: command -v dotnet
       - run: ls /usr/share/dotnet/sdk
       - run: dotnet --version
@@ -45,7 +45,7 @@ jobs:
     container:
       image: mcr.microsoft.com/dotnet/sdk:6.0
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - run: dotnet build ./src/dotnet/console/ -c Debug
       - run: dotnet test ./src/dotnet/console-tests/ -c Debug --logger GitHubActions
       - run: dotnet publish ./src/dotnet/console/ -c Debug -o ./out/dotnet-console-container

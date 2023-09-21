@@ -400,7 +400,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 3
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Dump environment
         run: export
       - name: Dump GitHub context
@@ -466,7 +466,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 3
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - run: echo "GIT_TAG=${GITHUB_REF#refs/heads/}" >> "$GITHUB_ENV"
       - run: echo ${{ env.GIT_TAG }}
       - run: bash -eux .github/scripts/setenv.sh --ref "${GITHUB_REF#refs/heads/}"
@@ -855,7 +855,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 3
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: use local action
         uses: ./.github/actions/local-composite-actions
         with:
@@ -909,7 +909,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 3
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: use local action
         uses: ./.github/actions/local-node-actions
 ```
@@ -991,7 +991,7 @@ jobs:
       output1: ${{ steps.step1.outputs.firstword }}
       output2: ${{ steps.step2.outputs.secondword }}
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           ref: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.ref || '' }} # checkout PR HEAD commit instead of merge commit
       - name: (Limitation) Callee can not refer caller environment variable.
@@ -1446,7 +1446,7 @@ jobs:
       TAGS: ${{ inputs.tags }}
     steps:
       - run: echo ${{ env.BRANCH }} ${{ env.LOGLEVEL }} ${{ env.TAGS }}
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           ref: ${{ inputs.branch }}
       - name: dump github context
@@ -1646,7 +1646,7 @@ jobs:
         run: echo "$CONTEXT"
         env:
           CONTEXT: ${{ toJson(github) }}
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           ref: refs/heads/some-branch
 ```
@@ -1899,7 +1899,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 3
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 ```
 
 You can control behaviour with PR label.
@@ -1924,7 +1924,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 3
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 ```
 
 # Basic - BAD PATTERN
@@ -2010,7 +2010,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           sparse-checkout: |
             src
@@ -2068,7 +2068,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           sparse-checkout: |
             src/*
@@ -2122,7 +2122,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           sparse-checkout: |
             !src/*
@@ -2182,7 +2182,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 ```
 
 **Dispatcher workflow**
@@ -2287,7 +2287,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 3
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           fetch-depth: 2 # To retrieve the preceding commit.
       - name: Get changed files in the .github folder
@@ -2358,7 +2358,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 3
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Install actionlint
         run: bash <(curl https://raw.githubusercontent.com/rhysd/actionlint/main/scripts/download-actionlint.bash)
       - name: Run actionlint
@@ -2383,7 +2383,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 3
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: actionlint
         uses: reviewdog/action-actionlint@v1
         with:
@@ -2414,7 +2414,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 3
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - uses: jwalton/gh-find-current-pr@v1
         id: pr
         with:

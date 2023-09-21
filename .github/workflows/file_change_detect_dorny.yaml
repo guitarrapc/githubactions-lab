@@ -5,7 +5,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 3
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Get changed files in the .github folder
         uses: dorny/paths-filter@v2
         id: file_changes
