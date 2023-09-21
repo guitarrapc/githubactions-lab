@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 3
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - run: bash -c ./src/shellscript/exit_by_return.sh || echo failed
       - run: bash -c ./src/shellscript/exit_by_exit.sh || echo failed
     #- run: ./src/shellscript/exit_by_return.sh || echo failed # success fully override with `echo failed`

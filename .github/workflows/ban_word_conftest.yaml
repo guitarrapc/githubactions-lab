@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 3
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: test dev
         uses: instrumenta/conftest-action@ae9212d5c0c26e21eedf359e2889d0d5d39dabd4
         with:

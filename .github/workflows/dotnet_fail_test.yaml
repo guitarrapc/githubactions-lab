@@ -19,6 +19,6 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 3
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - run: dotnet test ./src/dotnet/console-fail-tests/ -c Debug --logger GitHubActions
         continue-on-error: true

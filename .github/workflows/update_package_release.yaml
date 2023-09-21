@@ -22,7 +22,7 @@ jobs:
     outputs:
       sha: ${{ steps.commit.outputs.sha }}
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: before
         run: cat ${{ env.TARGET_FILE}}
       - name: update package.json to version ${{ env.TAG }}
@@ -64,7 +64,7 @@ jobs:
     timeout-minutes: 5
     steps:
       - run: echo ${{ needs.update-packagejson.outputs.sha }}
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           ref: ${{ needs.update-packagejson.outputs.sha }}
       - run: git rev-parse HEAD
