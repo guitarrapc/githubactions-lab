@@ -70,6 +70,7 @@ GitHub Actions research and test laboratory.
   - [Fork user workflow change prevention](#fork-user-workflow-change-prevention)
   - [Lint GitHub Actions workflow itself](#lint-github-actions-workflow-itself)
   - [PR info from Merge Commit](#pr-info-from-merge-commit)
+  - [Telemetry for GitHub Workflow execution](#telemetry-for-github-workflow-execution)
 - [Cheat Sheet](#cheat-sheet)
   - [Actions naming](#actions-naming)
   - [Get Branch](#get-branch)
