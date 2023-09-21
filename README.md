@@ -2428,6 +2428,25 @@ jobs:
           PR_TITLE: ${{ steps.pr.outputs.title }}
 ```
 
+
+## Telemetry for GitHub Workflow execution
+
+GitHub Actions [runforesight/workflow-telemetry-action](https://github.com/runforesight/workflow-telemetry-action) offers workflow telemetry. Telemetry indicate which step consume much Execution Time, CPU, Memory and Network I/O. Default settings post telemetry result to PR comment and JOB Summary.
+
+
+To enable telemetry, set `runforesight/workflow-telemetry-action@v1` on the first step of your job, then action collect telemetry for later steps.
+
+```yaml
+# .github/workflows/workflow_telemetry.yaml
+
+```
+
+Here's telemetry posted to [PR comment](https://github.com/guitarrapc/githubactions-lab/pull/109).
+
+![image](https://github.com/guitarrapc/githubactions-lab/assets/3856350/c1194994-a3ef-4ccb-a4d4-9a0e1bf287fd)
+
+You can find same telemetry result on [Job Summary](https://github.com/guitarrapc/githubactions-lab/actions/runs/6266182534), either.
+
 # Cheat Sheet
 
 GitHub Actions cheet sheet.
