@@ -27,7 +27,7 @@ jobs:
     timeout-minutes: 5
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-dotnet@v2
+      - uses: actions/setup-dotnet@v3
         with:
           dotnet-version: 6.0.x
       - run: dotnet build ./src/dotnet/console/ -c Debug
@@ -47,7 +47,7 @@ jobs:
       image: mcr.microsoft.com/dotnet/sdk:6.0
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-dotnet@v2
+      - uses: actions/setup-dotnet@v3
         with:
           dotnet-version: ${{ matrix.dotnet }}
       # build

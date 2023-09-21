@@ -24,7 +24,7 @@ jobs:
       - run: ls /usr/share/dotnet/sdk
       - run: dotnet --version
       - run: dotnet --list-sdks
-      - uses: actions/setup-dotnet@v2
+      - uses: actions/setup-dotnet@v3
         with:
           dotnet-version: 6.0.x
       - run: command -v dotnet
