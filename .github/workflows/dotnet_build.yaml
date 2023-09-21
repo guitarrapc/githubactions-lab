@@ -49,10 +49,11 @@ jobs:
         run: dotnet test ./src/dotnet/console-tests/ -c Debug --logger GitHubActions
       - name: dotnet publish
         run: dotnet publish ./src/dotnet/console/ -c Debug -o ./out/dotnet-console
-      - uses: actions/upload-artifact@v2
+      - uses: actions/upload-artifact@v3
         with:
           name: dotnet-console
           path: ./out/dotnet-console
+          retention-days: 1
 
   dotnet-console-container:
     runs-on: ubuntu-latest
@@ -67,10 +68,11 @@ jobs:
         run: dotnet test ./src/dotnet/console-tests/ -c Debug --logger GitHubActions
       - name: dotnet publish
         run: dotnet publish ./src/dotnet/console/ -c Debug -o ./out/dotnet-console-container
-      - uses: actions/upload-artifact@v2
+      - uses: actions/upload-artifact@v3
         with:
           name: dotnet-console-container
           path: ./out/dotnet-console-container
+          retention-days: 1
 
   ls:
     runs-on: ubuntu-latest

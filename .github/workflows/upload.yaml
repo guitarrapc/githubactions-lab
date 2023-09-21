@@ -6,7 +6,8 @@ jobs:
     timeout-minutes: 3
     steps:
       - run: echo "hogemoge_fugafuga" > hoge.txt
-      - uses: actions/upload-artifact@v1
+      - uses: actions/upload-artifact@v3
         with:
           name: hoge.txt
           path: ./hoge.txt
+          retention-days: 1
