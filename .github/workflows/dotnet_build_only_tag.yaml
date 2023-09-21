@@ -70,7 +70,7 @@ jobs:
       - dotnet-console
       - dotnet-console-container
     steps:
-      - uses: actions/download-artifact@v2
+      - uses: actions/download-artifact@v3
       - run: zip -r dotnet-console.zip ./dotnet-console/
       - run: zip -r dotnet-console-container.zip ./dotnet-console-container
       # Create Release

@@ -81,5 +81,5 @@ jobs:
       - dotnet-console
       - dotnet-console-container
     steps:
-      - uses: actions/download-artifact@v2
+      - uses: actions/download-artifact@v3
       - run: ls -lR
