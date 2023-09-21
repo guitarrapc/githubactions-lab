@@ -6,6 +6,7 @@ on:
     branches: ["main"]
   pull_request:
     branches: ["main"]
+
 env:
   DOTNET_CLI_TELEMETRY_OPTOUT: 1
   DOTNET_NOLOGO: true
@@ -14,31 +15,45 @@ env:
   # colour output
   DOTNET_SYSTEM_CONSOLE_ALLOW_ANSI_COLOR_REDIRECTION: 1
   TERM: xterm
+
 jobs:
   dotnet-console:
     runs-on: ubuntu-latest
     timeout-minutes: 3
     steps:
       - uses: actions/checkout@v4
-      - run: command -v dotnet
-      - run: ls /usr/share/dotnet/sdk
-      - run: dotnet --version
-      - run: dotnet --list-sdks
-      - uses: actions/setup-dotnet@v2
+      - name: dotnet executable path before setup-dotnet (/usr/bin/dotnet)
+        run: command -v dotnet
+      - name: dotnet version under /usr/share/dotnet/sdk
+        run: ls /usr/share/dotnet/sdk
+      - name: dotnet executable version before setup-dotnet
+        run: dotnet --version
+      - name: dotnet sdks before setup-dotnet
+        run: dotnet --list-sdks
+      - uses: actions/setup-dotnet@v3
         with:
           dotnet-version: 6.0.x
-      - run: command -v dotnet
-      - run: ls /usr/share/dotnet/sdk
-      - run: ls -l "$HOME/.dotnet/sdk"
-      - run: dotnet --version
-      - run: dotnet --list-sdks
-      - run: dotnet build ./src/dotnet/console/ -c Debug
-      - run: dotnet test ./src/dotnet/console-tests/ -c Debug --logger GitHubActions
-      - run: dotnet publish ./src/dotnet/console/ -c Debug -o ./out/dotnet-console
+      - name: dotnet executable path after setup-dotnet (/usr/share/dotnet/dotnet)
+        run: command -v dotnet
+      - name: dotnet version under /usr/share/dotnet/sdk
+        run: ls /usr/share/dotnet/sdk
+      - name: dotnet version after setup-dotnet
+        run: ls -l "${DOTNET_ROOT}/sdk"
+      - name: dotnet executable version after setup-dotnet
+        run: dotnet --version
+      - name: dotnet sdks after setup-dotnet
+        run: dotnet --list-sdks
+      - name: dotnet build
+        run: dotnet build ./src/dotnet/console/ -c Debug
+      - name: dotnet test
+        run: dotnet test ./src/dotnet/console-tests/ -c Debug --logger GitHubActions
+      - name: dotnet publish
+        run: dotnet publish ./src/dotnet/console/ -c Debug -o ./out/dotnet-console
       - uses: actions/upload-artifact@v2
         with:
           name: dotnet-console
           path: ./out/dotnet-console
+
   dotnet-console-container:
     runs-on: ubuntu-latest
     timeout-minutes: 3
@@ -46,13 +61,17 @@ jobs:
       image: mcr.microsoft.com/dotnet/sdk:6.0
     steps:
       - uses: actions/checkout@v4
-      - run: dotnet build ./src/dotnet/console/ -c Debug
-      - run: dotnet test ./src/dotnet/console-tests/ -c Debug --logger GitHubActions
-      - run: dotnet publish ./src/dotnet/console/ -c Debug -o ./out/dotnet-console-container
+      - name: dotnet build
+        run: dotnet build ./src/dotnet/console/ -c Debug
+      - name: dotnet test
+        run: dotnet test ./src/dotnet/console-tests/ -c Debug --logger GitHubActions
+      - name: dotnet publish
+        run: dotnet publish ./src/dotnet/console/ -c Debug -o ./out/dotnet-console-container
       - uses: actions/upload-artifact@v2
         with:
           name: dotnet-console-container
           path: ./out/dotnet-console-container
+
   ls:
     runs-on: ubuntu-latest
     timeout-minutes: 3
@@ -61,4 +80,4 @@ jobs:
       - dotnet-console-container
     steps:
       - uses: actions/download-artifact@v2
-      - run: ls -l
+      - run: ls -lR
