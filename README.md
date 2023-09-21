@@ -2439,6 +2439,35 @@ To enable telemetry, set `runforesight/workflow-telemetry-action@v1` on the firs
 ```yaml
 # .github/workflows/workflow_telemetry.yaml
 
+name: workflow telemetry
+# run on both branch push and tag push
+on:
+  workflow_dispatch:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+
+jobs:
+  dotnet-console:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - name: Collect Workflow Telemetry
+        uses: runforesight/workflow-telemetry-action@v1
+        with:
+          theme: dark # or light. dark generate charts compatible with Github dark mode.
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: 6.0.x
+      - name: dotnet build
+        run: dotnet build ./src/dotnet/console/ -c Debug
+      - name: dotnet test
+        run: dotnet test ./src/dotnet/console-tests/ -c Debug --logger GitHubActions
+      - name: dotnet publish
+        run: dotnet publish ./src/dotnet/console/ -c Debug -o ./out/dotnet-console
+
 ```
 
 Here's telemetry posted to [PR comment](https://github.com/guitarrapc/githubactions-lab/pull/109).
