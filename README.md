@@ -2471,11 +2471,12 @@ jobs:
 
 ```
 
-Here's telemetry posted to [PR comment](https://github.com/guitarrapc/githubactions-lab/pull/109).
+Telemetry is posted to [Job Summary](https://github.com/guitarrapc/githubactions-lab/actions/runs/6266182534).
+
+Also if workflow ran with `pull_request` trigger, then you can enable [PR comment](https://github.com/guitarrapc/githubactions-lab/pull/109) by default or set `comment_on_pr: true`.
 
 ![image](https://github.com/guitarrapc/githubactions-lab/assets/3856350/c1194994-a3ef-4ccb-a4d4-9a0e1bf287fd)
 
-You can find same telemetry result on [Job Summary](https://github.com/guitarrapc/githubactions-lab/actions/runs/6266182534), either.
 
 # Cheat Sheet
 

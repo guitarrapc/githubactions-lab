@@ -16,6 +16,7 @@ jobs:
         uses: runforesight/workflow-telemetry-action@v1
         with:
           theme: dark # or light. dark generate charts compatible with Github dark mode.
+          comment_on_pr: false # post telemetry to PR comment. It won't override existing comment, therefore too noisy for PR.
       - uses: actions/checkout@v4
       - uses: actions/setup-dotnet@v3
         with:
