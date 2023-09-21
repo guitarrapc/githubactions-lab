@@ -12,12 +12,12 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: test dev
-        uses: instrumenta/conftest-action@master
+        uses: instrumenta/conftest-action@ae9212d5c0c26e21eedf359e2889d0d5d39dabd4
         with:
           files: ./.github/workflows/k8s_manifest_manual.yaml ./.github/workflows/k8s_manifest_pr.yaml ./.github/workflows/k8s_manifest_push.yaml
           policy: ./.github/workflows/policy/dev_env.rego
       - name: test staging
-        uses: instrumenta/conftest-action@master
+        uses: instrumenta/conftest-action@ae9212d5c0c26e21eedf359e2889d0d5d39dabd4
         with:
           files: ./.github/workflows/k8s_manifest_manual.yaml ./.github/workflows/k8s_manifest_pr.yaml ./.github/workflows/k8s_manifest_push.yaml
           policy: ./.github/workflows/policy/staging_env.rego
