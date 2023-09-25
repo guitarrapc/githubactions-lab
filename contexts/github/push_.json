@@ -1,14 +1,14 @@
 {
-  "token": "ghs_b9zXLMV7UfDM1WSiRRXFBxeBsKfoHz1gAOor",
+  "token": "ghs_MCSidkdmQmiCPx66HKhgTON48njO2F1If3na",
   "job": "dump-context",
   "ref": "refs/heads/main",
-  "sha": "96014b19ffb690523beb9f98d428ed7c9d489fe0",
+  "sha": "a66edf8f3667ad3a628e46e87618645166374a90",
   "repository": "guitarrapc/githubactions-lab",
   "repository_owner": "guitarrapc",
   "repository_owner_id": "3856350",
   "repositoryUrl": "git://github.com/guitarrapc/githubactions-lab.git",
-  "run_id": "6294586200",
-  "run_number": "188",
+  "run_id": "6295196350",
+  "run_number": "192",
   "retention_days": "90",
   "run_attempt": "1",
   "artifact_cache_size_limit": "10",
@@ -24,9 +24,9 @@
   "base_ref": "",
   "event_name": "push",
   "event": {
-    "after": "96014b19ffb690523beb9f98d428ed7c9d489fe0",
+    "after": "a66edf8f3667ad3a628e46e87618645166374a90",
     "base_ref": null,
-    "before": "9c56321a19ae08de121dc62fa98253e8df34a771",
+    "before": "1e2d7c1c6698b2ee0ae3131aec1dfe8520c27457",
     "commits": [
       {
         "author": {
@@ -40,11 +40,11 @@
           "username": "guitarrapc"
         },
         "distinct": true,
-        "id": "30b11ed6ccaff6359b5fefc9f8868086e8513afd",
-        "message": "fix: add if for empty matrix on \"file change actions\"",
-        "timestamp": "2023-09-25T12:32:16+09:00",
-        "tree_id": "23f839365f81257a07b39e3d1bcb40b9a7003c55",
-        "url": "https://github.com/guitarrapc/githubactions-lab/commit/30b11ed6ccaff6359b5fefc9f8868086e8513afd"
+        "id": "66587fb878efbe29e74baed1ab9309ab15ce1369",
+        "message": "ci: dump context",
+        "timestamp": "2023-09-25T14:13:53+09:00",
+        "tree_id": "fe20d31a237205e1840cc61e930c05b7a973131f",
+        "url": "https://github.com/guitarrapc/githubactions-lab/commit/66587fb878efbe29e74baed1ab9309ab15ce1369"
       },
       {
         "author": {
@@ -58,11 +58,29 @@
           "username": "github-actions[bot]"
         },
         "distinct": true,
-        "id": "9d54d364cd84f1c3617171040147de74af6e11c6",
+        "id": "27ad86c0d6689878069c12d811e1919135525d20",
+        "message": "[auto commit] Embed code",
+        "timestamp": "2023-09-25T05:14:43Z",
+        "tree_id": "1816236407942b01ede704613470282f2b69ce14",
+        "url": "https://github.com/guitarrapc/githubactions-lab/commit/27ad86c0d6689878069c12d811e1919135525d20"
+      },
+      {
+        "author": {
+          "email": "41898282+github-actions[bot]@users.noreply.github.com",
+          "name": "github-actions[bot]",
+          "username": "github-actions[bot]"
+        },
+        "committer": {
+          "email": "41898282+github-actions[bot]@users.noreply.github.com",
+          "name": "github-actions[bot]",
+          "username": "github-actions[bot]"
+        },
+        "distinct": true,
+        "id": "d5f808a11762530a1c25843a8d7dd42a74ae9f7f",
         "message": "[auto commit] update context",
-        "timestamp": "2023-09-25T03:33:30Z",
-        "tree_id": "c4b4a1accfeaf0add4673112d9396ed709e5409f",
-        "url": "https://github.com/guitarrapc/githubactions-lab/commit/9d54d364cd84f1c3617171040147de74af6e11c6"
+        "timestamp": "2023-09-25T05:15:11Z",
+        "tree_id": "bbdc7ff2c70dcad5cba3d0872d68beb3d1e828a9",
+        "url": "https://github.com/guitarrapc/githubactions-lab/commit/d5f808a11762530a1c25843a8d7dd42a74ae9f7f"
       },
       {
         "author": {
@@ -76,14 +94,14 @@
           "username": "web-flow"
         },
         "distinct": true,
-        "id": "96014b19ffb690523beb9f98d428ed7c9d489fe0",
-        "message": "Merge pull request #112 from guitarrapc/feature/fix_if\n\nfix: add if for empty matrix on \"file change actions\"",
-        "timestamp": "2023-09-25T12:37:38+09:00",
-        "tree_id": "c4b4a1accfeaf0add4673112d9396ed709e5409f",
-        "url": "https://github.com/guitarrapc/githubactions-lab/commit/96014b19ffb690523beb9f98d428ed7c9d489fe0"
+        "id": "a66edf8f3667ad3a628e46e87618645166374a90",
+        "message": "Merge pull request #113 from guitarrapc/feature/dump\n\nci: dump context",
+        "timestamp": "2023-09-25T14:17:25+09:00",
+        "tree_id": "bbdc7ff2c70dcad5cba3d0872d68beb3d1e828a9",
+        "url": "https://github.com/guitarrapc/githubactions-lab/commit/a66edf8f3667ad3a628e46e87618645166374a90"
       }
     ],
-    "compare": "https://github.com/guitarrapc/githubactions-lab/compare/9c56321a19ae...96014b19ffb6",
+    "compare": "https://github.com/guitarrapc/githubactions-lab/compare/1e2d7c1c6698...a66edf8f3667",
     "created": false,
     "deleted": false,
     "forced": false,
@@ -99,11 +117,11 @@
         "username": "web-flow"
       },
       "distinct": true,
-      "id": "96014b19ffb690523beb9f98d428ed7c9d489fe0",
-      "message": "Merge pull request #112 from guitarrapc/feature/fix_if\n\nfix: add if for empty matrix on \"file change actions\"",
-      "timestamp": "2023-09-25T12:37:38+09:00",
-      "tree_id": "c4b4a1accfeaf0add4673112d9396ed709e5409f",
-      "url": "https://github.com/guitarrapc/githubactions-lab/commit/96014b19ffb690523beb9f98d428ed7c9d489fe0"
+      "id": "a66edf8f3667ad3a628e46e87618645166374a90",
+      "message": "Merge pull request #113 from guitarrapc/feature/dump\n\nci: dump context",
+      "timestamp": "2023-09-25T14:17:25+09:00",
+      "tree_id": "bbdc7ff2c70dcad5cba3d0872d68beb3d1e828a9",
+      "url": "https://github.com/guitarrapc/githubactions-lab/commit/a66edf8f3667ad3a628e46e87618645166374a90"
     },
     "pusher": {
       "email": "3856350+guitarrapc@users.noreply.github.com",
@@ -198,9 +216,9 @@
       },
       "private": false,
       "pulls_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls{/number}",
-      "pushed_at": 1695613058,
+      "pushed_at": 1695619045,
       "releases_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/releases{/id}",
-      "size": 1021,
+      "size": 869,
       "ssh_url": "git@github.com:guitarrapc/githubactions-lab.git",
       "stargazers": 32,
       "stargazers_count": 32,
@@ -251,15 +269,15 @@
   "ref_type": "branch",
   "secret_source": "Actions",
   "workflow_ref": "guitarrapc/githubactions-lab/.github/workflows/auto_dump_context.yaml@refs/heads/main",
-  "workflow_sha": "96014b19ffb690523beb9f98d428ed7c9d489fe0",
+  "workflow_sha": "a66edf8f3667ad3a628e46e87618645166374a90",
   "workspace": "/home/runner/work/githubactions-lab/githubactions-lab",
   "action": "__run_4",
   "event_path": "/home/runner/work/_temp/_github_workflow/event.json",
   "action_repository": "",
   "action_ref": "",
-  "path": "/home/runner/work/_temp/_runner_file_commands/add_path_1c4f36b9-5a44-49bb-b675-3c6fa22a6e30",
-  "env": "/home/runner/work/_temp/_runner_file_commands/set_env_1c4f36b9-5a44-49bb-b675-3c6fa22a6e30",
-  "step_summary": "/home/runner/work/_temp/_runner_file_commands/step_summary_1c4f36b9-5a44-49bb-b675-3c6fa22a6e30",
-  "state": "/home/runner/work/_temp/_runner_file_commands/save_state_1c4f36b9-5a44-49bb-b675-3c6fa22a6e30",
-  "output": "/home/runner/work/_temp/_runner_file_commands/set_output_1c4f36b9-5a44-49bb-b675-3c6fa22a6e30"
+  "path": "/home/runner/work/_temp/_runner_file_commands/add_path_2d8a092f-4ae9-4916-8031-fdf4808f1b40",
+  "env": "/home/runner/work/_temp/_runner_file_commands/set_env_2d8a092f-4ae9-4916-8031-fdf4808f1b40",
+  "step_summary": "/home/runner/work/_temp/_runner_file_commands/step_summary_2d8a092f-4ae9-4916-8031-fdf4808f1b40",
+  "state": "/home/runner/work/_temp/_runner_file_commands/save_state_2d8a092f-4ae9-4916-8031-fdf4808f1b40",
+  "output": "/home/runner/work/_temp/_runner_file_commands/set_output_2d8a092f-4ae9-4916-8031-fdf4808f1b40"
 }
