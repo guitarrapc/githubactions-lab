@@ -2508,10 +2508,10 @@ action folder naming also follow this rule.
 ```yaml
 # .github/workflows/_reusable_dump_context.yaml#L25-L28
 
+  if: ${{ !(github.event_name == 'pull_request' && github.event.action == 'closed') }}
 - name: update current git to latest
   run: git pull origin ${{ env.CHECKOUT_REF }} --rebase
   env:
-    CHECKOUT_REF: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.ref || github.ref_name }}
 ```
 
 ## Get Tag
