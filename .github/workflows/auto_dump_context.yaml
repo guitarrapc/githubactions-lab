@@ -16,7 +16,7 @@ on:
 permissions:
   contents: write
   pull-requests: write
-  
+
 jobs:
   dump:
     uses: ./.github/workflows/_reusable_dump_context.yaml
