@@ -9,6 +9,7 @@ on:
 
 jobs:
   dump-context:
+    name: dump context
     strategy:
       fail-fast: false
       matrix:
