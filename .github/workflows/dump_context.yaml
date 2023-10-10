@@ -1,4 +1,4 @@
-name: Dump context
+name: dump context
 on:
   issue_comment:
     types: [created]
