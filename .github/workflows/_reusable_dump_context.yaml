@@ -20,6 +20,9 @@ jobs:
       - uses: actions/checkout@v4
         with:
           ref: ${{ startsWith(github.event_name, 'pull_request') && github.event.pull_request.head.sha || '' }} # checkout PR HEAD commit instead of merge commit
+      - name: file names
+        id: file
+        run: echo "name=${{ github.event_name }}${{ github.event.action != '' && format('_{0}', github.event.action) || ''}}" | tee -a "$GITHUB_OUTPUT"
       - name: Wait 30s
         run: sleep 30s
         if: ${{ !(startsWith(github.event_name, 'pull_request') && github.event.action == 'closed') }}
@@ -32,7 +35,7 @@ jobs:
         shell: bash
         run: |
           mkdir -p "${{ env.OUTPUT_PATH }}"
-          export | tee "${{ env.OUTPUT_PATH }}/${{ github.event_name }}_${{ github.event.action }}.sh"
+          export | tee "${{ env.OUTPUT_PATH }}/${{ steps.file.outputs.name }}.sh"
         env:
           CONTEXT: ${{ toJson(env) }}
           OUTPUT_PATH: ${{ inputs.output-path }}/export
@@ -40,7 +43,7 @@ jobs:
         shell: bash
         run: |
           mkdir -p "${{ env.OUTPUT_PATH }}"
-          echo "$CONTEXT" | tee "${{ env.OUTPUT_PATH }}/${{ github.event_name }}_${{ github.event.action }}.json"
+          echo "$CONTEXT" | tee "${{ env.OUTPUT_PATH }}/${{ steps.file.outputs.name }}.json"
         env:
           CONTEXT: ${{ toJson(github) }}
           OUTPUT_PATH: ${{ inputs.output-path }}/github
@@ -48,7 +51,7 @@ jobs:
         shell: bash
         run: |
           mkdir -p "${{ env.OUTPUT_PATH }}"
-          echo "$CONTEXT" | tee "${{ env.OUTPUT_PATH }}/${{ github.event_name }}_${{ github.event.action }}.json"
+          echo "$CONTEXT" | tee "${{ env.OUTPUT_PATH }}/${{ steps.file.outputs.name }}.json"
         env:
           CONTEXT: ${{ toJson(job) }}
           OUTPUT_PATH: ${{ inputs.output-path }}/job
@@ -56,7 +59,7 @@ jobs:
         shell: bash
         run: |
           mkdir -p "${{ env.OUTPUT_PATH }}"
-          echo "$CONTEXT" | tee "${{ env.OUTPUT_PATH }}/${{ github.event_name }}_${{ github.event.action }}.json"
+          echo "$CONTEXT" | tee "${{ env.OUTPUT_PATH }}/${{ steps.file.outputs.name }}.json"
         env:
           CONTEXT: ${{ toJson(steps) }}
           OUTPUT_PATH: ${{ inputs.output-path }}/step
@@ -64,7 +67,7 @@ jobs:
         shell: bash
         run: |
           mkdir -p "${{ env.OUTPUT_PATH }}"
-          echo "$CONTEXT" | tee "${{ env.OUTPUT_PATH }}/${{ github.event_name }}_${{ github.event.action }}.json"
+          echo "$CONTEXT" | tee "${{ env.OUTPUT_PATH }}/${{ steps.file.outputs.name }}.json"
         env:
           CONTEXT: ${{ toJson(runner) }}
           OUTPUT_PATH: ${{ inputs.output-path }}/runner
@@ -72,7 +75,7 @@ jobs:
         shell: bash
         run: |
           mkdir -p "${{ env.OUTPUT_PATH }}"
-          echo "$CONTEXT" | tee "${{ env.OUTPUT_PATH }}/${{ github.event_name }}_${{ github.event.action }}.json"
+          echo "$CONTEXT" | tee "${{ env.OUTPUT_PATH }}/${{ steps.file.outputs.name }}.json"
         env:
           CONTEXT: ${{ toJson(strategy) }}
           OUTPUT_PATH: ${{ inputs.output-path }}/strategy
@@ -80,7 +83,7 @@ jobs:
         shell: bash
         run: |
           mkdir -p "${{ env.OUTPUT_PATH }}"
-          echo "$CONTEXT" | tee "${{ env.OUTPUT_PATH }}/${{ github.event_name }}_${{ github.event.action }}.json"
+          echo "$CONTEXT" | tee "${{ env.OUTPUT_PATH }}/${{ steps.file.outputs.name }}.json"
         env:
           CONTEXT: ${{ toJson(matrix) }}
           OUTPUT_PATH: ${{ inputs.output-path }}/matrix
@@ -90,5 +93,5 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           branch: ${{ startsWith(github.event_name, 'pull_request') && github.event.pull_request.head.ref || github.ref }}
           author_email: 41898282+github-actions[bot]@users.noreply.github.com
-          message: "[auto commit] update context"
+          message: "[auto commit] update context (event=${{ github.event_name }}, action=${{ github.event.action }})"
         if: ${{ !(startsWith(github.event_name, 'pull_request') && github.event.action == 'closed') }}
