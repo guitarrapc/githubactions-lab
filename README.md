@@ -392,6 +392,9 @@ on:
   pull_request:
     branches: ["main"]
     types: [opened, synchronize, reopened, closed]
+  pull_request_target:
+    branches: ["main"]
+    types: [opened, synchronize, reopened, closed]
   schedule:
     - cron: "0 0 * * *"
   workflow_dispatch:
@@ -428,6 +431,7 @@ jobs:
         run: echo "$CONTEXT"
         env:
           CONTEXT: ${{ toJson(matrix) }}
+
 ```
 
 ## Environment variables in script
@@ -2506,12 +2510,11 @@ action folder naming also follow this rule.
 - push and others: `${{ github.ref }}`
 
 ```yaml
-# .github/workflows/_reusable_dump_context.yaml#L25-L28
+# .github/workflows/_reusable_dump_context.yaml#L20-L22
 
-  if: ${{ !(github.event_name == 'pull_request' && github.event.action == 'closed') }}
-- name: update current git to latest
-  run: git pull origin ${{ env.CHECKOUT_REF }} --rebase
-  env:
+- uses: actions/checkout@v4
+  with:
+    ref: ${{ startsWith(github.event_name, 'pull_request') && github.event.pull_request.head.sha || '' }} # checkout PR HEAD commit instead of merge commit
 ```
 
 ## Get Tag
