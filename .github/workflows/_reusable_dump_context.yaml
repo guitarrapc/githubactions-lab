@@ -23,6 +23,9 @@ jobs:
       - name: Wait 30s
         run: sleep 30s
         if: ${{ !(startsWith(github.event_name, 'pull_request') && github.event.action == 'closed') }}
+      - name: file names
+        id: file
+        run: echo "name=${{ github.event_name }}${{ github.event.action != '' && format('_{0}', github.event.action) || ''}}" | tee -a "$GITHUB_OUTPUT"
       - name: update current git to latest
         run: git pull origin ${{ env.CHECKOUT_REF }} --rebase
         env:
