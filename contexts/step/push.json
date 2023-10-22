@@ -1,1 +1,9 @@
-{}
+{
+  "file": {
+    "outputs": {
+      "name": "push"
+    },
+    "outcome": "success",
+    "conclusion": "success"
+  }
+}
