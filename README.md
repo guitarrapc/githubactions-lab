@@ -2510,7 +2510,7 @@ action folder naming also follow this rule.
 - push and others: `${{ github.ref }}`
 
 ```yaml
-# .github/workflows/_reusable_dump_context.yaml#L25-L28
+# .github/workflows/_reusable_dump_context.yaml#L20-L22
 
   if: ${{ !(startsWith(github.event_name, 'pull_request') && github.event.action == 'closed') }}
 - name: update current git to latest
