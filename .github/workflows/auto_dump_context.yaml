@@ -8,7 +8,10 @@ on:
     tags: ["*"]
   pull_request:
     branches: ["main"]
-    types: [opened, synchronize, reopened, closed]
+    types: [opened, synchronize, reopened, closed, labeled]
+  pull_request_target:
+    branches: ["main"]
+    types: [opened, synchronize, reopened, closed, labeled]
   schedule:
     - cron: "0 0 * * *"
   workflow_dispatch:

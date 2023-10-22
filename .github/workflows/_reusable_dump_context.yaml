@@ -19,15 +19,15 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.sha || '' }} # checkout PR HEAD commit instead of merge commit
+          ref: ${{ startsWith(github.event_name, 'pull_request') && github.event.pull_request.head.sha || '' }} # checkout PR HEAD commit instead of merge commit
       - name: Wait 30s
         run: sleep 30s
-        if: ${{ !(github.event_name == 'pull_request' && github.event.action == 'closed') }}
+        if: ${{ !(startsWith(github.event_name, 'pull_request') && github.event.action == 'closed') }}
       - name: update current git to latest
         run: git pull origin ${{ env.CHECKOUT_REF }} --rebase
         env:
-          CHECKOUT_REF: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.ref || github.ref_name }}
-        if: ${{ !(github.event_name == 'pull_request' && github.event.action == 'closed') }}
+          CHECKOUT_REF: ${{ startsWith(github.event_name, 'pull_request') && github.event.pull_request.head.ref || github.ref_name }}
+        if: ${{ !(startsWith(github.event_name, 'pull_request') && github.event.action == 'closed') }}
       - name: Dump environment
         shell: bash
         run: |
@@ -88,7 +88,7 @@ jobs:
         uses: actions-js/push@156f2b10c3aa000c44dbe75ea7018f32ae999772
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          branch: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.ref || github.ref }}
+          branch: ${{ startsWith(github.event_name, 'pull_request') && github.event.pull_request.head.ref || github.ref }}
           author_email: 41898282+github-actions[bot]@users.noreply.github.com
           message: "[auto commit] update context"
-        if: ${{ !(github.event_name == 'pull_request' && github.event.action == 'closed') }}
+        if: ${{ !(startsWith(github.event_name, 'pull_request') && github.event.action == 'closed') }}
