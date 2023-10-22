@@ -392,6 +392,9 @@ on:
   pull_request:
     branches: ["main"]
     types: [opened, synchronize, reopened, closed]
+  pull_request_target:
+    branches: ["main"]
+    types: [opened, synchronize, reopened, closed]
   schedule:
     - cron: "0 0 * * *"
   workflow_dispatch:
@@ -428,6 +431,7 @@ jobs:
         run: echo "$CONTEXT"
         env:
           CONTEXT: ${{ toJson(matrix) }}
+
 ```
 
 ## Environment variables in script
@@ -2508,7 +2512,7 @@ action folder naming also follow this rule.
 ```yaml
 # .github/workflows/_reusable_dump_context.yaml#L25-L28
 
-  if: ${{ !(github.event_name == 'pull_request' && github.event.action == 'closed') }}
+  if: ${{ !(startsWith(github.event_name, 'pull_request') && github.event.action == 'closed') }}
 - name: update current git to latest
   run: git pull origin ${{ env.CHECKOUT_REF }} --rebase
   env:
