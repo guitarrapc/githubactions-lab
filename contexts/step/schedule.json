@@ -1,1 +1,9 @@
-{}
+{
+  "file": {
+    "outputs": {
+      "name": "schedule"
+    },
+    "outcome": "success",
+    "conclusion": "success"
+  }
+}
