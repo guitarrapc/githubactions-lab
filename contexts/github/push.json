@@ -1,14 +1,14 @@
 {
-  "token": "ghs_LcAmF48YZx3n1jQaWSLK5EAt5DEEzJ4LTcf2",
+  "token": "ghs_2Ks48LIdzg92M9XVxRdnQ7cMkyIBOf0hElEE",
   "job": "dump-context",
   "ref": "refs/heads/main",
-  "sha": "10576586da62ef61505b6fb12b1a81ad5b47acd0",
+  "sha": "d742685ee1112d115692b52b4ac24dbaad40843c",
   "repository": "guitarrapc/githubactions-lab",
   "repository_owner": "guitarrapc",
   "repository_owner_id": "3856350",
   "repositoryUrl": "git://github.com/guitarrapc/githubactions-lab.git",
-  "run_id": "6774395942",
-  "run_number": "260",
+  "run_id": "6774401860",
+  "run_number": "261",
   "retention_days": "90",
   "run_attempt": "1",
   "artifact_cache_size_limit": "10",
@@ -24,9 +24,9 @@
   "base_ref": "",
   "event_name": "push",
   "event": {
-    "after": "10576586da62ef61505b6fb12b1a81ad5b47acd0",
+    "after": "d742685ee1112d115692b52b4ac24dbaad40843c",
     "base_ref": null,
-    "before": "9f79f062ae08d38bbede51b7d54c3191c67af3bd",
+    "before": "10576586da62ef61505b6fb12b1a81ad5b47acd0",
     "commits": [
       {
         "author": {
@@ -40,50 +40,14 @@
           "username": "guitarrapc"
         },
         "distinct": true,
-        "id": "5e046b45b9615be784e4ee4cfc6fdea4a1a4646e",
-        "message": "chore: PR Template yaml test",
-        "timestamp": "2023-11-07T02:30:01+09:00",
-        "tree_id": "75077dc3765dcee953eca9fea428595b6c6725fe",
-        "url": "https://github.com/guitarrapc/githubactions-lab/commit/5e046b45b9615be784e4ee4cfc6fdea4a1a4646e"
-      },
-      {
-        "author": {
-          "email": "3856350+guitarrapc@users.noreply.github.com",
-          "name": "Ikiru Yoshizaki",
-          "username": "guitarrapc"
-        },
-        "committer": {
-          "email": "3856350+guitarrapc@users.noreply.github.com",
-          "name": "Ikiru Yoshizaki",
-          "username": "guitarrapc"
-        },
-        "distinct": true,
-        "id": "3c3eef455971a4239f175c1eaa9dbd93a2924ef2",
-        "message": "Merge remote-tracking branch 'origin/main' into main",
-        "timestamp": "2023-11-07T02:30:11+09:00",
-        "tree_id": "733f1c3b3fb7b0ab77e1bf95565933d770dfd239",
-        "url": "https://github.com/guitarrapc/githubactions-lab/commit/3c3eef455971a4239f175c1eaa9dbd93a2924ef2"
-      },
-      {
-        "author": {
-          "email": "3856350+guitarrapc@users.noreply.github.com",
-          "name": "Ikiru Yoshizaki",
-          "username": "guitarrapc"
-        },
-        "committer": {
-          "email": "3856350+guitarrapc@users.noreply.github.com",
-          "name": "Ikiru Yoshizaki",
-          "username": "guitarrapc"
-        },
-        "distinct": true,
-        "id": "10576586da62ef61505b6fb12b1a81ad5b47acd0",
-        "message": "chore: test md template",
-        "timestamp": "2023-11-07T02:31:58+09:00",
-        "tree_id": "affbed4f5e724ad5dc20dbba325005621adbdb53",
-        "url": "https://github.com/guitarrapc/githubactions-lab/commit/10576586da62ef61505b6fb12b1a81ad5b47acd0"
+        "id": "d742685ee1112d115692b52b4ac24dbaad40843c",
+        "message": "chore: remove pr template",
+        "timestamp": "2023-11-07T02:32:35+09:00",
+        "tree_id": "e37e67a5c6d650f73866d45f90cb989bd3100867",
+        "url": "https://github.com/guitarrapc/githubactions-lab/commit/d742685ee1112d115692b52b4ac24dbaad40843c"
       }
     ],
-    "compare": "https://github.com/guitarrapc/githubactions-lab/compare/9f79f062ae08...10576586da62",
+    "compare": "https://github.com/guitarrapc/githubactions-lab/compare/10576586da62...d742685ee111",
     "created": false,
     "deleted": false,
     "forced": false,
@@ -99,11 +63,11 @@
         "username": "guitarrapc"
       },
       "distinct": true,
-      "id": "10576586da62ef61505b6fb12b1a81ad5b47acd0",
-      "message": "chore: test md template",
-      "timestamp": "2023-11-07T02:31:58+09:00",
-      "tree_id": "affbed4f5e724ad5dc20dbba325005621adbdb53",
-      "url": "https://github.com/guitarrapc/githubactions-lab/commit/10576586da62ef61505b6fb12b1a81ad5b47acd0"
+      "id": "d742685ee1112d115692b52b4ac24dbaad40843c",
+      "message": "chore: remove pr template",
+      "timestamp": "2023-11-07T02:32:35+09:00",
+      "tree_id": "e37e67a5c6d650f73866d45f90cb989bd3100867",
+      "url": "https://github.com/guitarrapc/githubactions-lab/commit/d742685ee1112d115692b52b4ac24dbaad40843c"
     },
     "pusher": {
       "email": "3856350+guitarrapc@users.noreply.github.com",
@@ -198,7 +162,7 @@
       },
       "private": false,
       "pulls_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls{/number}",
-      "pushed_at": 1699291921,
+      "pushed_at": 1699291958,
       "releases_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/releases{/id}",
       "size": 975,
       "ssh_url": "git@github.com:guitarrapc/githubactions-lab.git",
@@ -251,15 +215,15 @@
   "ref_type": "branch",
   "secret_source": "Actions",
   "workflow_ref": "guitarrapc/githubactions-lab/.github/workflows/auto_dump_context.yaml@refs/heads/main",
-  "workflow_sha": "10576586da62ef61505b6fb12b1a81ad5b47acd0",
+  "workflow_sha": "d742685ee1112d115692b52b4ac24dbaad40843c",
   "workspace": "/home/runner/work/githubactions-lab/githubactions-lab",
   "action": "__run_4",
   "event_path": "/home/runner/work/_temp/_github_workflow/event.json",
   "action_repository": "",
   "action_ref": "",
-  "path": "/home/runner/work/_temp/_runner_file_commands/add_path_c8e2dfee-d1f8-4330-ac4c-5d70ac576a36",
-  "env": "/home/runner/work/_temp/_runner_file_commands/set_env_c8e2dfee-d1f8-4330-ac4c-5d70ac576a36",
-  "step_summary": "/home/runner/work/_temp/_runner_file_commands/step_summary_c8e2dfee-d1f8-4330-ac4c-5d70ac576a36",
-  "state": "/home/runner/work/_temp/_runner_file_commands/save_state_c8e2dfee-d1f8-4330-ac4c-5d70ac576a36",
-  "output": "/home/runner/work/_temp/_runner_file_commands/set_output_c8e2dfee-d1f8-4330-ac4c-5d70ac576a36"
+  "path": "/home/runner/work/_temp/_runner_file_commands/add_path_58900f84-968d-4442-af96-1827a0c41c4c",
+  "env": "/home/runner/work/_temp/_runner_file_commands/set_env_58900f84-968d-4442-af96-1827a0c41c4c",
+  "step_summary": "/home/runner/work/_temp/_runner_file_commands/step_summary_58900f84-968d-4442-af96-1827a0c41c4c",
+  "state": "/home/runner/work/_temp/_runner_file_commands/save_state_58900f84-968d-4442-af96-1827a0c41c4c",
+  "output": "/home/runner/work/_temp/_runner_file_commands/set_output_58900f84-968d-4442-af96-1827a0c41c4c"
 }
