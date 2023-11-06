@@ -1,1 +1,9 @@
-{}
+{
+  "file": {
+    "outputs": {
+      "name": "pull_request_target_opened"
+    },
+    "outcome": "success",
+    "conclusion": "success"
+  }
+}
