@@ -9,7 +9,7 @@ on:
 
 jobs:
   dump-context:
-    name: Dump Context # `dump-context` in github.job
+    name: ${{ github.event_name }} ${{ github.event.action }} # `dump-context` in github.job
     strategy:
       fail-fast: false
       matrix:
@@ -23,14 +23,6 @@ jobs:
       - name: file names
         id: file
         run: echo "name=${{ github.event_name }}${{ github.event.action != '' && format('_{0}', github.event.action) || ''}}" | tee -a "$GITHUB_OUTPUT"
-      - name: Wait 30s
-        run: sleep 30s
-        if: ${{ !(startsWith(github.event_name, 'pull_request') && github.event.action == 'closed') }}
-      - name: update current git to latest
-        run: git pull origin ${{ env.CHECKOUT_REF }} --rebase
-        env:
-          CHECKOUT_REF: ${{ startsWith(github.event_name, 'pull_request') && github.event.pull_request.head.ref || github.ref_name }}
-        if: ${{ !(startsWith(github.event_name, 'pull_request') && github.event.action == 'closed') }}
       - name: Dump environment
         shell: bash
         run: |
@@ -87,6 +79,11 @@ jobs:
         env:
           CONTEXT: ${{ toJson(matrix) }}
           OUTPUT_PATH: ${{ inputs.output-path }}/matrix
+      - name: update current git to latest
+        run: git pull origin ${{ env.CHECKOUT_REF }} --rebase
+        env:
+          CHECKOUT_REF: ${{ startsWith(github.event_name, 'pull_request') && github.event.pull_request.head.ref || github.ref_name }}
+        if: ${{ !(startsWith(github.event_name, 'pull_request') && github.event.action == 'closed') }}
       - name: Commit & Push changes
         uses: actions-js/push@156f2b10c3aa000c44dbe75ea7018f32ae999772
         with:
