@@ -2514,7 +2514,7 @@ action folder naming also follow this rule.
 
 - uses: actions/checkout@v4
   with:
-    ref: ${{ startsWith(github.event_name, 'pull_request') && github.event.pull_request.head.sha || '' }} # checkout PR HEAD commit instead of merge commit
+    ref: ${{ startsWith(github.event_name, 'pull_request') && github.event.pull_request.head.ref || '' }} # checkout PR HEAD commit instead of merge commit
 ```
 
 ## Get Tag
