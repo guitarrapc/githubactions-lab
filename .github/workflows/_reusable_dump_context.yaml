@@ -82,13 +82,7 @@ jobs:
           CONTEXT: ${{ toJson(matrix) }}
           OUTPUT_PATH: ${{ inputs.output-path }}/matrix
       - name: Update current git to latest & Push changes
-        run: |
-          git config user.name  "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add .
-          git commit -m "[auto commit] update context (workflow=${{ github.workflow }}, event=${{ github.event_name }}, action=${{ github.event.action }})"
-          git pull origin ${{ env.CHECKOUT_REF }} --rebase
-          git push
-        env:
-          CHECKOUT_REF: ${{ (startsWith(github.event_name, 'pull_request') && github.event.action != 'closed') && github.event.pull_request.head.ref || (startsWith(github.event_name, 'pull_request') && github.event.action == 'closed') && github.base_ref || github.ref_name }}
-        if: ${{ !(startsWith(github.event_name, 'pull_request') && github.event.action == 'closed') }}
+        uses: ./.github/actions/git-push
+        with:
+          commit-message: "[auto commit] update context (workflow=${{ github.workflow }}, event=${{ github.event_name }}, action=${{ github.event.action }})"
+          ref: ${{ (startsWith(github.event_name, 'pull_request') && github.event.action != 'closed') && github.event.pull_request.head.ref || (startsWith(github.event_name, 'pull_request') && github.event.action == 'closed') && github.base_ref || github.ref_name }}
