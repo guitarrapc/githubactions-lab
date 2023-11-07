@@ -2512,9 +2512,9 @@ action folder naming also follow this rule.
 ```yaml
 # .github/workflows/_reusable_dump_context.yaml#L20-L22
 
+# PR should checkout HEAD ref instead of merge commit, but there are no branch for closed event, therefore use base ref.
+# Other event's base ref is always empty.
 - uses: actions/checkout@v4
-  with:
-    ref: ${{ startsWith(github.event_name, 'pull_request') && github.event.pull_request.head.ref || '' }} # checkout PR HEAD commit instead of merge commit
 ```
 
 ## Get Tag
