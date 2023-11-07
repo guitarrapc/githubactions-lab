@@ -2272,7 +2272,8 @@ jobs:
         with:
           githubToken: ${{ secrets.GITHUB_TOKEN }}
           pattern: ^\.github\/.*.y[a]?ml$ # -> .github/**/*.yaml
-          trustedAuthors: ${{ github.repository_owner }} # , separated. allow repository owner to change
+          trustedAuthors: ${{ github.repository_owner }}, "dependabot[bot]" # , separated. allow repository owner to change
+
 ```
 
 ```yaml
