@@ -29,7 +29,7 @@ jobs:
         with:
           github-token: ${{secrets.GITHUB_TOKEN}}
           script: |
-            const result = await github.git.getRef({
+            const result = await github.rest.git.getRef({
               owner: context.repo.owner,
               repo: "githubactions-lab",
               ref: "heads/main"
