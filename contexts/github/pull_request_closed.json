@@ -1,14 +1,14 @@
 {
-  "token": "ghs_kSh9ZihBFnwokxaY5NRPCLf8QwGDyz3k268C",
+  "token": "ghs_kW8zhW3YKEHe868h9SgNfbDlYw5EH33dfTRT",
   "job": "dump-context",
   "ref": "refs/heads/main",
-  "sha": "5eff3638e43bd1ea6e4763d4a82a26c7ec26073a",
+  "sha": "8a7c7fd820eaebb6f83bfcdd9d12057c8b3e371a",
   "repository": "guitarrapc/githubactions-lab",
   "repository_owner": "guitarrapc",
   "repository_owner_id": "3856350",
   "repositoryUrl": "git://github.com/guitarrapc/githubactions-lab.git",
-  "run_id": "6783390319",
-  "run_number": "365",
+  "run_id": "6784704994",
+  "run_number": "373",
   "retention_days": "90",
   "run_attempt": "1",
   "artifact_cache_size_limit": "10",
@@ -20,41 +20,41 @@
   "actor": "guitarrapc",
   "triggering_actor": "guitarrapc",
   "workflow": "auto dump context",
-  "head_ref": "dependabot/github_actions/ad-m/github-push-action-0.8.0",
+  "head_ref": "dependabot/github_actions/actions/cache-3",
   "base_ref": "main",
   "event_name": "pull_request",
   "event": {
     "action": "closed",
-    "number": 121,
+    "number": 122,
     "pull_request": {
       "_links": {
         "comments": {
-          "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/issues/121/comments"
+          "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/issues/122/comments"
         },
         "commits": {
-          "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/121/commits"
+          "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/122/commits"
         },
         "html": {
-          "href": "https://github.com/guitarrapc/githubactions-lab/pull/121"
+          "href": "https://github.com/guitarrapc/githubactions-lab/pull/122"
         },
         "issue": {
-          "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/issues/121"
+          "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/issues/122"
         },
         "review_comment": {
           "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/comments{/number}"
         },
         "review_comments": {
-          "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/121/comments"
+          "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/122/comments"
         },
         "self": {
-          "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/121"
+          "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/122"
         },
         "statuses": {
-          "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/statuses/142aae298df9d0feb40d92d90fee02fa9ec23dbc"
+          "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/statuses/53e6170d47f613e361b25387435c9bb96863b0d6"
         }
       },
       "active_lock_reason": null,
-      "additions": 6,
+      "additions": 1,
       "assignee": null,
       "assignees": [],
       "author_association": "CONTRIBUTOR",
@@ -131,8 +131,8 @@
           "name": "githubactions-lab",
           "node_id": "MDEwOlJlcG9zaXRvcnkyNTc0NjU0Njg=",
           "notifications_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/notifications{?since,all,participating}",
-          "open_issues": 9,
-          "open_issues_count": 9,
+          "open_issues": 6,
+          "open_issues_count": 6,
           "owner": {
             "avatar_url": "https://avatars.githubusercontent.com/u/3856350?v=4",
             "events_url": "https://api.github.com/users/guitarrapc/events{/privacy}",
@@ -155,9 +155,9 @@
           },
           "private": false,
           "pulls_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls{/number}",
-          "pushed_at": "2023-11-07T10:46:44Z",
+          "pushed_at": "2023-11-07T12:49:08Z",
           "releases_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/releases{/id}",
-          "size": 1064,
+          "size": 1161,
           "squash_merge_commit_message": "COMMIT_MESSAGES",
           "squash_merge_commit_title": "COMMIT_OR_PR_TITLE",
           "ssh_url": "git@github.com:guitarrapc/githubactions-lab.git",
@@ -181,7 +181,7 @@
           "watchers_count": 32,
           "web_commit_signoff_required": false
         },
-        "sha": "c805ec014ca8d5d3c6be463cfb1a2e31f8a484d9",
+        "sha": "ebbd8b09c2d9c111531ff434b311cc4a8b7d3a72",
         "user": {
           "avatar_url": "https://avatars.githubusercontent.com/u/3856350?v=4",
           "events_url": "https://api.github.com/users/guitarrapc/events{/privacy}",
@@ -203,20 +203,20 @@
           "url": "https://api.github.com/users/guitarrapc"
         }
       },
-      "body": "Bumps [ad-m/github-push-action](https://github.com/ad-m/github-push-action) from 0.7.0 to 0.8.0.\n<details>\n<summary>Release notes</summary>\n<p><em>Sourced from <a href=\"https://github.com/ad-m/github-push-action/releases\">ad-m/github-push-action's releases</a>.</em></p>\n<blockquote>\n<h2>v0.8.0</h2>\n<h2>What's Changed</h2>\n<ul>\n<li>feat: Update the used NodeJS version to 20 by <a href=\"https://github.com/ZPascal\"><code>@​ZPascal</code></a> in <a href=\"https://redirect.github.com/ad-m/github-push-action/pull/184\">ad-m/github-push-action#184</a></li>\n</ul>\n<p><strong>Full Changelog</strong>: <a href=\"https://github.com/ad-m/github-push-action/compare/v0.7.0...v0.8.0\">https://github.com/ad-m/github-push-action/compare/v0.7.0...v0.8.0</a></p>\n</blockquote>\n</details>\n<details>\n<summary>Commits</summary>\n<ul>\n<li><a href=\"https://github.com/ad-m/github-push-action/commit/d91a481090679876dfc4178fef17f286781251df\"><code>d91a481</code></a> feat: Update the used NodeJS version to 20 (<a href=\"https://redirect.github.com/ad-m/github-push-action/issues/184\">#184</a>)</li>\n<li>See full diff in <a href=\"https://github.com/ad-m/github-push-action/compare/29f05e01bb17e6f28228b47437e03a7b69e1f9ef...d91a481090679876dfc4178fef17f286781251df\">compare view</a></li>\n</ul>\n</details>\n<br />\n\n\n[![Dependabot compatibility score](https://dependabot-badges.githubapp.com/badges/compatibility_score?dependency-name=ad-m/github-push-action&package-manager=github_actions&previous-version=0.7.0&new-version=0.8.0)](https://docs.github.com/en/github/managing-security-vulnerabilities/about-dependabot-security-updates#about-compatibility-scores)\n\nDependabot will resolve any conflicts with this PR as long as you don't alter it yourself. You can also trigger a rebase manually by commenting `@dependabot rebase`.\n\n[//]: # (dependabot-automerge-start)\n[//]: # (dependabot-automerge-end)\n\n---\n\n<details>\n<summary>Dependabot commands and options</summary>\n<br />\n\nYou can trigger Dependabot actions by commenting on this PR:\n- `@dependabot rebase` will rebase this PR\n- `@dependabot recreate` will recreate this PR, overwriting any edits that have been made to it\n- `@dependabot merge` will merge this PR after your CI passes on it\n- `@dependabot squash and merge` will squash and merge this PR after your CI passes on it\n- `@dependabot cancel merge` will cancel a previously requested merge and block automerging\n- `@dependabot reopen` will reopen this PR if it is closed\n- `@dependabot close` will close this PR and stop Dependabot recreating it. You can achieve the same result by closing it manually\n- `@dependabot show <dependency name> ignore conditions` will show all of the ignore conditions of the specified dependency\n- `@dependabot ignore this major version` will close this PR and stop Dependabot creating any more for this major version (unless you reopen the PR or upgrade to it yourself)\n- `@dependabot ignore this minor version` will close this PR and stop Dependabot creating any more for this minor version (unless you reopen the PR or upgrade to it yourself)\n- `@dependabot ignore this dependency` will close this PR and stop Dependabot creating any more for this dependency (unless you reopen the PR or upgrade to it yourself)\n\n\n</details>",
-      "changed_files": 5,
-      "closed_at": "2023-11-07T10:46:45Z",
+      "body": "Bumps [actions/cache](https://github.com/actions/cache) from 2 to 3.\n<details>\n<summary>Release notes</summary>\n<p><em>Sourced from <a href=\"https://github.com/actions/cache/releases\">actions/cache's releases</a>.</em></p>\n<blockquote>\n<h2>v3.0.0</h2>\n<ul>\n<li>\n<p>This change adds a minimum runner version(node12 -&gt; node16), which can break users using an out-of-date/fork of the runner. This would be most commonly affecting users on GHES 3.3 or before, as those runners do not support node16 actions and they can use actions from github.com via <a href=\"https://docs.github.com/en/enterprise-server@3.0/admin/github-actions/managing-access-to-actions-from-githubcom/enabling-automatic-access-to-githubcom-actions-using-github-connect\">github connect</a> or manually copying the repo to their GHES instance.</p>\n</li>\n<li>\n<p>Few dependencies and cache action usage examples have also been updated.</p>\n</li>\n</ul>\n<h2>Updating actions/core to version 1.10.0</h2>\n<p>The ::save-state and ::set-output are deprecated. The newer version of actions/core &gt;1.10.0 uses the new syntax for save and set output. After this change, customers using actions/cache@v2 won't see deprecation warning message.</p>\n<h2>v2.1.7</h2>\n<p>Support 10GB cache upload using the latest version <code>1.0.8</code> of <a href=\"https://www.npmjs.com/package/@actions/cache\"><code>@actions/cache</code> </a></p>\n<h2>v2.1.6</h2>\n<ul>\n<li>Catch unhandled &quot;bad file descriptor&quot; errors that sometimes occurs when the cache server returns non-successful response (<a href=\"https://redirect.github.com/actions/cache/pull/596\">actions/cache#596</a>)</li>\n</ul>\n<h2>v2.1.5</h2>\n<ul>\n<li>Fix permissions error seen when extracting caches with GNU tar that were previously created using BSD tar (<a href=\"https://redirect.github.com/actions/cache/issues/527\">actions/cache#527</a>)</li>\n</ul>\n<h2>v2.1.4</h2>\n<ul>\n<li>Make caching more verbose <a href=\"https://redirect.github.com/actions/toolkit/pull/650\">#650</a></li>\n<li>Use GNU tar on macOS if available <a href=\"https://redirect.github.com/actions/toolkit/pull/701\">#701</a></li>\n</ul>\n<h2>v2.1.3</h2>\n<ul>\n<li>Upgrades <code>@actions/core</code> to v1.2.6 for <a href=\"https://github.com/advisories/GHSA-mfwh-5m23-j46w\">CVE-2020-15228</a>. This action was not using the affected methods.</li>\n<li>Fix error handling in <code>uploadChunk</code> where 400-level errors were not being detected and handled correctly</li>\n</ul>\n<h2>v2.1.2</h2>\n<ul>\n<li>Adds input to limit the chunk upload size, useful for self-hosted runners with slower upload speeds</li>\n<li>No-op when executing on GHES</li>\n</ul>\n<h2>v2.1.1</h2>\n<ul>\n<li>Update <code>@actions/cache</code> package to <code>v1.0.2</code> which allows cache action to use posix format when taring files.</li>\n</ul>\n<h2>v2.1.0</h2>\n<ul>\n<li>Replaces the <code>http-client</code> with the Azure Storage SDK for NodeJS when downloading cache content from Azure.  This should help improve download performance and reliability as the SDK downloads files in 4 MB chunks, which can be parallelized and retried independently</li>\n<li>Display download progress and speed</li>\n</ul>\n</blockquote>\n</details>\n<details>\n<summary>Changelog</summary>\n<p><em>Sourced from <a href=\"https://github.com/actions/cache/blob/main/RELEASES.md\">actions/cache's changelog</a>.</em></p>\n<blockquote>\n<h1>Releases</h1>\n<h3>3.0.0</h3>\n<ul>\n<li>Updated minimum runner version support from node 12 -&gt; node 16</li>\n</ul>\n<h3>3.0.1</h3>\n<ul>\n<li>Added support for caching from GHES 3.5.</li>\n<li>Fixed download issue for files &gt; 2GB during restore.</li>\n</ul>\n<h3>3.0.2</h3>\n<ul>\n<li>Added support for dynamic cache size cap on GHES.</li>\n</ul>\n<h3>3.0.3</h3>\n<ul>\n<li>Fixed avoiding empty cache save when no files are available for caching. (<a href=\"https://redirect.github.com/actions/cache/issues/624\">issue</a>)</li>\n</ul>\n<h3>3.0.4</h3>\n<ul>\n<li>Fixed tar creation error while trying to create tar with path as <code>~/</code> home folder on <code>ubuntu-latest</code>. (<a href=\"https://redirect.github.com/actions/cache/issues/689\">issue</a>)</li>\n</ul>\n<h3>3.0.5</h3>\n<ul>\n<li>Removed error handling by consuming actions/cache 3.0 toolkit, Now cache server error handling will be done by toolkit. (<a href=\"https://redirect.github.com/actions/cache/pull/834\">PR</a>)</li>\n</ul>\n<h3>3.0.6</h3>\n<ul>\n<li>Fixed <a href=\"https://redirect.github.com/actions/cache/issues/809\">#809</a> - zstd -d: no such file or directory error</li>\n<li>Fixed <a href=\"https://redirect.github.com/actions/cache/issues/833\">#833</a> - cache doesn't work with github workspace directory</li>\n</ul>\n<h3>3.0.7</h3>\n<ul>\n<li>Fixed <a href=\"https://redirect.github.com/actions/cache/issues/810\">#810</a> - download stuck issue. A new timeout is introduced in the download process to abort the download if it gets stuck and doesn't finish within an hour.</li>\n</ul>\n<h3>3.0.8</h3>\n<ul>\n<li>Fix zstd not working for windows on gnu tar in issues <a href=\"https://redirect.github.com/actions/cache/issues/888\">#888</a> and <a href=\"https://redirect.github.com/actions/cache/issues/891\">#891</a>.</li>\n<li>Allowing users to provide a custom timeout as input for aborting download of a cache segment using an environment variable <code>SEGMENT_DOWNLOAD_TIMEOUT_MINS</code>. Default is 60 minutes.</li>\n</ul>\n<h3>3.0.9</h3>\n<ul>\n<li>Enhanced the warning message for cache unavailablity in case of GHES.</li>\n</ul>\n<h3>3.0.10</h3>\n<ul>\n<li>Fix a bug with sorting inputs.</li>\n<li>Update definition for restore-keys in README.md</li>\n</ul>\n<!-- raw HTML omitted -->\n</blockquote>\n<p>... (truncated)</p>\n</details>\n<details>\n<summary>Commits</summary>\n<ul>\n<li><a href=\"https://github.com/actions/cache/commit/704facf57e6136b1bc63b828d79edcd491f0ee84\"><code>704facf</code></a> Merge pull request <a href=\"https://redirect.github.com/actions/cache/issues/1236\">#1236</a> from actions/bethanyj28/bump-version</li>\n<li><a href=\"https://github.com/actions/cache/commit/17e2888746ae4cdbac78cbb1a45a157d310c0e53\"><code>17e2888</code></a> Add to RELEASES.md</li>\n<li><a href=\"https://github.com/actions/cache/commit/667d8fdfa213683cee9fcaad43be0f25322bef02\"><code>667d8fd</code></a> bump action version to 3.3.2</li>\n<li><a href=\"https://github.com/actions/cache/commit/f7ebb81a3f195b4fb88dab7c14e2f7aff52045aa\"><code>f7ebb81</code></a> Consume latest toolkit and fix dangling promise bug (<a href=\"https://redirect.github.com/actions/cache/issues/1217\">#1217</a>)</li>\n<li><a href=\"https://github.com/actions/cache/commit/67b839edb68371cc5014f6cea11c9aa77238de78\"><code>67b839e</code></a> Merge pull request <a href=\"https://redirect.github.com/actions/cache/issues/1187\">#1187</a> from jorendorff/jorendorff/rm-add-to-project</li>\n<li><a href=\"https://github.com/actions/cache/commit/57f0e3f198251983d70fc3c83e71b973822da983\"><code>57f0e3f</code></a> Remove actions to add new PRs and issues to a project board</li>\n<li><a href=\"https://github.com/actions/cache/commit/04f198bf0b2a39f7230a4304bf07747a0bddf146\"><code>04f198b</code></a> Merge pull request <a href=\"https://redirect.github.com/actions/cache/issues/1132\">#1132</a> from vorburger/bazel-example</li>\n<li><a href=\"https://github.com/actions/cache/commit/bd9b49b6c3b91fb2f92c80901a466ba260a746eb\"><code>bd9b49b</code></a> Merge branch 'main' into bazel-example</li>\n<li><a href=\"https://github.com/actions/cache/commit/ea0503788c59256f4da17725d04df850ca027df5\"><code>ea05037</code></a> Merge pull request <a href=\"https://redirect.github.com/actions/cache/issues/1122\">#1122</a> from actions/pdotl-patch-1</li>\n<li><a href=\"https://github.com/actions/cache/commit/6a1a45d49b4738670d9804cd9a8fee56a01b6bf2\"><code>6a1a45d</code></a> Merge branch 'main' into pdotl-patch-1</li>\n<li>Additional commits viewable in <a href=\"https://github.com/actions/cache/compare/v2...v3\">compare view</a></li>\n</ul>\n</details>\n<br />\n\n\n[![Dependabot compatibility score](https://dependabot-badges.githubapp.com/badges/compatibility_score?dependency-name=actions/cache&package-manager=github_actions&previous-version=2&new-version=3)](https://docs.github.com/en/github/managing-security-vulnerabilities/about-dependabot-security-updates#about-compatibility-scores)\n\nDependabot will resolve any conflicts with this PR as long as you don't alter it yourself. You can also trigger a rebase manually by commenting `@dependabot rebase`.\n\n[//]: # (dependabot-automerge-start)\n[//]: # (dependabot-automerge-end)\n\n---\n\n<details>\n<summary>Dependabot commands and options</summary>\n<br />\n\nYou can trigger Dependabot actions by commenting on this PR:\n- `@dependabot rebase` will rebase this PR\n- `@dependabot recreate` will recreate this PR, overwriting any edits that have been made to it\n- `@dependabot merge` will merge this PR after your CI passes on it\n- `@dependabot squash and merge` will squash and merge this PR after your CI passes on it\n- `@dependabot cancel merge` will cancel a previously requested merge and block automerging\n- `@dependabot reopen` will reopen this PR if it is closed\n- `@dependabot close` will close this PR and stop Dependabot recreating it. You can achieve the same result by closing it manually\n- `@dependabot show <dependency name> ignore conditions` will show all of the ignore conditions of the specified dependency\n- `@dependabot ignore this major version` will close this PR and stop Dependabot creating any more for this major version (unless you reopen the PR or upgrade to it yourself)\n- `@dependabot ignore this minor version` will close this PR and stop Dependabot creating any more for this minor version (unless you reopen the PR or upgrade to it yourself)\n- `@dependabot ignore this dependency` will close this PR and stop Dependabot creating any more for this dependency (unless you reopen the PR or upgrade to it yourself)\n\n\n</details>",
+      "changed_files": 1,
+      "closed_at": "2023-11-07T12:49:08Z",
       "comments": 2,
-      "comments_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/issues/121/comments",
+      "comments_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/issues/122/comments",
       "commits": 1,
-      "commits_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/121/commits",
-      "created_at": "2023-11-07T09:45:36Z",
-      "deletions": 6,
-      "diff_url": "https://github.com/guitarrapc/githubactions-lab/pull/121.diff",
+      "commits_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/122/commits",
+      "created_at": "2023-11-07T09:45:40Z",
+      "deletions": 1,
+      "diff_url": "https://github.com/guitarrapc/githubactions-lab/pull/122.diff",
       "draft": false,
       "head": {
-        "label": "guitarrapc:dependabot/github_actions/ad-m/github-push-action-0.8.0",
-        "ref": "dependabot/github_actions/ad-m/github-push-action-0.8.0",
+        "label": "guitarrapc:dependabot/github_actions/actions/cache-3",
+        "ref": "dependabot/github_actions/actions/cache-3",
         "repo": {
           "allow_auto_merge": false,
           "allow_forking": true,
@@ -286,8 +286,8 @@
           "name": "githubactions-lab",
           "node_id": "MDEwOlJlcG9zaXRvcnkyNTc0NjU0Njg=",
           "notifications_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/notifications{?since,all,participating}",
-          "open_issues": 9,
-          "open_issues_count": 9,
+          "open_issues": 6,
+          "open_issues_count": 6,
           "owner": {
             "avatar_url": "https://avatars.githubusercontent.com/u/3856350?v=4",
             "events_url": "https://api.github.com/users/guitarrapc/events{/privacy}",
@@ -310,9 +310,9 @@
           },
           "private": false,
           "pulls_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls{/number}",
-          "pushed_at": "2023-11-07T10:46:44Z",
+          "pushed_at": "2023-11-07T12:49:08Z",
           "releases_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/releases{/id}",
-          "size": 1064,
+          "size": 1161,
           "squash_merge_commit_message": "COMMIT_MESSAGES",
           "squash_merge_commit_title": "COMMIT_OR_PR_TITLE",
           "ssh_url": "git@github.com:guitarrapc/githubactions-lab.git",
@@ -336,7 +336,7 @@
           "watchers_count": 32,
           "web_commit_signoff_required": false
         },
-        "sha": "142aae298df9d0feb40d92d90fee02fa9ec23dbc",
+        "sha": "53e6170d47f613e361b25387435c9bb96863b0d6",
         "user": {
           "avatar_url": "https://avatars.githubusercontent.com/u/3856350?v=4",
           "events_url": "https://api.github.com/users/guitarrapc/events{/privacy}",
@@ -358,9 +358,9 @@
           "url": "https://api.github.com/users/guitarrapc"
         }
       },
-      "html_url": "https://github.com/guitarrapc/githubactions-lab/pull/121",
-      "id": 1590219771,
-      "issue_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/issues/121",
+      "html_url": "https://github.com/guitarrapc/githubactions-lab/pull/122",
+      "id": 1590219860,
+      "issue_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/issues/122",
       "labels": [
         {
           "color": "0366d6",
@@ -374,11 +374,11 @@
       ],
       "locked": false,
       "maintainer_can_modify": false,
-      "merge_commit_sha": "5eff3638e43bd1ea6e4763d4a82a26c7ec26073a",
+      "merge_commit_sha": "8a7c7fd820eaebb6f83bfcdd9d12057c8b3e371a",
       "mergeable": null,
       "mergeable_state": "unknown",
       "merged": true,
-      "merged_at": "2023-11-07T10:46:45Z",
+      "merged_at": "2023-11-07T12:49:08Z",
       "merged_by": {
         "avatar_url": "https://avatars.githubusercontent.com/u/3856350?v=4",
         "events_url": "https://api.github.com/users/guitarrapc/events{/privacy}",
@@ -400,20 +400,20 @@
         "url": "https://api.github.com/users/guitarrapc"
       },
       "milestone": null,
-      "node_id": "PR_kwDOD1icfM5eyNP7",
-      "number": 121,
-      "patch_url": "https://github.com/guitarrapc/githubactions-lab/pull/121.patch",
+      "node_id": "PR_kwDOD1icfM5eyNRU",
+      "number": 122,
+      "patch_url": "https://github.com/guitarrapc/githubactions-lab/pull/122.patch",
       "rebaseable": null,
       "requested_reviewers": [],
       "requested_teams": [],
       "review_comment_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/comments{/number}",
       "review_comments": 0,
-      "review_comments_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/121/comments",
+      "review_comments_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/122/comments",
       "state": "closed",
-      "statuses_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/statuses/142aae298df9d0feb40d92d90fee02fa9ec23dbc",
-      "title": "chore(deps): bump ad-m/github-push-action from 0.7.0 to 0.8.0",
-      "updated_at": "2023-11-07T10:46:45Z",
-      "url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/121",
+      "statuses_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/statuses/53e6170d47f613e361b25387435c9bb96863b0d6",
+      "title": "chore(deps): bump actions/cache from 2 to 3",
+      "updated_at": "2023-11-07T12:49:09Z",
+      "url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/122",
       "user": {
         "avatar_url": "https://avatars.githubusercontent.com/in/29110?v=4",
         "events_url": "https://api.github.com/users/dependabot%5Bbot%5D/events{/privacy}",
@@ -496,8 +496,8 @@
       "name": "githubactions-lab",
       "node_id": "MDEwOlJlcG9zaXRvcnkyNTc0NjU0Njg=",
       "notifications_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/notifications{?since,all,participating}",
-      "open_issues": 9,
-      "open_issues_count": 9,
+      "open_issues": 6,
+      "open_issues_count": 6,
       "owner": {
         "avatar_url": "https://avatars.githubusercontent.com/u/3856350?v=4",
         "events_url": "https://api.github.com/users/guitarrapc/events{/privacy}",
@@ -520,9 +520,9 @@
       },
       "private": false,
       "pulls_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls{/number}",
-      "pushed_at": "2023-11-07T10:46:44Z",
+      "pushed_at": "2023-11-07T12:49:08Z",
       "releases_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/releases{/id}",
-      "size": 1064,
+      "size": 1161,
       "ssh_url": "git@github.com:guitarrapc/githubactions-lab.git",
       "stargazers_count": 32,
       "stargazers_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/stargazers",
@@ -572,15 +572,15 @@
   "ref_type": "branch",
   "secret_source": "Actions",
   "workflow_ref": "guitarrapc/githubactions-lab/.github/workflows/auto_dump_context.yaml@refs/heads/main",
-  "workflow_sha": "5eff3638e43bd1ea6e4763d4a82a26c7ec26073a",
+  "workflow_sha": "8a7c7fd820eaebb6f83bfcdd9d12057c8b3e371a",
   "workspace": "/home/runner/work/githubactions-lab/githubactions-lab",
   "action": "__run_2",
   "event_path": "/home/runner/work/_temp/_github_workflow/event.json",
   "action_repository": "",
   "action_ref": "",
-  "path": "/home/runner/work/_temp/_runner_file_commands/add_path_a492124b-f4c0-4f52-a9f0-51c8535f9aef",
-  "env": "/home/runner/work/_temp/_runner_file_commands/set_env_a492124b-f4c0-4f52-a9f0-51c8535f9aef",
-  "step_summary": "/home/runner/work/_temp/_runner_file_commands/step_summary_a492124b-f4c0-4f52-a9f0-51c8535f9aef",
-  "state": "/home/runner/work/_temp/_runner_file_commands/save_state_a492124b-f4c0-4f52-a9f0-51c8535f9aef",
-  "output": "/home/runner/work/_temp/_runner_file_commands/set_output_a492124b-f4c0-4f52-a9f0-51c8535f9aef"
+  "path": "/home/runner/work/_temp/_runner_file_commands/add_path_2016aed6-5b60-4d84-9d64-f83f384c23de",
+  "env": "/home/runner/work/_temp/_runner_file_commands/set_env_2016aed6-5b60-4d84-9d64-f83f384c23de",
+  "step_summary": "/home/runner/work/_temp/_runner_file_commands/step_summary_2016aed6-5b60-4d84-9d64-f83f384c23de",
+  "state": "/home/runner/work/_temp/_runner_file_commands/save_state_2016aed6-5b60-4d84-9d64-f83f384c23de",
+  "output": "/home/runner/work/_temp/_runner_file_commands/set_output_2016aed6-5b60-4d84-9d64-f83f384c23de"
 }
