@@ -1,16 +1,16 @@
 {
-  "token": "ghs_zzHRJ0Gw8YHY0Yl0daGHcd8Wwzeflg1u77eG",
+  "token": "ghs_dU6omat7Xs5fzE2NQUhayELqOKb9wy12Ei7j",
   "job": "dump-context",
   "ref": "refs/heads/main",
-  "sha": "d077d5019a07a417c6b4b0e4f94ca079c3815c70",
+  "sha": "a501ec0ea68bd8b4cc4b5f7152b3aff32b001cbb",
   "repository": "guitarrapc/githubactions-lab",
   "repository_owner": "guitarrapc",
   "repository_owner_id": "3856350",
   "repositoryUrl": "git://github.com/guitarrapc/githubactions-lab.git",
-  "run_id": "6783234626",
-  "run_number": "339",
+  "run_id": "6783427168",
+  "run_number": "371",
   "retention_days": "90",
-  "run_attempt": "2",
+  "run_attempt": "1",
   "artifact_cache_size_limit": "10",
   "repository_visibility": "public",
   "repo-self-hosted-runners-disabled": false,
@@ -20,44 +20,44 @@
   "actor": "guitarrapc",
   "triggering_actor": "guitarrapc",
   "workflow": "auto dump context",
-  "head_ref": "feature/actions",
+  "head_ref": "dependabot/github_actions/actions/stale-8.0.0",
   "base_ref": "main",
   "event_name": "pull_request_target",
   "event": {
     "action": "closed",
-    "number": 125,
+    "number": 119,
     "pull_request": {
       "_links": {
         "comments": {
-          "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/issues/125/comments"
+          "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/issues/119/comments"
         },
         "commits": {
-          "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/125/commits"
+          "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/119/commits"
         },
         "html": {
-          "href": "https://github.com/guitarrapc/githubactions-lab/pull/125"
+          "href": "https://github.com/guitarrapc/githubactions-lab/pull/119"
         },
         "issue": {
-          "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/issues/125"
+          "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/issues/119"
         },
         "review_comment": {
           "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/comments{/number}"
         },
         "review_comments": {
-          "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/125/comments"
+          "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/119/comments"
         },
         "self": {
-          "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/125"
+          "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/119"
         },
         "statuses": {
-          "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/statuses/f30f093c5922b567e4f3b2dedf632cbf57779ba1"
+          "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/statuses/864923a8fde8efee893cbe5ddff38635d4b46676"
         }
       },
       "active_lock_reason": null,
-      "additions": 131,
+      "additions": 1,
       "assignee": null,
       "assignees": [],
-      "author_association": "OWNER",
+      "author_association": "CONTRIBUTOR",
       "auto_merge": null,
       "base": {
         "label": "guitarrapc:main",
@@ -131,8 +131,8 @@
           "name": "githubactions-lab",
           "node_id": "MDEwOlJlcG9zaXRvcnkyNTc0NjU0Njg=",
           "notifications_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/notifications{?since,all,participating}",
-          "open_issues": 11,
-          "open_issues_count": 11,
+          "open_issues": 7,
+          "open_issues_count": 7,
           "owner": {
             "avatar_url": "https://avatars.githubusercontent.com/u/3856350?v=4",
             "events_url": "https://api.github.com/users/guitarrapc/events{/privacy}",
@@ -155,9 +155,9 @@
           },
           "private": false,
           "pulls_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls{/number}",
-          "pushed_at": "2023-11-07T10:32:16Z",
+          "pushed_at": "2023-11-07T10:50:17Z",
           "releases_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/releases{/id}",
-          "size": 973,
+          "size": 1064,
           "squash_merge_commit_message": "COMMIT_MESSAGES",
           "squash_merge_commit_title": "COMMIT_OR_PR_TITLE",
           "ssh_url": "git@github.com:guitarrapc/githubactions-lab.git",
@@ -181,7 +181,7 @@
           "watchers_count": 32,
           "web_commit_signoff_required": false
         },
-        "sha": "d714e1089a8679afa46342f22ea925de0096de91",
+        "sha": "c805ec014ca8d5d3c6be463cfb1a2e31f8a484d9",
         "user": {
           "avatar_url": "https://avatars.githubusercontent.com/u/3856350?v=4",
           "events_url": "https://api.github.com/users/guitarrapc/events{/privacy}",
@@ -203,20 +203,20 @@
           "url": "https://api.github.com/users/guitarrapc"
         }
       },
-      "body": null,
-      "changed_files": 8,
-      "closed_at": "2023-11-07T10:32:16Z",
-      "comments": 0,
-      "comments_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/issues/125/comments",
-      "commits": 4,
-      "commits_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/125/commits",
-      "created_at": "2023-11-07T10:30:44Z",
-      "deletions": 130,
-      "diff_url": "https://github.com/guitarrapc/githubactions-lab/pull/125.diff",
+      "body": "Bumps [actions/stale](https://github.com/actions/stale) from 4.0.0 to 8.0.0.\n<details>\n<summary>Release notes</summary>\n<p><em>Sourced from <a href=\"https://github.com/actions/stale/releases\">actions/stale's releases</a>.</em></p>\n<blockquote>\n<h2>v8.0.0</h2>\n<p>:warning: This version contains breaking changes :warning:</p>\n<h2>What's Changed</h2>\n<ul>\n<li>New option labels-to-remove-when-stale enables users to specify list of comma delimited labels that will be removed when the issue or PR becomes stale by <a href=\"https://github.com/panticmilos\"><code>@​panticmilos</code></a> <a href=\"https://redirect.github.com/actions/stale/issues/770\">actions/stale#770</a></li>\n<li>Skip deleting the branch in the upstream of a forked repo by <a href=\"https://github.com/dsame\"><code>@​dsame</code></a> <a href=\"https://redirect.github.com/actions/stale/pull/913\">actions/stale#913</a></li>\n<li>abort the build on the error by <a href=\"https://github.com/dsame\"><code>@​dsame</code></a> in <a href=\"https://redirect.github.com/actions/stale/pull/935\">actions/stale#935</a></li>\n</ul>\n<h2>Breaking Changes</h2>\n<ul>\n<li>In this release we prevent scenarios when the build is not interrupted on some exceptions, which led to successful builds when they are supposed to fail</li>\n</ul>\n<h2>Example</h2>\n<pre lang=\"yaml\"><code>name: 'Remove labels when the issue or PR becomes stale'\non:\n  schedule:\n    - cron: '30 1 * * *'\n<p>permissions:\npull-requests: write</p>\n<p>jobs:\nstale:\nruns-on: ubuntu-latest\nsteps:\n- uses: actions/stale@v8\nwith:\nlabels-to-remove-when-stale: 'label1,label2'\n</code></pre></p>\n<h2>v7.0.0</h2>\n<p>⚠️ This version contains breaking changes ⚠️</p>\n<h2>What's Changed</h2>\n<ul>\n<li>Allow daysBeforeStale options to be float by <a href=\"https://github.com/irega\"><code>@​irega</code></a> in <a href=\"https://redirect.github.com/actions/stale/pull/841\">actions/stale#841</a></li>\n<li>Use cache in check-dist.yml by <a href=\"https://github.com/jongwooo\"><code>@​jongwooo</code></a> in <a href=\"https://redirect.github.com/actions/stale/pull/876\">actions/stale#876</a></li>\n<li>fix print outputs step in existing workflows by <a href=\"https://github.com/irega\"><code>@​irega</code></a> in <a href=\"https://redirect.github.com/actions/stale/pull/859\">actions/stale#859</a></li>\n<li>Update issue and PR templates, add/delete workflow files by <a href=\"https://github.com/IvanZosimov\"><code>@​IvanZosimov</code></a> in <a href=\"https://redirect.github.com/actions/stale/pull/880\">actions/stale#880</a></li>\n<li>Update how stale handles exempt items by <a href=\"https://github.com/johnsudol\"><code>@​johnsudol</code></a> in <a href=\"https://redirect.github.com/actions/stale/pull/874\">actions/stale#874</a></li>\n</ul>\n<h2>Breaking Changes</h2>\n<ul>\n<li>In this release we prevent this action from managing the <code>stale</code> label on items included in <code>exempt-issue-labels</code> and <code>exempt-pr-labels</code></li>\n<li>We decided that this is outside of the scope of this action, and to be left up to the maintainer</li>\n</ul>\n<h2>New Contributors</h2>\n<ul>\n<li><a href=\"https://github.com/irega\"><code>@​irega</code></a> made their first contribution in <a href=\"https://redirect.github.com/actions/stale/pull/841\">actions/stale#841</a></li>\n<li><a href=\"https://github.com/jongwooo\"><code>@​jongwooo</code></a> made their first contribution in <a href=\"https://redirect.github.com/actions/stale/pull/876\">actions/stale#876</a></li>\n<li><a href=\"https://github.com/IvanZosimov\"><code>@​IvanZosimov</code></a> made their first contribution in <a href=\"https://redirect.github.com/actions/stale/pull/880\">actions/stale#880</a></li>\n<li><a href=\"https://github.com/johnsudol\"><code>@​johnsudol</code></a> made their first contribution in <a href=\"https://redirect.github.com/actions/stale/pull/874\">actions/stale#874</a></li>\n</ul>\n<!-- raw HTML omitted -->\n</blockquote>\n<p>... (truncated)</p>\n</details>\n<details>\n<summary>Changelog</summary>\n<p><em>Sourced from <a href=\"https://github.com/actions/stale/blob/main/CHANGELOG.md\">actions/stale's changelog</a>.</em></p>\n<blockquote>\n<h1>Changelog</h1>\n<h1>[7.0.0]</h1>\n<p>:warning: Breaking change :warning:</p>\n<ul>\n<li>Allow daysBeforeStale options to be float by <a href=\"https://github.com/irega\"><code>@​irega</code></a> in <a href=\"https://redirect.github.com/actions/stale/pull/841\">actions/stale#841</a></li>\n<li>Use cache in check-dist.yml by <a href=\"https://github.com/jongwooo\"><code>@​jongwooo</code></a> in <a href=\"https://redirect.github.com/actions/stale/pull/876\">actions/stale#876</a></li>\n<li>fix print outputs step in existing workflows by <a href=\"https://github.com/irega\"><code>@​irega</code></a> in <a href=\"https://redirect.github.com/actions/stale/pull/859\">actions/stale#859</a></li>\n<li>Update issue and PR templates, add/delete workflow files by <a href=\"https://github.com/IvanZosimov\"><code>@​IvanZosimov</code></a> in <a href=\"https://redirect.github.com/actions/stale/pull/880\">actions/stale#880</a></li>\n<li>Update how stale handles exempt items by <a href=\"https://github.com/johnsudol\"><code>@​johnsudol</code></a> in <a href=\"https://redirect.github.com/actions/stale/pull/874\">actions/stale#874</a></li>\n</ul>\n<h1>[6.0.1]</h1>\n<p>Update <code>@​actions/core</code> to v1.10.0 (<a href=\"https://redirect.github.com/actions/stale/pull/839\">#839</a>)</p>\n<h1>[6.0.0]</h1>\n<p>:warning: Breaking change :warning:</p>\n<p>Issues/PRs default <code>close-issue-reason</code> is now <code>not_planned</code>(<a href=\"https://redirect.github.com/actions/stale/issues/789\">#789</a>)</p>\n<h1>[5.1.0]</h1>\n<p><a href=\"https://redirect.github.com/actions/stale/issues/696\">Don't process stale issues right after they're marked stale</a>\n[Add close-issue-reason option]<a href=\"https://redirect.github.com/actions/stale/pull/764\">#764</a><a href=\"https://redirect.github.com/actions/stale/pull/772\">#772</a>\nVarious dependabot/dependency updates</p>\n<h2><a href=\"https://github.com/actions/stale/compare/v3.0.19...v4.1.0\">4.1.0</a> (2021-07-14)</h2>\n<h2>Features</h2>\n<ul>\n<li><a href=\"https://github.com/actions/stale/commit/9912fa74d1c01b5d6187793d97441019cbe325d0\">Ability to exempt draft PRs</a></li>\n</ul>\n</blockquote>\n</details>\n<details>\n<summary>Commits</summary>\n<ul>\n<li><a href=\"https://github.com/actions/stale/commit/1160a2240286f5da8ec72b1c0816ce2481aabf84\"><code>1160a22</code></a> Merge pull request <a href=\"https://redirect.github.com/actions/stale/issues/965\">#965</a> from actions/dependabot/npm_and_yarn/prettier-2.8.6</li>\n<li><a href=\"https://github.com/actions/stale/commit/5f7b3966457047e35f2989b4f3529d4fcbfd3bc8\"><code>5f7b396</code></a> build(deps-dev): bump prettier from 2.8.4 to 2.8.6</li>\n<li><a href=\"https://github.com/actions/stale/commit/b002e7ec857ceadb81a436f02fc2e21040190e0a\"><code>b002e7e</code></a> Merge pull request <a href=\"https://redirect.github.com/actions/stale/issues/941\">#941</a> from panticmilos/vmpantic/rebuild-dist-vercel-bump</li>\n<li><a href=\"https://github.com/actions/stale/commit/52903732a4c3c9b1f232f1694ad0743bbfcef33c\"><code>5290373</code></a> Rebuild dist after rebase</li>\n<li><a href=\"https://github.com/actions/stale/commit/b006677dea6f2be4bde357abb1ccb22915272277\"><code>b006677</code></a> Merge pull request <a href=\"https://redirect.github.com/actions/stale/issues/962\">#962</a> from actions/dependabot/npm_and_yarn/jest-and-types/j...</li>\n<li><a href=\"https://github.com/actions/stale/commit/4f29769aee0fc902940fb3af95c79e98e121683e\"><code>4f29769</code></a> Merge pull request <a href=\"https://redirect.github.com/actions/stale/issues/961\">#961</a> from actions/dependabot/npm_and_yarn/typescript-5.0.2</li>\n<li><a href=\"https://github.com/actions/stale/commit/83453dd842477b1f93e2a366453b9d1c7540eb5b\"><code>83453dd</code></a> build(deps-dev): bump jest and <code>@​types/jest</code></li>\n<li><a href=\"https://github.com/actions/stale/commit/79e8c046ed3b9e6a6d89b0453d22c3a2eb50c90f\"><code>79e8c04</code></a> Merge pull request <a href=\"https://redirect.github.com/actions/stale/issues/960\">#960</a> from actions/dependabot/npm_and_yarn/types/node-18.15.3</li>\n<li><a href=\"https://github.com/actions/stale/commit/75d4d955acb83847572798f2ffd26ba259871e3c\"><code>75d4d95</code></a> Remove labels on stale (<a href=\"https://redirect.github.com/actions/stale/issues/959\">#959</a>)</li>\n<li><a href=\"https://github.com/actions/stale/commit/fac2d41a881555a987df3dacc701e84d898c2aa5\"><code>fac2d41</code></a> build(deps-dev): bump typescript from 4.9.4 to 5.0.2</li>\n<li>Additional commits viewable in <a href=\"https://github.com/actions/stale/compare/v4.0.0...v8.0.0\">compare view</a></li>\n</ul>\n</details>\n<br />\n\n\n[![Dependabot compatibility score](https://dependabot-badges.githubapp.com/badges/compatibility_score?dependency-name=actions/stale&package-manager=github_actions&previous-version=4.0.0&new-version=8.0.0)](https://docs.github.com/en/github/managing-security-vulnerabilities/about-dependabot-security-updates#about-compatibility-scores)\n\nDependabot will resolve any conflicts with this PR as long as you don't alter it yourself. You can also trigger a rebase manually by commenting `@dependabot rebase`.\n\n[//]: # (dependabot-automerge-start)\n[//]: # (dependabot-automerge-end)\n\n---\n\n<details>\n<summary>Dependabot commands and options</summary>\n<br />\n\nYou can trigger Dependabot actions by commenting on this PR:\n- `@dependabot rebase` will rebase this PR\n- `@dependabot recreate` will recreate this PR, overwriting any edits that have been made to it\n- `@dependabot merge` will merge this PR after your CI passes on it\n- `@dependabot squash and merge` will squash and merge this PR after your CI passes on it\n- `@dependabot cancel merge` will cancel a previously requested merge and block automerging\n- `@dependabot reopen` will reopen this PR if it is closed\n- `@dependabot close` will close this PR and stop Dependabot recreating it. You can achieve the same result by closing it manually\n- `@dependabot show <dependency name> ignore conditions` will show all of the ignore conditions of the specified dependency\n- `@dependabot ignore this major version` will close this PR and stop Dependabot creating any more for this major version (unless you reopen the PR or upgrade to it yourself)\n- `@dependabot ignore this minor version` will close this PR and stop Dependabot creating any more for this minor version (unless you reopen the PR or upgrade to it yourself)\n- `@dependabot ignore this dependency` will close this PR and stop Dependabot creating any more for this dependency (unless you reopen the PR or upgrade to it yourself)\n\n\n</details>",
+      "changed_files": 1,
+      "closed_at": "2023-11-07T10:50:17Z",
+      "comments": 2,
+      "comments_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/issues/119/comments",
+      "commits": 1,
+      "commits_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/119/commits",
+      "created_at": "2023-11-07T09:45:29Z",
+      "deletions": 1,
+      "diff_url": "https://github.com/guitarrapc/githubactions-lab/pull/119.diff",
       "draft": false,
       "head": {
-        "label": "guitarrapc:feature/actions",
-        "ref": "feature/actions",
+        "label": "guitarrapc:dependabot/github_actions/actions/stale-8.0.0",
+        "ref": "dependabot/github_actions/actions/stale-8.0.0",
         "repo": {
           "allow_auto_merge": false,
           "allow_forking": true,
@@ -286,8 +286,8 @@
           "name": "githubactions-lab",
           "node_id": "MDEwOlJlcG9zaXRvcnkyNTc0NjU0Njg=",
           "notifications_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/notifications{?since,all,participating}",
-          "open_issues": 11,
-          "open_issues_count": 11,
+          "open_issues": 7,
+          "open_issues_count": 7,
           "owner": {
             "avatar_url": "https://avatars.githubusercontent.com/u/3856350?v=4",
             "events_url": "https://api.github.com/users/guitarrapc/events{/privacy}",
@@ -310,9 +310,9 @@
           },
           "private": false,
           "pulls_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls{/number}",
-          "pushed_at": "2023-11-07T10:32:16Z",
+          "pushed_at": "2023-11-07T10:50:17Z",
           "releases_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/releases{/id}",
-          "size": 973,
+          "size": 1064,
           "squash_merge_commit_message": "COMMIT_MESSAGES",
           "squash_merge_commit_title": "COMMIT_OR_PR_TITLE",
           "ssh_url": "git@github.com:guitarrapc/githubactions-lab.git",
@@ -336,7 +336,7 @@
           "watchers_count": 32,
           "web_commit_signoff_required": false
         },
-        "sha": "f30f093c5922b567e4f3b2dedf632cbf57779ba1",
+        "sha": "864923a8fde8efee893cbe5ddff38635d4b46676",
         "user": {
           "avatar_url": "https://avatars.githubusercontent.com/u/3856350?v=4",
           "events_url": "https://api.github.com/users/guitarrapc/events{/privacy}",
@@ -358,17 +358,27 @@
           "url": "https://api.github.com/users/guitarrapc"
         }
       },
-      "html_url": "https://github.com/guitarrapc/githubactions-lab/pull/125",
-      "id": 1590302528,
-      "issue_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/issues/125",
-      "labels": [],
+      "html_url": "https://github.com/guitarrapc/githubactions-lab/pull/119",
+      "id": 1590219582,
+      "issue_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/issues/119",
+      "labels": [
+        {
+          "color": "0366d6",
+          "default": false,
+          "description": "Pull requests that update a dependency file",
+          "id": 5238199298,
+          "name": "dependencies",
+          "node_id": "LA_kwDOD1icfM8AAAABODiUAg",
+          "url": "https://api.github.com/repos/guitarrapc/githubactions-lab/labels/dependencies"
+        }
+      ],
       "locked": false,
       "maintainer_can_modify": false,
-      "merge_commit_sha": "d077d5019a07a417c6b4b0e4f94ca079c3815c70",
+      "merge_commit_sha": "a501ec0ea68bd8b4cc4b5f7152b3aff32b001cbb",
       "mergeable": null,
       "mergeable_state": "unknown",
       "merged": true,
-      "merged_at": "2023-11-07T10:32:16Z",
+      "merged_at": "2023-11-07T10:50:17Z",
       "merged_by": {
         "avatar_url": "https://avatars.githubusercontent.com/u/3856350?v=4",
         "events_url": "https://api.github.com/users/guitarrapc/events{/privacy}",
@@ -390,39 +400,39 @@
         "url": "https://api.github.com/users/guitarrapc"
       },
       "milestone": null,
-      "node_id": "PR_kwDOD1icfM5eyhdA",
-      "number": 125,
-      "patch_url": "https://github.com/guitarrapc/githubactions-lab/pull/125.patch",
+      "node_id": "PR_kwDOD1icfM5eyNM-",
+      "number": 119,
+      "patch_url": "https://github.com/guitarrapc/githubactions-lab/pull/119.patch",
       "rebaseable": null,
       "requested_reviewers": [],
       "requested_teams": [],
       "review_comment_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/comments{/number}",
       "review_comments": 0,
-      "review_comments_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/125/comments",
+      "review_comments_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/119/comments",
       "state": "closed",
-      "statuses_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/statuses/f30f093c5922b567e4f3b2dedf632cbf57779ba1",
-      "title": "ci: allow dependabot[bot] to change actions",
-      "updated_at": "2023-11-07T10:32:17Z",
-      "url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/125",
+      "statuses_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/statuses/864923a8fde8efee893cbe5ddff38635d4b46676",
+      "title": "chore(deps): bump actions/stale from 4.0.0 to 8.0.0",
+      "updated_at": "2023-11-07T10:50:18Z",
+      "url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/119",
       "user": {
-        "avatar_url": "https://avatars.githubusercontent.com/u/3856350?v=4",
-        "events_url": "https://api.github.com/users/guitarrapc/events{/privacy}",
-        "followers_url": "https://api.github.com/users/guitarrapc/followers",
-        "following_url": "https://api.github.com/users/guitarrapc/following{/other_user}",
-        "gists_url": "https://api.github.com/users/guitarrapc/gists{/gist_id}",
+        "avatar_url": "https://avatars.githubusercontent.com/in/29110?v=4",
+        "events_url": "https://api.github.com/users/dependabot%5Bbot%5D/events{/privacy}",
+        "followers_url": "https://api.github.com/users/dependabot%5Bbot%5D/followers",
+        "following_url": "https://api.github.com/users/dependabot%5Bbot%5D/following{/other_user}",
+        "gists_url": "https://api.github.com/users/dependabot%5Bbot%5D/gists{/gist_id}",
         "gravatar_id": "",
-        "html_url": "https://github.com/guitarrapc",
-        "id": 3856350,
-        "login": "guitarrapc",
-        "node_id": "MDQ6VXNlcjM4NTYzNTA=",
-        "organizations_url": "https://api.github.com/users/guitarrapc/orgs",
-        "received_events_url": "https://api.github.com/users/guitarrapc/received_events",
-        "repos_url": "https://api.github.com/users/guitarrapc/repos",
+        "html_url": "https://github.com/apps/dependabot",
+        "id": 49699333,
+        "login": "dependabot[bot]",
+        "node_id": "MDM6Qm90NDk2OTkzMzM=",
+        "organizations_url": "https://api.github.com/users/dependabot%5Bbot%5D/orgs",
+        "received_events_url": "https://api.github.com/users/dependabot%5Bbot%5D/received_events",
+        "repos_url": "https://api.github.com/users/dependabot%5Bbot%5D/repos",
         "site_admin": false,
-        "starred_url": "https://api.github.com/users/guitarrapc/starred{/owner}{/repo}",
-        "subscriptions_url": "https://api.github.com/users/guitarrapc/subscriptions",
-        "type": "User",
-        "url": "https://api.github.com/users/guitarrapc"
+        "starred_url": "https://api.github.com/users/dependabot%5Bbot%5D/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/dependabot%5Bbot%5D/subscriptions",
+        "type": "Bot",
+        "url": "https://api.github.com/users/dependabot%5Bbot%5D"
       }
     },
     "repository": {
@@ -486,8 +496,8 @@
       "name": "githubactions-lab",
       "node_id": "MDEwOlJlcG9zaXRvcnkyNTc0NjU0Njg=",
       "notifications_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/notifications{?since,all,participating}",
-      "open_issues": 11,
-      "open_issues_count": 11,
+      "open_issues": 7,
+      "open_issues_count": 7,
       "owner": {
         "avatar_url": "https://avatars.githubusercontent.com/u/3856350?v=4",
         "events_url": "https://api.github.com/users/guitarrapc/events{/privacy}",
@@ -510,9 +520,9 @@
       },
       "private": false,
       "pulls_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls{/number}",
-      "pushed_at": "2023-11-07T10:32:16Z",
+      "pushed_at": "2023-11-07T10:50:17Z",
       "releases_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/releases{/id}",
-      "size": 973,
+      "size": 1064,
       "ssh_url": "git@github.com:guitarrapc/githubactions-lab.git",
       "stargazers_count": 32,
       "stargazers_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/stargazers",
@@ -562,15 +572,15 @@
   "ref_type": "branch",
   "secret_source": "Actions",
   "workflow_ref": "guitarrapc/githubactions-lab/.github/workflows/auto_dump_context.yaml@refs/heads/main",
-  "workflow_sha": "d077d5019a07a417c6b4b0e4f94ca079c3815c70",
+  "workflow_sha": "a501ec0ea68bd8b4cc4b5f7152b3aff32b001cbb",
   "workspace": "/home/runner/work/githubactions-lab/githubactions-lab",
   "action": "__run_2",
   "event_path": "/home/runner/work/_temp/_github_workflow/event.json",
   "action_repository": "",
   "action_ref": "",
-  "path": "/home/runner/work/_temp/_runner_file_commands/add_path_fc145036-dcd5-4b43-addc-aebbc9424ce4",
-  "env": "/home/runner/work/_temp/_runner_file_commands/set_env_fc145036-dcd5-4b43-addc-aebbc9424ce4",
-  "step_summary": "/home/runner/work/_temp/_runner_file_commands/step_summary_fc145036-dcd5-4b43-addc-aebbc9424ce4",
-  "state": "/home/runner/work/_temp/_runner_file_commands/save_state_fc145036-dcd5-4b43-addc-aebbc9424ce4",
-  "output": "/home/runner/work/_temp/_runner_file_commands/set_output_fc145036-dcd5-4b43-addc-aebbc9424ce4"
+  "path": "/home/runner/work/_temp/_runner_file_commands/add_path_1acce273-0123-46a4-9120-feb806a8d8ef",
+  "env": "/home/runner/work/_temp/_runner_file_commands/set_env_1acce273-0123-46a4-9120-feb806a8d8ef",
+  "step_summary": "/home/runner/work/_temp/_runner_file_commands/step_summary_1acce273-0123-46a4-9120-feb806a8d8ef",
+  "state": "/home/runner/work/_temp/_runner_file_commands/save_state_1acce273-0123-46a4-9120-feb806a8d8ef",
+  "output": "/home/runner/work/_temp/_runner_file_commands/set_output_1acce273-0123-46a4-9120-feb806a8d8ef"
 }
