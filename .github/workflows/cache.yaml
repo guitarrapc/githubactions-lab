@@ -24,7 +24,7 @@ jobs:
           CONTEXT: ${{ toJson(github) }}
       # get trigger repo references
       - name: public repo reference
-        uses: actions/github-script@v3
+        uses: actions/github-script@v6
         id: set-public-result
         with:
           github-token: ${{secrets.GITHUB_TOKEN}}
@@ -38,7 +38,7 @@ jobs:
             return result.data.object.sha
       - run: echo "${{ steps.set-public-result.outputs.result }}"
       - name: private repo reference
-        uses: actions/github-script@v3
+        uses: actions/github-script@v6
         id: set-private-result
         with:
           github-token: ${{ secrets.SYNCED_GITHUB_TOKEN_REPO }} # must be PAT
