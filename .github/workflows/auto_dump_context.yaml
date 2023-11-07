@@ -22,6 +22,7 @@ permissions:
 
 jobs:
   dump:
+    if: ${{ github.actor != 'dependabot[bot]' }}
     uses: ./.github/workflows/_reusable_dump_context.yaml
     with:
       output-path: contexts
