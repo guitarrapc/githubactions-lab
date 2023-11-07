@@ -1,14 +1,14 @@
 {
-  "token": "ghs_z9KD98aqJrjJW0j7AEds0kh01KhG8s4VA5IB",
+  "token": "ghs_i01EGnCcwOz3o1OAciL82gttzbQxO03SSEf7",
   "job": "dump-context",
   "ref": "refs/heads/main",
-  "sha": "5eff3638e43bd1ea6e4763d4a82a26c7ec26073a",
+  "sha": "d27fffe523779f25e17f24421767c997891dc58a",
   "repository": "guitarrapc/githubactions-lab",
   "repository_owner": "guitarrapc",
   "repository_owner_id": "3856350",
   "repositoryUrl": "git://github.com/guitarrapc/githubactions-lab.git",
-  "run_id": "6783390311",
-  "run_number": "364",
+  "run_id": "6783416890",
+  "run_number": "368",
   "retention_days": "90",
   "run_attempt": "1",
   "artifact_cache_size_limit": "10",
@@ -20,41 +20,41 @@
   "actor": "guitarrapc",
   "triggering_actor": "guitarrapc",
   "workflow": "auto dump context",
-  "head_ref": "dependabot/github_actions/ad-m/github-push-action-0.8.0",
+  "head_ref": "dependabot/github_actions/nwtgck/actions-comment-run-2.0.0",
   "base_ref": "main",
   "event_name": "pull_request_target",
   "event": {
     "action": "closed",
-    "number": 121,
+    "number": 120,
     "pull_request": {
       "_links": {
         "comments": {
-          "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/issues/121/comments"
+          "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/issues/120/comments"
         },
         "commits": {
-          "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/121/commits"
+          "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/120/commits"
         },
         "html": {
-          "href": "https://github.com/guitarrapc/githubactions-lab/pull/121"
+          "href": "https://github.com/guitarrapc/githubactions-lab/pull/120"
         },
         "issue": {
-          "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/issues/121"
+          "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/issues/120"
         },
         "review_comment": {
           "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/comments{/number}"
         },
         "review_comments": {
-          "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/121/comments"
+          "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/120/comments"
         },
         "self": {
-          "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/121"
+          "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/120"
         },
         "statuses": {
-          "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/statuses/142aae298df9d0feb40d92d90fee02fa9ec23dbc"
+          "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/statuses/eef47b7dad7b1f3527a4412c8c1ac042ed6653e4"
         }
       },
       "active_lock_reason": null,
-      "additions": 6,
+      "additions": 1,
       "assignee": null,
       "assignees": [],
       "author_association": "CONTRIBUTOR",
@@ -131,8 +131,8 @@
           "name": "githubactions-lab",
           "node_id": "MDEwOlJlcG9zaXRvcnkyNTc0NjU0Njg=",
           "notifications_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/notifications{?since,all,participating}",
-          "open_issues": 9,
-          "open_issues_count": 9,
+          "open_issues": 8,
+          "open_issues_count": 8,
           "owner": {
             "avatar_url": "https://avatars.githubusercontent.com/u/3856350?v=4",
             "events_url": "https://api.github.com/users/guitarrapc/events{/privacy}",
@@ -155,7 +155,7 @@
           },
           "private": false,
           "pulls_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls{/number}",
-          "pushed_at": "2023-11-07T10:46:44Z",
+          "pushed_at": "2023-11-07T10:49:18Z",
           "releases_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/releases{/id}",
           "size": 1064,
           "squash_merge_commit_message": "COMMIT_MESSAGES",
@@ -203,20 +203,20 @@
           "url": "https://api.github.com/users/guitarrapc"
         }
       },
-      "body": "Bumps [ad-m/github-push-action](https://github.com/ad-m/github-push-action) from 0.7.0 to 0.8.0.\n<details>\n<summary>Release notes</summary>\n<p><em>Sourced from <a href=\"https://github.com/ad-m/github-push-action/releases\">ad-m/github-push-action's releases</a>.</em></p>\n<blockquote>\n<h2>v0.8.0</h2>\n<h2>What's Changed</h2>\n<ul>\n<li>feat: Update the used NodeJS version to 20 by <a href=\"https://github.com/ZPascal\"><code>@​ZPascal</code></a> in <a href=\"https://redirect.github.com/ad-m/github-push-action/pull/184\">ad-m/github-push-action#184</a></li>\n</ul>\n<p><strong>Full Changelog</strong>: <a href=\"https://github.com/ad-m/github-push-action/compare/v0.7.0...v0.8.0\">https://github.com/ad-m/github-push-action/compare/v0.7.0...v0.8.0</a></p>\n</blockquote>\n</details>\n<details>\n<summary>Commits</summary>\n<ul>\n<li><a href=\"https://github.com/ad-m/github-push-action/commit/d91a481090679876dfc4178fef17f286781251df\"><code>d91a481</code></a> feat: Update the used NodeJS version to 20 (<a href=\"https://redirect.github.com/ad-m/github-push-action/issues/184\">#184</a>)</li>\n<li>See full diff in <a href=\"https://github.com/ad-m/github-push-action/compare/29f05e01bb17e6f28228b47437e03a7b69e1f9ef...d91a481090679876dfc4178fef17f286781251df\">compare view</a></li>\n</ul>\n</details>\n<br />\n\n\n[![Dependabot compatibility score](https://dependabot-badges.githubapp.com/badges/compatibility_score?dependency-name=ad-m/github-push-action&package-manager=github_actions&previous-version=0.7.0&new-version=0.8.0)](https://docs.github.com/en/github/managing-security-vulnerabilities/about-dependabot-security-updates#about-compatibility-scores)\n\nDependabot will resolve any conflicts with this PR as long as you don't alter it yourself. You can also trigger a rebase manually by commenting `@dependabot rebase`.\n\n[//]: # (dependabot-automerge-start)\n[//]: # (dependabot-automerge-end)\n\n---\n\n<details>\n<summary>Dependabot commands and options</summary>\n<br />\n\nYou can trigger Dependabot actions by commenting on this PR:\n- `@dependabot rebase` will rebase this PR\n- `@dependabot recreate` will recreate this PR, overwriting any edits that have been made to it\n- `@dependabot merge` will merge this PR after your CI passes on it\n- `@dependabot squash and merge` will squash and merge this PR after your CI passes on it\n- `@dependabot cancel merge` will cancel a previously requested merge and block automerging\n- `@dependabot reopen` will reopen this PR if it is closed\n- `@dependabot close` will close this PR and stop Dependabot recreating it. You can achieve the same result by closing it manually\n- `@dependabot show <dependency name> ignore conditions` will show all of the ignore conditions of the specified dependency\n- `@dependabot ignore this major version` will close this PR and stop Dependabot creating any more for this major version (unless you reopen the PR or upgrade to it yourself)\n- `@dependabot ignore this minor version` will close this PR and stop Dependabot creating any more for this minor version (unless you reopen the PR or upgrade to it yourself)\n- `@dependabot ignore this dependency` will close this PR and stop Dependabot creating any more for this dependency (unless you reopen the PR or upgrade to it yourself)\n\n\n</details>",
-      "changed_files": 5,
-      "closed_at": "2023-11-07T10:46:45Z",
+      "body": "Bumps [nwtgck/actions-comment-run](https://github.com/nwtgck/actions-comment-run) from 1.1.3 to 2.0.0.\n<details>\n<summary>Release notes</summary>\n<p><em>Sourced from <a href=\"https://github.com/nwtgck/actions-comment-run/releases\">nwtgck/actions-comment-run's releases</a>.</em></p>\n<blockquote>\n<h2>v2.0.0</h2>\n<h3>Changed</h3>\n<ul>\n<li>Updates the default runtime to node16</li>\n<li>Use <code>@​actions/core</code> 1.10.0</li>\n<li>Use <code>@​actions/exec</code> 1.1.1</li>\n<li>Use <code>@​actions/github</code> 5.1.1</li>\n<li>Use node-fetch 3.3.1</li>\n<li>Update dependencies</li>\n</ul>\n</blockquote>\n</details>\n<details>\n<summary>Changelog</summary>\n<p><em>Sourced from <a href=\"https://github.com/nwtgck/actions-comment-run/blob/develop/CHANGELOG.md\">nwtgck/actions-comment-run's changelog</a>.</em></p>\n<blockquote>\n<h2>[2.0.0] - 2023-05-05</h2>\n<h3>Changed</h3>\n<ul>\n<li>Updates the default runtime to node16</li>\n<li>Use <code>@​actions/core</code> 1.10.0</li>\n<li>Use <code>@​actions/exec</code> 1.1.1</li>\n<li>Use <code>@​actions/github</code> 5.1.1</li>\n<li>Use node-fetch 3.3.1</li>\n<li>Update dependencies</li>\n</ul>\n</blockquote>\n</details>\n<details>\n<summary>Commits</summary>\n<ul>\n<li><a href=\"https://github.com/nwtgck/actions-comment-run/commit/9fc2ff922e2677245e44e7aec38d1d5a58e0f91e\"><code>9fc2ff9</code></a> Merge branch 'release/2.0.0'</li>\n<li><a href=\"https://github.com/nwtgck/actions-comment-run/commit/c414fb942def3eda7f27411a2cdc0b91cac55b69\"><code>c414fb9</code></a> bump: 2.0.0</li>\n<li><a href=\"https://github.com/nwtgck/actions-comment-run/commit/9dd71310789984e8e261f1c51d5d3610e6026555\"><code>9dd7131</code></a> deps: fix</li>\n<li><a href=\"https://github.com/nwtgck/actions-comment-run/commit/0854adf3b9128663923aeee979d4e65ca38013de\"><code>0854adf</code></a> refactor: remove unused lodash</li>\n<li><a href=\"https://github.com/nwtgck/actions-comment-run/commit/9c7031803ebc942379bf001b0aa4f936b79eec08\"><code>9c70318</code></a> ci: run build-test every push</li>\n<li><a href=\"https://github.com/nwtgck/actions-comment-run/commit/e3eb965934332f5e05377da663059b88c15f6b98\"><code>e3eb965</code></a> deps: update</li>\n<li><a href=\"https://github.com/nwtgck/actions-comment-run/commit/35f6570d52dc8403a2406e3ba7f7f4b8512d8b28\"><code>35f6570</code></a> docs: update comment image and checkout action</li>\n<li><a href=\"https://github.com/nwtgck/actions-comment-run/commit/f7f2af18bdf4782e2ba2dded87b67e33e05aa331\"><code>f7f2af1</code></a> build(deps-dev): bump <code>@​types/jest</code> from 26.0.24 to 29.5.1 (<a href=\"https://redirect.github.com/nwtgck/actions-comment-run/issues/708\">#708</a>)</li>\n<li><a href=\"https://github.com/nwtgck/actions-comment-run/commit/1ffe3bd7721147c0cd67a013a8579b8ba1e881fb\"><code>1ffe3bd</code></a> use <code>@​actions/github</code><a href=\"https://github.com/5\"><code>@​5</code></a> and remove GitHub</li>\n<li><a href=\"https://github.com/nwtgck/actions-comment-run/commit/e2565ae8e8a4592b56a7bdc845f75c8cd448fcd2\"><code>e2565ae</code></a> chore: update repository url</li>\n<li>Additional commits viewable in <a href=\"https://github.com/nwtgck/actions-comment-run/compare/v1.1.3...v2.0.0\">compare view</a></li>\n</ul>\n</details>\n<br />\n\n\n[![Dependabot compatibility score](https://dependabot-badges.githubapp.com/badges/compatibility_score?dependency-name=nwtgck/actions-comment-run&package-manager=github_actions&previous-version=1.1.3&new-version=2.0.0)](https://docs.github.com/en/github/managing-security-vulnerabilities/about-dependabot-security-updates#about-compatibility-scores)\n\nDependabot will resolve any conflicts with this PR as long as you don't alter it yourself. You can also trigger a rebase manually by commenting `@dependabot rebase`.\n\n[//]: # (dependabot-automerge-start)\n[//]: # (dependabot-automerge-end)\n\n---\n\n<details>\n<summary>Dependabot commands and options</summary>\n<br />\n\nYou can trigger Dependabot actions by commenting on this PR:\n- `@dependabot rebase` will rebase this PR\n- `@dependabot recreate` will recreate this PR, overwriting any edits that have been made to it\n- `@dependabot merge` will merge this PR after your CI passes on it\n- `@dependabot squash and merge` will squash and merge this PR after your CI passes on it\n- `@dependabot cancel merge` will cancel a previously requested merge and block automerging\n- `@dependabot reopen` will reopen this PR if it is closed\n- `@dependabot close` will close this PR and stop Dependabot recreating it. You can achieve the same result by closing it manually\n- `@dependabot show <dependency name> ignore conditions` will show all of the ignore conditions of the specified dependency\n- `@dependabot ignore this major version` will close this PR and stop Dependabot creating any more for this major version (unless you reopen the PR or upgrade to it yourself)\n- `@dependabot ignore this minor version` will close this PR and stop Dependabot creating any more for this minor version (unless you reopen the PR or upgrade to it yourself)\n- `@dependabot ignore this dependency` will close this PR and stop Dependabot creating any more for this dependency (unless you reopen the PR or upgrade to it yourself)\n\n\n</details>",
+      "changed_files": 1,
+      "closed_at": "2023-11-07T10:49:18Z",
       "comments": 2,
-      "comments_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/issues/121/comments",
+      "comments_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/issues/120/comments",
       "commits": 1,
-      "commits_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/121/commits",
-      "created_at": "2023-11-07T09:45:36Z",
-      "deletions": 6,
-      "diff_url": "https://github.com/guitarrapc/githubactions-lab/pull/121.diff",
+      "commits_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/120/commits",
+      "created_at": "2023-11-07T09:45:34Z",
+      "deletions": 1,
+      "diff_url": "https://github.com/guitarrapc/githubactions-lab/pull/120.diff",
       "draft": false,
       "head": {
-        "label": "guitarrapc:dependabot/github_actions/ad-m/github-push-action-0.8.0",
-        "ref": "dependabot/github_actions/ad-m/github-push-action-0.8.0",
+        "label": "guitarrapc:dependabot/github_actions/nwtgck/actions-comment-run-2.0.0",
+        "ref": "dependabot/github_actions/nwtgck/actions-comment-run-2.0.0",
         "repo": {
           "allow_auto_merge": false,
           "allow_forking": true,
@@ -286,8 +286,8 @@
           "name": "githubactions-lab",
           "node_id": "MDEwOlJlcG9zaXRvcnkyNTc0NjU0Njg=",
           "notifications_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/notifications{?since,all,participating}",
-          "open_issues": 9,
-          "open_issues_count": 9,
+          "open_issues": 8,
+          "open_issues_count": 8,
           "owner": {
             "avatar_url": "https://avatars.githubusercontent.com/u/3856350?v=4",
             "events_url": "https://api.github.com/users/guitarrapc/events{/privacy}",
@@ -310,7 +310,7 @@
           },
           "private": false,
           "pulls_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls{/number}",
-          "pushed_at": "2023-11-07T10:46:44Z",
+          "pushed_at": "2023-11-07T10:49:18Z",
           "releases_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/releases{/id}",
           "size": 1064,
           "squash_merge_commit_message": "COMMIT_MESSAGES",
@@ -336,7 +336,7 @@
           "watchers_count": 32,
           "web_commit_signoff_required": false
         },
-        "sha": "142aae298df9d0feb40d92d90fee02fa9ec23dbc",
+        "sha": "eef47b7dad7b1f3527a4412c8c1ac042ed6653e4",
         "user": {
           "avatar_url": "https://avatars.githubusercontent.com/u/3856350?v=4",
           "events_url": "https://api.github.com/users/guitarrapc/events{/privacy}",
@@ -358,9 +358,9 @@
           "url": "https://api.github.com/users/guitarrapc"
         }
       },
-      "html_url": "https://github.com/guitarrapc/githubactions-lab/pull/121",
-      "id": 1590219771,
-      "issue_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/issues/121",
+      "html_url": "https://github.com/guitarrapc/githubactions-lab/pull/120",
+      "id": 1590219694,
+      "issue_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/issues/120",
       "labels": [
         {
           "color": "0366d6",
@@ -374,11 +374,11 @@
       ],
       "locked": false,
       "maintainer_can_modify": false,
-      "merge_commit_sha": "5eff3638e43bd1ea6e4763d4a82a26c7ec26073a",
+      "merge_commit_sha": "d27fffe523779f25e17f24421767c997891dc58a",
       "mergeable": null,
       "mergeable_state": "unknown",
       "merged": true,
-      "merged_at": "2023-11-07T10:46:45Z",
+      "merged_at": "2023-11-07T10:49:18Z",
       "merged_by": {
         "avatar_url": "https://avatars.githubusercontent.com/u/3856350?v=4",
         "events_url": "https://api.github.com/users/guitarrapc/events{/privacy}",
@@ -400,20 +400,20 @@
         "url": "https://api.github.com/users/guitarrapc"
       },
       "milestone": null,
-      "node_id": "PR_kwDOD1icfM5eyNP7",
-      "number": 121,
-      "patch_url": "https://github.com/guitarrapc/githubactions-lab/pull/121.patch",
+      "node_id": "PR_kwDOD1icfM5eyNOu",
+      "number": 120,
+      "patch_url": "https://github.com/guitarrapc/githubactions-lab/pull/120.patch",
       "rebaseable": null,
       "requested_reviewers": [],
       "requested_teams": [],
       "review_comment_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/comments{/number}",
       "review_comments": 0,
-      "review_comments_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/121/comments",
+      "review_comments_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/120/comments",
       "state": "closed",
-      "statuses_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/statuses/142aae298df9d0feb40d92d90fee02fa9ec23dbc",
-      "title": "chore(deps): bump ad-m/github-push-action from 0.7.0 to 0.8.0",
-      "updated_at": "2023-11-07T10:46:45Z",
-      "url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/121",
+      "statuses_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/statuses/eef47b7dad7b1f3527a4412c8c1ac042ed6653e4",
+      "title": "chore(deps): bump nwtgck/actions-comment-run from 1.1.3 to 2.0.0",
+      "updated_at": "2023-11-07T10:49:18Z",
+      "url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/120",
       "user": {
         "avatar_url": "https://avatars.githubusercontent.com/in/29110?v=4",
         "events_url": "https://api.github.com/users/dependabot%5Bbot%5D/events{/privacy}",
@@ -496,8 +496,8 @@
       "name": "githubactions-lab",
       "node_id": "MDEwOlJlcG9zaXRvcnkyNTc0NjU0Njg=",
       "notifications_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/notifications{?since,all,participating}",
-      "open_issues": 9,
-      "open_issues_count": 9,
+      "open_issues": 8,
+      "open_issues_count": 8,
       "owner": {
         "avatar_url": "https://avatars.githubusercontent.com/u/3856350?v=4",
         "events_url": "https://api.github.com/users/guitarrapc/events{/privacy}",
@@ -520,7 +520,7 @@
       },
       "private": false,
       "pulls_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls{/number}",
-      "pushed_at": "2023-11-07T10:46:44Z",
+      "pushed_at": "2023-11-07T10:49:18Z",
       "releases_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/releases{/id}",
       "size": 1064,
       "ssh_url": "git@github.com:guitarrapc/githubactions-lab.git",
@@ -572,15 +572,15 @@
   "ref_type": "branch",
   "secret_source": "Actions",
   "workflow_ref": "guitarrapc/githubactions-lab/.github/workflows/auto_dump_context.yaml@refs/heads/main",
-  "workflow_sha": "5eff3638e43bd1ea6e4763d4a82a26c7ec26073a",
+  "workflow_sha": "d27fffe523779f25e17f24421767c997891dc58a",
   "workspace": "/home/runner/work/githubactions-lab/githubactions-lab",
   "action": "__run_2",
   "event_path": "/home/runner/work/_temp/_github_workflow/event.json",
   "action_repository": "",
   "action_ref": "",
-  "path": "/home/runner/work/_temp/_runner_file_commands/add_path_34c4bf5e-971d-4a82-98ad-80d4a3bc8767",
-  "env": "/home/runner/work/_temp/_runner_file_commands/set_env_34c4bf5e-971d-4a82-98ad-80d4a3bc8767",
-  "step_summary": "/home/runner/work/_temp/_runner_file_commands/step_summary_34c4bf5e-971d-4a82-98ad-80d4a3bc8767",
-  "state": "/home/runner/work/_temp/_runner_file_commands/save_state_34c4bf5e-971d-4a82-98ad-80d4a3bc8767",
-  "output": "/home/runner/work/_temp/_runner_file_commands/set_output_34c4bf5e-971d-4a82-98ad-80d4a3bc8767"
+  "path": "/home/runner/work/_temp/_runner_file_commands/add_path_668cfd35-ae87-4186-bd3b-4147793240d1",
+  "env": "/home/runner/work/_temp/_runner_file_commands/set_env_668cfd35-ae87-4186-bd3b-4147793240d1",
+  "step_summary": "/home/runner/work/_temp/_runner_file_commands/step_summary_668cfd35-ae87-4186-bd3b-4147793240d1",
+  "state": "/home/runner/work/_temp/_runner_file_commands/save_state_668cfd35-ae87-4186-bd3b-4147793240d1",
+  "output": "/home/runner/work/_temp/_runner_file_commands/set_output_668cfd35-ae87-4186-bd3b-4147793240d1"
 }
