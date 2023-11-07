@@ -62,7 +62,7 @@ jobs:
       # cache validation if sha's file has been updated
       - name: Cache sha
         id: cache-sha
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: ~/cache
           key: ${{ runner.os }}-${{ env.CACHE_VERSION }}-sha-${{ hashFiles('**/sha.txt') }}
