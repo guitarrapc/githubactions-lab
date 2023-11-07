@@ -62,7 +62,7 @@ jobs:
           LINK: ${{ github.event.pull_request.number }}
           SHA: ${{ github.sha }}
           COMPARE_URL: https://github.com/${{ github.repository }}/compare/main...${{ github.event.after }}
-      - uses: ad-m/github-push-action@29f05e01bb17e6f28228b47437e03a7b69e1f9ef
+      - uses: ad-m/github-push-action@d91a481090679876dfc4178fef17f286781251df
         with:
           github_token: ${{ secrets.SYNCED_GITHUB_TOKEN_REPO }}
           repository: ${{ env.REPO_MANIFEST }}
