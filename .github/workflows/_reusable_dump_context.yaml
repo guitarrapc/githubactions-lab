@@ -17,9 +17,11 @@ jobs:
     runs-on: ${{ matrix.runs-on }}
     timeout-minutes: 5
     steps:
+      # PR should checkout HEAD ref instead of merge commit, but there are no branch for closed event, therefore use base ref.
+      # Other event's base ref is always empty.
       - uses: actions/checkout@v4
         with:
-          ref: ${{ startsWith(github.event_name, 'pull_request') && github.event.pull_request.head.ref || '' }} # checkout PR HEAD commit instead of merge commit
+          ref: ${{ (startsWith(github.event_name, 'pull_request') && github.event.action != 'closed') && github.event.pull_request.head.ref || github.base_ref }}
       - name: file names
         id: file
         run: echo "name=${{ github.event_name }}${{ github.event.action != '' && format('_{0}', github.event.action) || ''}}" | tee -a "$GITHUB_OUTPUT"
@@ -79,14 +81,14 @@ jobs:
         env:
           CONTEXT: ${{ toJson(matrix) }}
           OUTPUT_PATH: ${{ inputs.output-path }}/matrix
-      - name: update current git to latest
+      - name: Update current git to latest & Push changes
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add .
-          git commit -m "[auto commit] update context (event=${{ github.event_name }}, action=${{ github.event.action }})"
+          git commit -m "[auto commit] update context (workflow=${{ github.workflow }}, event=${{ github.event_name }}, action=${{ github.event.action }})"
           git pull origin ${{ env.CHECKOUT_REF }} --rebase
           git push
         env:
-          CHECKOUT_REF: ${{ startsWith(github.event_name, 'pull_request') && github.event.pull_request.head.ref || github.ref_name }}
+          CHECKOUT_REF: ${{ (startsWith(github.event_name, 'pull_request') && github.event.action != 'closed') && github.event.pull_request.head.ref || (startsWith(github.event_name, 'pull_request') && github.event.action == 'closed') && github.base_ref || github.ref_name }}
         if: ${{ !(startsWith(github.event_name, 'pull_request') && github.event.action == 'closed') }}
