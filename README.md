@@ -2546,9 +2546,9 @@ action folder naming also follow this rule.
 ```yaml
 # .github/workflows/_reusable_dump_context.yaml#L20-L22
 
-# PR should checkout HEAD ref instead of merge commit, but there are no branch for closed event, therefore use base ref.
-# Other event's base ref is always empty.
-- uses: actions/checkout@v4
+# PR should checkout HEAD ref instead of merge commit.                        -> github.head.ref
+# Tag should checkout base ref instead of ref.                                -> github.event.base_ref
+# PR close delete branch, so it should checkout BASE ref instead of HEAD ref. -> github.base_ref
 ```
 
 ## Get Tag
