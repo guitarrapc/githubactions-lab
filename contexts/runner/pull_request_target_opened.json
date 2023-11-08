@@ -1,7 +1,7 @@
 {
   "os": "Linux",
   "arch": "X64",
-  "name": "GitHub Actions 9",
+  "name": "GitHub Actions 31",
   "environment": "github-hosted",
   "tool_cache": "/opt/hostedtoolcache",
   "temp": "/home/runner/work/_temp",

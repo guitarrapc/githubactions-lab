@@ -65,6 +65,7 @@ GitHub Actions research and test laboratory.
 - [Basic - BAD PATTERN](#basic---bad-pattern)
   - [Env refer env](#env-refer-env)
 - [Advanced](#advanced)
+  - [Automatic Actions version update via Dependabot](#automatic-actions-version-update-via-dependabot)
   - [Checkout faster with Git sparse-checkout](#checkout-faster-with-git-sparse-checkout)
   - [Dispatch other repo workflow](#dispatch-other-repo-workflow)
   - [Fork user workflow change prevention](#fork-user-workflow-change-prevention)
@@ -1962,6 +1963,37 @@ jobs:
 # Advanced
 
 Advanced tips.
+
+## Automatic Actions version update via Dependabot
+
+You can use [Dependabot](https://docs.github.com/en/code-security/dependabot/working-with-dependabot/automating-dependabot-with-github-actions) to update GitHub Actions version automatically. Dependabot create pull request to keep your actions up to date, and you can merge it manually or automatically.
+
+To enable Dependabot for GitHub Actions update, add `.github/dependabot.yml` to your repository.
+
+```yaml
+# .github/dependabot.yaml
+
+# ref: https://docs.github.com/en/code-security/dependabot/working-with-dependabot/keeping-your-actions-up-to-date-with-dependabot
+version: 2
+updates:
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly" # Check for updates to GitHub Actions every week
+
+```
+
+**Customize dependabot.yaml**
+
+There are some [configuration options for dependabot.yaml file](https://docs.github.com/en/code-security/dependabot/dependabot-version-updates/configuration-options-for-the-dependabot.yml-file).
+
+**Accessing secrets on dependabot action**
+
+When a Dependabot event triggers a workflow, the only secrets available to the workflow are Dependabot secrets. GitHub Actions secrets are not available.
+
+> ref: https://docs.github.com/en/code-security/dependabot/working-with-dependabot/automating-dependabot-with-github-actions#accessing-secrets
+
+Therefore I recommend not to use secret for Dependabot triggered workflows. If you need secrets, then put same named secret to Dependabot secret.
 
 ## Checkout faster with Git sparse-checkout
 
