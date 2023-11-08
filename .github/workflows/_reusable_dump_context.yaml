@@ -18,9 +18,9 @@ jobs:
     timeout-minutes: 5
     steps:
       # PR should checkout HEAD ref instead of merge commit.                        -> github.head.ref
-      # Tag should checkout base ref instead of ref.                                -> github.event.base_ref
       # PR close delete branch, so it should checkout BASE ref instead of HEAD ref. -> github.base_ref
-      # Other event's base ref is always empty and it use default branch.           -> github.base_ref
+      # Tag ref is tag version, let's checkout default branch instead of ref.       -> github.event.repository.default_branch
+      # Other event use ref, which is default branch.                               -> github.ref_name
       - uses: actions/checkout@v4
         with:
           ref: ${{ (startsWith(github.event_name, 'pull_request') && github.event.action != 'closed') && github.head_ref || (startsWith(github.event_name, 'pull_request') && github.event.action == 'closed') && github.base_ref || github.ref_type == 'tag' && github.event.repository.default_branch || github.ref_name }}
