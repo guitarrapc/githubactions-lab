@@ -480,12 +480,18 @@ env:
   BRANCH_NAME: ${{ startsWith(github.event_name, 'pull_request') && github.head_ref || github.ref_name }}
 
 jobs:
-  ubuntu:
-    runs-on: ubuntu-latest
+  bash:
+    strategy:
+      matrix:
+        runs-on: [ubuntu-latest, windows-latest]
+    runs-on: ${{ matrix.runs-on }}
     timeout-minutes: 3
+    defaults:
+      run:
+        shell: bash
     steps:
       - uses: actions/checkout@v4
-      - name: Add ENV and OUTPUT
+      - name: Add ENV and OUTPUT by shell
         id: shell
         run: |
           echo "BRANCH=${{ env.BRANCH_NAME }}" >> "$GITHUB_ENV"
@@ -496,7 +502,7 @@ jobs:
           echo ${{ steps.shell.outputs.branch }}
       - name: Add ENV and OUTPUT by Script
         id: script
-        run: bash .github/scripts/setenv.sh --ref "${{ env.BRANCH_NAME }}"
+        run: bash ./.github/scripts/setenv.sh --ref "${{ env.BRANCH_NAME }}"
       - name: Show Script  ENV and OUTPUT
         run: |
           echo ${{ env.BRANCH_SCRIPT }}
@@ -506,16 +512,22 @@ jobs:
       - name: Show PATH
         run: echo "$PATH"
 
-  windows:
-    runs-on: windows-latest
+  powershell:
+    strategy:
+      matrix:
+        runs-on: [ubuntu-latest, windows-latest]
+    runs-on: ${{ matrix.runs-on }}
     timeout-minutes: 3
+    defaults:
+      run:
+        shell: pwsh
     steps:
       - uses: actions/checkout@v4
-      - name: Add ENV and OUTPUT
+      - name: Add ENV and OUTPUT by shell
         id: shell
         run: |
-            echo "BRANCH=${{ env.BRANCH_NAME }}" >> "${env:GITHUB_ENV}"
-            echo "branch=${{ env.BRANCH_NAME }}" >> "${env:GITHUB_OUTPUT}"
+          echo "BRANCH=${{ env.BRANCH_NAME }}" >> "${env:GITHUB_ENV}"
+          echo "branch=${{ env.BRANCH_NAME }}" >> "${env:GITHUB_OUTPUT}"
       - name: Show ENV and OUTPUT
         run: |
           echo "${{ env.BRANCH }}"
