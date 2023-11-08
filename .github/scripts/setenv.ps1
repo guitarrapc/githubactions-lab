@@ -2,5 +2,5 @@ param(
   [string]$Ref
 )
 
-echo "BRANCH_SCRIPT=$($Ref -replace '.*/','')" >> $env:GITHUB_ENV
-echo "branch=$($Ref -replace '.*/','')" >> $env:GITHUB_OUTPUT
+echo "BRANCH_SCRIPT=$Ref" >> $env:GITHUB_ENV
+echo "branch=$Ref" >> $env:GITHUB_OUTPUT
