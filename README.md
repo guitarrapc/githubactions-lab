@@ -444,6 +444,8 @@ This syntax can be write in the script, let's see `.github/scripts/setenv.sh`.
 # .github/scripts/setenv.sh
 
 #!/bin/bash
+set -eux
+
 while [ $# -gt 0 ]; do
     case $1 in
         --ref) GITHUB_REF=$2; shift 2; ;;
@@ -451,7 +453,8 @@ while [ $# -gt 0 ]; do
     esac
 done
 
-echo GIT_TAG_SCRIPT=${GITHUB_REF##*/} >> "$GITHUB_ENV"
+echo BRANCH_SCRIPT=${GITHUB_REF} | tee -a "$GITHUB_ENV"
+echo branch=${GITHUB_REF} | tee -a "$GITHUB_OUTPUT"
 
 ```
 
@@ -472,16 +475,108 @@ on:
     branches: ["main"]
   pull_request:
     branches: ["main"]
+
+env:
+  BRANCH_NAME: ${{ startsWith(github.event_name, 'pull_request') && github.head_ref || github.ref_name }}
+
 jobs:
-  build:
-    runs-on: ubuntu-latest
+  bash:
+    strategy:
+      matrix:
+        runs-on: [ubuntu-latest, windows-latest]
+    runs-on: ${{ matrix.runs-on }}
     timeout-minutes: 3
+    defaults:
+      run:
+        shell: bash
     steps:
       - uses: actions/checkout@v4
-      - run: echo "GIT_TAG=${GITHUB_REF#refs/heads/}" >> "$GITHUB_ENV"
-      - run: echo ${{ env.GIT_TAG }}
-      - run: bash -eux .github/scripts/setenv.sh --ref "${GITHUB_REF#refs/heads/}"
-      - run: echo ${{ env.GIT_TAG_SCRIPT }}
+      - name: Add ENV and OUTPUT by shell
+        id: shell
+        run: |
+          echo "BRANCH=${{ env.BRANCH_NAME }}" | tee -a "$GITHUB_ENV"
+          echo "branch=${{ env.BRANCH_NAME }}" | tee -a "$GITHUB_OUTPUT"
+      - name: Show ENV and OUTPUT
+        run: |
+          echo ${{ env.BRANCH }}
+          echo ${{ steps.shell.outputs.branch }}
+      - name: Add ENV and OUTPUT by Script
+        id: script
+        run: bash ./.github/scripts/setenv.sh --ref "${{ env.BRANCH_NAME }}"
+      - name: Show Script  ENV and OUTPUT
+        run: |
+          echo ${{ env.BRANCH_SCRIPT }}
+          echo ${{ steps.script.outputs.branch }}
+      - name: Add PATH
+        run: echo "$HOME/foo/bar" | tee -a "$GITHUB_PATH"
+      - name: Show PATH
+        run: echo "$PATH"
+
+  powershell:
+    strategy:
+      matrix:
+        runs-on: [ubuntu-latest, windows-latest]
+    runs-on: ${{ matrix.runs-on }}
+    timeout-minutes: 3
+    defaults:
+      run:
+        shell: pwsh
+    steps:
+      - uses: actions/checkout@v4
+      - name: Add ENV and OUTPUT by shell
+        id: shell
+        run: |
+          echo "BRANCH=${{ env.BRANCH_NAME }}" | Tee-Object -Append -FilePath "${env:GITHUB_ENV}"
+          echo "branch=${{ env.BRANCH_NAME }}" | Tee-Object -Append -FilePath "${env:GITHUB_OUTPUT}"
+      - name: Show ENV and OUTPUT
+        run: |
+          echo "${{ env.BRANCH }}"
+          echo "${{ steps.shell.outputs.branch }}"
+      - name: Add ENV and OUTPUT by Script
+        id: script
+        run: ./.github/scripts/setenv.ps1 -Ref "${{ env.BRANCH_NAME }}"
+      - name: Show Script ENV and OUTPUT
+        run: |
+          echo "${{ env.BRANCH_SCRIPT }}"
+          echo "${{ steps.script.outputs.branch }}"
+      - name: Add PATH
+        run: echo "$HOME/foo/bar" | Tee-Object -Append -FilePath "${env:GITHUB_PATH}"
+      - name: Show PATH
+        run: echo "${env:PATH}"
+
+  cmd:
+    strategy:
+      matrix:
+        runs-on: [windows-latest]
+    runs-on: ${{ matrix.runs-on }}
+    timeout-minutes: 3
+    defaults:
+      run:
+        shell: cmd
+    steps:
+      - uses: actions/checkout@v4
+      # cmd must not use quotes!!
+      - name: Add ENV and OUTPUT by shell
+        id: shell
+        run: |
+          echo BRANCH=${{ env.BRANCH_NAME }} >> %GITHUB_ENV%
+          echo branch=${{ env.BRANCH_NAME }} >> %GITHUB_OUTPUT%
+      - name: Show ENV and OUTPUT
+        run: |
+          echo ${{ env.BRANCH }}
+          echo ${{ steps.shell.outputs.branch }}
+      - name: Add ENV and OUTPUT by Script
+        id: script
+        run: .github/scripts/setenv.bat --ref "${{ env.BRANCH_NAME }}"
+      - name: Show Script ENV and OUTPUT
+        run: |
+          echo ${{ env.BRANCH_SCRIPT }}
+          echo ${{ steps.script.outputs.branch }}
+      - name: Add PATH
+        run: echo "%UserProfile%\foo\bar" >> %GITHUB_PATH%
+      - name: Show PATH
+        run: echo %PATH%
+
 ```
 
 ## If and context reference

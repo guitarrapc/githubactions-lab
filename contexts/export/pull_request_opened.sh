@@ -31,6 +31,18 @@ declare -x GITHUB_ACTOR="guitarrapc"
 declare -x GITHUB_ACTOR_ID="3856350"
 declare -x GITHUB_API_URL="https://api.github.com"
 declare -x GITHUB_BASE_REF="main"
+<<<<<<< HEAD
+declare -x GITHUB_ENV="/home/runner/work/_temp/_runner_file_commands/set_env_dcdf0284-d4a4-4558-a0f0-c05545abaf2e"
+declare -x GITHUB_EVENT_NAME="pull_request"
+declare -x GITHUB_EVENT_PATH="/home/runner/work/_temp/_github_workflow/event.json"
+declare -x GITHUB_GRAPHQL_URL="https://api.github.com/graphql"
+declare -x GITHUB_HEAD_REF="feature/env"
+declare -x GITHUB_JOB="dump-context"
+declare -x GITHUB_OUTPUT="/home/runner/work/_temp/_runner_file_commands/set_output_dcdf0284-d4a4-4558-a0f0-c05545abaf2e"
+declare -x GITHUB_PATH="/home/runner/work/_temp/_runner_file_commands/add_path_dcdf0284-d4a4-4558-a0f0-c05545abaf2e"
+declare -x GITHUB_REF="refs/pull/128/merge"
+declare -x GITHUB_REF_NAME="128/merge"
+=======
 declare -x GITHUB_ENV="/home/runner/work/_temp/_runner_file_commands/set_env_8a4b4333-134c-4097-8a44-66231d56e65d"
 declare -x GITHUB_EVENT_NAME="pull_request"
 declare -x GITHUB_EVENT_PATH="/home/runner/work/_temp/_github_workflow/event.json"
@@ -41,6 +53,7 @@ declare -x GITHUB_OUTPUT="/home/runner/work/_temp/_runner_file_commands/set_outp
 declare -x GITHUB_PATH="/home/runner/work/_temp/_runner_file_commands/add_path_8a4b4333-134c-4097-8a44-66231d56e65d"
 declare -x GITHUB_REF="refs/pull/131/merge"
 declare -x GITHUB_REF_NAME="131/merge"
+>>>>>>> main
 declare -x GITHUB_REF_PROTECTED="false"
 declare -x GITHUB_REF_TYPE="branch"
 declare -x GITHUB_REPOSITORY="guitarrapc/githubactions-lab"
@@ -49,6 +62,18 @@ declare -x GITHUB_REPOSITORY_OWNER="guitarrapc"
 declare -x GITHUB_REPOSITORY_OWNER_ID="3856350"
 declare -x GITHUB_RETENTION_DAYS="90"
 declare -x GITHUB_RUN_ATTEMPT="1"
+<<<<<<< HEAD
+declare -x GITHUB_RUN_ID="6793559829"
+declare -x GITHUB_RUN_NUMBER="390"
+declare -x GITHUB_SERVER_URL="https://github.com"
+declare -x GITHUB_SHA="657af584390d0d9846ae0ddb1f0daf7a724dbb7d"
+declare -x GITHUB_STATE="/home/runner/work/_temp/_runner_file_commands/save_state_dcdf0284-d4a4-4558-a0f0-c05545abaf2e"
+declare -x GITHUB_STEP_SUMMARY="/home/runner/work/_temp/_runner_file_commands/step_summary_dcdf0284-d4a4-4558-a0f0-c05545abaf2e"
+declare -x GITHUB_TRIGGERING_ACTOR="guitarrapc"
+declare -x GITHUB_WORKFLOW="auto dump context"
+declare -x GITHUB_WORKFLOW_REF="guitarrapc/githubactions-lab/.github/workflows/auto_dump_context.yaml@refs/pull/128/merge"
+declare -x GITHUB_WORKFLOW_SHA="657af584390d0d9846ae0ddb1f0daf7a724dbb7d"
+=======
 declare -x GITHUB_RUN_ID="6794643065"
 declare -x GITHUB_RUN_NUMBER="407"
 declare -x GITHUB_SERVER_URL="https://github.com"
@@ -59,6 +84,7 @@ declare -x GITHUB_TRIGGERING_ACTOR="guitarrapc"
 declare -x GITHUB_WORKFLOW="auto dump context"
 declare -x GITHUB_WORKFLOW_REF="guitarrapc/githubactions-lab/.github/workflows/auto_dump_context.yaml@refs/pull/131/merge"
 declare -x GITHUB_WORKFLOW_SHA="1be9b9f200e0f2b0c8fa99a5d3248a035edf6970"
+>>>>>>> main
 declare -x GITHUB_WORKSPACE="/home/runner/work/githubactions-lab/githubactions-lab"
 declare -x GOROOT_1_19_X64="/opt/hostedtoolcache/go/1.19.13/x64"
 declare -x GOROOT_1_20_X64="/opt/hostedtoolcache/go/1.20.10/x64"
@@ -67,7 +93,11 @@ declare -x GRADLE_HOME="/usr/share/gradle-8.4"
 declare -x HOME="/home/runner"
 declare -x HOMEBREW_CLEANUP_PERIODIC_FULL_DAYS="3650"
 declare -x HOMEBREW_NO_AUTO_UPDATE="1"
+<<<<<<< HEAD
+declare -x INVOCATION_ID="709dfeceeae74cdeb32f74d16ce5c494"
+=======
 declare -x INVOCATION_ID="b02e80e6600249cfb74f01c93a8d15a1"
+>>>>>>> main
 declare -x ImageOS="ubuntu22"
 declare -x ImageVersion="20231030.2.0"
 declare -x JAVA_HOME="/usr/lib/jvm/temurin-11-jdk-amd64"
@@ -75,7 +105,11 @@ declare -x JAVA_HOME_11_X64="/usr/lib/jvm/temurin-11-jdk-amd64"
 declare -x JAVA_HOME_17_X64="/usr/lib/jvm/temurin-17-jdk-amd64"
 declare -x JAVA_HOME_21_X64="/usr/lib/jvm/temurin-21-jdk-amd64"
 declare -x JAVA_HOME_8_X64="/usr/lib/jvm/temurin-8-jdk-amd64"
+<<<<<<< HEAD
+declare -x JOURNAL_STREAM="8:18949"
+=======
 declare -x JOURNAL_STREAM="8:20500"
+>>>>>>> main
 declare -x LANG="C.UTF-8"
 declare -x LEIN_HOME="/usr/local/lib/lein"
 declare -x LEIN_JAR="/usr/local/lib/lein/self-installs/leiningen-2.10.0-standalone.jar"
@@ -90,12 +124,20 @@ declare -x POWERSHELL_DISTRIBUTION_CHANNEL="GitHub-Actions-ubuntu22"
 declare -x PWD="/home/runner/work/githubactions-lab/githubactions-lab"
 declare -x RUNNER_ARCH="X64"
 declare -x RUNNER_ENVIRONMENT="github-hosted"
+<<<<<<< HEAD
+declare -x RUNNER_NAME="GitHub Actions 23"
+=======
 declare -x RUNNER_NAME="GitHub Actions 33"
+>>>>>>> main
 declare -x RUNNER_OS="Linux"
 declare -x RUNNER_PERFLOG="/home/runner/perflog"
 declare -x RUNNER_TEMP="/home/runner/work/_temp"
 declare -x RUNNER_TOOL_CACHE="/opt/hostedtoolcache"
+<<<<<<< HEAD
+declare -x RUNNER_TRACKING_ID="github_1f2e650c-1a6b-4356-bf46-c57da7640903"
+=======
 declare -x RUNNER_TRACKING_ID="github_eaab5e0a-a854-4f33-9168-7a3fbae75d1a"
+>>>>>>> main
 declare -x RUNNER_USER="runner"
 declare -x RUNNER_WORKSPACE="/home/runner/work/githubactions-lab"
 declare -x SELENIUM_JAR_PATH="/usr/share/java/selenium-server.jar"
@@ -111,7 +153,11 @@ declare -x STATS_UE="true"
 declare -x STATS_V3PS="true"
 declare -x STATS_VMD="true"
 declare -x SWIFT_PATH="/usr/share/swift/usr/bin"
+<<<<<<< HEAD
+declare -x SYSTEMD_EXEC_PID="591"
+=======
 declare -x SYSTEMD_EXEC_PID="611"
+>>>>>>> main
 declare -x USER="runner"
 declare -x VCPKG_INSTALLATION_ROOT="/usr/local/share/vcpkg"
 declare -x XDG_CONFIG_HOME="/home/runner/.config"
