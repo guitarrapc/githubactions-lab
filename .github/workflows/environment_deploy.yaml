@@ -13,3 +13,4 @@ jobs:
       url: https://github.com/guitarrapc/githubactions-lab/tree/staging
     steps:
       - run: echo "${GITHUB_REF#refs/heads/}"
+      - run: echo "${{ github.ref_name }}"
