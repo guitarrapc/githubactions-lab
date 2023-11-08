@@ -65,6 +65,7 @@ GitHub Actions research and test laboratory.
 - [Basic - BAD PATTERN](#basic---bad-pattern)
   - [Env refer env](#env-refer-env)
 - [Advanced](#advanced)
+  - [Automatic Actions version update via Dependabot](#automatic-actions-version-update-via-dependabot)
   - [Checkout faster with Git sparse-checkout](#checkout-faster-with-git-sparse-checkout)
   - [Dispatch other repo workflow](#dispatch-other-repo-workflow)
   - [Fork user workflow change prevention](#fork-user-workflow-change-prevention)
