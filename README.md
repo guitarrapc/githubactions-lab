@@ -455,6 +455,11 @@ echo GIT_TAG_SCRIPT=${GITHUB_REF##*/} >> "$GITHUB_ENV"
 
 ```
 
+```powershell
+# .github/scripts/setenv.ps1
+
+```
+
 Call this script from workflow.
 
 ```yaml
@@ -478,8 +483,6 @@ jobs:
       - run: bash -eux .github/scripts/setenv.sh --ref "${GITHUB_REF#refs/heads/}"
       - run: echo ${{ env.GIT_TAG_SCRIPT }}
 ```
-
-`echo ${{ env.GIT_TAG_SCRIPT }}` will output `chore/context_in_script` as expected.
 
 ## If and context reference
 
@@ -2553,10 +2556,12 @@ action folder naming also follow this rule.
 
 ## Get Tag
 
-`echo "${GITHUB_REF##*/}"` will remove `refs/heads` from `refs/heads/xxxxx`, and `refs/tags` `refs/tags/v1.0.0`.
+Trigger push with tag, then you have 2 choice.
 
-- `refs/heads/xxxxx` -> `xxxxx`
-- `refs/tags/v1.0.0` -> `v1.0.0`
+1. `echo "${{ github.ref_name }}"`
+2. `echo "${GITHUB_REF##*/}"`
+  - `refs/heads/xxxxx` -> `xxxxx`
+  - `refs/tags/v1.0.0` -> `v1.0.0`
 
 ```yaml
 # .github/workflows/tag_push_only_context.yaml
