@@ -444,6 +444,8 @@ This syntax can be write in the script, let's see `.github/scripts/setenv.sh`.
 # .github/scripts/setenv.sh
 
 #!/bin/bash
+set -eux
+
 while [ $# -gt 0 ]; do
     case $1 in
         --ref) GITHUB_REF=$2; shift 2; ;;
@@ -452,6 +454,7 @@ while [ $# -gt 0 ]; do
 done
 
 echo GIT_TAG_SCRIPT=${GITHUB_REF##*/} >> "$GITHUB_ENV"
+echo git-tag=${GITHUB_REF##*/} >> "$GITHUB_OUTPUT"
 
 ```
 
@@ -467,16 +470,58 @@ on:
     branches: ["main"]
   pull_request:
     branches: ["main"]
+
 jobs:
-  build:
+  ubuntu:
     runs-on: ubuntu-latest
     timeout-minutes: 3
     steps:
-      - uses: actions/checkout@v4
-      - run: echo "GIT_TAG=${GITHUB_REF#refs/heads/}" >> "$GITHUB_ENV"
-      - run: echo ${{ env.GIT_TAG }}
-      - run: bash -eux .github/scripts/setenv.sh --ref "${GITHUB_REF#refs/heads/}"
-      - run: echo ${{ env.GIT_TAG_SCRIPT }}
+      - name: Add ENV and OUTPUT
+        id: tag
+        run: |
+          echo "GIT_TAG=${GITHUB_REF#refs/heads/}" >> "$GITHUB_ENV"
+          echo "git-tag=${GITHUB_REF#refs/heads/}" >> "$GITHUB_OUTPUT"
+      - name: Show ENV and OUTPUT
+        run: |
+          echo ${{ env.GIT_TAG }}
+          echo ${{ steps.tag.outputs.git-tag }}
+      - name: Add ENV and OUTPUT by Script
+        id: tag-script
+        run: bash ./.github/scripts/setenv.sh --ref "${GITHUB_REF#refs/heads/}"
+      - name: Show ENV and OUTPUT
+        run: |
+          echo ${{ env.GIT_TAG_SCRIPT }}
+          echo ${{ steps.tag-script.outputs.git-tag }}
+      - name: Add PATH
+        run: echo "$HOME/foo/bar" >> "$GITHUB_PATH"
+      - name: Show PATH
+        run: echo $PATH
+
+  windows:
+    runs-on: windows-latest
+    timeout-minutes: 3
+    steps:
+      - name: Add ENV and OUTPUT
+        id: tag
+        run: |
+          echo "GIT_TAG=$(${env:GITHUB_REF} -replace 'refs/heads/','')" >> $env:GITHUB_ENV
+          echo "git-tag=$(${env:GITHUB_REF} -replace 'refs/heads/','')" >> $env:GITHUB_OUTPUT
+      - name: Show ENV and OUTPUT
+        run: |
+          echo ${{ env.GIT_TAG }}
+          echo ${{ steps.tag.outputs.git-tag }}
+      - name: Add ENV and OUTPUT by Script
+        id: tag-script
+        run: ./.github/scripts/setenv.ps1 -Ref $env:GITHUB_REF
+      - name: Show ENV and OUTPUT
+        run: |
+          echo ${{ env.GIT_TAG_SCRIPT }}
+          echo ${{ steps.tag-script.outputs.git-tag }}
+      - name: Add PATH
+        run: echo "$HOME/foo/bar" >> $env:GITHUB_PATH
+      - name: Show PATH
+        run: echo $env:PATH
+
 ```
 
 `echo ${{ env.GIT_TAG_SCRIPT }}` will output `chore/context_in_script` as expected.
