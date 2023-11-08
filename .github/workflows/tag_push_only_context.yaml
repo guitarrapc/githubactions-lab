@@ -4,11 +4,18 @@ on:
     tags:
       - "**" # only tag
 jobs:
-  build:
+  ref:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "GIT_TAG=${GITHUB_REF##*/}" >> "$GITHUB_OUTPUT"
+      - name: Use GITHUB_REF and GITHUB_OUTPUT
+        run: echo "GIT_TAG=${GITHUB_REF##*/}" >> "$GITHUB_OUTPUT"
         id: CI_TAG
-      - run: echo ${{ steps.CI_TAG.outputs.GIT_TAG }}
-      - run: echo "GIT_TAG=${GITHUB_REF##*/}" >> "$GITHUB_ENV"
-      - run: echo ${{ env.GIT_TAG }}
+      - name: Use GITHUB_REF and GITHUB_ENV
+        run: echo "GIT_TAG=${GITHUB_REF##*/}" >> "$GITHUB_ENV"
+      - name: Show tag value by GITHUB_REF
+        run: |
+          echo "${{ steps.CI_TAG.outputs.GIT_TAG }}"
+          echo "${{ env.GIT_TAG }}"
+      - name: Show tag value by github.ref_name
+        run: |
+          echo "${{ github.ref_name }}"
