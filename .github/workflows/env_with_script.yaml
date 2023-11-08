@@ -103,6 +103,6 @@ jobs:
           echo ${{ env.BRANCH_SCRIPT }}
           echo ${{ steps.script.outputs.branch }}
       - name: Add PATH
-        run: echo "%HOME%\foo\bar" >> %GITHUB_PATH%
+        run: echo "%UserProfile%\foo\bar" >> %GITHUB_PATH%
       - name: Show PATH
         run: echo %PATH%
