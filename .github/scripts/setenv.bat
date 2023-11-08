@@ -5,7 +5,7 @@ setlocal
     shift
     GOTO parse
 :endparse
-endlocal
 
 echo BRANCH_SCRIPT=%_REF% >> %GITHUB_ENV%
 echo branch=%_REF% >> %GITHUB_OUTPUT%
+endlocal
