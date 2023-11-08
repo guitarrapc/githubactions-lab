@@ -86,24 +86,35 @@ GitHub Actions research and test laboratory.
 
 # Not yet support
 
+## View
+- [ ] Workflow overview status view
+  - There are no view for workflow status overview. Jenkins provides view for Job status which allow user to understand current status in 1 step.
+  - Workaround: None.
+- [ ] GitHub Actions workflow view grouping
+  - Group GitHub Actions workflows.
+  - Workaround: None.
+- [ ] Test Insight view
+  - Like [CircleCI](https://circleci.com/docs/insights-tests) and [Azure Pipeline](https://docs.microsoft.com/en-us/azure/devops/pipelines/test/review-continuous-test-results-after-build?view=azure-devops) provides.
+  - Workaround: Use [$GITHUB_STEP_SUMMARY](https://github.blog/2022-05-09-supercharging-github-actions-with-job-summaries/)
+
+## YAML syntax
 - [ ] YAML anchor support
   - [Support for YAML anchors \- GitHub Community Forum](https://github.community/t5/GitHub-Actions/Support-for-YAML-anchors/td-p/30336)
   - Workaround: There are CompositeActions and Reusable workflow to reuse same set of actions.
-- [ ] GitHub Actions Grouping
-  - Group GitHub Actions
-  - No workaround.
-- [ ] Test Insight view
-  - Like [CircleCI](https://circleci.com/docs/insights-tests) and [Azure Pipeline](https://docs.microsoft.com/en-us/azure/devops/pipelines/test/review-continuous-test-results-after-build?view=azure-devops) provides.
-  - Workaround is use [$GITHUB_STEP_SUMMARY](https://github.blog/2022-05-09-supercharging-github-actions-with-job-summaries/)
+
+## Functionarity
+- [ ] Workflow level `timeout-minutes`
+  - Currently timeout-minutes can set to jobs and steps, but workflow cannot change from default 360min.
+  - Workaround: None. Please set `timeout-minutes` to every job.
+- [ ] Workflow concurrency control customization
+  - Currently concurrency control can handle with `key` and `cancel-in-progress` option, it will terminate action when at least 1 pending job is exsits. However you cannot customize how many pending actions are allowed, do not cancel pending job.
+  - Workaround: None.
 - [ ] SSH Debug
   - Like [CircleCI provides](https://circleci.com/docs/ssh-access-jobs).
   - Workaround: Use [Debugging with ssh Actions](https://github.com/marketplace/actions/debugging-with-ssh)
 - [ ] Dynamic Config
   - Like [CircleCI provides](https://circleci.com/docs/dynamic-config).
   - Workaround: Reusable Workflow / Composite Actions with inputs parameter.
-- [ ] Workflow level timeout-minutes
-  - Currently timeout-minutes can set to jobs and steps, but workflow cannot change from default 360min.
-  - No workaround. Please set `timeout-minutes` to every job.
 
 # Functionality limitation
 
@@ -126,11 +137,21 @@ Also you may consider migrate from GitHub Actions.
 
 - GitHub Actions -> CircleCI: [Migrating from Github Actions \- CircleCI](https://circleci.com/docs/migrating-from-github)
 
+## Hosted Runner sizing
+
+Every CI offer you to configure runner sizing for SelfHosted Runner, but some CI has limitation for sizing Hosted Runner.
+
+- ✔️: GitHub Actions offers [larger runners](https://docs.github.com/en/actions/using-github-hosted-runners/about-larger-runners/about-larger-runners) to run faster and static IP addresses.
+- ✔️: CircleCI offer [resource class](https://circleci.com/docs/resource-class-overview/) to run faster.
+- ❌: Azure Pipeline not offer hosted runner sizing. Hosted runner is limited to spec `2Core CPU, 7GB RAM and 14GB SSD Disk`.
+- ❌: Jenkins is self hosted solution. Hosted runner sizing is not avaiable.
+
+
 ## Job and workflow
 
 All CI has yaml definitions.
 
-- ✔️: GitHub Actions define jobs inside workflow. Can trigger both Push and PR.
+- ✔️: GitHub Actions can define jobs inside workflow. Can trigger both Push and PR.
 
 ```yaml
 name: workflow name
@@ -145,7 +166,7 @@ jobs:
       - run: echo foo
 ```
 
-- ✔️: CircleCI define jobs and conbinate them in workflow. Can not trigger both Push and PR.
+- ✔️: CircleCI can define jobs and conbinate them in workflow. Can not trigger both Push and PR.
 
 ```yaml
 version: 2.1
@@ -162,7 +183,7 @@ workflows:
       - Job_Name
 ```
 
-- ✔️: Azure Pipeline define jobs and conbinate them in stage. Can trigger both Push and PR.
+- ✔️: Azure Pipeline can define jobs and conbinate them in stage. Can trigger both Push and PR.
 
 ```yaml
 trigger:
@@ -181,7 +202,7 @@ jobs:
       - bash: echo "foo"
 ```
 
-- ⚠️: Jenkins has Declaretive Pipeline. Trigger needs to be defined outside pipeline.
+- ⚠️: Jenkins use Declaretive Pipeline. Trigger needs to be defined outside pipeline, means you need create job to trigger pipeline. Also Declaretive Pipeline is not yaml, it is groovy.
 
 ```groovy
 pipeline {
@@ -205,7 +226,7 @@ This functionality enables you to stop next job until manually approved.
 
 - ⚠️: GitHub Actions supports Approval on **Environment**. However Environment cannot use in `GitHub Team` pricing.
 - ✔️: CircleCI supports Approval.
-- ✔️: Azure Pipelin supports Approval.
+- ✔️: Azure Pipeline supports Approval.
 - ✔️: Jenkins supports Approval.
 
 ## Meta values and JobId
@@ -320,6 +341,15 @@ GitHub Actions support checkout by actions and supports variety of checkout opti
 - ⚠️: CircleCI [checkout](https://circleci.com/docs/configuration-reference/#checkout) support `ssh` or `https` protocol. It missing `submodule`, `shallow-clone`, `sparse-checkout` and `lfs` support. `checkout` is default full clone.
 - ✔️: Azure Pipeline [checkout](https://learn.microsoft.com/en-us/azure/devops/pipelines/yaml-schema/steps-checkout?view=azure-pipelines) support `ssh` or `https` protocol, `submodule`, `shallow-clone` and `lfs`. It missing `sparse-checkout` support. `checkout` is default `shallow-clone` (depth 1) for new pipeline created after the September 2022.
 - ✔️: Jenkins [GitSCM](https://www.jenkins.io/doc/pipeline/steps/params/gitscm/) support `ssh` or `https` protocol, `submodule`, `shallow-clone`, `sparse checkout` and `lfs`. `GitSCM` is default full clone.
+
+## Fork handling
+
+GitHub Actions support handling fork PR.
+
+- ✔️: GitHub Actions [support fork PR to be trigger workflow](https://docs.github.com/en/actions/managing-workflow-runs/approving-workflow-runs-from-public-forks) and accessing secret. However allowing public fork to be access secret is not recommended, and there are [some practical way](https://securitylab.github.com/research/github-actions-preventing-pwn-requests/) to allow accessing secret.
+- ⚠️: CircleCI [support fork PR to be trigger workflow](https://circleci.com/docs/oss/#build-pull-requests-from-forked-repositories) and accessing secret. However handling fork PR in YAML is limited by branch naming rule like `/pull\/[0-9]+/`. Also allowing public fork to be access secret is not recommended, and there are no easy way to handle it.
+- ✔️: Azure Pipeline [supports fork PR to be trigger job](https://learn.microsoft.com/en-us/azure/devops/pipelines/repos/github?view=azure-devops&tabs=yaml#contributions-from-forks) and accessing secret. However allowing public fork to be access secret is not recommended.
+- ❌: Jenkins normally not recommended to use for Public CI, it means fork PR won't consider to be important for Jenkins.
 
 # Basic - Fundamentables
 
