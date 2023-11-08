@@ -495,7 +495,7 @@ jobs:
       - name: Add PATH
         run: echo "$HOME/foo/bar" >> "$GITHUB_PATH"
       - name: Show PATH
-        run: echo $PATH
+        run: echo "$PATH"
 
   windows:
     runs-on: windows-latest
@@ -504,23 +504,23 @@ jobs:
       - name: Add ENV and OUTPUT
         id: tag
         run: |
-          echo "GIT_TAG=$(${env:GITHUB_REF} -replace 'refs/heads/','')" >> $env:GITHUB_ENV
-          echo "git-tag=$(${env:GITHUB_REF} -replace 'refs/heads/','')" >> $env:GITHUB_OUTPUT
+          echo "GIT_TAG=$(${env:GITHUB_REF} -replace 'refs/heads/','')" >> "${env:GITHUB_ENV}"
+          echo "git-tag=$(${env:GITHUB_REF} -replace 'refs/heads/','')" >> "${env:GITHUB_OUTPUT}"
       - name: Show ENV and OUTPUT
         run: |
-          echo ${{ env.GIT_TAG }}
-          echo ${{ steps.tag.outputs.git-tag }}
+          echo "${{ env.GIT_TAG }}"
+          echo "${{ steps.tag.outputs.git-tag }}"
       - name: Add ENV and OUTPUT by Script
         id: tag-script
-        run: ./.github/scripts/setenv.ps1 -Ref $env:GITHUB_REF
+        run: ./.github/scripts/setenv.ps1 -Ref "${env:GITHUB_REF}"
       - name: Show ENV and OUTPUT
         run: |
-          echo ${{ env.GIT_TAG_SCRIPT }}
-          echo ${{ steps.tag-script.outputs.git-tag }}
+          echo "${{ env.GIT_TAG_SCRIPT }}"
+          echo "${{ steps.tag-script.outputs.git-tag }}"
       - name: Add PATH
-        run: echo "$HOME/foo/bar" >> $env:GITHUB_PATH
+        run: echo "$HOME/foo/bar" >> "${env:GITHUB_PATH}"
       - name: Show PATH
-        run: echo $env:PATH
+        run: echo "${env:PATH}"
 
 ```
 
