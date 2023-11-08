@@ -453,8 +453,8 @@ while [ $# -gt 0 ]; do
     esac
 done
 
-echo BRANCH_SCRIPT=${GITHUB_REF##*/} >> "$GITHUB_ENV"
-echo branch=${GITHUB_REF##*/} >> "$GITHUB_OUTPUT"
+echo BRANCH_SCRIPT=${GITHUB_REF} >> "$GITHUB_ENV"
+echo branch=${GITHUB_REF} >> "$GITHUB_OUTPUT"
 
 ```
 
@@ -486,11 +486,11 @@ jobs:
         id: shell
         run: |
           if [[ "${{ startsWith(github.event_name, 'pull_request') }}" == "true" ]]; then
-            echo "BRANCH=${GITHUB_HEAD_REF}" >> "$GITHUB_ENV"
-            echo "branch=${GITHUB_HEAD_REF}" >> "$GITHUB_OUTPUT"
+            echo "BRANCH=${{ github.head_ref }}" >> "$GITHUB_ENV"
+            echo "branch=${{ github.head_ref }}" >> "$GITHUB_OUTPUT"
           else
-            echo "BRANCH=${GITHUB_REF#refs/heads/}" >> "$GITHUB_ENV"
-            echo "branch=${GITHUB_REF#refs/heads/}" >> "$GITHUB_OUTPUT"
+            echo "BRANCH=${{ github.ref_name }}" >> "$GITHUB_ENV"
+            echo "branch=${{ github.ref_name }}" >> "$GITHUB_OUTPUT"
           fi
       - name: Show ENV and OUTPUT
         run: |
@@ -498,7 +498,7 @@ jobs:
           echo ${{ steps.shell.outputs.branch }}
       - name: Add ENV and OUTPUT by Script
         id: script
-        run: bash .github/scripts/setenv.sh --ref "$GITHUB_REF"
+        run: bash .github/scripts/setenv.sh --ref "${{ startsWith(github.event_name, 'pull_request') && github.head_ref || github.ref_name }}"
       - name: Show ENV and OUTPUT
         run: |
           echo ${{ env.BRANCH_SCRIPT }}
@@ -516,12 +516,12 @@ jobs:
       - name: Add ENV and OUTPUT
         id: shell
         run: |
-          if ("${{ startsWith(github.event_name, 'pull_request') }}" == "true") {
-            echo "BRANCH=${env:GITHUB_HEAD_REF}" >> "${env:GITHUB_ENV}"
-            echo "branch=${env:GITHUB_HEAD_REF}" >> "${env:GITHUB_OUTPUT}"
+          if ("${{ startsWith(github.event_name, 'pull_request') }}" -eq "true") {
+            echo "BRANCH=${{ github.head_ref }}" >> "${env:GITHUB_ENV}"
+            echo "branch=${{ github.head_ref }}" >> "${env:GITHUB_OUTPUT}"
           } else {
-            echo "BRANCH=$(${env:GITHUB_REF} -replace 'refs/heads/','')" >> "${env:GITHUB_ENV}"
-            echo "branch=$(${env:GITHUB_REF} -replace 'refs/heads/','')" >> "${env:GITHUB_OUTPUT}"
+            echo "BRANCH=${{ github.ref_name }}" >> "${env:GITHUB_ENV}"
+            echo "branch=${{ github.ref_name }}" >> "${env:GITHUB_OUTPUT}"
           }
       - name: Show ENV and OUTPUT
         run: |
@@ -529,7 +529,7 @@ jobs:
           echo "${{ steps.shell.outputs.branch }}"
       - name: Add ENV and OUTPUT by Script
         id: script
-        run: ./.github/scripts/setenv.ps1 -Ref "${env:GITHUB_REF}"
+        run: ./.github/scripts/setenv.ps1 -Ref "${{ startsWith(github.event_name, 'pull_request') && github.head_ref || github.ref_name }}"
       - name: Show ENV and OUTPUT
         run: |
           echo "${{ env.BRANCH_SCRIPT }}"
