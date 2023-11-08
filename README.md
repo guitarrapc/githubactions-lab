@@ -13,9 +13,13 @@ GitHub Actions research and test laboratory.
 # Table of Contents
 
 - [Not yet support](#not-yet-support)
+  - [View](#view)
+  - [YAML syntax](#yaml-syntax)
+  - [Functionarity](#functionarity)
 - [Functionality limitation](#functionality-limitation)
 - [Difference from other CI](#difference-from-other-ci)
   - [CI Migration](#ci-migration)
+  - [Hosted Runner sizing](#hosted-runner-sizing)
   - [Job and workflow](#job-and-workflow)
   - [Job Approval](#job-approval)
   - [Meta values and JobId](#meta-values-and-jobid)
@@ -29,6 +33,7 @@ GitHub Actions research and test laboratory.
   - [Set Secrets for Job](#set-secrets-for-job)
   - [Skip CI and commit message](#skip-ci-and-commit-message)
   - [Git Checkout](#git-checkout)
+  - [Fork handling](#fork-handling)
 - [Basic - Fundamentables](#basic---fundamentables)
   - [Dump context metadata](#dump-context-metadata)
   - [Environment variables in script](#environment-variables-in-script)
