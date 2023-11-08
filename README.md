@@ -2547,8 +2547,8 @@ action folder naming also follow this rule.
 # .github/workflows/_reusable_dump_context.yaml#L20-L22
 
 # PR should checkout HEAD ref instead of merge commit.                        -> github.head.ref
-# Tag should checkout base ref instead of ref.                                -> github.event.base_ref
 # PR close delete branch, so it should checkout BASE ref instead of HEAD ref. -> github.base_ref
+# Tag ref is tag version, let's checkout default branch instead of ref.       -> github.event.repository.default_branch
 ```
 
 ## Get Tag
