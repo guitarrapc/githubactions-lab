@@ -7,5 +7,5 @@ setlocal
 :endparse
 endlocal
 
-echo "BRANCH_SCRIPT=%_REF%" >> %GITHUB_ENV%
-echo "branch=%_REF%" >> %GITHUB_OUTPUT%
+echo BRANCH_SCRIPT=%_REF% >> %GITHUB_ENV%
+echo branch=%_REF% >> %GITHUB_OUTPUT%
