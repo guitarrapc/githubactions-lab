@@ -453,8 +453,8 @@ while [ $# -gt 0 ]; do
     esac
 done
 
-echo BRANCH_SCRIPT=${GITHUB_REF} >> "$GITHUB_ENV"
-echo branch=${GITHUB_REF} >> "$GITHUB_OUTPUT"
+echo BRANCH_SCRIPT=${GITHUB_REF} | tee -a "$GITHUB_ENV"
+echo branch=${GITHUB_REF} | tee -a "$GITHUB_OUTPUT"
 
 ```
 
@@ -494,8 +494,8 @@ jobs:
       - name: Add ENV and OUTPUT by shell
         id: shell
         run: |
-          echo "BRANCH=${{ env.BRANCH_NAME }}" >> "$GITHUB_ENV"
-          echo "branch=${{ env.BRANCH_NAME }}" >> "$GITHUB_OUTPUT"
+          echo "BRANCH=${{ env.BRANCH_NAME }}" | tee -a "$GITHUB_ENV"
+          echo "branch=${{ env.BRANCH_NAME }}" | tee -a "$GITHUB_OUTPUT"
       - name: Show ENV and OUTPUT
         run: |
           echo ${{ env.BRANCH }}
@@ -508,7 +508,7 @@ jobs:
           echo ${{ env.BRANCH_SCRIPT }}
           echo ${{ steps.script.outputs.branch }}
       - name: Add PATH
-        run: echo "$HOME/foo/bar" >> "$GITHUB_PATH"
+        run: echo "$HOME/foo/bar" | tee -a "$GITHUB_PATH"
       - name: Show PATH
         run: echo "$PATH"
 
@@ -526,8 +526,8 @@ jobs:
       - name: Add ENV and OUTPUT by shell
         id: shell
         run: |
-          echo "BRANCH=${{ env.BRANCH_NAME }}" >> "${env:GITHUB_ENV}"
-          echo "branch=${{ env.BRANCH_NAME }}" >> "${env:GITHUB_OUTPUT}"
+          echo "BRANCH=${{ env.BRANCH_NAME }}" | Tee-Object -Append -FilePath "${env:GITHUB_ENV}"
+          echo "branch=${{ env.BRANCH_NAME }}" | Tee-Object -Append -FilePath "${env:GITHUB_OUTPUT}"
       - name: Show ENV and OUTPUT
         run: |
           echo "${{ env.BRANCH }}"
@@ -540,7 +540,7 @@ jobs:
           echo "${{ env.BRANCH_SCRIPT }}"
           echo "${{ steps.script.outputs.branch }}"
       - name: Add PATH
-        run: echo "$HOME/foo/bar" >> "${env:GITHUB_PATH}"
+        run: echo "$HOME/foo/bar" | Tee-Object -Append -FilePath "${env:GITHUB_PATH}"
       - name: Show PATH
         run: echo "${env:PATH}"
 
@@ -555,6 +555,7 @@ jobs:
         shell: cmd
     steps:
       - uses: actions/checkout@v4
+      # cmd must not use quotes!!
       - name: Add ENV and OUTPUT by shell
         id: shell
         run: |
@@ -574,7 +575,7 @@ jobs:
       - name: Add PATH
         run: echo "$HOME\foo\bar" >> %GITHUB_PATH%
       - name: Show PATH
-        run: echo "${env:PATH}"
+        run: echo %PATH%
 
 ```
 
