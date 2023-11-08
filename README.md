@@ -453,8 +453,8 @@ while [ $# -gt 0 ]; do
     esac
 done
 
-echo GIT_TAG_SCRIPT=${GITHUB_REF##*/} >> "$GITHUB_ENV"
-echo git-tag=${GITHUB_REF##*/} >> "$GITHUB_OUTPUT"
+echo BRANCH_SCRIPT=${GITHUB_REF##*/} >> "$GITHUB_ENV"
+echo branch=${GITHUB_REF##*/} >> "$GITHUB_OUTPUT"
 
 ```
 
@@ -483,26 +483,26 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Add ENV and OUTPUT
-        id: tag
+        id: shell
         run: |
-          if [[ "${{ startsWith(github.event_name, 'pull_request')}}" == "true" ]]; then
-            echo "GIT_TAG=${GITHUB_HEAD_REF}" >> "$GITHUB_ENV"
-            echo "git-tag=${GITHUB_HEAD_REF}" >> "$GITHUB_OUTPUT"
+          if [[ "${{ startsWith(github.event_name, 'pull_request') }}" == "true" ]]; then
+            echo "BRANCH=${GITHUB_HEAD_REF}" >> "$GITHUB_ENV"
+            echo "branch=${GITHUB_HEAD_REF}" >> "$GITHUB_OUTPUT"
           else
-            echo "GIT_TAG=${GITHUB_REF#refs/heads/}" >> "$GITHUB_ENV"
-            echo "git-tag=${GITHUB_REF#refs/heads/}" >> "$GITHUB_OUTPUT"
+            echo "BRANCH=${GITHUB_REF#refs/heads/}" >> "$GITHUB_ENV"
+            echo "branch=${GITHUB_REF#refs/heads/}" >> "$GITHUB_OUTPUT"
           fi
       - name: Show ENV and OUTPUT
         run: |
-          echo ${{ env.GIT_TAG }}
-          echo ${{ steps.tag.outputs.git-tag }}
+          echo ${{ env.BRANCH }}
+          echo ${{ steps.shell.outputs.branch }}
       - name: Add ENV and OUTPUT by Script
-        id: tag-script
-        run: bash .github/scripts/setenv.sh --ref "${GITHUB_REF#refs/heads/}"
+        id: script
+        run: bash .github/scripts/setenv.sh --ref "$GITHUB_REF"
       - name: Show ENV and OUTPUT
         run: |
-          echo ${{ env.GIT_TAG_SCRIPT }}
-          echo ${{ steps.tag-script.outputs.git-tag }}
+          echo ${{ env.BRANCH_SCRIPT }}
+          echo ${{ steps.script.outputs.branch }}
       - name: Add PATH
         run: echo "$HOME/foo/bar" >> "$GITHUB_PATH"
       - name: Show PATH
@@ -514,23 +514,28 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Add ENV and OUTPUT
-        id: tag
+        id: shell
         run: |
-          echo "GIT_TAG=$(${env:GITHUB_REF} -replace 'refs/heads/','')" >> "${env:GITHUB_ENV}"
-          echo "git-tag=$(${env:GITHUB_REF} -replace 'refs/heads/','')" >> "${env:GITHUB_OUTPUT}"
+          if ("${{ startsWith(github.event_name, 'pull_request') }}" == "true") {
+            echo "BRANCH=${env:GITHUB_HEAD_REF}" >> "${env:GITHUB_ENV}"
+            echo "branch=${env:GITHUB_HEAD_REF}" >> "${env:GITHUB_OUTPUT}"
+          } else {
+            echo "BRANCH=$(${env:GITHUB_REF} -replace 'refs/heads/','')" >> "${env:GITHUB_ENV}"
+            echo "branch=$(${env:GITHUB_REF} -replace 'refs/heads/','')" >> "${env:GITHUB_OUTPUT}"
+          }
       - name: Show ENV and OUTPUT
         run: |
-          echo "${{ env.GIT_TAG }}"
-          echo "${{ steps.tag.outputs.git-tag }}"
+          echo "${{ env.BRANCH }}"
+          echo "${{ steps.shell.outputs.branch }}"
       - name: Add ENV and OUTPUT by Script
-        id: tag-script
+        id: script
         run: ./.github/scripts/setenv.ps1 -Ref "${env:GITHUB_REF}"
       - name: Show ENV and OUTPUT
         run: |
-          echo "${{ env.GIT_TAG_SCRIPT }}"
-          echo "${{ steps.tag-script.outputs.git-tag }}"
+          echo "${{ env.BRANCH_SCRIPT }}"
+          echo "${{ steps.script.outputs.branch }}"
       - name: Add PATH
-        run: echo "$HOME/foo/bar" >> "${env:GITHUB_PATH}"
+        run: echo "${env:HOME}/foo/bar" >> "${env:GITHUB_PATH}"
       - name: Show PATH
         run: echo "${env:PATH}"
 
