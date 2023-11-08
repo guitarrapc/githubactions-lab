@@ -17,14 +17,16 @@ jobs:
     runs-on: ${{ matrix.runs-on }}
     timeout-minutes: 5
     steps:
-      # PR should checkout HEAD ref instead of merge commit, but there are no branch for closed event, therefore use base ref.
-      # Other event's base ref is always empty.
+      # PR should checkout HEAD ref instead of merge commit.                        -> github.head.ref
+      # Tag should checkout base ref instead of ref.                                -> github.event.base_ref
+      # PR close delete branch, so it should checkout BASE ref instead of HEAD ref. -> github.base_ref
+      # Other event's base ref is always empty and it use default branch.           -> github.base_ref
       - uses: actions/checkout@v4
         with:
-          ref: ${{ (startsWith(github.event_name, 'pull_request') && github.event.action != 'closed') && github.event.pull_request.head.ref || github.base_ref }}
+          ref: ${{ (startsWith(github.event_name, 'pull_request') && github.event.action != 'closed') && github.head.ref || (github.ref_type == 'tag' && github.event.base_ref || github.base_ref) }}
       - name: file names
         id: file
-        run: echo "name=${{ github.event_name }}${{ github.event.action != '' && format('_{0}', github.event.action) || ''}}" | tee -a "$GITHUB_OUTPUT"
+        run: echo "name=${{ github.event_name }}${{ github.event.action != '' && format('_{0}', github.event.action) || ''}}${{ github.event_name == 'push' && format('_{0}', github.ref_type) || ''}}" | tee -a "$GITHUB_OUTPUT"
       - name: Dump environment
         shell: bash
         run: |
@@ -85,4 +87,4 @@ jobs:
         uses: ./.github/actions/git-push
         with:
           commit-message: "[auto commit] update context (workflow=${{ github.workflow }}, event=${{ github.event_name }}, action=${{ github.event.action }})"
-          ref: ${{ (startsWith(github.event_name, 'pull_request') && github.event.action != 'closed') && github.event.pull_request.head.ref || (startsWith(github.event_name, 'pull_request') && github.event.action == 'closed') && github.base_ref || github.ref_name }}
+          ref: ${{ (startsWith(github.event_name, 'pull_request') && github.event.action != 'closed') && github.head_ref || github.ref_type == 'tag' && github.event.base_ref || (startsWith(github.event_name, 'pull_request') && github.event.action == 'closed') && github.base_ref || github.ref_name }}
