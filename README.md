@@ -558,19 +558,19 @@ jobs:
       - name: Add ENV and OUTPUT by shell
         id: shell
         run: |
-          echo "BRANCH=${{ env.BRANCH_NAME }}" >> %GITHUB_ENV%
-          echo "branch=${{ env.BRANCH_NAME }}" >> %GITHUB_OUTPUT%
+          echo BRANCH=${{ env.BRANCH_NAME }} >> %GITHUB_ENV%
+          echo branch=${{ env.BRANCH_NAME }} >> %GITHUB_OUTPUT%
       - name: Show ENV and OUTPUT
         run: |
-          echo "${{ env.BRANCH }}"
-          echo "${{ steps.shell.outputs.branch }}"
+          echo ${{ env.BRANCH }}
+          echo ${{ steps.shell.outputs.branch }}
       - name: Add ENV and OUTPUT by Script
         id: script
         run: .github/scripts/setenv.bat --ref "${{ env.BRANCH_NAME }}"
       - name: Show Script ENV and OUTPUT
         run: |
-          echo "${{ env.BRANCH_SCRIPT }}"
-          echo "${{ steps.script.outputs.branch }}"
+          echo ${{ env.BRANCH_SCRIPT }}
+          echo ${{ steps.script.outputs.branch }}
       - name: Add PATH
         run: echo "$HOME\foo\bar" >> %GITHUB_PATH%
       - name: Show PATH
