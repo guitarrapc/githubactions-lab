@@ -1963,6 +1963,28 @@ jobs:
 
 Advanced tips.
 
+## Automatic Actions version update via Dependabot
+
+You can use [Dependabot](https://docs.github.com/en/code-security/dependabot/working-with-dependabot/automating-dependabot-with-github-actions) to update GitHub Actions version automatically. Dependabot create pull request to keep your actions up to date, and you can merge it manually or automatically.
+
+To enable Dependabot for GitHub Actions update, add `.github/dependabot.yml` to your repository.
+
+```yaml
+# .github/dependabot.yaml
+```
+
+**Customize dependabot.yaml**
+
+There are some [configuration options for dependabot.yaml file](https://docs.github.com/en/code-security/dependabot/dependabot-version-updates/configuration-options-for-the-dependabot.yml-file).
+
+**Accessing secrets on dependabot action**
+
+When a Dependabot event triggers a workflow, the only secrets available to the workflow are Dependabot secrets. GitHub Actions secrets are not available.
+
+> ref: https://docs.github.com/en/code-security/dependabot/working-with-dependabot/automating-dependabot-with-github-actions#accessing-secrets
+
+Therefore I recommend not to use secret for Dependabot triggered workflows. If you need secrets, then put same named secret to Dependabot secret.
+
 ## Checkout faster with Git sparse-checkout
 
 [actions/checkout](https://github.com/actions) supports both [shallow-clone](https://git-scm.com/docs/shallow) and [sparse checkout](https://git-scm.com/docs/git-sparse-checkout) which is quite useful for monorepository. Typically, monorepository contains many folders and files, but you may want to checkout only specific folder or files.
