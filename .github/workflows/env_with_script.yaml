@@ -15,8 +15,13 @@ jobs:
       - name: Add ENV and OUTPUT
         id: tag
         run: |
-          echo "GIT_TAG=${GITHUB_REF#refs/heads/}" >> "$GITHUB_ENV"
-          echo "git-tag=${GITHUB_REF#refs/heads/}" >> "$GITHUB_OUTPUT"
+          if [[ "${{ startsWith(github.event_name, 'pull_request')}}" == "true" ]]; then
+            echo "GIT_TAG=${GITHUB_HEAD_REF}" >> "$GITHUB_ENV"
+            echo "git-tag=${GITHUB_HEAD_REF}" >> "$GITHUB_OUTPUT"
+          else
+            echo "GIT_TAG=${GITHUB_REF#refs/heads/}" >> "$GITHUB_ENV"
+            echo "git-tag=${GITHUB_REF#refs/heads/}" >> "$GITHUB_OUTPUT"
+          fi
       - name: Show ENV and OUTPUT
         run: |
           echo ${{ env.GIT_TAG }}
