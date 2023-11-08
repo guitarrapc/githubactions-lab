@@ -11,6 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 3
     steps:
+      - uses: actions/checkout@v4
       - name: Add ENV and OUTPUT
         id: tag
         run: |
@@ -22,7 +23,7 @@ jobs:
           echo ${{ steps.tag.outputs.git-tag }}
       - name: Add ENV and OUTPUT by Script
         id: tag-script
-        run: bash ./.github/scripts/setenv.sh --ref "${GITHUB_REF#refs/heads/}"
+        run: bash .github/scripts/setenv.sh --ref "${GITHUB_REF#refs/heads/}"
       - name: Show ENV and OUTPUT
         run: |
           echo ${{ env.GIT_TAG_SCRIPT }}
@@ -36,6 +37,7 @@ jobs:
     runs-on: windows-latest
     timeout-minutes: 3
     steps:
+      - uses: actions/checkout@v4
       - name: Add ENV and OUTPUT
         id: tag
         run: |
