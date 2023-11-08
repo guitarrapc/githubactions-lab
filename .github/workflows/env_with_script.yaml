@@ -73,3 +73,35 @@ jobs:
         run: echo "$HOME/foo/bar" >> "${env:GITHUB_PATH}"
       - name: Show PATH
         run: echo "${env:PATH}"
+
+  cmd:
+    strategy:
+      matrix:
+        runs-on: [windows-latest]
+    runs-on: ${{ matrix.runs-on }}
+    timeout-minutes: 3
+    defaults:
+      run:
+        shell: cmd
+    steps:
+      - uses: actions/checkout@v4
+      - name: Add ENV and OUTPUT by shell
+        id: shell
+        run: |
+          echo "BRANCH=${{ env.BRANCH_NAME }}" >> %GITHUB_ENV%
+          echo "branch=${{ env.BRANCH_NAME }}" >> %GITHUB_OUTPUT%
+      - name: Show ENV and OUTPUT
+        run: |
+          echo "${{ env.BRANCH }}"
+          echo "${{ steps.shell.outputs.branch }}"
+      - name: Add ENV and OUTPUT by Script
+        id: script
+        run: .github/scripts/setenv.bat --ref "${{ env.BRANCH_NAME }}"
+      - name: Show Script ENV and OUTPUT
+        run: |
+          echo "${{ env.BRANCH_SCRIPT }}"
+          echo "${{ steps.script.outputs.branch }}"
+      - name: Add PATH
+        run: echo "$HOME\foo\bar" >> %GITHUB_PATH%
+      - name: Show PATH
+        run: echo "${env:PATH}"
