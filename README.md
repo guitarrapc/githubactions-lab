@@ -1676,10 +1676,9 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
-      # set release tag(*.*.*) to env.GIT_TAG
-      - run: echo "GIT_TAG=${GITHUB_REF##*/}" >> "$GITHUB_ENV"
-      - run: echo "hoge" > "hoge.${GIT_TAG}.txt"
-      - run: echo "fuga" > "fuga.${GIT_TAG}.txt"
+      # set release tag(*.*.*) to version string
+      - run: echo "hoge" > "hoge.${{ github.ref_name }}.txt"
+      - run: echo "fuga" > "fuga.${{ github.ref_name }}.txt"
       - run: ls -l
       # Create Releases
       - uses: actions/create-release@v1
@@ -1688,15 +1687,15 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           tag_name: ${{ github.ref }}
-          release_name: Ver.${{ github.ref }}
+          release_name: Ver.${{ github.ref_name }}
       # Upload to Releases(hoge)
       - uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: hoge.${{ env.GIT_TAG }}.txt
-          asset_name: hoge.${{ env.GIT_TAG }}.txt
+          asset_path: hoge.${{ github.ref_name }}.txt
+          asset_name: hoge.${{ github.ref_name }}.txt
           asset_content_type: application/octet-stream
       # Upload to Releases(fuga)
       - uses: actions/upload-release-asset@v1
@@ -1704,9 +1703,10 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: fuga.${{ env.GIT_TAG }}.txt
-          asset_name: fuga.${{ env.GIT_TAG }}.txt
+          asset_path: fuga.${{ github.ref_name }}.txt
+          asset_name: fuga.${{ github.ref_name }}.txt
           asset_content_type: application/octet-stream
+
 ```
 
 ## Trigger branch push only but skip on tag push
@@ -2572,14 +2572,22 @@ on:
     tags:
       - "**" # only tag
 jobs:
-  build:
+  ref:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "GIT_TAG=${GITHUB_REF##*/}" >> "$GITHUB_OUTPUT"
+      - name: Use GITHUB_REF and GITHUB_OUTPUT
+        run: echo "GIT_TAG=${GITHUB_REF##*/}" >> "$GITHUB_OUTPUT"
         id: CI_TAG
-      - run: echo ${{ steps.CI_TAG.outputs.GIT_TAG }}
-      - run: echo "GIT_TAG=${GITHUB_REF##*/}" >> "$GITHUB_ENV"
-      - run: echo ${{ env.GIT_TAG }}
+      - name: Use GITHUB_REF and GITHUB_ENV
+        run: echo "GIT_TAG=${GITHUB_REF##*/}" >> "$GITHUB_ENV"
+      - name: Show tag value by GITHUB_REF
+        run: |
+          echo "${{ steps.CI_TAG.outputs.GIT_TAG }}"
+          echo "${{ env.GIT_TAG }}"
+      - name: Show tag value by github.ref_name
+        run: |
+          echo "${{ github.ref_name }}"
+
 ```
 
 ## Get Workflow Name
