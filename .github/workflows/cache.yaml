@@ -3,20 +3,23 @@ on:
   push:
     branches: ["main"]
   workflow_dispatch:
+
 # tl;dr;
 # push will diff with cache, and dispatch workflow.
 # workflow_dispatch without any repo change will use cache, and not dispatch workflow.
+
 env:
   DISPATCH_REPO: guitarrapc/testtest
   DIPATCH_WORKFLOW_NAME: test
   DISPATCH_BRANCH: main
   CACHE_VERSION: v1
+
 jobs:
   detect_library_change:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     outputs:
       cache-hit: ${{ steps.cache-sha.outputs.cache-hit }}
-    timeout-minutes: 10
     steps:
       - name: Dump GitHub context
         run: echo "$CONTEXT"
@@ -43,7 +46,7 @@ jobs:
         with:
           github-token: ${{ secrets.SYNCED_GITHUB_TOKEN_REPO }} # must be PAT
           script: |
-            const result = await github.git.getRef({
+            const result = await github.rest.git.getRef({
               owner: context.repo.owner,
               repo: "testtest",
               ref: "heads/main"
@@ -66,6 +69,7 @@ jobs:
         with:
           path: ~/cache
           key: ${{ runner.os }}-${{ env.CACHE_VERSION }}-sha-${{ hashFiles('**/sha.txt') }}
+
   dispatch:
     needs: [detect_library_change]
     if: (github.event_name == 'push' || github.event_name == 'workflow_dispatch') && needs.detect_library_change.outputs.cache-hit != 'true'
