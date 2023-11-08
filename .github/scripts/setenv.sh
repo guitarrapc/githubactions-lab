@@ -8,5 +8,5 @@ while [ $# -gt 0 ]; do
     esac
 done
 
-echo GIT_TAG_SCRIPT=${GITHUB_REF##*/} >> "$GITHUB_ENV"
-echo git-tag=${GITHUB_REF##*/} >> "$GITHUB_OUTPUT"
+echo BRANCH_SCRIPT=${GITHUB_REF##*/} >> "$GITHUB_ENV"
+echo branch=${GITHUB_REF##*/} >> "$GITHUB_OUTPUT"

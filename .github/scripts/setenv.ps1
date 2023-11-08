@@ -2,5 +2,5 @@ param(
   [string]$Ref
 )
 
-echo "GIT_TAG_SCRIPT=$($Ref -replace 'refs/heads/','')" >> $env:GITHUB_ENV
-echo "git-tag=$($Ref -replace 'refs/heads/','')" >> $env:GITHUB_OUTPUT
+echo "BRANCH_SCRIPT=$($Ref -replace '.*/','')" >> $env:GITHUB_ENV
+echo "branch=$($Ref -replace '.*/','')" >> $env:GITHUB_OUTPUT
