@@ -123,7 +123,7 @@ GitHub Actions research and test laboratory.
 
 # Functionality limitation
 
-Relax the limit for `GitHub Team Plan` is myu strong expectation.
+Relax the limit for `GitHub Team Plan` is my strong expectation.
 
 - [ ] `Environment > Deployment protection rules` is not allowed in GitHub team Plan. You cannot use `Required reviewers` (Approvabl) and `Wait timer`.
 
@@ -142,6 +142,15 @@ Also you may consider migrate from GitHub Actions.
 
 - GitHub Actions -> CircleCI: [Migrating from Github Actions \- CircleCI](https://circleci.com/docs/migrating-from-github)
 
+## Fork handling
+
+GitHub Actions support handling fork PR.
+
+- ✔️: GitHub Actions [support fork PR to be trigger workflow](https://docs.github.com/en/actions/managing-workflow-runs/approving-workflow-runs-from-public-forks) and accessing secret. However allowing public fork to be access secret is not recommended, and there are [some practical way](https://securitylab.github.com/research/github-actions-preventing-pwn-requests/) to allow accessing secret.
+- ⚠️: CircleCI [support fork PR to be trigger workflow](https://circleci.com/docs/oss/#build-pull-requests-from-forked-repositories) and accessing secret. However handling fork PR in YAML is limited by branch naming rule like `/pull\/[0-9]+/`. Also allowing public fork to be access secret is not recommended, and there are no easy way to handle it.
+- ✔️: Azure Pipeline [supports fork PR to be trigger job](https://learn.microsoft.com/en-us/azure/devops/pipelines/repos/github?view=azure-devops&tabs=yaml#contributions-from-forks) and accessing secret. However allowing public fork to be access secret is not recommended.
+- ❌: Jenkins normally not recommended to use for Public CI, it means fork PR won't consider to be important for Jenkins.
+
 ## Hosted Runner sizing
 
 Every CI offer you to configure runner sizing for SelfHosted Runner, but some CI has limitation for sizing Hosted Runner.
@@ -151,6 +160,14 @@ Every CI offer you to configure runner sizing for SelfHosted Runner, but some CI
 - ❌: Azure Pipeline not offer hosted runner sizing. Hosted runner is limited to spec `2Core CPU, 7GB RAM and 14GB SSD Disk`.
 - ❌: Jenkins is self hosted solution. Hosted runner sizing is not avaiable.
 
+## Git Checkout
+
+GitHub Actions support checkout by actions and supports variety of checkout options include sparse checkout.
+
+- ✔️: GitHub Actions [actions/checkout](https://github.com/actions/checkout) support `ssh` or `https` protocol, `submodule`, `shallow-clone`, `sparse checkout` and `lfs`. `actions/checkout` is default `shallow-clone` (depth 1).
+- ⚠️: CircleCI [checkout](https://circleci.com/docs/configuration-reference/#checkout) support `ssh` or `https` protocol. It missing `submodule`, `shallow-clone`, `sparse-checkout` and `lfs` support. `checkout` is default full clone.
+- ✔️: Azure Pipeline [checkout](https://learn.microsoft.com/en-us/azure/devops/pipelines/yaml-schema/steps-checkout?view=azure-pipelines) support `ssh` or `https` protocol, `submodule`, `shallow-clone` and `lfs`. It missing `sparse-checkout` support. `checkout` is default `shallow-clone` (depth 1) for new pipeline created after the September 2022.
+- ✔️: Jenkins [GitSCM](https://www.jenkins.io/doc/pipeline/steps/params/gitscm/) support `ssh` or `https` protocol, `submodule`, `shallow-clone`, `sparse checkout` and `lfs`. `GitSCM` is default full clone.
 
 ## Job and workflow
 
@@ -338,23 +355,6 @@ GitHub Actions support when HEAD commit contains key word like other ci.
 - ✔️: Azure Pipeline can skip job via `***NO_CI***`, `[skip ci]` or `[ci skip]`, or [others](https://github.com/Microsoft/azure-pipelines-agent/issues/858#issuecomment-475768046).
 - ❌: Jenkins not support skip ci on default, but there are plugins to support `[skip ci]` or any expression w/pipeline like [SCM Skip \| Jenkins plugin](https://plugins.jenkins.io/scmskip/).
 
-## Git Checkout
-
-GitHub Actions support checkout by actions and supports variety of checkout options include sparse checkout.
-
-- ✔️: GitHub Actions [actions/checkout](https://github.com/actions/checkout) support `ssh` or `https` protocol, `submodule`, `shallow-clone`, `sparse checkout` and `lfs`. `actions/checkout` is default `shallow-clone` (depth 1).
-- ⚠️: CircleCI [checkout](https://circleci.com/docs/configuration-reference/#checkout) support `ssh` or `https` protocol. It missing `submodule`, `shallow-clone`, `sparse-checkout` and `lfs` support. `checkout` is default full clone.
-- ✔️: Azure Pipeline [checkout](https://learn.microsoft.com/en-us/azure/devops/pipelines/yaml-schema/steps-checkout?view=azure-pipelines) support `ssh` or `https` protocol, `submodule`, `shallow-clone` and `lfs`. It missing `sparse-checkout` support. `checkout` is default `shallow-clone` (depth 1) for new pipeline created after the September 2022.
-- ✔️: Jenkins [GitSCM](https://www.jenkins.io/doc/pipeline/steps/params/gitscm/) support `ssh` or `https` protocol, `submodule`, `shallow-clone`, `sparse checkout` and `lfs`. `GitSCM` is default full clone.
-
-## Fork handling
-
-GitHub Actions support handling fork PR.
-
-- ✔️: GitHub Actions [support fork PR to be trigger workflow](https://docs.github.com/en/actions/managing-workflow-runs/approving-workflow-runs-from-public-forks) and accessing secret. However allowing public fork to be access secret is not recommended, and there are [some practical way](https://securitylab.github.com/research/github-actions-preventing-pwn-requests/) to allow accessing secret.
-- ⚠️: CircleCI [support fork PR to be trigger workflow](https://circleci.com/docs/oss/#build-pull-requests-from-forked-repositories) and accessing secret. However handling fork PR in YAML is limited by branch naming rule like `/pull\/[0-9]+/`. Also allowing public fork to be access secret is not recommended, and there are no easy way to handle it.
-- ✔️: Azure Pipeline [supports fork PR to be trigger job](https://learn.microsoft.com/en-us/azure/devops/pipelines/repos/github?view=azure-devops&tabs=yaml#contributions-from-forks) and accessing secret. However allowing public fork to be access secret is not recommended.
-- ❌: Jenkins normally not recommended to use for Public CI, it means fork PR won't consider to be important for Jenkins.
 
 # Basic - Fundamentables
 
