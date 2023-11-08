@@ -23,7 +23,7 @@ jobs:
       # Other event's base ref is always empty and it use default branch.           -> github.base_ref
       - uses: actions/checkout@v4
         with:
-          ref: ${{ (startsWith(github.event_name, 'pull_request') && github.event.action != 'closed') && github.head.ref || (github.ref_type == 'tag' && github.event.base_ref || github.base_ref) }}
+          ref: ${{ (startsWith(github.event_name, 'pull_request') && github.event.action != 'closed') && github.head_ref || (github.ref_type == 'tag' && github.event.base_ref || github.base_ref) }}
       - name: file names
         id: file
         run: echo "name=${{ github.event_name }}${{ github.event.action != '' && format('_{0}', github.event.action) || ''}}${{ github.event_name == 'push' && format('_{0}', github.ref_type) || ''}}" | tee -a "$GITHUB_OUTPUT"
