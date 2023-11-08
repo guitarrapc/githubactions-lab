@@ -458,11 +458,6 @@ echo branch=${GITHUB_REF} | tee -a "$GITHUB_OUTPUT"
 
 ```
 
-```powershell
-# .github/scripts/setenv.ps1
-
-```
-
 Call this script from workflow.
 
 ```yaml
