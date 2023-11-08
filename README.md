@@ -1971,6 +1971,15 @@ To enable Dependabot for GitHub Actions update, add `.github/dependabot.yml` to 
 
 ```yaml
 # .github/dependabot.yaml
+
+# ref: https://docs.github.com/en/code-security/dependabot/working-with-dependabot/keeping-your-actions-up-to-date-with-dependabot
+version: 2
+updates:
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly" # Check for updates to GitHub Actions every week
+
 ```
 
 **Customize dependabot.yaml**
