@@ -6,6 +6,9 @@ on:
   pull_request:
     branches: ["main"]
 
+env:
+  BRANCH_NAME: ${{ startsWith(github.event_name, 'pull_request') && github.head_ref || github.ref_name }}
+
 jobs:
   ubuntu:
     runs-on: ubuntu-latest
@@ -15,21 +18,16 @@ jobs:
       - name: Add ENV and OUTPUT
         id: shell
         run: |
-          if [[ "${{ startsWith(github.event_name, 'pull_request') }}" == "true" ]]; then
-            echo "BRANCH=${{ github.head_ref }}" >> "$GITHUB_ENV"
-            echo "branch=${{ github.head_ref }}" >> "$GITHUB_OUTPUT"
-          else
-            echo "BRANCH=${{ github.ref_name }}" >> "$GITHUB_ENV"
-            echo "branch=${{ github.ref_name }}" >> "$GITHUB_OUTPUT"
-          fi
+          echo "BRANCH=${{ env.BRANCH_NAME }}" >> "$GITHUB_ENV"
+          echo "branch=${{ env.BRANCH_NAME }}" >> "$GITHUB_OUTPUT"
       - name: Show ENV and OUTPUT
         run: |
           echo ${{ env.BRANCH }}
           echo ${{ steps.shell.outputs.branch }}
       - name: Add ENV and OUTPUT by Script
         id: script
-        run: bash .github/scripts/setenv.sh --ref "${{ startsWith(github.event_name, 'pull_request') && github.head_ref || github.ref_name }}"
-      - name: Show ENV and OUTPUT
+        run: bash .github/scripts/setenv.sh --ref "${{ env.BRANCH_NAME }}"
+      - name: Show Script  ENV and OUTPUT
         run: |
           echo ${{ env.BRANCH_SCRIPT }}
           echo ${{ steps.script.outputs.branch }}
@@ -46,25 +44,20 @@ jobs:
       - name: Add ENV and OUTPUT
         id: shell
         run: |
-          if ("${{ startsWith(github.event_name, 'pull_request') }}" -eq "true") {
-            echo "BRANCH=${{ github.head_ref }}" >> "${env:GITHUB_ENV}"
-            echo "branch=${{ github.head_ref }}" >> "${env:GITHUB_OUTPUT}"
-          } else {
-            echo "BRANCH=${{ github.ref_name }}" >> "${env:GITHUB_ENV}"
-            echo "branch=${{ github.ref_name }}" >> "${env:GITHUB_OUTPUT}"
-          }
+            echo "BRANCH=${{ env.BRANCH_NAME }}" >> "${env:GITHUB_ENV}"
+            echo "branch=${{ env.BRANCH_NAME }}" >> "${env:GITHUB_OUTPUT}"
       - name: Show ENV and OUTPUT
         run: |
           echo "${{ env.BRANCH }}"
           echo "${{ steps.shell.outputs.branch }}"
       - name: Add ENV and OUTPUT by Script
         id: script
-        run: ./.github/scripts/setenv.ps1 -Ref "${{ startsWith(github.event_name, 'pull_request') && github.head_ref || github.ref_name }}"
-      - name: Show ENV and OUTPUT
+        run: ./.github/scripts/setenv.ps1 -Ref "${{ env.BRANCH_NAME }}"
+      - name: Show Script ENV and OUTPUT
         run: |
           echo "${{ env.BRANCH_SCRIPT }}"
           echo "${{ steps.script.outputs.branch }}"
       - name: Add PATH
-        run: echo "${env:HOME}/foo/bar" >> "${env:GITHUB_PATH}"
+        run: echo "$HOME/foo/bar" >> "${env:GITHUB_PATH}"
       - name: Show PATH
         run: echo "${env:PATH}"
