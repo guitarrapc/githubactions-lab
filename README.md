@@ -2373,12 +2373,13 @@ jobs:
             workflow: test
     steps:
       - name: dispatch ${{ matrix.repo }}
-        uses: benc-uk/workflow-dispatch@v1.1
+        uses: benc-uk/workflow-dispatch@v1.2
         with:
           repo: ${{ matrix.repo }}
           ref: ${{ matrix.ref }}
           workflow: ${{ matrix.workflow }}
           token: ${{ secrets.SYNCED_GITHUB_TOKEN_REPO }}
+
 ```
 
 ## Fork user workflow change prevention
