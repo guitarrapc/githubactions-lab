@@ -1,14 +1,14 @@
 {
-  "token": "ghs_qcq23oe7JPMY6M0rSNj8X7kWtNgCPE47oWyk",
+  "token": "ghs_SMBTFQHYCyA9DXkA4q9rbMv1P6PN622QOpMP",
   "job": "dump-context",
   "ref": "refs/heads/main",
-  "sha": "15c8aee5153a2607b45ec66f64ffbfa9cca30380",
+  "sha": "8558816dc23b4fb3b43c9048feb841237c978960",
   "repository": "guitarrapc/githubactions-lab",
   "repository_owner": "guitarrapc",
   "repository_owner_id": "3856350",
   "repositoryUrl": "git://github.com/guitarrapc/githubactions-lab.git",
-  "run_id": "6854443157",
-  "run_number": "470",
+  "run_id": "6854448068",
+  "run_number": "479",
   "retention_days": "90",
   "run_attempt": "1",
   "artifact_cache_size_limit": "10",
@@ -20,41 +20,41 @@
   "actor": "guitarrapc",
   "triggering_actor": "guitarrapc",
   "workflow": "auto dump context",
-  "head_ref": "dependabot/github_actions/tj-actions/changed-files-26.1",
+  "head_ref": "dependabot/github_actions/benc-uk/workflow-dispatch-1.2",
   "base_ref": "main",
   "event_name": "pull_request",
   "event": {
     "action": "closed",
-    "number": 136,
+    "number": 133,
     "pull_request": {
       "_links": {
         "comments": {
-          "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/issues/136/comments"
+          "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/issues/133/comments"
         },
         "commits": {
-          "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/136/commits"
+          "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/133/commits"
         },
         "html": {
-          "href": "https://github.com/guitarrapc/githubactions-lab/pull/136"
+          "href": "https://github.com/guitarrapc/githubactions-lab/pull/133"
         },
         "issue": {
-          "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/issues/136"
+          "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/issues/133"
         },
         "review_comment": {
           "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/comments{/number}"
         },
         "review_comments": {
-          "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/136/comments"
+          "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/133/comments"
         },
         "self": {
-          "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/136"
+          "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/133"
         },
         "statuses": {
-          "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/statuses/208040dbdec2accd27c3a6e24fe43d3991797632"
+          "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/statuses/bddd56148bd81678694f4533b454b2460997884e"
         }
       },
       "active_lock_reason": null,
-      "additions": 4,
+      "additions": 2,
       "assignee": null,
       "assignees": [],
       "author_association": "CONTRIBUTOR",
@@ -131,8 +131,8 @@
           "name": "githubactions-lab",
           "node_id": "MDEwOlJlcG9zaXRvcnkyNTc0NjU0Njg=",
           "notifications_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/notifications{?since,all,participating}",
-          "open_issues": 9,
-          "open_issues_count": 9,
+          "open_issues": 6,
+          "open_issues_count": 6,
           "owner": {
             "avatar_url": "https://avatars.githubusercontent.com/u/3856350?v=4",
             "events_url": "https://api.github.com/users/guitarrapc/events{/privacy}",
@@ -155,7 +155,7 @@
           },
           "private": false,
           "pulls_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls{/number}",
-          "pushed_at": "2023-11-13T18:55:44Z",
+          "pushed_at": "2023-11-13T18:56:18Z",
           "releases_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/releases{/id}",
           "size": 1316,
           "squash_merge_commit_message": "COMMIT_MESSAGES",
@@ -203,20 +203,20 @@
           "url": "https://api.github.com/users/guitarrapc"
         }
       },
-      "body": "Bumps [tj-actions/changed-files](https://github.com/tj-actions/changed-files) from 11.5 to 26.1.\n<details>\n<summary>Changelog</summary>\n<p><em>Sourced from <a href=\"https://github.com/tj-actions/changed-files/blob/main/HISTORY.md\">tj-actions/changed-files's changelog</a>.</em></p>\n<blockquote>\n<h1><a href=\"https://github.com/tj-actions/changed-files/compare/v26...v26.1\">26.1</a> - (2022-08-15)</h1>\n<h2><!-- raw HTML omitted -->🐛 Bug Fixes</h2>\n<ul>\n<li>Error retrieving base sha. (<a href=\"https://redirect.github.com/tj-actions/changed-files/issues/579\">#579</a>) (<a href=\"https://github.com/tj-actions/changed-files/commit/58ae566dc69a926834e4798bcfe0436ff97c0599\">58ae566</a>)  - (Tonye Jack)</li>\n</ul>\n<h2><!-- raw HTML omitted -->⬆️ Upgrades</h2>\n<ul>\n<li>Upgraded from v25 -&gt; v26 (<a href=\"https://redirect.github.com/tj-actions/changed-files/issues/577\">#577</a>)</li>\n</ul>\n<p>Co-authored-by: jackton1 <a href=\"mailto:jackton1@users.noreply.github.com\">jackton1@users.noreply.github.com</a> (<a href=\"https://github.com/tj-actions/changed-files/commit/8cd034b5cd0413df964d6822a6414ac823bacb9c\">8cd034b</a>)  - (Tonye Jack)</p>\n<h1><a href=\"https://github.com/tj-actions/changed-files/compare/v25...v26\">26</a> - (2022-08-15)</h1>\n<h2><!-- raw HTML omitted -->🚀 Features</h2>\n<ul>\n<li>Validate the minimum required git version (<a href=\"https://redirect.github.com/tj-actions/changed-files/issues/572\">#572</a>) (<a href=\"https://github.com/tj-actions/changed-files/commit/7dd9711c6459a5b1ff46514133028b3030afe444\">7dd9711</a>)  - (Tonye Jack)</li>\n</ul>\n<h2><!-- raw HTML omitted -->🔄 Update</h2>\n<ul>\n<li>Updated README.md (<a href=\"https://redirect.github.com/tj-actions/changed-files/issues/575\">#575</a>)</li>\n</ul>\n<p>Co-authored-by: jackton1 <a href=\"mailto:jackton1@users.noreply.github.com\">jackton1@users.noreply.github.com</a> (<a href=\"https://github.com/tj-actions/changed-files/commit/7394701157dae4adb4eaa75d8c99e9b2edff81fe\">7394701</a>)  - (Tonye Jack)</p>\n<ul>\n<li>Update README.md (<a href=\"https://github.com/tj-actions/changed-files/commit/abfa34ddb691419f4278614fc8bd1892e0af6578\">abfa34d</a>)  - (Tonye Jack)</li>\n<li>Update README.md (<a href=\"https://github.com/tj-actions/changed-files/commit/6d5cf3f9526c64b3b373b28448b140650b5dc716\">6d5cf3f</a>)  - (Tonye Jack)</li>\n<li>Update README.md (<a href=\"https://github.com/tj-actions/changed-files/commit/5f910fc7e7491f6db1bdc0175c0bec691650ca2b\">5f910fc</a>)  - (Tonye Jack)</li>\n<li>Update README.md (<a href=\"https://github.com/tj-actions/changed-files/commit/dd75630a5762601b250bc2da62c5ff91079c260f\">dd75630</a>)  - (Tonye Jack)</li>\n</ul>\n<h2><!-- raw HTML omitted -->📚 Documentation</h2>\n<ul>\n<li>Add thyarles as a contributor for code (<a href=\"https://redirect.github.com/tj-actions/changed-files/issues/574\">#574</a>) (<a href=\"https://github.com/tj-actions/changed-files/commit/d2bf1ba9cd4b6d179617d7c94b7f4a92b4eefd49\">d2bf1ba</a>)  - (allcontributors[bot])</li>\n</ul>\n<h2><!-- raw HTML omitted -->📝 Other</h2>\n<ul>\n<li>Simplify checks (<a href=\"https://redirect.github.com/tj-actions/changed-files/issues/570\">#570</a>) (<a href=\"https://github.com/tj-actions/changed-files/commit/f834a938f2fcd59b104a43e705d5d0cd8bfefefc\">f834a93</a>)  - (Charles Santos)</li>\n</ul>\n<h2><!-- raw HTML omitted -->⚙️ Miscellaneous Tasks</h2>\n<ul>\n<li>Remove extra space. (<a href=\"https://redirect.github.com/tj-actions/changed-files/issues/576\">#576</a>) (<a href=\"https://github.com/tj-actions/changed-files/commit/234423e82bf3fb0f365501ca9604bddf8b85a13f\">234423e</a>)  - (Tonye Jack)</li>\n<li>Restrict rename test to non forks (<a href=\"https://redirect.github.com/tj-actions/changed-files/issues/573\">#573</a>) (<a href=\"https://github.com/tj-actions/changed-files/commit/8ec2566464d9f07e1f518b45cde300ee433c6b97\">8ec2566</a>)  - (Tonye Jack)</li>\n<li>Remove unused code (<a href=\"https://redirect.github.com/tj-actions/changed-files/issues/571\">#571</a>) (<a href=\"https://github.com/tj-actions/changed-files/commit/0c7f7d1ce7f7672ae015ce1f10c171a4071477e3\">0c7f7d1</a>)  - (Tonye Jack)</li>\n</ul>\n<h2><!-- raw HTML omitted -->⬆️ Upgrades</h2>\n<ul>\n<li>Upgraded to v25 (<a href=\"https://redirect.github.com/tj-actions/changed-files/issues/567\">#567</a>)</li>\n</ul>\n<p>Co-authored-by: jackton1 <a href=\"mailto:jackton1@users.noreply.github.com\">jackton1@users.noreply.github.com</a> (<a href=\"https://github.com/tj-actions/changed-files/commit/9014219205d02655ae007a36171be4a4bb47513a\">9014219</a>)  - (Tonye Jack)</p>\n<h1><a href=\"https://github.com/tj-actions/changed-files/compare/v24.1...v25\">25</a> - (2022-08-08)</h1>\n<!-- raw HTML omitted -->\n</blockquote>\n<p>... (truncated)</p>\n</details>\n<details>\n<summary>Commits</summary>\n<ul>\n<li><a href=\"https://github.com/tj-actions/changed-files/commit/58ae566dc69a926834e4798bcfe0436ff97c0599\"><code>58ae566</code></a> fix: error retrieving base sha. (<a href=\"https://redirect.github.com/tj-actions/changed-files/issues/579\">#579</a>)</li>\n<li><a href=\"https://github.com/tj-actions/changed-files/commit/8cd034b5cd0413df964d6822a6414ac823bacb9c\"><code>8cd034b</code></a> Upgraded from v25 -&gt; v26 (<a href=\"https://redirect.github.com/tj-actions/changed-files/issues/577\">#577</a>)</li>\n<li><a href=\"https://github.com/tj-actions/changed-files/commit/7394701157dae4adb4eaa75d8c99e9b2edff81fe\"><code>7394701</code></a> Updated README.md (<a href=\"https://redirect.github.com/tj-actions/changed-files/issues/575\">#575</a>)</li>\n<li><a href=\"https://github.com/tj-actions/changed-files/commit/234423e82bf3fb0f365501ca9604bddf8b85a13f\"><code>234423e</code></a> chore: remove extra space. (<a href=\"https://redirect.github.com/tj-actions/changed-files/issues/576\">#576</a>)</li>\n<li><a href=\"https://github.com/tj-actions/changed-files/commit/f834a938f2fcd59b104a43e705d5d0cd8bfefefc\"><code>f834a93</code></a> improvement: Simplify checks (<a href=\"https://redirect.github.com/tj-actions/changed-files/issues/570\">#570</a>)</li>\n<li><a href=\"https://github.com/tj-actions/changed-files/commit/d2bf1ba9cd4b6d179617d7c94b7f4a92b4eefd49\"><code>d2bf1ba</code></a> docs: add thyarles as a contributor for code (<a href=\"https://redirect.github.com/tj-actions/changed-files/issues/574\">#574</a>)</li>\n<li><a href=\"https://github.com/tj-actions/changed-files/commit/8ec2566464d9f07e1f518b45cde300ee433c6b97\"><code>8ec2566</code></a> chore: restrict rename test to non forks (<a href=\"https://redirect.github.com/tj-actions/changed-files/issues/573\">#573</a>)</li>\n<li><a href=\"https://github.com/tj-actions/changed-files/commit/7dd9711c6459a5b1ff46514133028b3030afe444\"><code>7dd9711</code></a> feat: validate the minimum required git version (<a href=\"https://redirect.github.com/tj-actions/changed-files/issues/572\">#572</a>)</li>\n<li><a href=\"https://github.com/tj-actions/changed-files/commit/0c7f7d1ce7f7672ae015ce1f10c171a4071477e3\"><code>0c7f7d1</code></a> chore: remove unused code (<a href=\"https://redirect.github.com/tj-actions/changed-files/issues/571\">#571</a>)</li>\n<li><a href=\"https://github.com/tj-actions/changed-files/commit/abfa34ddb691419f4278614fc8bd1892e0af6578\"><code>abfa34d</code></a> Update README.md</li>\n<li>Additional commits viewable in <a href=\"https://github.com/tj-actions/changed-files/compare/v11.5...v26.1\">compare view</a></li>\n</ul>\n</details>\n<br />\n\n\n[![Dependabot compatibility score](https://dependabot-badges.githubapp.com/badges/compatibility_score?dependency-name=tj-actions/changed-files&package-manager=github_actions&previous-version=11.5&new-version=26.1)](https://docs.github.com/en/github/managing-security-vulnerabilities/about-dependabot-security-updates#about-compatibility-scores)\n\nDependabot will resolve any conflicts with this PR as long as you don't alter it yourself. You can also trigger a rebase manually by commenting `@dependabot rebase`.\n\n[//]: # (dependabot-automerge-start)\n[//]: # (dependabot-automerge-end)\n\n---\n\n<details>\n<summary>Dependabot commands and options</summary>\n<br />\n\nYou can trigger Dependabot actions by commenting on this PR:\n- `@dependabot rebase` will rebase this PR\n- `@dependabot recreate` will recreate this PR, overwriting any edits that have been made to it\n- `@dependabot merge` will merge this PR after your CI passes on it\n- `@dependabot squash and merge` will squash and merge this PR after your CI passes on it\n- `@dependabot cancel merge` will cancel a previously requested merge and block automerging\n- `@dependabot reopen` will reopen this PR if it is closed\n- `@dependabot close` will close this PR and stop Dependabot recreating it. You can achieve the same result by closing it manually\n- `@dependabot show <dependency name> ignore conditions` will show all of the ignore conditions of the specified dependency\n- `@dependabot ignore this major version` will close this PR and stop Dependabot creating any more for this major version (unless you reopen the PR or upgrade to it yourself)\n- `@dependabot ignore this minor version` will close this PR and stop Dependabot creating any more for this minor version (unless you reopen the PR or upgrade to it yourself)\n- `@dependabot ignore this dependency` will close this PR and stop Dependabot creating any more for this dependency (unless you reopen the PR or upgrade to it yourself)\n\n\n</details>",
-      "changed_files": 3,
-      "closed_at": "2023-11-13T18:55:44Z",
+      "body": "Bumps [benc-uk/workflow-dispatch](https://github.com/benc-uk/workflow-dispatch) from 1.1 to 1.2.\n<details>\n<summary>Commits</summary>\n<ul>\n<li><a href=\"https://github.com/benc-uk/workflow-dispatch/commit/798e70c97009500150087d30d9f11c5444830385\"><code>798e70c</code></a> Automated publish: Fri Nov  4 15:35:05 UTC 2022 a69ac85ea87587e76bb4f262eb868...</li>\n<li><a href=\"https://github.com/benc-uk/workflow-dispatch/commit/a69ac85ea87587e76bb4f262eb868205dfcab8e8\"><code>a69ac85</code></a> Fix ref regression</li>\n<li><a href=\"https://github.com/benc-uk/workflow-dispatch/commit/b8ac4001bdf17685419a1b65af6fa92fc9a3de0e\"><code>b8ac400</code></a> Merge branch 'master' of <a href=\"https://github.com/benc-uk/workflow-dispatch\">https://github.com/benc-uk/workflow-dispatch</a></li>\n<li><a href=\"https://github.com/benc-uk/workflow-dispatch/commit/1fd7876c166eea7796e51b017c3221443f9845ba\"><code>1fd7876</code></a> Automated publish: Fri Oct 28 16:59:12 UTC 2022 27aab0a4b88582185c80c12aae59e...</li>\n<li><a href=\"https://github.com/benc-uk/workflow-dispatch/commit/2a6e8ed9214bfc77d72d382897f610aaecbb7321\"><code>2a6e8ed</code></a> docs</li>\n<li><a href=\"https://github.com/benc-uk/workflow-dispatch/commit/27aab0a4b88582185c80c12aae59ecbf05a4966b\"><code>27aab0a</code></a> fixes</li>\n<li><a href=\"https://github.com/benc-uk/workflow-dispatch/commit/34e733f6d1c6782b123fa38ee00175331e1f09bf\"><code>34e733f</code></a> Docs</li>\n<li><a href=\"https://github.com/benc-uk/workflow-dispatch/commit/53b94cee6f2eca47c4cb4f88ee34b72a5ebb4ff4\"><code>53b94ce</code></a> Add extra test workflow</li>\n<li><a href=\"https://github.com/benc-uk/workflow-dispatch/commit/81d021dc54f503605fe1bf7beed16e0edf666844\"><code>81d021d</code></a> Add extra test workflow</li>\n<li><a href=\"https://github.com/benc-uk/workflow-dispatch/commit/9f788b53dfeaec3c9faad2368c53cdf3ed53811f\"><code>9f788b5</code></a> Docs update</li>\n<li>Additional commits viewable in <a href=\"https://github.com/benc-uk/workflow-dispatch/compare/v1.1...v1.2\">compare view</a></li>\n</ul>\n</details>\n<br />\n\n\n[![Dependabot compatibility score](https://dependabot-badges.githubapp.com/badges/compatibility_score?dependency-name=benc-uk/workflow-dispatch&package-manager=github_actions&previous-version=1.1&new-version=1.2)](https://docs.github.com/en/github/managing-security-vulnerabilities/about-dependabot-security-updates#about-compatibility-scores)\n\nDependabot will resolve any conflicts with this PR as long as you don't alter it yourself. You can also trigger a rebase manually by commenting `@dependabot rebase`.\n\n[//]: # (dependabot-automerge-start)\n[//]: # (dependabot-automerge-end)\n\n---\n\n<details>\n<summary>Dependabot commands and options</summary>\n<br />\n\nYou can trigger Dependabot actions by commenting on this PR:\n- `@dependabot rebase` will rebase this PR\n- `@dependabot recreate` will recreate this PR, overwriting any edits that have been made to it\n- `@dependabot merge` will merge this PR after your CI passes on it\n- `@dependabot squash and merge` will squash and merge this PR after your CI passes on it\n- `@dependabot cancel merge` will cancel a previously requested merge and block automerging\n- `@dependabot reopen` will reopen this PR if it is closed\n- `@dependabot close` will close this PR and stop Dependabot recreating it. You can achieve the same result by closing it manually\n- `@dependabot show <dependency name> ignore conditions` will show all of the ignore conditions of the specified dependency\n- `@dependabot ignore this major version` will close this PR and stop Dependabot creating any more for this major version (unless you reopen the PR or upgrade to it yourself)\n- `@dependabot ignore this minor version` will close this PR and stop Dependabot creating any more for this minor version (unless you reopen the PR or upgrade to it yourself)\n- `@dependabot ignore this dependency` will close this PR and stop Dependabot creating any more for this dependency (unless you reopen the PR or upgrade to it yourself)\n\n\n</details>",
+      "changed_files": 2,
+      "closed_at": "2023-11-13T18:56:19Z",
       "comments": 0,
-      "comments_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/issues/136/comments",
+      "comments_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/issues/133/comments",
       "commits": 1,
-      "commits_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/136/commits",
-      "created_at": "2023-11-13T15:54:04Z",
-      "deletions": 4,
-      "diff_url": "https://github.com/guitarrapc/githubactions-lab/pull/136.diff",
+      "commits_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/133/commits",
+      "created_at": "2023-11-13T15:53:51Z",
+      "deletions": 2,
+      "diff_url": "https://github.com/guitarrapc/githubactions-lab/pull/133.diff",
       "draft": false,
       "head": {
-        "label": "guitarrapc:dependabot/github_actions/tj-actions/changed-files-26.1",
-        "ref": "dependabot/github_actions/tj-actions/changed-files-26.1",
+        "label": "guitarrapc:dependabot/github_actions/benc-uk/workflow-dispatch-1.2",
+        "ref": "dependabot/github_actions/benc-uk/workflow-dispatch-1.2",
         "repo": {
           "allow_auto_merge": false,
           "allow_forking": true,
@@ -286,8 +286,8 @@
           "name": "githubactions-lab",
           "node_id": "MDEwOlJlcG9zaXRvcnkyNTc0NjU0Njg=",
           "notifications_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/notifications{?since,all,participating}",
-          "open_issues": 9,
-          "open_issues_count": 9,
+          "open_issues": 6,
+          "open_issues_count": 6,
           "owner": {
             "avatar_url": "https://avatars.githubusercontent.com/u/3856350?v=4",
             "events_url": "https://api.github.com/users/guitarrapc/events{/privacy}",
@@ -310,7 +310,7 @@
           },
           "private": false,
           "pulls_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls{/number}",
-          "pushed_at": "2023-11-13T18:55:44Z",
+          "pushed_at": "2023-11-13T18:56:18Z",
           "releases_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/releases{/id}",
           "size": 1316,
           "squash_merge_commit_message": "COMMIT_MESSAGES",
@@ -336,7 +336,7 @@
           "watchers_count": 32,
           "web_commit_signoff_required": false
         },
-        "sha": "208040dbdec2accd27c3a6e24fe43d3991797632",
+        "sha": "bddd56148bd81678694f4533b454b2460997884e",
         "user": {
           "avatar_url": "https://avatars.githubusercontent.com/u/3856350?v=4",
           "events_url": "https://api.github.com/users/guitarrapc/events{/privacy}",
@@ -358,9 +358,9 @@
           "url": "https://api.github.com/users/guitarrapc"
         }
       },
-      "html_url": "https://github.com/guitarrapc/githubactions-lab/pull/136",
-      "id": 1599125640,
-      "issue_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/issues/136",
+      "html_url": "https://github.com/guitarrapc/githubactions-lab/pull/133",
+      "id": 1599125239,
+      "issue_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/issues/133",
       "labels": [
         {
           "color": "0366d6",
@@ -374,11 +374,11 @@
       ],
       "locked": false,
       "maintainer_can_modify": false,
-      "merge_commit_sha": "15c8aee5153a2607b45ec66f64ffbfa9cca30380",
+      "merge_commit_sha": "8558816dc23b4fb3b43c9048feb841237c978960",
       "mergeable": null,
       "mergeable_state": "unknown",
       "merged": true,
-      "merged_at": "2023-11-13T18:55:44Z",
+      "merged_at": "2023-11-13T18:56:19Z",
       "merged_by": {
         "avatar_url": "https://avatars.githubusercontent.com/u/3856350?v=4",
         "events_url": "https://api.github.com/users/guitarrapc/events{/privacy}",
@@ -400,20 +400,20 @@
         "url": "https://api.github.com/users/guitarrapc"
       },
       "milestone": null,
-      "node_id": "PR_kwDOD1icfM5fULiI",
-      "number": 136,
-      "patch_url": "https://github.com/guitarrapc/githubactions-lab/pull/136.patch",
+      "node_id": "PR_kwDOD1icfM5fULb3",
+      "number": 133,
+      "patch_url": "https://github.com/guitarrapc/githubactions-lab/pull/133.patch",
       "rebaseable": null,
       "requested_reviewers": [],
       "requested_teams": [],
       "review_comment_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/comments{/number}",
       "review_comments": 0,
-      "review_comments_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/136/comments",
+      "review_comments_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/133/comments",
       "state": "closed",
-      "statuses_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/statuses/208040dbdec2accd27c3a6e24fe43d3991797632",
-      "title": "chore(deps): bump tj-actions/changed-files from 11.5 to 26.1",
-      "updated_at": "2023-11-13T18:55:45Z",
-      "url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/136",
+      "statuses_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/statuses/bddd56148bd81678694f4533b454b2460997884e",
+      "title": "chore(deps): bump benc-uk/workflow-dispatch from 1.1 to 1.2",
+      "updated_at": "2023-11-13T18:56:19Z",
+      "url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/133",
       "user": {
         "avatar_url": "https://avatars.githubusercontent.com/in/29110?v=4",
         "events_url": "https://api.github.com/users/dependabot%5Bbot%5D/events{/privacy}",
@@ -496,8 +496,8 @@
       "name": "githubactions-lab",
       "node_id": "MDEwOlJlcG9zaXRvcnkyNTc0NjU0Njg=",
       "notifications_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/notifications{?since,all,participating}",
-      "open_issues": 9,
-      "open_issues_count": 9,
+      "open_issues": 6,
+      "open_issues_count": 6,
       "owner": {
         "avatar_url": "https://avatars.githubusercontent.com/u/3856350?v=4",
         "events_url": "https://api.github.com/users/guitarrapc/events{/privacy}",
@@ -520,7 +520,7 @@
       },
       "private": false,
       "pulls_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls{/number}",
-      "pushed_at": "2023-11-13T18:55:44Z",
+      "pushed_at": "2023-11-13T18:56:18Z",
       "releases_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/releases{/id}",
       "size": 1316,
       "ssh_url": "git@github.com:guitarrapc/githubactions-lab.git",
@@ -572,15 +572,15 @@
   "ref_type": "branch",
   "secret_source": "Actions",
   "workflow_ref": "guitarrapc/githubactions-lab/.github/workflows/auto_dump_context.yaml@refs/heads/main",
-  "workflow_sha": "15c8aee5153a2607b45ec66f64ffbfa9cca30380",
+  "workflow_sha": "8558816dc23b4fb3b43c9048feb841237c978960",
   "workspace": "/home/runner/work/githubactions-lab/githubactions-lab",
   "action": "__run_2",
   "event_path": "/home/runner/work/_temp/_github_workflow/event.json",
   "action_repository": "",
   "action_ref": "",
-  "path": "/home/runner/work/_temp/_runner_file_commands/add_path_e5badc8f-9200-4765-b7ff-2091ef1f88b5",
-  "env": "/home/runner/work/_temp/_runner_file_commands/set_env_e5badc8f-9200-4765-b7ff-2091ef1f88b5",
-  "step_summary": "/home/runner/work/_temp/_runner_file_commands/step_summary_e5badc8f-9200-4765-b7ff-2091ef1f88b5",
-  "state": "/home/runner/work/_temp/_runner_file_commands/save_state_e5badc8f-9200-4765-b7ff-2091ef1f88b5",
-  "output": "/home/runner/work/_temp/_runner_file_commands/set_output_e5badc8f-9200-4765-b7ff-2091ef1f88b5"
+  "path": "/home/runner/work/_temp/_runner_file_commands/add_path_7e889e83-8440-4119-87c9-6d855aee325e",
+  "env": "/home/runner/work/_temp/_runner_file_commands/set_env_7e889e83-8440-4119-87c9-6d855aee325e",
+  "step_summary": "/home/runner/work/_temp/_runner_file_commands/step_summary_7e889e83-8440-4119-87c9-6d855aee325e",
+  "state": "/home/runner/work/_temp/_runner_file_commands/save_state_7e889e83-8440-4119-87c9-6d855aee325e",
+  "output": "/home/runner/work/_temp/_runner_file_commands/set_output_7e889e83-8440-4119-87c9-6d855aee325e"
 }
