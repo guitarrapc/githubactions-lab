@@ -32,7 +32,7 @@ jobs:
         run: cat ${{ env.TARGET_FILE}}
       - name: Create Pull Request
         id: cpr
-        uses: peter-evans/create-pull-request@v3
+        uses: peter-evans/create-pull-request@v5
         with:
           commit-message: "feat: Update package.json to ${{ env.VERSION }}"
           branch: feat/bump_package_json_${{ env.VERSION }}
