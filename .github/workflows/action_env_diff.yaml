@@ -21,6 +21,8 @@ jobs:
       - name: env (after)
         run: env | tee out/env-after.txt
       - name: diff env
-        run: set +x && diff --side-by-side --suppress-common-lines out/env-before.txt out/env-after.txt
+        run: diff --side-by-side --suppress-common-lines out/env-before.txt out/env-after.txt
+        continue-on-error: true
       - name: diff env (Detailed)
-        run: set +x && diff --suppress-common-lines out/env-before.txt out/env-after.txt
+        run: diff --suppress-common-lines out/env-before.txt out/env-after.txt
+        continue-on-error: true
