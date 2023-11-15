@@ -1,0 +1,26 @@
+name: Actions env diff
+# Is Actions cause environment variables diff?
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  setup-dotnet:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - run: mkdir -p out/
+      - name: env (before)
+        run: env | tee out/env-before.txt
+      - uses: actions/setup-dotnet@v3
+      - name: env (after)
+        run: env | tee out/env-after.txt
+      - name: diff env
+        run: diff --side-by-side --suppress-common-lines out/env-before.txt out/env-after.txt
+      - name: diff env (Detailed)
+        run: diff --suppress-common-lines out/env-before.txt out/env-after.txt
