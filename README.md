@@ -442,7 +442,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Dump environment
-        run: export
+        run: env
       - name: Dump GitHub context
         run: echo "$CONTEXT"
         env:
@@ -1591,21 +1591,27 @@ jobs:
         run: echo "$CONTEXT"
         env:
           CONTEXT: ${{ toJson(github.event.inputs) }}
-      - run: |
+      - name: Show Input value
+        run: |
           echo "Log level: ${{ inputs.logLevel }}"
           echo "Tags: ${{ inputs.tags }}"
-      # INPUT_ not automatcally generated
-      - run: |
+      - name: INPUT_ is not generated automatcally
+        run: |
           echo "${INPUT_TEST_VAR}"
           echo "${TEST_VAR}"
-      - run: echo "/path/to/dir" >> "$GITHUB_PATH"
-      - run: |
-          echo "INPUT_LOGLEVEL=${{ inputs.logLevel }}" >> "$GITHUB_ENV"
-          echo "INPUT_TAGS=${{ inputs.tags }}" >> "$GITHUB_ENV"
-      - run: |
-          echo "Log level: ${INPUT_LOGLEVEL}"
-          echo "Tags: ${INPUT_TAGS}"
-      - run: export
+      - name: Add PATH
+        run: echo "/path/to/dir" | tee -a "$GITHUB_PATH"
+      - name: Set inputs to Environment Variables
+        run: |
+          echo "INPUT_LOGLEVEL=${{ inputs.logLevel }}" | tee -a "$GITHUB_ENV"
+          echo "INPUT_TAGS=${{ inputs.tags }}" | tee -a "$GITHUB_ENV"
+      - name: Show Input value
+        run: |
+          echo "Log level: ${{ env.INPUT_LOGLEVEL }}"
+          echo "Tags: ${{ env.INPUT_TAGS }}"
+      - name: Show Environment Variables
+        run: env
+
 ```
 
 Even if you specify action inputs, input value will not store as ENV var `INPUT_{INPUTS_ID}` as usual.
