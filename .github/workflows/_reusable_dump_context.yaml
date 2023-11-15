@@ -31,10 +31,10 @@ jobs:
         shell: bash
         run: |
           mkdir -p "${{ env.OUTPUT_PATH }}"
-          export | tee "${{ env.OUTPUT_PATH }}/${{ steps.file.outputs.name }}.sh"
+          env | tee "${{ env.OUTPUT_PATH }}/${{ steps.file.outputs.name }}.sh"
         env:
           CONTEXT: ${{ toJson(env) }}
-          OUTPUT_PATH: ${{ inputs.output-path }}/export
+          OUTPUT_PATH: ${{ inputs.output-path }}/env
       - name: Dump GitHub context
         shell: bash
         run: |
