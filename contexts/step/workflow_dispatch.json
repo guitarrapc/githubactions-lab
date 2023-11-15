@@ -1,0 +1,9 @@
+{
+  "file": {
+    "outputs": {
+      "name": "workflow_dispatch"
+    },
+    "outcome": "success",
+    "conclusion": "success"
+  }
+}
