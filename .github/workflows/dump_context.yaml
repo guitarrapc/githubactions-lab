@@ -22,7 +22,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Dump environment
-        run: export
+        run: env
       - name: Dump GitHub context
         run: echo "$CONTEXT"
         env:
