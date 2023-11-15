@@ -1,14 +1,14 @@
 {
-  "token": "ghs_Kilc7TA9kcKmXPMTU7lPJw5rAaSXUE2CSavW",
+  "token": "ghs_QkzPf3bemmBK9LqOc8NWdglANERp7H20vpGA",
   "job": "dump-context",
   "ref": "refs/heads/main",
-  "sha": "199651e715e9b1eac8dc44f347dcd056c0d4b7b9",
+  "sha": "31aae8e2f12d7cb63b1bf1bed78282987e93d6db",
   "repository": "guitarrapc/githubactions-lab",
   "repository_owner": "guitarrapc",
   "repository_owner_id": "3856350",
   "repositoryUrl": "git://github.com/guitarrapc/githubactions-lab.git",
-  "run_id": "6873473438",
-  "run_number": "491",
+  "run_id": "6873479685",
+  "run_number": "492",
   "retention_days": "90",
   "run_attempt": "1",
   "artifact_cache_size_limit": "10",
@@ -24,9 +24,9 @@
   "base_ref": "",
   "event_name": "push",
   "event": {
-    "after": "199651e715e9b1eac8dc44f347dcd056c0d4b7b9",
+    "after": "31aae8e2f12d7cb63b1bf1bed78282987e93d6db",
     "base_ref": null,
-    "before": "e9c570592e260d1471ff3e50aaa9e5d933f3227a",
+    "before": "7f98217be80e5c74961e1ec688b1a72082108a08",
     "commits": [
       {
         "author": {
@@ -40,86 +40,14 @@
           "username": "guitarrapc"
         },
         "distinct": true,
-        "id": "428bd8cd88d1e60920c30e9070a20f166cf013a4",
-        "message": "ci: change export to env",
-        "timestamp": "2023-11-15T14:44:53+09:00",
-        "tree_id": "655c261df51aa19bba10735790e88f12fde649d5",
-        "url": "https://github.com/guitarrapc/githubactions-lab/commit/428bd8cd88d1e60920c30e9070a20f166cf013a4"
-      },
-      {
-        "author": {
-          "email": "41898282+github-actions[bot]@users.noreply.github.com",
-          "name": "github-actions[bot]",
-          "username": "github-actions[bot]"
-        },
-        "committer": {
-          "email": "41898282+github-actions[bot]@users.noreply.github.com",
-          "name": "github-actions[bot]",
-          "username": "github-actions[bot]"
-        },
-        "distinct": true,
-        "id": "314db1de764e5fad52f009887407ef426c7d6d2d",
-        "message": "[auto commit] Embedded code (workflow=auto doc)",
-        "timestamp": "2023-11-15T05:45:27Z",
-        "tree_id": "64badb23fb58521ee335ad56b08d5ca027897d28",
-        "url": "https://github.com/guitarrapc/githubactions-lab/commit/314db1de764e5fad52f009887407ef426c7d6d2d"
-      },
-      {
-        "author": {
-          "email": "41898282+github-actions[bot]@users.noreply.github.com",
-          "name": "github-actions[bot]",
-          "username": "github-actions[bot]"
-        },
-        "committer": {
-          "email": "41898282+github-actions[bot]@users.noreply.github.com",
-          "name": "github-actions[bot]",
-          "username": "github-actions[bot]"
-        },
-        "distinct": true,
-        "id": "02d72b024154da1fc5dedfe1f249fa067b942dec",
-        "message": "[auto commit] update context (workflow=auto dump context, event=pull_request, action=opened)",
-        "timestamp": "2023-11-15T05:45:45Z",
-        "tree_id": "d6738cd556f407bbfc209a44a496a9642a382b66",
-        "url": "https://github.com/guitarrapc/githubactions-lab/commit/02d72b024154da1fc5dedfe1f249fa067b942dec"
-      },
-      {
-        "author": {
-          "email": "41898282+github-actions[bot]@users.noreply.github.com",
-          "name": "github-actions[bot]",
-          "username": "github-actions[bot]"
-        },
-        "committer": {
-          "email": "41898282+github-actions[bot]@users.noreply.github.com",
-          "name": "github-actions[bot]",
-          "username": "github-actions[bot]"
-        },
-        "distinct": true,
-        "id": "4ef4b9cc0f94bfcc358ce7585ef75d4296145315",
-        "message": "[auto commit] update context (workflow=auto dump context, event=pull_request_target, action=opened)",
-        "timestamp": "2023-11-15T05:47:45Z",
-        "tree_id": "815ec5f79a1c773a2e8b7c618740230bce8ce8a7",
-        "url": "https://github.com/guitarrapc/githubactions-lab/commit/4ef4b9cc0f94bfcc358ce7585ef75d4296145315"
-      },
-      {
-        "author": {
-          "email": "3856350+guitarrapc@users.noreply.github.com",
-          "name": "Ikiru Yoshizaki",
-          "username": "guitarrapc"
-        },
-        "committer": {
-          "email": "noreply@github.com",
-          "name": "GitHub",
-          "username": "web-flow"
-        },
-        "distinct": true,
-        "id": "199651e715e9b1eac8dc44f347dcd056c0d4b7b9",
-        "message": "Merge pull request #137 from guitarrapc/feature/env\n\nci: change export to env",
-        "timestamp": "2023-11-15T14:48:49+09:00",
-        "tree_id": "815ec5f79a1c773a2e8b7c618740230bce8ce8a7",
-        "url": "https://github.com/guitarrapc/githubactions-lab/commit/199651e715e9b1eac8dc44f347dcd056c0d4b7b9"
+        "id": "31aae8e2f12d7cb63b1bf1bed78282987e93d6db",
+        "message": "chore: remove export",
+        "timestamp": "2023-11-15T14:49:55+09:00",
+        "tree_id": "20ab159c83a7e4858c7aed8ea66c52640176d51e",
+        "url": "https://github.com/guitarrapc/githubactions-lab/commit/31aae8e2f12d7cb63b1bf1bed78282987e93d6db"
       }
     ],
-    "compare": "https://github.com/guitarrapc/githubactions-lab/compare/e9c570592e26...199651e715e9",
+    "compare": "https://github.com/guitarrapc/githubactions-lab/compare/7f98217be80e...31aae8e2f12d",
     "created": false,
     "deleted": false,
     "forced": false,
@@ -130,16 +58,16 @@
         "username": "guitarrapc"
       },
       "committer": {
-        "email": "noreply@github.com",
-        "name": "GitHub",
-        "username": "web-flow"
+        "email": "3856350+guitarrapc@users.noreply.github.com",
+        "name": "Ikiru Yoshizaki",
+        "username": "guitarrapc"
       },
       "distinct": true,
-      "id": "199651e715e9b1eac8dc44f347dcd056c0d4b7b9",
-      "message": "Merge pull request #137 from guitarrapc/feature/env\n\nci: change export to env",
-      "timestamp": "2023-11-15T14:48:49+09:00",
-      "tree_id": "815ec5f79a1c773a2e8b7c618740230bce8ce8a7",
-      "url": "https://github.com/guitarrapc/githubactions-lab/commit/199651e715e9b1eac8dc44f347dcd056c0d4b7b9"
+      "id": "31aae8e2f12d7cb63b1bf1bed78282987e93d6db",
+      "message": "chore: remove export",
+      "timestamp": "2023-11-15T14:49:55+09:00",
+      "tree_id": "20ab159c83a7e4858c7aed8ea66c52640176d51e",
+      "url": "https://github.com/guitarrapc/githubactions-lab/commit/31aae8e2f12d7cb63b1bf1bed78282987e93d6db"
     },
     "pusher": {
       "email": "3856350+guitarrapc@users.noreply.github.com",
@@ -234,7 +162,7 @@
       },
       "private": false,
       "pulls_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls{/number}",
-      "pushed_at": 1700027330,
+      "pushed_at": 1700027397,
       "releases_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/releases{/id}",
       "size": 1286,
       "ssh_url": "git@github.com:guitarrapc/githubactions-lab.git",
@@ -287,15 +215,15 @@
   "ref_type": "branch",
   "secret_source": "Actions",
   "workflow_ref": "guitarrapc/githubactions-lab/.github/workflows/auto_dump_context.yaml@refs/heads/main",
-  "workflow_sha": "199651e715e9b1eac8dc44f347dcd056c0d4b7b9",
+  "workflow_sha": "31aae8e2f12d7cb63b1bf1bed78282987e93d6db",
   "workspace": "/home/runner/work/githubactions-lab/githubactions-lab",
   "action": "__run_2",
   "event_path": "/home/runner/work/_temp/_github_workflow/event.json",
   "action_repository": "",
   "action_ref": "",
-  "path": "/home/runner/work/_temp/_runner_file_commands/add_path_09a3a3bf-65a0-45c9-8bfb-c3fd04abbe20",
-  "env": "/home/runner/work/_temp/_runner_file_commands/set_env_09a3a3bf-65a0-45c9-8bfb-c3fd04abbe20",
-  "step_summary": "/home/runner/work/_temp/_runner_file_commands/step_summary_09a3a3bf-65a0-45c9-8bfb-c3fd04abbe20",
-  "state": "/home/runner/work/_temp/_runner_file_commands/save_state_09a3a3bf-65a0-45c9-8bfb-c3fd04abbe20",
-  "output": "/home/runner/work/_temp/_runner_file_commands/set_output_09a3a3bf-65a0-45c9-8bfb-c3fd04abbe20"
+  "path": "/home/runner/work/_temp/_runner_file_commands/add_path_459b873c-4304-4e1a-b910-2594c99b728a",
+  "env": "/home/runner/work/_temp/_runner_file_commands/set_env_459b873c-4304-4e1a-b910-2594c99b728a",
+  "step_summary": "/home/runner/work/_temp/_runner_file_commands/step_summary_459b873c-4304-4e1a-b910-2594c99b728a",
+  "state": "/home/runner/work/_temp/_runner_file_commands/save_state_459b873c-4304-4e1a-b910-2594c99b728a",
+  "output": "/home/runner/work/_temp/_runner_file_commands/set_output_459b873c-4304-4e1a-b910-2594c99b728a"
 }
