@@ -1,14 +1,14 @@
 {
-  "token": "ghs_T7VogBcMCfTnoG3PgU9hGbhjkO1jvN13hFP1",
+  "token": "ghs_gsl2UWp45dExtBBjZlCcLdgrlR1A6l15W4ZQ",
   "job": "dump-context",
   "ref": "refs/heads/main",
-  "sha": "13f034de274746a6a895d47fe33d1a7286f3f698",
+  "sha": "771192389dc23be642d7868244d49cc6152f2438",
   "repository": "guitarrapc/githubactions-lab",
   "repository_owner": "guitarrapc",
   "repository_owner_id": "3856350",
   "repositoryUrl": "git://github.com/guitarrapc/githubactions-lab.git",
-  "run_id": "6939703625",
-  "run_number": "522",
+  "run_id": "6939705357",
+  "run_number": "525",
   "retention_days": "90",
   "run_attempt": "1",
   "artifact_cache_size_limit": "10",
@@ -20,41 +20,41 @@
   "actor": "guitarrapc",
   "triggering_actor": "guitarrapc",
   "workflow": "auto dump context",
-  "head_ref": "dependabot/github_actions/actions/github-script-7",
+  "head_ref": "dependabot/github_actions/rokroskar/workflow-run-cleanup-action-0.3.3",
   "base_ref": "main",
   "event_name": "pull_request_target",
   "event": {
     "action": "closed",
-    "number": 139,
+    "number": 140,
     "pull_request": {
       "_links": {
         "comments": {
-          "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/issues/139/comments"
+          "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/issues/140/comments"
         },
         "commits": {
-          "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/139/commits"
+          "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/140/commits"
         },
         "html": {
-          "href": "https://github.com/guitarrapc/githubactions-lab/pull/139"
+          "href": "https://github.com/guitarrapc/githubactions-lab/pull/140"
         },
         "issue": {
-          "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/issues/139"
+          "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/issues/140"
         },
         "review_comment": {
           "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/comments{/number}"
         },
         "review_comments": {
-          "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/139/comments"
+          "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/140/comments"
         },
         "self": {
-          "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/139"
+          "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/140"
         },
         "statuses": {
-          "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/statuses/782963fed7f5b8c096311197da46ac64339033a5"
+          "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/statuses/5063ce44b24732ad32fdc369e64202387d3a1f04"
         }
       },
       "active_lock_reason": null,
-      "additions": 3,
+      "additions": 1,
       "assignee": null,
       "assignees": [],
       "author_association": "CONTRIBUTOR",
@@ -131,8 +131,8 @@
           "name": "githubactions-lab",
           "node_id": "MDEwOlJlcG9zaXRvcnkyNTc0NjU0Njg=",
           "notifications_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/notifications{?since,all,participating}",
-          "open_issues": 6,
-          "open_issues_count": 6,
+          "open_issues": 5,
+          "open_issues_count": 5,
           "owner": {
             "avatar_url": "https://avatars.githubusercontent.com/u/3856350?v=4",
             "events_url": "https://api.github.com/users/guitarrapc/events{/privacy}",
@@ -155,7 +155,7 @@
           },
           "private": false,
           "pulls_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls{/number}",
-          "pushed_at": "2023-11-21T05:32:13Z",
+          "pushed_at": "2023-11-21T05:32:27Z",
           "releases_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/releases{/id}",
           "size": 1450,
           "squash_merge_commit_message": "COMMIT_MESSAGES",
@@ -203,20 +203,20 @@
           "url": "https://api.github.com/users/guitarrapc"
         }
       },
-      "body": "Bumps [actions/github-script](https://github.com/actions/github-script) from 6 to 7.\n<details>\n<summary>Release notes</summary>\n<p><em>Sourced from <a href=\"https://github.com/actions/github-script/releases\">actions/github-script's releases</a>.</em></p>\n<blockquote>\n<h2>v7.0.0</h2>\n<h2>What's Changed</h2>\n<ul>\n<li>Add base-url option by <a href=\"https://github.com/robandpdx\"><code>@​robandpdx</code></a> in <a href=\"https://redirect.github.com/actions/github-script/pull/429\">actions/github-script#429</a></li>\n<li>Expose async-function argument type by <a href=\"https://github.com/viktorlott\"><code>@​viktorlott</code></a> in <a href=\"https://redirect.github.com/actions/github-script/pull/402\">actions/github-script#402</a>, see for details <a href=\"https://github.com/actions/github-script#use-scripts-with-jsdoc-support\">https://github.com/actions/github-script#use-scripts-with-jsdoc-support</a></li>\n<li>Update dependencies and use Node 20 by <a href=\"https://github.com/joshmgross\"><code>@​joshmgross</code></a> in <a href=\"https://redirect.github.com/actions/github-script/pull/425\">actions/github-script#425</a></li>\n</ul>\n<h2>New Contributors</h2>\n<ul>\n<li><a href=\"https://github.com/navarroaxel\"><code>@​navarroaxel</code></a> made their first contribution in <a href=\"https://redirect.github.com/actions/github-script/pull/285\">actions/github-script#285</a></li>\n<li><a href=\"https://github.com/robandpdx\"><code>@​robandpdx</code></a> made their first contribution in <a href=\"https://redirect.github.com/actions/github-script/pull/429\">actions/github-script#429</a></li>\n<li><a href=\"https://github.com/viktorlott\"><code>@​viktorlott</code></a> made their first contribution in <a href=\"https://redirect.github.com/actions/github-script/pull/402\">actions/github-script#402</a></li>\n</ul>\n<p><strong>Full Changelog</strong>: <a href=\"https://github.com/actions/github-script/compare/v6.4.1...v7.0.0\">https://github.com/actions/github-script/compare/v6.4.1...v7.0.0</a></p>\n<h2>v6.4.1</h2>\n<h2>What's Changed</h2>\n<ul>\n<li>Add <code>@​octokit/plugin-request-log</code>, to produce debug output for requests by <a href=\"https://github.com/mjpieters\"><code>@​mjpieters</code></a> in <a href=\"https://redirect.github.com/actions/github-script/pull/358\">actions/github-script#358</a></li>\n<li>fix input handling by <a href=\"https://github.com/mjpieters\"><code>@​mjpieters</code></a> in <a href=\"https://redirect.github.com/actions/github-script/pull/357\">actions/github-script#357</a></li>\n<li>Remove unused dependencies by <a href=\"https://github.com/mjpieters\"><code>@​mjpieters</code></a> in <a href=\"https://redirect.github.com/actions/github-script/pull/356\">actions/github-script#356</a></li>\n<li>Default debug to current runner debug state by <a href=\"https://github.com/mjpieters\"><code>@​mjpieters</code></a> in <a href=\"https://redirect.github.com/actions/github-script/pull/363\">actions/github-script#363</a></li>\n</ul>\n<h2>New Contributors</h2>\n<ul>\n<li><a href=\"https://github.com/mjpieters\"><code>@​mjpieters</code></a> made their first contribution in <a href=\"https://redirect.github.com/actions/github-script/pull/358\">actions/github-script#358</a></li>\n</ul>\n<p><strong>Full Changelog</strong>: <a href=\"https://github.com/actions/github-script/compare/v6.4.0...v6.4.1\">https://github.com/actions/github-script/compare/v6.4.0...v6.4.1</a></p>\n<h2>v6.4.0</h2>\n<h2>What's Changed</h2>\n<ul>\n<li>Bump json5 from 2.1.3 to 2.2.3 by <a href=\"https://github.com/dependabot\"><code>@​dependabot</code></a> in <a href=\"https://redirect.github.com/actions/github-script/pull/319\">actions/github-script#319</a></li>\n<li>Bump minimatch from 3.0.4 to 3.1.2 by <a href=\"https://github.com/dependabot\"><code>@​dependabot</code></a> in <a href=\"https://redirect.github.com/actions/github-script/pull/320\">actions/github-script#320</a></li>\n<li>Add node-fetch by <a href=\"https://github.com/danmichaelo\"><code>@​danmichaelo</code></a> in <a href=\"https://redirect.github.com/actions/github-script/pull/321\">actions/github-script#321</a></li>\n</ul>\n<h2>New Contributors</h2>\n<ul>\n<li><a href=\"https://github.com/jongwooo\"><code>@​jongwooo</code></a> made their first contribution in <a href=\"https://redirect.github.com/actions/github-script/pull/313\">actions/github-script#313</a></li>\n<li><a href=\"https://github.com/austinvazquez\"><code>@​austinvazquez</code></a> made their first contribution in <a href=\"https://redirect.github.com/actions/github-script/pull/306\">actions/github-script#306</a></li>\n<li><a href=\"https://github.com/danmichaelo\"><code>@​danmichaelo</code></a> made their first contribution in <a href=\"https://redirect.github.com/actions/github-script/pull/321\">actions/github-script#321</a></li>\n</ul>\n<p><strong>Full Changelog</strong>: <a href=\"https://github.com/actions/github-script/compare/v6.3.3...v6.4.0\">https://github.com/actions/github-script/compare/v6.3.3...v6.4.0</a></p>\n<h2>v6.3.3</h2>\n<h2>What's Changed</h2>\n<ul>\n<li>Update <code>@actions/glob</code> to 0.3.0 by <a href=\"https://github.com/nineinchnick\"><code>@​nineinchnick</code></a> in <a href=\"https://redirect.github.com/actions/github-script/pull/279\">actions/github-script#279</a></li>\n</ul>\n<h2>New Contributors</h2>\n<ul>\n<li><a href=\"https://github.com/nineinchnick\"><code>@​nineinchnick</code></a> made their first contribution in <a href=\"https://redirect.github.com/actions/github-script/pull/279\">actions/github-script#279</a></li>\n</ul>\n<p><strong>Full Changelog</strong>: <a href=\"https://github.com/actions/github-script/compare/v6.3.2...v6.3.3\">https://github.com/actions/github-script/compare/v6.3.2...v6.3.3</a></p>\n<h2>v6.3.2</h2>\n<h2>What's Changed</h2>\n<ul>\n<li>Update <code>@​actions/core</code> to 1.10.0 by <a href=\"https://github.com/rentziass\"><code>@​rentziass</code></a> in <a href=\"https://redirect.github.com/actions/github-script/pull/295\">actions/github-script#295</a></li>\n</ul>\n<!-- raw HTML omitted -->\n</blockquote>\n<p>... (truncated)</p>\n</details>\n<details>\n<summary>Commits</summary>\n<ul>\n<li><a href=\"https://github.com/actions/github-script/commit/60a0d83039c74a4aee543508d2ffcb1c3799cdea\"><code>60a0d83</code></a> Merge pull request <a href=\"https://redirect.github.com/actions/github-script/issues/440\">#440</a> from actions/joshmgross/v7.0.1</li>\n<li><a href=\"https://github.com/actions/github-script/commit/b7fb2001b410c9390cbe9e2c7d5cab7eefb7b29c\"><code>b7fb200</code></a> Update version to 7.0.1</li>\n<li><a href=\"https://github.com/actions/github-script/commit/12e22ed06b6cf302663f90a925045516e24c8bad\"><code>12e22ed</code></a> Merge pull request <a href=\"https://redirect.github.com/actions/github-script/issues/439\">#439</a> from actions/joshmgross/avoid-setting-base-url</li>\n<li><a href=\"https://github.com/actions/github-script/commit/d319f8f5b55ea40916b869b2ca9ae2f059c60abf\"><code>d319f8f</code></a> Avoid setting <code>baseUrl</code> to undefined when input is not provided</li>\n<li><a href=\"https://github.com/actions/github-script/commit/e69ef5462fd455e02edcaf4dd7708eda96b9eda0\"><code>e69ef54</code></a> Merge pull request <a href=\"https://redirect.github.com/actions/github-script/issues/425\">#425</a> from actions/joshmgross/node-20</li>\n<li><a href=\"https://github.com/actions/github-script/commit/ee0914b839b704083a749f8c77a73a9270674a32\"><code>ee0914b</code></a> Update licenses</li>\n<li><a href=\"https://github.com/actions/github-script/commit/d6fc56f33b017d55917d045da1a94efa2120f039\"><code>d6fc56f</code></a> Use <code>@types/node</code> for Node 20</li>\n<li><a href=\"https://github.com/actions/github-script/commit/384d6cf581452587d1e31f553c97ab165427124a\"><code>384d6cf</code></a> Fix quotations in tests</li>\n<li><a href=\"https://github.com/actions/github-script/commit/84724927e3e992f17768c17f57a47a85ea2a5160\"><code>8472492</code></a> Only validate GraphQL <code>previews</code></li>\n<li><a href=\"https://github.com/actions/github-script/commit/84903f51828821af5d03d3884c6ba699a2d44d6e\"><code>84903f5</code></a> Remove <code>node-fetch</code> from type</li>\n<li>Additional commits viewable in <a href=\"https://github.com/actions/github-script/compare/v6...v7\">compare view</a></li>\n</ul>\n</details>\n<br />\n\n\n[![Dependabot compatibility score](https://dependabot-badges.githubapp.com/badges/compatibility_score?dependency-name=actions/github-script&package-manager=github_actions&previous-version=6&new-version=7)](https://docs.github.com/en/github/managing-security-vulnerabilities/about-dependabot-security-updates#about-compatibility-scores)\n\nDependabot will resolve any conflicts with this PR as long as you don't alter it yourself. You can also trigger a rebase manually by commenting `@dependabot rebase`.\n\n[//]: # (dependabot-automerge-start)\n[//]: # (dependabot-automerge-end)\n\n---\n\n<details>\n<summary>Dependabot commands and options</summary>\n<br />\n\nYou can trigger Dependabot actions by commenting on this PR:\n- `@dependabot rebase` will rebase this PR\n- `@dependabot recreate` will recreate this PR, overwriting any edits that have been made to it\n- `@dependabot merge` will merge this PR after your CI passes on it\n- `@dependabot squash and merge` will squash and merge this PR after your CI passes on it\n- `@dependabot cancel merge` will cancel a previously requested merge and block automerging\n- `@dependabot reopen` will reopen this PR if it is closed\n- `@dependabot close` will close this PR and stop Dependabot recreating it. You can achieve the same result by closing it manually\n- `@dependabot show <dependency name> ignore conditions` will show all of the ignore conditions of the specified dependency\n- `@dependabot ignore this major version` will close this PR and stop Dependabot creating any more for this major version (unless you reopen the PR or upgrade to it yourself)\n- `@dependabot ignore this minor version` will close this PR and stop Dependabot creating any more for this minor version (unless you reopen the PR or upgrade to it yourself)\n- `@dependabot ignore this dependency` will close this PR and stop Dependabot creating any more for this dependency (unless you reopen the PR or upgrade to it yourself)\n\n\n</details>",
-      "changed_files": 2,
-      "closed_at": "2023-11-21T05:32:14Z",
+      "body": "Bumps [rokroskar/workflow-run-cleanup-action](https://github.com/rokroskar/workflow-run-cleanup-action) from 0.2.2 to 0.3.3.\n<details>\n<summary>Release notes</summary>\n<p><em>Sourced from <a href=\"https://github.com/rokroskar/workflow-run-cleanup-action/releases\">rokroskar/workflow-run-cleanup-action's releases</a>.</em></p>\n<blockquote>\n<h2>v0.3.3</h2>\n<h2><a href=\"https://github.com/rokroskar/workflow-run-cleanup-action/compare/v0.3.2...v0.3.3\">0.3.3</a> (2021-04-27)</h2>\n<h3>Bug Fixes</h3>\n<ul>\n<li>bolean expression so we don't cancel runs on other PRs (<a href=\"https://redirect.github.com/rokroskar/workflow-run-cleanup-action/issues/30\">#30</a>) (<a href=\"https://github.com/rokroskar/workflow-run-cleanup-action/commit/ee1451b\">ee1451b</a>)</li>\n<li>workflow now cancels itself when newer workflow is detected (<a href=\"https://redirect.github.com/rokroskar/workflow-run-cleanup-action/issues/22\">#22</a>) (<a href=\"https://github.com/rokroskar/workflow-run-cleanup-action/commit/70016f4\">70016f4</a>)</li>\n</ul>\n<h2>Version 0.3.2</h2>\n<h2><a href=\"https://github.com/rokroskar/workflow-run-cleanup-action/compare/v0.3.1...v0.3.2\">0.3.2</a> (2021-03-10)</h2>\n<h3>Bug Fixes</h3>\n<ul>\n<li>ensure grep exit code is &quot;0&quot; <a href=\"https://redirect.github.com/rokroskar/workflow-run-cleanup-action/issues/17\">#17</a> (<a href=\"https://github.com/rokroskar/workflow-run-cleanup-action/commit/1ba8de3\">1ba8de3</a>)</li>\n</ul>\n<h2>Version 0.3.1</h2>\n<h2><a href=\"https://github.com/rokroskar/workflow-run-cleanup-action/compare/v0.3.0...v0.3.1\">0.3.1</a> (2021-03-09)</h2>\n<h3>Bug Fixes</h3>\n<ul>\n<li>only cancel workflows sharing the same head repo (<a href=\"https://redirect.github.com/rokroskar/workflow-run-cleanup-action/issues/14\">#14</a>) (<a href=\"https://github.com/rokroskar/workflow-run-cleanup-action/commit/2bdd3f2\">2bdd3f2</a>)</li>\n</ul>\n<h2>Version 0.3.0</h2>\n<h1><a href=\"https://github.com/rokroskar/workflow-run-cleanup-action/compare/v0.2.2...v0.3.0\">0.3.0</a> (2021-01-05)</h1>\n<h3>Features</h3>\n<ul>\n<li>enable workflow cancellation for &quot;Waiting&quot; workflows (<a href=\"https://redirect.github.com/rokroskar/workflow-run-cleanup-action/issues/11\">#11</a>) (<a href=\"https://github.com/rokroskar/workflow-run-cleanup-action/commit/035a48f\">035a48f</a>)</li>\n</ul>\n</blockquote>\n</details>\n<details>\n<summary>Commits</summary>\n<ul>\n<li><a href=\"https://github.com/rokroskar/workflow-run-cleanup-action/commit/ee1451b869ba1e381729b3d40489997021f0d562\"><code>ee1451b</code></a> fix: bolean expression so we don't cancel runs on other PRs (<a href=\"https://redirect.github.com/rokroskar/workflow-run-cleanup-action/issues/30\">#30</a>)</li>\n<li><a href=\"https://github.com/rokroskar/workflow-run-cleanup-action/commit/5fb07e770c6ee0d595c1fb8383b7af343428817f\"><code>5fb07e7</code></a> chore: cleanup of entrypoint.sh (<a href=\"https://redirect.github.com/rokroskar/workflow-run-cleanup-action/issues/23\">#23</a>)</li>\n<li><a href=\"https://github.com/rokroskar/workflow-run-cleanup-action/commit/70016f4242012e8c3a16092d11d982a8605d6e9b\"><code>70016f4</code></a> fix: workflow now cancels itself when newer workflow is detected (<a href=\"https://redirect.github.com/rokroskar/workflow-run-cleanup-action/issues/22\">#22</a>)</li>\n<li><a href=\"https://github.com/rokroskar/workflow-run-cleanup-action/commit/11ce1a26d263f9a1740d34f328b1cd03e3b4a0fd\"><code>11ce1a2</code></a> Added Shellcheck (<a href=\"https://redirect.github.com/rokroskar/workflow-run-cleanup-action/issues/25\">#25</a>)</li>\n<li><a href=\"https://github.com/rokroskar/workflow-run-cleanup-action/commit/1ba8de3e7f2926079a9def2caf3d0e0650898f94\"><code>1ba8de3</code></a> fix: ensure grep exit code is &quot;0&quot; <a href=\"https://redirect.github.com/rokroskar/workflow-run-cleanup-action/issues/17\">#17</a></li>\n<li><a href=\"https://github.com/rokroskar/workflow-run-cleanup-action/commit/2bdd3f21c61731f946f58f7df49adb868cc62bd2\"><code>2bdd3f2</code></a> fix: only cancel workflows sharing the same head repo (<a href=\"https://redirect.github.com/rokroskar/workflow-run-cleanup-action/issues/14\">#14</a>)</li>\n<li><a href=\"https://github.com/rokroskar/workflow-run-cleanup-action/commit/213fe75c3e785223a02c3cc50b1639f1deeb9eec\"><code>213fe75</code></a> docs: add conventional commits badge to readme (<a href=\"https://redirect.github.com/rokroskar/workflow-run-cleanup-action/issues/12\">#12</a>)</li>\n<li><a href=\"https://github.com/rokroskar/workflow-run-cleanup-action/commit/035a48f84b47e111d72cf492a513179c92cd29ed\"><code>035a48f</code></a> feat: enable workflow cancellation for &quot;Waiting&quot; workflows (<a href=\"https://redirect.github.com/rokroskar/workflow-run-cleanup-action/issues/11\">#11</a>)</li>\n<li><a href=\"https://github.com/rokroskar/workflow-run-cleanup-action/commit/d3e9e17762c2fe32d30e1421de31e13eb0b0aac3\"><code>d3e9e17</code></a> docs: fix readme typo (<a href=\"https://redirect.github.com/rokroskar/workflow-run-cleanup-action/issues/8\">#8</a>)</li>\n<li><a href=\"https://github.com/rokroskar/workflow-run-cleanup-action/commit/0d59348b9df759f651c182d6b7c2cdaa95286642\"><code>0d59348</code></a> docs: Update readme with required scopes for access token (<a href=\"https://redirect.github.com/rokroskar/workflow-run-cleanup-action/issues/7\">#7</a>)</li>\n<li>See full diff in <a href=\"https://github.com/rokroskar/workflow-run-cleanup-action/compare/v0.2.2...v0.3.3\">compare view</a></li>\n</ul>\n</details>\n<br />\n\n\n[![Dependabot compatibility score](https://dependabot-badges.githubapp.com/badges/compatibility_score?dependency-name=rokroskar/workflow-run-cleanup-action&package-manager=github_actions&previous-version=0.2.2&new-version=0.3.3)](https://docs.github.com/en/github/managing-security-vulnerabilities/about-dependabot-security-updates#about-compatibility-scores)\n\nDependabot will resolve any conflicts with this PR as long as you don't alter it yourself. You can also trigger a rebase manually by commenting `@dependabot rebase`.\n\n[//]: # (dependabot-automerge-start)\n[//]: # (dependabot-automerge-end)\n\n---\n\n<details>\n<summary>Dependabot commands and options</summary>\n<br />\n\nYou can trigger Dependabot actions by commenting on this PR:\n- `@dependabot rebase` will rebase this PR\n- `@dependabot recreate` will recreate this PR, overwriting any edits that have been made to it\n- `@dependabot merge` will merge this PR after your CI passes on it\n- `@dependabot squash and merge` will squash and merge this PR after your CI passes on it\n- `@dependabot cancel merge` will cancel a previously requested merge and block automerging\n- `@dependabot reopen` will reopen this PR if it is closed\n- `@dependabot close` will close this PR and stop Dependabot recreating it. You can achieve the same result by closing it manually\n- `@dependabot show <dependency name> ignore conditions` will show all of the ignore conditions of the specified dependency\n- `@dependabot ignore this major version` will close this PR and stop Dependabot creating any more for this major version (unless you reopen the PR or upgrade to it yourself)\n- `@dependabot ignore this minor version` will close this PR and stop Dependabot creating any more for this minor version (unless you reopen the PR or upgrade to it yourself)\n- `@dependabot ignore this dependency` will close this PR and stop Dependabot creating any more for this dependency (unless you reopen the PR or upgrade to it yourself)\n\n\n</details>",
+      "changed_files": 1,
+      "closed_at": "2023-11-21T05:32:27Z",
       "comments": 0,
-      "comments_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/issues/139/comments",
+      "comments_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/issues/140/comments",
       "commits": 1,
-      "commits_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/139/commits",
-      "created_at": "2023-11-20T15:19:57Z",
-      "deletions": 3,
-      "diff_url": "https://github.com/guitarrapc/githubactions-lab/pull/139.diff",
+      "commits_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/140/commits",
+      "created_at": "2023-11-20T15:20:03Z",
+      "deletions": 1,
+      "diff_url": "https://github.com/guitarrapc/githubactions-lab/pull/140.diff",
       "draft": false,
       "head": {
-        "label": "guitarrapc:dependabot/github_actions/actions/github-script-7",
-        "ref": "dependabot/github_actions/actions/github-script-7",
+        "label": "guitarrapc:dependabot/github_actions/rokroskar/workflow-run-cleanup-action-0.3.3",
+        "ref": "dependabot/github_actions/rokroskar/workflow-run-cleanup-action-0.3.3",
         "repo": {
           "allow_auto_merge": false,
           "allow_forking": true,
@@ -286,8 +286,8 @@
           "name": "githubactions-lab",
           "node_id": "MDEwOlJlcG9zaXRvcnkyNTc0NjU0Njg=",
           "notifications_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/notifications{?since,all,participating}",
-          "open_issues": 6,
-          "open_issues_count": 6,
+          "open_issues": 5,
+          "open_issues_count": 5,
           "owner": {
             "avatar_url": "https://avatars.githubusercontent.com/u/3856350?v=4",
             "events_url": "https://api.github.com/users/guitarrapc/events{/privacy}",
@@ -310,7 +310,7 @@
           },
           "private": false,
           "pulls_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls{/number}",
-          "pushed_at": "2023-11-21T05:32:13Z",
+          "pushed_at": "2023-11-21T05:32:27Z",
           "releases_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/releases{/id}",
           "size": 1450,
           "squash_merge_commit_message": "COMMIT_MESSAGES",
@@ -336,7 +336,7 @@
           "watchers_count": 33,
           "web_commit_signoff_required": false
         },
-        "sha": "782963fed7f5b8c096311197da46ac64339033a5",
+        "sha": "5063ce44b24732ad32fdc369e64202387d3a1f04",
         "user": {
           "avatar_url": "https://avatars.githubusercontent.com/u/3856350?v=4",
           "events_url": "https://api.github.com/users/guitarrapc/events{/privacy}",
@@ -358,9 +358,9 @@
           "url": "https://api.github.com/users/guitarrapc"
         }
       },
-      "html_url": "https://github.com/guitarrapc/githubactions-lab/pull/139",
-      "id": 1609319219,
-      "issue_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/issues/139",
+      "html_url": "https://github.com/guitarrapc/githubactions-lab/pull/140",
+      "id": 1609319403,
+      "issue_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/issues/140",
       "labels": [
         {
           "color": "0366d6",
@@ -374,11 +374,11 @@
       ],
       "locked": false,
       "maintainer_can_modify": false,
-      "merge_commit_sha": "13f034de274746a6a895d47fe33d1a7286f3f698",
+      "merge_commit_sha": "771192389dc23be642d7868244d49cc6152f2438",
       "mergeable": null,
       "mergeable_state": "unknown",
       "merged": true,
-      "merged_at": "2023-11-21T05:32:14Z",
+      "merged_at": "2023-11-21T05:32:27Z",
       "merged_by": {
         "avatar_url": "https://avatars.githubusercontent.com/u/3856350?v=4",
         "events_url": "https://api.github.com/users/guitarrapc/events{/privacy}",
@@ -400,20 +400,20 @@
         "url": "https://api.github.com/users/guitarrapc"
       },
       "milestone": null,
-      "node_id": "PR_kwDOD1icfM5f7EMz",
-      "number": 139,
-      "patch_url": "https://github.com/guitarrapc/githubactions-lab/pull/139.patch",
+      "node_id": "PR_kwDOD1icfM5f7EPr",
+      "number": 140,
+      "patch_url": "https://github.com/guitarrapc/githubactions-lab/pull/140.patch",
       "rebaseable": null,
       "requested_reviewers": [],
       "requested_teams": [],
       "review_comment_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/comments{/number}",
       "review_comments": 0,
-      "review_comments_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/139/comments",
+      "review_comments_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/140/comments",
       "state": "closed",
-      "statuses_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/statuses/782963fed7f5b8c096311197da46ac64339033a5",
-      "title": "chore(deps): bump actions/github-script from 6 to 7",
-      "updated_at": "2023-11-21T05:32:14Z",
-      "url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/139",
+      "statuses_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/statuses/5063ce44b24732ad32fdc369e64202387d3a1f04",
+      "title": "chore(deps): bump rokroskar/workflow-run-cleanup-action from 0.2.2 to 0.3.3",
+      "updated_at": "2023-11-21T05:32:28Z",
+      "url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/140",
       "user": {
         "avatar_url": "https://avatars.githubusercontent.com/in/29110?v=4",
         "events_url": "https://api.github.com/users/dependabot%5Bbot%5D/events{/privacy}",
@@ -496,8 +496,8 @@
       "name": "githubactions-lab",
       "node_id": "MDEwOlJlcG9zaXRvcnkyNTc0NjU0Njg=",
       "notifications_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/notifications{?since,all,participating}",
-      "open_issues": 6,
-      "open_issues_count": 6,
+      "open_issues": 5,
+      "open_issues_count": 5,
       "owner": {
         "avatar_url": "https://avatars.githubusercontent.com/u/3856350?v=4",
         "events_url": "https://api.github.com/users/guitarrapc/events{/privacy}",
@@ -520,7 +520,7 @@
       },
       "private": false,
       "pulls_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls{/number}",
-      "pushed_at": "2023-11-21T05:32:13Z",
+      "pushed_at": "2023-11-21T05:32:27Z",
       "releases_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/releases{/id}",
       "size": 1450,
       "ssh_url": "git@github.com:guitarrapc/githubactions-lab.git",
@@ -572,15 +572,15 @@
   "ref_type": "branch",
   "secret_source": "Actions",
   "workflow_ref": "guitarrapc/githubactions-lab/.github/workflows/auto_dump_context.yaml@refs/heads/main",
-  "workflow_sha": "13f034de274746a6a895d47fe33d1a7286f3f698",
+  "workflow_sha": "771192389dc23be642d7868244d49cc6152f2438",
   "workspace": "/home/runner/work/githubactions-lab/githubactions-lab",
   "action": "__run_2",
   "event_path": "/home/runner/work/_temp/_github_workflow/event.json",
   "action_repository": "",
   "action_ref": "",
-  "path": "/home/runner/work/_temp/_runner_file_commands/add_path_f44e2390-c4e1-4fe6-947f-ef4bae6ad9c7",
-  "env": "/home/runner/work/_temp/_runner_file_commands/set_env_f44e2390-c4e1-4fe6-947f-ef4bae6ad9c7",
-  "step_summary": "/home/runner/work/_temp/_runner_file_commands/step_summary_f44e2390-c4e1-4fe6-947f-ef4bae6ad9c7",
-  "state": "/home/runner/work/_temp/_runner_file_commands/save_state_f44e2390-c4e1-4fe6-947f-ef4bae6ad9c7",
-  "output": "/home/runner/work/_temp/_runner_file_commands/set_output_f44e2390-c4e1-4fe6-947f-ef4bae6ad9c7"
+  "path": "/home/runner/work/_temp/_runner_file_commands/add_path_5d194881-4508-4f3b-9516-ba7ee4ee5db5",
+  "env": "/home/runner/work/_temp/_runner_file_commands/set_env_5d194881-4508-4f3b-9516-ba7ee4ee5db5",
+  "step_summary": "/home/runner/work/_temp/_runner_file_commands/step_summary_5d194881-4508-4f3b-9516-ba7ee4ee5db5",
+  "state": "/home/runner/work/_temp/_runner_file_commands/save_state_5d194881-4508-4f3b-9516-ba7ee4ee5db5",
+  "output": "/home/runner/work/_temp/_runner_file_commands/set_output_5d194881-4508-4f3b-9516-ba7ee4ee5db5"
 }
