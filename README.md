@@ -20,9 +20,9 @@ GitHub Actions research and test laboratory.
 - [Difference from other CI](#difference-from-other-ci)
   - [CI Migration](#ci-migration)
   - [Fork handling](#fork-handling)
-  - [Hosted Runner sizing](#hosted-runner-sizing)
   - [Git Checkout](#git-checkout)
   - [Job and workflow](#job-and-workflow)
+  - [Hosted Runner sizing](#hosted-runner-sizing)
   - [Job Approval](#job-approval)
   - [Meta values and JobId](#meta-values-and-jobid)
   - [Path filter](#path-filter)
@@ -34,6 +34,7 @@ GitHub Actions research and test laboratory.
   - [Set PATH Environment variables](#set-path-environment-variables)
   - [Set Secrets for Job](#set-secrets-for-job)
   - [Skip CI and commit message](#skip-ci-and-commit-message)
+  - [Store Build Artifacts](#store-build-artifacts)
 - [Basic - Fundamentables](#basic---fundamentables)
   - [Dump context metadata](#dump-context-metadata)
   - [Environment variables in script](#environment-variables-in-script)
@@ -76,6 +77,7 @@ GitHub Actions research and test laboratory.
   - [Fork user workflow change prevention](#fork-user-workflow-change-prevention)
   - [Lint GitHub Actions workflow itself](#lint-github-actions-workflow-itself)
   - [PR info from Merge Commit](#pr-info-from-merge-commit)
+  - [Build Artifacts](#build-artifacts)
   - [Telemetry for GitHub Workflow execution](#telemetry-for-github-workflow-execution)
 - [Cheat Sheet](#cheat-sheet)
   - [Actions naming](#actions-naming)
@@ -2619,6 +2621,112 @@ GitHub Actions [actions/upload-artifact](https://github.com/actions/upload-artif
 
 ```yaml
 # .github/workflows/build_artifacts.yaml
+
+name: Build Artifacts
+
+on:
+  workflow_dispatch:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+
+jobs:
+  upload-single:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - name: output
+        run: |
+          echo "hoge" > ./hoge.txt
+      - uses: actions/upload-artifact@v3
+        with:
+          name: hoge.txt
+          path: ./hoge.txt
+          retention-days: 1
+
+  upload-directory:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - name: output
+        run: |
+          mkdir -p ./directory/bin
+          echo "hoge" > ./directory/hoge.txt
+          echo "fuga" > ./directory/fuga.txt
+          echo "foo" > ./directory/bin/foo.txt
+          echo "bar" > ./directory/bin/bar.txt
+      - uses: actions/upload-artifact@v3
+        with:
+          name: directory
+          path: ./directory/
+          retention-days: 1
+
+  upload-targz:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - name: output
+        run: |
+          mkdir -p ./output/bin
+          echo "hoge" > ./output/hoge.txt
+          echo "fuga" > ./output/fuga.txt
+          echo "foo" > ./output/bin/foo.txt
+          echo "bar" > ./output/bin/bar.txt
+          tar -zcvf output.tar.gz ./output/
+      - uses: actions/upload-artifact@v3
+        with:
+          name: output.tar.gz
+          path: ./output.tar.gz
+          retention-days: 1
+
+  download-single:
+    needs: [upload-single]
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/download-artifact@v3
+        with:
+          name: hoge.txt
+          path: .
+      - name: ls
+        run: ls -lR
+      - name: cat hoge.txt
+        run: cat hoge.txt
+
+  download-directory:
+    needs: [upload-directory]
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/download-artifact@v3
+        with:
+          name: directory
+          path: ./directory
+      - name: ls
+        run: ls -lR
+
+  download-targz:
+    needs: [upload-targz]
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      # specify path: . to download tar.gz to current directory
+      - uses: actions/download-artifact@v3
+        with:
+          name: output.tar.gz
+          path: .
+      - name: ls
+        run: ls -lR
+      - name: expand
+        run: tar -zxvf output.tar.gz
+      - name: ls
+        run: ls -lR
+      - name: cat hoge.txt
+        run: cat ./output/hoge.txt
+      - name: cat foo.txt
+        run: cat ./output/bin/foo.txt
+
 ```
 
 ## Telemetry for GitHub Workflow execution
