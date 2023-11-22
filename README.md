@@ -20,9 +20,9 @@ GitHub Actions research and test laboratory.
 - [Difference from other CI](#difference-from-other-ci)
   - [CI Migration](#ci-migration)
   - [Fork handling](#fork-handling)
-  - [Hosted Runner sizing](#hosted-runner-sizing)
   - [Git Checkout](#git-checkout)
   - [Job and workflow](#job-and-workflow)
+  - [Hosted Runner sizing](#hosted-runner-sizing)
   - [Job Approval](#job-approval)
   - [Meta values and JobId](#meta-values-and-jobid)
   - [Path filter](#path-filter)
@@ -34,6 +34,7 @@ GitHub Actions research and test laboratory.
   - [Set PATH Environment variables](#set-path-environment-variables)
   - [Set Secrets for Job](#set-secrets-for-job)
   - [Skip CI and commit message](#skip-ci-and-commit-message)
+  - [Store Build Artifacts](#store-build-artifacts)
 - [Basic - Fundamentables](#basic---fundamentables)
   - [Dump context metadata](#dump-context-metadata)
   - [Environment variables in script](#environment-variables-in-script)
@@ -76,6 +77,7 @@ GitHub Actions research and test laboratory.
   - [Fork user workflow change prevention](#fork-user-workflow-change-prevention)
   - [Lint GitHub Actions workflow itself](#lint-github-actions-workflow-itself)
   - [PR info from Merge Commit](#pr-info-from-merge-commit)
+  - [Build Artifacts](#build-artifacts)
   - [Telemetry for GitHub Workflow execution](#telemetry-for-github-workflow-execution)
 - [Cheat Sheet](#cheat-sheet)
   - [Actions naming](#actions-naming)
@@ -151,14 +153,6 @@ GitHub Actions support handling fork PR.
 - ✔️: Azure Pipeline [supports fork PR to be trigger job](https://learn.microsoft.com/en-us/azure/devops/pipelines/repos/github?view=azure-devops&tabs=yaml#contributions-from-forks) and accessing secret. However allowing public fork to be access secret is not recommended.
 - ❌: Jenkins normally not recommended to use for Public CI, it means fork PR won't consider to be important for Jenkins.
 
-## Hosted Runner sizing
-
-Every CI offer you to configure runner sizing for SelfHosted Runner, but some CI has limitation for sizing Hosted Runner.
-
-- ✔️: GitHub Actions offers [larger runners](https://docs.github.com/en/actions/using-github-hosted-runners/about-larger-runners/about-larger-runners) to run faster and static IP addresses.
-- ✔️: CircleCI offer [resource class](https://circleci.com/docs/resource-class-overview/) to run faster.
-- ❌: Azure Pipeline not offer hosted runner sizing. Hosted runner is limited to spec `2Core CPU, 7GB RAM and 14GB SSD Disk`.
-- ❌: Jenkins is self hosted solution. Hosted runner sizing is not avaiable.
 
 ## Git Checkout
 
@@ -241,6 +235,15 @@ pipeline {
   }
 }
 ```
+
+## Hosted Runner sizing
+
+Every CI offer you to configure runner sizing for SelfHosted Runner, but some CI has limitation for sizing Hosted Runner.
+
+- ✔️: GitHub Actions offers [larger runners](https://docs.github.com/en/actions/using-github-hosted-runners/about-larger-runners/about-larger-runners) to run faster and static IP addresses.
+- ✔️: CircleCI offer [resource class](https://circleci.com/docs/resource-class-overview/) to run faster.
+- ❌: Azure Pipeline not offer hosted runner sizing. Hosted runner is limited to spec `2Core CPU, 7GB RAM and 14GB SSD Disk`.
+- ❌: Jenkins is self hosted solution. Hosted runner sizing is not avaiable.
 
 ## Job Approval
 
@@ -355,6 +358,14 @@ GitHub Actions support when HEAD commit contains key word like other ci.
 - ✔️: Azure Pipeline can skip job via `***NO_CI***`, `[skip ci]` or `[ci skip]`, or [others](https://github.com/Microsoft/azure-pipelines-agent/issues/858#issuecomment-475768046).
 - ❌: Jenkins not support skip ci on default, but there are plugins to support `[skip ci]` or any expression w/pipeline like [SCM Skip \| Jenkins plugin](https://plugins.jenkins.io/scmskip/).
 
+## Store Build Artifacts
+
+GitHub Actions use Build artifacts to share files between jobs in a workflow and also download artifacts from completed workflows.
+
+- ✔️: GitHub Actions can store build artifacts via [actions/upload-artifact](https://github.com/actions/upload-artifact) and [actions/download-artifact](https://github.com/actions/download-artifact). You can specify retention period for upload artifact.
+- ⚠️: CircleCI can [store build artifacts](https://circleci.com/docs/artifacts/) with `store_artifacts` step, however you need call API to download stored artifacts. There are not retention period for upload artifact.
+- ✔️: Azure Pipeline [store build artifacts](https://learn.microsoft.com/en-us/azure/devops/pipelines/artifacts/pipeline-artifacts?view=azure-devops&tabs=yaml) with `PublishPipelineArtifact` task, and download via `DownloadPipelineArtifact` task. There are not retention period for upload artifact.
+- ⚠️: Jenkins can [store build artifacts](https://www.jenkins.io/doc/pipeline/steps/core/#archiveartifacts-archive-the-artifacts) with `archiveArtifacts` step, however you need call API to download stored artifacts. There are not retention period for upload artifact.
 
 # Basic - Fundamentables
 
@@ -2604,6 +2615,121 @@ jobs:
           PR_TITLE: ${{ steps.pr.outputs.title }}
 ```
 
+## Build Artifacts
+
+GitHub Actions [actions/upload-artifact](https://github.com/actions/upload-artifact) and [actions/download-artifact](https://github.com/actions/download-artifact) offer build artifact handling. You can upload and download artifact to/from GitHub Actions.
+
+```yaml
+# .github/workflows/build_artifacts.yaml
+
+name: Build Artifacts
+
+on:
+  workflow_dispatch:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+
+jobs:
+  upload-single:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - name: output
+        run: |
+          echo "hoge" > ./hoge.txt
+      - uses: actions/upload-artifact@v3
+        with:
+          name: hoge.txt
+          path: ./hoge.txt
+          retention-days: 1
+
+  upload-directory:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - name: output
+        run: |
+          mkdir -p ./directory/bin
+          echo "hoge" > ./directory/hoge.txt
+          echo "fuga" > ./directory/fuga.txt
+          echo "foo" > ./directory/bin/foo.txt
+          echo "bar" > ./directory/bin/bar.txt
+      - uses: actions/upload-artifact@v3
+        with:
+          name: directory
+          path: ./directory/
+          retention-days: 1
+
+  upload-targz:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - name: output
+        run: |
+          mkdir -p ./output/bin
+          echo "hoge" > ./output/hoge.txt
+          echo "fuga" > ./output/fuga.txt
+          echo "foo" > ./output/bin/foo.txt
+          echo "bar" > ./output/bin/bar.txt
+          tar -zcvf output.tar.gz ./output/
+      - uses: actions/upload-artifact@v3
+        with:
+          name: output.tar.gz
+          path: ./output.tar.gz
+          retention-days: 1
+
+  download-single:
+    needs: [upload-single]
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/download-artifact@v3
+        with:
+          name: hoge.txt
+          path: .
+      - name: ls
+        run: ls -lR
+      - name: cat hoge.txt
+        run: cat hoge.txt
+
+  download-directory:
+    needs: [upload-directory]
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/download-artifact@v3
+        with:
+          name: directory
+          path: ./directory
+      - name: ls
+        run: ls -lR
+      - name: cat hoge.txt
+        run: cat directory/hoge.txt
+
+  download-targz:
+    needs: [upload-targz]
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      # specify path: . to download tar.gz to current directory
+      - uses: actions/download-artifact@v3
+        with:
+          name: output.tar.gz
+          path: .
+      - name: ls
+        run: ls -lR
+      - name: expand
+        run: tar -zxvf output.tar.gz
+      - name: ls
+        run: ls -lR
+      - name: cat hoge.txt
+        run: cat ./output/hoge.txt
+      - name: cat foo.txt
+        run: cat ./output/bin/foo.txt
+
+```
 
 ## Telemetry for GitHub Workflow execution
 
