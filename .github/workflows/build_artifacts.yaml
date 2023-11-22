@@ -1,4 +1,4 @@
-name: upload & download artifact
+name: Build Artifacts
 
 on:
   workflow_dispatch:
@@ -64,9 +64,11 @@ jobs:
       - uses: actions/download-artifact@v3
         with:
           name: hoge.txt
-          path: hoge.txt
+          path: .
       - name: ls
         run: ls -lR
+      - name: cat hoge.txt
+        run: cat hoge.txt
 
   download-directory:
     needs: [upload-directory]
@@ -85,6 +87,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 3
     steps:
+      # specify path: . to download tar.gz to current directory
       - uses: actions/download-artifact@v3
         with:
           name: output.tar.gz
