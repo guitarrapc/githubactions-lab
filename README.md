@@ -151,14 +151,6 @@ GitHub Actions support handling fork PR.
 - ✔️: Azure Pipeline [supports fork PR to be trigger job](https://learn.microsoft.com/en-us/azure/devops/pipelines/repos/github?view=azure-devops&tabs=yaml#contributions-from-forks) and accessing secret. However allowing public fork to be access secret is not recommended.
 - ❌: Jenkins normally not recommended to use for Public CI, it means fork PR won't consider to be important for Jenkins.
 
-## Hosted Runner sizing
-
-Every CI offer you to configure runner sizing for SelfHosted Runner, but some CI has limitation for sizing Hosted Runner.
-
-- ✔️: GitHub Actions offers [larger runners](https://docs.github.com/en/actions/using-github-hosted-runners/about-larger-runners/about-larger-runners) to run faster and static IP addresses.
-- ✔️: CircleCI offer [resource class](https://circleci.com/docs/resource-class-overview/) to run faster.
-- ❌: Azure Pipeline not offer hosted runner sizing. Hosted runner is limited to spec `2Core CPU, 7GB RAM and 14GB SSD Disk`.
-- ❌: Jenkins is self hosted solution. Hosted runner sizing is not avaiable.
 
 ## Git Checkout
 
@@ -241,6 +233,15 @@ pipeline {
   }
 }
 ```
+
+## Hosted Runner sizing
+
+Every CI offer you to configure runner sizing for SelfHosted Runner, but some CI has limitation for sizing Hosted Runner.
+
+- ✔️: GitHub Actions offers [larger runners](https://docs.github.com/en/actions/using-github-hosted-runners/about-larger-runners/about-larger-runners) to run faster and static IP addresses.
+- ✔️: CircleCI offer [resource class](https://circleci.com/docs/resource-class-overview/) to run faster.
+- ❌: Azure Pipeline not offer hosted runner sizing. Hosted runner is limited to spec `2Core CPU, 7GB RAM and 14GB SSD Disk`.
+- ❌: Jenkins is self hosted solution. Hosted runner sizing is not avaiable.
 
 ## Job Approval
 
