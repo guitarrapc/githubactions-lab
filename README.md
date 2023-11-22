@@ -2613,6 +2613,13 @@ jobs:
           PR_TITLE: ${{ steps.pr.outputs.title }}
 ```
 
+## Build Artifacts
+
+GitHub Actions [actions/upload-artifact](https://github.com/actions/upload-artifact) and [actions/download-artifact](https://github.com/actions/download-artifact) offer build artifact handling. You can upload and download artifact to/from GitHub Actions.
+
+```yaml
+# .github/workflows/build_artifacts.yaml
+```
 
 ## Telemetry for GitHub Workflow execution
 
