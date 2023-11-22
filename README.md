@@ -2705,6 +2705,8 @@ jobs:
           path: ./directory
       - name: ls
         run: ls -lR
+      - name: cat hoge.txt
+        run: cat directory/hoge.txt
 
   download-targz:
     needs: [upload-targz]
