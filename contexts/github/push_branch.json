@@ -1,14 +1,14 @@
 {
-  "token": "ghs_oTSAcbPduFreVz2fabHPlisGDi4si73IHHMh",
+  "token": "ghs_VLMrP0zEDtLe2zLjMUWRp5KsnORZqx2Of9p2",
   "job": "dump-context",
   "ref": "refs/heads/main",
-  "sha": "771192389dc23be642d7868244d49cc6152f2438",
+  "sha": "0d9bd75f91393fb067113540ded29e095288526e",
   "repository": "guitarrapc/githubactions-lab",
   "repository_owner": "guitarrapc",
   "repository_owner_id": "3856350",
   "repositoryUrl": "git://github.com/guitarrapc/githubactions-lab.git",
-  "run_id": "6939705517",
-  "run_number": "527",
+  "run_id": "6953160337",
+  "run_number": "535",
   "retention_days": "90",
   "run_attempt": "1",
   "artifact_cache_size_limit": "10",
@@ -24,27 +24,117 @@
   "base_ref": "",
   "event_name": "push",
   "event": {
-    "after": "771192389dc23be642d7868244d49cc6152f2438",
+    "after": "0d9bd75f91393fb067113540ded29e095288526e",
     "base_ref": null,
-    "before": "13f034de274746a6a895d47fe33d1a7286f3f698",
+    "before": "026a7605b8f7f500a4b01d17201f81535d62b818",
     "commits": [
       {
         "author": {
-          "email": "49699333+dependabot[bot]@users.noreply.github.com",
-          "name": "dependabot[bot]",
-          "username": "dependabot[bot]"
+          "email": "3856350+guitarrapc@users.noreply.github.com",
+          "name": "Ikiru Yoshizaki",
+          "username": "guitarrapc"
         },
         "committer": {
-          "email": "noreply@github.com",
-          "name": "GitHub",
-          "username": "web-flow"
+          "email": "3856350+guitarrapc@users.noreply.github.com",
+          "name": "Ikiru Yoshizaki",
+          "username": "guitarrapc"
         },
         "distinct": true,
-        "id": "5063ce44b24732ad32fdc369e64202387d3a1f04",
-        "message": "chore(deps): bump rokroskar/workflow-run-cleanup-action\n\nBumps [rokroskar/workflow-run-cleanup-action](https://github.com/rokroskar/workflow-run-cleanup-action) from 0.2.2 to 0.3.3.\n- [Release notes](https://github.com/rokroskar/workflow-run-cleanup-action/releases)\n- [Commits](https://github.com/rokroskar/workflow-run-cleanup-action/compare/v0.2.2...v0.3.3)\n\n---\nupdated-dependencies:\n- dependency-name: rokroskar/workflow-run-cleanup-action\n  dependency-type: direct:production\n  update-type: version-update:semver-minor\n...\n\nSigned-off-by: dependabot[bot] <support@github.com>",
-        "timestamp": "2023-11-20T15:20:02Z",
-        "tree_id": "60700938df0bcf9af4e3bff579f9b5e3aecc69c6",
-        "url": "https://github.com/guitarrapc/githubactions-lab/commit/5063ce44b24732ad32fdc369e64202387d3a1f04"
+        "id": "1942b522ab7106ba73f8a756e5b9d82a8142e460",
+        "message": "feat: upload and download",
+        "timestamp": "2023-11-22T13:00:05+09:00",
+        "tree_id": "2bc2735400ddcdcb1b30f0dfcf21fca19ed4008d",
+        "url": "https://github.com/guitarrapc/githubactions-lab/commit/1942b522ab7106ba73f8a756e5b9d82a8142e460"
+      },
+      {
+        "author": {
+          "email": "41898282+github-actions[bot]@users.noreply.github.com",
+          "name": "github-actions[bot]",
+          "username": "github-actions[bot]"
+        },
+        "committer": {
+          "email": "41898282+github-actions[bot]@users.noreply.github.com",
+          "name": "github-actions[bot]",
+          "username": "github-actions[bot]"
+        },
+        "distinct": true,
+        "id": "56c873cc7e9d117aa4697884c12edeb2ee61726e",
+        "message": "[auto commit] update context (workflow=auto dump context, event=pull_request_target, action=opened)",
+        "timestamp": "2023-11-22T04:00:57Z",
+        "tree_id": "6edd15b88084290a82af1f32f5c3d7d7f3a78ae3",
+        "url": "https://github.com/guitarrapc/githubactions-lab/commit/56c873cc7e9d117aa4697884c12edeb2ee61726e"
+      },
+      {
+        "author": {
+          "email": "3856350+guitarrapc@users.noreply.github.com",
+          "name": "Ikiru Yoshizaki",
+          "username": "guitarrapc"
+        },
+        "committer": {
+          "email": "3856350+guitarrapc@users.noreply.github.com",
+          "name": "Ikiru Yoshizaki",
+          "username": "guitarrapc"
+        },
+        "distinct": true,
+        "id": "bd8392ec70226c15a88722c34c76763b450ada6f",
+        "message": "fix: download for tar.gz",
+        "timestamp": "2023-11-22T13:02:40+09:00",
+        "tree_id": "094df25caad7ad88849373035445d4a46b80b088",
+        "url": "https://github.com/guitarrapc/githubactions-lab/commit/bd8392ec70226c15a88722c34c76763b450ada6f"
+      },
+      {
+        "author": {
+          "email": "3856350+guitarrapc@users.noreply.github.com",
+          "name": "Ikiru Yoshizaki",
+          "username": "guitarrapc"
+        },
+        "committer": {
+          "email": "3856350+guitarrapc@users.noreply.github.com",
+          "name": "Ikiru Yoshizaki",
+          "username": "guitarrapc"
+        },
+        "distinct": true,
+        "id": "a3fbf0d7db00ca802903edff4058f8cd5836413c",
+        "message": "Merge remote-tracking branch 'origin/feature/upload' into feature/upload",
+        "timestamp": "2023-11-22T13:02:46+09:00",
+        "tree_id": "a04579cd761931cd995e903fd0bc68e4268f51c9",
+        "url": "https://github.com/guitarrapc/githubactions-lab/commit/a3fbf0d7db00ca802903edff4058f8cd5836413c"
+      },
+      {
+        "author": {
+          "email": "41898282+github-actions[bot]@users.noreply.github.com",
+          "name": "github-actions[bot]",
+          "username": "github-actions[bot]"
+        },
+        "committer": {
+          "email": "41898282+github-actions[bot]@users.noreply.github.com",
+          "name": "github-actions[bot]",
+          "username": "github-actions[bot]"
+        },
+        "distinct": true,
+        "id": "49bac1c3dff5096d3fa343d45a4139351b705dae",
+        "message": "[auto commit] update context (workflow=auto dump context, event=pull_request_target, action=synchronize)",
+        "timestamp": "2023-11-22T04:03:08Z",
+        "tree_id": "606b007cda8e6e01c75cc816b420191b80ebd975",
+        "url": "https://github.com/guitarrapc/githubactions-lab/commit/49bac1c3dff5096d3fa343d45a4139351b705dae"
+      },
+      {
+        "author": {
+          "email": "41898282+github-actions[bot]@users.noreply.github.com",
+          "name": "github-actions[bot]",
+          "username": "github-actions[bot]"
+        },
+        "committer": {
+          "email": "41898282+github-actions[bot]@users.noreply.github.com",
+          "name": "github-actions[bot]",
+          "username": "github-actions[bot]"
+        },
+        "distinct": true,
+        "id": "c39fbc53b7e524608f53c28169ca05fcfaa61bd5",
+        "message": "[auto commit] update context (workflow=auto dump context, event=pull_request, action=synchronize)",
+        "timestamp": "2023-11-22T04:03:35Z",
+        "tree_id": "7e20d14867699e2613709bffe3c9068fb04306d0",
+        "url": "https://github.com/guitarrapc/githubactions-lab/commit/c39fbc53b7e524608f53c28169ca05fcfaa61bd5"
       },
       {
         "author": {
@@ -58,14 +148,14 @@
           "username": "web-flow"
         },
         "distinct": true,
-        "id": "771192389dc23be642d7868244d49cc6152f2438",
-        "message": "Merge pull request #140 from guitarrapc/dependabot/github_actions/rokroskar/workflow-run-cleanup-action-0.3.3\n\nchore(deps): bump rokroskar/workflow-run-cleanup-action from 0.2.2 to 0.3.3",
-        "timestamp": "2023-11-21T14:32:27+09:00",
-        "tree_id": "48eeed620e9e991c8a7de5962ce1ec8db7bacd30",
-        "url": "https://github.com/guitarrapc/githubactions-lab/commit/771192389dc23be642d7868244d49cc6152f2438"
+        "id": "0d9bd75f91393fb067113540ded29e095288526e",
+        "message": "Merge pull request #141 from guitarrapc/feature/upload\n\nfeat: upload and download",
+        "timestamp": "2023-11-22T14:11:52+09:00",
+        "tree_id": "7e20d14867699e2613709bffe3c9068fb04306d0",
+        "url": "https://github.com/guitarrapc/githubactions-lab/commit/0d9bd75f91393fb067113540ded29e095288526e"
       }
     ],
-    "compare": "https://github.com/guitarrapc/githubactions-lab/compare/13f034de2747...771192389dc2",
+    "compare": "https://github.com/guitarrapc/githubactions-lab/compare/026a7605b8f7...0d9bd75f9139",
     "created": false,
     "deleted": false,
     "forced": false,
@@ -81,11 +171,11 @@
         "username": "web-flow"
       },
       "distinct": true,
-      "id": "771192389dc23be642d7868244d49cc6152f2438",
-      "message": "Merge pull request #140 from guitarrapc/dependabot/github_actions/rokroskar/workflow-run-cleanup-action-0.3.3\n\nchore(deps): bump rokroskar/workflow-run-cleanup-action from 0.2.2 to 0.3.3",
-      "timestamp": "2023-11-21T14:32:27+09:00",
-      "tree_id": "48eeed620e9e991c8a7de5962ce1ec8db7bacd30",
-      "url": "https://github.com/guitarrapc/githubactions-lab/commit/771192389dc23be642d7868244d49cc6152f2438"
+      "id": "0d9bd75f91393fb067113540ded29e095288526e",
+      "message": "Merge pull request #141 from guitarrapc/feature/upload\n\nfeat: upload and download",
+      "timestamp": "2023-11-22T14:11:52+09:00",
+      "tree_id": "7e20d14867699e2613709bffe3c9068fb04306d0",
+      "url": "https://github.com/guitarrapc/githubactions-lab/commit/0d9bd75f91393fb067113540ded29e095288526e"
     },
     "pusher": {
       "email": "3856350+guitarrapc@users.noreply.github.com",
@@ -180,9 +270,9 @@
       },
       "private": false,
       "pulls_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls{/number}",
-      "pushed_at": 1700544747,
+      "pushed_at": 1700629912,
       "releases_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/releases{/id}",
-      "size": 1450,
+      "size": 1293,
       "ssh_url": "git@github.com:guitarrapc/githubactions-lab.git",
       "stargazers": 33,
       "stargazers_count": 33,
@@ -233,15 +323,15 @@
   "ref_type": "branch",
   "secret_source": "Actions",
   "workflow_ref": "guitarrapc/githubactions-lab/.github/workflows/auto_dump_context.yaml@refs/heads/main",
-  "workflow_sha": "771192389dc23be642d7868244d49cc6152f2438",
+  "workflow_sha": "0d9bd75f91393fb067113540ded29e095288526e",
   "workspace": "/home/runner/work/githubactions-lab/githubactions-lab",
   "action": "__run_2",
   "event_path": "/home/runner/work/_temp/_github_workflow/event.json",
   "action_repository": "",
   "action_ref": "",
-  "path": "/home/runner/work/_temp/_runner_file_commands/add_path_138e564a-4d14-438c-b0d2-704a5065a6cd",
-  "env": "/home/runner/work/_temp/_runner_file_commands/set_env_138e564a-4d14-438c-b0d2-704a5065a6cd",
-  "step_summary": "/home/runner/work/_temp/_runner_file_commands/step_summary_138e564a-4d14-438c-b0d2-704a5065a6cd",
-  "state": "/home/runner/work/_temp/_runner_file_commands/save_state_138e564a-4d14-438c-b0d2-704a5065a6cd",
-  "output": "/home/runner/work/_temp/_runner_file_commands/set_output_138e564a-4d14-438c-b0d2-704a5065a6cd"
+  "path": "/home/runner/work/_temp/_runner_file_commands/add_path_2a85ff80-2939-477a-8188-976240b7225f",
+  "env": "/home/runner/work/_temp/_runner_file_commands/set_env_2a85ff80-2939-477a-8188-976240b7225f",
+  "step_summary": "/home/runner/work/_temp/_runner_file_commands/step_summary_2a85ff80-2939-477a-8188-976240b7225f",
+  "state": "/home/runner/work/_temp/_runner_file_commands/save_state_2a85ff80-2939-477a-8188-976240b7225f",
+  "output": "/home/runner/work/_temp/_runner_file_commands/set_output_2a85ff80-2939-477a-8188-976240b7225f"
 }
