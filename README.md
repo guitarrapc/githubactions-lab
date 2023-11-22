@@ -2619,6 +2619,112 @@ GitHub Actions [actions/upload-artifact](https://github.com/actions/upload-artif
 
 ```yaml
 # .github/workflows/build_artifacts.yaml
+
+name: Build Artifacts
+
+on:
+  workflow_dispatch:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+
+jobs:
+  upload-single:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - name: output
+        run: |
+          echo "hoge" > ./hoge.txt
+      - uses: actions/upload-artifact@v3
+        with:
+          name: hoge.txt
+          path: ./hoge.txt
+          retention-days: 1
+
+  upload-directory:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - name: output
+        run: |
+          mkdir -p ./directory/bin
+          echo "hoge" > ./directory/hoge.txt
+          echo "fuga" > ./directory/fuga.txt
+          echo "foo" > ./directory/bin/foo.txt
+          echo "bar" > ./directory/bin/bar.txt
+      - uses: actions/upload-artifact@v3
+        with:
+          name: directory
+          path: ./directory/
+          retention-days: 1
+
+  upload-targz:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - name: output
+        run: |
+          mkdir -p ./output/bin
+          echo "hoge" > ./output/hoge.txt
+          echo "fuga" > ./output/fuga.txt
+          echo "foo" > ./output/bin/foo.txt
+          echo "bar" > ./output/bin/bar.txt
+          tar -zcvf output.tar.gz ./output/
+      - uses: actions/upload-artifact@v3
+        with:
+          name: output.tar.gz
+          path: ./output.tar.gz
+          retention-days: 1
+
+  download-single:
+    needs: [upload-single]
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/download-artifact@v3
+        with:
+          name: hoge.txt
+          path: .
+      - name: ls
+        run: ls -lR
+      - name: cat hoge.txt
+        run: cat hoge.txt
+
+  download-directory:
+    needs: [upload-directory]
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/download-artifact@v3
+        with:
+          name: directory
+          path: ./directory
+      - name: ls
+        run: ls -lR
+
+  download-targz:
+    needs: [upload-targz]
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      # specify path: . to download tar.gz to current directory
+      - uses: actions/download-artifact@v3
+        with:
+          name: output.tar.gz
+          path: .
+      - name: ls
+        run: ls -lR
+      - name: expand
+        run: tar -zxvf output.tar.gz
+      - name: ls
+        run: ls -lR
+      - name: cat hoge.txt
+        run: cat ./output/hoge.txt
+      - name: cat foo.txt
+        run: cat ./output/bin/foo.txt
+
 ```
 
 ## Telemetry for GitHub Workflow execution
