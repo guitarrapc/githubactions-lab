@@ -21,7 +21,7 @@ jobs:
       - run: mkdir -p out/
       - name: env (before)
         run: env | tee out/env-before.txt
-      - uses: actions/setup-dotnet@v3
+      - uses: actions/setup-dotnet@v4
       - name: env (after)
         run: env | tee out/env-after.txt
       - name: diff env
