@@ -30,7 +30,7 @@ jobs:
         run: dotnet --version
       - name: dotnet sdks before setup-dotnet
         run: dotnet --list-sdks
-      - uses: actions/setup-dotnet@v3
+      - uses: actions/setup-dotnet@v4
         with:
           dotnet-version: 6.0.x
       - name: dotnet executable path after setup-dotnet (/usr/share/dotnet/dotnet)
