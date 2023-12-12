@@ -1,14 +1,14 @@
 {
-  "token": "ghs_2jqrNOH7cuvOqVS8lNsnzbEqN0I3K50b0xWh",
+  "token": "ghs_0Q14xX464uOc6hkhYIfyE1FZ3nUijZ1hSPdw",
   "job": "dump-context",
   "ref": "refs/heads/main",
-  "sha": "90d9eaa3ca6813c20e76b44d48f1f2bb5844ca6f",
+  "sha": "dc6eb1bed1c1e0959c28aea441aae5b82c395dd3",
   "repository": "guitarrapc/githubactions-lab",
   "repository_owner": "guitarrapc",
   "repository_owner_id": "3856350",
   "repositoryUrl": "git://github.com/guitarrapc/githubactions-lab.git",
-  "run_id": "6953450045",
-  "run_number": "543",
+  "run_id": "7175290621",
+  "run_number": "575",
   "retention_days": "90",
   "run_attempt": "1",
   "artifact_cache_size_limit": "10",
@@ -24,10 +24,28 @@
   "base_ref": "",
   "event_name": "push",
   "event": {
-    "after": "90d9eaa3ca6813c20e76b44d48f1f2bb5844ca6f",
+    "after": "dc6eb1bed1c1e0959c28aea441aae5b82c395dd3",
     "base_ref": null,
-    "before": "e74dbbd8efca55efd3ca7f381b320cb6de6845f6",
+    "before": "e0de42adf3e7dddfa2b757a06e58e81ea84e3c41",
     "commits": [
+      {
+        "author": {
+          "email": "49699333+dependabot[bot]@users.noreply.github.com",
+          "name": "dependabot[bot]",
+          "username": "dependabot[bot]"
+        },
+        "committer": {
+          "email": "noreply@github.com",
+          "name": "GitHub",
+          "username": "web-flow"
+        },
+        "distinct": true,
+        "id": "697e41aefb2a2cc0fc280c48bc322fac6ea9ece2",
+        "message": "chore(deps): bump actions/stale from 8.0.0 to 9.0.0\n\nBumps [actions/stale](https://github.com/actions/stale) from 8.0.0 to 9.0.0.\n- [Release notes](https://github.com/actions/stale/releases)\n- [Changelog](https://github.com/actions/stale/blob/main/CHANGELOG.md)\n- [Commits](https://github.com/actions/stale/compare/v8.0.0...v9.0.0)\n\n---\nupdated-dependencies:\n- dependency-name: actions/stale\n  dependency-type: direct:production\n  update-type: version-update:semver-major\n...\n\nSigned-off-by: dependabot[bot] <support@github.com>",
+        "timestamp": "2023-12-11T15:09:40Z",
+        "tree_id": "151c62e8f1bbbcaa10be2bd8e031663479541084",
+        "url": "https://github.com/guitarrapc/githubactions-lab/commit/697e41aefb2a2cc0fc280c48bc322fac6ea9ece2"
+      },
       {
         "author": {
           "email": "3856350+guitarrapc@users.noreply.github.com",
@@ -35,19 +53,19 @@
           "username": "guitarrapc"
         },
         "committer": {
-          "email": "3856350+guitarrapc@users.noreply.github.com",
-          "name": "Ikiru Yoshizaki",
-          "username": "guitarrapc"
+          "email": "noreply@github.com",
+          "name": "GitHub",
+          "username": "web-flow"
         },
         "distinct": true,
-        "id": "90d9eaa3ca6813c20e76b44d48f1f2bb5844ca6f",
-        "message": "doc: move section",
-        "timestamp": "2023-11-22T14:54:33+09:00",
-        "tree_id": "dbcb8efb5d7f7848866f185649c094563f622b5f",
-        "url": "https://github.com/guitarrapc/githubactions-lab/commit/90d9eaa3ca6813c20e76b44d48f1f2bb5844ca6f"
+        "id": "dc6eb1bed1c1e0959c28aea441aae5b82c395dd3",
+        "message": "Merge pull request #144 from guitarrapc/dependabot/github_actions/actions/stale-9.0.0\n\nchore(deps): bump actions/stale from 8.0.0 to 9.0.0",
+        "timestamp": "2023-12-12T09:42:23+09:00",
+        "tree_id": "18e6fc4db5e0a88daab38c334c376ba38f1834a6",
+        "url": "https://github.com/guitarrapc/githubactions-lab/commit/dc6eb1bed1c1e0959c28aea441aae5b82c395dd3"
       }
     ],
-    "compare": "https://github.com/guitarrapc/githubactions-lab/compare/e74dbbd8efca...90d9eaa3ca68",
+    "compare": "https://github.com/guitarrapc/githubactions-lab/compare/e0de42adf3e7...dc6eb1bed1c1",
     "created": false,
     "deleted": false,
     "forced": false,
@@ -58,16 +76,16 @@
         "username": "guitarrapc"
       },
       "committer": {
-        "email": "3856350+guitarrapc@users.noreply.github.com",
-        "name": "Ikiru Yoshizaki",
-        "username": "guitarrapc"
+        "email": "noreply@github.com",
+        "name": "GitHub",
+        "username": "web-flow"
       },
       "distinct": true,
-      "id": "90d9eaa3ca6813c20e76b44d48f1f2bb5844ca6f",
-      "message": "doc: move section",
-      "timestamp": "2023-11-22T14:54:33+09:00",
-      "tree_id": "dbcb8efb5d7f7848866f185649c094563f622b5f",
-      "url": "https://github.com/guitarrapc/githubactions-lab/commit/90d9eaa3ca6813c20e76b44d48f1f2bb5844ca6f"
+      "id": "dc6eb1bed1c1e0959c28aea441aae5b82c395dd3",
+      "message": "Merge pull request #144 from guitarrapc/dependabot/github_actions/actions/stale-9.0.0\n\nchore(deps): bump actions/stale from 8.0.0 to 9.0.0",
+      "timestamp": "2023-12-12T09:42:23+09:00",
+      "tree_id": "18e6fc4db5e0a88daab38c334c376ba38f1834a6",
+      "url": "https://github.com/guitarrapc/githubactions-lab/commit/dc6eb1bed1c1e0959c28aea441aae5b82c395dd3"
     },
     "pusher": {
       "email": "3856350+guitarrapc@users.noreply.github.com",
@@ -136,8 +154,8 @@
       "name": "githubactions-lab",
       "node_id": "MDEwOlJlcG9zaXRvcnkyNTc0NjU0Njg=",
       "notifications_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/notifications{?since,all,participating}",
-      "open_issues": 5,
-      "open_issues_count": 5,
+      "open_issues": 6,
+      "open_issues_count": 6,
       "owner": {
         "avatar_url": "https://avatars.githubusercontent.com/u/3856350?v=4",
         "email": "3856350+guitarrapc@users.noreply.github.com",
@@ -162,9 +180,9 @@
       },
       "private": false,
       "pulls_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls{/number}",
-      "pushed_at": 1700632476,
+      "pushed_at": 1702341743,
       "releases_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/releases{/id}",
-      "size": 1293,
+      "size": 1370,
       "ssh_url": "git@github.com:guitarrapc/githubactions-lab.git",
       "stargazers": 33,
       "stargazers_count": 33,
@@ -215,15 +233,15 @@
   "ref_type": "branch",
   "secret_source": "Actions",
   "workflow_ref": "guitarrapc/githubactions-lab/.github/workflows/auto_dump_context.yaml@refs/heads/main",
-  "workflow_sha": "90d9eaa3ca6813c20e76b44d48f1f2bb5844ca6f",
+  "workflow_sha": "dc6eb1bed1c1e0959c28aea441aae5b82c395dd3",
   "workspace": "/home/runner/work/githubactions-lab/githubactions-lab",
   "action": "__run_2",
   "event_path": "/home/runner/work/_temp/_github_workflow/event.json",
   "action_repository": "",
   "action_ref": "",
-  "path": "/home/runner/work/_temp/_runner_file_commands/add_path_aec34a32-9fde-4f2c-b791-0dd25eb71920",
-  "env": "/home/runner/work/_temp/_runner_file_commands/set_env_aec34a32-9fde-4f2c-b791-0dd25eb71920",
-  "step_summary": "/home/runner/work/_temp/_runner_file_commands/step_summary_aec34a32-9fde-4f2c-b791-0dd25eb71920",
-  "state": "/home/runner/work/_temp/_runner_file_commands/save_state_aec34a32-9fde-4f2c-b791-0dd25eb71920",
-  "output": "/home/runner/work/_temp/_runner_file_commands/set_output_aec34a32-9fde-4f2c-b791-0dd25eb71920"
+  "path": "/home/runner/work/_temp/_runner_file_commands/add_path_9f790756-a339-4758-8f67-c2004d603ac1",
+  "env": "/home/runner/work/_temp/_runner_file_commands/set_env_9f790756-a339-4758-8f67-c2004d603ac1",
+  "step_summary": "/home/runner/work/_temp/_runner_file_commands/step_summary_9f790756-a339-4758-8f67-c2004d603ac1",
+  "state": "/home/runner/work/_temp/_runner_file_commands/save_state_9f790756-a339-4758-8f67-c2004d603ac1",
+  "output": "/home/runner/work/_temp/_runner_file_commands/set_output_9f790756-a339-4758-8f67-c2004d603ac1"
 }
