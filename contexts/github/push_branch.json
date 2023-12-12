@@ -1,14 +1,14 @@
 {
-  "token": "ghs_7bvewNQhidA24FeTIPTtswh4FGNes51Sv6RR",
+  "token": "ghs_OSYjB7kCMwYietUXV9yzzlccG27Dly0Xj1oP",
   "job": "dump-context",
   "ref": "refs/heads/main",
-  "sha": "75dc1c0bae44b6f8c10364ee7aaf8cc10bd23a01",
+  "sha": "b85a11c8ebd637a1257393ae21374e1aaf8b5576",
   "repository": "guitarrapc/githubactions-lab",
   "repository_owner": "guitarrapc",
   "repository_owner_id": "3856350",
   "repositoryUrl": "git://github.com/guitarrapc/githubactions-lab.git",
-  "run_id": "7175292559",
-  "run_number": "578",
+  "run_id": "7175303665",
+  "run_number": "579",
   "retention_days": "90",
   "run_attempt": "1",
   "artifact_cache_size_limit": "10",
@@ -24,28 +24,10 @@
   "base_ref": "",
   "event_name": "push",
   "event": {
-    "after": "75dc1c0bae44b6f8c10364ee7aaf8cc10bd23a01",
+    "after": "b85a11c8ebd637a1257393ae21374e1aaf8b5576",
     "base_ref": null,
-    "before": "dc6eb1bed1c1e0959c28aea441aae5b82c395dd3",
+    "before": "3dc564a6db8a86f099c224aa6565aeb7679bb608",
     "commits": [
-      {
-        "author": {
-          "email": "49699333+dependabot[bot]@users.noreply.github.com",
-          "name": "dependabot[bot]",
-          "username": "dependabot[bot]"
-        },
-        "committer": {
-          "email": "noreply@github.com",
-          "name": "GitHub",
-          "username": "web-flow"
-        },
-        "distinct": true,
-        "id": "ba012d837b9758989df81439236ecf90464e54b8",
-        "message": "chore(deps): bump actions/setup-dotnet from 3 to 4\n\nBumps [actions/setup-dotnet](https://github.com/actions/setup-dotnet) from 3 to 4.\n- [Release notes](https://github.com/actions/setup-dotnet/releases)\n- [Commits](https://github.com/actions/setup-dotnet/compare/v3...v4)\n\n---\nupdated-dependencies:\n- dependency-name: actions/setup-dotnet\n  dependency-type: direct:production\n  update-type: version-update:semver-major\n...\n\nSigned-off-by: dependabot[bot] <support@github.com>",
-        "timestamp": "2023-12-11T15:09:34Z",
-        "tree_id": "ea359f9468dc6ed95b7b128f36aec7599e0c0a2a",
-        "url": "https://github.com/guitarrapc/githubactions-lab/commit/ba012d837b9758989df81439236ecf90464e54b8"
-      },
       {
         "author": {
           "email": "3856350+guitarrapc@users.noreply.github.com",
@@ -58,14 +40,14 @@
           "username": "web-flow"
         },
         "distinct": true,
-        "id": "75dc1c0bae44b6f8c10364ee7aaf8cc10bd23a01",
-        "message": "Merge pull request #143 from guitarrapc/dependabot/github_actions/actions/setup-dotnet-4\n\nchore(deps): bump actions/setup-dotnet from 3 to 4",
-        "timestamp": "2023-12-12T09:42:37+09:00",
-        "tree_id": "7be4d54b7f49ec82a2b23def77f9ad17247ebb0c",
-        "url": "https://github.com/guitarrapc/githubactions-lab/commit/75dc1c0bae44b6f8c10364ee7aaf8cc10bd23a01"
+        "id": "b85a11c8ebd637a1257393ae21374e1aaf8b5576",
+        "message": "Update dependabot.yaml",
+        "timestamp": "2023-12-12T09:43:57+09:00",
+        "tree_id": "5d650f16c8b5ec06672b59ea21c323dcdb72ce16",
+        "url": "https://github.com/guitarrapc/githubactions-lab/commit/b85a11c8ebd637a1257393ae21374e1aaf8b5576"
       }
     ],
-    "compare": "https://github.com/guitarrapc/githubactions-lab/compare/dc6eb1bed1c1...75dc1c0bae44",
+    "compare": "https://github.com/guitarrapc/githubactions-lab/compare/3dc564a6db8a...b85a11c8ebd6",
     "created": false,
     "deleted": false,
     "forced": false,
@@ -81,11 +63,11 @@
         "username": "web-flow"
       },
       "distinct": true,
-      "id": "75dc1c0bae44b6f8c10364ee7aaf8cc10bd23a01",
-      "message": "Merge pull request #143 from guitarrapc/dependabot/github_actions/actions/setup-dotnet-4\n\nchore(deps): bump actions/setup-dotnet from 3 to 4",
-      "timestamp": "2023-12-12T09:42:37+09:00",
-      "tree_id": "7be4d54b7f49ec82a2b23def77f9ad17247ebb0c",
-      "url": "https://github.com/guitarrapc/githubactions-lab/commit/75dc1c0bae44b6f8c10364ee7aaf8cc10bd23a01"
+      "id": "b85a11c8ebd637a1257393ae21374e1aaf8b5576",
+      "message": "Update dependabot.yaml",
+      "timestamp": "2023-12-12T09:43:57+09:00",
+      "tree_id": "5d650f16c8b5ec06672b59ea21c323dcdb72ce16",
+      "url": "https://github.com/guitarrapc/githubactions-lab/commit/b85a11c8ebd637a1257393ae21374e1aaf8b5576"
     },
     "pusher": {
       "email": "3856350+guitarrapc@users.noreply.github.com",
@@ -180,7 +162,7 @@
       },
       "private": false,
       "pulls_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls{/number}",
-      "pushed_at": 1702341757,
+      "pushed_at": 1702341837,
       "releases_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/releases{/id}",
       "size": 1370,
       "ssh_url": "git@github.com:guitarrapc/githubactions-lab.git",
@@ -233,15 +215,15 @@
   "ref_type": "branch",
   "secret_source": "Actions",
   "workflow_ref": "guitarrapc/githubactions-lab/.github/workflows/auto_dump_context.yaml@refs/heads/main",
-  "workflow_sha": "75dc1c0bae44b6f8c10364ee7aaf8cc10bd23a01",
+  "workflow_sha": "b85a11c8ebd637a1257393ae21374e1aaf8b5576",
   "workspace": "/home/runner/work/githubactions-lab/githubactions-lab",
   "action": "__run_2",
   "event_path": "/home/runner/work/_temp/_github_workflow/event.json",
   "action_repository": "",
   "action_ref": "",
-  "path": "/home/runner/work/_temp/_runner_file_commands/add_path_2957d8e7-ae2d-4304-add4-1099610e0969",
-  "env": "/home/runner/work/_temp/_runner_file_commands/set_env_2957d8e7-ae2d-4304-add4-1099610e0969",
-  "step_summary": "/home/runner/work/_temp/_runner_file_commands/step_summary_2957d8e7-ae2d-4304-add4-1099610e0969",
-  "state": "/home/runner/work/_temp/_runner_file_commands/save_state_2957d8e7-ae2d-4304-add4-1099610e0969",
-  "output": "/home/runner/work/_temp/_runner_file_commands/set_output_2957d8e7-ae2d-4304-add4-1099610e0969"
+  "path": "/home/runner/work/_temp/_runner_file_commands/add_path_45ffabff-c455-48ed-bc40-bbba49ad02f1",
+  "env": "/home/runner/work/_temp/_runner_file_commands/set_env_45ffabff-c455-48ed-bc40-bbba49ad02f1",
+  "step_summary": "/home/runner/work/_temp/_runner_file_commands/step_summary_45ffabff-c455-48ed-bc40-bbba49ad02f1",
+  "state": "/home/runner/work/_temp/_runner_file_commands/save_state_45ffabff-c455-48ed-bc40-bbba49ad02f1",
+  "output": "/home/runner/work/_temp/_runner_file_commands/set_output_45ffabff-c455-48ed-bc40-bbba49ad02f1"
 }
