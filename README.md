@@ -2123,7 +2123,7 @@ To enable Dependabot for GitHub Actions update, add `.github/dependabot.yml` to 
 version: 2
 updates:
   - package-ecosystem: "github-actions"
-    directory: ".github/"
+    directory: "/"
     schedule:
       interval: "weekly" # Check for updates to GitHub Actions every week
 
