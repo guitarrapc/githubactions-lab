@@ -1,14 +1,14 @@
 {
-  "token": "ghs_OSYjB7kCMwYietUXV9yzzlccG27Dly0Xj1oP",
+  "token": "ghs_tLILGK2yNcJ8ucdv5lfRh6zSLTPjyd0EJhhT",
   "job": "dump-context",
   "ref": "refs/heads/main",
-  "sha": "b85a11c8ebd637a1257393ae21374e1aaf8b5576",
+  "sha": "37a040d730913cb68d5e73f15df26a2bea9ce11b",
   "repository": "guitarrapc/githubactions-lab",
   "repository_owner": "guitarrapc",
   "repository_owner_id": "3856350",
   "repositoryUrl": "git://github.com/guitarrapc/githubactions-lab.git",
-  "run_id": "7175303665",
-  "run_number": "579",
+  "run_id": "7189863272",
+  "run_number": "581",
   "retention_days": "90",
   "run_attempt": "1",
   "artifact_cache_size_limit": "10",
@@ -24,9 +24,9 @@
   "base_ref": "",
   "event_name": "push",
   "event": {
-    "after": "b85a11c8ebd637a1257393ae21374e1aaf8b5576",
+    "after": "37a040d730913cb68d5e73f15df26a2bea9ce11b",
     "base_ref": null,
-    "before": "3dc564a6db8a86f099c224aa6565aeb7679bb608",
+    "before": "ab05e6d29fa515bef8bb28aed38d9c48ef846601",
     "commits": [
       {
         "author": {
@@ -40,14 +40,14 @@
           "username": "web-flow"
         },
         "distinct": true,
-        "id": "b85a11c8ebd637a1257393ae21374e1aaf8b5576",
+        "id": "37a040d730913cb68d5e73f15df26a2bea9ce11b",
         "message": "Update dependabot.yaml",
-        "timestamp": "2023-12-12T09:43:57+09:00",
-        "tree_id": "5d650f16c8b5ec06672b59ea21c323dcdb72ce16",
-        "url": "https://github.com/guitarrapc/githubactions-lab/commit/b85a11c8ebd637a1257393ae21374e1aaf8b5576"
+        "timestamp": "2023-12-13T11:17:14+09:00",
+        "tree_id": "f8d4836fe84105984564992d2bc4677c3e5e9e22",
+        "url": "https://github.com/guitarrapc/githubactions-lab/commit/37a040d730913cb68d5e73f15df26a2bea9ce11b"
       }
     ],
-    "compare": "https://github.com/guitarrapc/githubactions-lab/compare/3dc564a6db8a...b85a11c8ebd6",
+    "compare": "https://github.com/guitarrapc/githubactions-lab/compare/ab05e6d29fa5...37a040d73091",
     "created": false,
     "deleted": false,
     "forced": false,
@@ -63,11 +63,11 @@
         "username": "web-flow"
       },
       "distinct": true,
-      "id": "b85a11c8ebd637a1257393ae21374e1aaf8b5576",
+      "id": "37a040d730913cb68d5e73f15df26a2bea9ce11b",
       "message": "Update dependabot.yaml",
-      "timestamp": "2023-12-12T09:43:57+09:00",
-      "tree_id": "5d650f16c8b5ec06672b59ea21c323dcdb72ce16",
-      "url": "https://github.com/guitarrapc/githubactions-lab/commit/b85a11c8ebd637a1257393ae21374e1aaf8b5576"
+      "timestamp": "2023-12-13T11:17:14+09:00",
+      "tree_id": "f8d4836fe84105984564992d2bc4677c3e5e9e22",
+      "url": "https://github.com/guitarrapc/githubactions-lab/commit/37a040d730913cb68d5e73f15df26a2bea9ce11b"
     },
     "pusher": {
       "email": "3856350+guitarrapc@users.noreply.github.com",
@@ -162,9 +162,9 @@
       },
       "private": false,
       "pulls_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls{/number}",
-      "pushed_at": 1702341837,
+      "pushed_at": 1702433834,
       "releases_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/releases{/id}",
-      "size": 1370,
+      "size": 1448,
       "ssh_url": "git@github.com:guitarrapc/githubactions-lab.git",
       "stargazers": 33,
       "stargazers_count": 33,
@@ -215,15 +215,15 @@
   "ref_type": "branch",
   "secret_source": "Actions",
   "workflow_ref": "guitarrapc/githubactions-lab/.github/workflows/auto_dump_context.yaml@refs/heads/main",
-  "workflow_sha": "b85a11c8ebd637a1257393ae21374e1aaf8b5576",
+  "workflow_sha": "37a040d730913cb68d5e73f15df26a2bea9ce11b",
   "workspace": "/home/runner/work/githubactions-lab/githubactions-lab",
   "action": "__run_2",
   "event_path": "/home/runner/work/_temp/_github_workflow/event.json",
   "action_repository": "",
   "action_ref": "",
-  "path": "/home/runner/work/_temp/_runner_file_commands/add_path_45ffabff-c455-48ed-bc40-bbba49ad02f1",
-  "env": "/home/runner/work/_temp/_runner_file_commands/set_env_45ffabff-c455-48ed-bc40-bbba49ad02f1",
-  "step_summary": "/home/runner/work/_temp/_runner_file_commands/step_summary_45ffabff-c455-48ed-bc40-bbba49ad02f1",
-  "state": "/home/runner/work/_temp/_runner_file_commands/save_state_45ffabff-c455-48ed-bc40-bbba49ad02f1",
-  "output": "/home/runner/work/_temp/_runner_file_commands/set_output_45ffabff-c455-48ed-bc40-bbba49ad02f1"
+  "path": "/home/runner/work/_temp/_runner_file_commands/add_path_017e8f38-9a5d-45c9-a296-50fac44a0156",
+  "env": "/home/runner/work/_temp/_runner_file_commands/set_env_017e8f38-9a5d-45c9-a296-50fac44a0156",
+  "step_summary": "/home/runner/work/_temp/_runner_file_commands/step_summary_017e8f38-9a5d-45c9-a296-50fac44a0156",
+  "state": "/home/runner/work/_temp/_runner_file_commands/save_state_017e8f38-9a5d-45c9-a296-50fac44a0156",
+  "output": "/home/runner/work/_temp/_runner_file_commands/set_output_017e8f38-9a5d-45c9-a296-50fac44a0156"
 }
