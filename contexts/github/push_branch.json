@@ -1,14 +1,14 @@
 {
-  "token": "ghs_LWdiaI1AUJO32h2GQcSSKqpb6737sQ3H9fDr",
+  "token": "ghs_e7yv9ohTQoni2n6dWYnt3lutec1QR23cOTNW",
   "job": "dump-context",
   "ref": "refs/heads/main",
-  "sha": "011066aa1673b0d8f735f7c554fdb5771e56825c",
+  "sha": "bff7f6c1e52192327a6a7963669c91c8e04ce0b7",
   "repository": "guitarrapc/githubactions-lab",
   "repository_owner": "guitarrapc",
   "repository_owner_id": "3856350",
   "repositoryUrl": "git://github.com/guitarrapc/githubactions-lab.git",
-  "run_id": "7251435358",
-  "run_number": "606",
+  "run_id": "7251470433",
+  "run_number": "607",
   "retention_days": "90",
   "run_attempt": "1",
   "artifact_cache_size_limit": "10",
@@ -24,9 +24,9 @@
   "base_ref": "",
   "event_name": "push",
   "event": {
-    "after": "011066aa1673b0d8f735f7c554fdb5771e56825c",
+    "after": "bff7f6c1e52192327a6a7963669c91c8e04ce0b7",
     "base_ref": null,
-    "before": "30fc11f06a5b2916931cb7f87e99228b746dc1f8",
+    "before": "de0e8e49ea4dbcc4a51dba8f1e6bab409b45d4f9",
     "commits": [
       {
         "author": {
@@ -40,14 +40,32 @@
           "username": "guitarrapc"
         },
         "distinct": true,
-        "id": "011066aa1673b0d8f735f7c554fdb5771e56825c",
-        "message": "Revert \"Merge pull request #146 from guitarrapc/dependabot/github_actions/actions/download-artifact-4\"\n\nThis reverts commit 71c4c7cf66ee24e3ac5c38f9eb0360d7b8d02ef4, reversing\nchanges made to cc78c6e71a72822ae98f8cdfe435da3f9854369c.",
-        "timestamp": "2023-12-19T02:10:26+09:00",
-        "tree_id": "d61c880bef98859bf51325b7bb084f86e422888c",
-        "url": "https://github.com/guitarrapc/githubactions-lab/commit/011066aa1673b0d8f735f7c554fdb5771e56825c"
+        "id": "069853b4fec31d20fb467e8722bd7a6edcf34600",
+        "message": "Revert \"Merge pull request #145 from guitarrapc/dependabot/github_actions/actions/upload-artifact-4\"\n\nThis reverts commit cc78c6e71a72822ae98f8cdfe435da3f9854369c, reversing\nchanges made to aa0ea19603badae24cd1384aed1244904471105f.",
+        "timestamp": "2023-12-19T02:13:17+09:00",
+        "tree_id": "3879ae04492c7f254f81dd1fc0109cf76de4c97b",
+        "url": "https://github.com/guitarrapc/githubactions-lab/commit/069853b4fec31d20fb467e8722bd7a6edcf34600"
+      },
+      {
+        "author": {
+          "email": "3856350+guitarrapc@users.noreply.github.com",
+          "name": "Ikiru Yoshizaki",
+          "username": "guitarrapc"
+        },
+        "committer": {
+          "email": "3856350+guitarrapc@users.noreply.github.com",
+          "name": "Ikiru Yoshizaki",
+          "username": "guitarrapc"
+        },
+        "distinct": true,
+        "id": "bff7f6c1e52192327a6a7963669c91c8e04ce0b7",
+        "message": "Merge remote-tracking branch 'origin/main' into main",
+        "timestamp": "2023-12-19T02:13:21+09:00",
+        "tree_id": "21dadb736caea932631334f47f980981c2d72e0d",
+        "url": "https://github.com/guitarrapc/githubactions-lab/commit/bff7f6c1e52192327a6a7963669c91c8e04ce0b7"
       }
     ],
-    "compare": "https://github.com/guitarrapc/githubactions-lab/compare/30fc11f06a5b...011066aa1673",
+    "compare": "https://github.com/guitarrapc/githubactions-lab/compare/de0e8e49ea4d...bff7f6c1e521",
     "created": false,
     "deleted": false,
     "forced": false,
@@ -63,11 +81,11 @@
         "username": "guitarrapc"
       },
       "distinct": true,
-      "id": "011066aa1673b0d8f735f7c554fdb5771e56825c",
-      "message": "Revert \"Merge pull request #146 from guitarrapc/dependabot/github_actions/actions/download-artifact-4\"\n\nThis reverts commit 71c4c7cf66ee24e3ac5c38f9eb0360d7b8d02ef4, reversing\nchanges made to cc78c6e71a72822ae98f8cdfe435da3f9854369c.",
-      "timestamp": "2023-12-19T02:10:26+09:00",
-      "tree_id": "d61c880bef98859bf51325b7bb084f86e422888c",
-      "url": "https://github.com/guitarrapc/githubactions-lab/commit/011066aa1673b0d8f735f7c554fdb5771e56825c"
+      "id": "bff7f6c1e52192327a6a7963669c91c8e04ce0b7",
+      "message": "Merge remote-tracking branch 'origin/main' into main",
+      "timestamp": "2023-12-19T02:13:21+09:00",
+      "tree_id": "21dadb736caea932631334f47f980981c2d72e0d",
+      "url": "https://github.com/guitarrapc/githubactions-lab/commit/bff7f6c1e52192327a6a7963669c91c8e04ce0b7"
     },
     "pusher": {
       "email": "3856350+guitarrapc@users.noreply.github.com",
@@ -162,7 +180,7 @@
       },
       "private": false,
       "pulls_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls{/number}",
-      "pushed_at": 1702919427,
+      "pushed_at": 1702919602,
       "releases_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/releases{/id}",
       "size": 1486,
       "ssh_url": "git@github.com:guitarrapc/githubactions-lab.git",
@@ -215,15 +233,15 @@
   "ref_type": "branch",
   "secret_source": "Actions",
   "workflow_ref": "guitarrapc/githubactions-lab/.github/workflows/auto_dump_context.yaml@refs/heads/main",
-  "workflow_sha": "011066aa1673b0d8f735f7c554fdb5771e56825c",
+  "workflow_sha": "bff7f6c1e52192327a6a7963669c91c8e04ce0b7",
   "workspace": "/home/runner/work/githubactions-lab/githubactions-lab",
   "action": "__run_2",
   "event_path": "/home/runner/work/_temp/_github_workflow/event.json",
   "action_repository": "",
   "action_ref": "",
-  "path": "/home/runner/work/_temp/_runner_file_commands/add_path_d209f027-4327-4536-ad46-57352ef867f5",
-  "env": "/home/runner/work/_temp/_runner_file_commands/set_env_d209f027-4327-4536-ad46-57352ef867f5",
-  "step_summary": "/home/runner/work/_temp/_runner_file_commands/step_summary_d209f027-4327-4536-ad46-57352ef867f5",
-  "state": "/home/runner/work/_temp/_runner_file_commands/save_state_d209f027-4327-4536-ad46-57352ef867f5",
-  "output": "/home/runner/work/_temp/_runner_file_commands/set_output_d209f027-4327-4536-ad46-57352ef867f5"
+  "path": "/home/runner/work/_temp/_runner_file_commands/add_path_4f9dfafb-ea55-4593-8182-fc87953ffaee",
+  "env": "/home/runner/work/_temp/_runner_file_commands/set_env_4f9dfafb-ea55-4593-8182-fc87953ffaee",
+  "step_summary": "/home/runner/work/_temp/_runner_file_commands/step_summary_4f9dfafb-ea55-4593-8182-fc87953ffaee",
+  "state": "/home/runner/work/_temp/_runner_file_commands/save_state_4f9dfafb-ea55-4593-8182-fc87953ffaee",
+  "output": "/home/runner/work/_temp/_runner_file_commands/set_output_4f9dfafb-ea55-4593-8182-fc87953ffaee"
 }
