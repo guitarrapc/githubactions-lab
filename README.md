@@ -2255,6 +2255,15 @@ jobs:
       - name: cat foo.txt
         run: cat ./output/bin/foo.txt
 
+  download-all:
+    needs: [upload-single, upload-directory, upload-targz]
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/download-artifact@v4
+      - name: ls
+        run: ls -lR
+
 ```
 
 ## Checkout faster with Git sparse-checkout
