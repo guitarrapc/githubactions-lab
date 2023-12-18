@@ -1,14 +1,14 @@
 {
-  "token": "ghs_a7Fg1O5QatS3OmwRB0SjhedsSIKCL629a91v",
+  "token": "ghs_HYzzmfWkUkdq02xIJY18qWCkVywoFc15zzzt",
   "job": "dump-context",
   "ref": "refs/heads/main",
-  "sha": "75dc1c0bae44b6f8c10364ee7aaf8cc10bd23a01",
+  "sha": "71c4c7cf66ee24e3ac5c38f9eb0360d7b8d02ef4",
   "repository": "guitarrapc/githubactions-lab",
   "repository_owner": "guitarrapc",
   "repository_owner_id": "3856350",
   "repositoryUrl": "git://github.com/guitarrapc/githubactions-lab.git",
-  "run_id": "7175292401",
-  "run_number": "576",
+  "run_id": "7251199632",
+  "run_number": "599",
   "retention_days": "90",
   "run_attempt": "1",
   "artifact_cache_size_limit": "10",
@@ -20,41 +20,41 @@
   "actor": "guitarrapc",
   "triggering_actor": "guitarrapc",
   "workflow": "auto dump context",
-  "head_ref": "dependabot/github_actions/actions/setup-dotnet-4",
+  "head_ref": "dependabot/github_actions/actions/download-artifact-4",
   "base_ref": "main",
   "event_name": "pull_request",
   "event": {
     "action": "closed",
-    "number": 143,
+    "number": 146,
     "pull_request": {
       "_links": {
         "comments": {
-          "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/issues/143/comments"
+          "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/issues/146/comments"
         },
         "commits": {
-          "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/143/commits"
+          "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/146/commits"
         },
         "html": {
-          "href": "https://github.com/guitarrapc/githubactions-lab/pull/143"
+          "href": "https://github.com/guitarrapc/githubactions-lab/pull/146"
         },
         "issue": {
-          "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/issues/143"
+          "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/issues/146"
         },
         "review_comment": {
           "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/comments{/number}"
         },
         "review_comments": {
-          "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/143/comments"
+          "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/146/comments"
         },
         "self": {
-          "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/143"
+          "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/146"
         },
         "statuses": {
-          "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/statuses/ba012d837b9758989df81439236ecf90464e54b8"
+          "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/statuses/1f67d9db52d3711785e7d2b5157f4185c58f54dd"
         }
       },
       "active_lock_reason": null,
-      "additions": 6,
+      "additions": 5,
       "assignee": null,
       "assignees": [],
       "author_association": "CONTRIBUTOR",
@@ -155,9 +155,9 @@
           },
           "private": false,
           "pulls_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls{/number}",
-          "pushed_at": "2023-12-12T00:42:37Z",
+          "pushed_at": "2023-12-18T16:50:18Z",
           "releases_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/releases{/id}",
-          "size": 1370,
+          "size": 1486,
           "squash_merge_commit_message": "COMMIT_MESSAGES",
           "squash_merge_commit_title": "COMMIT_OR_PR_TITLE",
           "ssh_url": "git@github.com:guitarrapc/githubactions-lab.git",
@@ -181,7 +181,7 @@
           "watchers_count": 33,
           "web_commit_signoff_required": false
         },
-        "sha": "1a2bdb630bbb5ca7a0089e1abfdc568571ec2f77",
+        "sha": "aa0ea19603badae24cd1384aed1244904471105f",
         "user": {
           "avatar_url": "https://avatars.githubusercontent.com/u/3856350?v=4",
           "events_url": "https://api.github.com/users/guitarrapc/events{/privacy}",
@@ -203,20 +203,20 @@
           "url": "https://api.github.com/users/guitarrapc"
         }
       },
-      "body": "Bumps [actions/setup-dotnet](https://github.com/actions/setup-dotnet) from 3 to 4.\n<details>\n<summary>Release notes</summary>\n<p><em>Sourced from <a href=\"https://github.com/actions/setup-dotnet/releases\">actions/setup-dotnet's releases</a>.</em></p>\n<blockquote>\n<h2>v4.0.0</h2>\n<h2>What's Changed</h2>\n<p>In the scope of this release, the version of the Node.js runtime was updated to 20. The majority of dependencies were updated to the latest versions. From now on, the code for the setup-dotnet will run on Node.js 20 instead of Node.js 16.</p>\n<p><strong>Breaking changes</strong></p>\n<p>Update Node.js runtime to version 20 by <a href=\"https://github.com/harithavattikuti\"><code>@​harithavattikuti</code></a> in <a href=\"https://redirect.github.com/actions/setup-dotnet/issues/484\">#484</a></p>\n<p><strong>Non-breaking changes</strong></p>\n<ul>\n<li>\n<p>Refactor installer by <a href=\"https://github.com/nikolai-laevskii\"><code>@​nikolai-laevskii</code></a> in <a href=\"https://redirect.github.com/actions/setup-dotnet/pull/432\">actions/setup-dotnet#432</a></p>\n</li>\n<li>\n<p>Allow json comments by <a href=\"https://github.com/nikolai-laevskii\"><code>@​nikolai-laevskii</code></a> in <a href=\"https://redirect.github.com/actions/setup-dotnet/pull/431\">actions/setup-dotnet#431</a></p>\n</li>\n<li>\n<p>Sequential version install fix by <a href=\"https://github.com/nikolai-laevskii\"><code>@​nikolai-laevskii</code></a> in <a href=\"https://redirect.github.com/actions/setup-dotnet/pull/433\">actions/setup-dotnet#433</a>\nsetup-dotnet@v3 used to overwrite dotnet executable on each action run, which was causing action to fail on some occasions due\nto executable being still in use. In setup-dotnet@v4 we solved this issue by adding another install-script run that installs LTS version of\ndotnet executable and uses it for all subsequent dotnet installations. The first install-script run conducts the actual download only once per <strong>workflow.</strong></p>\n</li>\n<li>\n<p>Update fast-xml-parser and dotnet installer scripts by <a href=\"https://github.com/IvanZosimov\"><code>@​IvanZosimov</code></a> in <a href=\"https://redirect.github.com/actions/setup-dotnet/pull/437\">actions/setup-dotnet#437</a></p>\n</li>\n<li>\n<p>Update dependencies by <a href=\"https://github.com/IvanZosimov\"><code>@​IvanZosimov</code></a> in <a href=\"https://redirect.github.com/actions/setup-dotnet/pull/440\">actions/setup-dotnet#440</a></p>\n</li>\n<li>\n<p>Bump word-wrap from 1.2.3 to 1.2.4 by <a href=\"https://github.com/dependabot\"><code>@​dependabot</code></a> in <a href=\"https://redirect.github.com/actions/setup-dotnet/pull/444\">actions/setup-dotnet#444</a></p>\n</li>\n<li>\n<p>Update installers by <a href=\"https://github.com/nikolai-laevskii\"><code>@​nikolai-laevskii</code></a> in <a href=\"https://redirect.github.com/actions/setup-dotnet/pull/462\">actions/setup-dotnet#462</a></p>\n</li>\n<li>\n<p>Update semver by <a href=\"https://github.com/dmitry-shibanov\"><code>@​dmitry-shibanov</code></a> in <a href=\"https://redirect.github.com/actions/setup-dotnet/pull/468\">actions/setup-dotnet#468</a></p>\n</li>\n</ul>\n<h2>New Contributors</h2>\n<ul>\n<li><a href=\"https://github.com/HarithaVattikuti\"><code>@​HarithaVattikuti</code></a> made their first contribution in <a href=\"https://redirect.github.com/actions/setup-dotnet/pull/484\">actions/setup-dotnet#484</a></li>\n</ul>\n<p><strong>Full Changelog</strong>: <a href=\"https://github.com/actions/setup-dotnet/compare/v3...v4.0.0\">https://github.com/actions/setup-dotnet/compare/v3...v4.0.0</a></p>\n<h2>v3.2.0</h2>\n<h2>What's Changed</h2>\n<p>In scope of this minor release, the ability to cache the NuGet <code>global-packages</code> folder was added in <a href=\"https://redirect.github.com/actions/setup-dotnet/pull/303\">actions/setup-dotnet#303</a> by <a href=\"https://github.com/nogic1008\"><code>@​nogic1008</code></a></p>\n<p>For caching, the action uses the <a href=\"https://github.com/actions/toolkit/tree/main/packages/cache\"><code>@​toolkit/cache</code></a> library under the hood, which in turn allows getting rid of configuring the <a href=\"https://github.com/actions/cache\"><code>@​actions/cache</code></a> action separately.</p>\n<p>Such input parameters as <code>cache</code> and <code>cache-dependency-path</code> were added. The <code>cache</code> input is optional, and caching is turned off by default, <code>cache-dependency-path</code> is used to specify the path to a dependency file - <code>packages.lock.json</code>.</p>\n<p><strong>Example of use-case:</strong></p>\n<pre lang=\"yaml\"><code>- uses: actions/setup-dotnet@v3\n  with:\n    dotnet-version: 6.x\n    cache: true\n    cache-dependency-path: subdir/packages.lock.json\n</code></pre>\n<p>More details can be found in the <a href=\"https://github.com/actions/setup-dotnet#caching-nuget-packages\">action's documentation</a>.</p>\n<p><strong>Full Changelog</strong>: <a href=\"https://github.com/actions/setup-dotnet/compare/v3...v3.2.0\">https://github.com/actions/setup-dotnet/compare/v3...v3.2.0</a></p>\n<!-- raw HTML omitted -->\n</blockquote>\n<p>... (truncated)</p>\n</details>\n<details>\n<summary>Commits</summary>\n<ul>\n<li><a href=\"https://github.com/actions/setup-dotnet/commit/4d6c8fcf3c8f7a60068d26b594648e99df24cee3\"><code>4d6c8fc</code></a> Upgrade Node to v20 (<a href=\"https://redirect.github.com/actions/setup-dotnet/issues/484\">#484</a>)</li>\n<li><a href=\"https://github.com/actions/setup-dotnet/commit/2216f56ae1eec353f06abd464e2ec435fa5f5d43\"><code>2216f56</code></a> Update semver (<a href=\"https://redirect.github.com/actions/setup-dotnet/issues/468\">#468</a>)</li>\n<li><a href=\"https://github.com/actions/setup-dotnet/commit/736bc6dea68eb71addebd0c89e1200178e145f0e\"><code>736bc6d</code></a> Merge pull request <a href=\"https://redirect.github.com/actions/setup-dotnet/issues/462\">#462</a> from akv-platform/update-installers</li>\n<li><a href=\"https://github.com/actions/setup-dotnet/commit/f5526c2d1bfe45e0d078b8929dc379a93229ca3b\"><code>f5526c2</code></a> Update installers</li>\n<li><a href=\"https://github.com/actions/setup-dotnet/commit/4dba25fa3156706981607e1598b263e056dc3008\"><code>4dba25f</code></a> Bump word-wrap from 1.2.3 to 1.2.4 (<a href=\"https://redirect.github.com/actions/setup-dotnet/issues/444\">#444</a>)</li>\n<li><a href=\"https://github.com/actions/setup-dotnet/commit/ada8800330ab5b086010be13121dd25e9297111e\"><code>ada8800</code></a> Bump semver from 6.3.0 to 6.3.1 (<a href=\"https://redirect.github.com/actions/setup-dotnet/issues/443\">#443</a>)</li>\n<li><a href=\"https://github.com/actions/setup-dotnet/commit/e1749123a8f5e9db8abf5ec8867696143bf9bf47\"><code>e174912</code></a> Update dependencies (<a href=\"https://redirect.github.com/actions/setup-dotnet/issues/440\">#440</a>)</li>\n<li><a href=\"https://github.com/actions/setup-dotnet/commit/a6be55a915808728eafbfb7fcba6275352dcf6e8\"><code>a6be55a</code></a> Update fast-xml-parser and dotnet installer scripts (<a href=\"https://redirect.github.com/actions/setup-dotnet/issues/437\">#437</a>)</li>\n<li><a href=\"https://github.com/actions/setup-dotnet/commit/9b407708251d576f3dac6969e4c0c453a00ff5d5\"><code>9b40770</code></a> Merge pull request <a href=\"https://redirect.github.com/actions/setup-dotnet/issues/433\">#433</a> from akv-platform/sequential-version-install-fix</li>\n<li><a href=\"https://github.com/actions/setup-dotnet/commit/48277343a530e8f1def38c41afa05da090100cf8\"><code>4827734</code></a> Reduce number of e2e tests</li>\n<li>Additional commits viewable in <a href=\"https://github.com/actions/setup-dotnet/compare/v3...v4\">compare view</a></li>\n</ul>\n</details>\n<br />\n\n\n[![Dependabot compatibility score](https://dependabot-badges.githubapp.com/badges/compatibility_score?dependency-name=actions/setup-dotnet&package-manager=github_actions&previous-version=3&new-version=4)](https://docs.github.com/en/github/managing-security-vulnerabilities/about-dependabot-security-updates#about-compatibility-scores)\n\nDependabot will resolve any conflicts with this PR as long as you don't alter it yourself. You can also trigger a rebase manually by commenting `@dependabot rebase`.\n\n[//]: # (dependabot-automerge-start)\n[//]: # (dependabot-automerge-end)\n\n---\n\n<details>\n<summary>Dependabot commands and options</summary>\n<br />\n\nYou can trigger Dependabot actions by commenting on this PR:\n- `@dependabot rebase` will rebase this PR\n- `@dependabot recreate` will recreate this PR, overwriting any edits that have been made to it\n- `@dependabot merge` will merge this PR after your CI passes on it\n- `@dependabot squash and merge` will squash and merge this PR after your CI passes on it\n- `@dependabot cancel merge` will cancel a previously requested merge and block automerging\n- `@dependabot reopen` will reopen this PR if it is closed\n- `@dependabot close` will close this PR and stop Dependabot recreating it. You can achieve the same result by closing it manually\n- `@dependabot show <dependency name> ignore conditions` will show all of the ignore conditions of the specified dependency\n- `@dependabot ignore this major version` will close this PR and stop Dependabot creating any more for this major version (unless you reopen the PR or upgrade to it yourself)\n- `@dependabot ignore this minor version` will close this PR and stop Dependabot creating any more for this minor version (unless you reopen the PR or upgrade to it yourself)\n- `@dependabot ignore this dependency` will close this PR and stop Dependabot creating any more for this dependency (unless you reopen the PR or upgrade to it yourself)\n\n\n</details>",
-      "changed_files": 5,
-      "closed_at": "2023-12-12T00:42:37Z",
+      "body": "Bumps [actions/download-artifact](https://github.com/actions/download-artifact) from 3 to 4.\n<details>\n<summary>Release notes</summary>\n<p><em>Sourced from <a href=\"https://github.com/actions/download-artifact/releases\">actions/download-artifact's releases</a>.</em></p>\n<blockquote>\n<h2>v4.0.0</h2>\n<h2>What's Changed</h2>\n<p>The release of upload-artifact@v4 and download-artifact@v4 are major changes to the backend architecture of Artifacts. They have numerous performance and behavioral improvements.</p>\n<p>For more information, see the <a href=\"https://github.com/actions/toolkit/tree/main/packages/artifact\"><code>@​actions/artifact</code></a> documentation.</p>\n<h2>New Contributors</h2>\n<ul>\n<li><a href=\"https://github.com/bflad\"><code>@​bflad</code></a> made their first contribution in <a href=\"https://redirect.github.com/actions/download-artifact/pull/194\">actions/download-artifact#194</a></li>\n</ul>\n<p><strong>Full Changelog</strong>: <a href=\"https://github.com/actions/download-artifact/compare/v3...v4.0.0\">https://github.com/actions/download-artifact/compare/v3...v4.0.0</a></p>\n<h2>v3.0.2</h2>\n<ul>\n<li>Bump <code>@actions/artifact</code> to v1.1.1 - <a href=\"https://redirect.github.com/actions/download-artifact/pull/195\">actions/download-artifact#195</a></li>\n<li>Fixed a bug in Node16 where if an HTTP download finished too quickly (&lt;1ms, e.g. when it's mocked) we attempt to delete a temp file that has not been created yet <a href=\"hhttps://redirect.github.com/actions/toolkit/pull/1278\">actions/toolkit#1278</a></li>\n</ul>\n<h2>v3.0.1</h2>\n<ul>\n<li><a href=\"https://redirect.github.com/actions/download-artifact/pull/178\">Bump <code>@​actions/core</code> to 1.10.0</a></li>\n</ul>\n</blockquote>\n</details>\n<details>\n<summary>Commits</summary>\n<ul>\n<li><a href=\"https://github.com/actions/download-artifact/commit/7a1cd3216ca9260cd8022db641d960b1db4d1be4\"><code>7a1cd32</code></a> Merge pull request <a href=\"https://redirect.github.com/actions/download-artifact/issues/246\">#246</a> from actions/v4-beta</li>\n<li><a href=\"https://github.com/actions/download-artifact/commit/8f32874a49903ea488c5e7d476a9173e8706f409\"><code>8f32874</code></a> licensed cache</li>\n<li><a href=\"https://github.com/actions/download-artifact/commit/b5ff8444b1c4fcec8131f3cb1ddade813ddfacb1\"><code>b5ff844</code></a> Merge pull request <a href=\"https://redirect.github.com/actions/download-artifact/issues/245\">#245</a> from actions/robherley/v4-documentation</li>\n<li><a href=\"https://github.com/actions/download-artifact/commit/f07a0f73f51b3f1d41667c782c821b9667da9d19\"><code>f07a0f7</code></a> Update README.md</li>\n<li><a href=\"https://github.com/actions/download-artifact/commit/7226129829bb686fdff47bd63bbd0d1373993a84\"><code>7226129</code></a> update test workflow to use different artifact names for matrix</li>\n<li><a href=\"https://github.com/actions/download-artifact/commit/ada9446619b84dd8a557aaaec3b79b58c4986cdf\"><code>ada9446</code></a> update docs and bump <code>@​actions/artifact</code></li>\n<li><a href=\"https://github.com/actions/download-artifact/commit/7eafc8b729ba790ce8f2cee54be8ad6257af4c7c\"><code>7eafc8b</code></a> Merge pull request <a href=\"https://redirect.github.com/actions/download-artifact/issues/244\">#244</a> from actions/robherley/bump-toolkit</li>\n<li><a href=\"https://github.com/actions/download-artifact/commit/3132d12662b5915f20cdbf449465896962101abf\"><code>3132d12</code></a> consume latest toolkit</li>\n<li><a href=\"https://github.com/actions/download-artifact/commit/5be1d3867182a382bc59f2775e002595f487aa88\"><code>5be1d38</code></a> Merge pull request <a href=\"https://redirect.github.com/actions/download-artifact/issues/243\">#243</a> from actions/robherley/v4-beta-updates</li>\n<li><a href=\"https://github.com/actions/download-artifact/commit/465b526e63559575a64716cdbb755bc78dfb263b\"><code>465b526</code></a> consume latest <code>@​actions/toolkit</code></li>\n<li>Additional commits viewable in <a href=\"https://github.com/actions/download-artifact/compare/v3...v4\">compare view</a></li>\n</ul>\n</details>\n<br />\n\n\n[![Dependabot compatibility score](https://dependabot-badges.githubapp.com/badges/compatibility_score?dependency-name=actions/download-artifact&package-manager=github_actions&previous-version=3&new-version=4)](https://docs.github.com/en/github/managing-security-vulnerabilities/about-dependabot-security-updates#about-compatibility-scores)\n\nDependabot will resolve any conflicts with this PR as long as you don't alter it yourself. You can also trigger a rebase manually by commenting `@dependabot rebase`.\n\n[//]: # (dependabot-automerge-start)\n[//]: # (dependabot-automerge-end)\n\n---\n\n<details>\n<summary>Dependabot commands and options</summary>\n<br />\n\nYou can trigger Dependabot actions by commenting on this PR:\n- `@dependabot rebase` will rebase this PR\n- `@dependabot recreate` will recreate this PR, overwriting any edits that have been made to it\n- `@dependabot merge` will merge this PR after your CI passes on it\n- `@dependabot squash and merge` will squash and merge this PR after your CI passes on it\n- `@dependabot cancel merge` will cancel a previously requested merge and block automerging\n- `@dependabot reopen` will reopen this PR if it is closed\n- `@dependabot close` will close this PR and stop Dependabot recreating it. You can achieve the same result by closing it manually\n- `@dependabot show <dependency name> ignore conditions` will show all of the ignore conditions of the specified dependency\n- `@dependabot ignore this major version` will close this PR and stop Dependabot creating any more for this major version (unless you reopen the PR or upgrade to it yourself)\n- `@dependabot ignore this minor version` will close this PR and stop Dependabot creating any more for this minor version (unless you reopen the PR or upgrade to it yourself)\n- `@dependabot ignore this dependency` will close this PR and stop Dependabot creating any more for this dependency (unless you reopen the PR or upgrade to it yourself)\n\n\n</details>",
+      "changed_files": 3,
+      "closed_at": "2023-12-18T16:50:18Z",
       "comments": 0,
-      "comments_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/issues/143/comments",
+      "comments_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/issues/146/comments",
       "commits": 1,
-      "commits_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/143/commits",
-      "created_at": "2023-12-11T15:09:35Z",
-      "deletions": 6,
-      "diff_url": "https://github.com/guitarrapc/githubactions-lab/pull/143.diff",
+      "commits_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/146/commits",
+      "created_at": "2023-12-18T15:48:57Z",
+      "deletions": 5,
+      "diff_url": "https://github.com/guitarrapc/githubactions-lab/pull/146.diff",
       "draft": false,
       "head": {
-        "label": "guitarrapc:dependabot/github_actions/actions/setup-dotnet-4",
-        "ref": "dependabot/github_actions/actions/setup-dotnet-4",
+        "label": "guitarrapc:dependabot/github_actions/actions/download-artifact-4",
+        "ref": "dependabot/github_actions/actions/download-artifact-4",
         "repo": {
           "allow_auto_merge": false,
           "allow_forking": true,
@@ -310,9 +310,9 @@
           },
           "private": false,
           "pulls_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls{/number}",
-          "pushed_at": "2023-12-12T00:42:37Z",
+          "pushed_at": "2023-12-18T16:50:18Z",
           "releases_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/releases{/id}",
-          "size": 1370,
+          "size": 1486,
           "squash_merge_commit_message": "COMMIT_MESSAGES",
           "squash_merge_commit_title": "COMMIT_OR_PR_TITLE",
           "ssh_url": "git@github.com:guitarrapc/githubactions-lab.git",
@@ -336,7 +336,7 @@
           "watchers_count": 33,
           "web_commit_signoff_required": false
         },
-        "sha": "ba012d837b9758989df81439236ecf90464e54b8",
+        "sha": "1f67d9db52d3711785e7d2b5157f4185c58f54dd",
         "user": {
           "avatar_url": "https://avatars.githubusercontent.com/u/3856350?v=4",
           "events_url": "https://api.github.com/users/guitarrapc/events{/privacy}",
@@ -358,9 +358,9 @@
           "url": "https://api.github.com/users/guitarrapc"
         }
       },
-      "html_url": "https://github.com/guitarrapc/githubactions-lab/pull/143",
-      "id": 1639033687,
-      "issue_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/issues/143",
+      "html_url": "https://github.com/guitarrapc/githubactions-lab/pull/146",
+      "id": 1648854277,
+      "issue_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/issues/146",
       "labels": [
         {
           "color": "0366d6",
@@ -374,11 +374,11 @@
       ],
       "locked": false,
       "maintainer_can_modify": false,
-      "merge_commit_sha": "75dc1c0bae44b6f8c10364ee7aaf8cc10bd23a01",
+      "merge_commit_sha": "71c4c7cf66ee24e3ac5c38f9eb0360d7b8d02ef4",
       "mergeable": null,
       "mergeable_state": "unknown",
       "merged": true,
-      "merged_at": "2023-12-12T00:42:37Z",
+      "merged_at": "2023-12-18T16:50:18Z",
       "merged_by": {
         "avatar_url": "https://avatars.githubusercontent.com/u/3856350?v=4",
         "events_url": "https://api.github.com/users/guitarrapc/events{/privacy}",
@@ -400,20 +400,20 @@
         "url": "https://api.github.com/users/guitarrapc"
       },
       "milestone": null,
-      "node_id": "PR_kwDOD1icfM5hsatX",
-      "number": 143,
-      "patch_url": "https://github.com/guitarrapc/githubactions-lab/pull/143.patch",
+      "node_id": "PR_kwDOD1icfM5iR4UF",
+      "number": 146,
+      "patch_url": "https://github.com/guitarrapc/githubactions-lab/pull/146.patch",
       "rebaseable": null,
       "requested_reviewers": [],
       "requested_teams": [],
       "review_comment_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/comments{/number}",
       "review_comments": 0,
-      "review_comments_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/143/comments",
+      "review_comments_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/146/comments",
       "state": "closed",
-      "statuses_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/statuses/ba012d837b9758989df81439236ecf90464e54b8",
-      "title": "chore(deps): bump actions/setup-dotnet from 3 to 4",
-      "updated_at": "2023-12-12T00:42:38Z",
-      "url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/143",
+      "statuses_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/statuses/1f67d9db52d3711785e7d2b5157f4185c58f54dd",
+      "title": "chore(deps): bump actions/download-artifact from 3 to 4",
+      "updated_at": "2023-12-18T16:50:19Z",
+      "url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/146",
       "user": {
         "avatar_url": "https://avatars.githubusercontent.com/in/29110?v=4",
         "events_url": "https://api.github.com/users/dependabot%5Bbot%5D/events{/privacy}",
@@ -520,9 +520,9 @@
       },
       "private": false,
       "pulls_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls{/number}",
-      "pushed_at": "2023-12-12T00:42:37Z",
+      "pushed_at": "2023-12-18T16:50:18Z",
       "releases_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/releases{/id}",
-      "size": 1370,
+      "size": 1486,
       "ssh_url": "git@github.com:guitarrapc/githubactions-lab.git",
       "stargazers_count": 33,
       "stargazers_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/stargazers",
@@ -572,15 +572,15 @@
   "ref_type": "branch",
   "secret_source": "Actions",
   "workflow_ref": "guitarrapc/githubactions-lab/.github/workflows/auto_dump_context.yaml@refs/heads/main",
-  "workflow_sha": "75dc1c0bae44b6f8c10364ee7aaf8cc10bd23a01",
+  "workflow_sha": "71c4c7cf66ee24e3ac5c38f9eb0360d7b8d02ef4",
   "workspace": "/home/runner/work/githubactions-lab/githubactions-lab",
   "action": "__run_2",
   "event_path": "/home/runner/work/_temp/_github_workflow/event.json",
   "action_repository": "",
   "action_ref": "",
-  "path": "/home/runner/work/_temp/_runner_file_commands/add_path_bda0c627-171c-4df3-a4e5-12bdbc3e67ba",
-  "env": "/home/runner/work/_temp/_runner_file_commands/set_env_bda0c627-171c-4df3-a4e5-12bdbc3e67ba",
-  "step_summary": "/home/runner/work/_temp/_runner_file_commands/step_summary_bda0c627-171c-4df3-a4e5-12bdbc3e67ba",
-  "state": "/home/runner/work/_temp/_runner_file_commands/save_state_bda0c627-171c-4df3-a4e5-12bdbc3e67ba",
-  "output": "/home/runner/work/_temp/_runner_file_commands/set_output_bda0c627-171c-4df3-a4e5-12bdbc3e67ba"
+  "path": "/home/runner/work/_temp/_runner_file_commands/add_path_0ab93dfd-9f34-440a-940e-fb066fd13dcb",
+  "env": "/home/runner/work/_temp/_runner_file_commands/set_env_0ab93dfd-9f34-440a-940e-fb066fd13dcb",
+  "step_summary": "/home/runner/work/_temp/_runner_file_commands/step_summary_0ab93dfd-9f34-440a-940e-fb066fd13dcb",
+  "state": "/home/runner/work/_temp/_runner_file_commands/save_state_0ab93dfd-9f34-440a-940e-fb066fd13dcb",
+  "output": "/home/runner/work/_temp/_runner_file_commands/set_output_0ab93dfd-9f34-440a-940e-fb066fd13dcb"
 }
