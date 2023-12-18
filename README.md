@@ -2211,7 +2211,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 3
     steps:
-      - uses: actions/download-artifact@v3
+      - uses: actions/download-artifact@v4
         with:
           name: hoge.txt
           path: .
@@ -2225,7 +2225,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 3
     steps:
-      - uses: actions/download-artifact@v3
+      - uses: actions/download-artifact@v4
         with:
           name: directory
           path: ./directory
@@ -2240,7 +2240,7 @@ jobs:
     timeout-minutes: 3
     steps:
       # specify path: . to download tar.gz to current directory
-      - uses: actions/download-artifact@v3
+      - uses: actions/download-artifact@v4
         with:
           name: output.tar.gz
           path: .
