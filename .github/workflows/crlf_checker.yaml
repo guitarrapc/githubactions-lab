@@ -16,7 +16,7 @@ jobs:
           fetch-depth: 2 # detect on push
       # you can specify which file to detect.
       - id: changed-files
-        uses: tj-actions/changed-files@v26.1
+        uses: tj-actions/changed-files@v41
         with:
           separator: ","
           files: |

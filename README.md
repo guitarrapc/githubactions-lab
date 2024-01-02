@@ -2593,15 +2593,15 @@ jobs:
         with:
           fetch-depth: 2 # To retrieve the preceding commit.
       - name: Get changed files in the .github folder
-        id: changed-files-github
-        uses: tj-actions/changed-files@v26.1
+        id: changed-files
+        uses: tj-actions/changed-files@v41
         with:
           files: .github/**/*.{yml,yaml}
       - name: Run step if any file(s) in the .github folder change
-        if: ${{ steps.changed-files-github.outputs.any_changed == 'true' }}
+        if: ${{ steps.changed-files.outputs.any_changed == 'true' }}
         run: |
           echo "One or more files has changed."
-          echo "List all the files that have changed: ${{ steps.changed-files-github.outputs.all_changed_files }}"
+          echo "List all the files that have changed: ${{ steps.changed-files.outputs.all_changed_files }}"
           exit 1
 
 ```
