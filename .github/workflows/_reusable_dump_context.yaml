@@ -39,7 +39,7 @@ jobs:
         shell: bash
         run: |
           mkdir -p "${{ env.OUTPUT_PATH }}"
-          echo "$CONTEXT" | tee "${{ env.OUTPUT_PATH }}/${{ steps.file.outputs.name }}.json"
+          echo "$CONTEXT" | jq '.token="<reducted>"' | tee "${{ env.OUTPUT_PATH }}/${{ steps.file.outputs.name }}.json"
         env:
           CONTEXT: ${{ toJson(github) }}
           OUTPUT_PATH: ${{ inputs.output-path }}/github
