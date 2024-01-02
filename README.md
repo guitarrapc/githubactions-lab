@@ -2593,8 +2593,8 @@ jobs:
         with:
           fetch-depth: 2 # To retrieve the preceding commit.
       - name: Get changed files in the .github folder
-        id: changed-files-github
-        uses: tj-actions/changed-files@v26.1
+        id: changed-files
+        uses: tj-actions/changed-files@v41
         with:
           files: .github/**/*.{yml,yaml}
       - name: Run step if any file(s) in the .github folder change
