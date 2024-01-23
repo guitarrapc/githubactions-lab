@@ -21,7 +21,7 @@ jobs:
         with:
           dotnet-version: 8.0.x
       - run: dotnet build ./src/dotnet -c Release
-      - run: dotnet test ./src/dotnet -c Release
+      - run: dotnet test ./src/dotnet -c Release --logger GitHubActions --logger "console;verbosity=normal"
       - run: dotnet publish -c Release
       - uses: actions/upload-artifact@v3
         with:
@@ -37,7 +37,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - run: dotnet build ./src/dotnet -c Release
-      - run: dotnet test ./src/dotnet -c Release
+      - run: dotnet test ./src/dotnet -c Release --logger GitHubActions --logger "console;verbosity=normal"
       - run: dotnet publish ./src/dotnet -c Release -o ./out/dotnet-console-container
       - uses: actions/upload-artifact@v3
         with:
