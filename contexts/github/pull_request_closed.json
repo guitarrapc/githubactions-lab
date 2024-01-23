@@ -2,13 +2,13 @@
   "token": "<reducted>",
   "job": "dump-context",
   "ref": "refs/heads/main",
-  "sha": "fda3dc45cd446260e6949bb8748d9f98bb9eb1f6",
+  "sha": "ab3ac4851e39c6330695e03ca3284c92a37246b1",
   "repository": "guitarrapc/githubactions-lab",
   "repository_owner": "guitarrapc",
   "repository_owner_id": "3856350",
   "repositoryUrl": "git://github.com/guitarrapc/githubactions-lab.git",
-  "run_id": "7619766218",
-  "run_number": "686",
+  "run_id": "7624101821",
+  "run_number": "695",
   "retention_days": "90",
   "run_attempt": "1",
   "artifact_cache_size_limit": "10",
@@ -20,44 +20,44 @@
   "actor": "guitarrapc",
   "triggering_actor": "guitarrapc",
   "workflow": "auto dump context",
-  "head_ref": "dependabot/github_actions/tj-actions/changed-files-42",
+  "head_ref": "feature/release",
   "base_ref": "main",
   "event_name": "pull_request",
   "event": {
     "action": "closed",
-    "number": 152,
+    "number": 154,
     "pull_request": {
       "_links": {
         "comments": {
-          "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/issues/152/comments"
+          "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/issues/154/comments"
         },
         "commits": {
-          "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/152/commits"
+          "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/154/commits"
         },
         "html": {
-          "href": "https://github.com/guitarrapc/githubactions-lab/pull/152"
+          "href": "https://github.com/guitarrapc/githubactions-lab/pull/154"
         },
         "issue": {
-          "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/issues/152"
+          "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/issues/154"
         },
         "review_comment": {
           "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/comments{/number}"
         },
         "review_comments": {
-          "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/152/comments"
+          "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/154/comments"
         },
         "self": {
-          "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/152"
+          "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/154"
         },
         "statuses": {
-          "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/statuses/bd21de20c2d89fb7d952c8fba40129e2f8a059f7"
+          "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/statuses/543d57a790c901a8b78ee04ea4ebf1adeb5df05a"
         }
       },
       "active_lock_reason": null,
-      "additions": 4,
+      "additions": 929,
       "assignee": null,
       "assignees": [],
-      "author_association": "CONTRIBUTOR",
+      "author_association": "OWNER",
       "auto_merge": null,
       "base": {
         "label": "guitarrapc:main",
@@ -155,9 +155,9 @@
           },
           "private": false,
           "pulls_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls{/number}",
-          "pushed_at": "2024-01-23T01:32:17Z",
+          "pushed_at": "2024-01-23T10:08:06Z",
           "releases_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/releases{/id}",
-          "size": 1511,
+          "size": 1556,
           "squash_merge_commit_message": "COMMIT_MESSAGES",
           "squash_merge_commit_title": "COMMIT_OR_PR_TITLE",
           "ssh_url": "git@github.com:guitarrapc/githubactions-lab.git",
@@ -181,7 +181,7 @@
           "watchers_count": 34,
           "web_commit_signoff_required": false
         },
-        "sha": "a767648f7155b69323ca237d86ae3edb1fce3842",
+        "sha": "af6b0934484a5c5eb793188336923fc6109b98d6",
         "user": {
           "avatar_url": "https://avatars.githubusercontent.com/u/3856350?v=4",
           "events_url": "https://api.github.com/users/guitarrapc/events{/privacy}",
@@ -203,20 +203,20 @@
           "url": "https://api.github.com/users/guitarrapc"
         }
       },
-      "body": "Bumps [tj-actions/changed-files](https://github.com/tj-actions/changed-files) from 41 to 42.\n<details>\n<summary>Release notes</summary>\n<p><em>Sourced from <a href=\"https://github.com/tj-actions/changed-files/releases\">tj-actions/changed-files's releases</a>.</em></p>\n<blockquote>\n<h2>v42</h2>\n<h1>Changes in v42.0.0</h1>\n<h2>🔥🔥 BREAKING CHANGE 🔥🔥</h2>\n<ul>\n<li>Input file patterns that end with a <code>/</code> would now match all sub-files within the directory without requiring you to specify the globstar pattern.</li>\n</ul>\n<h3></h3>\n<pre lang=\"yaml\"><code>...\n      - name: Get changed files\n        id: changed-files\n        uses: tj-actions/changed-files@v42\n        with:\n          files: 'dir/'  # Would also be the same as dir/** \n</code></pre>\n<h2>What's Changed</h2>\n<ul>\n<li>Upgraded to v41.1.2 by <a href=\"https://github.com/tj-actions-bot\"><code>@​tj-actions-bot</code></a> in <a href=\"https://redirect.github.com/tj-actions/changed-files/pull/1869\">tj-actions/changed-files#1869</a></li>\n<li>chore(deps): update dependency prettier to v3.2.4 by <a href=\"https://github.com/renovate\"><code>@​renovate</code></a> in <a href=\"https://redirect.github.com/tj-actions/changed-files/pull/1871\">tj-actions/changed-files#1871</a></li>\n<li>fix: update input warning by <a href=\"https://github.com/jackton1\"><code>@​jackton1</code></a> in <a href=\"https://redirect.github.com/tj-actions/changed-files/pull/1870\">tj-actions/changed-files#1870</a></li>\n<li>rename: unsupported REST API inputs constant name by <a href=\"https://github.com/jackton1\"><code>@​jackton1</code></a> in <a href=\"https://redirect.github.com/tj-actions/changed-files/pull/1872\">tj-actions/changed-files#1872</a></li>\n<li>feat: add support for include/exclude all nested files when a directory is specified and ends with a slash by <a href=\"https://github.com/jackton1\"><code>@​jackton1</code></a> in <a href=\"https://redirect.github.com/tj-actions/changed-files/pull/1873\">tj-actions/changed-files#1873</a></li>\n</ul>\n<p><strong>Full Changelog</strong>: <a href=\"https://github.com/tj-actions/changed-files/compare/v41...v42.0.0\">https://github.com/tj-actions/changed-files/compare/v41...v42.0.0</a></p>\n<hr />\n<h2>v42.0.0</h2>\n<h2>🔥🔥 BREAKING CHANGE 🔥🔥</h2>\n<ul>\n<li>Input file patterns that end with a <code>/</code> would now match all sub-files within the directory without requiring you to specify the globstar pattern.</li>\n</ul>\n<h3></h3>\n<pre lang=\"yaml\"><code>...\n      - name: Get changed files\n        id: changed-files\n        uses: tj-actions/changed-files@v42\n        with:\n          files: 'dir/'  # Would also be the same as dir/** \n</code></pre>\n<h2>What's Changed</h2>\n<ul>\n<li>Upgraded to v41.1.2 by <a href=\"https://github.com/tj-actions-bot\"><code>@​tj-actions-bot</code></a> in <a href=\"https://redirect.github.com/tj-actions/changed-files/pull/1869\">tj-actions/changed-files#1869</a></li>\n<li>chore(deps): update dependency prettier to v3.2.4 by <a href=\"https://github.com/renovate\"><code>@​renovate</code></a> in <a href=\"https://redirect.github.com/tj-actions/changed-files/pull/1871\">tj-actions/changed-files#1871</a></li>\n<li>fix: update input warning by <a href=\"https://github.com/jackton1\"><code>@​jackton1</code></a> in <a href=\"https://redirect.github.com/tj-actions/changed-files/pull/1870\">tj-actions/changed-files#1870</a></li>\n<li>rename: unsupported REST API inputs constant name by <a href=\"https://github.com/jackton1\"><code>@​jackton1</code></a> in <a href=\"https://redirect.github.com/tj-actions/changed-files/pull/1872\">tj-actions/changed-files#1872</a></li>\n<li>feat: add support for include/exclude all nested files when a directory is specified and ends with a slash by <a href=\"https://github.com/jackton1\"><code>@​jackton1</code></a> in <a href=\"https://redirect.github.com/tj-actions/changed-files/pull/1873\">tj-actions/changed-files#1873</a></li>\n</ul>\n<!-- raw HTML omitted -->\n</blockquote>\n<p>... (truncated)</p>\n</details>\n<details>\n<summary>Changelog</summary>\n<p><em>Sourced from <a href=\"https://github.com/tj-actions/changed-files/blob/main/HISTORY.md\">tj-actions/changed-files's changelog</a>.</em></p>\n<blockquote>\n<h1>Changelog</h1>\n<h1><a href=\"https://github.com/tj-actions/changed-files/compare/v41.1.2...v42.0.0\">42.0.0</a> - (2024-01-18)</h1>\n<h2><!-- raw HTML omitted -->🚀 Features</h2>\n<ul>\n<li>Add support for include/exclude all nested files when a directory is specified and ends with a slash (<a href=\"https://redirect.github.com/tj-actions/changed-files/issues/1873\">#1873</a>) (<a href=\"https://github.com/tj-actions/changed-files/commit/ae82ed4ae04587b665efad2f206578aa6f0e8539\">ae82ed4</a>)  - (Tonye Jack)</li>\n</ul>\n<h2><!-- raw HTML omitted -->🐛 Bug Fixes</h2>\n<ul>\n<li>Update input warning (<a href=\"https://redirect.github.com/tj-actions/changed-files/issues/1870\">#1870</a>) (<a href=\"https://github.com/tj-actions/changed-files/commit/6c9dcea4432fd0eb2f3e07c9149eab2807ce44b2\">6c9dcea</a>)  - (Tonye Jack)</li>\n</ul>\n<h2><!-- raw HTML omitted -->📝 Rename</h2>\n<ul>\n<li>Unsupported REST API inputs constant name (<a href=\"https://redirect.github.com/tj-actions/changed-files/issues/1872\">#1872</a>) (<a href=\"https://github.com/tj-actions/changed-files/commit/cbd59070e8276b539ecdfa0f2316db7b1599ea0f\">cbd5907</a>)  - (Tonye Jack)</li>\n</ul>\n<h2><!-- raw HTML omitted -->⚙️ Miscellaneous Tasks</h2>\n<ul>\n<li><strong>deps:</strong> Update dependency prettier to v3.2.4 (<a href=\"https://github.com/tj-actions/changed-files/commit/79b060d4450764e6b54a73696c2d99134757db95\">79b060d</a>)  - (renovate[bot])</li>\n</ul>\n<h2><!-- raw HTML omitted -->⬆️ Upgrades</h2>\n<ul>\n<li>Upgraded to v41.1.2 (<a href=\"https://redirect.github.com/tj-actions/changed-files/issues/1869\">#1869</a>)</li>\n</ul>\n<p>Co-authored-by: jackton1 <a href=\"mailto:jackton1@users.noreply.github.com\">jackton1@users.noreply.github.com</a> (<a href=\"https://github.com/tj-actions/changed-files/commit/434b67ebc3051662cf28de12b8a7adb77aea522a\">434b67e</a>)  - (tj-actions[bot])</p>\n<h1><a href=\"https://github.com/tj-actions/changed-files/compare/v41.1.1...v41.1.2\">41.1.2</a> - (2024-01-17)</h1>\n<h2><!-- raw HTML omitted -->🚀 Features</h2>\n<ul>\n<li>Enhance error handling and working directory resolution (<a href=\"https://redirect.github.com/tj-actions/changed-files/issues/1859\">#1859</a>) (<a href=\"https://github.com/tj-actions/changed-files/commit/a60bf3759e069549b60c8da1284ec83e0398a1a4\">a60bf37</a>)  - (Tonye Jack)</li>\n</ul>\n<h2><!-- raw HTML omitted -->🐛 Bug Fixes</h2>\n<ul>\n<li>Bug with incorrect action path (<a href=\"https://redirect.github.com/tj-actions/changed-files/issues/1866\">#1866</a>) (<a href=\"https://github.com/tj-actions/changed-files/commit/3f8189989ba6fd9b3b9593ffe650236b3f1fcb55\">3f81899</a>)  - (Tonye Jack)</li>\n</ul>\n<h2><!-- raw HTML omitted -->⚙️ Miscellaneous Tasks</h2>\n<ul>\n<li><strong>deps:</strong> Update dependency <code>@​types/node</code> to v20.11.5 (<a href=\"https://github.com/tj-actions/changed-files/commit/cbda684547adc8c052d50711417fa61b428a9f88\">cbda684</a>)  - (renovate[bot])</li>\n<li><strong>deps:</strong> Update dependency prettier to v3.2.3 (<a href=\"https://github.com/tj-actions/changed-files/commit/67a1f54f6f5ec7ee87c57eb7876a7d6dfdcc59a1\">67a1f54</a>)  - (renovate[bot])</li>\n<li><strong>deps:</strong> Update tj-actions/eslint-changed-files action to v22 (<a href=\"https://redirect.github.com/tj-actions/changed-files/issues/1864\">#1864</a>) (<a href=\"https://github.com/tj-actions/changed-files/commit/99248a443855d73284abf52520f897dba851b914\">99248a4</a>)  - (renovate[bot])</li>\n<li><strong>deps:</strong> Update dependency <code>@​types/node</code> to v20.11.4 (<a href=\"https://github.com/tj-actions/changed-files/commit/878743189ba0ba42d467a736923b07102f0e348c\">8787431</a>)  - (renovate[bot])</li>\n<li><strong>deps:</strong> Update dependency <code>@​types/node</code> to v20.11.3 (<a href=\"https://github.com/tj-actions/changed-files/commit/98d1d84e2f7a404c425df4e44dceb74a03920ac8\">98d1d84</a>)  - (renovate[bot])</li>\n<li><strong>deps:</strong> Update typescript-eslint monorepo to v6.19.0 (<a href=\"https://github.com/tj-actions/changed-files/commit/bc46e4c4222c3926a70378d183f0b387d3a9e9a8\">bc46e4c</a>)  - (renovate[bot])</li>\n<li><strong>deps:</strong> Update dependency <code>@​types/node</code> to v20.11.2 (<a href=\"https://github.com/tj-actions/changed-files/commit/fba40673489d49e860c15a444c134d887ead1f3a\">fba4067</a>)  - (renovate[bot])</li>\n<li><strong>deps:</strong> Update dependency <code>@​types/node</code> to v20.11.1 (<a href=\"https://github.com/tj-actions/changed-files/commit/e4b86747326bc58eb230d62188ebdd66b73721a9\">e4b8674</a>)  - (renovate[bot])</li>\n<li><strong>deps:</strong> Lock file maintenance (<a href=\"https://github.com/tj-actions/changed-files/commit/bc2b5aef20add66cbe21d1093f0f1d37a353d376\">bc2b5ae</a>)  - (renovate[bot])</li>\n<li><strong>deps:</strong> Update dependency prettier to v3.2.2 (<a href=\"https://github.com/tj-actions/changed-files/commit/63c36a563a30544b4c03a8426277dca4b00e4fd1\">63c36a5</a>)  - (renovate[bot])</li>\n</ul>\n<h2><!-- raw HTML omitted -->⬆️ Upgrades</h2>\n<!-- raw HTML omitted -->\n</blockquote>\n<p>... (truncated)</p>\n</details>\n<details>\n<summary>Commits</summary>\n<ul>\n<li><a href=\"https://github.com/tj-actions/changed-files/commit/ae82ed4ae04587b665efad2f206578aa6f0e8539\"><code>ae82ed4</code></a> feat: add support for include/exclude all nested files when a directory is sp...</li>\n<li><a href=\"https://github.com/tj-actions/changed-files/commit/cbd59070e8276b539ecdfa0f2316db7b1599ea0f\"><code>cbd5907</code></a> rename: unsupported REST API inputs constant name (<a href=\"https://redirect.github.com/tj-actions/changed-files/issues/1872\">#1872</a>)</li>\n<li><a href=\"https://github.com/tj-actions/changed-files/commit/6c9dcea4432fd0eb2f3e07c9149eab2807ce44b2\"><code>6c9dcea</code></a> fix: update input warning (<a href=\"https://redirect.github.com/tj-actions/changed-files/issues/1870\">#1870</a>)</li>\n<li><a href=\"https://github.com/tj-actions/changed-files/commit/79b060d4450764e6b54a73696c2d99134757db95\"><code>79b060d</code></a> chore(deps): update dependency prettier to v3.2.4</li>\n<li><a href=\"https://github.com/tj-actions/changed-files/commit/434b67ebc3051662cf28de12b8a7adb77aea522a\"><code>434b67e</code></a> Upgraded to v41.1.2 (<a href=\"https://redirect.github.com/tj-actions/changed-files/issues/1869\">#1869</a>)</li>\n<li>See full diff in <a href=\"https://github.com/tj-actions/changed-files/compare/v41...v42\">compare view</a></li>\n</ul>\n</details>\n<br />\n\n\n[![Dependabot compatibility score](https://dependabot-badges.githubapp.com/badges/compatibility_score?dependency-name=tj-actions/changed-files&package-manager=github_actions&previous-version=41&new-version=42)](https://docs.github.com/en/github/managing-security-vulnerabilities/about-dependabot-security-updates#about-compatibility-scores)\n\nDependabot will resolve any conflicts with this PR as long as you don't alter it yourself. You can also trigger a rebase manually by commenting `@dependabot rebase`.\n\n[//]: # (dependabot-automerge-start)\n[//]: # (dependabot-automerge-end)\n\n---\n\n<details>\n<summary>Dependabot commands and options</summary>\n<br />\n\nYou can trigger Dependabot actions by commenting on this PR:\n- `@dependabot rebase` will rebase this PR\n- `@dependabot recreate` will recreate this PR, overwriting any edits that have been made to it\n- `@dependabot merge` will merge this PR after your CI passes on it\n- `@dependabot squash and merge` will squash and merge this PR after your CI passes on it\n- `@dependabot cancel merge` will cancel a previously requested merge and block automerging\n- `@dependabot reopen` will reopen this PR if it is closed\n- `@dependabot close` will close this PR and stop Dependabot recreating it. You can achieve the same result by closing it manually\n- `@dependabot show <dependency name> ignore conditions` will show all of the ignore conditions of the specified dependency\n- `@dependabot ignore this major version` will close this PR and stop Dependabot creating any more for this major version (unless you reopen the PR or upgrade to it yourself)\n- `@dependabot ignore this minor version` will close this PR and stop Dependabot creating any more for this minor version (unless you reopen the PR or upgrade to it yourself)\n- `@dependabot ignore this dependency` will close this PR and stop Dependabot creating any more for this dependency (unless you reopen the PR or upgrade to it yourself)\n\n\n</details>",
-      "changed_files": 3,
-      "closed_at": "2024-01-23T01:32:18Z",
+      "body": null,
+      "changed_files": 47,
+      "closed_at": "2024-01-23T10:08:07Z",
       "comments": 0,
-      "comments_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/issues/152/comments",
-      "commits": 1,
-      "commits_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/152/commits",
-      "created_at": "2024-01-22T15:09:55Z",
-      "deletions": 4,
-      "diff_url": "https://github.com/guitarrapc/githubactions-lab/pull/152.diff",
+      "comments_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/issues/154/comments",
+      "commits": 14,
+      "commits_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/154/commits",
+      "created_at": "2024-01-23T09:49:41Z",
+      "deletions": 555,
+      "diff_url": "https://github.com/guitarrapc/githubactions-lab/pull/154.diff",
       "draft": false,
       "head": {
-        "label": "guitarrapc:dependabot/github_actions/tj-actions/changed-files-42",
-        "ref": "dependabot/github_actions/tj-actions/changed-files-42",
+        "label": "guitarrapc:feature/release",
+        "ref": "feature/release",
         "repo": {
           "allow_auto_merge": false,
           "allow_forking": true,
@@ -310,9 +310,9 @@
           },
           "private": false,
           "pulls_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls{/number}",
-          "pushed_at": "2024-01-23T01:32:17Z",
+          "pushed_at": "2024-01-23T10:08:06Z",
           "releases_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/releases{/id}",
-          "size": 1511,
+          "size": 1556,
           "squash_merge_commit_message": "COMMIT_MESSAGES",
           "squash_merge_commit_title": "COMMIT_OR_PR_TITLE",
           "ssh_url": "git@github.com:guitarrapc/githubactions-lab.git",
@@ -336,7 +336,7 @@
           "watchers_count": 34,
           "web_commit_signoff_required": false
         },
-        "sha": "bd21de20c2d89fb7d952c8fba40129e2f8a059f7",
+        "sha": "543d57a790c901a8b78ee04ea4ebf1adeb5df05a",
         "user": {
           "avatar_url": "https://avatars.githubusercontent.com/u/3856350?v=4",
           "events_url": "https://api.github.com/users/guitarrapc/events{/privacy}",
@@ -358,27 +358,17 @@
           "url": "https://api.github.com/users/guitarrapc"
         }
       },
-      "html_url": "https://github.com/guitarrapc/githubactions-lab/pull/152",
-      "id": 1690023666,
-      "issue_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/issues/152",
-      "labels": [
-        {
-          "color": "0366d6",
-          "default": false,
-          "description": "Pull requests that update a dependency file",
-          "id": 5238199298,
-          "name": "dependencies",
-          "node_id": "LA_kwDOD1icfM8AAAABODiUAg",
-          "url": "https://api.github.com/repos/guitarrapc/githubactions-lab/labels/dependencies"
-        }
-      ],
+      "html_url": "https://github.com/guitarrapc/githubactions-lab/pull/154",
+      "id": 1691398019,
+      "issue_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/issues/154",
+      "labels": [],
       "locked": false,
       "maintainer_can_modify": false,
-      "merge_commit_sha": "fda3dc45cd446260e6949bb8748d9f98bb9eb1f6",
+      "merge_commit_sha": "ab3ac4851e39c6330695e03ca3284c92a37246b1",
       "mergeable": null,
       "mergeable_state": "unknown",
       "merged": true,
-      "merged_at": "2024-01-23T01:32:17Z",
+      "merged_at": "2024-01-23T10:08:07Z",
       "merged_by": {
         "avatar_url": "https://avatars.githubusercontent.com/u/3856350?v=4",
         "events_url": "https://api.github.com/users/guitarrapc/events{/privacy}",
@@ -400,39 +390,39 @@
         "url": "https://api.github.com/users/guitarrapc"
       },
       "milestone": null,
-      "node_id": "PR_kwDOD1icfM5ku7by",
-      "number": 152,
-      "patch_url": "https://github.com/guitarrapc/githubactions-lab/pull/152.patch",
+      "node_id": "PR_kwDOD1icfM5k0K-D",
+      "number": 154,
+      "patch_url": "https://github.com/guitarrapc/githubactions-lab/pull/154.patch",
       "rebaseable": null,
       "requested_reviewers": [],
       "requested_teams": [],
       "review_comment_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/comments{/number}",
-      "review_comments": 0,
-      "review_comments_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/152/comments",
+      "review_comments": 1,
+      "review_comments_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/154/comments",
       "state": "closed",
-      "statuses_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/statuses/bd21de20c2d89fb7d952c8fba40129e2f8a059f7",
-      "title": "chore(deps): bump tj-actions/changed-files from 41 to 42",
-      "updated_at": "2024-01-23T01:32:18Z",
-      "url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/152",
+      "statuses_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/statuses/543d57a790c901a8b78ee04ea4ebf1adeb5df05a",
+      "title": "feat: bump .NET Project to .NET 8",
+      "updated_at": "2024-01-23T10:08:07Z",
+      "url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/154",
       "user": {
-        "avatar_url": "https://avatars.githubusercontent.com/in/29110?v=4",
-        "events_url": "https://api.github.com/users/dependabot%5Bbot%5D/events{/privacy}",
-        "followers_url": "https://api.github.com/users/dependabot%5Bbot%5D/followers",
-        "following_url": "https://api.github.com/users/dependabot%5Bbot%5D/following{/other_user}",
-        "gists_url": "https://api.github.com/users/dependabot%5Bbot%5D/gists{/gist_id}",
+        "avatar_url": "https://avatars.githubusercontent.com/u/3856350?v=4",
+        "events_url": "https://api.github.com/users/guitarrapc/events{/privacy}",
+        "followers_url": "https://api.github.com/users/guitarrapc/followers",
+        "following_url": "https://api.github.com/users/guitarrapc/following{/other_user}",
+        "gists_url": "https://api.github.com/users/guitarrapc/gists{/gist_id}",
         "gravatar_id": "",
-        "html_url": "https://github.com/apps/dependabot",
-        "id": 49699333,
-        "login": "dependabot[bot]",
-        "node_id": "MDM6Qm90NDk2OTkzMzM=",
-        "organizations_url": "https://api.github.com/users/dependabot%5Bbot%5D/orgs",
-        "received_events_url": "https://api.github.com/users/dependabot%5Bbot%5D/received_events",
-        "repos_url": "https://api.github.com/users/dependabot%5Bbot%5D/repos",
+        "html_url": "https://github.com/guitarrapc",
+        "id": 3856350,
+        "login": "guitarrapc",
+        "node_id": "MDQ6VXNlcjM4NTYzNTA=",
+        "organizations_url": "https://api.github.com/users/guitarrapc/orgs",
+        "received_events_url": "https://api.github.com/users/guitarrapc/received_events",
+        "repos_url": "https://api.github.com/users/guitarrapc/repos",
         "site_admin": false,
-        "starred_url": "https://api.github.com/users/dependabot%5Bbot%5D/starred{/owner}{/repo}",
-        "subscriptions_url": "https://api.github.com/users/dependabot%5Bbot%5D/subscriptions",
-        "type": "Bot",
-        "url": "https://api.github.com/users/dependabot%5Bbot%5D"
+        "starred_url": "https://api.github.com/users/guitarrapc/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/guitarrapc/subscriptions",
+        "type": "User",
+        "url": "https://api.github.com/users/guitarrapc"
       }
     },
     "repository": {
@@ -520,9 +510,9 @@
       },
       "private": false,
       "pulls_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls{/number}",
-      "pushed_at": "2024-01-23T01:32:17Z",
+      "pushed_at": "2024-01-23T10:08:06Z",
       "releases_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/releases{/id}",
-      "size": 1511,
+      "size": 1556,
       "ssh_url": "git@github.com:guitarrapc/githubactions-lab.git",
       "stargazers_count": 34,
       "stargazers_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/stargazers",
@@ -572,15 +562,15 @@
   "ref_type": "branch",
   "secret_source": "Actions",
   "workflow_ref": "guitarrapc/githubactions-lab/.github/workflows/auto_dump_context.yaml@refs/heads/main",
-  "workflow_sha": "fda3dc45cd446260e6949bb8748d9f98bb9eb1f6",
+  "workflow_sha": "ab3ac4851e39c6330695e03ca3284c92a37246b1",
   "workspace": "/home/runner/work/githubactions-lab/githubactions-lab",
   "action": "__run_2",
   "event_path": "/home/runner/work/_temp/_github_workflow/event.json",
   "action_repository": "",
   "action_ref": "",
-  "path": "/home/runner/work/_temp/_runner_file_commands/add_path_716568f5-bdc8-4988-b790-e9b317441af7",
-  "env": "/home/runner/work/_temp/_runner_file_commands/set_env_716568f5-bdc8-4988-b790-e9b317441af7",
-  "step_summary": "/home/runner/work/_temp/_runner_file_commands/step_summary_716568f5-bdc8-4988-b790-e9b317441af7",
-  "state": "/home/runner/work/_temp/_runner_file_commands/save_state_716568f5-bdc8-4988-b790-e9b317441af7",
-  "output": "/home/runner/work/_temp/_runner_file_commands/set_output_716568f5-bdc8-4988-b790-e9b317441af7"
+  "path": "/home/runner/work/_temp/_runner_file_commands/add_path_fdd48998-6b7b-4af0-84c6-e6774bf481b7",
+  "env": "/home/runner/work/_temp/_runner_file_commands/set_env_fdd48998-6b7b-4af0-84c6-e6774bf481b7",
+  "step_summary": "/home/runner/work/_temp/_runner_file_commands/step_summary_fdd48998-6b7b-4af0-84c6-e6774bf481b7",
+  "state": "/home/runner/work/_temp/_runner_file_commands/save_state_fdd48998-6b7b-4af0-84c6-e6774bf481b7",
+  "output": "/home/runner/work/_temp/_runner_file_commands/set_output_fdd48998-6b7b-4af0-84c6-e6774bf481b7"
 }
