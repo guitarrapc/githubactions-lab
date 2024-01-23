@@ -32,7 +32,7 @@ jobs:
         run: dotnet --list-sdks
       - uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: 6.0.x
+          dotnet-version: 8.0.x
       - name: dotnet executable path after setup-dotnet (/usr/share/dotnet/dotnet)
         run: command -v dotnet
       - name: dotnet version under /usr/share/dotnet/sdk
@@ -44,11 +44,11 @@ jobs:
       - name: dotnet sdks after setup-dotnet
         run: dotnet --list-sdks
       - name: dotnet build
-        run: dotnet build ./src/dotnet/console/ -c Debug
+        run: dotnet build ./src/dotnet/ -c Debug
       - name: dotnet test
-        run: dotnet test ./src/dotnet/console-tests/ -c Debug --logger GitHubActions
+        run: dotnet test ./src/dotnet/ -c Debug --logger GitHubActions
       - name: dotnet publish
-        run: dotnet publish ./src/dotnet/console/ -c Debug -o ./out/dotnet-console
+        run: dotnet publish ./src/dotnet/ -c Debug -o ./out/dotnet-console
       - uses: actions/upload-artifact@v3
         with:
           name: dotnet-console

@@ -20,7 +20,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: 6.0.x
+          dotnet-version: 8.0.x
       # dotnet list
       - name: Obtain csproj to lint
         run: |
@@ -35,7 +35,7 @@ jobs:
         uses: xt0rted/dotnet-format-problem-matcher@v1
       # dotnet format is build-in from dotnet 6.0 sdk
       - name: Dotnet Format
-        run: dotnet format --verbosity diagnostic --exclude "console-fail-tests"
+        run: dotnet format --verbosity diagnostic --exclude "Sandbox.Fail.Tests"
         working-directory: ${{ env.SLN_ROOT }}
       # is change happen?
       - name: Check for modified files
