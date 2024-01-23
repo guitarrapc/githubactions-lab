@@ -3,9 +3,6 @@ on:
   workflow_dispatch:
   push:
     branches: ["main"]
-# permissions:
-#   issues: write # required to run `gh pull --label foo` filter.
-#   pull-requests: write # required to run `gh api` for pulls
 jobs:
   gh:
     runs-on: ubuntu-latest
