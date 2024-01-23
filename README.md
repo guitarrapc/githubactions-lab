@@ -1529,15 +1529,19 @@ You can use build context like `github.head_ref` or others. This means you can c
 # .github/workflows/concurrency_control.yaml
 
 name: "concurrency control"
+
+# only ${{ github }} context is available
+concurrency: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+
 on:
   workflow_dispatch:
-# only ${{ github }} context is available
-concurrency: concurrency_${{ github.head_ref }}
+
 jobs:
   long_job:
     runs-on: ubuntu-latest
     steps:
       - run: sleep 60s
+
 ```
 
 Specify `cancel-in-progress: true` will cancel parallel build.
@@ -1546,17 +1550,21 @@ Specify `cancel-in-progress: true` will cancel parallel build.
 # .github/workflows/concurrency_control_cancel_in_progress.yaml
 
 name: "concurrency control cancel in progress"
-on:
-  workflow_dispatch:
+
 # only ${{ github }} context is available
 concurrency:
-  group: concurrency_cancel_in_progress_${{ github.head_ref }}
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
   cancel-in-progress: true
+
+on:
+  workflow_dispatch:
+
 jobs:
   long_job:
     runs-on: ubuntu-latest
     steps:
       - run: sleep 60s
+
 ```
 
 ## Workflow dispatch and passing input
