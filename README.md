@@ -1349,13 +1349,14 @@ jobs:
         env:
           COMMIT_MESSAGES: ${{ toJson(github.event.commits.*.message) }}
       - run: echo "success() run when none of previous steps  have failed or been canceled"
-        if: success()
+        if: ${{ success() }}
       - run: echo "always() run even cancelled. it runs only when critical failure prevents the task."
-        if: always()
+        if: ${{ always() }}
       - run: echo "cancelled() run when Workflow cancelled."
-        if: cancelled()
+        if: ${{ cancelled() }}
       - run: echo "failure() run when any previous step of a job fails."
-        if: failure()
+        if: ${{ failure() }}
+
 ```
 
 ## Run write Multiline code
@@ -1734,7 +1735,7 @@ jobs:
     steps:
       # no check for main and tag
       - uses: rokroskar/workflow-run-cleanup-action@v0.3.3
-        if: "!startsWith(github.ref, 'refs/tags/') && github.ref != 'refs/heads/main'"
+        if: ${{ !startsWith(github.ref, 'refs/tags/') && github.ref != 'refs/heads/main' }}
         env:
           GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
 
@@ -1764,8 +1765,9 @@ jobs:
           output: ","
           pushBefore: main
       - run: echo "${{ steps.file_changes.outputs.files }}"
-      - if: contains(steps.file_changes.outputs.files, '.github/workflows/')
+      - if: ${{ contains(steps.file_changes.outputs.files, '.github/workflows/') }}
         run: echo changes contains .github/workflows/
+
 ```
 
 ## Schedule job on non-default branch
@@ -1814,14 +1816,23 @@ on:
   push:
     tags:
       - "[0-9]+.[0-9]+.[0-9]+*"
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: "tag: git tag you want create. (1.0.0)"
+        required: true
+
 jobs:
   create-release:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
+      - name: Setup tag
+        id: tag
+        run: echo "value=${{ inputs.tag || github.ref_name }}"
       # set release tag(*.*.*) to version string
-      - run: echo "hoge" > "hoge.${{ github.ref_name }}.txt"
-      - run: echo "fuga" > "fuga.${{ github.ref_name }}.txt"
+      - run: echo "hoge" > "hoge.${{ steps.tag.outputs.value }}.txt"
+      - run: echo "fuga" > "fuga.${{ steps.tag.outputs.value }}.txt"
       - run: ls -l
       # Create Releases
       - uses: actions/create-release@v1
@@ -1830,15 +1841,15 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           tag_name: ${{ github.ref }}
-          release_name: Ver.${{ github.ref_name }}
+          release_name: Ver.${{ steps.tag.outputs.value }}
       # Upload to Releases(hoge)
       - uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: hoge.${{ github.ref_name }}.txt
-          asset_name: hoge.${{ github.ref_name }}.txt
+          asset_path: hoge.${{ steps.tag.outputs.value }}.txt
+          asset_name: hoge.${{ steps.tag.outputs.value }}.txt
           asset_content_type: application/octet-stream
       # Upload to Releases(fuga)
       - uses: actions/upload-release-asset@v1
@@ -1846,8 +1857,8 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: fuga.${{ github.ref_name }}.txt
-          asset_name: fuga.${{ github.ref_name }}.txt
+          asset_path: fuga.${{ steps.tag.outputs.value }}.txt
+          asset_name: fuga.${{ steps.tag.outputs.value }}.txt
           asset_content_type: application/octet-stream
 
 ```
@@ -1884,13 +1895,14 @@ on:
     branches: ["main"]
 jobs:
   build:
-    if: "contains(toJSON(github.event.commits.*.message), '[build]')"
+    if: ${{ contains(toJSON(github.event.commits.*.message), '[build]') }}
     runs-on: ubuntu-latest
     timeout-minutes: 3
     steps:
       - run: echo "$COMMIT_MESSAGES"
         env:
           COMMIT_MESSAGES: ${{ toJson(github.event.commits.*.message) }}
+
 ```
 
 ## Trigger tag push only but skip on branch push
@@ -1970,7 +1982,8 @@ jobs:
       - run: echo "IS_HOGE=${{ contains(github.event.pull_request.labels.*.name, 'hoge') }}" >> "$GITHUB_ENV"
       - run: echo "${IS_HOGE}"
       - run: echo "run!"
-        if: env.IS_HOGE == 'true'
+        if: ${{ env.IS_HOGE == 'true' }}
+
 ```
 
 ## Skip ci on pull request title
@@ -1986,7 +1999,7 @@ name: skip ci pr title
 on: ["pull_request"]
 jobs:
   skip:
-    if: "!(contains(github.event.pull_request.title, '[skip ci]') || contains(github.event.pull_request.title, '[ci skip]'))"
+    if: ${{ !(contains(github.event.pull_request.title, '[skip ci]') || contains(github.event.pull_request.title, '[ci skip]')) }}
     runs-on: ubuntu-latest
     timeout-minutes: 3
     steps:
@@ -2002,6 +2015,7 @@ jobs:
     needs: skip
     steps:
       - run: echo run when not skipped
+
 ```
 
 ## Skip pr from fork repo
@@ -2025,11 +2039,12 @@ jobs:
   build:
     # push & my repo will trigger
     # pull_request on my repo will trigger
-    if: "(github.event == 'push' && github.repository_owner == 'guitarrapc') || startsWith(github.event.pull_request.head.label, 'guitarrapc:')"
+    if: ${{ (github.event == 'push' && github.repository_owner == 'guitarrapc') || startsWith(github.event.pull_request.head.label, 'guitarrapc:') }}
     runs-on: ubuntu-latest
     timeout-minutes: 3
     steps:
       - run: echo build
+
 ```
 
 ## Skip job when Draft PR
@@ -2047,11 +2062,12 @@ on:
     branches: ["main"]
 jobs:
   build:
-    if: "!(github.event.pull_request.draft)"
+    if: ${{ ! github.event.pull_request.draft }}
     runs-on: ubuntu-latest
     timeout-minutes: 3
     steps:
       - uses: actions/checkout@v4
+
 ```
 
 You can control behaviour with PR label.
@@ -2722,13 +2738,14 @@ jobs:
         id: pr
         with:
           state: closed
-      - if: success() && steps.pr.outputs.number
+      - if: ${{ success() && steps.pr.outputs.number }}
         run: |
           echo "PR #${PR_NUMBER}"
           echo "PR Title: ${PR_TITLE}"
         env:
           PR_NUMBER: ${{ steps.pr.outputs.number }}
           PR_TITLE: ${{ steps.pr.outputs.title }}
+
 ```
 
 ## Telemetry for GitHub Workflow execution
@@ -2763,13 +2780,13 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: 6.0.x
+          dotnet-version: 8.0.x
       - name: dotnet build
-        run: dotnet build ./src/dotnet/console/ -c Debug
+        run: dotnet build ./src/dotnet -c Debug
       - name: dotnet test
-        run: dotnet test ./src/dotnet/console-tests/ -c Debug --logger GitHubActions
+        run: dotnet test ./src/dotnet -c Debug --logger GitHubActions --logger "console;verbosity=normal"
       - name: dotnet publish
-        run: dotnet publish ./src/dotnet/console/ -c Debug -o ./out/dotnet-console
+        run: dotnet publish ./src/dotnet/ -c Debug
 
 ```
 

@@ -3,29 +3,26 @@ on:
   workflow_dispatch:
   push:
     branches: ["main"]
-env:
-  DOTNET_CLI_TELEMETRY_OPTOUT: 1
-  DOTNET_NOLOGO: true
-  DOTNET_SKIP_FIRST_TIME_EXPERIENCE: 1
-  NUGET_XMLDOC_MODE: skip
-  # colour output
-  DOTNET_SYSTEM_CONSOLE_ALLOW_ANSI_COLOR_REDIRECTION: 1
-  TERM: xterm
+
 jobs:
-  dotnet-console:
+  list:
     runs-on: ubuntu-latest
     timeout-minutes: 3
     steps:
       - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: "8.0.x"
       # list of target project (tail -n +3 = skip first 2 header lines)
       # https://trstringer.com/github-actions-multiline-strings/
       - name: Obtain csproj to lint
+        id: sln-list
         run: |
           projects=$(dotnet sln list | tail -n +3 | sort | xargs -n 1 echo '  *')
           {
             echo "FORMAT_PROJECTS<<EOF"
             echo "${projects}"
             echo "EOF"
-          } >> "$GITHUB_ENV"
+          } | tee -a "$GITHUB_OUTPUT"
         working-directory: src/dotnet
-      - run: echo "${{ env.FORMAT_PROJECTS }}"
+      - run: echo "${{ steps.sln-list.outputs.projects }}"

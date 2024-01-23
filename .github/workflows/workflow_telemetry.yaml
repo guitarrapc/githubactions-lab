@@ -20,10 +20,10 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: 6.0.x
+          dotnet-version: 8.0.x
       - name: dotnet build
-        run: dotnet build ./src/dotnet/console/ -c Debug
+        run: dotnet build ./src/dotnet -c Debug
       - name: dotnet test
-        run: dotnet test ./src/dotnet/console-tests/ -c Debug --logger GitHubActions
+        run: dotnet test ./src/dotnet -c Debug --logger GitHubActions --logger "console;verbosity=normal"
       - name: dotnet publish
-        run: dotnet publish ./src/dotnet/console/ -c Debug -o ./out/dotnet-console
+        run: dotnet publish ./src/dotnet/ -c Debug

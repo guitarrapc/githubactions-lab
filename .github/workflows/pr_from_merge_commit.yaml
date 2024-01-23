@@ -12,7 +12,7 @@ jobs:
         id: pr
         with:
           state: closed
-      - if: success() && steps.pr.outputs.number
+      - if: ${{ success() && steps.pr.outputs.number }}
         run: |
           echo "PR #${PR_NUMBER}"
           echo "PR Title: ${PR_TITLE}"

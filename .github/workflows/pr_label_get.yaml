@@ -17,4 +17,4 @@ jobs:
       - run: echo "IS_HOGE=${{ contains(github.event.pull_request.labels.*.name, 'hoge') }}" >> "$GITHUB_ENV"
       - run: echo "${IS_HOGE}"
       - run: echo "run!"
-        if: env.IS_HOGE == 'true'
+        if: ${{ env.IS_HOGE == 'true' }}

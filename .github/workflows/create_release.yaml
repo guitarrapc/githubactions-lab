@@ -3,14 +3,23 @@ on:
   push:
     tags:
       - "[0-9]+.[0-9]+.[0-9]+*"
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: "tag: git tag you want create. (1.0.0)"
+        required: true
+
 jobs:
   create-release:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
+      - name: Setup tag
+        id: tag
+        run: echo "value=${{ inputs.tag || github.ref_name }}"
       # set release tag(*.*.*) to version string
-      - run: echo "hoge" > "hoge.${{ github.ref_name }}.txt"
-      - run: echo "fuga" > "fuga.${{ github.ref_name }}.txt"
+      - run: echo "hoge" > "hoge.${{ steps.tag.outputs.value }}.txt"
+      - run: echo "fuga" > "fuga.${{ steps.tag.outputs.value }}.txt"
       - run: ls -l
       # Create Releases
       - uses: actions/create-release@v1
@@ -19,15 +28,15 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           tag_name: ${{ github.ref }}
-          release_name: Ver.${{ github.ref_name }}
+          release_name: Ver.${{ steps.tag.outputs.value }}
       # Upload to Releases(hoge)
       - uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: hoge.${{ github.ref_name }}.txt
-          asset_name: hoge.${{ github.ref_name }}.txt
+          asset_path: hoge.${{ steps.tag.outputs.value }}.txt
+          asset_name: hoge.${{ steps.tag.outputs.value }}.txt
           asset_content_type: application/octet-stream
       # Upload to Releases(fuga)
       - uses: actions/upload-release-asset@v1
@@ -35,6 +44,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: fuga.${{ github.ref_name }}.txt
-          asset_name: fuga.${{ github.ref_name }}.txt
+          asset_path: fuga.${{ steps.tag.outputs.value }}.txt
+          asset_name: fuga.${{ steps.tag.outputs.value }}.txt
           asset_content_type: application/octet-stream

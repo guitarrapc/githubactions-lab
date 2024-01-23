@@ -11,5 +11,5 @@ jobs:
           output: ","
           pushBefore: main
       - run: echo "${{ steps.file_changes.outputs.files }}"
-      - if: contains(steps.file_changes.outputs.files, '.github/workflows/')
+      - if: ${{ contains(steps.file_changes.outputs.files, '.github/workflows/') }}
         run: echo changes contains .github/workflows/
