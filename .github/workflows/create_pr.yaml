@@ -21,12 +21,15 @@ jobs:
         run: |
           git config user.name github-actions[bot]
           git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git switch -c "auto/create_pr"
           git add .
           git commit -m "[automated] PR by ${{ github.workflow }}"
+          git push -u origin "auto/create_pr"
       # pr if change happen (force push when branch/pr already exists)
       - name: Create PullRequest
         id: cpr
         if: ${{ steps.git-check.outputs.modified == 'true' }}
         run: gh pr create --title "[report.txt] Automated changes" --body "GitHub Actions runned on ${{ env.GITHUB_ACTIONS_RUN_URL }} generated changes :rocket:" --label "automated pr" --base "main" --head "auto/create_pr"
         env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITHUB_ACTIONS_RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
