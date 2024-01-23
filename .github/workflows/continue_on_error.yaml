@@ -15,5 +15,5 @@ jobs:
         continue-on-error: true
       - run: echo success
       # never call failure(), as continue-on-error treat step error as success.
-      - if: failure()
+      - if: ${{ failure() }}
         run: echo error happen

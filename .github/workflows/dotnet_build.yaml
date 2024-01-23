@@ -7,17 +7,8 @@ on:
   pull_request:
     branches: ["main"]
 
-env:
-  DOTNET_CLI_TELEMETRY_OPTOUT: 1
-  DOTNET_NOLOGO: true
-  DOTNET_SKIP_FIRST_TIME_EXPERIENCE: 1
-  NUGET_XMLDOC_MODE: skip
-  # colour output
-  DOTNET_SYSTEM_CONSOLE_ALLOW_ANSI_COLOR_REDIRECTION: 1
-  TERM: xterm
-
 jobs:
-  dotnet-console:
+  runner:
     runs-on: ubuntu-latest
     timeout-minutes: 3
     steps:
@@ -48,14 +39,14 @@ jobs:
       - name: dotnet test
         run: dotnet test ./src/dotnet/ -c Debug --logger GitHubActions
       - name: dotnet publish
-        run: dotnet publish ./src/dotnet/ -c Debug -o ./out/dotnet-console
+        run: dotnet publish ./src/dotnet/ -c Debug
       - uses: actions/upload-artifact@v3
         with:
           name: dotnet-console
-          path: ./out/dotnet-console
+          path: ./src/dotnet/artifacts/publish/Sandbox.Console
           retention-days: 1
 
-  dotnet-console-container:
+  container:
     runs-on: ubuntu-latest
     timeout-minutes: 3
     container:
@@ -63,11 +54,11 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: dotnet build
-        run: dotnet build ./src/dotnet/console/ -c Debug
+        run: dotnet build ./src/dotnet -c Debug
       - name: dotnet test
-        run: dotnet test ./src/dotnet/console-tests/ -c Debug --logger GitHubActions
+        run: dotnet test ./src/dotnet -c Debug --logger GitHubActions
       - name: dotnet publish
-        run: dotnet publish ./src/dotnet/console/ -c Debug -o ./out/dotnet-console-container
+        run: dotnet publish ./src/dotnet -c Debug -o ./out/dotnet-console-container
       - uses: actions/upload-artifact@v3
         with:
           name: dotnet-console-container
@@ -78,8 +69,8 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 3
     needs:
-      - dotnet-console
-      - dotnet-console-container
+      - runner
+      - container
     steps:
       - uses: actions/download-artifact@v3
       - run: ls -lR

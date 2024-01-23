@@ -22,7 +22,7 @@ jobs:
       # commit & pr if change happen (force push when branch/pr already exists)
       - name: Create PullRequest
         id: cpr
-        if: steps.git-check.outputs.modified == 'true'
+        if: ${{ steps.git-check.outputs.modified == 'true' }}
         uses: peter-evans/create-pull-request@v5
         with:
           base: "main"
@@ -36,7 +36,7 @@ jobs:
           labels: |
             automated pr
       - name: Check outputs
-        if: steps.git-check.outputs.modified == 'true'
+        if: ${{ steps.git-check.outputs.modified == 'true' }}
         run: |
           echo "Pull Request Number - ${{ steps.cpr.outputs.pull-request-number }}"
           echo "Pull Request URL - ${{ steps.cpr.outputs.pull-request-url }}"

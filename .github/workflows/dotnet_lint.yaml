@@ -43,7 +43,7 @@ jobs:
         run: echo "modified=$(if git diff-index --quiet HEAD --; then echo "false"; else echo "true"; fi)" >> "$GITHUB_OUTPUT"
       # get directory stats
       - name: List modified directories
-        if: steps.git-check.outputs.modified == 'true'
+        if: ${{ steps.git-check.outputs.modified == 'true' }}
         run: |
           dirs=$(git diff --dirstat=files)
           {
@@ -53,7 +53,7 @@ jobs:
           } >> "$GITHUB_ENV"
       # get files stats
       - name: List modified files
-        if: steps.git-check.outputs.modified == 'true'
+        if: ${{ steps.git-check.outputs.modified == 'true' }}
         run: |
           files=$(git diff --name-only)
           {
@@ -63,7 +63,7 @@ jobs:
           } >> "$GITHUB_ENV"
       # Commit if change happen, then craete PR. force push when branch/pr already exists.
       - name: Create PullRequest
-        if: steps.git-check.outputs.modified == 'true'
+        if: ${{ steps.git-check.outputs.modified == 'true' }}
         id: cpr
         uses: peter-evans/create-pull-request@v5
         with:
@@ -103,7 +103,7 @@ jobs:
           labels: |
             automated pr
       - name: Check outputs
-        if: steps.git-check.outputs.modified == 'true'
+        if: ${{ steps.git-check.outputs.modified == 'true' }}
         run: |
           echo "Pull Request Number - ${{ steps.cpr.outputs.pull-request-number }}"
           echo "Pull Request URL - ${{ steps.cpr.outputs.pull-request-url }}"

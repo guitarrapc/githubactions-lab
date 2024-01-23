@@ -2,7 +2,7 @@ name: skip ci pr title
 on: ["pull_request"]
 jobs:
   skip:
-    if: "!(contains(github.event.pull_request.title, '[skip ci]') || contains(github.event.pull_request.title, '[ci skip]'))"
+    if: ${{ !(contains(github.event.pull_request.title, '[skip ci]') || contains(github.event.pull_request.title, '[ci skip]')) }}
     runs-on: ubuntu-latest
     timeout-minutes: 3
     steps:

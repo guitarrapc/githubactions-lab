@@ -12,7 +12,7 @@ jobs:
       - run: echo not run on branch push
       - run: echo ${{ github.ref_name }}
 
-  dotnet-console:
+  runner:
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
@@ -20,28 +20,25 @@ jobs:
       - uses: actions/setup-dotnet@v4
         with:
           dotnet-version: 8.0.x
-      - run: dotnet build ./src/dotnet/console/ -c Release
-      - run: dotnet test ./src/dotnet/console-tests/ -c Release
-      - run: dotnet publish ./src/dotnet/console/ -c Release -o ./out/dotnet-console
+      - run: dotnet build ./src/dotnet -c Release
+      - run: dotnet test ./src/dotnet -c Release
+      - run: dotnet publish -c Release
       - uses: actions/upload-artifact@v3
         with:
           name: dotnet-console
-          path: ./out/dotnet-console
+          path: ./src/dotnet/artifacts/publish/Sandbox.Console
           retention-days: 1
 
-  dotnet-console-container:
+  container:
     runs-on: ubuntu-latest
     timeout-minutes: 5
     container:
       image: mcr.microsoft.com/dotnet/sdk:8.0
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-dotnet@v4
-        with:
-          dotnet-version: ${{ matrix.dotnet }}
-      - run: dotnet build ./src/dotnet/console/ -c Release
-      - run: dotnet test ./src/dotnet/console-tests/ -c Release
-      - run: dotnet publish ./src/dotnet/console/ -c Release -o ./out/dotnet-console-container
+      - run: dotnet build ./src/dotnet -c Release
+      - run: dotnet test ./src/dotnet -c Release
+      - run: dotnet publish ./src/dotnet -c Release -o ./out/dotnet-console-container
       - uses: actions/upload-artifact@v3
         with:
           name: dotnet-console-container
@@ -51,11 +48,9 @@ jobs:
   release:
     runs-on: ubuntu-latest
     timeout-minutes: 5
-    needs:
-      - dotnet-console
-      - dotnet-console-container
+    needs: [runner, container]
     steps:
       - uses: actions/download-artifact@v3
-      - run: zip -r dotnet-console.zip ./dotnet-console/
+      - run: zip -r Sandbox.Console.zip ./Sandbox.Console/
       - run: zip -r dotnet-console-container.zip ./dotnet-console-container
       - run: ls -l
