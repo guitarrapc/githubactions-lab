@@ -1,10 +1,13 @@
 name: "concurrency control cancel in progress"
-on:
-  workflow_dispatch:
+
 # only ${{ github }} context is available
 concurrency:
-  group: concurrency_cancel_in_progress_${{ github.head_ref }}
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
   cancel-in-progress: true
+
+on:
+  workflow_dispatch:
+
 jobs:
   long_job:
     runs-on: ubuntu-latest

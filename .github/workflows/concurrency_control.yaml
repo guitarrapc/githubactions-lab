@@ -1,8 +1,11 @@
 name: "concurrency control"
+
+# only ${{ github }} context is available
+concurrency: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+
 on:
   workflow_dispatch:
-# only ${{ github }} context is available
-concurrency: concurrency_${{ github.head_ref }}
+
 jobs:
   long_job:
     runs-on: ubuntu-latest

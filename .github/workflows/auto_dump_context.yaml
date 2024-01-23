@@ -1,8 +1,9 @@
 # automate output context to samples/xxxx_context/eventname_action.json
 name: auto dump context
 
+
 concurrency:
-  group: ${{ github.ref }}_${{ github.event_name }}_${{ github.event.action }} # Just a latest workflow run
+  group: ${{ github.workflow }}-${{ github.ref }}-${{ github.event_name }}-${{ github.event.action }} # Just a latest workflow run
   cancel-in-progress: true
 
 on:
