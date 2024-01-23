@@ -29,4 +29,5 @@ jobs:
         if: ${{ steps.git-check.outputs.modified == 'true' }}
         run: gh pr create --title "[report.txt] Automated changes" --body "GitHub Actions runned on ${{ env.GITHUB_ACTIONS_RUN_URL }} generated changes :rocket:" --label "automated pr" --base "main" --head "auto/create_pr"
         env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITHUB_ACTIONS_RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
