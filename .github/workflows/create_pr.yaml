@@ -24,7 +24,7 @@ jobs:
           git switch -c "auto/create_pr"
           git add .
           git commit -m "[automated] PR by ${{ github.workflow }}"
-          git push
+          git push -u origin "auto/create_pr"
       # pr if change happen (force push when branch/pr already exists)
       - name: Create PullRequest
         id: cpr
