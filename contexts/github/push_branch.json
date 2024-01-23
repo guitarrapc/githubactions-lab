@@ -2,13 +2,13 @@
   "token": "<reducted>",
   "job": "dump-context",
   "ref": "refs/heads/main",
-  "sha": "370d1726dab3ba0761331f2bdb0983daf139538f",
+  "sha": "fda3dc45cd446260e6949bb8748d9f98bb9eb1f6",
   "repository": "guitarrapc/githubactions-lab",
   "repository_owner": "guitarrapc",
   "repository_owner_id": "3856350",
   "repositoryUrl": "git://github.com/guitarrapc/githubactions-lab.git",
-  "run_id": "7619765180",
-  "run_number": "684",
+  "run_id": "7619766310",
+  "run_number": "687",
   "retention_days": "90",
   "run_attempt": "1",
   "artifact_cache_size_limit": "10",
@@ -24,9 +24,9 @@
   "base_ref": "",
   "event_name": "push",
   "event": {
-    "after": "370d1726dab3ba0761331f2bdb0983daf139538f",
+    "after": "fda3dc45cd446260e6949bb8748d9f98bb9eb1f6",
     "base_ref": null,
-    "before": "572b87f06321a285c2e20667f0a2c9d836e1ba59",
+    "before": "370d1726dab3ba0761331f2bdb0983daf139538f",
     "commits": [
       {
         "author": {
@@ -40,11 +40,11 @@
           "username": "web-flow"
         },
         "distinct": false,
-        "id": "540dd9dc58abfaae622eb6c03e09c8df52218a9b",
-        "message": "chore(deps): bump actions/cache from 3 to 4\n\nBumps [actions/cache](https://github.com/actions/cache) from 3 to 4.\n- [Release notes](https://github.com/actions/cache/releases)\n- [Changelog](https://github.com/actions/cache/blob/main/RELEASES.md)\n- [Commits](https://github.com/actions/cache/compare/v3...v4)\n\n---\nupdated-dependencies:\n- dependency-name: actions/cache\n  dependency-type: direct:production\n  update-type: version-update:semver-major\n...\n\nSigned-off-by: dependabot[bot] <support@github.com>",
-        "timestamp": "2024-01-22T15:10:01Z",
-        "tree_id": "13cd42a44b3af5cd78187b342be8ae29677bf283",
-        "url": "https://github.com/guitarrapc/githubactions-lab/commit/540dd9dc58abfaae622eb6c03e09c8df52218a9b"
+        "id": "bd21de20c2d89fb7d952c8fba40129e2f8a059f7",
+        "message": "chore(deps): bump tj-actions/changed-files from 41 to 42\n\nBumps [tj-actions/changed-files](https://github.com/tj-actions/changed-files) from 41 to 42.\n- [Release notes](https://github.com/tj-actions/changed-files/releases)\n- [Changelog](https://github.com/tj-actions/changed-files/blob/main/HISTORY.md)\n- [Commits](https://github.com/tj-actions/changed-files/compare/v41...v42)\n\n---\nupdated-dependencies:\n- dependency-name: tj-actions/changed-files\n  dependency-type: direct:production\n  update-type: version-update:semver-major\n...\n\nSigned-off-by: dependabot[bot] <support@github.com>",
+        "timestamp": "2024-01-22T15:09:54Z",
+        "tree_id": "fda55210a504c0be0557fdc1ea5866610db851d2",
+        "url": "https://github.com/guitarrapc/githubactions-lab/commit/bd21de20c2d89fb7d952c8fba40129e2f8a059f7"
       },
       {
         "author": {
@@ -58,14 +58,14 @@
           "username": "web-flow"
         },
         "distinct": true,
-        "id": "370d1726dab3ba0761331f2bdb0983daf139538f",
-        "message": "Merge pull request #153 from guitarrapc/dependabot/github_actions/actions/cache-4\n\nchore(deps): bump actions/cache from 3 to 4",
-        "timestamp": "2024-01-23T10:32:09+09:00",
-        "tree_id": "ea12f3b50281a999ccd19aa21ac152213c1291bf",
-        "url": "https://github.com/guitarrapc/githubactions-lab/commit/370d1726dab3ba0761331f2bdb0983daf139538f"
+        "id": "fda3dc45cd446260e6949bb8748d9f98bb9eb1f6",
+        "message": "Merge pull request #152 from guitarrapc/dependabot/github_actions/tj-actions/changed-files-42\n\nchore(deps): bump tj-actions/changed-files from 41 to 42",
+        "timestamp": "2024-01-23T10:32:17+09:00",
+        "tree_id": "bcbac49cb92ffbc94b86abd382d3ed2f3b6b16e8",
+        "url": "https://github.com/guitarrapc/githubactions-lab/commit/fda3dc45cd446260e6949bb8748d9f98bb9eb1f6"
       }
     ],
-    "compare": "https://github.com/guitarrapc/githubactions-lab/compare/572b87f06321...370d1726dab3",
+    "compare": "https://github.com/guitarrapc/githubactions-lab/compare/370d1726dab3...fda3dc45cd44",
     "created": false,
     "deleted": false,
     "forced": false,
@@ -81,11 +81,11 @@
         "username": "web-flow"
       },
       "distinct": true,
-      "id": "370d1726dab3ba0761331f2bdb0983daf139538f",
-      "message": "Merge pull request #153 from guitarrapc/dependabot/github_actions/actions/cache-4\n\nchore(deps): bump actions/cache from 3 to 4",
-      "timestamp": "2024-01-23T10:32:09+09:00",
-      "tree_id": "ea12f3b50281a999ccd19aa21ac152213c1291bf",
-      "url": "https://github.com/guitarrapc/githubactions-lab/commit/370d1726dab3ba0761331f2bdb0983daf139538f"
+      "id": "fda3dc45cd446260e6949bb8748d9f98bb9eb1f6",
+      "message": "Merge pull request #152 from guitarrapc/dependabot/github_actions/tj-actions/changed-files-42\n\nchore(deps): bump tj-actions/changed-files from 41 to 42",
+      "timestamp": "2024-01-23T10:32:17+09:00",
+      "tree_id": "bcbac49cb92ffbc94b86abd382d3ed2f3b6b16e8",
+      "url": "https://github.com/guitarrapc/githubactions-lab/commit/fda3dc45cd446260e6949bb8748d9f98bb9eb1f6"
     },
     "pusher": {
       "email": "3856350+guitarrapc@users.noreply.github.com",
@@ -154,8 +154,8 @@
       "name": "githubactions-lab",
       "node_id": "MDEwOlJlcG9zaXRvcnkyNTc0NjU0Njg=",
       "notifications_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/notifications{?since,all,participating}",
-      "open_issues": 8,
-      "open_issues_count": 8,
+      "open_issues": 7,
+      "open_issues_count": 7,
       "owner": {
         "avatar_url": "https://avatars.githubusercontent.com/u/3856350?v=4",
         "email": "3856350+guitarrapc@users.noreply.github.com",
@@ -180,7 +180,7 @@
       },
       "private": false,
       "pulls_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls{/number}",
-      "pushed_at": 1705973529,
+      "pushed_at": 1705973537,
       "releases_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/releases{/id}",
       "size": 1511,
       "ssh_url": "git@github.com:guitarrapc/githubactions-lab.git",
@@ -233,15 +233,15 @@
   "ref_type": "branch",
   "secret_source": "Actions",
   "workflow_ref": "guitarrapc/githubactions-lab/.github/workflows/auto_dump_context.yaml@refs/heads/main",
-  "workflow_sha": "370d1726dab3ba0761331f2bdb0983daf139538f",
+  "workflow_sha": "fda3dc45cd446260e6949bb8748d9f98bb9eb1f6",
   "workspace": "/home/runner/work/githubactions-lab/githubactions-lab",
   "action": "__run_2",
   "event_path": "/home/runner/work/_temp/_github_workflow/event.json",
   "action_repository": "",
   "action_ref": "",
-  "path": "/home/runner/work/_temp/_runner_file_commands/add_path_b6867cfb-62e3-4b9a-89fd-2c5a64dc058b",
-  "env": "/home/runner/work/_temp/_runner_file_commands/set_env_b6867cfb-62e3-4b9a-89fd-2c5a64dc058b",
-  "step_summary": "/home/runner/work/_temp/_runner_file_commands/step_summary_b6867cfb-62e3-4b9a-89fd-2c5a64dc058b",
-  "state": "/home/runner/work/_temp/_runner_file_commands/save_state_b6867cfb-62e3-4b9a-89fd-2c5a64dc058b",
-  "output": "/home/runner/work/_temp/_runner_file_commands/set_output_b6867cfb-62e3-4b9a-89fd-2c5a64dc058b"
+  "path": "/home/runner/work/_temp/_runner_file_commands/add_path_8358874e-9bd4-4f88-b135-38a6acf7b701",
+  "env": "/home/runner/work/_temp/_runner_file_commands/set_env_8358874e-9bd4-4f88-b135-38a6acf7b701",
+  "step_summary": "/home/runner/work/_temp/_runner_file_commands/step_summary_8358874e-9bd4-4f88-b135-38a6acf7b701",
+  "state": "/home/runner/work/_temp/_runner_file_commands/save_state_8358874e-9bd4-4f88-b135-38a6acf7b701",
+  "output": "/home/runner/work/_temp/_runner_file_commands/set_output_8358874e-9bd4-4f88-b135-38a6acf7b701"
 }
