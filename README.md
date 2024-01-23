@@ -2782,11 +2782,11 @@ jobs:
         with:
           dotnet-version: 8.0.x
       - name: dotnet build
-        run: dotnet build ./src/dotnet/Sandbox.Console/ -c Debug
+        run: dotnet build ./src/dotnet -c Debug
       - name: dotnet test
-        run: dotnet test ./src/dotnet/Sandbox.Tests/ -c Debug --logger GitHubActions
+        run: dotnet test ./src/dotnet -c Debug --logger GitHubActions --logger "console;verbosity=normal"
       - name: dotnet publish
-        run: dotnet publish ./src/dotnet/ -c Debug -o ./out/dotnet-console
+        run: dotnet publish ./src/dotnet/ -c Debug
 
 ```
 
