@@ -1854,7 +1854,7 @@ jobs:
         run: echo "value=${{ inputs.tag || (github.event_name == 'pull_request' && '0.1.0-test' || github.ref_name) }}" | tee -a "$GITHUB_OUTPUT"
       - name: Check tag exists
         run: |
-          if ! git ls-remote --tags | grep -q "refs/tags/${{ steps.tag.outputs.value }}"; then
+          if ! gh release list | greo "Ver.${{ steps.tag.outputs.value }}"; then
             gh release delete ${{ steps.tag.outputs.value }} --yes --cleanup-tag
           fi
 
@@ -1866,17 +1866,18 @@ jobs:
       - name: Setup tag
         id: tag
         run: echo "value=${{ inputs.tag || (github.event_name == 'pull_request' && '0.1.0-test' || github.ref_name) }}" | tee -a "$GITHUB_OUTPUT"
-      # set release tag(*.*.*) to version string
-      - run: echo "foo" > "foo.${{ steps.tag.outputs.value }}.txt"
-      - run: echo "hoge" > "hoge.${{ steps.tag.outputs.value }}.txt"
-      - run: echo "fuga" > "fuga.${{ steps.tag.outputs.value }}.txt"
-      - run: ls -l
       # Create Tag
+      - uses: actions/checkout@v4
       - name: Create Tag and push
         run: |
           git tag -a ${{ steps.tag.outputs.value }}
           git push -tags
           git ls-remote --tags
+      # set release tag(*.*.*) to version string
+      - run: echo "foo" > "foo.${{ steps.tag.outputs.value }}.txt"
+      - run: echo "hoge" > "hoge.${{ steps.tag.outputs.value }}.txt"
+      - run: echo "fuga" > "fuga.${{ steps.tag.outputs.value }}.txt"
+      - run: ls -l
       # Create Releases
       - name: Create Release
         run: gh release create ${{ steps.tag.outputs.value }} --draft --verify-tag --title "Ver.${{ steps.tag.outputs.value }}" --notes "Created by ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
