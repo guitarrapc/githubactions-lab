@@ -55,7 +55,7 @@ jobs:
 
   delete-release:
     needs: [create-release]
-    if: ${{ github.event_name == 'workflow_dispatch' && inputs.delete-release || true }}
+    if: ${{ inputs.delete-release || (github.event_name == 'pull_request' || github.event_name == 'push') }}
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
