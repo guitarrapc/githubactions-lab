@@ -1873,20 +1873,14 @@ jobs:
         run: gh release upload ${{ steps.tag.outputs.value }} hoge.${{ steps.tag.outputs.value }}.txt fuga.${{ steps.tag.outputs.value }}.txt
       - name: Upload additional file to release
         run: gh release upload ${{ steps.tag.outputs.value }} foo.${{ steps.tag.outputs.value }}.txt
-
-  delete-release:
-    needs: [create-release]
-    if: ${{ inputs.delete-release || (github.event_name == 'pull_request' || github.event_name == 'push') }}
-    runs-on: ubuntu-latest
-    timeout-minutes: 10
-    steps:
-      - name: Setup tag
-        id: tag
-        run: echo "value=${{ inputs.tag || (github.event_name == 'pull_request' && '0.1.0-test' || github.ref_name) }}" | tee -a "$GITHUB_OUTPUT"
-      - name: Wait for 1min
-        run: sleep 60
-      - name: Delete Release
-        run: gh release delete ${{ steps.tag.outputs.value }} --yes --cleanup-tag
+      # Clean up
+      - name: Clean up (Wait 60s and delete Release)
+        run: |
+          if gh release list | grep Draft | grep ${{ steps.tag.outputs.value }}; then
+            sleep 60
+            gh release delete ${{ steps.tag.outputs.value }} --yes --cleanup-tag
+          fi
+        if: ${{ failure() || inputs.delete-release || (github.event_name == 'pull_request' || github.event_name == 'push') }}
 
 ```
 
