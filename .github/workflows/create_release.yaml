@@ -24,21 +24,7 @@ env:
   GH_REPO: ${{ github.repository }}
 
 jobs:
-  before:
-    runs-on: ubuntu-latest
-    timeout-minutes: 10
-    steps:
-      - name: Setup tag
-        id: tag
-        run: echo "value=${{ inputs.tag || (github.event_name == 'pull_request' && '0.1.0-test' || github.ref_name) }}" | tee -a "$GITHUB_OUTPUT"
-      - name: Check tag exists
-        run: |
-          if gh release list | grep "Ver.${{ steps.tag.outputs.value }}"; then
-            gh release delete ${{ steps.tag.outputs.value }} --yes --cleanup-tag
-          fi
-
   create-release:
-    needs: [before]
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
@@ -47,11 +33,13 @@ jobs:
         run: echo "value=${{ inputs.tag || (github.event_name == 'pull_request' && '0.1.0-test' || github.ref_name) }}" | tee -a "$GITHUB_OUTPUT"
       # Create Tag
       - uses: actions/checkout@v4
-      - name: Create Tag and push
+      - name: Create Tag and push if not exists
         run: |
-          git tag ${{ steps.tag.outputs.value }}
-          git push origin ${{ steps.tag.outputs.value }}
-          git ls-remote --tags
+          if ! git ls-remote --tags | grep ${{ steps.tag.outputs.value }}; then
+            git tag ${{ steps.tag.outputs.value }}
+            git push origin ${{ steps.tag.outputs.value }}
+            git ls-remote --tags
+          fi
       # set release tag(*.*.*) to version string
       - run: echo "foo" > "foo.${{ steps.tag.outputs.value }}.txt"
       - run: echo "hoge" > "hoge.${{ steps.tag.outputs.value }}.txt"
