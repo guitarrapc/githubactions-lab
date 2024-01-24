@@ -1868,7 +1868,7 @@ jobs:
       - run: ls -l
       # Create Releases
       - name: Create Release
-        run: gh release create ${{ steps.tag.outputs.value }} --draft --verify-tag --title "Ver.${{ steps.tag.outputs.value }}" --notes "Created by ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+        run: gh release create ${{ steps.tag.outputs.value }} --draft --verify-tag --title "Ver.${{ steps.tag.outputs.value }}" --generate-notes
       - name: Upload file to release
         run: gh release upload ${{ steps.tag.outputs.value }} hoge.${{ steps.tag.outputs.value }}.txt fuga.${{ steps.tag.outputs.value }}.txt
       - name: Upload additional file to release
