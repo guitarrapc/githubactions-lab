@@ -22,7 +22,7 @@ jobs:
           dotnet-version: 8.0.x
       - run: dotnet build ./src/dotnet -c Release
       - run: dotnet test ./src/dotnet -c Release --logger GitHubActions --logger "console;verbosity=normal"
-      - run: dotnet publish -c Release
+      - run: dotnet publish ./src/dotnet -c Release
       - uses: actions/upload-artifact@v3
         with:
           name: dotnet-console
