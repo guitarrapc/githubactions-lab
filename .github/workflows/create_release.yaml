@@ -33,7 +33,7 @@ jobs:
         run: echo "value=${{ inputs.tag || (github.event_name == 'pull_request' && '0.1.0-test' || github.ref_name) }}" | tee -a "$GITHUB_OUTPUT"
       - name: Check tag exists
         run: |
-          if ! gh release list | grep "Ver.${{ steps.tag.outputs.value }}"; then
+          if gh release list | grep "Ver.${{ steps.tag.outputs.value }}"; then
             gh release delete ${{ steps.tag.outputs.value }} --yes --cleanup-tag
           fi
 
