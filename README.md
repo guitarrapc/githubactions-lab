@@ -1840,11 +1840,26 @@ on:
         default: false
         type: boolean
 
+env:
+  GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  GH_REPO: ${{ github.repository }}
+
 jobs:
+  before:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Setup tag
+        id: tag
+        run: echo "value=${{ inputs.tag || (github.event_name == 'pull_request' && '0.1.0-test' || github.ref_name) }}" | tee -a "$GITHUB_OUTPUT"
+      - name: Check tag exists
+        run: |
+          if ! git ls-remote --tags | grep -q "refs/tags/${{ steps.tag.outputs.value }}"; then
+            gh release delete ${{ steps.tag.outputs.value }} --yes --cleanup-tag
+          fi
+
   create-release:
-    env:
-      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      GH_REPO: ${{ github.repository }}
+    needs: [before]
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
@@ -1856,19 +1871,23 @@ jobs:
       - run: echo "hoge" > "hoge.${{ steps.tag.outputs.value }}.txt"
       - run: echo "fuga" > "fuga.${{ steps.tag.outputs.value }}.txt"
       - run: ls -l
+      # Create Tag
+      - name: Create Tag and push
+        run: |
+          git tag -a ${{ steps.tag.outputs.value }}
+          git push -tags
+          git ls-remote --tags
       # Create Releases
       - name: Create Release
-        run: gh release create ${{ steps.tag.outputs.value }} --title "Ver.${{ steps.tag.outputs.value }}" --notes "Created by ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+        run: gh release create ${{ steps.tag.outputs.value }} --draft --verify-tag --title "Ver.${{ steps.tag.outputs.value }}" --notes "Created by ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
       - name: Upload file to release
         run: gh release upload ${{ steps.tag.outputs.value }} hoge.${{ steps.tag.outputs.value }}.txt fuga.${{ steps.tag.outputs.value }}.txt
       - name: Upload additional file to release
         run: gh release upload ${{ steps.tag.outputs.value }} foo.${{ steps.tag.outputs.value }}.txt
 
   delete-release:
+    needs: [create-release]
     if: ${{ github.event_name == 'workflow_dispatch' && inputs.delete-release || true }}
-    env:
-      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      GH_REPO: ${{ github.repository }}
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
@@ -1878,7 +1897,7 @@ jobs:
       - name: Wait for 1min
         run: sleep 60
       - name: Delete Release
-        run: gh release create ${{ steps.tag.outputs.value }} --yes --cleanup-tag
+        run: gh release delete ${{ steps.tag.outputs.value }} --yes --cleanup-tag
 
 ```
 
