@@ -1820,54 +1820,65 @@ Multiple assets upload is supported by running running `actions/upload-release-a
 # .github/workflows/create_release.yaml
 
 name: create release
+concurrency: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+
 on:
   push:
     tags:
       - "[0-9]+.[0-9]+.[0-9]+*"
+  pull_request:
+    branches:
+      - main
   workflow_dispatch:
     inputs:
       tag:
         description: "tag: git tag you want create. (1.0.0)"
         required: true
+      delete-release:
+        description: "delete-release: delete release after creation. (true/false)"
+        required: false
+        default: false
+        type: boolean
 
 jobs:
   create-release:
+    env:
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      GH_REPO: ${{ github.repository }}
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
       - name: Setup tag
         id: tag
-        run: echo "value=${{ inputs.tag || github.ref_name }}"
+        run: echo "value=${{ inputs.tag || (github.event_name == 'pull_request' && '0.1.0-test' || github.ref_name) }}"
       # set release tag(*.*.*) to version string
+      - run: echo "foo" > "foo.${{ steps.tag.outputs.value }}.txt"
       - run: echo "hoge" > "hoge.${{ steps.tag.outputs.value }}.txt"
       - run: echo "fuga" > "fuga.${{ steps.tag.outputs.value }}.txt"
       - run: ls -l
       # Create Releases
-      - uses: actions/create-release@v1
-        id: create_release
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          tag_name: ${{ github.ref }}
-          release_name: Ver.${{ steps.tag.outputs.value }}
-      # Upload to Releases(hoge)
-      - uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: hoge.${{ steps.tag.outputs.value }}.txt
-          asset_name: hoge.${{ steps.tag.outputs.value }}.txt
-          asset_content_type: application/octet-stream
-      # Upload to Releases(fuga)
-      - uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: fuga.${{ steps.tag.outputs.value }}.txt
-          asset_name: fuga.${{ steps.tag.outputs.value }}.txt
-          asset_content_type: application/octet-stream
+      - name: Create Release
+        run: gh release create ${{ steps.tag.outputs.value }} --title "Ver.${{ steps.tag.outputs.value }}" --notes "Created by ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+      - name: Upload file to release
+        run: gh release upload ${{ steps.tag.outputs.value }} hoge.${{ steps.tag.outputs.value }}.txt fuga.${{ steps.tag.outputs.value }}.txt
+      - name: Upload additional file to release
+        run: gh release upload ${{ steps.tag.outputs.value }} foo.${{ steps.tag.outputs.value }}.txt
+
+  delete-release:
+    if: ${{ github.event_name == 'workflow_dispatch' && inputs.delete-release || true }}
+    env:
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      GH_REPO: ${{ github.repository }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Setup tag
+        id: tag
+        run: echo "value=${{ inputs.tag || (github.event_name == 'pull_request' && '0.1.0-test' || github.ref_name) }}"
+      - name: Wait for 1min
+        run: sleep 60
+      - name: Delete Release
+        run: gh release create ${{ steps.tag.outputs.value }} --yes --cleanup-tag
 
 ```
 
