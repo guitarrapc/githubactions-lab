@@ -29,7 +29,7 @@ jobs:
     steps:
       - name: Setup tag
         id: tag
-        run: echo "value=${{ inputs.tag || (github.event_name == 'pull_request' && '0.1.0-test' || github.ref_name) }}"
+        run: echo "value=${{ inputs.tag || (github.event_name == 'pull_request' && '0.1.0-test' || github.ref_name) }}" | tee -a "$GITHUB_OUTPUT"
       # set release tag(*.*.*) to version string
       - run: echo "foo" > "foo.${{ steps.tag.outputs.value }}.txt"
       - run: echo "hoge" > "hoge.${{ steps.tag.outputs.value }}.txt"
@@ -53,7 +53,7 @@ jobs:
     steps:
       - name: Setup tag
         id: tag
-        run: echo "value=${{ inputs.tag || (github.event_name == 'pull_request' && '0.1.0-test' || github.ref_name) }}"
+        run: echo "value=${{ inputs.tag || (github.event_name == 'pull_request' && '0.1.0-test' || github.ref_name) }}" | tee -a "$GITHUB_OUTPUT"
       - name: Wait for 1min
         run: sleep 60
       - name: Delete Release
