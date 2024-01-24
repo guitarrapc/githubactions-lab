@@ -1870,10 +1870,8 @@ jobs:
       - uses: actions/checkout@v4
       - name: Create Tag and push
         run: |
-          git config user.name  "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git tag -a ${{ steps.tag.outputs.value }}
-          git push -tags
+          git tag ${{ steps.tag.outputs.value }}
+          git push origin ${{ steps.tag.outputs.value }}
           git ls-remote --tags
       # set release tag(*.*.*) to version string
       - run: echo "foo" > "foo.${{ steps.tag.outputs.value }}.txt"
