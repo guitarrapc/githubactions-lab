@@ -689,7 +689,7 @@ See actual sample.
 ```yaml
 # .github/workflows/needs_require_success.yaml
 
-name: Needs requiring successful dependent jobs
+name: needs require success
 
 on:
   push:
@@ -738,7 +738,7 @@ See actual sample.
 ```yaml
 # .github/workflows/needs_not_require_success.yaml
 
-name: Needs not requiring successful dependent jobs
+name: needs not require success
 
 on:
   push:
@@ -778,7 +778,7 @@ Following workflow expected to run `D` when `C` is invoked. But skipping `A` and
 ```yaml
 # .github/workflows/needs_skip_no_handling.yaml
 
-name: Needs skip on dependent jobs
+name: needs skip no handling
 
 on:
   push:
@@ -819,7 +819,7 @@ To handle `D` to run when `C` is invoked, you need to add `if` condition to `D`.
 ```yaml
 # .github/workflows/needs_skip_handling.yaml
 
-name: Needs run on specific job run
+name: needs skip handling
 
 on:
   push:
@@ -2185,7 +2185,7 @@ GitHub Actions [actions/upload-artifact](https://github.com/actions/upload-artif
 ```yaml
 # .github/workflows/build_artifacts.yaml
 
-name: Build Artifacts
+name: build artifacts
 
 on:
   workflow_dispatch:
@@ -2335,7 +2335,7 @@ Checkout "src/\*" and root files, but not checkout any not specified folders.
 ```yaml
 # .github/workflows/git_sparsecheckout.yaml
 
-name: git sparse-checkout
+name: git sparsecheckout
 on:
   push:
     branches: ["main"]
@@ -2354,6 +2354,7 @@ jobs:
         run: ls -la
       - name: list src folders
         run: ls -laR ./src
+
 ```
 
 Result is selected `src` folder and root files will checkout.
@@ -2393,7 +2394,7 @@ Checkout only "src/\*" path. All other files and folders will not checkout.
 ```yaml
 # .github/workflows/git_sparsecheckout_nocorn.yaml
 
-name: git sparse-checkout (no corn)
+name: git sparsecheckout (no corn)
 on:
   push:
     branches: ["main"]
@@ -2413,6 +2414,7 @@ jobs:
         run: ls -la
       - name: list src folders
         run: ls -laR ./src
+
 ```
 
 Result is selected `src` folder and root files will checkout.
@@ -2447,7 +2449,7 @@ Checkout except "src/_" path. All other files and folders will checkout by `/_`.
 ```yaml
 # .github/workflows/git_sparsecheckout_exclude.yaml
 
-name: git sparse-checkout (exclude)
+name: git sparsecheckout nocorn
 on:
   push:
     branches: ["main"]
@@ -2468,6 +2470,7 @@ jobs:
         run: ls -la
       - name: list .github folders
         run: ls -laR ./.github
+
 ```
 
 Result is exclude `src` folder and all other files are checkout.
