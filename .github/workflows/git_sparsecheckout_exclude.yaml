@@ -1,4 +1,4 @@
-name: git sparse-checkout (exclude)
+name: git sparsecheckout nocorn
 on:
   push:
     branches: ["main"]

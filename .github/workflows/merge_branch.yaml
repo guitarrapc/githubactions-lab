@@ -1,4 +1,4 @@
-name: merge-branch
+name: merge branch
 on:
   workflow_dispatch:
     inputs:

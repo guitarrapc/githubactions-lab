@@ -1,4 +1,4 @@
-name: Needs not requiring successful dependent jobs
+name: needs not require success
 
 on:
   push:

@@ -1,4 +1,4 @@
-name: aws-cli
+name: aws cli
 on:
   workflow_dispatch:
   push:

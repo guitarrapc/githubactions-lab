@@ -1,4 +1,4 @@
-name: Actions env diff
+name: actions env diff
 # Is Actions cause environment variables diff?
 on:
   push:
