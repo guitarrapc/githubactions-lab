@@ -1,4 +1,4 @@
-name: git sparse-checkout (no corn)
+name: git sparsecheckout (no corn)
 on:
   push:
     branches: ["main"]
