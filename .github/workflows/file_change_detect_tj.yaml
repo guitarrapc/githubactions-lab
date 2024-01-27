@@ -6,7 +6,7 @@ on:
   push:
     branches: ["main"]
 jobs:
-  build:
+  job:
     runs-on: ubuntu-latest
     timeout-minutes: 3
     steps:

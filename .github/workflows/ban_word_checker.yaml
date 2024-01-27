@@ -7,7 +7,7 @@ on:
       - .github/scripts/lint-banwords.sh
       - .github/ban-words.txt
 jobs:
-  build:
+  aws:
     runs-on: ubuntu-latest
     timeout-minutes: 3
     steps:

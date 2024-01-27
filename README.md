@@ -892,7 +892,7 @@ permissions:
   # security-events: write
   # statuses: write
 jobs:
-  build:
+  job:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
@@ -915,6 +915,7 @@ jobs:
       - run: echo "${{ contains(steps.file_changes2.outputs.files, '.github/dummy')}}"
       - run: echo "${{ contains(steps.file_changes2.outputs.files, '.github/dummy') || 'true' }}"
       - run: echo "RUN_TEST2=${{ contains(steps.file_changes2.outputs.files, '.github/workflows') || 'true' }}"  | tee -a "$GITHUB_ENV"
+
 ```
 
 job permission can be done with `job.<job_name>.permissions`.
@@ -927,7 +928,7 @@ on:
   pull_request:
     branches: ["main"]
 jobs:
-  build:
+  job:
     permissions:
       contents: write
     runs-on: ubuntu-latest
@@ -952,6 +953,7 @@ jobs:
       - run: echo "${{ contains(steps.file_changes2.outputs.files, '.github/dummy')}}"
       - run: echo "${{ contains(steps.file_changes2.outputs.files, '.github/dummy') || 'true' }}"
       - run: echo "RUN_TEST2=${{ contains(steps.file_changes2.outputs.files, '.github/workflows') || 'true' }}"  | tee -a "$GITHUB_ENV"
+
 ```
 
 The most important permission is `id-tokens: write`. It enables job to use OIDC like AWS, Azure and GCP.
@@ -996,7 +998,7 @@ on:
   pull_request:
     branches: ["main"]
 jobs:
-  build:
+  job:
     runs-on: ubuntu-latest
     timeout-minutes: 3
     steps:
@@ -1005,6 +1007,7 @@ jobs:
         uses: ./.github/actions/local-composite-actions
         with:
           foo: BAR
+
 ```
 
 ## Reusable actions written in node - node12
@@ -1050,13 +1053,14 @@ on:
   pull_request:
     branches: ["main"]
 jobs:
-  build:
+  job:
     runs-on: ubuntu-latest
     timeout-minutes: 3
     steps:
       - uses: actions/checkout@v4
       - name: use local action
         uses: ./.github/actions/local-node-actions
+
 ```
 
 ## Reusable workflow
@@ -1317,11 +1321,12 @@ jobs:
         env:
           COMMIT_MESSAGES: ${{ toJson(github.event.commits.*.message) }}
   publish:
-    needs: build
+    needs: [build]
     runs-on: ubuntu-latest
     timeout-minutes: 3
     steps:
       - run: echo run when only build success
+
 ```
 
 ## Run when previous step status is specific
@@ -1341,7 +1346,7 @@ on:
   pull_request:
     branches: ["main"]
 jobs:
-  build:
+  job:
     runs-on: ubuntu-latest
     timeout-minutes: 3
     steps:
@@ -1473,7 +1478,7 @@ on:
   pull_request:
     branches: ["main"]
 jobs:
-  build:
+  echo:
     strategy:
       matrix:
         org: [apples, bananas, carrots]
@@ -1489,6 +1494,7 @@ jobs:
       - run: echo "${NEW_ORG}"
         env:
           NEW_ORG: new-${{ env.ORG }}
+
 ```
 
 ## Timeout settings
@@ -1800,7 +1806,7 @@ on:
   schedule:
     - cron: "0 0 * * *"
 jobs:
-  build:
+  job:
     runs-on: ubuntu-latest
     timeout-minutes: 3
     steps:
@@ -1811,6 +1817,7 @@ jobs:
       - uses: actions/checkout@v4
         with:
           ref: refs/heads/some-branch
+
 ```
 
 You can create release and upload assets through GitHub Actions.
@@ -1898,11 +1905,12 @@ on:
     tags:
       - "!*" # not a tag push
 jobs:
-  build:
+  aws:
     runs-on: ubuntu-latest
     timeout-minutes: 3
     steps:
       - run: echo not run on tag
+
 ```
 
 ## Trigger commit message
@@ -1915,7 +1923,7 @@ on:
   push:
     branches: ["main"]
 jobs:
-  build:
+  job:
     if: ${{ contains(toJSON(github.event.commits.*.message), '[build]') }}
     runs-on: ubuntu-latest
     timeout-minutes: 3
@@ -1939,10 +1947,11 @@ on:
     tags:
       - "**" # only tag
 jobs:
-  build:
+  job:
     runs-on: ubuntu-latest
     steps:
       - run: echo not run on branch push
+
 ```
 
 ## Trigger for specific tag pattern
@@ -1968,10 +1977,11 @@ on:
     tags:
       - "[0-9]+.[0-9]+.[0-9]+*" # only tag with pattern match
 jobs:
-  build:
+  job:
     runs-on: ubuntu-latest
     steps:
       - run: echo not run on branch push
+
 ```
 
 # Basic - Issue and Pull Request handling
@@ -2082,7 +2092,7 @@ on:
   push:
     branches: ["main"]
 jobs:
-  build:
+  job:
     if: ${{ ! github.event.pull_request.draft }}
     runs-on: ubuntu-latest
     timeout-minutes: 3
@@ -2782,7 +2792,7 @@ To enable telemetry, set `runforesight/workflow-telemetry-action@v1` on the firs
 ```yaml
 # .github/workflows/workflow_telemetry.yaml
 
-name: workflow telemetry
+name: actions telemetry
 # run on both branch push and tag push
 on:
   workflow_dispatch:
@@ -2792,11 +2802,11 @@ on:
     branches: ["main"]
 
 jobs:
-  dotnet-console:
+  dotnet:
     runs-on: ubuntu-latest
     timeout-minutes: 3
     steps:
-      - name: Collect Workflow Telemetry
+      - name: Collect actions workflow telemetry
         uses: runforesight/workflow-telemetry-action@v1
         with:
           theme: dark # or light. dark generate charts compatible with Github dark mode.

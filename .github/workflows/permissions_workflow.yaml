@@ -17,7 +17,7 @@ permissions:
   # security-events: write
   # statuses: write
 jobs:
-  build:
+  job:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
