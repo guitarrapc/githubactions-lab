@@ -4,7 +4,7 @@ on:
     tags:
       - "**" # only tag
 jobs:
-  build:
+  job:
     runs-on: ubuntu-latest
     steps:
       - run: echo not run on branch push

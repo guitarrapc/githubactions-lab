@@ -5,7 +5,7 @@ on:
     tags:
       - "!*" # not a tag push
 jobs:
-  build:
+  aws:
     runs-on: ubuntu-latest
     timeout-minutes: 3
     steps:

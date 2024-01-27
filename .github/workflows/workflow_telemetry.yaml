@@ -1,4 +1,4 @@
-name: workflow telemetry
+name: actions telemetry
 # run on both branch push and tag push
 on:
   workflow_dispatch:
@@ -8,11 +8,11 @@ on:
     branches: ["main"]
 
 jobs:
-  dotnet-console:
+  dotnet:
     runs-on: ubuntu-latest
     timeout-minutes: 3
     steps:
-      - name: Collect Workflow Telemetry
+      - name: Collect actions workflow telemetry
         uses: runforesight/workflow-telemetry-action@v1
         with:
           theme: dark # or light. dark generate charts compatible with Github dark mode.

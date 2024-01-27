@@ -4,7 +4,7 @@ on:
     tags:
       - "[0-9]+.[0-9]+.[0-9]+*" # only tag with pattern match
 jobs:
-  build:
+  job:
     runs-on: ubuntu-latest
     steps:
       - run: echo not run on branch push

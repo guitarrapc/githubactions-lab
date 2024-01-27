@@ -4,7 +4,7 @@ on:
   push:
     branches: ["main"]
 jobs:
-  build:
+  job:
     if: ${{ ! github.event.pull_request.draft }}
     runs-on: ubuntu-latest
     timeout-minutes: 3

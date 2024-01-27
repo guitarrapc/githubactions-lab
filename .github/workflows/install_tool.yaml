@@ -6,7 +6,7 @@ on:
   pull_request:
     branches: ["main"]
 jobs:
-  build:
+  install:
     runs-on: ubuntu-latest
     timeout-minutes: 3
     steps:

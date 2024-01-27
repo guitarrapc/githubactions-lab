@@ -1,7 +1,7 @@
 name: file change detect trilom
 on: [pull_request]
 jobs:
-  build:
+  job:
     runs-on: ubuntu-latest
     timeout-minutes: 3
     steps:
