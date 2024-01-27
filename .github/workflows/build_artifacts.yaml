@@ -1,4 +1,4 @@
-name: Build Artifacts
+name: build artifacts
 
 on:
   workflow_dispatch:

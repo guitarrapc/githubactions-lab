@@ -1,4 +1,4 @@
-name: Needs skip on dependent jobs
+name: needs skip no handling
 
 on:
   push:
