@@ -2793,7 +2793,6 @@ To enable telemetry, set `runforesight/workflow-telemetry-action@v1` on the firs
 # .github/workflows/actions_telemetry.yaml
 
 name: actions telemetry
-# run on both branch push and tag push
 on:
   workflow_dispatch:
   push:
