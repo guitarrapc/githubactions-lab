@@ -2,13 +2,13 @@
   "token": "<reducted>",
   "job": "dump-context",
   "ref": "refs/heads/main",
-  "sha": "2579ac3118555396b26378c0f7749aad9dd3715a",
+  "sha": "0acf60e2847c2ecbe538ec46c2bc8b204e9e23f1",
   "repository": "guitarrapc/githubactions-lab",
   "repository_owner": "guitarrapc",
   "repository_owner_id": "3856350",
   "repositoryUrl": "git://github.com/guitarrapc/githubactions-lab.git",
-  "run_id": "7699032364",
-  "run_number": "795",
+  "run_id": "7699232263",
+  "run_number": "801",
   "retention_days": "90",
   "run_attempt": "1",
   "artifact_cache_size_limit": "10",
@@ -24,27 +24,27 @@
   "base_ref": "",
   "event_name": "push",
   "event": {
-    "after": "2579ac3118555396b26378c0f7749aad9dd3715a",
+    "after": "0acf60e2847c2ecbe538ec46c2bc8b204e9e23f1",
     "base_ref": null,
-    "before": "d6ad7b0ab1b48b35b6fcd98aec130309f7a96dc8",
+    "before": "be029bac4847213c629fd38b3e3f11ed428833d9",
     "commits": [
       {
         "author": {
-          "email": "3856350+guitarrapc@users.noreply.github.com",
-          "name": "Ikiru Yoshizaki",
-          "username": "guitarrapc"
+          "email": "49699333+dependabot[bot]@users.noreply.github.com",
+          "name": "dependabot[bot]",
+          "username": "dependabot[bot]"
         },
         "committer": {
-          "email": "3856350+guitarrapc@users.noreply.github.com",
-          "name": "Ikiru Yoshizaki",
-          "username": "guitarrapc"
+          "email": "noreply@github.com",
+          "name": "GitHub",
+          "username": "web-flow"
         },
-        "distinct": true,
-        "id": "7b4214c68026e5634e36dc0aa5b7f266e669451e",
-        "message": "fix: don't allow depndabot to try create release",
-        "timestamp": "2024-01-30T01:10:22+09:00",
-        "tree_id": "e3e7d769775d28f07deb8187f6f9b67f03c193e1",
-        "url": "https://github.com/guitarrapc/githubactions-lab/commit/7b4214c68026e5634e36dc0aa5b7f266e669451e"
+        "distinct": false,
+        "id": "5019053aa3f22be28def894c2d8a82db9fd04ee8",
+        "message": "chore(deps): bump dorny/paths-filter from 2 to 3\n\nBumps [dorny/paths-filter](https://github.com/dorny/paths-filter) from 2 to 3.\n- [Release notes](https://github.com/dorny/paths-filter/releases)\n- [Changelog](https://github.com/dorny/paths-filter/blob/master/CHANGELOG.md)\n- [Commits](https://github.com/dorny/paths-filter/compare/v2...v3)\n\n---\nupdated-dependencies:\n- dependency-name: dorny/paths-filter\n  dependency-type: direct:production\n  update-type: version-update:semver-major\n...\n\nSigned-off-by: dependabot[bot] <support@github.com>",
+        "timestamp": "2024-01-29T16:13:29Z",
+        "tree_id": "a032fb33533c0a822d49f49717fd5faa93a6c2a6",
+        "url": "https://github.com/guitarrapc/githubactions-lab/commit/5019053aa3f22be28def894c2d8a82db9fd04ee8"
       },
       {
         "author": {
@@ -53,19 +53,19 @@
           "username": "guitarrapc"
         },
         "committer": {
-          "email": "3856350+guitarrapc@users.noreply.github.com",
-          "name": "Ikiru Yoshizaki",
-          "username": "guitarrapc"
+          "email": "noreply@github.com",
+          "name": "GitHub",
+          "username": "web-flow"
         },
         "distinct": true,
-        "id": "2579ac3118555396b26378c0f7749aad9dd3715a",
-        "message": "ci: rename workflow",
-        "timestamp": "2024-01-30T01:11:19+09:00",
-        "tree_id": "65dd61ebffa0498dc49f1d80fb51125754462106",
-        "url": "https://github.com/guitarrapc/githubactions-lab/commit/2579ac3118555396b26378c0f7749aad9dd3715a"
+        "id": "0acf60e2847c2ecbe538ec46c2bc8b204e9e23f1",
+        "message": "Merge pull request #170 from guitarrapc/dependabot/github_actions/dorny/paths-filter-3\n\nchore(deps): bump dorny/paths-filter from 2 to 3",
+        "timestamp": "2024-01-30T01:26:03+09:00",
+        "tree_id": "a032fb33533c0a822d49f49717fd5faa93a6c2a6",
+        "url": "https://github.com/guitarrapc/githubactions-lab/commit/0acf60e2847c2ecbe538ec46c2bc8b204e9e23f1"
       }
     ],
-    "compare": "https://github.com/guitarrapc/githubactions-lab/compare/d6ad7b0ab1b4...2579ac311855",
+    "compare": "https://github.com/guitarrapc/githubactions-lab/compare/be029bac4847...0acf60e2847c",
     "created": false,
     "deleted": false,
     "forced": false,
@@ -76,16 +76,16 @@
         "username": "guitarrapc"
       },
       "committer": {
-        "email": "3856350+guitarrapc@users.noreply.github.com",
-        "name": "Ikiru Yoshizaki",
-        "username": "guitarrapc"
+        "email": "noreply@github.com",
+        "name": "GitHub",
+        "username": "web-flow"
       },
       "distinct": true,
-      "id": "2579ac3118555396b26378c0f7749aad9dd3715a",
-      "message": "ci: rename workflow",
-      "timestamp": "2024-01-30T01:11:19+09:00",
-      "tree_id": "65dd61ebffa0498dc49f1d80fb51125754462106",
-      "url": "https://github.com/guitarrapc/githubactions-lab/commit/2579ac3118555396b26378c0f7749aad9dd3715a"
+      "id": "0acf60e2847c2ecbe538ec46c2bc8b204e9e23f1",
+      "message": "Merge pull request #170 from guitarrapc/dependabot/github_actions/dorny/paths-filter-3\n\nchore(deps): bump dorny/paths-filter from 2 to 3",
+      "timestamp": "2024-01-30T01:26:03+09:00",
+      "tree_id": "a032fb33533c0a822d49f49717fd5faa93a6c2a6",
+      "url": "https://github.com/guitarrapc/githubactions-lab/commit/0acf60e2847c2ecbe538ec46c2bc8b204e9e23f1"
     },
     "pusher": {
       "email": "3856350+guitarrapc@users.noreply.github.com",
@@ -154,8 +154,8 @@
       "name": "githubactions-lab",
       "node_id": "MDEwOlJlcG9zaXRvcnkyNTc0NjU0Njg=",
       "notifications_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/notifications{?since,all,participating}",
-      "open_issues": 10,
-      "open_issues_count": 10,
+      "open_issues": 9,
+      "open_issues_count": 9,
       "owner": {
         "avatar_url": "https://avatars.githubusercontent.com/u/3856350?v=4",
         "email": "3856350+guitarrapc@users.noreply.github.com",
@@ -180,9 +180,9 @@
       },
       "private": false,
       "pulls_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls{/number}",
-      "pushed_at": 1706544683,
+      "pushed_at": 1706545564,
       "releases_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/releases{/id}",
-      "size": 1612,
+      "size": 1626,
       "ssh_url": "git@github.com:guitarrapc/githubactions-lab.git",
       "stargazers": 34,
       "stargazers_count": 34,
@@ -233,15 +233,15 @@
   "ref_type": "branch",
   "secret_source": "Actions",
   "workflow_ref": "guitarrapc/githubactions-lab/.github/workflows/auto_dump_context.yaml@refs/heads/main",
-  "workflow_sha": "2579ac3118555396b26378c0f7749aad9dd3715a",
+  "workflow_sha": "0acf60e2847c2ecbe538ec46c2bc8b204e9e23f1",
   "workspace": "/home/runner/work/githubactions-lab/githubactions-lab",
   "action": "__run_2",
   "event_path": "/home/runner/work/_temp/_github_workflow/event.json",
   "action_repository": "",
   "action_ref": "",
-  "path": "/home/runner/work/_temp/_runner_file_commands/add_path_d2499ee4-0087-4387-924b-995fe6834fd1",
-  "env": "/home/runner/work/_temp/_runner_file_commands/set_env_d2499ee4-0087-4387-924b-995fe6834fd1",
-  "step_summary": "/home/runner/work/_temp/_runner_file_commands/step_summary_d2499ee4-0087-4387-924b-995fe6834fd1",
-  "state": "/home/runner/work/_temp/_runner_file_commands/save_state_d2499ee4-0087-4387-924b-995fe6834fd1",
-  "output": "/home/runner/work/_temp/_runner_file_commands/set_output_d2499ee4-0087-4387-924b-995fe6834fd1"
+  "path": "/home/runner/work/_temp/_runner_file_commands/add_path_20828aa3-5a60-4201-8e3f-5318bbd400a3",
+  "env": "/home/runner/work/_temp/_runner_file_commands/set_env_20828aa3-5a60-4201-8e3f-5318bbd400a3",
+  "step_summary": "/home/runner/work/_temp/_runner_file_commands/step_summary_20828aa3-5a60-4201-8e3f-5318bbd400a3",
+  "state": "/home/runner/work/_temp/_runner_file_commands/save_state_20828aa3-5a60-4201-8e3f-5318bbd400a3",
+  "output": "/home/runner/work/_temp/_runner_file_commands/set_output_20828aa3-5a60-4201-8e3f-5318bbd400a3"
 }
