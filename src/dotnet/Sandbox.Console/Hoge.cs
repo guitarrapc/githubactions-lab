@@ -6,7 +6,7 @@ public class Hoge
     public bool FooBar => foobar;
     private readonly bool foobar;
 
-    public Hoge() {}
+    public Hoge() { }
     public Hoge(bool foobar)
     {
         this.foobar = foobar;
