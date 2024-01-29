@@ -1853,6 +1853,7 @@ env:
 
 jobs:
   create-release:
+    if: ${{ github.actor != 'dependabot[bot]' }}
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
