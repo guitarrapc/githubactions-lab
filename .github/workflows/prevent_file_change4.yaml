@@ -13,7 +13,7 @@ jobs:
     timeout-minutes: 3
     steps:
       - name: Get changed files in the .github folder
-        uses: dorny/paths-filter@v2
+        uses: dorny/paths-filter@v3
         id: changes
         with:
           filters: |
