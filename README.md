@@ -2675,7 +2675,7 @@ jobs:
     timeout-minutes: 3
     steps:
       - name: Get changed files in the .github folder
-        uses: dorny/paths-filter@v2
+        uses: dorny/paths-filter@v3
         id: changes
         with:
           filters: |
@@ -2688,6 +2688,7 @@ jobs:
           echo "One or more files has changed."
           echo "List all the files that have changed: ${{ steps.changes.outputs.changes }}"
           exit 1
+
 ```
 
 ## Lint GitHub Actions workflow itself
