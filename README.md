@@ -2808,7 +2808,7 @@ jobs:
     timeout-minutes: 3
     steps:
       - name: Collect actions workflow telemetry
-        uses: runforesight/workflow-telemetry-action@v1
+        uses: runforesight/workflow-telemetry-action@v2
         with:
           theme: dark # or light. dark generate charts compatible with Github dark mode.
           comment_on_pr: false # post telemetry to PR comment. It won't override existing comment, therefore too noisy for PR.
