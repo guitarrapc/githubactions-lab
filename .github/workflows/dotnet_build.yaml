@@ -40,7 +40,7 @@ jobs:
         run: dotnet test ./src/dotnet -c Debug --logger GitHubActions --logger "console;verbosity=normal"
       - name: dotnet publish
         run: dotnet publish ./src/dotnet -c Debug
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
         with:
           name: dotnet-console
           path: ./src/dotnet/artifacts/publish/Sandbox.Console
@@ -59,7 +59,7 @@ jobs:
         run: dotnet test ./src/dotnet -c Debug --logger GitHubActions --logger "console;verbosity=normal"
       - name: dotnet publish
         run: dotnet publish ./src/dotnet -c Debug -o ./out/dotnet-console-container
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
         with:
           name: dotnet-console-container
           path: ./out/dotnet-console-container
