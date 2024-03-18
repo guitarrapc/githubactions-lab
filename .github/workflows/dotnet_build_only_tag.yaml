@@ -50,7 +50,7 @@ jobs:
     timeout-minutes: 5
     needs: [runner, container]
     steps:
-      - uses: actions/download-artifact@v3
+      - uses: actions/download-artifact@v4
       - run: zip -r Sandbox.Console.zip ./Sandbox.Console/
       - run: zip -r dotnet-console-container.zip ./dotnet-console-container
       - run: ls -l
