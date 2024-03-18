@@ -2,13 +2,13 @@
   "token": "<reducted>",
   "job": "dump-context",
   "ref": "refs/heads/main",
-  "sha": "83b854378caf4ad7f039fa912fb919f5690abdd5",
+  "sha": "83e91735427e25c19a3b9225dd497cc26ac0cfa8",
   "repository": "guitarrapc/githubactions-lab",
   "repository_owner": "guitarrapc",
   "repository_owner_id": "3856350",
   "repositoryUrl": "git://github.com/guitarrapc/githubactions-lab.git",
-  "run_id": "8241435136",
-  "run_number": "866",
+  "run_id": "8329783017",
+  "run_number": "884",
   "retention_days": "90",
   "run_attempt": "1",
   "artifact_cache_size_limit": "10",
@@ -24,9 +24,9 @@
   "base_ref": "",
   "event_name": "push",
   "event": {
-    "after": "83b854378caf4ad7f039fa912fb919f5690abdd5",
+    "after": "83e91735427e25c19a3b9225dd497cc26ac0cfa8",
     "base_ref": null,
-    "before": "309fc11a7543bbef8e7a8928840978b14a9cacfc",
+    "before": "c9947cb054f2dfb2e92470c8092d8b056719e1fc",
     "commits": [
       {
         "author": {
@@ -40,11 +40,11 @@
           "username": "web-flow"
         },
         "distinct": false,
-        "id": "1978b79fa1252d68a19e9ac2a549150105c95ad3",
-        "message": "chore(deps): bump nwtgck/actions-comment-run from 2.0.0 to 3.0.0\n\nBumps [nwtgck/actions-comment-run](https://github.com/nwtgck/actions-comment-run) from 2.0.0 to 3.0.0.\n- [Release notes](https://github.com/nwtgck/actions-comment-run/releases)\n- [Changelog](https://github.com/nwtgck/actions-comment-run/blob/develop/CHANGELOG.md)\n- [Commits](https://github.com/nwtgck/actions-comment-run/compare/v2.0.0...v3.0.0)\n\n---\nupdated-dependencies:\n- dependency-name: nwtgck/actions-comment-run\n  dependency-type: direct:production\n  update-type: version-update:semver-major\n...\n\nSigned-off-by: dependabot[bot] <support@github.com>",
-        "timestamp": "2024-03-11T15:08:52Z",
-        "tree_id": "178b1a3b3cc4f4e355e84defacd83ac6efca72ef",
-        "url": "https://github.com/guitarrapc/githubactions-lab/commit/1978b79fa1252d68a19e9ac2a549150105c95ad3"
+        "id": "58939edff9ae491ecf5612c8aeaaab70405da959",
+        "message": "chore(deps): bump azure/setup-kubectl from 3 to 4\n\nBumps [azure/setup-kubectl](https://github.com/azure/setup-kubectl) from 3 to 4.\n- [Release notes](https://github.com/azure/setup-kubectl/releases)\n- [Changelog](https://github.com/Azure/setup-kubectl/blob/main/CHANGELOG.md)\n- [Commits](https://github.com/azure/setup-kubectl/compare/v3...v4)\n\n---\nupdated-dependencies:\n- dependency-name: azure/setup-kubectl\n  dependency-type: direct:production\n  update-type: version-update:semver-major\n...\n\nSigned-off-by: dependabot[bot] <support@github.com>",
+        "timestamp": "2024-03-18T15:52:00Z",
+        "tree_id": "186a998898a1f355f8d0b9a5e5985b519d82a6fb",
+        "url": "https://github.com/guitarrapc/githubactions-lab/commit/58939edff9ae491ecf5612c8aeaaab70405da959"
       },
       {
         "author": {
@@ -58,14 +58,14 @@
           "username": "web-flow"
         },
         "distinct": true,
-        "id": "83b854378caf4ad7f039fa912fb919f5690abdd5",
-        "message": "Merge pull request #173 from guitarrapc/dependabot/github_actions/nwtgck/actions-comment-run-3.0.0\n\nchore(deps): bump nwtgck/actions-comment-run from 2.0.0 to 3.0.0",
-        "timestamp": "2024-03-12T09:08:43+09:00",
-        "tree_id": "178b1a3b3cc4f4e355e84defacd83ac6efca72ef",
-        "url": "https://github.com/guitarrapc/githubactions-lab/commit/83b854378caf4ad7f039fa912fb919f5690abdd5"
+        "id": "83e91735427e25c19a3b9225dd497cc26ac0cfa8",
+        "message": "Merge pull request #174 from guitarrapc/dependabot/github_actions/azure/setup-kubectl-4\n\nchore(deps): bump azure/setup-kubectl from 3 to 4",
+        "timestamp": "2024-03-19T01:04:20+09:00",
+        "tree_id": "186a998898a1f355f8d0b9a5e5985b519d82a6fb",
+        "url": "https://github.com/guitarrapc/githubactions-lab/commit/83e91735427e25c19a3b9225dd497cc26ac0cfa8"
       }
     ],
-    "compare": "https://github.com/guitarrapc/githubactions-lab/compare/309fc11a7543...83b854378caf",
+    "compare": "https://github.com/guitarrapc/githubactions-lab/compare/c9947cb054f2...83e91735427e",
     "created": false,
     "deleted": false,
     "forced": false,
@@ -81,11 +81,11 @@
         "username": "web-flow"
       },
       "distinct": true,
-      "id": "83b854378caf4ad7f039fa912fb919f5690abdd5",
-      "message": "Merge pull request #173 from guitarrapc/dependabot/github_actions/nwtgck/actions-comment-run-3.0.0\n\nchore(deps): bump nwtgck/actions-comment-run from 2.0.0 to 3.0.0",
-      "timestamp": "2024-03-12T09:08:43+09:00",
-      "tree_id": "178b1a3b3cc4f4e355e84defacd83ac6efca72ef",
-      "url": "https://github.com/guitarrapc/githubactions-lab/commit/83b854378caf4ad7f039fa912fb919f5690abdd5"
+      "id": "83e91735427e25c19a3b9225dd497cc26ac0cfa8",
+      "message": "Merge pull request #174 from guitarrapc/dependabot/github_actions/azure/setup-kubectl-4\n\nchore(deps): bump azure/setup-kubectl from 3 to 4",
+      "timestamp": "2024-03-19T01:04:20+09:00",
+      "tree_id": "186a998898a1f355f8d0b9a5e5985b519d82a6fb",
+      "url": "https://github.com/guitarrapc/githubactions-lab/commit/83e91735427e25c19a3b9225dd497cc26ac0cfa8"
     },
     "pusher": {
       "email": "3856350+guitarrapc@users.noreply.github.com",
@@ -154,8 +154,8 @@
       "name": "githubactions-lab",
       "node_id": "MDEwOlJlcG9zaXRvcnkyNTc0NjU0Njg=",
       "notifications_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/notifications{?since,all,participating}",
-      "open_issues": 9,
-      "open_issues_count": 9,
+      "open_issues": 10,
+      "open_issues_count": 10,
       "owner": {
         "avatar_url": "https://avatars.githubusercontent.com/u/3856350?v=4",
         "email": "3856350+guitarrapc@users.noreply.github.com",
@@ -180,9 +180,9 @@
       },
       "private": false,
       "pulls_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls{/number}",
-      "pushed_at": 1710202123,
+      "pushed_at": 1710777860,
       "releases_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/releases{/id}",
-      "size": 1704,
+      "size": 1725,
       "ssh_url": "git@github.com:guitarrapc/githubactions-lab.git",
       "stargazers": 35,
       "stargazers_count": 35,
@@ -233,15 +233,15 @@
   "ref_type": "branch",
   "secret_source": "Actions",
   "workflow_ref": "guitarrapc/githubactions-lab/.github/workflows/auto_dump_context.yaml@refs/heads/main",
-  "workflow_sha": "83b854378caf4ad7f039fa912fb919f5690abdd5",
+  "workflow_sha": "83e91735427e25c19a3b9225dd497cc26ac0cfa8",
   "workspace": "/home/runner/work/githubactions-lab/githubactions-lab",
   "action": "__run_2",
   "event_path": "/home/runner/work/_temp/_github_workflow/event.json",
   "action_repository": "",
   "action_ref": "",
-  "path": "/home/runner/work/_temp/_runner_file_commands/add_path_934789f4-a6f0-4741-a62b-ee7bec1c21c2",
-  "env": "/home/runner/work/_temp/_runner_file_commands/set_env_934789f4-a6f0-4741-a62b-ee7bec1c21c2",
-  "step_summary": "/home/runner/work/_temp/_runner_file_commands/step_summary_934789f4-a6f0-4741-a62b-ee7bec1c21c2",
-  "state": "/home/runner/work/_temp/_runner_file_commands/save_state_934789f4-a6f0-4741-a62b-ee7bec1c21c2",
-  "output": "/home/runner/work/_temp/_runner_file_commands/set_output_934789f4-a6f0-4741-a62b-ee7bec1c21c2"
+  "path": "/home/runner/work/_temp/_runner_file_commands/add_path_3662ea38-f5f7-44ce-a83c-efd4b47037f4",
+  "env": "/home/runner/work/_temp/_runner_file_commands/set_env_3662ea38-f5f7-44ce-a83c-efd4b47037f4",
+  "step_summary": "/home/runner/work/_temp/_runner_file_commands/step_summary_3662ea38-f5f7-44ce-a83c-efd4b47037f4",
+  "state": "/home/runner/work/_temp/_runner_file_commands/save_state_3662ea38-f5f7-44ce-a83c-efd4b47037f4",
+  "output": "/home/runner/work/_temp/_runner_file_commands/set_output_3662ea38-f5f7-44ce-a83c-efd4b47037f4"
 }
