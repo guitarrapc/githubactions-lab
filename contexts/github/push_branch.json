@@ -2,13 +2,13 @@
   "token": "<reducted>",
   "job": "dump-context",
   "ref": "refs/heads/main",
-  "sha": "83e91735427e25c19a3b9225dd497cc26ac0cfa8",
+  "sha": "55d4516e5adddbf61effb7545d67cbfd146b218d",
   "repository": "guitarrapc/githubactions-lab",
   "repository_owner": "guitarrapc",
   "repository_owner_id": "3856350",
   "repositoryUrl": "git://github.com/guitarrapc/githubactions-lab.git",
-  "run_id": "8329783017",
-  "run_number": "884",
+  "run_id": "8329785483",
+  "run_number": "887",
   "retention_days": "90",
   "run_attempt": "1",
   "artifact_cache_size_limit": "10",
@@ -24,9 +24,9 @@
   "base_ref": "",
   "event_name": "push",
   "event": {
-    "after": "83e91735427e25c19a3b9225dd497cc26ac0cfa8",
+    "after": "55d4516e5adddbf61effb7545d67cbfd146b218d",
     "base_ref": null,
-    "before": "c9947cb054f2dfb2e92470c8092d8b056719e1fc",
+    "before": "83e91735427e25c19a3b9225dd497cc26ac0cfa8",
     "commits": [
       {
         "author": {
@@ -40,11 +40,11 @@
           "username": "web-flow"
         },
         "distinct": false,
-        "id": "58939edff9ae491ecf5612c8aeaaab70405da959",
-        "message": "chore(deps): bump azure/setup-kubectl from 3 to 4\n\nBumps [azure/setup-kubectl](https://github.com/azure/setup-kubectl) from 3 to 4.\n- [Release notes](https://github.com/azure/setup-kubectl/releases)\n- [Changelog](https://github.com/Azure/setup-kubectl/blob/main/CHANGELOG.md)\n- [Commits](https://github.com/azure/setup-kubectl/compare/v3...v4)\n\n---\nupdated-dependencies:\n- dependency-name: azure/setup-kubectl\n  dependency-type: direct:production\n  update-type: version-update:semver-major\n...\n\nSigned-off-by: dependabot[bot] <support@github.com>",
-        "timestamp": "2024-03-18T15:52:00Z",
-        "tree_id": "186a998898a1f355f8d0b9a5e5985b519d82a6fb",
-        "url": "https://github.com/guitarrapc/githubactions-lab/commit/58939edff9ae491ecf5612c8aeaaab70405da959"
+        "id": "43f5f562f131b5e4c91ebc1469610b4097406f66",
+        "message": "chore(deps): bump tj-actions/changed-files from 42 to 43\n\nBumps [tj-actions/changed-files](https://github.com/tj-actions/changed-files) from 42 to 43.\n- [Release notes](https://github.com/tj-actions/changed-files/releases)\n- [Changelog](https://github.com/tj-actions/changed-files/blob/main/HISTORY.md)\n- [Commits](https://github.com/tj-actions/changed-files/compare/v42...v43)\n\n---\nupdated-dependencies:\n- dependency-name: tj-actions/changed-files\n  dependency-type: direct:production\n  update-type: version-update:semver-major\n...\n\nSigned-off-by: dependabot[bot] <support@github.com>",
+        "timestamp": "2024-03-18T15:52:04Z",
+        "tree_id": "cb29553e3f4468cef8c3e51de1943ae34b8f82f3",
+        "url": "https://github.com/guitarrapc/githubactions-lab/commit/43f5f562f131b5e4c91ebc1469610b4097406f66"
       },
       {
         "author": {
@@ -58,14 +58,14 @@
           "username": "web-flow"
         },
         "distinct": true,
-        "id": "83e91735427e25c19a3b9225dd497cc26ac0cfa8",
-        "message": "Merge pull request #174 from guitarrapc/dependabot/github_actions/azure/setup-kubectl-4\n\nchore(deps): bump azure/setup-kubectl from 3 to 4",
-        "timestamp": "2024-03-19T01:04:20+09:00",
-        "tree_id": "186a998898a1f355f8d0b9a5e5985b519d82a6fb",
-        "url": "https://github.com/guitarrapc/githubactions-lab/commit/83e91735427e25c19a3b9225dd497cc26ac0cfa8"
+        "id": "55d4516e5adddbf61effb7545d67cbfd146b218d",
+        "message": "Merge pull request #175 from guitarrapc/dependabot/github_actions/tj-actions/changed-files-43\n\nchore(deps): bump tj-actions/changed-files from 42 to 43",
+        "timestamp": "2024-03-19T01:04:29+09:00",
+        "tree_id": "1d19a120b5a5ee72ac87d34150e31e8e6297dc80",
+        "url": "https://github.com/guitarrapc/githubactions-lab/commit/55d4516e5adddbf61effb7545d67cbfd146b218d"
       }
     ],
-    "compare": "https://github.com/guitarrapc/githubactions-lab/compare/c9947cb054f2...83e91735427e",
+    "compare": "https://github.com/guitarrapc/githubactions-lab/compare/83e91735427e...55d4516e5add",
     "created": false,
     "deleted": false,
     "forced": false,
@@ -81,11 +81,11 @@
         "username": "web-flow"
       },
       "distinct": true,
-      "id": "83e91735427e25c19a3b9225dd497cc26ac0cfa8",
-      "message": "Merge pull request #174 from guitarrapc/dependabot/github_actions/azure/setup-kubectl-4\n\nchore(deps): bump azure/setup-kubectl from 3 to 4",
-      "timestamp": "2024-03-19T01:04:20+09:00",
-      "tree_id": "186a998898a1f355f8d0b9a5e5985b519d82a6fb",
-      "url": "https://github.com/guitarrapc/githubactions-lab/commit/83e91735427e25c19a3b9225dd497cc26ac0cfa8"
+      "id": "55d4516e5adddbf61effb7545d67cbfd146b218d",
+      "message": "Merge pull request #175 from guitarrapc/dependabot/github_actions/tj-actions/changed-files-43\n\nchore(deps): bump tj-actions/changed-files from 42 to 43",
+      "timestamp": "2024-03-19T01:04:29+09:00",
+      "tree_id": "1d19a120b5a5ee72ac87d34150e31e8e6297dc80",
+      "url": "https://github.com/guitarrapc/githubactions-lab/commit/55d4516e5adddbf61effb7545d67cbfd146b218d"
     },
     "pusher": {
       "email": "3856350+guitarrapc@users.noreply.github.com",
@@ -154,8 +154,8 @@
       "name": "githubactions-lab",
       "node_id": "MDEwOlJlcG9zaXRvcnkyNTc0NjU0Njg=",
       "notifications_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/notifications{?since,all,participating}",
-      "open_issues": 10,
-      "open_issues_count": 10,
+      "open_issues": 9,
+      "open_issues_count": 9,
       "owner": {
         "avatar_url": "https://avatars.githubusercontent.com/u/3856350?v=4",
         "email": "3856350+guitarrapc@users.noreply.github.com",
@@ -180,7 +180,7 @@
       },
       "private": false,
       "pulls_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls{/number}",
-      "pushed_at": 1710777860,
+      "pushed_at": 1710777869,
       "releases_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/releases{/id}",
       "size": 1725,
       "ssh_url": "git@github.com:guitarrapc/githubactions-lab.git",
@@ -233,15 +233,15 @@
   "ref_type": "branch",
   "secret_source": "Actions",
   "workflow_ref": "guitarrapc/githubactions-lab/.github/workflows/auto_dump_context.yaml@refs/heads/main",
-  "workflow_sha": "83e91735427e25c19a3b9225dd497cc26ac0cfa8",
+  "workflow_sha": "55d4516e5adddbf61effb7545d67cbfd146b218d",
   "workspace": "/home/runner/work/githubactions-lab/githubactions-lab",
   "action": "__run_2",
   "event_path": "/home/runner/work/_temp/_github_workflow/event.json",
   "action_repository": "",
   "action_ref": "",
-  "path": "/home/runner/work/_temp/_runner_file_commands/add_path_3662ea38-f5f7-44ce-a83c-efd4b47037f4",
-  "env": "/home/runner/work/_temp/_runner_file_commands/set_env_3662ea38-f5f7-44ce-a83c-efd4b47037f4",
-  "step_summary": "/home/runner/work/_temp/_runner_file_commands/step_summary_3662ea38-f5f7-44ce-a83c-efd4b47037f4",
-  "state": "/home/runner/work/_temp/_runner_file_commands/save_state_3662ea38-f5f7-44ce-a83c-efd4b47037f4",
-  "output": "/home/runner/work/_temp/_runner_file_commands/set_output_3662ea38-f5f7-44ce-a83c-efd4b47037f4"
+  "path": "/home/runner/work/_temp/_runner_file_commands/add_path_997a9b18-69cb-44ab-99e7-1098be9d51d7",
+  "env": "/home/runner/work/_temp/_runner_file_commands/set_env_997a9b18-69cb-44ab-99e7-1098be9d51d7",
+  "step_summary": "/home/runner/work/_temp/_runner_file_commands/step_summary_997a9b18-69cb-44ab-99e7-1098be9d51d7",
+  "state": "/home/runner/work/_temp/_runner_file_commands/save_state_997a9b18-69cb-44ab-99e7-1098be9d51d7",
+  "output": "/home/runner/work/_temp/_runner_file_commands/set_output_997a9b18-69cb-44ab-99e7-1098be9d51d7"
 }
