@@ -2,13 +2,13 @@
   "token": "<reducted>",
   "job": "dump-context",
   "ref": "refs/heads/main",
-  "sha": "268fa088896042fa2a43ce40c4083f573c245fc4",
+  "sha": "ce5d2951775358050b090683bdaddcac326f56e3",
   "repository": "guitarrapc/githubactions-lab",
   "repository_owner": "guitarrapc",
   "repository_owner_id": "3856350",
   "repositoryUrl": "git://github.com/guitarrapc/githubactions-lab.git",
-  "run_id": "8511373426",
-  "run_number": "912",
+  "run_id": "8596112919",
+  "run_number": "924",
   "retention_days": "90",
   "run_attempt": "1",
   "artifact_cache_size_limit": "10",
@@ -20,44 +20,44 @@
   "actor": "guitarrapc",
   "triggering_actor": "guitarrapc",
   "workflow": "auto dump context",
-  "head_ref": "dependabot/github_actions/tj-actions/changed-files-44",
+  "head_ref": "feature/variables",
   "base_ref": "main",
   "event_name": "pull_request",
   "event": {
     "action": "closed",
-    "number": 176,
+    "number": 177,
     "pull_request": {
       "_links": {
         "comments": {
-          "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/issues/176/comments"
+          "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/issues/177/comments"
         },
         "commits": {
-          "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/176/commits"
+          "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/177/commits"
         },
         "html": {
-          "href": "https://github.com/guitarrapc/githubactions-lab/pull/176"
+          "href": "https://github.com/guitarrapc/githubactions-lab/pull/177"
         },
         "issue": {
-          "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/issues/176"
+          "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/issues/177"
         },
         "review_comment": {
           "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/comments{/number}"
         },
         "review_comments": {
-          "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/176/comments"
+          "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/177/comments"
         },
         "self": {
-          "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/176"
+          "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/177"
         },
         "statuses": {
-          "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/statuses/1ef3ce077d03742900b58dbd6573f4136dd72999"
+          "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/statuses/3c3b306791026d47059c28036cc9914f1f8872dc"
         }
       },
       "active_lock_reason": null,
-      "additions": 4,
+      "additions": 221,
       "assignee": null,
       "assignees": [],
-      "author_association": "CONTRIBUTOR",
+      "author_association": "OWNER",
       "auto_merge": null,
       "base": {
         "label": "guitarrapc:main",
@@ -155,9 +155,9 @@
           },
           "private": false,
           "pulls_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls{/number}",
-          "pushed_at": "2024-04-01T15:11:50Z",
+          "pushed_at": "2024-04-08T07:17:26Z",
           "releases_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/releases{/id}",
-          "size": 1761,
+          "size": 1786,
           "squash_merge_commit_message": "COMMIT_MESSAGES",
           "squash_merge_commit_title": "COMMIT_OR_PR_TITLE",
           "ssh_url": "git@github.com:guitarrapc/githubactions-lab.git",
@@ -181,7 +181,7 @@
           "watchers_count": 36,
           "web_commit_signoff_required": false
         },
-        "sha": "7ed0156c3605220ee5c141c30d7220afe0de800c",
+        "sha": "0534e74b39f395295d5aacd3a3f9b5b3cfe2c948",
         "user": {
           "avatar_url": "https://avatars.githubusercontent.com/u/3856350?v=4",
           "events_url": "https://api.github.com/users/guitarrapc/events{/privacy}",
@@ -203,20 +203,20 @@
           "url": "https://api.github.com/users/guitarrapc"
         }
       },
-      "body": "Bumps [tj-actions/changed-files](https://github.com/tj-actions/changed-files) from 43 to 44.\n<details>\n<summary>Release notes</summary>\n<p><em>Sourced from <a href=\"https://github.com/tj-actions/changed-files/releases\">tj-actions/changed-files's releases</a>.</em></p>\n<blockquote>\n<h2>v44</h2>\n<h1>Changes in v44.0.0</h1>\n<h2>🔥🔥 BREAKING CHANGE 🔥🔥</h2>\n<h3>Overview</h3>\n<p>We've made a significant update to how pull requests (PRs) from forked repositories are processed. This improvement not only streamlines the handling of such PRs but also fixes a previously identified issue.</p>\n<h3>Before the Change</h3>\n<p>Previously, when you created a pull request from a forked repository, any files changed in the target branch after the PR creation would erroneously appear as part of the PR's changed files. This made it difficult to distinguish between the actual changes introduced by the PR and subsequent changes made directly to the target branch.</p>\n<h3>What Has Changed</h3>\n<p>With this update, a pull request from a fork will now <strong>only</strong> include the files that were explicitly changed in the fork. This ensures that the list of changed files in a PR accurately reflects the contributions from the fork, without being muddled by unrelated changes to the target branch.</p>\n<hr />\n<h2>What's Changed</h2>\n<ul>\n<li>Upgraded to v43.0.1 by <a href=\"https://github.com/tj-actions-bot\"><code>@​tj-actions-bot</code></a> in <a href=\"https://redirect.github.com/tj-actions/changed-files/pull/2004\">tj-actions/changed-files#2004</a></li>\n<li>chore(deps): lock file maintenance by <a href=\"https://github.com/renovate\"><code>@​renovate</code></a> in <a href=\"https://redirect.github.com/tj-actions/changed-files/pull/2005\">tj-actions/changed-files#2005</a></li>\n<li>chore(deps): update typescript-eslint monorepo to v7.4.0 by <a href=\"https://github.com/renovate\"><code>@​renovate</code></a> in <a href=\"https://redirect.github.com/tj-actions/changed-files/pull/2006\">tj-actions/changed-files#2006</a></li>\n<li>fix: bug with prs from forks returning incorrect set of changed files by <a href=\"https://github.com/jackton1\"><code>@​jackton1</code></a> in <a href=\"https://redirect.github.com/tj-actions/changed-files/pull/2007\">tj-actions/changed-files#2007</a></li>\n<li>fix: check for setting remote urls for forks by <a href=\"https://github.com/jackton1\"><code>@​jackton1</code></a> in <a href=\"https://redirect.github.com/tj-actions/changed-files/pull/2009\">tj-actions/changed-files#2009</a></li>\n<li>fix: update to add the fork remote by <a href=\"https://github.com/jackton1\"><code>@​jackton1</code></a> in <a href=\"https://redirect.github.com/tj-actions/changed-files/pull/2010\">tj-actions/changed-files#2010</a></li>\n<li>fix: update previous sha for forks by <a href=\"https://github.com/jackton1\"><code>@​jackton1</code></a> in <a href=\"https://redirect.github.com/tj-actions/changed-files/pull/2011\">tj-actions/changed-files#2011</a></li>\n<li>fix: ensure the fork remote doesn't exists before creating it by <a href=\"https://github.com/jackton1\"><code>@​jackton1</code></a> in <a href=\"https://redirect.github.com/tj-actions/changed-files/pull/2012\">tj-actions/changed-files#2012</a></li>\n<li>chore: update description of other_deleted_files output by <a href=\"https://github.com/tonyejack1\"><code>@​tonyejack1</code></a> in <a href=\"https://redirect.github.com/tj-actions/changed-files/pull/2008\">tj-actions/changed-files#2008</a></li>\n<li>Updated README.md by <a href=\"https://github.com/tj-actions-bot\"><code>@​tj-actions-bot</code></a> in <a href=\"https://redirect.github.com/tj-actions/changed-files/pull/2013\">tj-actions/changed-files#2013</a></li>\n<li>remove: unused code by <a href=\"https://github.com/jackton1\"><code>@​jackton1</code></a> in <a href=\"https://redirect.github.com/tj-actions/changed-files/pull/2014\">tj-actions/changed-files#2014</a></li>\n<li>chore: update description of outputs removing asterisks  by <a href=\"https://github.com/tonyejack1\"><code>@​tonyejack1</code></a> in <a href=\"https://redirect.github.com/tj-actions/changed-files/pull/2015\">tj-actions/changed-files#2015</a></li>\n<li>Updated README.md by <a href=\"https://github.com/tj-actions-bot\"><code>@​tj-actions-bot</code></a> in <a href=\"https://redirect.github.com/tj-actions/changed-files/pull/2016\">tj-actions/changed-files#2016</a></li>\n</ul>\n<h2>New Contributors</h2>\n<ul>\n<li><a href=\"https://github.com/tonyejack1\"><code>@​tonyejack1</code></a> made their first contribution in <a href=\"https://redirect.github.com/tj-actions/changed-files/pull/2008\">tj-actions/changed-files#2008</a></li>\n</ul>\n<p><strong>Full Changelog</strong>: <a href=\"https://github.com/tj-actions/changed-files/compare/v43.0.1...v44.0.0\">https://github.com/tj-actions/changed-files/compare/v43.0.1...v44.0.0</a></p>\n<hr />\n<h2>v44.0.0</h2>\n<h2>🔥🔥 BREAKING CHANGE 🔥🔥</h2>\n<h3>Overview</h3>\n<p>We've made a significant update to how pull requests (PRs) from forked repositories are processed. This improvement not only streamlines the handling of such PRs but also fixes a previously identified issue.</p>\n<h3>Before the Change</h3>\n<p>Previously, when you created a pull request from a forked repository, any files changed in the target branch after the PR creation would erroneously appear as part of the PR's changed files. This made it difficult to distinguish between the actual changes introduced by the PR and subsequent changes made directly to the target branch.</p>\n<h3>What Has Changed</h3>\n<p>With this update, a pull request from a fork will now <strong>only</strong> include the files that were explicitly changed in the fork. This ensures that the list of changed files in a PR accurately reflects the contributions from the fork, without being muddled by unrelated changes to the target branch.</p>\n<!-- raw HTML omitted -->\n</blockquote>\n<p>... (truncated)</p>\n</details>\n<details>\n<summary>Changelog</summary>\n<p><em>Sourced from <a href=\"https://github.com/tj-actions/changed-files/blob/main/HISTORY.md\">tj-actions/changed-files's changelog</a>.</em></p>\n<blockquote>\n<h1>Changelog</h1>\n<h1><a href=\"https://github.com/tj-actions/changed-files/compare/v43.0.1...v44.0.0\">44.0.0</a> - (2024-03-27)</h1>\n<h2><!-- raw HTML omitted -->🐛 Bug Fixes</h2>\n<ul>\n<li>Ensure the fork remote doesn't exists before creating it (<a href=\"https://redirect.github.com/tj-actions/changed-files/issues/2012\">#2012</a>) (<a href=\"https://github.com/tj-actions/changed-files/commit/4bbd49b9986b1300b75e8efb5778350b750ae6c8\">4bbd49b</a>)  - (Tonye Jack)</li>\n<li>Update previos sha for forks (<a href=\"https://redirect.github.com/tj-actions/changed-files/issues/2011\">#2011</a>) (<a href=\"https://github.com/tj-actions/changed-files/commit/f0e7702ccc35952acb83edeb7400b05c0a67e2be\">f0e7702</a>)  - (Tonye Jack)</li>\n<li>Update to add the fork remote (<a href=\"https://redirect.github.com/tj-actions/changed-files/issues/2010\">#2010</a>) (<a href=\"https://github.com/tj-actions/changed-files/commit/6354e6c5426d1e7c7a2d8a5887e26b535837958e\">6354e6c</a>)  - (Tonye Jack)</li>\n<li>Check for setting remote urls for forks (<a href=\"https://redirect.github.com/tj-actions/changed-files/issues/2009\">#2009</a>) (<a href=\"https://github.com/tj-actions/changed-files/commit/117616472fb771d9e030aa0c3741057ad520d9cf\">1176164</a>)  - (Tonye Jack)</li>\n<li>Bug with prs from forks returning incorrect set of changed files (<a href=\"https://redirect.github.com/tj-actions/changed-files/issues/2007\">#2007</a>) (<a href=\"https://github.com/tj-actions/changed-files/commit/4ff79362e5015d6d0c6c0050b3082c97a5b7e84a\">4ff7936</a>)  - (Tonye Jack)</li>\n</ul>\n<h2><!-- raw HTML omitted -->➖ Remove</h2>\n<ul>\n<li>Unused code (<a href=\"https://redirect.github.com/tj-actions/changed-files/issues/2014\">#2014</a>) (<a href=\"https://github.com/tj-actions/changed-files/commit/90941b398f6d8d3ade3e2b8f179d0c64f3679de6\">90941b3</a>)  - (Tonye Jack)</li>\n</ul>\n<h2><!-- raw HTML omitted -->🔄 Update</h2>\n<ul>\n<li>Updated README.md (<a href=\"https://redirect.github.com/tj-actions/changed-files/issues/2016\">#2016</a>)</li>\n</ul>\n<p>Co-authored-by: jackton1 <a href=\"mailto:17484350+jackton1@users.noreply.github.com\">17484350+jackton1@users.noreply.github.com</a> (<a href=\"https://github.com/tj-actions/changed-files/commit/2d756ea4c53f7f6b397767d8723b3a10a9f35bf2\">2d756ea</a>)  - (tj-actions[bot])</p>\n<ul>\n<li>Update README.md (<a href=\"https://github.com/tj-actions/changed-files/commit/2d21bbb405b3e0e15479b93c4d9989b4b780a266\">2d21bbb</a>)  - (Tonye Jack)</li>\n<li>Updated README.md (<a href=\"https://redirect.github.com/tj-actions/changed-files/issues/2013\">#2013</a>)</li>\n</ul>\n<p>Co-authored-by: jackton1 <a href=\"mailto:17484350+jackton1@users.noreply.github.com\">17484350+jackton1@users.noreply.github.com</a> (<a href=\"https://github.com/tj-actions/changed-files/commit/2ca8dc42f60aab6d0f54beb4e1bd63f15aa53632\">2ca8dc4</a>)  - (tj-actions[bot])</p>\n<ul>\n<li>Update README.md (<a href=\"https://github.com/tj-actions/changed-files/commit/4621617d4b568fe72798b05a512482442405549c\">4621617</a>)  - (tonyejack1)</li>\n<li>Update README.md (<a href=\"https://github.com/tj-actions/changed-files/commit/c6557ed000b9d1dbc0abcb5c2a7efc1ef3baa379\">c6557ed</a>)  - (Tonye Jack)</li>\n<li>Update README.md (<a href=\"https://github.com/tj-actions/changed-files/commit/0713a11242c796d0e601c9ac8f009c2beed0d646\">0713a11</a>)  - (Tonye Jack)</li>\n</ul>\n<h2><!-- raw HTML omitted -->⚙️ Miscellaneous Tasks</h2>\n<ul>\n<li>Update description of outputs removing asterisks (<a href=\"https://redirect.github.com/tj-actions/changed-files/issues/2015\">#2015</a>) (<a href=\"https://github.com/tj-actions/changed-files/commit/ce497c39e9043c5dec72f4506445f6b5dbd1f027\">ce497c3</a>)  - (tonyejack1)</li>\n<li>Update description of other_deleted_files output (<a href=\"https://redirect.github.com/tj-actions/changed-files/issues/2008\">#2008</a>) (<a href=\"https://github.com/tj-actions/changed-files/commit/ee096d679e877096b9d6e42066f654e0d9d65b1a\">ee096d6</a>)  - (tonyejack1)</li>\n<li><strong>deps:</strong> Update typescript-eslint monorepo to v7.4.0 (<a href=\"https://github.com/tj-actions/changed-files/commit/064742427d8106b59345e3fabb40031068c82c41\">0647424</a>)  - (renovate[bot])</li>\n<li><strong>deps:</strong> Lock file maintenance (<a href=\"https://github.com/tj-actions/changed-files/commit/efe5e6c7a415f33e8936dea8c45a8fe80be66a92\">efe5e6c</a>)  - (renovate[bot])</li>\n</ul>\n<h2><!-- raw HTML omitted -->⬆️ Upgrades</h2>\n<ul>\n<li>Upgraded to v43.0.1 (<a href=\"https://redirect.github.com/tj-actions/changed-files/issues/2004\">#2004</a>)</li>\n</ul>\n<p>Co-authored-by: jackton1 <a href=\"mailto:17484350+jackton1@users.noreply.github.com\">17484350+jackton1@users.noreply.github.com</a> (<a href=\"https://github.com/tj-actions/changed-files/commit/01e9662a12a71c5aea74e82ca1c58fa76a640c61\">01e9662</a>)  - (tj-actions[bot])</p>\n<h1><a href=\"https://github.com/tj-actions/changed-files/compare/v43.0.0...v43.0.1\">43.0.1</a> - (2024-03-20)</h1>\n<h2><!-- raw HTML omitted -->🐛 Bug Fixes</h2>\n<ul>\n<li>Remove warning with detecting the local git repository when using Github's REST API (<a href=\"https://redirect.github.com/tj-actions/changed-files/issues/2002\">#2002</a>) (<a href=\"https://github.com/tj-actions/changed-files/commit/077b23f6a68d9322b1b4ed4d0c88791b30b314d8\">077b23f</a>)  - (Tonye Jack)</li>\n</ul>\n<h2><!-- raw HTML omitted -->📦 Bumps</h2>\n<!-- raw HTML omitted -->\n</blockquote>\n<p>... (truncated)</p>\n</details>\n<details>\n<summary>Commits</summary>\n<ul>\n<li><a href=\"https://github.com/tj-actions/changed-files/commit/2d756ea4c53f7f6b397767d8723b3a10a9f35bf2\"><code>2d756ea</code></a> Updated README.md (<a href=\"https://redirect.github.com/tj-actions/changed-files/issues/2016\">#2016</a>)</li>\n<li><a href=\"https://github.com/tj-actions/changed-files/commit/ce497c39e9043c5dec72f4506445f6b5dbd1f027\"><code>ce497c3</code></a> chore: update description of outputs removing asterisks (<a href=\"https://redirect.github.com/tj-actions/changed-files/issues/2015\">#2015</a>)</li>\n<li><a href=\"https://github.com/tj-actions/changed-files/commit/2d21bbb405b3e0e15479b93c4d9989b4b780a266\"><code>2d21bbb</code></a> Update README.md</li>\n<li><a href=\"https://github.com/tj-actions/changed-files/commit/90941b398f6d8d3ade3e2b8f179d0c64f3679de6\"><code>90941b3</code></a> remove: unused code (<a href=\"https://redirect.github.com/tj-actions/changed-files/issues/2014\">#2014</a>)</li>\n<li><a href=\"https://github.com/tj-actions/changed-files/commit/2ca8dc42f60aab6d0f54beb4e1bd63f15aa53632\"><code>2ca8dc4</code></a> Updated README.md (<a href=\"https://redirect.github.com/tj-actions/changed-files/issues/2013\">#2013</a>)</li>\n<li><a href=\"https://github.com/tj-actions/changed-files/commit/ee096d679e877096b9d6e42066f654e0d9d65b1a\"><code>ee096d6</code></a> chore: update description of other_deleted_files output (<a href=\"https://redirect.github.com/tj-actions/changed-files/issues/2008\">#2008</a>)</li>\n<li><a href=\"https://github.com/tj-actions/changed-files/commit/4621617d4b568fe72798b05a512482442405549c\"><code>4621617</code></a> Update README.md</li>\n<li><a href=\"https://github.com/tj-actions/changed-files/commit/4bbd49b9986b1300b75e8efb5778350b750ae6c8\"><code>4bbd49b</code></a> fix: ensure the fork remote doesn't exists before creating it (<a href=\"https://redirect.github.com/tj-actions/changed-files/issues/2012\">#2012</a>)</li>\n<li><a href=\"https://github.com/tj-actions/changed-files/commit/c6557ed000b9d1dbc0abcb5c2a7efc1ef3baa379\"><code>c6557ed</code></a> Update README.md</li>\n<li><a href=\"https://github.com/tj-actions/changed-files/commit/f0e7702ccc35952acb83edeb7400b05c0a67e2be\"><code>f0e7702</code></a> fix: update previos sha for forks (<a href=\"https://redirect.github.com/tj-actions/changed-files/issues/2011\">#2011</a>)</li>\n<li>Additional commits viewable in <a href=\"https://github.com/tj-actions/changed-files/compare/v43...v44\">compare view</a></li>\n</ul>\n</details>\n<br />\n\n\n[![Dependabot compatibility score](https://dependabot-badges.githubapp.com/badges/compatibility_score?dependency-name=tj-actions/changed-files&package-manager=github_actions&previous-version=43&new-version=44)](https://docs.github.com/en/github/managing-security-vulnerabilities/about-dependabot-security-updates#about-compatibility-scores)\n\nDependabot will resolve any conflicts with this PR as long as you don't alter it yourself. You can also trigger a rebase manually by commenting `@dependabot rebase`.\n\n[//]: # (dependabot-automerge-start)\n[//]: # (dependabot-automerge-end)\n\n---\n\n<details>\n<summary>Dependabot commands and options</summary>\n<br />\n\nYou can trigger Dependabot actions by commenting on this PR:\n- `@dependabot rebase` will rebase this PR\n- `@dependabot recreate` will recreate this PR, overwriting any edits that have been made to it\n- `@dependabot merge` will merge this PR after your CI passes on it\n- `@dependabot squash and merge` will squash and merge this PR after your CI passes on it\n- `@dependabot cancel merge` will cancel a previously requested merge and block automerging\n- `@dependabot reopen` will reopen this PR if it is closed\n- `@dependabot close` will close this PR and stop Dependabot recreating it. You can achieve the same result by closing it manually\n- `@dependabot show <dependency name> ignore conditions` will show all of the ignore conditions of the specified dependency\n- `@dependabot ignore this major version` will close this PR and stop Dependabot creating any more for this major version (unless you reopen the PR or upgrade to it yourself)\n- `@dependabot ignore this minor version` will close this PR and stop Dependabot creating any more for this minor version (unless you reopen the PR or upgrade to it yourself)\n- `@dependabot ignore this dependency` will close this PR and stop Dependabot creating any more for this dependency (unless you reopen the PR or upgrade to it yourself)\n\n\n</details>",
-      "changed_files": 3,
-      "closed_at": "2024-04-01T17:32:43Z",
+      "body": null,
+      "changed_files": 8,
+      "closed_at": "2024-04-08T07:20:03Z",
       "comments": 0,
-      "comments_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/issues/176/comments",
-      "commits": 1,
-      "commits_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/176/commits",
-      "created_at": "2024-04-01T15:11:50Z",
-      "deletions": 4,
-      "diff_url": "https://github.com/guitarrapc/githubactions-lab/pull/176.diff",
+      "comments_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/issues/177/comments",
+      "commits": 3,
+      "commits_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/177/commits",
+      "created_at": "2024-04-08T07:15:42Z",
+      "deletions": 186,
+      "diff_url": "https://github.com/guitarrapc/githubactions-lab/pull/177.diff",
       "draft": false,
       "head": {
-        "label": "guitarrapc:dependabot/github_actions/tj-actions/changed-files-44",
-        "ref": "dependabot/github_actions/tj-actions/changed-files-44",
+        "label": "guitarrapc:feature/variables",
+        "ref": "feature/variables",
         "repo": {
           "allow_auto_merge": false,
           "allow_forking": true,
@@ -310,9 +310,9 @@
           },
           "private": false,
           "pulls_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls{/number}",
-          "pushed_at": "2024-04-01T15:11:50Z",
+          "pushed_at": "2024-04-08T07:17:26Z",
           "releases_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/releases{/id}",
-          "size": 1761,
+          "size": 1786,
           "squash_merge_commit_message": "COMMIT_MESSAGES",
           "squash_merge_commit_title": "COMMIT_OR_PR_TITLE",
           "ssh_url": "git@github.com:guitarrapc/githubactions-lab.git",
@@ -336,7 +336,7 @@
           "watchers_count": 36,
           "web_commit_signoff_required": false
         },
-        "sha": "1ef3ce077d03742900b58dbd6573f4136dd72999",
+        "sha": "3c3b306791026d47059c28036cc9914f1f8872dc",
         "user": {
           "avatar_url": "https://avatars.githubusercontent.com/u/3856350?v=4",
           "events_url": "https://api.github.com/users/guitarrapc/events{/privacy}",
@@ -358,27 +358,17 @@
           "url": "https://api.github.com/users/guitarrapc"
         }
       },
-      "html_url": "https://github.com/guitarrapc/githubactions-lab/pull/176",
-      "id": 1800664200,
-      "issue_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/issues/176",
-      "labels": [
-        {
-          "color": "0366d6",
-          "default": false,
-          "description": "Pull requests that update a dependency file",
-          "id": 5238199298,
-          "name": "dependencies",
-          "node_id": "LA_kwDOD1icfM8AAAABODiUAg",
-          "url": "https://api.github.com/repos/guitarrapc/githubactions-lab/labels/dependencies"
-        }
-      ],
+      "html_url": "https://github.com/guitarrapc/githubactions-lab/pull/177",
+      "id": 1811429681,
+      "issue_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/issues/177",
+      "labels": [],
       "locked": false,
       "maintainer_can_modify": false,
-      "merge_commit_sha": "268fa088896042fa2a43ce40c4083f573c245fc4",
+      "merge_commit_sha": "ce5d2951775358050b090683bdaddcac326f56e3",
       "mergeable": null,
       "mergeable_state": "unknown",
       "merged": true,
-      "merged_at": "2024-04-01T17:32:43Z",
+      "merged_at": "2024-04-08T07:20:03Z",
       "merged_by": {
         "avatar_url": "https://avatars.githubusercontent.com/u/3856350?v=4",
         "events_url": "https://api.github.com/users/guitarrapc/events{/privacy}",
@@ -400,39 +390,39 @@
         "url": "https://api.github.com/users/guitarrapc"
       },
       "milestone": null,
-      "node_id": "PR_kwDOD1icfM5rU_SI",
-      "number": 176,
-      "patch_url": "https://github.com/guitarrapc/githubactions-lab/pull/176.patch",
+      "node_id": "PR_kwDOD1icfM5r-Dkx",
+      "number": 177,
+      "patch_url": "https://github.com/guitarrapc/githubactions-lab/pull/177.patch",
       "rebaseable": null,
       "requested_reviewers": [],
       "requested_teams": [],
       "review_comment_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/comments{/number}",
       "review_comments": 0,
-      "review_comments_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/176/comments",
+      "review_comments_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/177/comments",
       "state": "closed",
-      "statuses_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/statuses/1ef3ce077d03742900b58dbd6573f4136dd72999",
-      "title": "chore(deps): bump tj-actions/changed-files from 43 to 44",
-      "updated_at": "2024-04-01T17:32:44Z",
-      "url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/176",
+      "statuses_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/statuses/3c3b306791026d47059c28036cc9914f1f8872dc",
+      "title": "feat: add variables access",
+      "updated_at": "2024-04-08T07:20:04Z",
+      "url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/177",
       "user": {
-        "avatar_url": "https://avatars.githubusercontent.com/in/29110?v=4",
-        "events_url": "https://api.github.com/users/dependabot%5Bbot%5D/events{/privacy}",
-        "followers_url": "https://api.github.com/users/dependabot%5Bbot%5D/followers",
-        "following_url": "https://api.github.com/users/dependabot%5Bbot%5D/following{/other_user}",
-        "gists_url": "https://api.github.com/users/dependabot%5Bbot%5D/gists{/gist_id}",
+        "avatar_url": "https://avatars.githubusercontent.com/u/3856350?v=4",
+        "events_url": "https://api.github.com/users/guitarrapc/events{/privacy}",
+        "followers_url": "https://api.github.com/users/guitarrapc/followers",
+        "following_url": "https://api.github.com/users/guitarrapc/following{/other_user}",
+        "gists_url": "https://api.github.com/users/guitarrapc/gists{/gist_id}",
         "gravatar_id": "",
-        "html_url": "https://github.com/apps/dependabot",
-        "id": 49699333,
-        "login": "dependabot[bot]",
-        "node_id": "MDM6Qm90NDk2OTkzMzM=",
-        "organizations_url": "https://api.github.com/users/dependabot%5Bbot%5D/orgs",
-        "received_events_url": "https://api.github.com/users/dependabot%5Bbot%5D/received_events",
-        "repos_url": "https://api.github.com/users/dependabot%5Bbot%5D/repos",
+        "html_url": "https://github.com/guitarrapc",
+        "id": 3856350,
+        "login": "guitarrapc",
+        "node_id": "MDQ6VXNlcjM4NTYzNTA=",
+        "organizations_url": "https://api.github.com/users/guitarrapc/orgs",
+        "received_events_url": "https://api.github.com/users/guitarrapc/received_events",
+        "repos_url": "https://api.github.com/users/guitarrapc/repos",
         "site_admin": false,
-        "starred_url": "https://api.github.com/users/dependabot%5Bbot%5D/starred{/owner}{/repo}",
-        "subscriptions_url": "https://api.github.com/users/dependabot%5Bbot%5D/subscriptions",
-        "type": "Bot",
-        "url": "https://api.github.com/users/dependabot%5Bbot%5D"
+        "starred_url": "https://api.github.com/users/guitarrapc/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/guitarrapc/subscriptions",
+        "type": "User",
+        "url": "https://api.github.com/users/guitarrapc"
       }
     },
     "repository": {
@@ -520,9 +510,9 @@
       },
       "private": false,
       "pulls_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls{/number}",
-      "pushed_at": "2024-04-01T15:11:50Z",
+      "pushed_at": "2024-04-08T07:17:26Z",
       "releases_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/releases{/id}",
-      "size": 1761,
+      "size": 1786,
       "ssh_url": "git@github.com:guitarrapc/githubactions-lab.git",
       "stargazers_count": 36,
       "stargazers_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/stargazers",
@@ -572,15 +562,15 @@
   "ref_type": "branch",
   "secret_source": "Actions",
   "workflow_ref": "guitarrapc/githubactions-lab/.github/workflows/auto_dump_context.yaml@refs/heads/main",
-  "workflow_sha": "268fa088896042fa2a43ce40c4083f573c245fc4",
+  "workflow_sha": "ce5d2951775358050b090683bdaddcac326f56e3",
   "workspace": "/home/runner/work/githubactions-lab/githubactions-lab",
   "action": "__run_2",
   "event_path": "/home/runner/work/_temp/_github_workflow/event.json",
   "action_repository": "",
   "action_ref": "",
-  "path": "/home/runner/work/_temp/_runner_file_commands/add_path_04d691de-4cfd-4866-99a6-3abb68cd818e",
-  "env": "/home/runner/work/_temp/_runner_file_commands/set_env_04d691de-4cfd-4866-99a6-3abb68cd818e",
-  "step_summary": "/home/runner/work/_temp/_runner_file_commands/step_summary_04d691de-4cfd-4866-99a6-3abb68cd818e",
-  "state": "/home/runner/work/_temp/_runner_file_commands/save_state_04d691de-4cfd-4866-99a6-3abb68cd818e",
-  "output": "/home/runner/work/_temp/_runner_file_commands/set_output_04d691de-4cfd-4866-99a6-3abb68cd818e"
+  "path": "/home/runner/work/_temp/_runner_file_commands/add_path_c2cf6bad-3db6-495d-858f-1381a2660d13",
+  "env": "/home/runner/work/_temp/_runner_file_commands/set_env_c2cf6bad-3db6-495d-858f-1381a2660d13",
+  "step_summary": "/home/runner/work/_temp/_runner_file_commands/step_summary_c2cf6bad-3db6-495d-858f-1381a2660d13",
+  "state": "/home/runner/work/_temp/_runner_file_commands/save_state_c2cf6bad-3db6-495d-858f-1381a2660d13",
+  "output": "/home/runner/work/_temp/_runner_file_commands/set_output_c2cf6bad-3db6-495d-858f-1381a2660d13"
 }
