@@ -1,0 +1,15 @@
+name: variables access
+on:
+  workflow_dispatch:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+jobs:
+  dereference:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - name: foobar variable
+        run: |
+          echo "foobar: ${{ vars.FOOBAR }}"
