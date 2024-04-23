@@ -2191,12 +2191,14 @@ Therefore I recommend not to use secret for Dependabot triggered workflows. If y
 
 ## Build Artifacts
 
-GitHub Actions [actions/upload-artifact](https://github.com/actions/upload-artifact) and [actions/download-artifact](https://github.com/actions/download-artifact) offer build artifact handling. You can upload and download artifact to/from GitHub Actions.
+GitHub Actions [actions/upload-artifact](https://github.com/actions/upload-artifact) and [actions/download-artifact](https://github.com/actions/download-artifact) offer artifact handling between jobs. You can upload and download artifact to/from GitHub Actions.
+
+**file**
 
 ```yaml
-# .github/workflows/build_artifacts.yaml
+# .github/workflows/artifacts_file.yaml
 
-name: build artifacts
+name: artifacts (file)
 
 on:
   workflow_dispatch:
@@ -2206,19 +2208,52 @@ on:
     branches: [main]
 
 jobs:
-  upload-single:
+  # single file
+  upload-file:
     runs-on: ubuntu-latest
     timeout-minutes: 3
     steps:
       - name: output
         run: |
           echo "hoge" > ./hoge.txt
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
         with:
           name: hoge.txt
           path: ./hoge.txt
           retention-days: 1
 
+  download-file:
+    needs: [upload-file]
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: hoge.txt
+          path: .
+      - name: ls
+        run: ls -lR
+      - name: cat hoge.txt
+        run: cat hoge.txt
+
+```
+
+**directory**
+
+```yaml
+# .github/workflows/artifacts_directory.yaml
+
+name: artifacts (directory)
+
+on:
+  workflow_dispatch:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+
+jobs:
+  # directory
   upload-directory:
     runs-on: ubuntu-latest
     timeout-minutes: 3
@@ -2230,12 +2265,102 @@ jobs:
           echo "fuga" > ./directory/fuga.txt
           echo "foo" > ./directory/bin/foo.txt
           echo "bar" > ./directory/bin/bar.txt
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
         with:
           name: directory
           path: ./directory/
           retention-days: 1
+  download-directory:
+    needs: [upload-directory]
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: directory
+          path: ./directory
+      - name: ls
+        run: ls -lR
+      - name: cat hoge.txt
+        run: cat directory/hoge.txt
 
+```
+
+**.tar.gz**
+
+```yaml
+# .github/workflows/artifacts_targz.yaml
+
+name: artifacts (tar.gz)
+
+on:
+  workflow_dispatch:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+
+jobs:
+  # single file
+  upload-single:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - name: output
+        run: |
+          echo "hoge" > ./hoge.txt
+      - uses: actions/upload-artifact@v4
+        with:
+          name: hoge.txt
+          path: ./hoge.txt
+          retention-days: 1
+
+  download-single:
+    needs: [upload-single]
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: hoge.txt
+          path: .
+      - name: ls
+        run: ls -lR
+      - name: cat hoge.txt
+        run: cat hoge.txt
+
+  # directory
+  upload-directory:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - name: output
+        run: |
+          mkdir -p ./directory/bin
+          echo "hoge" > ./directory/hoge.txt
+          echo "fuga" > ./directory/fuga.txt
+          echo "foo" > ./directory/bin/foo.txt
+          echo "bar" > ./directory/bin/bar.txt
+      - uses: actions/upload-artifact@v4
+        with:
+          name: directory
+          path: ./directory/
+          retention-days: 1
+  download-directory:
+    needs: [upload-directory]
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: directory
+          path: ./directory
+      - name: ls
+        run: ls -lR
+      - name: cat hoge.txt
+        run: cat directory/hoge.txt
+
+  # tar.gz
   upload-targz:
     runs-on: ubuntu-latest
     timeout-minutes: 3
@@ -2248,39 +2373,11 @@ jobs:
           echo "foo" > ./output/bin/foo.txt
           echo "bar" > ./output/bin/bar.txt
           tar -zcvf output.tar.gz ./output/
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
         with:
           name: output.tar.gz
           path: ./output.tar.gz
           retention-days: 1
-
-  download-single:
-    needs: [upload-single]
-    runs-on: ubuntu-latest
-    timeout-minutes: 3
-    steps:
-      - uses: actions/download-artifact@v3
-        with:
-          name: hoge.txt
-          path: .
-      - name: ls
-        run: ls -lR
-      - name: cat hoge.txt
-        run: cat hoge.txt
-
-  download-directory:
-    needs: [upload-directory]
-    runs-on: ubuntu-latest
-    timeout-minutes: 3
-    steps:
-      - uses: actions/download-artifact@v3
-        with:
-          name: directory
-          path: ./directory
-      - name: ls
-        run: ls -lR
-      - name: cat hoge.txt
-        run: cat directory/hoge.txt
 
   download-targz:
     needs: [upload-targz]
@@ -2288,7 +2385,7 @@ jobs:
     timeout-minutes: 3
     steps:
       # specify path: . to download tar.gz to current directory
-      - uses: actions/download-artifact@v3
+      - uses: actions/download-artifact@v4
         with:
           name: output.tar.gz
           path: .
@@ -2304,6 +2401,7 @@ jobs:
         run: cat ./output/bin/foo.txt
 
 ```
+
 
 ## Checkout faster with Git sparse-checkout
 

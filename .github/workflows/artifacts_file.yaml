@@ -1,0 +1,37 @@
+name: artifacts (file)
+
+on:
+  workflow_dispatch:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+
+jobs:
+  # single file
+  upload-file:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - name: output
+        run: |
+          echo "hoge" > ./hoge.txt
+      - uses: actions/upload-artifact@v4
+        with:
+          name: hoge.txt
+          path: ./hoge.txt
+          retention-days: 1
+
+  download-file:
+    needs: [upload-file]
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: hoge.txt
+          path: .
+      - name: ls
+        run: ls -lR
+      - name: cat hoge.txt
+        run: cat hoge.txt
