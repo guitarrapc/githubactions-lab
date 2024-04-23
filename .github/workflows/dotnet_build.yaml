@@ -43,7 +43,7 @@ jobs:
       - uses: actions/upload-artifact@v4
         with:
           name: dotnet-console
-          path: ./src/dotnet/artifacts/publish/Sandbox.Console
+          path: ./src/dotnet/artifacts/publish/Sandbox.Console/
           retention-days: 1
 
   container:
@@ -62,7 +62,7 @@ jobs:
       - uses: actions/upload-artifact@v4
         with:
           name: dotnet-container
-          path: ./out/dotnet-console-container
+          path: ./out/dotnet-console-container/
           retention-days: 1
 
   ls:
@@ -73,10 +73,6 @@ jobs:
       - container
     steps:
       - uses: actions/download-artifact@v4
-        with:
-          path: .
-          pattern: dotnet-*
-          merge-multiple: true
       - run: ls -lR
       - run: ls -l | grep dotnet-console
       - run: ls -l | grep dotnet-container
