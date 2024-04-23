@@ -1,4 +1,4 @@
-name: build artifacts (file)
+name: artifacts (file)
 
 on:
   workflow_dispatch:

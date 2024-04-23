@@ -1,4 +1,4 @@
-name: build artifacts (tar.gz)
+name: artifacts (tar.gz)
 
 on:
   workflow_dispatch:
