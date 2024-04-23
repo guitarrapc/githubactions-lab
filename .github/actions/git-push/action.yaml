@@ -25,5 +25,41 @@ runs:
         git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
         git add .
         git commit -m "${{ inputs.commit-message }}"
-        git pull origin ${{ inputs.ref }} --rebase
-        git push
+    - name: git push
+      shell: bash
+      run: |
+        max_retries=3
+        retry_count=0
+
+        try_push() {
+          if git push; then
+            echo "Successfully completed."
+            return 0
+          fi
+
+          echo "Failed to push, try 'git pull --rebase' to resolve ..."
+          if git pull origin ${{ inputs.ref }} --rebase; then
+            echo "'git pull --rebase' has problen, you need resolve conflict ..."
+            return 1
+          fi
+          return 2
+        }
+
+        # main loop
+        while [ $retry_count -lt $max_retries ]; do
+          echo "try 'git push' ($((retry_count + 1))/$max_retriestimes) ..."
+          try_push
+          result=$?
+          if try_push; then
+            # exit on success
+            exit 0
+          elif [ $result -eq 1 ]; then
+            # exit when 'git pull --rebase' has problem
+            exit 1
+          fi
+
+          ((retry_count++))
+        done
+
+        echo "max retry reached, but failed to push."
+        exit 1
