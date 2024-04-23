@@ -1,0 +1,40 @@
+name: build artifacts (directory)
+
+on:
+  workflow_dispatch:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+
+jobs:
+  # directory
+  upload-directory:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - name: output
+        run: |
+          mkdir -p ./directory/bin
+          echo "hoge" > ./directory/hoge.txt
+          echo "fuga" > ./directory/fuga.txt
+          echo "foo" > ./directory/bin/foo.txt
+          echo "bar" > ./directory/bin/bar.txt
+      - uses: actions/upload-artifact@v4
+        with:
+          name: directory
+          path: ./directory/
+          retention-days: 1
+  download-directory:
+    needs: [upload-directory]
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: directory
+          path: ./directory
+      - name: ls
+        run: ls -lR
+      - name: cat hoge.txt
+        run: cat directory/hoge.txt
