@@ -2301,65 +2301,6 @@ on:
     branches: [main]
 
 jobs:
-  # single file
-  upload-single:
-    runs-on: ubuntu-latest
-    timeout-minutes: 3
-    steps:
-      - name: output
-        run: |
-          echo "hoge" > ./hoge.txt
-      - uses: actions/upload-artifact@v4
-        with:
-          name: hoge.txt
-          path: ./hoge.txt
-          retention-days: 1
-
-  download-single:
-    needs: [upload-single]
-    runs-on: ubuntu-latest
-    timeout-minutes: 3
-    steps:
-      - uses: actions/download-artifact@v4
-        with:
-          name: hoge.txt
-          path: .
-      - name: ls
-        run: ls -lR
-      - name: cat hoge.txt
-        run: cat hoge.txt
-
-  # directory
-  upload-directory:
-    runs-on: ubuntu-latest
-    timeout-minutes: 3
-    steps:
-      - name: output
-        run: |
-          mkdir -p ./directory/bin
-          echo "hoge" > ./directory/hoge.txt
-          echo "fuga" > ./directory/fuga.txt
-          echo "foo" > ./directory/bin/foo.txt
-          echo "bar" > ./directory/bin/bar.txt
-      - uses: actions/upload-artifact@v4
-        with:
-          name: directory
-          path: ./directory/
-          retention-days: 1
-  download-directory:
-    needs: [upload-directory]
-    runs-on: ubuntu-latest
-    timeout-minutes: 3
-    steps:
-      - uses: actions/download-artifact@v4
-        with:
-          name: directory
-          path: ./directory
-      - name: ls
-        run: ls -lR
-      - name: cat hoge.txt
-        run: cat directory/hoge.txt
-
   # tar.gz
   upload-targz:
     runs-on: ubuntu-latest
