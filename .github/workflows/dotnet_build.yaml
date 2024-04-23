@@ -74,8 +74,6 @@ jobs:
     steps:
       - uses: actions/download-artifact@v4
       - run: ls -lR
-      - run: ls -l | grep dotnet-console
-      - run: ls -l | grep dotnet-container
       # zip up files
       - run: zip -r Sandbox.Console.zip ./dotnet-console
       - run: zip -r dotnet-console-container.zip ./dotnet-container
