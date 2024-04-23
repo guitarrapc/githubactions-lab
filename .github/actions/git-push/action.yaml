@@ -47,7 +47,7 @@ runs:
           fi
 
           echo "Failed to push, try 'git pull --rebase' to resolve ..."
-          if git pull origin ${{ inputs.ref }} --rebase; then
+          if ! git pull origin ${{ inputs.ref }} --rebase; then
             echo "'git pull --rebase' has problen, you need resolve conflict ..."
             return 1
           fi

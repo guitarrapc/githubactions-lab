@@ -40,10 +40,10 @@ jobs:
         run: dotnet test ./src/dotnet -c Debug --logger GitHubActions --logger "console;verbosity=normal"
       - name: dotnet publish
         run: dotnet publish ./src/dotnet -c Debug
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
         with:
           name: dotnet-console
-          path: ./src/dotnet/artifacts/publish/Sandbox.Console
+          path: ./src/dotnet/artifacts/publish/Sandbox.Console/
           retention-days: 1
 
   container:
@@ -59,10 +59,10 @@ jobs:
         run: dotnet test ./src/dotnet -c Debug --logger GitHubActions --logger "console;verbosity=normal"
       - name: dotnet publish
         run: dotnet publish ./src/dotnet -c Debug -o ./out/dotnet-console-container
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
         with:
-          name: dotnet-console-container
-          path: ./out/dotnet-console-container
+          name: dotnet-container
+          path: ./out/dotnet-console-container/
           retention-days: 1
 
   ls:
@@ -72,5 +72,8 @@ jobs:
       - runner
       - container
     steps:
-      - uses: actions/download-artifact@v3
+      - uses: actions/download-artifact@v4
       - run: ls -lR
+      # zip up files
+      - run: zip -r Sandbox.Console.zip ./dotnet-console
+      - run: zip -r dotnet-console-container.zip ./dotnet-container
