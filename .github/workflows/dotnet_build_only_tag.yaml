@@ -55,6 +55,9 @@ jobs:
           path: "."
           pattern: dotnet-*
           merge-multiple: true
-      - run: zip -r Sandbox.Console.zip ./Sandbox.Console/
-      - run: zip -r dotnet-console-container.zip ./dotnet-console-container
       - run: ls -l
+      - run: ls -l | grep dotnet-console
+      - run: ls -l | grep dotnet-container
+      # zip up files
+      - run: zip -r Sandbox.Console.zip ./dotnet-console
+      - run: zip -r dotnet-console-container.zip ./dotnet-container
