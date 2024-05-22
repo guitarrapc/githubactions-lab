@@ -1028,8 +1028,9 @@ name: "Hello World"
 description: |
   Desctiption of your action
 runs:
-  using: "node12"
+  using: "node20"
   main: "index.js"
+
 ```
 
 - step3. Write your source code to `.github/actions/YOUR_DIR/*.js`.
