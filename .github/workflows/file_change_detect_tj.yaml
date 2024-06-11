@@ -26,7 +26,7 @@ jobs:
       # run when file changes are under 10
       - id: changed-files2
         uses: tj-actions/changed-files@v44
-        if: ${{ github.event.pull_request.changed_files < 10 }}
+        if: ${{ github.event.pull_request.changed_files < 100 }}
       - name: List all changed files
         run: |
           for file in ${{ steps.changed-files2.outputs.all_changed_files }}; do

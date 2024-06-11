@@ -27,6 +27,9 @@ jobs:
       # run when file changes are under 10
       - id: changed-files2
         uses: trilom/file-changes-action@v1.2.4
-        if: ${{ github.event.pull_request.changed_files < 10 }}
-      - name: Changed file list
-        run: echo "${{ steps.changed-files2.outputs.files }}"
+        if: ${{ github.event.pull_request.changed_files < 100 }}
+      - name: List all changed files
+        run: |
+          for file in ${{ steps.changed-files2.outputs.files }}; do
+            echo "$file was changed"
+          done
