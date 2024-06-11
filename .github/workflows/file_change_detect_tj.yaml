@@ -13,22 +13,32 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 2 # push required 2 or 0 to detect last commit change
+      # see: https://github.com/tj-actions/changed-files
       - id: changed-files
         uses: tj-actions/changed-files@v44 # this action force fetch base branch and compare.
         with:
-          separator: ","
+          separator: "," # default ' '
       - name: Changed file list
         run: echo "${{ steps.changed-files.outputs.all_modified_files }}"
       - name: Is changed files include .github/workflows?
         run: echo "${{ contains(steps.changed-files.outputs.all_modified_files, '.github/workflows')}}"
       - name: Is changed files include .github/dummy?
         run: echo "${{ contains(steps.changed-files.outputs.all_modified_files, '.github/dummy')}}"
-      # run when file changes are under 10
+      # space separated
       - id: changed-files2
         uses: tj-actions/changed-files@v44
-        if: ${{ github.event.pull_request.changed_files < 10 }}
+        if: ${{ github.event.pull_request.changed_files < 100 }} # when changed files less than 100
       - name: List all changed files
+        env:
+          CHANGED_FILES: ${{ steps.changed-files2.outputs.all_changed_files }}
         run: |
-          for file in ${{ steps.changed-files2.outputs.all_changed_files }}; do
+          for file in ${CHANGED_FILES}; do
             echo "$file was changed"
           done
+      # json separated
+      - id: changed-files3
+        uses: tj-actions/changed-files@v44 # this action force fetch base branch and compare.
+        with:
+          json: "true"
+      - name: Changed file list
+        run: echo "${{ steps.changed-files3.outputs.all_modified_files }}"
