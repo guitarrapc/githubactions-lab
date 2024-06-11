@@ -2621,7 +2621,6 @@ on:
   pull_request:
     branches: ["main"]
     paths:
-      - .github/**/*.yml
       - .github/**/*.yaml
 
 jobs:
@@ -2632,6 +2631,7 @@ jobs:
     steps:
       - name: "Prevent file change"
         run: exit 1
+
 ```
 
 ```yaml
@@ -2642,7 +2642,6 @@ on:
   pull_request:
     branches: ["main"]
     paths:
-      - .github/**/*.yml
       - .github/**/*.yaml
 
 permissions:
@@ -2671,7 +2670,6 @@ on:
   pull_request:
     branches: ["main"]
     paths:
-      - .github/**/*.yml
       - .github/**/*.yaml
 
 jobs:
@@ -2705,7 +2703,6 @@ on:
   pull_request:
     branches: ["main"]
     paths:
-      - .github/**/*.yml
       - .github/**/*.yaml
 
 jobs:
@@ -2720,7 +2717,6 @@ jobs:
         with:
           filters: |
             src:
-              - .github/**/*.yml
               - .github/**/*.yaml
       - name: Run step if any file(s) in the .github folder change
         if: ${{ steps.changes.outputs.src == 'true' }}
