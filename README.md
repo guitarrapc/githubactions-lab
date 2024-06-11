@@ -1762,27 +1762,29 @@ jobs:
 
 ## Detect file changed
 
-you can handle commit file handle with GitHub actions [trilom/file/-changes/-action](https://github.com/trilom/file-changes-action).
+You can detect which file was changed with push or pull_request by GitHub actions. This is useful when you want to use `path-filter`, but require further file handling. Following 3 actions are available and can use same way.
+
+**Recommented**
+
+* `tj-actions/changed-files` is still actively developed. Usage is simple and output is static.
 
 ```yaml
-# .github/workflows/pr_path_changed.yaml
+# .github/workflows/file_changed_detect_tj.yaml
+```
 
-name: pr path changed
-on: [pull_request]
-jobs:
-  changes:
-    runs-on: ubuntu-latest
-    timeout-minutes: 3
-    steps:
-      - id: file_changes
-        uses: trilom/file-changes-action@v1.2.4
-        with:
-          output: ","
-          pushBefore: main
-      - run: echo "${{ steps.file_changes.outputs.files }}"
-      - if: ${{ contains(steps.file_changes.outputs.files, '.github/workflows/') }}
-        run: echo changes contains .github/workflows/
+**Not recommended**
 
+`dorny/paths-filter` is still actively developed. However it's output is quite dynamic and hard to handle static lint like actionlint.
+
+```yaml
+# .github/workflows/file_changed_detect_dorny.yaml
+```
+
+
+`trilom/file-changes-action` stopped development, so I will quit using it.
+
+```yaml
+# .github/workflows/file_changed_detect_trilom.yaml
 ```
 
 ## Schedule job on non-default branch
