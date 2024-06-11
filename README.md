@@ -1773,7 +1773,7 @@ You can detect which file was changed with push or pull_request by GitHub action
 * `tj-actions/changed-files` is still actively developed. Usage is simple and output is static.
 
 ```yaml
-# .github/workflows/file_changed_detect_tj.yaml
+# .github/workflows/file_change_detect_tj.yaml
 ```
 
 **Not recommended**
@@ -1781,14 +1781,14 @@ You can detect which file was changed with push or pull_request by GitHub action
 `dorny/paths-filter` is still actively developed. However it's output is quite dynamic and hard to handle static lint like actionlint.
 
 ```yaml
-# .github/workflows/file_changed_detect_dorny.yaml
+# .github/workflows/file_change_detect_dorny.yaml
 ```
 
 
 `trilom/file-changes-action` stopped development, so I will quit using it.
 
 ```yaml
-# .github/workflows/file_changed_detect_trilom.yaml
+# .github/workflows/file_change_detect_dorny.yaml
 ```
 
 ## Schedule job on non-default branch
