@@ -5,26 +5,20 @@ on:
 jobs:
   job:
     permissions:
-      contents: write
+      # actions: write
+      # checks: write
+      contents: read
+      # deployments: write
+      # discussions: write
+      # id-token: write
+      # issues: write
+      # packages: write
+      # pages: write
+      # pull-requests: write
+      # repository-projects: write
+      # security-events: write
+      # statuses: write
     runs-on: ubuntu-latest
     timeout-minutes: 3
     steps:
-      - id: file_changes
-        uses: trilom/file-changes-action@v1.2.4
-        with:
-          output: ","
-      - run: echo "${{ steps.file_changes.outputs.files }}"
-      - run: echo "${{ contains(steps.file_changes.outputs.files, '.github/workflows')}}"
-      - run: echo "${{ contains(steps.file_changes.outputs.files, '.github/dummy')}}"
-      - run: echo "${{ contains(steps.file_changes.outputs.files, '.github/dummy') || 'true' }}"
-      - run: echo "RUN_TEST=${{ contains(steps.file_changes.outputs.files, '.github/workflows') || 'true' }}"  | tee -a "$GITHUB_ENV"
-      # test if not exists
-      - id: file_changes2
-        uses: trilom/file-changes-action@v1.2.4
-        with:
-          output: ","
-        if: ${{ github.event.pull_request.changed_files > 10 }}
-      - run: echo "${{ contains(steps.file_changes2.outputs.files, '.github/workflows')}}"
-      - run: echo "${{ contains(steps.file_changes2.outputs.files, '.github/dummy')}}"
-      - run: echo "${{ contains(steps.file_changes2.outputs.files, '.github/dummy') || 'true' }}"
-      - run: echo "RUN_TEST2=${{ contains(steps.file_changes2.outputs.files, '.github/workflows') || 'true' }}"  | tee -a "$GITHUB_ENV"
+      - uses: actions/checkout@v4

@@ -880,7 +880,7 @@ on:
 permissions:
   # actions: write
   # checks: write
-  contents: write
+  contents: read
   # deployments: write
   # discussions: write
   # id-token: write
@@ -896,25 +896,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
-      - id: file_changes
-        uses: trilom/file-changes-action@v1.2.4
-        with:
-          output: ","
-      - run: echo "${{ steps.file_changes.outputs.files }}"
-      - run: echo "${{ contains(steps.file_changes.outputs.files, '.github/workflows')}}"
-      - run: echo "${{ contains(steps.file_changes.outputs.files, '.github/dummy')}}"
-      - run: echo "${{ contains(steps.file_changes.outputs.files, '.github/dummy') || 'true' }}"
-      - run: echo "RUN_TEST=${{ contains(steps.file_changes.outputs.files, '.github/workflows') || 'true' }}"  | tee -a "$GITHUB_ENV"
-      # test if not exists
-      - id: file_changes2
-        uses: trilom/file-changes-action@v1.2.4
-        with:
-          output: ","
-        if: ${{ github.event.pull_request.changed_files > 10 }}
-      - run: echo "${{ contains(steps.file_changes2.outputs.files, '.github/workflows')}}"
-      - run: echo "${{ contains(steps.file_changes2.outputs.files, '.github/dummy')}}"
-      - run: echo "${{ contains(steps.file_changes2.outputs.files, '.github/dummy') || 'true' }}"
-      - run: echo "RUN_TEST2=${{ contains(steps.file_changes2.outputs.files, '.github/workflows') || 'true' }}"  | tee -a "$GITHUB_ENV"
+      - uses: actions/checkout@v4
 
 ```
 
@@ -930,29 +912,23 @@ on:
 jobs:
   job:
     permissions:
-      contents: write
+      # actions: write
+      # checks: write
+      contents: read
+      # deployments: write
+      # discussions: write
+      # id-token: write
+      # issues: write
+      # packages: write
+      # pages: write
+      # pull-requests: write
+      # repository-projects: write
+      # security-events: write
+      # statuses: write
     runs-on: ubuntu-latest
     timeout-minutes: 3
     steps:
-      - id: file_changes
-        uses: trilom/file-changes-action@v1.2.4
-        with:
-          output: ","
-      - run: echo "${{ steps.file_changes.outputs.files }}"
-      - run: echo "${{ contains(steps.file_changes.outputs.files, '.github/workflows')}}"
-      - run: echo "${{ contains(steps.file_changes.outputs.files, '.github/dummy')}}"
-      - run: echo "${{ contains(steps.file_changes.outputs.files, '.github/dummy') || 'true' }}"
-      - run: echo "RUN_TEST=${{ contains(steps.file_changes.outputs.files, '.github/workflows') || 'true' }}"  | tee -a "$GITHUB_ENV"
-      # test if not exists
-      - id: file_changes2
-        uses: trilom/file-changes-action@v1.2.4
-        with:
-          output: ","
-        if: ${{ github.event.pull_request.changed_files > 10 }}
-      - run: echo "${{ contains(steps.file_changes2.outputs.files, '.github/workflows')}}"
-      - run: echo "${{ contains(steps.file_changes2.outputs.files, '.github/dummy')}}"
-      - run: echo "${{ contains(steps.file_changes2.outputs.files, '.github/dummy') || 'true' }}"
-      - run: echo "RUN_TEST2=${{ contains(steps.file_changes2.outputs.files, '.github/workflows') || 'true' }}"  | tee -a "$GITHUB_ENV"
+      - uses: actions/checkout@v4
 
 ```
 
@@ -1760,28 +1736,208 @@ jobs:
 
 ## Create release
 
+Better using manual gh.
+
+[TBD]
+
 ## Detect file changed
 
-you can handle commit file handle with GitHub actions [trilom/file/-changes/-action](https://github.com/trilom/file-changes-action).
+You can detect which file was changed with push or pull_request by GitHub actions. This is useful when you want to use `path-filter`, but require further file handling. Following 3 actions are available and can use same way.
+
+**Recommented**
+
+* `tj-actions/changed-files` is still actively developed. Usage is simple and output is static.
 
 ```yaml
-# .github/workflows/pr_path_changed.yaml
+# .github/workflows/file_change_detect_tj.yaml
 
-name: pr path changed
-on: [pull_request]
+name: file change detect tj
+on:
+  workflow_dispatch:
+  pull_request:
+    branches: ["main"]
+  push:
+    branches: ["main"]
 jobs:
-  changes:
+  job:
     runs-on: ubuntu-latest
     timeout-minutes: 3
     steps:
-      - id: file_changes
-        uses: trilom/file-changes-action@v1.2.4
+      - uses: actions/checkout@v4
         with:
-          output: ","
-          pushBefore: main
-      - run: echo "${{ steps.file_changes.outputs.files }}"
-      - if: ${{ contains(steps.file_changes.outputs.files, '.github/workflows/') }}
-        run: echo changes contains .github/workflows/
+          fetch-depth: 2 # push required 2 or 0 to detect last commit change
+      # see: https://github.com/tj-actions/changed-files
+      - id: changed-files
+        uses: tj-actions/changed-files@v44 # this action force fetch base branch and compare.
+        with:
+          separator: "," # default ' '
+      - name: Changed file list
+        run: echo "${{ steps.changed-files.outputs.all_modified_files }}"
+      - name: Is changed files include .github/workflows?
+        run: echo "${{ contains(steps.changed-files.outputs.all_modified_files, '.github/workflows')}}"
+      - name: Is changed files include .github/dummy?
+        run: echo "${{ contains(steps.changed-files.outputs.all_modified_files, '.github/dummy')}}"
+      # space separated
+      - id: changed-files2
+        uses: tj-actions/changed-files@v44
+        if: ${{ github.event.pull_request.changed_files < 100 }} # when changed files less than 100
+      - name: List all changed files
+        env:
+          CHANGED_FILES: ${{ steps.changed-files2.outputs.all_changed_files }}
+        run: |
+          for file in ${CHANGED_FILES}; do
+            echo "$file was changed"
+          done
+      # json separated
+      - id: changed-files3
+        uses: tj-actions/changed-files@v44 # this action force fetch base branch and compare.
+        with:
+          json: "true"
+      - name: Changed file list
+        run: echo "${{ steps.changed-files3.outputs.all_modified_files }}"
+
+```
+
+**Not recommended**
+
+`dorny/paths-filter` is still actively developed. However it's output is quite dynamic and hard to handle static lint like actionlint.
+
+```yaml
+# .github/workflows/file_change_detect_dorny.yaml
+
+name: file change detect dorny
+on:
+  pull_request:
+    branches:
+      - main
+  push:
+    branches:
+      - main
+
+jobs:
+  job:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v4
+      # see: https://github.com/dorny/paths-filter/blob/master/README.md
+      - id: changed-files
+        uses: dorny/paths-filter@v3
+        with:
+          base: ${{ github.event_name == 'push' && github.ref || '' }}
+          list-files: csv # default 'none'. Disables listing of matching files.
+          filters: |
+            foo:
+              - '**'
+      - name: Is any change happen on some filters?
+        run: echo "${{ steps.changed-files.outputs.changes }}"
+      - name: Is change happen on foo filter?
+        run: echo "${{ steps.changed-files.outputs.foo }}"
+      - name: Changed file list for foo filter
+        run: echo "${{ steps.changed-files.outputs.foo_files }}"
+      - name: Is foo filter changed files include .github/workflows?
+        run: echo "${{ contains(steps.changed-files.outputs.foo_files, '.github/workflows')}}"
+      - name: Is foo filter changed files include .github/dummy?
+        run: echo "${{ contains(steps.changed-files.outputs.foo_files, '.github/dummy')}}"
+      # space separated
+      - id: changed-files2
+        uses: dorny/paths-filter@v3
+        if: ${{ github.event.pull_request.changed_files < 100 }} # when changed files less than 100
+        with:
+          base: ${{ github.event_name == 'push' && github.ref || '' }}
+          list-files: shell
+          filters: |
+            foo:
+              - '**'
+      - name: List all changed files
+        env:
+          CHANGED_FILES: ${{ steps.changed-files2.outputs.foo_files }}
+        run: |
+          for file in ${CHANGED_FILES}; do
+            echo "$file was changed"
+          done
+      # json separated
+      - id: changed-files3
+        uses: dorny/paths-filter@v3
+        with:
+          base: ${{ github.event_name == 'push' && github.ref || '' }}
+          list-files: json
+          filters: |
+            foo:
+              - '**'
+      - name: Changed file list for foo filter
+        run: echo "${{ steps.changed-files3.outputs.foo_files }}"
+
+```
+
+
+`trilom/file-changes-action` stopped development, so I will quit using it.
+
+```yaml
+# .github/workflows/file_change_detect_dorny.yaml
+
+name: file change detect dorny
+on:
+  pull_request:
+    branches:
+      - main
+  push:
+    branches:
+      - main
+
+jobs:
+  job:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v4
+      # see: https://github.com/dorny/paths-filter/blob/master/README.md
+      - id: changed-files
+        uses: dorny/paths-filter@v3
+        with:
+          base: ${{ github.event_name == 'push' && github.ref || '' }}
+          list-files: csv # default 'none'. Disables listing of matching files.
+          filters: |
+            foo:
+              - '**'
+      - name: Is any change happen on some filters?
+        run: echo "${{ steps.changed-files.outputs.changes }}"
+      - name: Is change happen on foo filter?
+        run: echo "${{ steps.changed-files.outputs.foo }}"
+      - name: Changed file list for foo filter
+        run: echo "${{ steps.changed-files.outputs.foo_files }}"
+      - name: Is foo filter changed files include .github/workflows?
+        run: echo "${{ contains(steps.changed-files.outputs.foo_files, '.github/workflows')}}"
+      - name: Is foo filter changed files include .github/dummy?
+        run: echo "${{ contains(steps.changed-files.outputs.foo_files, '.github/dummy')}}"
+      # space separated
+      - id: changed-files2
+        uses: dorny/paths-filter@v3
+        if: ${{ github.event.pull_request.changed_files < 100 }} # when changed files less than 100
+        with:
+          base: ${{ github.event_name == 'push' && github.ref || '' }}
+          list-files: shell
+          filters: |
+            foo:
+              - '**'
+      - name: List all changed files
+        env:
+          CHANGED_FILES: ${{ steps.changed-files2.outputs.foo_files }}
+        run: |
+          for file in ${CHANGED_FILES}; do
+            echo "$file was changed"
+          done
+      # json separated
+      - id: changed-files3
+        uses: dorny/paths-filter@v3
+        with:
+          base: ${{ github.event_name == 'push' && github.ref || '' }}
+          list-files: json
+          filters: |
+            foo:
+              - '**'
+      - name: Changed file list for foo filter
+        run: echo "${{ steps.changed-files3.outputs.foo_files }}"
 
 ```
 
