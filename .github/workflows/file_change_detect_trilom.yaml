@@ -1,11 +1,9 @@
 name: file change detect trilom
 on:
   pull_request:
-    branches:
-      - main
+    branches: ["main"]
   push:
-    branches:
-      - main
+    branches: ["main"]
 jobs:
   job:
     runs-on: ubuntu-latest

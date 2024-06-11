@@ -693,9 +693,9 @@ name: needs require success
 
 on:
   push:
-    branches: main
+    branches: ["main"]
   pull_request:
-    branches: main
+    branches: ["main"]
   workflow_dispatch:
 
 jobs:
@@ -742,9 +742,9 @@ name: needs not require success
 
 on:
   push:
-    branches: main
+    branches: ["main"]
   pull_request:
-    branches: main
+    branches: ["main"]
   workflow_dispatch:
 
 jobs:
@@ -782,9 +782,9 @@ name: needs skip no handling
 
 on:
   push:
-    branches: main
+    branches: ["main"]
   pull_request:
-    branches: main
+    branches: ["main"]
   workflow_dispatch:
 
 jobs:
@@ -823,9 +823,9 @@ name: needs skip handling
 
 on:
   push:
-    branches: main
+    branches: ["main"]
   pull_request:
-    branches: main
+    branches: ["main"]
   workflow_dispatch:
     inputs:
       only-c:
@@ -1155,11 +1155,9 @@ See [Type converter with fromJson](#type-converter-with-fromJson) for the detail
 name: reusable workflow caller (internal)
 on:
   push:
-    branches:
-      - main
+    branches: ["main"]
   pull_request:
-    branches:
-      - main
+    branches: ["main"]
   workflow_dispatch:
 
 # (Limitation) Callee can not refer caller environment variable.
@@ -1178,6 +1176,7 @@ jobs:
     needs: call-workflow-passing-data
     steps:
       - run: echo ${{ needs.call-workflow-passing-data.outputs.firstword }} ${{ needs.call-workflow-passing-data.outputs.secondword }}
+
 ```
 
 ### Call public repository's reusable workflow
@@ -1192,11 +1191,9 @@ Yo call public repository's reusable workflow, use `uses: GITHUB_OWNER/REPOSITOR
 name: reusable workflow caller (public)
 on:
   push:
-    branches:
-      - main
+    branches: ["main"]
   pull_request:
-    branches:
-      - main
+    branches: ["main"]
   workflow_dispatch:
 
 jobs:
@@ -1212,6 +1209,7 @@ jobs:
     needs: call-workflow-passing-data
     steps:
       - run: echo ${{ needs.call-workflow-passing-data.outputs.firstword }} ${{ needs.call-workflow-passing-data.outputs.secondword }}
+
 ```
 
 ### Call reusable workflow with matrix
@@ -1224,11 +1222,9 @@ Reusable Workflow caller cannot use matrix, but callee can use matrix. (see limi
 name: reusable workflow caller (matrix)
 on:
   push:
-    branches:
-      - main
+    branches: ["main"]
   pull_request:
-    branches:
-      - main
+    branches: ["main"]
   workflow_dispatch:
 
 jobs:
@@ -1241,6 +1237,7 @@ jobs:
       username: ${{ matrix.username }}
       is-valid: true
     secrets: inherit
+
 ```
 
 ### Nest reusable workflow
@@ -1758,6 +1755,7 @@ on:
     branches: ["main"]
   push:
     branches: ["main"]
+
 jobs:
   job:
     runs-on: ubuntu-latest
@@ -1808,11 +1806,9 @@ jobs:
 name: file change detect dorny
 on:
   pull_request:
-    branches:
-      - main
+    branches: ["main"]
   push:
-    branches:
-      - main
+    branches: ["main"]
 
 jobs:
   job:
@@ -1879,11 +1875,9 @@ jobs:
 name: file change detect dorny
 on:
   pull_request:
-    branches:
-      - main
+    branches: ["main"]
   push:
-    branches:
-      - main
+    branches: ["main"]
 
 jobs:
   job:
@@ -1991,8 +1985,7 @@ on:
     tags:
       - "[0-9]+.[0-9]+.[0-9]+*"
   pull_request:
-    branches:
-      - main
+    branches: ["main"]
   workflow_dispatch:
     inputs:
       tag:

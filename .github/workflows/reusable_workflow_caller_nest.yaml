@@ -1,11 +1,9 @@
 name: reusable workflow caller (nest)
 on:
   push:
-    branches:
-      - main
+    branches: ["main"]
   pull_request:
-    branches:
-      - main
+    branches: ["main"]
   workflow_dispatch:
 
 jobs:

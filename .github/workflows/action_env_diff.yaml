@@ -2,11 +2,9 @@ name: actions env diff
 # Is Actions cause environment variables diff?
 on:
   push:
-    branches:
-      - main
+    branches: ["main"]
   pull_request:
-    branches:
-      - main
+    branches: ["main"]
   workflow_dispatch:
 
 jobs:
