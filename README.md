@@ -1760,6 +1760,10 @@ jobs:
 
 ## Create release
 
+Better using manual gh.
+
+[TBD]
+
 ## Detect file changed
 
 You can detect which file was changed with push or pull_request by GitHub actions. This is useful when you want to use `path-filter`, but require further file handling. Following 3 actions are available and can use same way.
