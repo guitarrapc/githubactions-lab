@@ -13,6 +13,7 @@ jobs:
     timeout-minutes: 3
     steps:
       - uses: actions/checkout@v4
+      # see: https://github.com/dorny/paths-filter/blob/master/README.md
       - name: Get changed files in the .github folder
         uses: dorny/paths-filter@v3
         id: file_changes
@@ -20,12 +21,13 @@ jobs:
           base: ${{ github.event_name == 'push' && github.ref || '' }}
           list-files: csv
           filters: |
-            changed:
+            foo:
               - '**'
-      - run: echo "${{ steps.file_changes.outputs.changed }}"
-      - run: echo "${{ steps.file_changes.outputs.changes }}"
-      - run: echo "${{ contains(steps.file_changes.outputs.changes, '.github/workflows')}}"
-      - run: echo "${{ contains(steps.file_changes.outputs.changes, '.github/dummy')}}"
-      - run: echo "${{ contains(steps.file_changes.outputs.changes, '.github/dummy') || 'true' }}"
-      - run: echo "${{ contains(steps.file_changes.outputs.changes, '.github/dummy') && 'true' || 'false' }}"
-      - run: echo "RUN_TEST=${{ contains(steps.file_changes.outputs.changes, '.github/workflows') || 'true' }}"  | tee -a "$GITHUB_ENV"
+      - name: Is change happen?
+        run: echo "${{ steps.file_changes.outputs.foo }}"
+      - name: Changed file list
+        run: echo "${{ steps.file_changes.outputs.foo_files }}"
+      - name: Is .github/workflows changed?
+        run: echo "${{ contains(steps.file_changes.outputs.foo_files, '.github/workflows')}}"
+      - name: Is .github/dummy changed?
+        run: echo "${{ contains(steps.file_changes.outputs.foo_files, '.github/dummy')}}"
