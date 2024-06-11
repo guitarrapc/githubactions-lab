@@ -1,5 +1,12 @@
 name: file change detect dorny
-on: [pull_request]
+on:
+  pull_request:
+    branches:
+      - main
+  push:
+    branches:
+      - main
+
 jobs:
   job:
     runs-on: ubuntu-latest
@@ -10,6 +17,7 @@ jobs:
         uses: dorny/paths-filter@v3
         id: file_changes
         with:
+          base: ${{ github.event_name == 'push' && github.ref || '' }}
           list-files: csv
           filters: |
             changed:
