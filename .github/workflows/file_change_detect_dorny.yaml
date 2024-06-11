@@ -16,7 +16,7 @@ jobs:
       # see: https://github.com/dorny/paths-filter/blob/master/README.md
       - name: Get changed files in the .github folder
         uses: dorny/paths-filter@v3
-        id: file_changes
+        id: changed-files
         with:
           base: ${{ github.event_name == 'push' && github.ref || '' }}
           list-files: csv
@@ -24,12 +24,12 @@ jobs:
             foo:
               - '**'
       - name: Is any change happen on some filters?
-        run: echo "${{ steps.file_changes.outputs.changes }}"
+        run: echo "${{ steps.changed-files.outputs.changes }}"
       - name: Is change happen on foo filter?
-        run: echo "${{ steps.file_changes.outputs.foo }}"
+        run: echo "${{ steps.changed-files.outputs.foo }}"
       - name: Changed file list for foo filter
-        run: echo "${{ steps.file_changes.outputs.foo_files }}"
+        run: echo "${{ steps.changed-files.outputs.foo_files }}"
       - name: Is foo filter changed files include .github/workflows?
-        run: echo "${{ contains(steps.file_changes.outputs.foo_files, '.github/workflows')}}"
+        run: echo "${{ contains(steps.changed-files.outputs.foo_files, '.github/workflows')}}"
       - name: Is foo filter changed files include .github/dummy?
-        run: echo "${{ contains(steps.file_changes.outputs.foo_files, '.github/dummy')}}"
+        run: echo "${{ contains(steps.changed-files.outputs.foo_files, '.github/dummy')}}"

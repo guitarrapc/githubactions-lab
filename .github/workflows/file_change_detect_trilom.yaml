@@ -1,5 +1,11 @@
 name: file change detect trilom
-on: [pull_request]
+on:
+  pull_request:
+    branches:
+      - main
+  push:
+    branches:
+      - main
 jobs:
   job:
     runs-on: ubuntu-latest
@@ -8,24 +14,19 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 2
-      - id: file_changes
+      - id: changed-files
         uses: trilom/file-changes-action@v1.2.4
         with:
           output: ","
-      - run: echo "${{ steps.file_changes.outputs.files }}"
-      - run: echo "${{ contains(steps.file_changes.outputs.files, '.github/workflows')}}"
-      - run: echo "${{ contains(steps.file_changes.outputs.files, '.github/dummy')}}"
-      - run: echo "${{ contains(steps.file_changes.outputs.files, '.github/dummy') || 'true' }}"
-      - run: echo "${{ contains(steps.file_changes.outputs.files, '.github/dummy') && 'true' || 'false' }}"
-      - run: echo "RUN_TEST=${{ contains(steps.file_changes.outputs.files, '.github/workflows') || 'true' }}"  | tee -a "$GITHUB_ENV"
-      # test if not exists
-      - id: file_changes2
+      - name: Changed file list
+        run: echo "${{ steps.changed-files.outputs.files }}"
+      - name: Is changed files include .github/workflows?
+        run: echo "${{ contains(steps.changed-files.outputs.files, '.github/workflows')}}"
+      - name: Is changed files include .github/dummy?
+        run: echo "${{ contains(steps.changed-files.outputs.files, '.github/dummy')}}"
+      # run when file changes are under 10
+      - id: changed-files2
         uses: trilom/file-changes-action@v1.2.4
-        with:
-          output: ","
-        if: ${{ github.event.pull_request.changed_files > 10 }}
-      - run: echo "${{ contains(steps.file_changes2.outputs.files, '.github/workflows')}}"
-      - run: echo "${{ contains(steps.file_changes2.outputs.files, '.github/dummy')}}"
-      - run: echo "${{ contains(steps.file_changes2.outputs.files, '.github/dummy') || 'true' }}"
-      - run: echo "${{ contains(steps.file_changes2.outputs.files, '.github/dummy') && 'true' || 'false' }}"
-      - run: echo "RUN_TEST2=${{ contains(steps.file_changes2.outputs.files, '.github/workflows') || 'true' }}"  | tee -a "$GITHUB_ENV"
+        if: ${{ github.event.pull_request.changed_files < 10 }}
+      - name: Changed file list
+        run: echo "${{ steps.changed-files2.outputs.files }}"
