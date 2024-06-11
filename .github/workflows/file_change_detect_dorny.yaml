@@ -23,7 +23,7 @@ jobs:
           filters: |
             foo:
               - '**'
-      - name: Is any change happen?
+      - name: Is any change happen on some filters?
         run: echo "${{ steps.file_changes.outputs.changes }}"
       - name: Is change happen on foo filter?
         run: echo "${{ steps.file_changes.outputs.foo }}"
