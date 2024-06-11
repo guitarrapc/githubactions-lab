@@ -14,12 +14,11 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       # see: https://github.com/dorny/paths-filter/blob/master/README.md
-      - name: Get changed files in the .github folder
+      - id: changed-files
         uses: dorny/paths-filter@v3
-        id: changed-files
         with:
           base: ${{ github.event_name == 'push' && github.ref || '' }}
-          list-files: csv
+          list-files: csv # default 'none'. Disables listing of matching files.
           filters: |
             foo:
               - '**'
@@ -33,3 +32,29 @@ jobs:
         run: echo "${{ contains(steps.changed-files.outputs.foo_files, '.github/workflows')}}"
       - name: Is foo filter changed files include .github/dummy?
         run: echo "${{ contains(steps.changed-files.outputs.foo_files, '.github/dummy')}}"
+      # space separated
+      - id: changed-files2
+        uses: dorny/paths-filter@v3
+        if: ${{ github.event.pull_request.changed_files < 100 }} # when changed files less than 100
+        with:
+          base: ${{ github.event_name == 'push' && github.ref || '' }}
+          list-files: shell
+          filters: |
+            foo:
+              - '**'
+      - name: List all changed files
+        run: |
+          for file in ${{ steps.changed-files2.outputs.foo_files }}; do
+            echo "$file was changed"
+          done
+      # json separated
+      - id: changed-files3
+        uses: dorny/paths-filter@v3
+        with:
+          base: ${{ github.event_name == 'push' && github.ref || '' }}
+          list-files: json
+          filters: |
+            foo:
+              - '**'
+      - name: Changed file list for foo filter
+        run: echo "${{ steps.changed-files3.outputs.foo_files }}"
