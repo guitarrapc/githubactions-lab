@@ -29,8 +29,10 @@ jobs:
         uses: tj-actions/changed-files@v44
         if: ${{ github.event.pull_request.changed_files < 100 }} # when changed files less than 100
       - name: List all changed files
+        env:
+          CHANGED_FILES: ${{ steps.changed-files2.outputs.all_changed_files }}
         run: |
-          for file in ${{ steps.changed-files2.outputs.all_changed_files }}; do
+          for file in ${CHANGED_FILES}; do
             echo "$file was changed"
           done
       # json separated
