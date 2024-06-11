@@ -12,26 +12,23 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          fetch-depth: 2
+          fetch-depth: 2 # push required 2 or 0 to detect last commit change
       - id: changed-files
         uses: tj-actions/changed-files@v44 # this action force fetch base branch and compare.
         with:
           separator: ","
-      - run: echo "${{ steps.changed-files.outputs.all_modified_files }}"
-      - run: echo "${{ contains(steps.changed-files.outputs.all_modified_files, '.github/workflows')}}"
-      - run: echo "${{ contains(steps.changed-files.outputs.all_modified_files, '.github/dummy')}}"
-      - run: echo "${{ contains(steps.changed-files.outputs.all_modified_files, '.github/dummy') || 'true' }}"
-      - run: echo "${{ contains(steps.changed-files.outputs.all_modified_files, '.github/dummy') && 'true' || 'false' }}"
-      - run: echo "RUN_TEST=${{ contains(steps.changed-files.outputs.all_modified_files, '.github/workflows') || 'true' }}"  | tee -a "$GITHUB_ENV"
-      # test if not exists
+      - name: Changed file list
+        run: echo "${{ steps.changed-files.outputs.all_modified_files }}"
+      - name: Is changed files include .github/workflows?
+        run: echo "${{ contains(steps.changed-files.outputs.all_modified_files, '.github/workflows')}}"
+      - name: Is changed files include .github/dummy?
+        run: echo "${{ contains(steps.changed-files.outputs.all_modified_files, '.github/dummy')}}"
+      # run when file changes are under 10
       - id: changed-files2
         uses: tj-actions/changed-files@v44
-        with:
-          separator: ","
-        if: ${{ github.event.pull_request.changed_files > 10 }}
-      - run: echo "${{ steps.changed-files2.outputs.all_modified_files }}"
-      - run: echo "${{ contains(steps.changed-files2.outputs.all_modified_files, '.github/workflows')}}"
-      - run: echo "${{ contains(steps.changed-files2.outputs.all_modified_files, '.github/dummy')}}"
-      - run: echo "${{ contains(steps.changed-files2.outputs.all_modified_files, '.github/dummy') || 'true' }}"
-      - run: echo "${{ contains(steps.changed-files2.outputs.all_modified_files, '.github/dummy') && 'true' || 'false' }}"
-      - run: echo "RUN_TEST2=${{ contains(steps.changed-files2.outputs.all_modified_files, '.github/workflows') || 'true' }}"  | tee -a "$GITHUB_ENV"
+        if: ${{ github.event.pull_request.changed_files < 10 }}
+      - name: List all changed files
+        run: |
+          for file in ${{ steps.changed-files2.outputs.all_changed_files }}; do
+            echo "$file was changed"
+          done
