@@ -2,9 +2,9 @@ name: needs not require success
 
 on:
   push:
-    branches: main
+    branches: ["main"]
   pull_request:
-    branches: main
+    branches: ["main"]
   workflow_dispatch:
 
 jobs:

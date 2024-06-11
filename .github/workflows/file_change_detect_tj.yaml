@@ -5,6 +5,7 @@ on:
     branches: ["main"]
   push:
     branches: ["main"]
+
 jobs:
   job:
     runs-on: ubuntu-latest

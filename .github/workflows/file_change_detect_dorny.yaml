@@ -1,11 +1,9 @@
 name: file change detect dorny
 on:
   pull_request:
-    branches:
-      - main
+    branches: ["main"]
   push:
-    branches:
-      - main
+    branches: ["main"]
 
 jobs:
   job:

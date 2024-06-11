@@ -1,11 +1,9 @@
 name: reusable workflow caller (internal)
 on:
   push:
-    branches:
-      - main
+    branches: ["main"]
   pull_request:
-    branches:
-      - main
+    branches: ["main"]
   workflow_dispatch:
 
 # (Limitation) Callee can not refer caller environment variable.
