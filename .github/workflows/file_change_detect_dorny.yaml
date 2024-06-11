@@ -23,11 +23,13 @@ jobs:
           filters: |
             foo:
               - '**'
-      - name: Is change happen?
+      - name: Is any change happen?
+        run: echo "${{ steps.file_changes.outputs.changes }}"
+      - name: Is change happen on foo filter?
         run: echo "${{ steps.file_changes.outputs.foo }}"
-      - name: Changed file list
+      - name: Changed file list for foo filter
         run: echo "${{ steps.file_changes.outputs.foo_files }}"
-      - name: Is .github/workflows changed?
+      - name: Is foo filter changed files include .github/workflows?
         run: echo "${{ contains(steps.file_changes.outputs.foo_files, '.github/workflows')}}"
-      - name: Is .github/dummy changed?
+      - name: Is foo filter changed files include .github/dummy?
         run: echo "${{ contains(steps.file_changes.outputs.foo_files, '.github/dummy')}}"
