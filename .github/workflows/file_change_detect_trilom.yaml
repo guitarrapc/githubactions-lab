@@ -18,10 +18,6 @@ jobs:
           output: "," # default 'json'
       - name: Changed file list
         run: echo "${{ steps.changed-files.outputs.files }}"
-      - name: Is changed files include .github/workflows?
-        run: echo "${{ contains(steps.changed-files.outputs.files, '.github/workflows')}}"
-      - name: Is changed files include .github/dummy?
-        run: echo "${{ contains(steps.changed-files.outputs.files, '.github/dummy')}}"
       - id: changed-files2
         uses: trilom/file-changes-action@v1.2.4
         if: ${{ github.event.pull_request.changed_files < 100 }} # when changed files less than 100
@@ -37,7 +33,9 @@ jobs:
       - id: changed-files3
         uses: trilom/file-changes-action@v1.2.4
         if: ${{ github.event.pull_request.changed_files < 100 }} # when changed files less than 100
-        with:
-          output: "json"
       - name: Changed file list
         run: echo "${{ steps.changed-files3.outputs.files }}"
+      - name: Is changed files include .github/workflows?
+        run: echo "${{ contains(fromJSON(steps.changed-files3.outputs.files), '.github/workflows')}}"
+      - name: Is changed files include .github/dummy?
+        run: echo "${{ contains(fromJSON(steps.changed-files3.outputs.files), '.github/dummy')}}"

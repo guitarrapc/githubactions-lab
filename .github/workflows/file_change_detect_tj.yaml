@@ -21,10 +21,6 @@ jobs:
           separator: "," # default ' '
       - name: Changed file list
         run: echo "${{ steps.changed-files.outputs.all_modified_files }}"
-      - name: Is changed files include .github/workflows?
-        run: echo "${{ contains(steps.changed-files.outputs.all_modified_files, '.github/workflows')}}"
-      - name: Is changed files include .github/dummy?
-        run: echo "${{ contains(steps.changed-files.outputs.all_modified_files, '.github/dummy')}}"
       # space separated
       - id: changed-files2
         uses: tj-actions/changed-files@v44
@@ -43,3 +39,7 @@ jobs:
           json: "true"
       - name: Changed file list
         run: echo "${{ steps.changed-files3.outputs.all_modified_files }}"
+      - name: Is changed files include .github/workflows?
+        run: echo "${{ contains(fromJSON(steps.changed-files3.outputs.all_modified_files), '.github/workflows')}}"
+      - name: Is changed files include .github/dummy?
+        run: echo "${{ contains(fromJSON(steps.changed-files3.outputs.all_modified_files), '.github/dummy')}}"
