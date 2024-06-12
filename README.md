@@ -1771,10 +1771,6 @@ jobs:
           separator: "," # default ' '
       - name: Changed file list
         run: echo "${{ steps.changed-files.outputs.all_modified_files }}"
-      - name: Is changed files include .github/workflows?
-        run: echo "${{ contains(steps.changed-files.outputs.all_modified_files, '.github/workflows')}}"
-      - name: Is changed files include .github/dummy?
-        run: echo "${{ contains(steps.changed-files.outputs.all_modified_files, '.github/dummy')}}"
       # space separated
       - id: changed-files2
         uses: tj-actions/changed-files@v44
@@ -1793,6 +1789,10 @@ jobs:
           json: "true"
       - name: Changed file list
         run: echo "${{ steps.changed-files3.outputs.all_modified_files }}"
+      - name: Is changed files include .github/workflows?
+        run: echo "${{ contains(fromJSON(steps.changed-files3.outputs.all_modified_files), '.github/workflows')}}"
+      - name: Is changed files include .github/dummy?
+        run: echo "${{ contains(fromJSON(steps.changed-files3.outputs.all_modified_files), '.github/dummy')}}"
 
 ```
 
@@ -1831,10 +1831,6 @@ jobs:
         run: echo "${{ steps.changed-files.outputs.foo }}"
       - name: Changed file list for foo filter
         run: echo "${{ steps.changed-files.outputs.foo_files }}"
-      - name: Is foo filter changed files include .github/workflows?
-        run: echo "${{ contains(steps.changed-files.outputs.foo_files, '.github/workflows')}}"
-      - name: Is foo filter changed files include .github/dummy?
-        run: echo "${{ contains(steps.changed-files.outputs.foo_files, '.github/dummy')}}"
       # space separated
       - id: changed-files2
         uses: dorny/paths-filter@v3
@@ -1863,6 +1859,10 @@ jobs:
               - '**'
       - name: Changed file list for foo filter
         run: echo "${{ steps.changed-files3.outputs.foo_files }}"
+      - name: Is foo filter changed files include .github/workflows?
+        run: echo "${{ contains(fromJSON(steps.changed-files3.outputs.foo_files), '.github/workflows')}}"
+      - name: Is foo filter changed files include .github/dummy?
+        run: echo "${{ contains(fromJSON(steps.changed-files3.outputs.foo_files), '.github/dummy')}}"
 
 ```
 
@@ -1900,10 +1900,6 @@ jobs:
         run: echo "${{ steps.changed-files.outputs.foo }}"
       - name: Changed file list for foo filter
         run: echo "${{ steps.changed-files.outputs.foo_files }}"
-      - name: Is foo filter changed files include .github/workflows?
-        run: echo "${{ contains(steps.changed-files.outputs.foo_files, '.github/workflows')}}"
-      - name: Is foo filter changed files include .github/dummy?
-        run: echo "${{ contains(steps.changed-files.outputs.foo_files, '.github/dummy')}}"
       # space separated
       - id: changed-files2
         uses: dorny/paths-filter@v3
@@ -1932,6 +1928,10 @@ jobs:
               - '**'
       - name: Changed file list for foo filter
         run: echo "${{ steps.changed-files3.outputs.foo_files }}"
+      - name: Is foo filter changed files include .github/workflows?
+        run: echo "${{ contains(fromJSON(steps.changed-files3.outputs.foo_files), '.github/workflows')}}"
+      - name: Is foo filter changed files include .github/dummy?
+        run: echo "${{ contains(fromJSON(steps.changed-files3.outputs.foo_files), '.github/dummy')}}"
 
 ```
 
