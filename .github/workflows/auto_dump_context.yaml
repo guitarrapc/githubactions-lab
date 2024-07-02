@@ -28,7 +28,7 @@ permissions:
 
 jobs:
   dump:
-    if: ${{ github.actor != 'dependabot[bot]' }}
+    if: ${{ github.actor != 'dependabot[bot]' && github.event_name == 'issue_comment' }}
     uses: ./.github/workflows/_reusable_dump_context.yaml
     with:
       output-path: contexts
