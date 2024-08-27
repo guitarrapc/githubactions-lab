@@ -1766,7 +1766,7 @@ jobs:
           fetch-depth: 2 # push required 2 or 0 to detect last commit change
       # see: https://github.com/tj-actions/changed-files
       - id: changed-files
-        uses: tj-actions/changed-files@v44 # this action force fetch base branch and compare.
+        uses: tj-actions/changed-files@v45 # this action force fetch base branch and compare.
         with:
           separator: "," # default ' '
       - name: Changed file list
@@ -1777,7 +1777,7 @@ jobs:
         run: echo "${{ contains(steps.changed-files.outputs.all_modified_files, '.github/dummy')}}"
       # space separated
       - id: changed-files2
-        uses: tj-actions/changed-files@v44
+        uses: tj-actions/changed-files@v45
         if: ${{ github.event.pull_request.changed_files < 100 }} # when changed files less than 100
       - name: List all changed files
         env:
@@ -1788,7 +1788,7 @@ jobs:
           done
       # json separated
       - id: changed-files3
-        uses: tj-actions/changed-files@v44 # this action force fetch base branch and compare.
+        uses: tj-actions/changed-files@v45 # this action force fetch base branch and compare.
         with:
           json: "true"
       - name: Changed file list
@@ -2832,7 +2832,7 @@ jobs:
           fetch-depth: 2 # To retrieve the preceding commit.
       - name: Get changed files in the .github folder
         id: changed-files
-        uses: tj-actions/changed-files@v44
+        uses: tj-actions/changed-files@v45
         with:
           files: .github/**/*.{yml,yaml}
       - name: Run step if any file(s) in the .github folder change
