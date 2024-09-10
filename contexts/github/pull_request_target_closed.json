@@ -2,13 +2,13 @@
   "token": "<reducted>",
   "job": "dump-context",
   "ref": "refs/heads/main",
-  "sha": "379e824d0b108f23318221d64d7668bec6dc3dbc",
+  "sha": "3cd1445f199f785e98eb93a0598a36bf0fb1fb0c",
   "repository": "guitarrapc/githubactions-lab",
   "repository_owner": "guitarrapc",
   "repository_owner_id": "3856350",
   "repositoryUrl": "git://github.com/guitarrapc/githubactions-lab.git",
-  "run_id": "9756573624",
-  "run_number": "1099",
+  "run_id": "10783386941",
+  "run_number": "1184",
   "retention_days": "90",
   "run_attempt": "1",
   "artifact_cache_size_limit": "10",
@@ -20,44 +20,44 @@
   "actor": "guitarrapc",
   "triggering_actor": "guitarrapc",
   "workflow": "auto dump context",
-  "head_ref": "no-stale",
+  "head_ref": "dependabot/github_actions/peter-evans/create-pull-request-7",
   "base_ref": "main",
   "event_name": "pull_request_target",
   "event": {
     "action": "closed",
-    "number": 187,
+    "number": 189,
     "pull_request": {
       "_links": {
         "comments": {
-          "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/issues/187/comments"
+          "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/issues/189/comments"
         },
         "commits": {
-          "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/187/commits"
+          "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/189/commits"
         },
         "html": {
-          "href": "https://github.com/guitarrapc/githubactions-lab/pull/187"
+          "href": "https://github.com/guitarrapc/githubactions-lab/pull/189"
         },
         "issue": {
-          "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/issues/187"
+          "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/issues/189"
         },
         "review_comment": {
           "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/comments{/number}"
         },
         "review_comments": {
-          "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/187/comments"
+          "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/189/comments"
         },
         "self": {
-          "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/187"
+          "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/189"
         },
         "statuses": {
-          "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/statuses/da5b1542caf1c766929271679a0124b5fe6b87d9"
+          "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/statuses/31c603fb57e3d059982289eca8deffedbb1bfc4c"
         }
       },
       "active_lock_reason": null,
-      "additions": 92,
+      "additions": 3,
       "assignee": null,
       "assignees": [],
-      "author_association": "OWNER",
+      "author_association": "CONTRIBUTOR",
       "auto_merge": null,
       "base": {
         "label": "guitarrapc:main",
@@ -90,8 +90,8 @@
           "downloads_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/downloads",
           "events_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/events",
           "fork": false,
-          "forks": 3,
-          "forks_count": 3,
+          "forks": 5,
+          "forks_count": 5,
           "forks_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/forks",
           "full_name": "guitarrapc/githubactions-lab",
           "git_commits_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/git/commits{/sha}",
@@ -155,13 +155,13 @@
           },
           "private": false,
           "pulls_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls{/number}",
-          "pushed_at": "2024-07-02T06:41:16Z",
+          "pushed_at": "2024-09-10T00:17:51Z",
           "releases_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/releases{/id}",
-          "size": 2019,
+          "size": 2117,
           "squash_merge_commit_message": "COMMIT_MESSAGES",
           "squash_merge_commit_title": "COMMIT_OR_PR_TITLE",
           "ssh_url": "git@github.com:guitarrapc/githubactions-lab.git",
-          "stargazers_count": 36,
+          "stargazers_count": 43,
           "stargazers_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/stargazers",
           "statuses_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/statuses/{sha}",
           "subscribers_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/subscribers",
@@ -173,15 +173,15 @@
             "github-actions"
           ],
           "trees_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/git/trees{/sha}",
-          "updated_at": "2024-07-02T06:41:20Z",
+          "updated_at": "2024-09-10T00:17:54Z",
           "url": "https://api.github.com/repos/guitarrapc/githubactions-lab",
           "use_squash_pr_title_as_default": false,
           "visibility": "public",
-          "watchers": 36,
-          "watchers_count": 36,
+          "watchers": 43,
+          "watchers_count": 43,
           "web_commit_signoff_required": false
         },
-        "sha": "b405710e30c2cc7e8f938911e6bf26e9df63f70b",
+        "sha": "513c7fbd0ba96eba1552e9dcc0bcffea6b662682",
         "user": {
           "avatar_url": "https://avatars.githubusercontent.com/u/3856350?v=4",
           "events_url": "https://api.github.com/users/guitarrapc/events{/privacy}",
@@ -203,20 +203,20 @@
           "url": "https://api.github.com/users/guitarrapc"
         }
       },
-      "body": "Remove `no-stale` label to detect PR is stale target.",
-      "changed_files": 5,
-      "closed_at": "2024-07-02T07:13:22Z",
-      "comments": 2,
-      "comments_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/issues/187/comments",
-      "commits": 3,
-      "commits_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/187/commits",
-      "created_at": "2024-07-02T06:27:07Z",
-      "deletions": 83,
-      "diff_url": "https://github.com/guitarrapc/githubactions-lab/pull/187.diff",
+      "body": "Bumps [peter-evans/create-pull-request](https://github.com/peter-evans/create-pull-request) from 6 to 7.\n<details>\n<summary>Release notes</summary>\n<p><em>Sourced from <a href=\"https://github.com/peter-evans/create-pull-request/releases\">peter-evans/create-pull-request's releases</a>.</em></p>\n<blockquote>\n<h2>Create Pull Request v7.0.0</h2>\n<p>:sparkles: Now supports commit signing with bot-generated tokens! See &quot;What's new&quot; below. :writing_hand::robot:</p>\n<h3>Behaviour changes</h3>\n<ul>\n<li>Action input <code>git-token</code> has been renamed <code>branch-token</code>, to be more clear about its purpose. The <code>branch-token</code> is the token that the action will use to create and update the branch.</li>\n<li>The action now handles requests that have been rate-limited by GitHub. Requests hitting a primary rate limit will retry twice, for a total of three attempts. Requests hitting a secondary rate limit will not be retried.</li>\n<li>The <code>pull-request-operation</code> output now returns <code>none</code> when no operation was executed.</li>\n<li>Removed deprecated output environment variable <code>PULL_REQUEST_NUMBER</code>. Please use the <code>pull-request-number</code> action output instead.</li>\n</ul>\n<h3>What's new</h3>\n<ul>\n<li>The action can now sign commits as <code>github-actions[bot]</code> when using <code>GITHUB_TOKEN</code>, or your own bot when using <a href=\"https://github.com/peter-evans/create-pull-request/blob/HEAD/docs/concepts-guidelines.md#authenticating-with-github-app-generated-tokens\">GitHub App tokens</a>. See <a href=\"https://github.com/peter-evans/create-pull-request/blob/HEAD/docs/concepts-guidelines.md#commit-signature-verification-for-bots\">commit signing</a> for details.</li>\n<li>Action input <code>draft</code> now accepts a new value <code>always-true</code>. This will set the pull request to draft status when the pull request is updated, as well as on creation.</li>\n<li>A new action input <code>maintainer-can-modify</code> indicates whether <a href=\"https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/allowing-changes-to-a-pull-request-branch-created-from-a-fork\">maintainers can modify</a> the pull request. The default is <code>true</code>, which retains the existing behaviour of the action.</li>\n<li>A new output <code>pull-request-commits-verified</code> returns <code>true</code> or <code>false</code>, indicating whether GitHub considers the signature of the branch's commits to be verified.</li>\n</ul>\n<h2>What's Changed</h2>\n<ul>\n<li>build(deps-dev): bump <code>@​types/node</code> from 18.19.36 to 18.19.39 by <a href=\"https://github.com/dependabot\"><code>@​dependabot</code></a> in <a href=\"https://redirect.github.com/peter-evans/create-pull-request/pull/3000\">peter-evans/create-pull-request#3000</a></li>\n<li>build(deps-dev): bump ts-jest from 29.1.5 to 29.2.0 by <a href=\"https://github.com/dependabot\"><code>@​dependabot</code></a> in <a href=\"https://redirect.github.com/peter-evans/create-pull-request/pull/3008\">peter-evans/create-pull-request#3008</a></li>\n<li>build(deps-dev): bump prettier from 3.3.2 to 3.3.3 by <a href=\"https://github.com/dependabot\"><code>@​dependabot</code></a> in <a href=\"https://redirect.github.com/peter-evans/create-pull-request/pull/3018\">peter-evans/create-pull-request#3018</a></li>\n<li>build(deps-dev): bump ts-jest from 29.2.0 to 29.2.2 by <a href=\"https://github.com/dependabot\"><code>@​dependabot</code></a> in <a href=\"https://redirect.github.com/peter-evans/create-pull-request/pull/3019\">peter-evans/create-pull-request#3019</a></li>\n<li>build(deps-dev): bump eslint-plugin-prettier from 5.1.3 to 5.2.1 by <a href=\"https://github.com/dependabot\"><code>@​dependabot</code></a> in <a href=\"https://redirect.github.com/peter-evans/create-pull-request/pull/3035\">peter-evans/create-pull-request#3035</a></li>\n<li>build(deps-dev): bump <code>@​types/node</code> from 18.19.39 to 18.19.41 by <a href=\"https://github.com/dependabot\"><code>@​dependabot</code></a> in <a href=\"https://redirect.github.com/peter-evans/create-pull-request/pull/3037\">peter-evans/create-pull-request#3037</a></li>\n<li>build(deps): bump undici from 6.19.2 to 6.19.4 by <a href=\"https://github.com/dependabot\"><code>@​dependabot</code></a> in <a href=\"https://redirect.github.com/peter-evans/create-pull-request/pull/3036\">peter-evans/create-pull-request#3036</a></li>\n<li>build(deps-dev): bump ts-jest from 29.2.2 to 29.2.3 by <a href=\"https://github.com/dependabot\"><code>@​dependabot</code></a> in <a href=\"https://redirect.github.com/peter-evans/create-pull-request/pull/3038\">peter-evans/create-pull-request#3038</a></li>\n<li>build(deps-dev): bump <code>@​types/node</code> from 18.19.41 to 18.19.42 by <a href=\"https://github.com/dependabot\"><code>@​dependabot</code></a> in <a href=\"https://redirect.github.com/peter-evans/create-pull-request/pull/3070\">peter-evans/create-pull-request#3070</a></li>\n<li>build(deps): bump undici from 6.19.4 to 6.19.5 by <a href=\"https://github.com/dependabot\"><code>@​dependabot</code></a> in <a href=\"https://redirect.github.com/peter-evans/create-pull-request/pull/3086\">peter-evans/create-pull-request#3086</a></li>\n<li>build(deps-dev): bump <code>@​types/node</code> from 18.19.42 to 18.19.43 by <a href=\"https://github.com/dependabot\"><code>@​dependabot</code></a> in <a href=\"https://redirect.github.com/peter-evans/create-pull-request/pull/3087\">peter-evans/create-pull-request#3087</a></li>\n<li>build(deps-dev): bump ts-jest from 29.2.3 to 29.2.4 by <a href=\"https://github.com/dependabot\"><code>@​dependabot</code></a> in <a href=\"https://redirect.github.com/peter-evans/create-pull-request/pull/3088\">peter-evans/create-pull-request#3088</a></li>\n<li>build(deps): bump undici from 6.19.5 to 6.19.7 by <a href=\"https://github.com/dependabot\"><code>@​dependabot</code></a> in <a href=\"https://redirect.github.com/peter-evans/create-pull-request/pull/3145\">peter-evans/create-pull-request#3145</a></li>\n<li>build(deps-dev): bump <code>@​types/node</code> from 18.19.43 to 18.19.44 by <a href=\"https://github.com/dependabot\"><code>@​dependabot</code></a> in <a href=\"https://redirect.github.com/peter-evans/create-pull-request/pull/3144\">peter-evans/create-pull-request#3144</a></li>\n<li>Update distribution by <a href=\"https://github.com/actions-bot\"><code>@​actions-bot</code></a> in <a href=\"https://redirect.github.com/peter-evans/create-pull-request/pull/3154\">peter-evans/create-pull-request#3154</a></li>\n<li>build(deps): bump undici from 6.19.7 to 6.19.8 by <a href=\"https://github.com/dependabot\"><code>@​dependabot</code></a> in <a href=\"https://redirect.github.com/peter-evans/create-pull-request/pull/3213\">peter-evans/create-pull-request#3213</a></li>\n<li>build(deps-dev): bump <code>@​types/node</code> from 18.19.44 to 18.19.45 by <a href=\"https://github.com/dependabot\"><code>@​dependabot</code></a> in <a href=\"https://redirect.github.com/peter-evans/create-pull-request/pull/3214\">peter-evans/create-pull-request#3214</a></li>\n<li>Update distribution by <a href=\"https://github.com/actions-bot\"><code>@​actions-bot</code></a> in <a href=\"https://redirect.github.com/peter-evans/create-pull-request/pull/3221\">peter-evans/create-pull-request#3221</a></li>\n<li>build(deps-dev): bump eslint-import-resolver-typescript from 3.6.1 to 3.6.3 by <a href=\"https://github.com/dependabot\"><code>@​dependabot</code></a> in <a href=\"https://redirect.github.com/peter-evans/create-pull-request/pull/3255\">peter-evans/create-pull-request#3255</a></li>\n<li>build(deps-dev): bump <code>@​types/node</code> from 18.19.45 to 18.19.46 by <a href=\"https://github.com/dependabot\"><code>@​dependabot</code></a> in <a href=\"https://redirect.github.com/peter-evans/create-pull-request/pull/3254\">peter-evans/create-pull-request#3254</a></li>\n<li>build(deps-dev): bump ts-jest from 29.2.4 to 29.2.5 by <a href=\"https://github.com/dependabot\"><code>@​dependabot</code></a> in <a href=\"https://redirect.github.com/peter-evans/create-pull-request/pull/3256\">peter-evans/create-pull-request#3256</a></li>\n<li>v7 - signed commits by <a href=\"https://github.com/peter-evans\"><code>@​peter-evans</code></a> in <a href=\"https://redirect.github.com/peter-evans/create-pull-request/pull/3057\">peter-evans/create-pull-request#3057</a></li>\n</ul>\n<h2>New Contributors</h2>\n<ul>\n<li><a href=\"https://github.com/rustycl0ck\"><code>@​rustycl0ck</code></a> made their first contribution in <a href=\"https://redirect.github.com/peter-evans/create-pull-request/pull/3057\">peter-evans/create-pull-request#3057</a></li>\n</ul>\n<p><strong>Full Changelog</strong>: <a href=\"https://github.com/peter-evans/create-pull-request/compare/v6.1.0...v7.0.0\">https://github.com/peter-evans/create-pull-request/compare/v6.1.0...v7.0.0</a></p>\n<h2>Create Pull Request v6.1.0</h2>\n<p>✨ Adds <code>pull-request-branch</code> as an action output.</p>\n<h2>What's Changed</h2>\n<!-- raw HTML omitted -->\n</blockquote>\n<p>... (truncated)</p>\n</details>\n<details>\n<summary>Commits</summary>\n<ul>\n<li><a href=\"https://github.com/peter-evans/create-pull-request/commit/8867c4aba1b742c39f8d0ba35429c2dfa4b6cb20\"><code>8867c4a</code></a> fix: handle ambiguous argument failure on diff stat (<a href=\"https://redirect.github.com/peter-evans/create-pull-request/issues/3312\">#3312</a>)</li>\n<li><a href=\"https://github.com/peter-evans/create-pull-request/commit/6073f5434ba635ff2f4390cddac0059ab04d9409\"><code>6073f54</code></a> build(deps-dev): bump <code>@​typescript-eslint/eslint-plugin</code> (<a href=\"https://redirect.github.com/peter-evans/create-pull-request/issues/3291\">#3291</a>)</li>\n<li><a href=\"https://github.com/peter-evans/create-pull-request/commit/6d01b5601c7aca7ad0eb2f8532106269ac38b584\"><code>6d01b56</code></a> build(deps-dev): bump eslint-plugin-import from 2.29.1 to 2.30.0 (<a href=\"https://redirect.github.com/peter-evans/create-pull-request/issues/3290\">#3290</a>)</li>\n<li><a href=\"https://github.com/peter-evans/create-pull-request/commit/25cf8451c34bbbcbb3ef973b252eb91ec1ad8be9\"><code>25cf845</code></a> build(deps-dev): bump <code>@​typescript-eslint/parser</code> from 7.17.0 to 7.18.0 (<a href=\"https://redirect.github.com/peter-evans/create-pull-request/issues/3289\">#3289</a>)</li>\n<li><a href=\"https://github.com/peter-evans/create-pull-request/commit/d87b980a0ebf44e8ed8ef733b28171c81ca501af\"><code>d87b980</code></a> build(deps-dev): bump <code>@​types/node</code> from 18.19.46 to 18.19.48 (<a href=\"https://redirect.github.com/peter-evans/create-pull-request/issues/3288\">#3288</a>)</li>\n<li><a href=\"https://github.com/peter-evans/create-pull-request/commit/119d131ea9fd0db1802246d0098211de13a26406\"><code>119d131</code></a> build(deps): bump peter-evans/create-pull-request from 6 to 7 (<a href=\"https://redirect.github.com/peter-evans/create-pull-request/issues/3283\">#3283</a>)</li>\n<li><a href=\"https://github.com/peter-evans/create-pull-request/commit/73e6230af4af8faaeddac4d3f16e25f8a2bd8e4b\"><code>73e6230</code></a> docs: update readme</li>\n<li><a href=\"https://github.com/peter-evans/create-pull-request/commit/c0348e860fc89e6cc1f5b623f7b1140d6ee9a2d5\"><code>c0348e8</code></a> ci: add v7 to workflow</li>\n<li><a href=\"https://github.com/peter-evans/create-pull-request/commit/4320041ed380b20e97d388d56a7fb4f9b8c20e79\"><code>4320041</code></a> feat: signed commits (v7) (<a href=\"https://redirect.github.com/peter-evans/create-pull-request/issues/3057\">#3057</a>)</li>\n<li><a href=\"https://github.com/peter-evans/create-pull-request/commit/0c2a66fe4af462aa0761939bd32efbdd46592737\"><code>0c2a66f</code></a> build(deps-dev): bump ts-jest from 29.2.4 to 29.2.5 (<a href=\"https://redirect.github.com/peter-evans/create-pull-request/issues/3256\">#3256</a>)</li>\n<li>Additional commits viewable in <a href=\"https://github.com/peter-evans/create-pull-request/compare/v6...v7\">compare view</a></li>\n</ul>\n</details>\n<br />\n\n\n[![Dependabot compatibility score](https://dependabot-badges.githubapp.com/badges/compatibility_score?dependency-name=peter-evans/create-pull-request&package-manager=github_actions&previous-version=6&new-version=7)](https://docs.github.com/en/github/managing-security-vulnerabilities/about-dependabot-security-updates#about-compatibility-scores)\n\nDependabot will resolve any conflicts with this PR as long as you don't alter it yourself. You can also trigger a rebase manually by commenting `@dependabot rebase`.\n\n[//]: # (dependabot-automerge-start)\n[//]: # (dependabot-automerge-end)\n\n---\n\n<details>\n<summary>Dependabot commands and options</summary>\n<br />\n\nYou can trigger Dependabot actions by commenting on this PR:\n- `@dependabot rebase` will rebase this PR\n- `@dependabot recreate` will recreate this PR, overwriting any edits that have been made to it\n- `@dependabot merge` will merge this PR after your CI passes on it\n- `@dependabot squash and merge` will squash and merge this PR after your CI passes on it\n- `@dependabot cancel merge` will cancel a previously requested merge and block automerging\n- `@dependabot reopen` will reopen this PR if it is closed\n- `@dependabot close` will close this PR and stop Dependabot recreating it. You can achieve the same result by closing it manually\n- `@dependabot show <dependency name> ignore conditions` will show all of the ignore conditions of the specified dependency\n- `@dependabot ignore this major version` will close this PR and stop Dependabot creating any more for this major version (unless you reopen the PR or upgrade to it yourself)\n- `@dependabot ignore this minor version` will close this PR and stop Dependabot creating any more for this minor version (unless you reopen the PR or upgrade to it yourself)\n- `@dependabot ignore this dependency` will close this PR and stop Dependabot creating any more for this dependency (unless you reopen the PR or upgrade to it yourself)\n\n\n</details>",
+      "changed_files": 3,
+      "closed_at": "2024-09-10T00:18:33Z",
+      "comments": 0,
+      "comments_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/issues/189/comments",
+      "commits": 1,
+      "commits_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/189/commits",
+      "created_at": "2024-09-09T15:18:56Z",
+      "deletions": 3,
+      "diff_url": "https://github.com/guitarrapc/githubactions-lab/pull/189.diff",
       "draft": false,
       "head": {
-        "label": "guitarrapc:no-stale",
-        "ref": "no-stale",
+        "label": "guitarrapc:dependabot/github_actions/peter-evans/create-pull-request-7",
+        "ref": "dependabot/github_actions/peter-evans/create-pull-request-7",
         "repo": {
           "allow_auto_merge": false,
           "allow_forking": true,
@@ -245,8 +245,8 @@
           "downloads_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/downloads",
           "events_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/events",
           "fork": false,
-          "forks": 3,
-          "forks_count": 3,
+          "forks": 5,
+          "forks_count": 5,
           "forks_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/forks",
           "full_name": "guitarrapc/githubactions-lab",
           "git_commits_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/git/commits{/sha}",
@@ -310,13 +310,13 @@
           },
           "private": false,
           "pulls_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls{/number}",
-          "pushed_at": "2024-07-02T06:41:16Z",
+          "pushed_at": "2024-09-10T00:17:51Z",
           "releases_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/releases{/id}",
-          "size": 2019,
+          "size": 2117,
           "squash_merge_commit_message": "COMMIT_MESSAGES",
           "squash_merge_commit_title": "COMMIT_OR_PR_TITLE",
           "ssh_url": "git@github.com:guitarrapc/githubactions-lab.git",
-          "stargazers_count": 36,
+          "stargazers_count": 43,
           "stargazers_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/stargazers",
           "statuses_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/statuses/{sha}",
           "subscribers_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/subscribers",
@@ -328,15 +328,15 @@
             "github-actions"
           ],
           "trees_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/git/trees{/sha}",
-          "updated_at": "2024-07-02T06:41:20Z",
+          "updated_at": "2024-09-10T00:17:54Z",
           "url": "https://api.github.com/repos/guitarrapc/githubactions-lab",
           "use_squash_pr_title_as_default": false,
           "visibility": "public",
-          "watchers": 36,
-          "watchers_count": 36,
+          "watchers": 43,
+          "watchers_count": 43,
           "web_commit_signoff_required": false
         },
-        "sha": "da5b1542caf1c766929271679a0124b5fe6b87d9",
+        "sha": "31c603fb57e3d059982289eca8deffedbb1bfc4c",
         "user": {
           "avatar_url": "https://avatars.githubusercontent.com/u/3856350?v=4",
           "events_url": "https://api.github.com/users/guitarrapc/events{/privacy}",
@@ -358,44 +358,28 @@
           "url": "https://api.github.com/users/guitarrapc"
         }
       },
-      "html_url": "https://github.com/guitarrapc/githubactions-lab/pull/187",
-      "id": 1948692866,
-      "issue_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/issues/187",
+      "html_url": "https://github.com/guitarrapc/githubactions-lab/pull/189",
+      "id": 2061380227,
+      "issue_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/issues/189",
       "labels": [
         {
-          "color": "1d76db",
+          "color": "0366d6",
           "default": false,
-          "description": "not to be stale.",
-          "id": 2090477097,
-          "name": "no-stale",
-          "node_id": "MDU6TGFiZWwyMDkwNDc3MDk3",
-          "url": "https://api.github.com/repos/guitarrapc/githubactions-lab/labels/no-stale"
+          "description": "Pull requests that update a dependency file",
+          "id": 5238199298,
+          "name": "dependencies",
+          "node_id": "LA_kwDOD1icfM8AAAABODiUAg",
+          "url": "https://api.github.com/repos/guitarrapc/githubactions-lab/labels/dependencies"
         }
       ],
       "locked": false,
       "maintainer_can_modify": false,
-      "merge_commit_sha": "0f4e3bb35037d5edbcd227bd95352f427378312a",
-      "mergeable": true,
-      "mergeable_state": "clean",
-      "merged": false,
-      "merged_at": null,
-      "merged_by": null,
-      "milestone": null,
-      "node_id": "PR_kwDOD1icfM50JrGC",
-      "number": 187,
-      "patch_url": "https://github.com/guitarrapc/githubactions-lab/pull/187.patch",
-      "rebaseable": false,
-      "requested_reviewers": [],
-      "requested_teams": [],
-      "review_comment_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/comments{/number}",
-      "review_comments": 0,
-      "review_comments_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/187/comments",
-      "state": "closed",
-      "statuses_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/statuses/da5b1542caf1c766929271679a0124b5fe6b87d9",
-      "title": "DEMO: no-stale sample",
-      "updated_at": "2024-07-02T07:13:22Z",
-      "url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/187",
-      "user": {
+      "merge_commit_sha": "3cd1445f199f785e98eb93a0598a36bf0fb1fb0c",
+      "mergeable": null,
+      "mergeable_state": "unknown",
+      "merged": true,
+      "merged_at": "2024-09-10T00:18:33Z",
+      "merged_by": {
         "avatar_url": "https://avatars.githubusercontent.com/u/3856350?v=4",
         "events_url": "https://api.github.com/users/guitarrapc/events{/privacy}",
         "followers_url": "https://api.github.com/users/guitarrapc/followers",
@@ -414,6 +398,41 @@
         "subscriptions_url": "https://api.github.com/users/guitarrapc/subscriptions",
         "type": "User",
         "url": "https://api.github.com/users/guitarrapc"
+      },
+      "milestone": null,
+      "node_id": "PR_kwDOD1icfM563iqD",
+      "number": 189,
+      "patch_url": "https://github.com/guitarrapc/githubactions-lab/pull/189.patch",
+      "rebaseable": null,
+      "requested_reviewers": [],
+      "requested_teams": [],
+      "review_comment_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/comments{/number}",
+      "review_comments": 0,
+      "review_comments_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/189/comments",
+      "state": "closed",
+      "statuses_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/statuses/31c603fb57e3d059982289eca8deffedbb1bfc4c",
+      "title": "chore(deps): bump peter-evans/create-pull-request from 6 to 7",
+      "updated_at": "2024-09-10T00:18:34Z",
+      "url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/189",
+      "user": {
+        "avatar_url": "https://avatars.githubusercontent.com/in/29110?v=4",
+        "events_url": "https://api.github.com/users/dependabot%5Bbot%5D/events{/privacy}",
+        "followers_url": "https://api.github.com/users/dependabot%5Bbot%5D/followers",
+        "following_url": "https://api.github.com/users/dependabot%5Bbot%5D/following{/other_user}",
+        "gists_url": "https://api.github.com/users/dependabot%5Bbot%5D/gists{/gist_id}",
+        "gravatar_id": "",
+        "html_url": "https://github.com/apps/dependabot",
+        "id": 49699333,
+        "login": "dependabot[bot]",
+        "node_id": "MDM6Qm90NDk2OTkzMzM=",
+        "organizations_url": "https://api.github.com/users/dependabot%5Bbot%5D/orgs",
+        "received_events_url": "https://api.github.com/users/dependabot%5Bbot%5D/received_events",
+        "repos_url": "https://api.github.com/users/dependabot%5Bbot%5D/repos",
+        "site_admin": false,
+        "starred_url": "https://api.github.com/users/dependabot%5Bbot%5D/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/dependabot%5Bbot%5D/subscriptions",
+        "type": "Bot",
+        "url": "https://api.github.com/users/dependabot%5Bbot%5D"
       }
     },
     "repository": {
@@ -438,8 +457,8 @@
       "downloads_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/downloads",
       "events_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/events",
       "fork": false,
-      "forks": 3,
-      "forks_count": 3,
+      "forks": 5,
+      "forks_count": 5,
       "forks_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/forks",
       "full_name": "guitarrapc/githubactions-lab",
       "git_commits_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/git/commits{/sha}",
@@ -501,11 +520,11 @@
       },
       "private": false,
       "pulls_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls{/number}",
-      "pushed_at": "2024-07-02T06:41:16Z",
+      "pushed_at": "2024-09-10T00:17:51Z",
       "releases_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/releases{/id}",
-      "size": 2019,
+      "size": 2117,
       "ssh_url": "git@github.com:guitarrapc/githubactions-lab.git",
-      "stargazers_count": 36,
+      "stargazers_count": 43,
       "stargazers_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/stargazers",
       "statuses_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/statuses/{sha}",
       "subscribers_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/subscribers",
@@ -517,11 +536,11 @@
         "github-actions"
       ],
       "trees_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/git/trees{/sha}",
-      "updated_at": "2024-07-02T06:41:20Z",
+      "updated_at": "2024-09-10T00:17:54Z",
       "url": "https://api.github.com/repos/guitarrapc/githubactions-lab",
       "visibility": "public",
-      "watchers": 36,
-      "watchers_count": 36,
+      "watchers": 43,
+      "watchers_count": 43,
       "web_commit_signoff_required": false
     },
     "sender": {
@@ -553,15 +572,15 @@
   "ref_type": "branch",
   "secret_source": "Actions",
   "workflow_ref": "guitarrapc/githubactions-lab/.github/workflows/auto_dump_context.yaml@refs/heads/main",
-  "workflow_sha": "379e824d0b108f23318221d64d7668bec6dc3dbc",
+  "workflow_sha": "3cd1445f199f785e98eb93a0598a36bf0fb1fb0c",
   "workspace": "/home/runner/work/githubactions-lab/githubactions-lab",
   "action": "__run_2",
   "event_path": "/home/runner/work/_temp/_github_workflow/event.json",
   "action_repository": "",
   "action_ref": "",
-  "path": "/home/runner/work/_temp/_runner_file_commands/add_path_685e15f3-0b8b-4956-bca2-90487599e410",
-  "env": "/home/runner/work/_temp/_runner_file_commands/set_env_685e15f3-0b8b-4956-bca2-90487599e410",
-  "step_summary": "/home/runner/work/_temp/_runner_file_commands/step_summary_685e15f3-0b8b-4956-bca2-90487599e410",
-  "state": "/home/runner/work/_temp/_runner_file_commands/save_state_685e15f3-0b8b-4956-bca2-90487599e410",
-  "output": "/home/runner/work/_temp/_runner_file_commands/set_output_685e15f3-0b8b-4956-bca2-90487599e410"
+  "path": "/home/runner/work/_temp/_runner_file_commands/add_path_ccb96cdb-d930-4f2f-bbc7-9a8230815641",
+  "env": "/home/runner/work/_temp/_runner_file_commands/set_env_ccb96cdb-d930-4f2f-bbc7-9a8230815641",
+  "step_summary": "/home/runner/work/_temp/_runner_file_commands/step_summary_ccb96cdb-d930-4f2f-bbc7-9a8230815641",
+  "state": "/home/runner/work/_temp/_runner_file_commands/save_state_ccb96cdb-d930-4f2f-bbc7-9a8230815641",
+  "output": "/home/runner/work/_temp/_runner_file_commands/set_output_ccb96cdb-d930-4f2f-bbc7-9a8230815641"
 }
