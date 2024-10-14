@@ -54,7 +54,7 @@ jobs:
       # comment to PR for CRLF files.
       - if: ${{ github.event_name == 'pull_request' && env.CRLF_FILES != '' }}
         name: Comment PR
-        uses: thollander/actions-comment-pull-request@v2
+        uses: thollander/actions-comment-pull-request@v3
         with:
           message: |
             [${{ github.workflow }}](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}) found CRLF files as follows.
