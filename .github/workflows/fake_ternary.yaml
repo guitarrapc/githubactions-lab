@@ -15,7 +15,7 @@ env:
   GROUP2: ${{ github.ref == 'refs/heads/main2' && format('ci2-main-{0}', github.sha) || format('ci2-{0}', github.ref) }}
 jobs:
   job:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 3
     steps:
       - run: echo "GROUP=[${{ env.GROUP }}]"

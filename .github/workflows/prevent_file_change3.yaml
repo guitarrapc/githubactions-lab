@@ -8,7 +8,7 @@ on:
 jobs:
   detect:
     if: ${{ github.event.pull_request.head.repo.fork }} # is Fork
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 3
     steps:
       - uses: actions/checkout@v4

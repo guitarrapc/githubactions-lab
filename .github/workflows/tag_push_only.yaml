@@ -5,6 +5,6 @@ on:
       - "**" # only tag
 jobs:
   job:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
       - run: echo not run on branch push

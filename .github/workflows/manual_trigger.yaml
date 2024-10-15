@@ -15,7 +15,7 @@ on:
         required: false
 jobs:
   printInputs:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 3
     env:
       BRANCH: ${{ inputs.branch }}

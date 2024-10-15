@@ -2,6 +2,6 @@ name: push and pull_request
 on: [push, pull_request]
 jobs:
   my-job:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
       - run: echo push and pull_request trigger

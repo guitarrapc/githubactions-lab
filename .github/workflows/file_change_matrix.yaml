@@ -2,7 +2,7 @@ name: file change detect matrix
 on: [pull_request]
 jobs:
   changes:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 3
     outputs:
       changes: ${{ steps.filter.outputs.changes }}
@@ -48,7 +48,7 @@ jobs:
       max-parallel: 1 # let's run sequencial
       matrix:
         change: ${{ fromJSON(needs.changes.outputs.changes) }}
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 60
     steps:
       - uses: actions/checkout@v4
@@ -69,7 +69,7 @@ jobs:
       max-parallel: 1 # let's run sequencial
       matrix:
         change: ${{ fromJSON(needs.changes.outputs.changes) }}
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 60
     steps:
       - uses: actions/checkout@v4

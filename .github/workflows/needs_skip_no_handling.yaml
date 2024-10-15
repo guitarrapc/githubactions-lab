@@ -10,24 +10,24 @@ on:
 jobs:
   A:
     if: ${{ false }}
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
       - run: echo "a"
 
   B:
     if: ${{ false }}
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
       - run: echo "b"
 
   C:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
       - run: echo "c"
 
   # D will always skip because A and B is skipped
   D:
     needs: [A, B, C]
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
       - run: echo "d"

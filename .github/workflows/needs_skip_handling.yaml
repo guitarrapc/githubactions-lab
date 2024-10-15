@@ -16,18 +16,18 @@ on:
 jobs:
   A:
     if: ${{ !inputs.only-c }}
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
       - run: echo "a"
 
   B:
     if: ${{ !inputs.only-c }}
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
       - run: echo "b"
 
   C:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
       - run: echo "c"
 
@@ -35,6 +35,6 @@ jobs:
   D:
     needs: [A, B, C]
     if: ${{ inputs.only-c && needs.C.result == 'success' || success() }}
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
       - run: echo "d"

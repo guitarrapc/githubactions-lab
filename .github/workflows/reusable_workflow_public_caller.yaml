@@ -15,7 +15,7 @@ jobs:
     secrets: inherit
 
   job2:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     needs: call-workflow-passing-data
     steps:
       - run: echo ${{ needs.call-workflow-passing-data.outputs.firstword }} ${{ needs.call-workflow-passing-data.outputs.secondword }}

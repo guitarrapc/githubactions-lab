@@ -13,7 +13,7 @@ jobs:
           - { org: apples }
           - { org: bananas }
           - { org: carrots }
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 3
     env:
       ORG: ${{ matrix.org }}

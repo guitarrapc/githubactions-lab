@@ -14,7 +14,7 @@ jobs:
   greet:
     # .jobs.<job_name>.name: can use ${{ inputs.value }}
     name: greet (${{ inputs.value }})
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 3
     steps:
       - run: echo "${{ inputs.value }}"
@@ -24,7 +24,7 @@ jobs:
       fail-fast: false
       matrix:
         target: ["foo", "bar"]
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 3
     steps:
       - run: echo "${{ inputs.value }}"

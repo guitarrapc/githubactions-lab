@@ -4,7 +4,7 @@ on:
     types: [opened]
 jobs:
   comment:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 3
     steps:
       - uses: actions/github-script@v7

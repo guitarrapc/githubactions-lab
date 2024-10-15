@@ -13,7 +13,7 @@ jobs:
   # * DOTNET_NOLOGO=1
   # * DOTNET_SKIP_FIRST_TIME_EXPERIENCE=1
   setup-dotnet:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 3
     steps:
       - run: mkdir -p out/

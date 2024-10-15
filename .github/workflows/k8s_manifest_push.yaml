@@ -15,7 +15,7 @@ jobs:
       NAMESPACE_PREFIX: githubactions-sample-
     outputs:
       GIT_BRANCH: ${{ env.GIT_BRANCH }}
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v4
       - uses: actions/checkout@v4

@@ -5,7 +5,7 @@ on:
       - "**" # only tag
 jobs:
   ref:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
       - name: Use GITHUB_REF and GITHUB_OUTPUT
         run: echo "GIT_TAG=${GITHUB_REF##*/}" >> "$GITHUB_OUTPUT"

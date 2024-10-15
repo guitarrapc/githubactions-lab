@@ -9,19 +9,19 @@ on:
 
 jobs:
   A:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
       - run: echo "a"
 
   B:
     needs: [A]
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
       - run: echo "b"
 
   # Run only if A and B success
   C:
     needs: [A, B]
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
       - run: echo "c"

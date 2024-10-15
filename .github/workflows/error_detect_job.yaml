@@ -3,11 +3,11 @@ on:
   workflow_dispatch:
 jobs:
   error1:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
       - run: exit 1
   error2:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 3
     steps:
       - run: exit 1
@@ -15,7 +15,7 @@ jobs:
   handler:
     if: ${{ failure() }}
     needs: [error1, error2]
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 3
     steps:
       - run: echo error happen

@@ -5,7 +5,7 @@ on:
     branches: ["main"]
 jobs:
   gh:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     env:
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     timeout-minutes: 3

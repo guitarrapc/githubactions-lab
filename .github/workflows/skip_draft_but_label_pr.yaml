@@ -12,7 +12,7 @@ jobs:
     # 1. PR has label 'draft_but_ci'
     # 2. Not draft, `push` and `non-draft pr`.
     if: ${{ (contains(github.event.pull_request.labels.*.name, 'draft_but_ci')) || !(github.event.pull_request.draft) }}
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 3
     steps:
       - uses: actions/checkout@v4

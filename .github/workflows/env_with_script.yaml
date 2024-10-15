@@ -13,7 +13,7 @@ jobs:
   bash:
     strategy:
       matrix:
-        runs-on: [ubuntu-latest, windows-latest]
+        runs-on: [ubuntu-24.04, windows-latest]
     runs-on: ${{ matrix.runs-on }}
     timeout-minutes: 3
     defaults:
@@ -45,7 +45,7 @@ jobs:
   powershell:
     strategy:
       matrix:
-        runs-on: [ubuntu-latest, windows-latest]
+        runs-on: [ubuntu-24.04, windows-latest]
     runs-on: ${{ matrix.runs-on }}
     timeout-minutes: 3
     defaults:
