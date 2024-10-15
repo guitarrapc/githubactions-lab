@@ -12,27 +12,9 @@ jobs:
     timeout-minutes: 3
     steps:
       - uses: actions/checkout@v4
-      - name: dotnet executable path before setup-dotnet (/usr/bin/dotnet)
-        run: command -v dotnet
-      - name: dotnet version under /usr/share/dotnet/sdk
-        run: ls /usr/share/dotnet/sdk
-      - name: dotnet executable version before setup-dotnet
-        run: dotnet --version
-      - name: dotnet sdks before setup-dotnet
-        run: dotnet --list-sdks
       - uses: actions/setup-dotnet@v4
         with:
           dotnet-version: 8.0.x
-      - name: dotnet executable path after setup-dotnet (/usr/share/dotnet/dotnet)
-        run: command -v dotnet
-      - name: dotnet version under /usr/share/dotnet/sdk
-        run: ls /usr/share/dotnet/sdk
-      - name: dotnet version after setup-dotnet
-        run: ls -l "${DOTNET_ROOT}/sdk"
-      - name: dotnet executable version after setup-dotnet
-        run: dotnet --version
-      - name: dotnet sdks after setup-dotnet
-        run: dotnet --list-sdks
       - name: dotnet build
         run: dotnet build ./src/dotnet -c Debug
       - name: dotnet test
@@ -65,11 +47,9 @@ jobs:
           retention-days: 1
 
   ls:
+    needs: [runner, container]
     runs-on: ubuntu-24.04
     timeout-minutes: 3
-    needs:
-      - runner
-      - container
     steps:
       - uses: actions/download-artifact@v4
       - run: ls -lR
