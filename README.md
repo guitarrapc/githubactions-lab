@@ -1,8 +1,8 @@
-[![auto doc](https://github.com/guitarrapc/githubactions-lab/actions/workflows/auto_doc.yaml/badge.svg)](https://github.com/guitarrapc/githubactions-lab/actions/workflows/auto_doc.yaml)
-[![auto dump context](https://github.com/guitarrapc/githubactions-lab/actions/workflows/auto_dump_context.yaml/badge.svg)](https://github.com/guitarrapc/githubactions-lab/actions/workflows/auto_dump_context.yaml)
-[![actionlint (reviewdog)](https://github.com/guitarrapc/githubactions-lab/actions/workflows/actionlint_reviewdog.yaml/badge.svg)](https://github.com/guitarrapc/githubactions-lab/actions/workflows/actionlint_reviewdog.yaml)
-[![dotnet build](https://github.com/guitarrapc/githubactions-lab/actions/workflows/dotnet_build.yaml/badge.svg)](https://github.com/guitarrapc/githubactions-lab/actions/workflows/dotnet_build.yaml)
-[![dotnet lint](https://github.com/guitarrapc/githubactions-lab/actions/workflows/dotnet_lint.yaml/badge.svg)](https://github.com/guitarrapc/githubactions-lab/actions/workflows/dotnet_lint.yaml)
+[![auto doc](https://github.com/guitarrapc/githubactions-lab/actions/workflows/auto-doc.yaml/badge.svg)](https://github.com/guitarrapc/githubactions-lab/actions/workflows/auto-doc.yaml)
+[![auto dump context](https://github.com/guitarrapc/githubactions-lab/actions/workflows/auto-dump-context.yaml/badge.svg)](https://github.com/guitarrapc/githubactions-lab/actions/workflows/auto-dump-context.yaml)
+[![actionlint (reviewdog)](https://github.com/guitarrapc/githubactions-lab/actions/workflows/actionlint-reviewdog.yaml/badge.svg)](https://github.com/guitarrapc/githubactions-lab/actions/workflows/actionlint-reviewdog.yaml)
+[![dotnet build](https://github.com/guitarrapc/githubactions-lab/actions/workflows/dotnet-build.yaml/badge.svg)](https://github.com/guitarrapc/githubactions-lab/actions/workflows/dotnet-build.yaml)
+[![dotnet lint](https://github.com/guitarrapc/githubactions-lab/actions/workflows/dotnet-lint.yaml/badge.svg)](https://github.com/guitarrapc/githubactions-lab/actions/workflows/dotnet-lint.yaml)
 
 # githubactions-lab
 
