@@ -11,7 +11,7 @@ jobs:
     strategy:
       matrix:
         username: [foo, bar]
-    uses: ./.github/workflows/_reusable_workflow_called.yaml
+    uses: ./.github/workflows/_reusable-workflow-called.yaml
     with:
       username: ${{ matrix.username }}
       is-valid: true

@@ -8,7 +8,7 @@ on:
 
 jobs:
   call-workflow-passing-data:
-    uses: guitarrapc/githubactions-lab/.github/workflows/_reusable_workflow_called.yaml@main
+    uses: guitarrapc/githubactions-lab/.github/workflows/_reusable-workflow-called.yaml@main
     with:
       username: foo
       is-valid: true

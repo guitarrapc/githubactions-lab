@@ -14,11 +14,11 @@ jobs:
       - name: test dev
         uses: instrumenta/conftest-action@ae9212d5c0c26e21eedf359e2889d0d5d39dabd4
         with:
-          files: ./.github/workflows/k8s_manifest_manual.yaml ./.github/workflows/k8s_manifest_pr.yaml ./.github/workflows/k8s_manifest_push.yaml
+          files: ./.github/workflows/k8s-manifest-manual.yaml ./.github/workflows/k8s-manifest-pr.yaml ./.github/workflows/k8s-manifest-push.yaml
           policy: ./.github/policy/dev_env.rego
       - name: test staging
         uses: instrumenta/conftest-action@ae9212d5c0c26e21eedf359e2889d0d5d39dabd4
         with:
-          files: ./.github/workflows/k8s_manifest_manual.yaml ./.github/workflows/k8s_manifest_pr.yaml ./.github/workflows/k8s_manifest_push.yaml
+          files: ./.github/workflows/k8s-manifest-manual.yaml ./.github/workflows/k8s-manifest-pr.yaml ./.github/workflows/k8s-manifest-push.yaml
           policy: ./.github/policy/staging_env.rego
         continue-on-error: true

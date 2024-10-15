@@ -377,7 +377,7 @@ Make sure you can not refer `gitHub` context in script.
 > see: [Context and expression syntax for GitHub Actions \- GitHub Help](https://help.github.com/en/actions/reference/context-and-expression-syntax-for-github-actions#github-context)
 
 ```yaml
-# .github/workflows/context_github.yaml
+# .github/workflows/context-github.yaml
 
 name: "context github"
 on:
@@ -428,7 +428,7 @@ jobs:
 Use `toJson(<CONTEXT>)` To show context values in json.
 
 ```yaml
-# .github/workflows/dump_context.yaml
+# .github/workflows/dump-context.yaml
 
 name: dump context
 on:
@@ -508,7 +508,7 @@ echo branch=${GITHUB_REF} | tee -a "$GITHUB_OUTPUT"
 Call this script from workflow.
 
 ```yaml
-# .github/workflows/env_with_script.yaml
+# .github/workflows/env-with-script.yaml
 
 name: env with script
 on:
@@ -632,7 +632,7 @@ You don't need add `${{}}` to context reference. but I do recomment add it for e
 > [Solved: What is the correct if condition syntax for checki/././. /- GitHub Community Forum](https://github.community/t5/GitHub-Actions/What-is-the-correct-if-condition-syntax-for-checking-matrix-os/td-p/31269)
 
 ```yaml
-# .github/workflows/if_and_context.yaml
+# .github/workflows/if-and-context.yaml
 
 name: if and context reference
 on:
@@ -689,7 +689,7 @@ jobs:
 See actual sample.
 
 ```yaml
-# .github/workflows/needs_require_success.yaml
+# .github/workflows/needs-require-success.yaml
 
 name: needs require success
 
@@ -738,7 +738,7 @@ jobs:
 See actual sample.
 
 ```yaml
-# .github/workflows/needs_not_require_success.yaml
+# .github/workflows/needs-not-require-success.yaml
 
 name: needs not require success
 
@@ -778,7 +778,7 @@ Job `needs` can be used for skip handling. However skipping dependent job cause 
 Following workflow expected to run `D` when `C` is invoked. But skipping `A` and `B` cause `D` skip.
 
 ```yaml
-# .github/workflows/needs_skip_no_handling.yaml
+# .github/workflows/needs-skip-no-handling.yaml
 
 name: needs skip no handling
 
@@ -819,7 +819,7 @@ jobs:
 To handle `D` to run when `C` is invoked, you need to add `if` condition to `D`. Also handle when no conditional `C` invokation, `A`, `B` and `C` is success, then `D` must run.
 
 ```yaml
-# .github/workflows/needs_skip_handling.yaml
+# .github/workflows/needs-skip-handling.yaml
 
 name: needs skip handling
 
@@ -873,7 +873,7 @@ You can turn all permission off with `permissions: {}`.
 Workflow permission can be done with root `permissions:`.
 
 ```yaml
-# .github/workflows/permissions_workflow.yaml
+# .github/workflows/permissions-workflow.yaml
 
 name: permissions
 on:
@@ -905,7 +905,7 @@ jobs:
 job permission can be done with `job.<job_name>.permissions`.
 
 ```yaml
-# .github/workflows/permissions_job.yaml
+# .github/workflows/permissions-job.yaml
 
 name: permissions job
 on:
@@ -966,7 +966,7 @@ runs:
 - step3. Use actions from your workflow.
 
 ```yaml
-# .github/workflows/reuse_local_actions.yaml
+# .github/workflows/reuse-local-actions.yaml
 
 name: reuse local action
 on:
@@ -1022,7 +1022,7 @@ console.log("Hello, World!");
 - step4. Use actions from your workflow.
 
 ```yaml
-# .github/workflows/reuse_local_actions_node.yaml
+# .github/workflows/reuse-local-actions-node.yaml
 
 name: reuse local action node
 on:
@@ -1089,7 +1089,7 @@ Place Reusable workflow yaml file under `.github/workflows/` then set `on.workfl
 Any `inputs`, `secrets` and `outputs` should define onder on.workflow_call.
 
 ```yaml
-# .github/workflows/_reusable_workflow_called.yaml
+# .github/workflows/_reusable-workflow-called.yaml
 
 name: _reusable workflow called
 on:
@@ -1153,7 +1153,7 @@ When you want pass `boolean` type of input from workflow_dispatch to workflow_ca
 See [Type converter with fromJson](#type-converter-with-fromJson) for the detail.
 
 ```yaml
-# .github/workflows/reusable_workflow_caller_internal.yaml
+# .github/workflows/reusable-workflow-caller-internal.yaml
 
 name: reusable workflow caller (internal)
 on:
@@ -1168,7 +1168,7 @@ env:
   CALLER_VALUE: caller
 jobs:
   call-workflow-passing-data:
-    uses: ./.github/workflows/_reusable_workflow_called.yaml
+    uses: ./.github/workflows/_reusable-workflow-called.yaml
     with:
       username: "foo"
       is-valid: true
@@ -1189,7 +1189,7 @@ Yo call public repository's reusable workflow, use `uses: GITHUB_OWNER/REPOSITOR
 > **Warning**: To call private repository's reusable workflow, you must use absolute path of self repository.
 
 ```yaml
-# .github/workflows/reusable_workflow_public_caller.yaml
+# .github/workflows/reusable-workflow-public-caller.yaml
 
 name: reusable workflow caller (public)
 on:
@@ -1201,7 +1201,7 @@ on:
 
 jobs:
   call-workflow-passing-data:
-    uses: guitarrapc/githubactions-lab/.github/workflows/_reusable_workflow_called.yaml@main
+    uses: guitarrapc/githubactions-lab/.github/workflows/_reusable-workflow-called.yaml@main
     with:
       username: foo
       is-valid: true
@@ -1220,7 +1220,7 @@ jobs:
 Reusable Workflow caller cannot use matrix, but callee can use matrix. (see limitation.)
 
 ```yaml
-# .github/workflows/reusable_workflow_caller_matrix.yaml
+# .github/workflows/reusable-workflow-caller-matrix.yaml
 
 name: reusable workflow caller (matrix)
 on:
@@ -1235,7 +1235,7 @@ jobs:
     strategy:
       matrix:
         username: [foo, bar]
-    uses: ./.github/workflows/_reusable_workflow_called.yaml
+    uses: ./.github/workflows/_reusable-workflow-called.yaml
     with:
       username: ${{ matrix.username }}
       is-valid: true
@@ -1248,7 +1248,7 @@ jobs:
 Reusalbe workflow can call other reusable workflow, it means nested call is supported.
 
 ```yaml
-# .github/workflows/_reusable_workflow_nest.yaml
+# .github/workflows/_reusable-workflow-nest.yaml
 
 name: _reusable workflow nest
 on:
@@ -1266,7 +1266,7 @@ on:
 # nested call is supported
 jobs:
   call-workflow-passing-data:
-    uses: ./.github/workflows/_reusable_workflow_called.yaml
+    uses: ./.github/workflows/_reusable-workflow-called.yaml
     with:
       username: ${{ inputs.username }}
       is-valid: ${{ inputs.is-valid }}
@@ -1280,7 +1280,7 @@ to accomplish sequential job run inside workflow, use `needs:` for which you wan
 this enforce job to be run when only previous job is **success**.
 
 ```yaml
-# .github/workflows/sequential_run.yaml
+# .github/workflows/sequential-run.yaml
 
 name: sequential jobs
 on:
@@ -1313,7 +1313,7 @@ jobs:
 use `if:` you want set step to be run on particular status.
 
 ```yaml
-# .github/workflows/status_step.yaml
+# .github/workflows/status-step.yaml
 
 name: status step
 on:
@@ -1350,7 +1350,7 @@ There are many place to support multiline.
 Use `run: |` to write `run` statement in multiline.
 
 ```yaml
-# .github/workflows/multiline_run.yaml
+# .github/workflows/multiline-run.yaml
 
 name: multiline run
 on:
@@ -1373,7 +1373,7 @@ jobs:
 Use `if: >-` to write `if` statement in multiline.
 
 ```yaml
-# .github/workflows/multiline_if.yaml
+# .github/workflows/multiline-if.yaml
 
 name: multiline if
 on:
@@ -1407,7 +1407,7 @@ let's set secrets in settings.
 ![image](https://user-images.githubusercontent.com/3856350/79934065-99de6c00-848c-11ea-8995-bfe948e6c0fb.png)
 
 ```yaml
-# .github/workflows/matrix_secret.yaml
+# .github/workflows/matrix-secret.yaml
 
 name: matrix secret
 on:
@@ -1448,7 +1448,7 @@ you can refer matrix in job's `env:` section before steps.
 However you cannot use expression, you must evaluate in step.
 
 ```yaml
-# .github/workflows/matrix_envvar.yaml
+# .github/workflows/matrix-envvar.yaml
 
 name: matrix envvar
 on:
@@ -1513,7 +1513,7 @@ This help you achieve serial build pipeline control.
 You can use build context like `github.head_ref` or others. This means you can control with commit, branch, workflow and any.
 
 ```yaml
-# .github/workflows/concurrency_control.yaml
+# .github/workflows/concurrency-control.yaml
 
 name: "concurrency control"
 
@@ -1534,7 +1534,7 @@ jobs:
 Specify `cancel-in-progress: true` will cancel parallel build.
 
 ```yaml
-# .github/workflows/concurrency_control_cancel_in_progress.yaml
+# .github/workflows/concurrency-control-cancel-in-progress.yaml
 
 name: "concurrency control cancel in progress"
 
@@ -1560,7 +1560,7 @@ GitHub Actions offer `workflow_dispatch` event to execute workflow manually from
 Also you can use [action inputs](https://docs.github.com/en/actions/creating-actions/metadata-syntax-for-github-actions#inputs) to specify value trigger on manual trigger.
 
 ```yaml
-# .github/workflows/manual_trigger.yaml
+# .github/workflows/manual-trigger.yaml
 
 name: manual trigger
 on:
@@ -1632,7 +1632,7 @@ Workflow dispatch supported input type.
 - environment: enum GitHub Environments and Web UI offers selection box.
 
 ```yaml
-# .github/workflows/workflow_dispatch_mixed_inputs.yaml
+# .github/workflows/workflow-dispatch-mixed-inputs.yaml
 
 name: workflow dispatch mixed inputs
 on:
@@ -1692,7 +1692,7 @@ In this example `push` will trigger only when `main`, default branch. This means
 Simple enough for almost usage.
 
 ```yaml
-# .github/workflows/push_and_pr_avoid_redundant.yaml
+# .github/workflows/push-and-pr-avoid-redundant.yaml
 
 name: push and pull_request avoid redundant
 on:
@@ -1715,7 +1715,7 @@ jobs:
 Cancel duplicate workflow and mark CI failure.
 
 ```yaml
-# .github/workflows/cancel_redundantbuild.yaml
+# .github/workflows/cancel-redundantbuild.yaml
 
 name: cancel redundant build
 # when pull_request, both push and pull_request (synchronize) will trigger.
@@ -1755,7 +1755,7 @@ You can detect which file was changed with push or pull_request by GitHub action
 * `tj-actions/changed-files` is still actively developed. Usage is simple and output is static.
 
 ```yaml
-# .github/workflows/file_change_detect_tj.yaml
+# .github/workflows/file-change-detect-tj.yaml
 
 name: file change detect tj
 on:
@@ -1810,7 +1810,7 @@ jobs:
 `dorny/paths-filter` is still actively developed. However it's output is quite dynamic and hard to handle static lint like actionlint.
 
 ```yaml
-# .github/workflows/file_change_detect_dorny.yaml
+# .github/workflows/file-change-detect-dorny.yaml
 
 name: file change detect dorny
 on:
@@ -1879,7 +1879,7 @@ jobs:
 `trilom/file-changes-action` stopped development, so I will quit using it.
 
 ```yaml
-# .github/workflows/file_change_detect_dorny.yaml
+# .github/workflows/file-change-detect-dorny.yaml
 
 name: file change detect dorny
 on:
@@ -1959,7 +1959,7 @@ Don't forget pretend `refs/heads/` to your branch.
 - bad: some-branch
 
 ```yaml
-# .github/workflows/schedule_job.yaml
+# .github/workflows/schedule-job.yaml
 
 name: schedule job
 on:
@@ -1984,7 +1984,7 @@ You can create release and upload assets through GitHub Actions.
 Multiple assets upload is supported by running running `actions/upload-release-asset` for each asset.
 
 ```yaml
-# .github/workflows/create_release.yaml
+# .github/workflows/create-release.yaml
 
 name: create release
 concurrency: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
@@ -2056,7 +2056,7 @@ jobs:
 If you want run job only when push to branch, and not for tag push.
 
 ```yaml
-# .github/workflows/branch_push_only.yaml
+# .github/workflows/branch-push-only.yaml
 
 name: branch push only
 on:
@@ -2076,7 +2076,7 @@ jobs:
 ## Trigger commit message
 
 ```yaml
-# .github/workflows/trigger_ci.yaml
+# .github/workflows/trigger-ci.yaml
 
 name: trigger ci commit
 on:
@@ -2099,7 +2099,7 @@ jobs:
 If you want run job only when push to tag, and not for branch push.
 
 ```yaml
-# .github/workflows/tag_push_only.yaml
+# .github/workflows/tag-push-only.yaml
 
 name: tag push only
 on:
@@ -2129,7 +2129,7 @@ not for below.
 - release
 
 ```yaml
-# .github/workflows/tag_push_only_pattern.yaml
+# .github/workflows/tag-push-only-pattern.yaml
 
 name: tag push only pattern
 on:
@@ -2152,7 +2152,7 @@ jobs:
 `${{ contains(github.event.pull_request.labels.*.name, 'hoge') }}` will return `true` if tag contains `hoge`.
 
 ```yaml
-# .github/workflows/pr_label_get.yaml
+# .github/workflows/pr-label-get.yaml
 
 name: pr label get
 on:
@@ -2184,7 +2184,7 @@ original `pull_request` event will invoke when activity type is `opened`, `synch
 > [Events that trigger workflows /- GitHub Help](https://help.github.com/en/actions/reference/events-that-trigger-workflows#pull-request-event-pull_request)
 
 ```yaml
-# .github/workflows/skip_ci_pr_title.yaml
+# .github/workflows/skip-ci-pr-title.yaml
 
 name: skip ci pr title
 on: ["pull_request"]
@@ -2215,7 +2215,7 @@ default `pull_request` event trigger from even fork repository, however fork pr 
 To control job to be skip from fork but run on self pr or push, use `if` conditions.
 
 ```yaml
-# .github/workflows/skip_pr_from_fork.yaml
+# .github/workflows/skip-pr-from-fork.yaml
 
 name: skip pr from fork
 on:
@@ -2244,7 +2244,7 @@ You can skip job and steps if Pull Request is Draft.
 Unfortunately GitHub Webhook v3 event not provide draft pr type, but `event.pull_request.draft` shows `true` when PR is draft.
 
 ```yaml
-# .github/workflows/skip_draft_pr.yaml
+# .github/workflows/skip-draft-pr.yaml
 
 name: skip draft pr
 on:
@@ -2264,7 +2264,7 @@ jobs:
 You can control behaviour with PR label.
 
 ```yaml
-# .github/workflows/skip_draft_but_label_pr.yaml
+# .github/workflows/skip-draft-but-label-pr.yaml
 
 name: skip draft pr but label
 on:
@@ -2294,7 +2294,7 @@ jobs:
 You cannot use `${{ env. }}` in `env:` section.
 Following is invalid with error.
 
-> The workflow is not valid. .github/workflows/env_refer_env.yaml (Line: 12, Col: 16): Unrecognized named-value: 'env'. Located at position 1 within expression: env.global_env
+> The workflow is not valid. .github/workflows/env-refer-env.yaml (Line: 12, Col: 16): Unrecognized named-value: 'env'. Located at position 1 within expression: env.global_env
 
 ```yaml
 name: you can not refer env in env
@@ -2356,7 +2356,7 @@ GitHub Actions [actions/upload-artifact](https://github.com/actions/upload-artif
 **file**
 
 ```yaml
-# .github/workflows/artifacts_file.yaml
+# .github/workflows/artifacts-file.yaml
 
 name: artifacts (file)
 
@@ -2401,7 +2401,7 @@ jobs:
 **directory**
 
 ```yaml
-# .github/workflows/artifacts_directory.yaml
+# .github/workflows/artifacts-directory.yaml
 
 name: artifacts (directory)
 
@@ -2449,7 +2449,7 @@ jobs:
 **.tar.gz**
 
 ```yaml
-# .github/workflows/artifacts_targz.yaml
+# .github/workflows/artifacts-targz.yaml
 
 name: artifacts (tar.gz)
 
@@ -2543,7 +2543,7 @@ Sparce checkout has 2 modes, `git sparse-checkout` and `git sparse-checkout --co
 Checkout "src/\*" and root files, but not checkout any not specified folders.
 
 ```yaml
-# .github/workflows/git_sparsecheckout.yaml
+# .github/workflows/git-sparsecheckout.yaml
 
 name: git sparsecheckout
 on:
@@ -2602,7 +2602,7 @@ drwxr-xr-x 2 runner docker 4096 Jun 14 10:23 txt
 Checkout only "src/\*" path. All other files and folders will not checkout.
 
 ```yaml
-# .github/workflows/git_sparsecheckout_nocorn.yaml
+# .github/workflows/git-sparsecheckout-nocorn.yaml
 
 name: git sparsecheckout (no corn)
 on:
@@ -2657,7 +2657,7 @@ drwxr-xr-x 2 runner docker 4096 Jun 14 10:23 txt
 Checkout except "src/_" path. All other files and folders will checkout by `/_`.
 
 ```yaml
-# .github/workflows/git_sparsecheckout_exclude.yaml
+# .github/workflows/git-sparsecheckout-exclude.yaml
 
 name: git sparsecheckout nocorn
 on:
@@ -2739,7 +2739,7 @@ jobs:
 This repo will dispatch event with [Workflow Dispatch Action](https://github.com/marketplace/actions/workflow-dispatch) actions.
 
 ```yaml
-# .github/workflows/dispatch_changes_actions.yaml
+# .github/workflows/dispatch-changes-actions.yaml
 
 name: dispatch changes actions
 on:
@@ -2773,7 +2773,7 @@ One of GitHub's vulnerable point is Workflow. Editting Workflow shoulbe be requi
 Easiest and simple way is use `pull_request` target and path filter, then detect PR is fork or not. There might be many ways to prevent file change. `xalvarez/prevent-file-change-action` can guard change in the step. Using `tj-actions/changed-files`, `dorny/paths-filter`, or others will be flexible way to detect change and do what you want.
 
 ```yaml
-# .github/workflows/prevent_file_change1.yaml
+# .github/workflows/prevent-file-change1.yaml
 
 name: prevent file change 1
 on:
@@ -2794,7 +2794,7 @@ jobs:
 ```
 
 ```yaml
-# .github/workflows/prevent_file_change2.yaml
+# .github/workflows/prevent-file-change2.yaml
 
 name: prevent file change 2
 on:
@@ -2822,7 +2822,7 @@ jobs:
 ```
 
 ```yaml
-# .github/workflows/prevent_file_change3.yaml
+# .github/workflows/prevent-file-change3.yaml
 
 name: prevent file change 3
 on:
@@ -2855,7 +2855,7 @@ jobs:
 ```
 
 ```yaml
-# .github/workflows/prevent_file_change4.yaml
+# .github/workflows/prevent-file-change4.yaml
 
 name: prevent file change 4
 on:
@@ -2919,7 +2919,7 @@ jobs:
 If you need automated PR review, run actionlint with reviewdog.
 
 ```yaml
-# .github/workflows/actionlint_reviewdog.yaml
+# .github/workflows/actionlint-reviewdog.yaml
 
 name: actionlint (reviewdog)
 on:
@@ -2955,7 +2955,7 @@ You have two choice.
 Below use [jwalton/gh-find-current-pr](https://github.com/jwalton/gh-find-current-pr) to retrieve PR info from merge commit.
 
 ```yaml
-# .github/workflows/pr_from_merge_commit.yaml
+# .github/workflows/pr-from-merge-commit.yaml
 
 name: pr from merge commit
 on:
@@ -2989,7 +2989,7 @@ GitHub Actions [runforesight/workflow-telemetry-action](https://github.com/runfo
 To enable telemetry, set `runforesight/workflow-telemetry-action@v1` on the first step of your job, then action collect telemetry for later steps.
 
 ```yaml
-# .github/workflows/actions_telemetry.yaml
+# .github/workflows/actions-telemetry.yaml
 
 name: actions telemetry
 on:
@@ -3056,7 +3056,7 @@ action folder naming also follow this rule.
 - push and others: `${{ github.ref }}`
 
 ```yaml
-# .github/workflows/_reusable_dump_context.yaml#L20-L22
+# .github/workflows/_reusable-dump-context.yaml#L20-L22
 
 # PR should checkout HEAD ref instead of merge commit.                        -> github.head.ref
 # PR close delete branch, so it should checkout BASE ref instead of HEAD ref. -> github.base_ref
@@ -3073,7 +3073,7 @@ Trigger push with tag, then you have 2 choice.
   - `refs/tags/v1.0.0` -> `v1.0.0`
 
 ```yaml
-# .github/workflows/tag_push_only_context.yaml
+# .github/workflows/tag-push-only-context.yaml
 
 name: tag push context
 on:

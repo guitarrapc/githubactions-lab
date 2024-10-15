@@ -11,7 +11,7 @@ env:
   CALLER_VALUE: caller
 jobs:
   call-workflow-passing-data:
-    uses: ./.github/workflows/_reusable_workflow_called.yaml
+    uses: ./.github/workflows/_reusable-workflow-called.yaml
     with:
       username: "foo"
       is-valid: true

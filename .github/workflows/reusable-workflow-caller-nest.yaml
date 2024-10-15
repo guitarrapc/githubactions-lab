@@ -8,7 +8,7 @@ on:
 
 jobs:
   call-workflow-passing-data:
-    uses: ./.github/workflows/_reusable_workflow_nest.yaml
+    uses: ./.github/workflows/_reusable-workflow-nest.yaml
     with:
       username: "foo"
       is-valid: true
