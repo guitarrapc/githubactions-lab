@@ -2,13 +2,13 @@
   "token": "<reducted>",
   "job": "dump-context",
   "ref": "refs/heads/main",
-  "sha": "7c418ea5019e8e9406fbb54c8e97894f50e66945",
+  "sha": "254606ebf375beb249de4e94b3c4d3de2d8ac24b",
   "repository": "guitarrapc/githubactions-lab",
   "repository_owner": "guitarrapc",
   "repository_owner_id": "3856350",
   "repositoryUrl": "git://github.com/guitarrapc/githubactions-lab.git",
-  "run_id": "11349113275",
-  "run_number": "1237",
+  "run_id": "11350101016",
+  "run_number": "1242",
   "retention_days": "90",
   "run_attempt": "1",
   "artifact_cache_size_limit": "10",
@@ -24,9 +24,9 @@
   "base_ref": "",
   "event_name": "push",
   "event": {
-    "after": "7c418ea5019e8e9406fbb54c8e97894f50e66945",
+    "after": "254606ebf375beb249de4e94b3c4d3de2d8ac24b",
     "base_ref": null,
-    "before": "e3ac38fdcef31ebd21d9775d201d1ec7de9f809f",
+    "before": "56a720013ff9a9a4a4d0a95be1f15b9f7b95619c",
     "commits": [
       {
         "author": {
@@ -40,11 +40,11 @@
           "username": "guitarrapc"
         },
         "distinct": false,
-        "id": "d2b91306736249fea84443d088fa586a51faf6a6",
-        "message": "feat: split to setup-dotnet",
-        "timestamp": "2024-10-15T23:55:21+09:00",
-        "tree_id": "9a7368fff430a580b122eed3dafff1830b720c5c",
-        "url": "https://github.com/guitarrapc/githubactions-lab/commit/d2b91306736249fea84443d088fa586a51faf6a6"
+        "id": "649cc4e8ccf676f75d780c165797230f94041019",
+        "message": "chore: custom dotnet instlalation path",
+        "timestamp": "2024-10-16T01:10:52+09:00",
+        "tree_id": "a96e1b630b97b9d733d7542991b1cecb37f5a939",
+        "url": "https://github.com/guitarrapc/githubactions-lab/commit/649cc4e8ccf676f75d780c165797230f94041019"
       },
       {
         "author": {
@@ -58,65 +58,11 @@
           "username": "github-actions[bot]"
         },
         "distinct": false,
-        "id": "800ca536e8787bfec038f2e527022ed5a0100084",
+        "id": "2fa94026455b158fea9b20426c3656f7bc983f83",
         "message": "[auto commit] update context (workflow=auto dump context, event=pull_request, action=opened)",
-        "timestamp": "2024-10-15T14:56:29Z",
-        "tree_id": "a9aa79c9e08ae1a86fb68b093ea88814a3192431",
-        "url": "https://github.com/guitarrapc/githubactions-lab/commit/800ca536e8787bfec038f2e527022ed5a0100084"
-      },
-      {
-        "author": {
-          "email": "3856350+guitarrapc@users.noreply.github.com",
-          "name": "Ikiru Yoshizaki",
-          "username": "guitarrapc"
-        },
-        "committer": {
-          "email": "3856350+guitarrapc@users.noreply.github.com",
-          "name": "Ikiru Yoshizaki",
-          "username": "guitarrapc"
-        },
-        "distinct": false,
-        "id": "955a613cf261e29f4a475f55116793cd959d9366",
-        "message": "chore: no need checkout",
-        "timestamp": "2024-10-16T00:01:58+09:00",
-        "tree_id": "ed32f7df9b900406405593fe99f472a650995b48",
-        "url": "https://github.com/guitarrapc/githubactions-lab/commit/955a613cf261e29f4a475f55116793cd959d9366"
-      },
-      {
-        "author": {
-          "email": "3856350+guitarrapc@users.noreply.github.com",
-          "name": "Ikiru Yoshizaki",
-          "username": "guitarrapc"
-        },
-        "committer": {
-          "email": "3856350+guitarrapc@users.noreply.github.com",
-          "name": "Ikiru Yoshizaki",
-          "username": "guitarrapc"
-        },
-        "distinct": false,
-        "id": "56a398402b0cf7acb2a6f9d75b9eaa5d6aae141a",
-        "message": "chore: no fail-fast",
-        "timestamp": "2024-10-16T00:01:58+09:00",
-        "tree_id": "1b227d74903cc03d3a48f77c87f86468f08c3356",
-        "url": "https://github.com/guitarrapc/githubactions-lab/commit/56a398402b0cf7acb2a6f9d75b9eaa5d6aae141a"
-      },
-      {
-        "author": {
-          "email": "3856350+guitarrapc@users.noreply.github.com",
-          "name": "Ikiru Yoshizaki",
-          "username": "guitarrapc"
-        },
-        "committer": {
-          "email": "3856350+guitarrapc@users.noreply.github.com",
-          "name": "Ikiru Yoshizaki",
-          "username": "guitarrapc"
-        },
-        "distinct": false,
-        "id": "9f8aa11ed38481574e131c3c5084c6b8850b94f7",
-        "message": "chore: donet build",
-        "timestamp": "2024-10-16T00:01:58+09:00",
-        "tree_id": "61e605578a71fc8a4cc2251257f94e52b6486a06",
-        "url": "https://github.com/guitarrapc/githubactions-lab/commit/9f8aa11ed38481574e131c3c5084c6b8850b94f7"
+        "timestamp": "2024-10-15T16:11:55Z",
+        "tree_id": "30d172503924f8d945b91439233cce36478a8f4c",
+        "url": "https://github.com/guitarrapc/githubactions-lab/commit/2fa94026455b158fea9b20426c3656f7bc983f83"
       },
       {
         "author": {
@@ -130,83 +76,11 @@
           "username": "github-actions[bot]"
         },
         "distinct": false,
-        "id": "8d6fcca4e4c70d618b238bed59758930b4ca4df0",
-        "message": "[auto commit] update context (workflow=auto dump context, event=pull_request_target, action=synchronize)",
-        "timestamp": "2024-10-15T15:02:20Z",
-        "tree_id": "b5f88adf281bd7077027c9bec36e926c94679c43",
-        "url": "https://github.com/guitarrapc/githubactions-lab/commit/8d6fcca4e4c70d618b238bed59758930b4ca4df0"
-      },
-      {
-        "author": {
-          "email": "41898282+github-actions[bot]@users.noreply.github.com",
-          "name": "github-actions[bot]",
-          "username": "github-actions[bot]"
-        },
-        "committer": {
-          "email": "41898282+github-actions[bot]@users.noreply.github.com",
-          "name": "github-actions[bot]",
-          "username": "github-actions[bot]"
-        },
-        "distinct": false,
-        "id": "1352738063cf88570682b1155f547309271822e7",
-        "message": "[auto commit] update context (workflow=auto dump context, event=pull_request, action=synchronize)",
-        "timestamp": "2024-10-15T15:02:44Z",
-        "tree_id": "f5de327ea309f85fafecb4eb30f6c83f2265910a",
-        "url": "https://github.com/guitarrapc/githubactions-lab/commit/1352738063cf88570682b1155f547309271822e7"
-      },
-      {
-        "author": {
-          "email": "3856350+guitarrapc@users.noreply.github.com",
-          "name": "Ikiru Yoshizaki",
-          "username": "guitarrapc"
-        },
-        "committer": {
-          "email": "3856350+guitarrapc@users.noreply.github.com",
-          "name": "Ikiru Yoshizaki",
-          "username": "guitarrapc"
-        },
-        "distinct": false,
-        "id": "ed9456796502a3d37523ab370a1994c8116cfee6",
-        "message": "chore: path detect by command -v",
-        "timestamp": "2024-10-16T00:12:06+09:00",
-        "tree_id": "5aab3e5b38aa190123300c8810ef4e310c90b2fe",
-        "url": "https://github.com/guitarrapc/githubactions-lab/commit/ed9456796502a3d37523ab370a1994c8116cfee6"
-      },
-      {
-        "author": {
-          "email": "41898282+github-actions[bot]@users.noreply.github.com",
-          "name": "github-actions[bot]",
-          "username": "github-actions[bot]"
-        },
-        "committer": {
-          "email": "41898282+github-actions[bot]@users.noreply.github.com",
-          "name": "github-actions[bot]",
-          "username": "github-actions[bot]"
-        },
-        "distinct": false,
-        "id": "7fadf88546f960809f6067e51f892ccfd97c9775",
-        "message": "[auto commit] update context (workflow=auto dump context, event=pull_request_target, action=synchronize)",
-        "timestamp": "2024-10-15T15:12:38Z",
-        "tree_id": "24152c96528ca849742c1c1bea225ccd3139d1c0",
-        "url": "https://github.com/guitarrapc/githubactions-lab/commit/7fadf88546f960809f6067e51f892ccfd97c9775"
-      },
-      {
-        "author": {
-          "email": "41898282+github-actions[bot]@users.noreply.github.com",
-          "name": "github-actions[bot]",
-          "username": "github-actions[bot]"
-        },
-        "committer": {
-          "email": "41898282+github-actions[bot]@users.noreply.github.com",
-          "name": "github-actions[bot]",
-          "username": "github-actions[bot]"
-        },
-        "distinct": false,
-        "id": "b0b2913b70c81c7ca2c82f041f0a0e4cce737bd1",
-        "message": "[auto commit] update context (workflow=auto dump context, event=pull_request, action=synchronize)",
-        "timestamp": "2024-10-15T15:13:01Z",
-        "tree_id": "e5168d1288c09d6d0d132b105a760647ca2d5bea",
-        "url": "https://github.com/guitarrapc/githubactions-lab/commit/b0b2913b70c81c7ca2c82f041f0a0e4cce737bd1"
+        "id": "8e243ed6b4bf5331e068af5bcdf3b5c6009b8628",
+        "message": "[auto commit] update context (workflow=auto dump context, event=pull_request_target, action=opened)",
+        "timestamp": "2024-10-15T16:11:58Z",
+        "tree_id": "24cc5de7e12c9780d903a66bb91d3965813fb3b9",
+        "url": "https://github.com/guitarrapc/githubactions-lab/commit/8e243ed6b4bf5331e068af5bcdf3b5c6009b8628"
       },
       {
         "author": {
@@ -220,14 +94,14 @@
           "username": "web-flow"
         },
         "distinct": true,
-        "id": "7c418ea5019e8e9406fbb54c8e97894f50e66945",
-        "message": "Merge pull request #191 from guitarrapc/feature/setup-dotnet\n\nfeat: split to setup-dotnet",
-        "timestamp": "2024-10-16T00:15:56+09:00",
-        "tree_id": "e5168d1288c09d6d0d132b105a760647ca2d5bea",
-        "url": "https://github.com/guitarrapc/githubactions-lab/commit/7c418ea5019e8e9406fbb54c8e97894f50e66945"
+        "id": "254606ebf375beb249de4e94b3c4d3de2d8ac24b",
+        "message": "Merge pull request #192 from guitarrapc/feature/install\n\nchore: custom dotnet instlalation path",
+        "timestamp": "2024-10-16T01:13:18+09:00",
+        "tree_id": "24cc5de7e12c9780d903a66bb91d3965813fb3b9",
+        "url": "https://github.com/guitarrapc/githubactions-lab/commit/254606ebf375beb249de4e94b3c4d3de2d8ac24b"
       }
     ],
-    "compare": "https://github.com/guitarrapc/githubactions-lab/compare/e3ac38fdcef3...7c418ea5019e",
+    "compare": "https://github.com/guitarrapc/githubactions-lab/compare/56a720013ff9...254606ebf375",
     "created": false,
     "deleted": false,
     "forced": false,
@@ -243,11 +117,11 @@
         "username": "web-flow"
       },
       "distinct": true,
-      "id": "7c418ea5019e8e9406fbb54c8e97894f50e66945",
-      "message": "Merge pull request #191 from guitarrapc/feature/setup-dotnet\n\nfeat: split to setup-dotnet",
-      "timestamp": "2024-10-16T00:15:56+09:00",
-      "tree_id": "e5168d1288c09d6d0d132b105a760647ca2d5bea",
-      "url": "https://github.com/guitarrapc/githubactions-lab/commit/7c418ea5019e8e9406fbb54c8e97894f50e66945"
+      "id": "254606ebf375beb249de4e94b3c4d3de2d8ac24b",
+      "message": "Merge pull request #192 from guitarrapc/feature/install\n\nchore: custom dotnet instlalation path",
+      "timestamp": "2024-10-16T01:13:18+09:00",
+      "tree_id": "24cc5de7e12c9780d903a66bb91d3965813fb3b9",
+      "url": "https://github.com/guitarrapc/githubactions-lab/commit/254606ebf375beb249de4e94b3c4d3de2d8ac24b"
     },
     "pusher": {
       "email": "3856350+guitarrapc@users.noreply.github.com",
@@ -342,9 +216,9 @@
       },
       "private": false,
       "pulls_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls{/number}",
-      "pushed_at": 1729005356,
+      "pushed_at": 1729008798,
       "releases_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/releases{/id}",
-      "size": 2187,
+      "size": 2253,
       "ssh_url": "git@github.com:guitarrapc/githubactions-lab.git",
       "stargazers": 46,
       "stargazers_count": 46,
@@ -359,7 +233,7 @@
         "github-actions"
       ],
       "trees_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/git/trees{/sha}",
-      "updated_at": "2024-10-15T14:50:08Z",
+      "updated_at": "2024-10-15T15:19:30Z",
       "url": "https://github.com/guitarrapc/githubactions-lab",
       "visibility": "public",
       "watchers": 46,
@@ -395,15 +269,15 @@
   "ref_type": "branch",
   "secret_source": "Actions",
   "workflow_ref": "guitarrapc/githubactions-lab/.github/workflows/auto_dump_context.yaml@refs/heads/main",
-  "workflow_sha": "7c418ea5019e8e9406fbb54c8e97894f50e66945",
+  "workflow_sha": "254606ebf375beb249de4e94b3c4d3de2d8ac24b",
   "workspace": "/home/runner/work/githubactions-lab/githubactions-lab",
   "action": "__run_2",
   "event_path": "/home/runner/work/_temp/_github_workflow/event.json",
   "action_repository": "",
   "action_ref": "",
-  "path": "/home/runner/work/_temp/_runner_file_commands/add_path_5e9fe6e7-1a87-4115-8711-fda239f39e37",
-  "env": "/home/runner/work/_temp/_runner_file_commands/set_env_5e9fe6e7-1a87-4115-8711-fda239f39e37",
-  "step_summary": "/home/runner/work/_temp/_runner_file_commands/step_summary_5e9fe6e7-1a87-4115-8711-fda239f39e37",
-  "state": "/home/runner/work/_temp/_runner_file_commands/save_state_5e9fe6e7-1a87-4115-8711-fda239f39e37",
-  "output": "/home/runner/work/_temp/_runner_file_commands/set_output_5e9fe6e7-1a87-4115-8711-fda239f39e37"
+  "path": "/home/runner/work/_temp/_runner_file_commands/add_path_ae5efdca-7220-4977-b7bb-2e140ac74d4e",
+  "env": "/home/runner/work/_temp/_runner_file_commands/set_env_ae5efdca-7220-4977-b7bb-2e140ac74d4e",
+  "step_summary": "/home/runner/work/_temp/_runner_file_commands/step_summary_ae5efdca-7220-4977-b7bb-2e140ac74d4e",
+  "state": "/home/runner/work/_temp/_runner_file_commands/save_state_ae5efdca-7220-4977-b7bb-2e140ac74d4e",
+  "output": "/home/runner/work/_temp/_runner_file_commands/set_output_ae5efdca-7220-4977-b7bb-2e140ac74d4e"
 }
