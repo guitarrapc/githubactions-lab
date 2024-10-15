@@ -395,7 +395,7 @@ on:
 
 jobs:
   context:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 3
     steps:
       - name: job
@@ -420,6 +420,7 @@ jobs:
         run: echo ${{ github.event.ref }}
       - name: action
         run: echo ${{ github.action }}
+
 ```
 
 **JSON output**
@@ -448,7 +449,7 @@ on:
 
 jobs:
   dump:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 3
     steps:
       - uses: actions/checkout@v4
@@ -524,7 +525,7 @@ jobs:
   bash:
     strategy:
       matrix:
-        runs-on: [ubuntu-latest, windows-latest]
+        runs-on: [ubuntu-24.04, windows-latest]
     runs-on: ${{ matrix.runs-on }}
     timeout-minutes: 3
     defaults:
@@ -556,7 +557,7 @@ jobs:
   powershell:
     strategy:
       matrix:
-        runs-on: [ubuntu-latest, windows-latest]
+        runs-on: [ubuntu-24.04, windows-latest]
     runs-on: ${{ matrix.runs-on }}
     timeout-minutes: 3
     defaults:
@@ -647,7 +648,7 @@ jobs:
         sample: ["hoge", "fuga"]
     env:
       APP: hoge
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 3
     steps:
       # env context reference
@@ -663,6 +664,7 @@ jobs:
         if: ${{ matrix.sample == 'hoge' }}
       - run: echo "this is matrix if for fuga"
         if: ${{ matrix.sample == 'fuga' }}
+
 ```
 
 ## Job needs and dependency
@@ -700,20 +702,20 @@ on:
 
 jobs:
   A:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
       - run: echo "a"
 
   B:
     needs: [A]
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
       - run: echo "b"
 
   # Run only if A and B success
   C:
     needs: [A, B]
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
       - run: echo "c"
 
@@ -749,13 +751,13 @@ on:
 
 jobs:
   A:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
       - run: echo "a"
 
   B:
     needs: [A]
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
       - run: echo "b"
 
@@ -763,7 +765,7 @@ jobs:
   C:
     needs: [A, B]
     if: ${{ always() }}
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
       - run: echo "c"
 
@@ -790,25 +792,25 @@ on:
 jobs:
   A:
     if: ${{ false }}
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
       - run: echo "a"
 
   B:
     if: ${{ false }}
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
       - run: echo "b"
 
   C:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
       - run: echo "c"
 
   # D will always skip because A and B is skipped
   D:
     needs: [A, B, C]
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
       - run: echo "d"
 
@@ -837,18 +839,18 @@ on:
 jobs:
   A:
     if: ${{ !inputs.only-c }}
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
       - run: echo "a"
 
   B:
     if: ${{ !inputs.only-c }}
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
       - run: echo "b"
 
   C:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
       - run: echo "c"
 
@@ -856,7 +858,7 @@ jobs:
   D:
     needs: [A, B, C]
     if: ${{ inputs.only-c && needs.C.result == 'success' || success() }}
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
       - run: echo "d"
 
@@ -893,7 +895,7 @@ permissions:
   # statuses: write
 jobs:
   job:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
@@ -925,7 +927,7 @@ jobs:
       # repository-projects: write
       # security-events: write
       # statuses: write
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 3
     steps:
       - uses: actions/checkout@v4
@@ -975,7 +977,7 @@ on:
     branches: ["main"]
 jobs:
   job:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 3
     steps:
       - uses: actions/checkout@v4
@@ -1031,7 +1033,7 @@ on:
     branches: ["main"]
 jobs:
   job:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 3
     steps:
       - uses: actions/checkout@v4
@@ -1112,7 +1114,7 @@ env:
   FOO: foo
 jobs:
   reusable_workflow_job:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     outputs:
       output1: ${{ steps.step1.outputs.firstword }}
       output2: ${{ steps.step2.outputs.secondword }}
@@ -1140,6 +1142,7 @@ jobs:
       - name: output step2
         id: step2
         run: echo "secondword=world" >> "$GITHUB_OUTPUT"
+
 ```
 
 ### Call repository's reusable workflow
@@ -1172,7 +1175,7 @@ jobs:
     secrets: inherit
 
   job2:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     needs: call-workflow-passing-data
     steps:
       - run: echo ${{ needs.call-workflow-passing-data.outputs.firstword }} ${{ needs.call-workflow-passing-data.outputs.secondword }}
@@ -1205,7 +1208,7 @@ jobs:
     secrets: inherit
 
   job2:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     needs: call-workflow-passing-data
     steps:
       - run: echo ${{ needs.call-workflow-passing-data.outputs.firstword }} ${{ needs.call-workflow-passing-data.outputs.secondword }}
@@ -1288,7 +1291,7 @@ on:
     branches: ["main"]
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 3
     steps:
       - run: echo "$COMMIT_MESSAGES"
@@ -1296,7 +1299,7 @@ jobs:
           COMMIT_MESSAGES: ${{ toJson(github.event.commits.*.message) }}
   publish:
     needs: [build]
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 3
     steps:
       - run: echo run when only build success
@@ -1321,7 +1324,7 @@ on:
     branches: ["main"]
 jobs:
   job:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 3
     steps:
       - run: echo "$COMMIT_MESSAGES"
@@ -1356,12 +1359,13 @@ on:
     branches: ["main"]
 jobs:
   push:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 5
     steps:
       - run: |
           echo "foo"
           echo "bar"
+
 ```
 
 **if**
@@ -1380,17 +1384,18 @@ jobs:
   push:
     if: >-
       github.event_name == 'push' || github.event.forced == false
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 5
     steps:
       - run: echo "push"
   workflow_dispatch:
     if: >-
       github.event_name == 'workflow_dispatch'
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 5
     steps:
       - run: echo "workflow_dispatch"
+
 ```
 
 ## Strategy matrix and secret dereference
@@ -1426,7 +1431,7 @@ jobs:
             secret: BANANAS
           - org: carrots
             secret: CARROTS
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 3
     steps:
       - run: echo "org:${{ matrix.org }} secret:${{ secrets[matrix.secret] }}"
@@ -1434,6 +1439,7 @@ jobs:
         env:
           secret: ${{ matrix.secret }}
       - run: echo "env:${{ env.fruit }} secret:${{ secrets[env.fruit] }}"
+
 ```
 
 ## Strategy matrix and environment variables
@@ -1456,7 +1462,7 @@ jobs:
     strategy:
       matrix:
         org: [apples, bananas, carrots]
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 3
     env:
       ORG: ${{ matrix.org }}
@@ -1491,11 +1497,12 @@ on:
     branches: ["main"]
 jobs:
   my-job:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 5
     steps:
       - run: echo "done before timeout"
         timeout-minutes: 1 # each step
+
 ```
 
 ## Workflow Concurrency Control
@@ -1518,7 +1525,7 @@ on:
 
 jobs:
   long_job:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
       - run: sleep 60s
 
@@ -1541,7 +1548,7 @@ on:
 
 jobs:
   long_job:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
       - run: sleep 60s
 
@@ -1572,7 +1579,7 @@ on:
         required: false
 jobs:
   printInputs:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 3
     env:
       BRANCH: ${{ inputs.branch }}
@@ -1651,7 +1658,7 @@ on:
         required: true
 jobs:
   greet:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 3
     steps:
       - name: Send greeting (github.event.inputs)
@@ -1668,6 +1675,7 @@ jobs:
           echo "use-emoji (bool): ${{ inputs.use-emoji == true }}"
       - name: Emoji
         run: echo "🥳 😊"
+
 ```
 
 ## Workflow Redundant Control
@@ -1695,10 +1703,11 @@ on:
     branches: ["main"]
 jobs:
   my-job:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 3
     steps:
       - run: echo push and pull_request trigger
+
 ```
 
 **redundant build cancel**
@@ -1719,7 +1728,7 @@ on:
     branches: ["main"]
 jobs:
   cancel:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
       # no check for main and tag
       - uses: rokroskar/workflow-run-cleanup-action@v0.3.3
@@ -1758,7 +1767,7 @@ on:
 
 jobs:
   job:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 3
     steps:
       - uses: actions/checkout@v4
@@ -1812,7 +1821,7 @@ on:
 
 jobs:
   job:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 3
     steps:
       - uses: actions/checkout@v4
@@ -1881,7 +1890,7 @@ on:
 
 jobs:
   job:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 3
     steps:
       - uses: actions/checkout@v4
@@ -1958,7 +1967,7 @@ on:
     - cron: "0 0 * * *"
 jobs:
   job:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 3
     steps:
       - name: Dump GitHub context
@@ -2004,7 +2013,7 @@ env:
 jobs:
   create-release:
     if: ${{ github.actor != 'dependabot[bot]' }}
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 10
     steps:
       - name: Setup tag
@@ -2057,7 +2066,7 @@ on:
       - "!*" # not a tag push
 jobs:
   aws:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 3
     steps:
       - run: echo not run on tag
@@ -2076,7 +2085,7 @@ on:
 jobs:
   job:
     if: ${{ contains(toJSON(github.event.commits.*.message), '[build]') }}
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 3
     steps:
       - run: echo "$COMMIT_MESSAGES"
@@ -2099,7 +2108,7 @@ on:
       - "**" # only tag
 jobs:
   job:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
       - run: echo not run on branch push
 
@@ -2129,7 +2138,7 @@ on:
       - "[0-9]+.[0-9]+.[0-9]+*" # only tag with pattern match
 jobs:
   job:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
       - run: echo not run on branch push
 
@@ -2155,7 +2164,7 @@ on:
       - synchronize
 jobs:
   changes:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 3
     env:
       IS_HOGE: "false"
@@ -2182,7 +2191,7 @@ on: ["pull_request"]
 jobs:
   skip:
     if: ${{ !(contains(github.event.pull_request.title, '[skip ci]') || contains(github.event.pull_request.title, '[ci skip]')) }}
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 3
     steps:
       - run: echo "$GITHUB_CONTEXT"
@@ -2192,7 +2201,7 @@ jobs:
         env:
           TITLE: ${{ toJson(github.event.pull_request.title) }}
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 3
     needs: skip
     steps:
@@ -2222,7 +2231,7 @@ jobs:
     # push & my repo will trigger
     # pull_request on my repo will trigger
     if: ${{ (github.event_name == 'push' && github.repository_owner == 'guitarrapc') || startsWith(github.event.pull_request.head.label, 'guitarrapc:') }}
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 3
     steps:
       - run: echo build
@@ -2245,7 +2254,7 @@ on:
 jobs:
   job:
     if: ${{ ! github.event.pull_request.draft }}
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 3
     steps:
       - uses: actions/checkout@v4
@@ -2271,10 +2280,11 @@ jobs:
     # 1. PR has label 'draft_but_ci'
     # 2. Not draft, `push` and `non-draft pr`.
     if: ${{ (contains(github.event.pull_request.labels.*.name, 'draft_but_ci')) || !(github.event.pull_request.draft) }}
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 3
     steps:
       - uses: actions/checkout@v4
+
 ```
 
 # Basic - BAD PATTERN
@@ -2360,7 +2370,7 @@ on:
 jobs:
   # single file
   upload-file:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 3
     steps:
       - name: output
@@ -2374,7 +2384,7 @@ jobs:
 
   download-file:
     needs: [upload-file]
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 3
     steps:
       - uses: actions/download-artifact@v4
@@ -2405,7 +2415,7 @@ on:
 jobs:
   # directory
   upload-directory:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 3
     steps:
       - name: output
@@ -2422,7 +2432,7 @@ jobs:
           retention-days: 1
   download-directory:
     needs: [upload-directory]
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 3
     steps:
       - uses: actions/download-artifact@v4
@@ -2453,7 +2463,7 @@ on:
 jobs:
   # tar.gz
   upload-targz:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 3
     steps:
       - name: output
@@ -2472,7 +2482,7 @@ jobs:
 
   download-targz:
     needs: [upload-targz]
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 3
     steps:
       # specify path: . to download tar.gz to current directory
@@ -2543,7 +2553,7 @@ on:
     branches: ["main"]
 jobs:
   sparse-checkout:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 5
     steps:
       - uses: actions/checkout@v4
@@ -2602,7 +2612,7 @@ on:
     branches: ["main"]
 jobs:
   sparse-checkout:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 5
     steps:
       - uses: actions/checkout@v4
@@ -2657,7 +2667,7 @@ on:
     branches: ["main"]
 jobs:
   sparse-checkout:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 5
     steps:
       - uses: actions/checkout@v4
@@ -2736,7 +2746,7 @@ on:
   workflow_dispatch:
 jobs:
   dispatch:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 5
     strategy:
       matrix:
@@ -2775,7 +2785,7 @@ on:
 jobs:
   detect:
     if: ${{ github.event.pull_request.head.repo.fork }} # is Fork
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 3
     steps:
       - name: "Prevent file change"
@@ -2799,7 +2809,7 @@ permissions:
 jobs:
   detect:
     if: ${{ github.actor != 'dependabot[bot]' }}
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 3
     steps:
       - name: Prevent file change for github YAML files.
@@ -2824,7 +2834,7 @@ on:
 jobs:
   detect:
     if: ${{ github.event.pull_request.head.repo.fork }} # is Fork
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 3
     steps:
       - uses: actions/checkout@v4
@@ -2857,7 +2867,7 @@ on:
 jobs:
   detect:
     if: ${{ github.event.pull_request.head.repo.fork }} # is Fork
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 3
     steps:
       - name: Get changed files in the .github folder
@@ -2895,7 +2905,7 @@ on:
 
 jobs:
   actionlint:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 3
     steps:
       - uses: actions/checkout@v4
@@ -2903,6 +2913,7 @@ jobs:
         run: bash <(curl https://raw.githubusercontent.com/rhysd/actionlint/main/scripts/download-actionlint.bash)
       - name: Run actionlint
         run: ./actionlint -color -oneline
+
 ```
 
 If you need automated PR review, run actionlint with reviewdog.
@@ -2920,7 +2931,7 @@ on:
 
 jobs:
   actionlint:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 3
     steps:
       - uses: actions/checkout@v4
@@ -2930,6 +2941,7 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           reporter: github-pr-review
           fail_on_error: true # workflow will fail when actionlint detect warning.
+
 ```
 
 
@@ -2951,7 +2963,7 @@ on:
     branches: ["main"]
 jobs:
   get:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 3
     steps:
       - uses: actions/checkout@v4
@@ -2989,7 +3001,7 @@ on:
 
 jobs:
   dotnet:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 3
     steps:
       - name: Collect actions workflow telemetry
@@ -3070,7 +3082,7 @@ on:
       - "**" # only tag
 jobs:
   ref:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
       - name: Use GITHUB_REF and GITHUB_OUTPUT
         run: echo "GIT_TAG=${GITHUB_REF##*/}" >> "$GITHUB_OUTPUT"
