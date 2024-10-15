@@ -22,7 +22,7 @@ jobs:
           echo "::endgroup::"
 
           echo "::group::dotnet files under /usr/share/dotnet/sdk"
-            ls /usr/share/dotnet/sdk
+            ls -l "$(command -v dotnet)"
           echo "::endgroup::"
 
           echo "::group::dotnet version"
@@ -42,7 +42,7 @@ jobs:
           echo "::endgroup::"
 
           echo "::group::dotnet files under /usr/share/dotnet/sdk"
-            ls /usr/share/dotnet/sdk
+            ls -l "$(command -v dotnet)"
           echo "::endgroup::"
 
           echo "::group::dotnet files under ${{ env.DOTNET_ROOT }}/sdk"
