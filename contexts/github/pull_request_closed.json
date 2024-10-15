@@ -2,13 +2,13 @@
   "token": "<reducted>",
   "job": "dump-context",
   "ref": "refs/heads/main",
-  "sha": "89fc88a4d373f9d907874c699507e32166b6cbea",
+  "sha": "7c418ea5019e8e9406fbb54c8e97894f50e66945",
   "repository": "guitarrapc/githubactions-lab",
   "repository_owner": "guitarrapc",
   "repository_owner_id": "3856350",
   "repositoryUrl": "git://github.com/guitarrapc/githubactions-lab.git",
-  "run_id": "11332300520",
-  "run_number": "1226",
+  "run_id": "11349113193",
+  "run_number": "1235",
   "retention_days": "90",
   "run_attempt": "1",
   "artifact_cache_size_limit": "10",
@@ -20,44 +20,44 @@
   "actor": "guitarrapc",
   "triggering_actor": "guitarrapc",
   "workflow": "auto dump context",
-  "head_ref": "dependabot/github_actions/thollander/actions-comment-pull-request-3",
+  "head_ref": "feature/setup-dotnet",
   "base_ref": "main",
   "event_name": "pull_request",
   "event": {
     "action": "closed",
-    "number": 190,
+    "number": 191,
     "pull_request": {
       "_links": {
         "comments": {
-          "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/issues/190/comments"
+          "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/issues/191/comments"
         },
         "commits": {
-          "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/190/commits"
+          "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/191/commits"
         },
         "html": {
-          "href": "https://github.com/guitarrapc/githubactions-lab/pull/190"
+          "href": "https://github.com/guitarrapc/githubactions-lab/pull/191"
         },
         "issue": {
-          "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/issues/190"
+          "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/issues/191"
         },
         "review_comment": {
           "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/comments{/number}"
         },
         "review_comments": {
-          "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/190/comments"
+          "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/191/comments"
         },
         "self": {
-          "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/190"
+          "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/191"
         },
         "statuses": {
-          "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/statuses/db777c61c8792b85871a398c09267390609ac94c"
+          "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/statuses/b0b2913b70c81c7ca2c82f041f0a0e4cce737bd1"
         }
       },
       "active_lock_reason": null,
-      "additions": 1,
+      "additions": 392,
       "assignee": null,
       "assignees": [],
-      "author_association": "CONTRIBUTOR",
+      "author_association": "OWNER",
       "auto_merge": null,
       "base": {
         "label": "guitarrapc:main",
@@ -155,9 +155,9 @@
           },
           "private": false,
           "pulls_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls{/number}",
-          "pushed_at": "2024-10-14T15:21:14Z",
+          "pushed_at": "2024-10-15T15:14:04Z",
           "releases_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/releases{/id}",
-          "size": 2171,
+          "size": 2187,
           "squash_merge_commit_message": "COMMIT_MESSAGES",
           "squash_merge_commit_title": "COMMIT_OR_PR_TITLE",
           "ssh_url": "git@github.com:guitarrapc/githubactions-lab.git",
@@ -173,7 +173,7 @@
             "github-actions"
           ],
           "trees_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/git/trees{/sha}",
-          "updated_at": "2024-10-14T00:19:46Z",
+          "updated_at": "2024-10-15T14:50:08Z",
           "url": "https://api.github.com/repos/guitarrapc/githubactions-lab",
           "use_squash_pr_title_as_default": false,
           "visibility": "public",
@@ -181,7 +181,7 @@
           "watchers_count": 46,
           "web_commit_signoff_required": false
         },
-        "sha": "2283d881c0fe58faf9d1101c51b8fb8ae34b822e",
+        "sha": "e3ac38fdcef31ebd21d9775d201d1ec7de9f809f",
         "user": {
           "avatar_url": "https://avatars.githubusercontent.com/u/3856350?v=4",
           "events_url": "https://api.github.com/users/guitarrapc/events{/privacy}",
@@ -203,20 +203,20 @@
           "url": "https://api.github.com/users/guitarrapc"
         }
       },
-      "body": "Bumps [thollander/actions-comment-pull-request](https://github.com/thollander/actions-comment-pull-request) from 2 to 3.\n<details>\n<summary>Release notes</summary>\n<p><em>Sourced from <a href=\"https://github.com/thollander/actions-comment-pull-request/releases\">thollander/actions-comment-pull-request's releases</a>.</em></p>\n<blockquote>\n<h2>v3.0.0</h2>\n<h2>What's Changed</h2>\n<ul>\n<li>chore(deps-dev): bump typescript from 5.2.2 to 5.3.3 by <a href=\"https://github.com/dependabot\"><code>@​dependabot</code></a> in <a href=\"https://redirect.github.com/thollander/actions-comment-pull-request/pull/326\">thollander/actions-comment-pull-request#326</a></li>\n<li>chore(deps-dev): bump prettier from 3.0.3 to 3.2.5 by <a href=\"https://github.com/dependabot\"><code>@​dependabot</code></a> in <a href=\"https://redirect.github.com/thollander/actions-comment-pull-request/pull/350\">thollander/actions-comment-pull-request#350</a></li>\n<li>chore(deps-dev): bump <code>@​tsconfig/node20</code> from 20.1.2 to 20.1.4 by <a href=\"https://github.com/dependabot\"><code>@​dependabot</code></a> in <a href=\"https://redirect.github.com/thollander/actions-comment-pull-request/pull/367\">thollander/actions-comment-pull-request#367</a></li>\n<li>chore(deps-dev): bump typescript from 5.3.3 to 5.6.3 by <a href=\"https://github.com/dependabot\"><code>@​dependabot</code></a> in <a href=\"https://redirect.github.com/thollander/actions-comment-pull-request/pull/390\">thollander/actions-comment-pull-request#390</a></li>\n<li>chore(deps-dev): bump <code>@​types/node</code> from 20.8.7 to 22.7.5 by <a href=\"https://github.com/dependabot\"><code>@​dependabot</code></a> in <a href=\"https://redirect.github.com/thollander/actions-comment-pull-request/pull/389\">thollander/actions-comment-pull-request#389</a></li>\n<li>feat: manage delete modes in a better way + consistent input naming by <a href=\"https://github.com/thollander\"><code>@​thollander</code></a> in <a href=\"https://redirect.github.com/thollander/actions-comment-pull-request/pull/391\">thollander/actions-comment-pull-request#391</a></li>\n</ul>\n<h2>Breaking changes</h2>\n<h3>Parameters</h3>\n<ul>\n<li>From <code>filePath</code> to <code>file-path</code></li>\n<li>From <code>GITHUB_TOKEN</code> to <code>github-token</code></li>\n<li>From <code>pr_number</code> to <code>pr-number</code></li>\n<li>From <code>comment_tag</code> to <code>comment-tag</code></li>\n<li>From <code>create_if_not_exists</code> to <code>create-if-not-exists</code></li>\n</ul>\n<h3>Mode</h3>\n<p><code>delete</code> now deletes a comment immediately. To delete the comment at the end of the job, use <code>delete-on-completion</code> mode.</p>\n<p><strong>Full Changelog</strong>: <a href=\"https://github.com/thollander/actions-comment-pull-request/compare/v2...v3.0.0\">https://github.com/thollander/actions-comment-pull-request/compare/v2...v3.0.0</a></p>\n<h2>v2.5.0 : Node 20 version support</h2>\n<h2>What's Changed</h2>\n<ul>\n<li>chore(deps-dev): bump <code>@​vercel/ncc</code> from 0.38.0 to 0.38.1 by <a href=\"https://github.com/dependabot\"><code>@​dependabot</code></a> in <a href=\"https://redirect.github.com/thollander/actions-comment-pull-request/pull/304\">thollander/actions-comment-pull-request#304</a></li>\n<li>feat: node 20 version support by <a href=\"https://github.com/thollander\"><code>@​thollander</code></a> in <a href=\"https://redirect.github.com/thollander/actions-comment-pull-request/pull/307\">thollander/actions-comment-pull-request#307</a></li>\n</ul>\n<p><strong>Full Changelog</strong>: <a href=\"https://github.com/thollander/actions-comment-pull-request/compare/v2.4.3...v2.5.0\">https://github.com/thollander/actions-comment-pull-request/compare/v2.4.3...v2.5.0</a></p>\n<h2>v2.4.3 : outputs variables</h2>\n<h2>What's Changed</h2>\n<ul>\n<li>chore(deps-dev): bump prettier from 3.0.1 to 3.0.2 by <a href=\"https://github.com/dependabot\"><code>@​dependabot</code></a> in <a href=\"https://redirect.github.com/thollander/actions-comment-pull-request/pull/271\">thollander/actions-comment-pull-request#271</a></li>\n<li>chore(deps-dev): bump <code>@​tsconfig/node16</code> from 16.1.0 to 16.1.1 by <a href=\"https://github.com/dependabot\"><code>@​dependabot</code></a> in <a href=\"https://redirect.github.com/thollander/actions-comment-pull-request/pull/273\">thollander/actions-comment-pull-request#273</a></li>\n<li>chore(deps-dev): bump typescript from 5.1.6 to 5.2.2 by <a href=\"https://github.com/dependabot\"><code>@​dependabot</code></a> in <a href=\"https://redirect.github.com/thollander/actions-comment-pull-request/pull/277\">thollander/actions-comment-pull-request#277</a></li>\n<li>chore(deps-dev): bump prettier from 3.0.2 to 3.0.3 by <a href=\"https://github.com/dependabot\"><code>@​dependabot</code></a> in <a href=\"https://redirect.github.com/thollander/actions-comment-pull-request/pull/279\">thollander/actions-comment-pull-request#279</a></li>\n<li>chore(deps): bump <code>@​actions/core</code> from 1.10.0 to 1.10.1 by <a href=\"https://github.com/dependabot\"><code>@​dependabot</code></a> in <a href=\"https://redirect.github.com/thollander/actions-comment-pull-request/pull/286\">thollander/actions-comment-pull-request#286</a></li>\n<li>chore(deps-dev): bump <code>@​vercel/ncc</code> from 0.36.1 to 0.38.0 by <a href=\"https://github.com/dependabot\"><code>@​dependabot</code></a> in <a href=\"https://redirect.github.com/thollander/actions-comment-pull-request/pull/283\">thollander/actions-comment-pull-request#283</a></li>\n<li>feat: add actions output variables by <a href=\"https://github.com/thollander\"><code>@​thollander</code></a> in <a href=\"https://redirect.github.com/thollander/actions-comment-pull-request/pull/297\">thollander/actions-comment-pull-request#297</a></li>\n</ul>\n<p><strong>Full Changelog</strong>: <a href=\"https://github.com/thollander/actions-comment-pull-request/compare/v2...v2.4.3\">https://github.com/thollander/actions-comment-pull-request/compare/v2...v2.4.3</a></p>\n<h2>v2.4.2 : dependencies update</h2>\n<h2>What's Changed</h2>\n<ul>\n<li>chore(deps): bump semver from 6.3.0 to 6.3.1 by <a href=\"https://github.com/dependabot\"><code>@​dependabot</code></a> in <a href=\"https://redirect.github.com/thollander/actions-comment-pull-request/pull/253\">thollander/actions-comment-pull-request#253</a></li>\n</ul>\n<!-- raw HTML omitted -->\n</blockquote>\n<p>... (truncated)</p>\n</details>\n<details>\n<summary>Commits</summary>\n<ul>\n<li><a href=\"https://github.com/thollander/actions-comment-pull-request/commit/65f9e5c9a1f2cd378bd74b2e057c9736982a8e74\"><code>65f9e5c</code></a> docs: add migration guide</li>\n<li><a href=\"https://github.com/thollander/actions-comment-pull-request/commit/107ab45b779fd2e067ae8280372c847b18cd4b12\"><code>107ab45</code></a> feat: manage delete modes in a better way</li>\n<li><a href=\"https://github.com/thollander/actions-comment-pull-request/commit/ce644a4ba466eb7e94ddef442fbaf2ac1ae7af35\"><code>ce644a4</code></a> chore(deps-dev): bump <code>@​types/node</code> from 20.8.7 to 22.7.5 (<a href=\"https://redirect.github.com/thollander/actions-comment-pull-request/issues/389\">#389</a>)</li>\n<li><a href=\"https://github.com/thollander/actions-comment-pull-request/commit/52f13cbcc809c634d886a0c6b129031dc7961f8e\"><code>52f13cb</code></a> chore(deps-dev): bump typescript from 5.3.3 to 5.6.3 (<a href=\"https://redirect.github.com/thollander/actions-comment-pull-request/issues/390\">#390</a>)</li>\n<li><a href=\"https://github.com/thollander/actions-comment-pull-request/commit/77f7e428bd96191a58dcf8320c70ef69e1850658\"><code>77f7e42</code></a> chore(deps-dev): bump <code>@​tsconfig/node20</code> from 20.1.2 to 20.1.4 (<a href=\"https://redirect.github.com/thollander/actions-comment-pull-request/issues/367\">#367</a>)</li>\n<li><a href=\"https://github.com/thollander/actions-comment-pull-request/commit/e5dae98d09bd6c013ca3f3eb1cf16d7f167922a9\"><code>e5dae98</code></a> chore(deps-dev): bump prettier from 3.0.3 to 3.2.5 (<a href=\"https://redirect.github.com/thollander/actions-comment-pull-request/issues/350\">#350</a>)</li>\n<li><a href=\"https://github.com/thollander/actions-comment-pull-request/commit/bc14ce351a6a25022a490f2be0570c700083a7fe\"><code>bc14ce3</code></a> chore(deps-dev): bump typescript from 5.2.2 to 5.3.3 (<a href=\"https://redirect.github.com/thollander/actions-comment-pull-request/issues/326\">#326</a>)</li>\n<li>See full diff in <a href=\"https://github.com/thollander/actions-comment-pull-request/compare/v2...v3\">compare view</a></li>\n</ul>\n</details>\n<br />\n\n\n[![Dependabot compatibility score](https://dependabot-badges.githubapp.com/badges/compatibility_score?dependency-name=thollander/actions-comment-pull-request&package-manager=github_actions&previous-version=2&new-version=3)](https://docs.github.com/en/github/managing-security-vulnerabilities/about-dependabot-security-updates#about-compatibility-scores)\n\nDependabot will resolve any conflicts with this PR as long as you don't alter it yourself. You can also trigger a rebase manually by commenting `@dependabot rebase`.\n\n[//]: # (dependabot-automerge-start)\n[//]: # (dependabot-automerge-end)\n\n---\n\n<details>\n<summary>Dependabot commands and options</summary>\n<br />\n\nYou can trigger Dependabot actions by commenting on this PR:\n- `@dependabot rebase` will rebase this PR\n- `@dependabot recreate` will recreate this PR, overwriting any edits that have been made to it\n- `@dependabot merge` will merge this PR after your CI passes on it\n- `@dependabot squash and merge` will squash and merge this PR after your CI passes on it\n- `@dependabot cancel merge` will cancel a previously requested merge and block automerging\n- `@dependabot reopen` will reopen this PR if it is closed\n- `@dependabot close` will close this PR and stop Dependabot recreating it. You can achieve the same result by closing it manually\n- `@dependabot show <dependency name> ignore conditions` will show all of the ignore conditions of the specified dependency\n- `@dependabot ignore this major version` will close this PR and stop Dependabot creating any more for this major version (unless you reopen the PR or upgrade to it yourself)\n- `@dependabot ignore this minor version` will close this PR and stop Dependabot creating any more for this minor version (unless you reopen the PR or upgrade to it yourself)\n- `@dependabot ignore this dependency` will close this PR and stop Dependabot creating any more for this dependency (unless you reopen the PR or upgrade to it yourself)\n\n\n</details>",
-      "changed_files": 1,
-      "closed_at": "2024-10-14T17:27:46Z",
+      "body": null,
+      "changed_files": 14,
+      "closed_at": "2024-10-15T15:15:56Z",
       "comments": 0,
-      "comments_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/issues/190/comments",
-      "commits": 1,
-      "commits_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/190/commits",
-      "created_at": "2024-10-14T15:21:15Z",
-      "deletions": 1,
-      "diff_url": "https://github.com/guitarrapc/githubactions-lab/pull/190.diff",
+      "comments_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/issues/191/comments",
+      "commits": 10,
+      "commits_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/191/commits",
+      "created_at": "2024-10-15T14:55:31Z",
+      "deletions": 361,
+      "diff_url": "https://github.com/guitarrapc/githubactions-lab/pull/191.diff",
       "draft": false,
       "head": {
-        "label": "guitarrapc:dependabot/github_actions/thollander/actions-comment-pull-request-3",
-        "ref": "dependabot/github_actions/thollander/actions-comment-pull-request-3",
+        "label": "guitarrapc:feature/setup-dotnet",
+        "ref": "feature/setup-dotnet",
         "repo": {
           "allow_auto_merge": false,
           "allow_forking": true,
@@ -310,9 +310,9 @@
           },
           "private": false,
           "pulls_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls{/number}",
-          "pushed_at": "2024-10-14T15:21:14Z",
+          "pushed_at": "2024-10-15T15:14:04Z",
           "releases_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/releases{/id}",
-          "size": 2171,
+          "size": 2187,
           "squash_merge_commit_message": "COMMIT_MESSAGES",
           "squash_merge_commit_title": "COMMIT_OR_PR_TITLE",
           "ssh_url": "git@github.com:guitarrapc/githubactions-lab.git",
@@ -328,7 +328,7 @@
             "github-actions"
           ],
           "trees_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/git/trees{/sha}",
-          "updated_at": "2024-10-14T00:19:46Z",
+          "updated_at": "2024-10-15T14:50:08Z",
           "url": "https://api.github.com/repos/guitarrapc/githubactions-lab",
           "use_squash_pr_title_as_default": false,
           "visibility": "public",
@@ -336,7 +336,7 @@
           "watchers_count": 46,
           "web_commit_signoff_required": false
         },
-        "sha": "db777c61c8792b85871a398c09267390609ac94c",
+        "sha": "b0b2913b70c81c7ca2c82f041f0a0e4cce737bd1",
         "user": {
           "avatar_url": "https://avatars.githubusercontent.com/u/3856350?v=4",
           "events_url": "https://api.github.com/users/guitarrapc/events{/privacy}",
@@ -358,27 +358,17 @@
           "url": "https://api.github.com/users/guitarrapc"
         }
       },
-      "html_url": "https://github.com/guitarrapc/githubactions-lab/pull/190",
-      "id": 2123337995,
-      "issue_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/issues/190",
-      "labels": [
-        {
-          "color": "0366d6",
-          "default": false,
-          "description": "Pull requests that update a dependency file",
-          "id": 5238199298,
-          "name": "dependencies",
-          "node_id": "LA_kwDOD1icfM8AAAABODiUAg",
-          "url": "https://api.github.com/repos/guitarrapc/githubactions-lab/labels/dependencies"
-        }
-      ],
+      "html_url": "https://github.com/guitarrapc/githubactions-lab/pull/191",
+      "id": 2125496917,
+      "issue_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/issues/191",
+      "labels": [],
       "locked": false,
       "maintainer_can_modify": false,
-      "merge_commit_sha": "89fc88a4d373f9d907874c699507e32166b6cbea",
+      "merge_commit_sha": "7c418ea5019e8e9406fbb54c8e97894f50e66945",
       "mergeable": null,
       "mergeable_state": "unknown",
       "merged": true,
-      "merged_at": "2024-10-14T17:27:46Z",
+      "merged_at": "2024-10-15T15:15:56Z",
       "merged_by": {
         "avatar_url": "https://avatars.githubusercontent.com/u/3856350?v=4",
         "events_url": "https://api.github.com/users/guitarrapc/events{/privacy}",
@@ -400,39 +390,39 @@
         "url": "https://api.github.com/users/guitarrapc"
       },
       "milestone": null,
-      "node_id": "PR_kwDOD1icfM5-j5EL",
-      "number": 190,
-      "patch_url": "https://github.com/guitarrapc/githubactions-lab/pull/190.patch",
+      "node_id": "PR_kwDOD1icfM5-sIJV",
+      "number": 191,
+      "patch_url": "https://github.com/guitarrapc/githubactions-lab/pull/191.patch",
       "rebaseable": null,
       "requested_reviewers": [],
       "requested_teams": [],
       "review_comment_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/comments{/number}",
       "review_comments": 0,
-      "review_comments_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/190/comments",
+      "review_comments_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/191/comments",
       "state": "closed",
-      "statuses_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/statuses/db777c61c8792b85871a398c09267390609ac94c",
-      "title": "chore(deps): bump thollander/actions-comment-pull-request from 2 to 3",
-      "updated_at": "2024-10-14T17:27:47Z",
-      "url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/190",
+      "statuses_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/statuses/b0b2913b70c81c7ca2c82f041f0a0e4cce737bd1",
+      "title": "feat: split to setup-dotnet",
+      "updated_at": "2024-10-15T15:15:56Z",
+      "url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/191",
       "user": {
-        "avatar_url": "https://avatars.githubusercontent.com/in/29110?v=4",
-        "events_url": "https://api.github.com/users/dependabot%5Bbot%5D/events{/privacy}",
-        "followers_url": "https://api.github.com/users/dependabot%5Bbot%5D/followers",
-        "following_url": "https://api.github.com/users/dependabot%5Bbot%5D/following{/other_user}",
-        "gists_url": "https://api.github.com/users/dependabot%5Bbot%5D/gists{/gist_id}",
+        "avatar_url": "https://avatars.githubusercontent.com/u/3856350?v=4",
+        "events_url": "https://api.github.com/users/guitarrapc/events{/privacy}",
+        "followers_url": "https://api.github.com/users/guitarrapc/followers",
+        "following_url": "https://api.github.com/users/guitarrapc/following{/other_user}",
+        "gists_url": "https://api.github.com/users/guitarrapc/gists{/gist_id}",
         "gravatar_id": "",
-        "html_url": "https://github.com/apps/dependabot",
-        "id": 49699333,
-        "login": "dependabot[bot]",
-        "node_id": "MDM6Qm90NDk2OTkzMzM=",
-        "organizations_url": "https://api.github.com/users/dependabot%5Bbot%5D/orgs",
-        "received_events_url": "https://api.github.com/users/dependabot%5Bbot%5D/received_events",
-        "repos_url": "https://api.github.com/users/dependabot%5Bbot%5D/repos",
+        "html_url": "https://github.com/guitarrapc",
+        "id": 3856350,
+        "login": "guitarrapc",
+        "node_id": "MDQ6VXNlcjM4NTYzNTA=",
+        "organizations_url": "https://api.github.com/users/guitarrapc/orgs",
+        "received_events_url": "https://api.github.com/users/guitarrapc/received_events",
+        "repos_url": "https://api.github.com/users/guitarrapc/repos",
         "site_admin": false,
-        "starred_url": "https://api.github.com/users/dependabot%5Bbot%5D/starred{/owner}{/repo}",
-        "subscriptions_url": "https://api.github.com/users/dependabot%5Bbot%5D/subscriptions",
-        "type": "Bot",
-        "url": "https://api.github.com/users/dependabot%5Bbot%5D"
+        "starred_url": "https://api.github.com/users/guitarrapc/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/guitarrapc/subscriptions",
+        "type": "User",
+        "url": "https://api.github.com/users/guitarrapc"
       }
     },
     "repository": {
@@ -520,9 +510,9 @@
       },
       "private": false,
       "pulls_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls{/number}",
-      "pushed_at": "2024-10-14T15:21:14Z",
+      "pushed_at": "2024-10-15T15:14:04Z",
       "releases_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/releases{/id}",
-      "size": 2171,
+      "size": 2187,
       "ssh_url": "git@github.com:guitarrapc/githubactions-lab.git",
       "stargazers_count": 46,
       "stargazers_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/stargazers",
@@ -536,7 +526,7 @@
         "github-actions"
       ],
       "trees_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/git/trees{/sha}",
-      "updated_at": "2024-10-14T00:19:46Z",
+      "updated_at": "2024-10-15T14:50:08Z",
       "url": "https://api.github.com/repos/guitarrapc/githubactions-lab",
       "visibility": "public",
       "watchers": 46,
@@ -572,15 +562,15 @@
   "ref_type": "branch",
   "secret_source": "Actions",
   "workflow_ref": "guitarrapc/githubactions-lab/.github/workflows/auto_dump_context.yaml@refs/heads/main",
-  "workflow_sha": "89fc88a4d373f9d907874c699507e32166b6cbea",
+  "workflow_sha": "7c418ea5019e8e9406fbb54c8e97894f50e66945",
   "workspace": "/home/runner/work/githubactions-lab/githubactions-lab",
   "action": "__run_2",
   "event_path": "/home/runner/work/_temp/_github_workflow/event.json",
   "action_repository": "",
   "action_ref": "",
-  "path": "/home/runner/work/_temp/_runner_file_commands/add_path_2a32e4ce-f5ec-4b75-9359-69957043d778",
-  "env": "/home/runner/work/_temp/_runner_file_commands/set_env_2a32e4ce-f5ec-4b75-9359-69957043d778",
-  "step_summary": "/home/runner/work/_temp/_runner_file_commands/step_summary_2a32e4ce-f5ec-4b75-9359-69957043d778",
-  "state": "/home/runner/work/_temp/_runner_file_commands/save_state_2a32e4ce-f5ec-4b75-9359-69957043d778",
-  "output": "/home/runner/work/_temp/_runner_file_commands/set_output_2a32e4ce-f5ec-4b75-9359-69957043d778"
+  "path": "/home/runner/work/_temp/_runner_file_commands/add_path_a71c550d-f80d-47fa-ab30-cd3e8251aa91",
+  "env": "/home/runner/work/_temp/_runner_file_commands/set_env_a71c550d-f80d-47fa-ab30-cd3e8251aa91",
+  "step_summary": "/home/runner/work/_temp/_runner_file_commands/step_summary_a71c550d-f80d-47fa-ab30-cd3e8251aa91",
+  "state": "/home/runner/work/_temp/_runner_file_commands/save_state_a71c550d-f80d-47fa-ab30-cd3e8251aa91",
+  "output": "/home/runner/work/_temp/_runner_file_commands/set_output_a71c550d-f80d-47fa-ab30-cd3e8251aa91"
 }
