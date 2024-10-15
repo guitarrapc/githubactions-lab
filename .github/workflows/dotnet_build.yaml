@@ -1,5 +1,4 @@
 name: dotnet build
-# run on both branch push and tag push
 on:
   workflow_dispatch:
   push:
