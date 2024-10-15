@@ -2,13 +2,13 @@
   "token": "<reducted>",
   "job": "dump-context",
   "ref": "refs/heads/main",
-  "sha": "89fc88a4d373f9d907874c699507e32166b6cbea",
+  "sha": "51653f53ecedc409e805b134992e6711dc64afd9",
   "repository": "guitarrapc/githubactions-lab",
   "repository_owner": "guitarrapc",
   "repository_owner_id": "3856350",
   "repositoryUrl": "git://github.com/guitarrapc/githubactions-lab.git",
-  "run_id": "11332300425",
-  "run_number": "1225",
+  "run_id": "11348601353",
+  "run_number": "1228",
   "retention_days": "90",
   "run_attempt": "1",
   "artifact_cache_size_limit": "10",
@@ -24,28 +24,10 @@
   "base_ref": "",
   "event_name": "push",
   "event": {
-    "after": "89fc88a4d373f9d907874c699507e32166b6cbea",
+    "after": "51653f53ecedc409e805b134992e6711dc64afd9",
     "base_ref": null,
-    "before": "2283d881c0fe58faf9d1101c51b8fb8ae34b822e",
+    "before": "62e9fe41a0d029edc95b4e3bbd545c112523287f",
     "commits": [
-      {
-        "author": {
-          "email": "49699333+dependabot[bot]@users.noreply.github.com",
-          "name": "dependabot[bot]",
-          "username": "dependabot[bot]"
-        },
-        "committer": {
-          "email": "noreply@github.com",
-          "name": "GitHub",
-          "username": "web-flow"
-        },
-        "distinct": false,
-        "id": "db777c61c8792b85871a398c09267390609ac94c",
-        "message": "chore(deps): bump thollander/actions-comment-pull-request from 2 to 3\n\nBumps [thollander/actions-comment-pull-request](https://github.com/thollander/actions-comment-pull-request) from 2 to 3.\n- [Release notes](https://github.com/thollander/actions-comment-pull-request/releases)\n- [Commits](https://github.com/thollander/actions-comment-pull-request/compare/v2...v3)\n\n---\nupdated-dependencies:\n- dependency-name: thollander/actions-comment-pull-request\n  dependency-type: direct:production\n  update-type: version-update:semver-major\n...\n\nSigned-off-by: dependabot[bot] <support@github.com>",
-        "timestamp": "2024-10-14T15:21:14Z",
-        "tree_id": "0bbecc602a91f4dd190e78fd8cc923f1e88dca4f",
-        "url": "https://github.com/guitarrapc/githubactions-lab/commit/db777c61c8792b85871a398c09267390609ac94c"
-      },
       {
         "author": {
           "email": "3856350+guitarrapc@users.noreply.github.com",
@@ -53,19 +35,19 @@
           "username": "guitarrapc"
         },
         "committer": {
-          "email": "noreply@github.com",
-          "name": "GitHub",
-          "username": "web-flow"
+          "email": "3856350+guitarrapc@users.noreply.github.com",
+          "name": "Ikiru Yoshizaki",
+          "username": "guitarrapc"
         },
         "distinct": true,
-        "id": "89fc88a4d373f9d907874c699507e32166b6cbea",
-        "message": "Merge pull request #190 from guitarrapc/dependabot/github_actions/thollander/actions-comment-pull-request-3\n\nchore(deps): bump thollander/actions-comment-pull-request from 2 to 3",
-        "timestamp": "2024-10-15T02:27:46+09:00",
-        "tree_id": "0bbecc602a91f4dd190e78fd8cc923f1e88dca4f",
-        "url": "https://github.com/guitarrapc/githubactions-lab/commit/89fc88a4d373f9d907874c699507e32166b6cbea"
+        "id": "51653f53ecedc409e805b134992e6711dc64afd9",
+        "message": "feat: change ubuntu-latest to ubuntu-24.04",
+        "timestamp": "2024-10-15T23:48:30+09:00",
+        "tree_id": "81c9558827240300301bb3d7f8cb4ad043b0a855",
+        "url": "https://github.com/guitarrapc/githubactions-lab/commit/51653f53ecedc409e805b134992e6711dc64afd9"
       }
     ],
-    "compare": "https://github.com/guitarrapc/githubactions-lab/compare/2283d881c0fe...89fc88a4d373",
+    "compare": "https://github.com/guitarrapc/githubactions-lab/compare/62e9fe41a0d0...51653f53eced",
     "created": false,
     "deleted": false,
     "forced": false,
@@ -76,16 +58,16 @@
         "username": "guitarrapc"
       },
       "committer": {
-        "email": "noreply@github.com",
-        "name": "GitHub",
-        "username": "web-flow"
+        "email": "3856350+guitarrapc@users.noreply.github.com",
+        "name": "Ikiru Yoshizaki",
+        "username": "guitarrapc"
       },
       "distinct": true,
-      "id": "89fc88a4d373f9d907874c699507e32166b6cbea",
-      "message": "Merge pull request #190 from guitarrapc/dependabot/github_actions/thollander/actions-comment-pull-request-3\n\nchore(deps): bump thollander/actions-comment-pull-request from 2 to 3",
-      "timestamp": "2024-10-15T02:27:46+09:00",
-      "tree_id": "0bbecc602a91f4dd190e78fd8cc923f1e88dca4f",
-      "url": "https://github.com/guitarrapc/githubactions-lab/commit/89fc88a4d373f9d907874c699507e32166b6cbea"
+      "id": "51653f53ecedc409e805b134992e6711dc64afd9",
+      "message": "feat: change ubuntu-latest to ubuntu-24.04",
+      "timestamp": "2024-10-15T23:48:30+09:00",
+      "tree_id": "81c9558827240300301bb3d7f8cb4ad043b0a855",
+      "url": "https://github.com/guitarrapc/githubactions-lab/commit/51653f53ecedc409e805b134992e6711dc64afd9"
     },
     "pusher": {
       "email": "3856350+guitarrapc@users.noreply.github.com",
@@ -180,9 +162,9 @@
       },
       "private": false,
       "pulls_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls{/number}",
-      "pushed_at": 1728926866,
+      "pushed_at": 1729003714,
       "releases_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/releases{/id}",
-      "size": 2171,
+      "size": 2187,
       "ssh_url": "git@github.com:guitarrapc/githubactions-lab.git",
       "stargazers": 46,
       "stargazers_count": 46,
@@ -197,7 +179,7 @@
         "github-actions"
       ],
       "trees_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/git/trees{/sha}",
-      "updated_at": "2024-10-14T00:19:46Z",
+      "updated_at": "2024-10-15T01:29:23Z",
       "url": "https://github.com/guitarrapc/githubactions-lab",
       "visibility": "public",
       "watchers": 46,
@@ -233,15 +215,15 @@
   "ref_type": "branch",
   "secret_source": "Actions",
   "workflow_ref": "guitarrapc/githubactions-lab/.github/workflows/auto_dump_context.yaml@refs/heads/main",
-  "workflow_sha": "89fc88a4d373f9d907874c699507e32166b6cbea",
+  "workflow_sha": "51653f53ecedc409e805b134992e6711dc64afd9",
   "workspace": "/home/runner/work/githubactions-lab/githubactions-lab",
   "action": "__run_2",
   "event_path": "/home/runner/work/_temp/_github_workflow/event.json",
   "action_repository": "",
   "action_ref": "",
-  "path": "/home/runner/work/_temp/_runner_file_commands/add_path_90fd5b28-e31e-47ca-854e-c9f26b3c6f40",
-  "env": "/home/runner/work/_temp/_runner_file_commands/set_env_90fd5b28-e31e-47ca-854e-c9f26b3c6f40",
-  "step_summary": "/home/runner/work/_temp/_runner_file_commands/step_summary_90fd5b28-e31e-47ca-854e-c9f26b3c6f40",
-  "state": "/home/runner/work/_temp/_runner_file_commands/save_state_90fd5b28-e31e-47ca-854e-c9f26b3c6f40",
-  "output": "/home/runner/work/_temp/_runner_file_commands/set_output_90fd5b28-e31e-47ca-854e-c9f26b3c6f40"
+  "path": "/home/runner/work/_temp/_runner_file_commands/add_path_94cd36e2-3cb5-45b3-a6ee-485efbabfae2",
+  "env": "/home/runner/work/_temp/_runner_file_commands/set_env_94cd36e2-3cb5-45b3-a6ee-485efbabfae2",
+  "step_summary": "/home/runner/work/_temp/_runner_file_commands/step_summary_94cd36e2-3cb5-45b3-a6ee-485efbabfae2",
+  "state": "/home/runner/work/_temp/_runner_file_commands/save_state_94cd36e2-3cb5-45b3-a6ee-485efbabfae2",
+  "output": "/home/runner/work/_temp/_runner_file_commands/set_output_94cd36e2-3cb5-45b3-a6ee-485efbabfae2"
 }
