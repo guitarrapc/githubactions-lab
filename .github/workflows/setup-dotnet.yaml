@@ -7,7 +7,7 @@ on:
     branches: ["main"]
 
 jobs:
-  setup:
+  default:
     strategy:
       fail-fast: false
       matrix:
@@ -56,3 +56,38 @@ jobs:
           echo "::group::dotnet sdks"
             dotnet --list-sdks
           echo "::endgroup::"
+
+  install_dir:
+    strategy:
+      fail-fast: false
+      matrix:
+        runs-on: [ubuntu-24.04, ubuntu-22.04]
+    runs-on: ${{ matrix.runs-on }}
+    timeout-minutes: 3
+    steps:
+    - uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: 8.0.x
+      env:
+        DOTNET_INSTALL_DIR: ${{ runner.temp}}/.dotnet
+    - name: dotnet after setup-dotnet (/usr/share/dotnet/dotnet)
+      run: |
+        echo "::group::dotnet path"
+        command -v dotnet
+        echo "::endgroup::"
+
+        echo "::group::dotnet files under /usr/share/dotnet/sdk"
+        ls -l "$(command -v dotnet)"
+        echo "::endgroup::"
+
+        echo "::group::dotnet files under ${{ env.DOTNET_ROOT }}/sdk"
+        ls -l "${{ env.DOTNET_ROOT }}/sdk"
+        echo "::endgroup::"
+
+        echo "::group::dotnet version"
+        dotnet --version
+        echo "::endgroup::"
+
+        echo "::group::dotnet sdks"
+        dotnet --list-sdks
+        echo "::endgroup::"
