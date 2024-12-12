@@ -1766,7 +1766,7 @@ on:
     branches: ["main"]
 
 jobs:
-  job:
+  changed-files:
     runs-on: ubuntu-24.04
     timeout-minutes: 3
     steps:
@@ -1803,6 +1803,27 @@ jobs:
       - name: Changed file list
         run: echo "${{ steps.changed-files3.outputs.all_modified_files }}"
 
+  changed-dirs:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2 # push required 2 or 0 to detect last commit change
+      - id: changed-files
+        uses: tj-actions/changed-files@v45 # this action force fetch base branch and compare.
+        with:
+          dir_names: "true"
+      - name: Changed file list
+        run: echo "${{ steps.changed-files.outputs.all_modified_files }}"
+      - name: List all changed files
+        env:
+          CHANGED_FILES: ${{ steps.changed-files.outputs.all_changed_files }}
+        run: |
+          for file in ${CHANGED_FILES}; do
+            echo "$file was changed"
+          done
+
 ```
 
 **Not recommended**
@@ -1820,7 +1841,7 @@ on:
     branches: ["main"]
 
 jobs:
-  job:
+  changed-files:
     runs-on: ubuntu-24.04
     timeout-minutes: 3
     steps:
@@ -1889,7 +1910,7 @@ on:
     branches: ["main"]
 
 jobs:
-  job:
+  changed-files:
     runs-on: ubuntu-24.04
     timeout-minutes: 3
     steps:
