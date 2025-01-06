@@ -88,6 +88,7 @@ GitHub Actions research and test laboratory.
   - [GitHub Actions commit icon](#github-actions-commit-icon)
   - [Type converter with fromJson](#type-converter-with-fromjson)
   - [Detect PullRequest (PR) is Fork or not](#detect-pullrequest-pr-is-fork-or-not)
+  - [Want to get a list of GitHub Actions scheduled workflows](#want-to-get-a-list-of-github-actions-scheduled-workflows)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
