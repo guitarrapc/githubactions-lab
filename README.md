@@ -2208,7 +2208,9 @@ original `pull_request` event will invoke when activity type is `opened`, `synch
 # .github/workflows/skip-ci-pr-title.yaml
 
 name: skip ci pr title
-on: ["pull_request"]
+on:
+  pull_request:
+
 jobs:
   skip:
     if: ${{ !(contains(github.event.pull_request.title, '[skip ci]') || contains(github.event.pull_request.title, '[ci skip]')) }}
