@@ -3194,3 +3194,44 @@ if: ${{ ! startsWith(github.event.pull_request.head.label, format('{0}:', github
 # Not Fork
 if: ${{ startsWith(github.event.pull_request.head.label, format('{0}:', github.repository_owner)) }}
 ```
+
+## Want to get a list of GitHub Actions scheduled workflows
+
+You can get a list of scheduled workflows with the following script. Make sure you have [gh](https://github.com/cli/cli#installation), [jq](https://github.com/jqlang/jq) and [yq](https://github.com/mikefarah/yq) installed.
+
+```
+echo "| Workflow | File Name | Schedule (UTC) | Last Commit by |"
+echo "| ---- | ---- | ---- | ---- |"
+repo=$(gh repo view --json owner,name -q ".owner.login + \"/\" + .name")
+json=$(gh workflow list --json name,path,state --limit 300)
+echo "$json" | jq -c '.[] | select(.state == "active") | {name: .name, path: .path}' | sort | while read -r item; do
+  name=$(echo "$item" | jq -r '.name')
+  path=$(echo "$item" | jq -r '.path')
+  if [[ ! -f "$path" ]]; then continue; fi
+  schedule=$(cat "$path" | yq -o=json | jq -r 'select(.on.schedule != null) | [.on.schedule[].cron] | join("<br/>")')
+  if [[ -z "$schedule" ]]; then continue; fi
+  commiter=$(gh api -X GET "repos/${repo}/commits" -f path="$path" -F per_page=1 | jq -r ".[].committer.login")
+  echo "| $name | $path | $schedule | $commiter |"
+done
+```
+
+> [!TIP]
+> Please avoid using `on: [array]`, it will show error message `jq: error (at <stdin>:87): Cannot index array with string "schedule"`
+> Instead, use following style.
+> ```
+> on:
+>   pull_request:
+> ```
+
+Following is the result of the script.
+
+| Workflow | File Name | Schedule (UTC) | Last Commit by |
+| ---- | ---- | ---- | ---- |
+| action runner info | .github/workflows/actionrunner-info.yaml | 0 0 * * * | guitarrapc |
+| actionlint | .github/workflows/actionlint.yaml | 0 0 * * * | guitarrapc |
+| auto dump context | .github/workflows/auto-dump-context.yaml | 0 0 * * * | guitarrapc |
+| context github | .github/workflows/context-github.yaml | 0 0 * * * | guitarrapc |
+| dotnet lint | .github/workflows/dotnet-lint.yaml | 0 1 * * 1 | guitarrapc |
+| dump context | .github/workflows/dump-context.yaml | 0 0 * * * | guitarrapc |
+| schedule job | .github/workflows/schedule-job.yaml | 0 0 * * * | guitarrapc |
+| stale | .github/workflows/stale.yaml | 0 0 * * * | guitarrapc |

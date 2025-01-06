@@ -1,5 +1,8 @@
 name: push and pull_request
-on: [push, pull_request]
+on:
+  push:
+  pull_request:
+
 jobs:
   my-job:
     runs-on: ubuntu-24.04
