@@ -3219,8 +3219,7 @@ done
 ```
 
 > [!TIP]
-> Please avoid using `on: [array]`, it will show error message `jq: error (at <stdin>:87): Cannot index array with string "schedule"`
-> Instead, use following style.
+> Please avoid using `on: [array]`, it will show error message `jq: error (at <stdin>:87): Cannot index array with string "schedule"`. Instead, use `on: object` like below.
 > ```
 > on:
 >   pull_request:
