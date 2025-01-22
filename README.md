@@ -377,6 +377,10 @@ Make sure you can not refer `gitHub` context in script.
 
 > see: [Context and expression syntax for GitHub Actions \- GitHub Help](https://help.github.com/en/actions/reference/context-and-expression-syntax-for-github-actions#github-context)
 
+**Accessing Context value**
+
+You can get context value with `${{ CONTEXT_NAME.FIELD }}`, something like `${{ github.repository }}`.
+
 ```yaml
 # .github/workflows/context-github.yaml
 
@@ -424,7 +428,7 @@ jobs:
 
 ```
 
-**JSON output**
+**Context as JSON**
 
 Use `toJson(<CONTEXT>)` To show context values in json.
 
@@ -484,6 +488,11 @@ jobs:
           CONTEXT: ${{ toJson(matrix) }}
 
 ```
+
+**Environment Variables**
+
+You can obtain GitHub Event Context from Environment Variables `GITHUB_EVENT_PATH`.
+
 
 ## Environment variables in script
 
