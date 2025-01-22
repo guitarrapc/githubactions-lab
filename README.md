@@ -481,6 +481,14 @@ jobs:
         env:
           CONTEXT: ${{ toJson(matrix) }}
 
+  dump_actions:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v4
+      - name: Dump environment
+        uses: ./.github/actions/context
+
 ```
 
 ## Environment variables in script
