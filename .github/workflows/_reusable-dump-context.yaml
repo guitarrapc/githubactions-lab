@@ -35,6 +35,13 @@ jobs:
         env:
           CONTEXT: ${{ toJson(env) }}
           OUTPUT_PATH: ${{ inputs.output-path }}/env
+      - name: Dump GITHUB_EVENT_PATH json
+        shell: bash
+        run: |
+          mkdir -p "${{ env.OUTPUT_PATH }}"
+          tee "${{ env.OUTPUT_PATH }}/${{ steps.file.outputs.name }}.json" < "$GITHUB_EVENT_PATH"
+        env:
+          OUTPUT_PATH: ${{ inputs.output-path }}/github_event_path
       - name: Dump GitHub context
         shell: bash
         run: |
