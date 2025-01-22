@@ -457,7 +457,7 @@ jobs:
       - name: Dump environment
         run: env
       - name: Dump GITHUB_EVENT_PATH json
-        run: cat "$GITHUB_EVENT_PATH	"
+        run: cat "$GITHUB_EVENT_PATH"
       - name: Dump GitHub context
         run: echo "$CONTEXT"
         env:
