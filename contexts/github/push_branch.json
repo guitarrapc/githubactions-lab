@@ -2,13 +2,13 @@
   "token": "<reducted>",
   "job": "dump-context",
   "ref": "refs/heads/main",
-  "sha": "7a798895e7373fa81515bc76fc395e428729967e",
+  "sha": "b63406599597693e000223363ed0f2411231c124",
   "repository": "guitarrapc/githubactions-lab",
   "repository_owner": "guitarrapc",
   "repository_owner_id": "3856350",
   "repositoryUrl": "git://github.com/guitarrapc/githubactions-lab.git",
-  "run_id": "12904087986",
-  "run_number": "112",
+  "run_id": "12904127350",
+  "run_number": "113",
   "retention_days": "90",
   "run_attempt": "1",
   "artifact_cache_size_limit": "10",
@@ -24,9 +24,9 @@
   "base_ref": "",
   "event_name": "push",
   "event": {
-    "after": "7a798895e7373fa81515bc76fc395e428729967e",
+    "after": "b63406599597693e000223363ed0f2411231c124",
     "base_ref": null,
-    "before": "e37df2e1473d5d24d4e6c0e4221ae2479adfc883",
+    "before": "7cf0a9567d2f76485086071437690857a4c750b0",
     "commits": [
       {
         "author": {
@@ -40,14 +40,14 @@
           "username": "guitarrapc"
         },
         "distinct": true,
-        "id": "7a798895e7373fa81515bc76fc395e428729967e",
-        "message": "chore: dump GitHub Event Path json",
-        "timestamp": "2025-01-22T17:24:16+09:00",
-        "tree_id": "b166e28011fa08d36358e5ee6803fdba063600d0",
-        "url": "https://github.com/guitarrapc/githubactions-lab/commit/7a798895e7373fa81515bc76fc395e428729967e"
+        "id": "b63406599597693e000223363ed0f2411231c124",
+        "message": "fix: path",
+        "timestamp": "2025-01-22T17:26:49+09:00",
+        "tree_id": "5c43b9c21a8845cfa5088450296b765e52be522a",
+        "url": "https://github.com/guitarrapc/githubactions-lab/commit/b63406599597693e000223363ed0f2411231c124"
       }
     ],
-    "compare": "https://github.com/guitarrapc/githubactions-lab/compare/e37df2e1473d...7a798895e737",
+    "compare": "https://github.com/guitarrapc/githubactions-lab/compare/7cf0a9567d2f...b63406599597",
     "created": false,
     "deleted": false,
     "forced": false,
@@ -63,11 +63,11 @@
         "username": "guitarrapc"
       },
       "distinct": true,
-      "id": "7a798895e7373fa81515bc76fc395e428729967e",
-      "message": "chore: dump GitHub Event Path json",
-      "timestamp": "2025-01-22T17:24:16+09:00",
-      "tree_id": "b166e28011fa08d36358e5ee6803fdba063600d0",
-      "url": "https://github.com/guitarrapc/githubactions-lab/commit/7a798895e7373fa81515bc76fc395e428729967e"
+      "id": "b63406599597693e000223363ed0f2411231c124",
+      "message": "fix: path",
+      "timestamp": "2025-01-22T17:26:49+09:00",
+      "tree_id": "5c43b9c21a8845cfa5088450296b765e52be522a",
+      "url": "https://github.com/guitarrapc/githubactions-lab/commit/b63406599597693e000223363ed0f2411231c124"
     },
     "pusher": {
       "email": "3856350+guitarrapc@users.noreply.github.com",
@@ -163,7 +163,7 @@
       },
       "private": false,
       "pulls_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls{/number}",
-      "pushed_at": 1737534260,
+      "pushed_at": 1737534412,
       "releases_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/releases{/id}",
       "size": 2411,
       "ssh_url": "git@github.com:guitarrapc/githubactions-lab.git",
@@ -180,7 +180,7 @@
         "github-actions"
       ],
       "trees_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/git/trees{/sha}",
-      "updated_at": "2025-01-22T07:52:23Z",
+      "updated_at": "2025-01-22T08:25:19Z",
       "url": "https://github.com/guitarrapc/githubactions-lab",
       "visibility": "public",
       "watchers": 48,
@@ -217,15 +217,15 @@
   "ref_type": "branch",
   "secret_source": "Actions",
   "workflow_ref": "guitarrapc/githubactions-lab/.github/workflows/auto-dump-context.yaml@refs/heads/main",
-  "workflow_sha": "7a798895e7373fa81515bc76fc395e428729967e",
+  "workflow_sha": "b63406599597693e000223363ed0f2411231c124",
   "workspace": "/home/runner/work/githubactions-lab/githubactions-lab",
   "action": "__run_2",
   "event_path": "/home/runner/work/_temp/_github_workflow/event.json",
   "action_repository": "",
   "action_ref": "",
-  "path": "/home/runner/work/_temp/_runner_file_commands/add_path_3f4765e9-3498-4f5d-b1ad-3bc6a8c9782a",
-  "env": "/home/runner/work/_temp/_runner_file_commands/set_env_3f4765e9-3498-4f5d-b1ad-3bc6a8c9782a",
-  "step_summary": "/home/runner/work/_temp/_runner_file_commands/step_summary_3f4765e9-3498-4f5d-b1ad-3bc6a8c9782a",
-  "state": "/home/runner/work/_temp/_runner_file_commands/save_state_3f4765e9-3498-4f5d-b1ad-3bc6a8c9782a",
-  "output": "/home/runner/work/_temp/_runner_file_commands/set_output_3f4765e9-3498-4f5d-b1ad-3bc6a8c9782a"
+  "path": "/home/runner/work/_temp/_runner_file_commands/add_path_b2c689d4-955e-4f1f-b53d-3aad783edd1d",
+  "env": "/home/runner/work/_temp/_runner_file_commands/set_env_b2c689d4-955e-4f1f-b53d-3aad783edd1d",
+  "step_summary": "/home/runner/work/_temp/_runner_file_commands/step_summary_b2c689d4-955e-4f1f-b53d-3aad783edd1d",
+  "state": "/home/runner/work/_temp/_runner_file_commands/save_state_b2c689d4-955e-4f1f-b53d-3aad783edd1d",
+  "output": "/home/runner/work/_temp/_runner_file_commands/set_output_b2c689d4-955e-4f1f-b53d-3aad783edd1d"
 }
