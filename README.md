@@ -488,6 +488,9 @@ jobs:
       - uses: actions/checkout@v4
       - name: Dump environment
         uses: ./.github/actions/context
+        with:
+          foo: FOO
+          bar: BAR
 
 ```
 
