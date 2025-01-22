@@ -456,6 +456,8 @@ jobs:
       - uses: actions/checkout@v4
       - name: Dump environment
         run: env
+      - name: Dump GITHUB_EVENT_PATH json
+        run: cat "$GITHUB_EVENT_PATH	"
       - name: Dump GitHub context
         run: echo "$CONTEXT"
         env:
@@ -480,17 +482,6 @@ jobs:
         run: echo "$CONTEXT"
         env:
           CONTEXT: ${{ toJson(matrix) }}
-
-  dump_actions:
-    runs-on: ubuntu-24.04
-    timeout-minutes: 3
-    steps:
-      - uses: actions/checkout@v4
-      - name: Dump environment
-        uses: ./.github/actions/context
-        with:
-          foo: FOO
-          bar: BAR
 
 ```
 
