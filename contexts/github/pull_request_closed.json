@@ -2,13 +2,13 @@
   "token": "<reducted>",
   "job": "dump-context",
   "ref": "refs/heads/main",
-  "sha": "e757568b09f834f27d094ae9594f252e141b3c1e",
+  "sha": "624bd0b41b66181d44e3df9e6a2d5c707e6e7470",
   "repository": "guitarrapc/githubactions-lab",
   "repository_owner": "guitarrapc",
   "repository_owner_id": "3856350",
   "repositoryUrl": "git://github.com/guitarrapc/githubactions-lab.git",
-  "run_id": "12904333442",
-  "run_number": "120",
+  "run_id": "13046362440",
+  "run_number": "134",
   "retention_days": "90",
   "run_attempt": "2",
   "artifact_cache_size_limit": "10",
@@ -20,44 +20,44 @@
   "actor": "guitarrapc",
   "triggering_actor": "guitarrapc",
   "workflow": "auto dump context",
-  "head_ref": "feature/dump",
+  "head_ref": "dependabot/github_actions/actions/stale-9.1.0",
   "base_ref": "main",
   "event_name": "pull_request",
   "event": {
     "action": "closed",
-    "number": 193,
+    "number": 194,
     "pull_request": {
       "_links": {
         "comments": {
-          "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/issues/193/comments"
+          "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/issues/194/comments"
         },
         "commits": {
-          "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/193/commits"
+          "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/194/commits"
         },
         "html": {
-          "href": "https://github.com/guitarrapc/githubactions-lab/pull/193"
+          "href": "https://github.com/guitarrapc/githubactions-lab/pull/194"
         },
         "issue": {
-          "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/issues/193"
+          "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/issues/194"
         },
         "review_comment": {
           "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/comments{/number}"
         },
         "review_comments": {
-          "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/193/comments"
+          "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/194/comments"
         },
         "self": {
-          "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/193"
+          "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/194"
         },
         "statuses": {
-          "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/statuses/bc3e1fd24bcd9e1d80addfcae6f1cb7e178da781"
+          "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/statuses/c254639e40075898c25caabc9b9ce0e5ab3994d8"
         }
       },
       "active_lock_reason": null,
-      "additions": 867,
+      "additions": 1,
       "assignee": null,
       "assignees": [],
-      "author_association": "OWNER",
+      "author_association": "CONTRIBUTOR",
       "auto_merge": null,
       "base": {
         "label": "guitarrapc:main",
@@ -156,13 +156,13 @@
           },
           "private": false,
           "pulls_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls{/number}",
-          "pushed_at": "2025-01-22T08:37:46Z",
+          "pushed_at": "2025-01-30T00:03:08Z",
           "releases_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/releases{/id}",
-          "size": 2411,
+          "size": 2380,
           "squash_merge_commit_message": "COMMIT_MESSAGES",
           "squash_merge_commit_title": "COMMIT_OR_PR_TITLE",
           "ssh_url": "git@github.com:guitarrapc/githubactions-lab.git",
-          "stargazers_count": 48,
+          "stargazers_count": 49,
           "stargazers_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/stargazers",
           "statuses_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/statuses/{sha}",
           "subscribers_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/subscribers",
@@ -174,15 +174,15 @@
             "github-actions"
           ],
           "trees_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/git/trees{/sha}",
-          "updated_at": "2025-01-22T08:27:46Z",
+          "updated_at": "2025-01-30T00:03:12Z",
           "url": "https://api.github.com/repos/guitarrapc/githubactions-lab",
           "use_squash_pr_title_as_default": false,
           "visibility": "public",
-          "watchers": 48,
-          "watchers_count": 48,
+          "watchers": 49,
+          "watchers_count": 49,
           "web_commit_signoff_required": false
         },
-        "sha": "c5abd2523c886aad0582f4be3b686bdf9790756a",
+        "sha": "528cfc77c704d7f4442b19c172c2581a7ad45c46",
         "user": {
           "avatar_url": "https://avatars.githubusercontent.com/u/3856350?v=4",
           "events_url": "https://api.github.com/users/guitarrapc/events{/privacy}",
@@ -205,20 +205,20 @@
           "user_view_type": "public"
         }
       },
-      "body": null,
-      "changed_files": 11,
-      "closed_at": "2025-01-22T08:39:48Z",
+      "body": "Bumps [actions/stale](https://github.com/actions/stale) from 9.0.0 to 9.1.0.\n<details>\n<summary>Release notes</summary>\n<p><em>Sourced from <a href=\"https://github.com/actions/stale/releases\">actions/stale's releases</a>.</em></p>\n<blockquote>\n<h2>v9.1.0</h2>\n<h2>What's Changed</h2>\n<ul>\n<li>Documentation update by <a href=\"https://github.com/Marukome0743\"><code>@​Marukome0743</code></a> in <a href=\"https://redirect.github.com/actions/stale/pull/1116\">actions/stale#1116</a></li>\n<li>Add workflow file for publishing releases to immutable action package by <a href=\"https://github.com/Jcambass\"><code>@​Jcambass</code></a> in <a href=\"https://redirect.github.com/actions/stale/pull/1179\">actions/stale#1179</a></li>\n<li>Update undici from 5.28.2 to 5.28.4 by <a href=\"https://github.com/dependabot\"><code>@​dependabot</code></a> in <a href=\"https://redirect.github.com/actions/stale/pull/1150\">actions/stale#1150</a></li>\n<li>Update actions/checkout from 3 to 4 by <a href=\"https://github.com/dependabot\"><code>@​dependabot</code></a> in <a href=\"https://redirect.github.com/actions/stale/pull/1091\">actions/stale#1091</a></li>\n<li>Update actions/publish-action from 0.2.2 to 0.3.0 by <a href=\"https://github.com/dependabot\"><code>@​dependabot</code></a> in <a href=\"https://redirect.github.com/actions/stale/pull/1147\">actions/stale#1147</a></li>\n<li>Update ts-jest from 29.1.1 to 29.2.5 by <a href=\"https://github.com/dependabot\"><code>@​dependabot</code></a> in <a href=\"https://redirect.github.com/actions/stale/pull/1175\">actions/stale#1175</a></li>\n<li>Update <code>@​actions/core</code> from 1.10.1 to 1.11.1 by <a href=\"https://github.com/dependabot\"><code>@​dependabot</code></a> in <a href=\"https://redirect.github.com/actions/stale/pull/1191\">actions/stale#1191</a></li>\n<li>Update <code>@​types/jest</code> from 29.5.11 to 29.5.14 by <a href=\"https://github.com/dependabot\"><code>@​dependabot</code></a> in <a href=\"https://redirect.github.com/actions/stale/pull/1193\">actions/stale#1193</a></li>\n<li>Update <code>@​actions/cache</code> from 3.2.2 to 4.0.0 by <a href=\"https://github.com/dependabot\"><code>@​dependabot</code></a> in <a href=\"https://redirect.github.com/actions/stale/pull/1194\">actions/stale#1194</a></li>\n</ul>\n<h2>New Contributors</h2>\n<ul>\n<li><a href=\"https://github.com/Marukome0743\"><code>@​Marukome0743</code></a> made their first contribution in <a href=\"https://redirect.github.com/actions/stale/pull/1116\">actions/stale#1116</a></li>\n<li><a href=\"https://github.com/Jcambass\"><code>@​Jcambass</code></a> made their first contribution in <a href=\"https://redirect.github.com/actions/stale/pull/1179\">actions/stale#1179</a></li>\n</ul>\n<p><strong>Full Changelog</strong>: <a href=\"https://github.com/actions/stale/compare/v9...v9.1.0\">https://github.com/actions/stale/compare/v9...v9.1.0</a></p>\n</blockquote>\n</details>\n<details>\n<summary>Commits</summary>\n<ul>\n<li><a href=\"https://github.com/actions/stale/commit/5bef64f19d7facfb25b37b414482c7164d639639\"><code>5bef64f</code></a> build(deps): bump <code>@​actions/cache</code> from 3.2.2 to 4.0.0 (<a href=\"https://redirect.github.com/actions/stale/issues/1194\">#1194</a>)</li>\n<li><a href=\"https://github.com/actions/stale/commit/fa77dfddd04682b7d96dbc4e016318e681fdc10e\"><code>fa77dfd</code></a> build(deps-dev): bump <code>@​types/jest</code> from 29.5.11 to 29.5.14 (<a href=\"https://redirect.github.com/actions/stale/issues/1193\">#1193</a>)</li>\n<li><a href=\"https://github.com/actions/stale/commit/f04443dce335c74ba15c65f4cbb3688e6cb6a6ec\"><code>f04443d</code></a> build(deps): bump <code>@​actions/core</code> from 1.10.1 to 1.11.1 (<a href=\"https://redirect.github.com/actions/stale/issues/1191\">#1191</a>)</li>\n<li><a href=\"https://github.com/actions/stale/commit/5c715b0513651880806e14d529f014b12fdd50eb\"><code>5c715b0</code></a> build(deps-dev): bump ts-jest from 29.1.1 to 29.2.5 (<a href=\"https://redirect.github.com/actions/stale/issues/1175\">#1175</a>)</li>\n<li><a href=\"https://github.com/actions/stale/commit/f69122271d990fd11f5594ccff2296f00ff59b49\"><code>f691222</code></a> build(deps): bump actions/publish-action from 0.2.2 to 0.3.0 (<a href=\"https://redirect.github.com/actions/stale/issues/1147\">#1147</a>)</li>\n<li><a href=\"https://github.com/actions/stale/commit/df990c2cf5ae92c90653c9485d6882a0a09feac7\"><code>df990c2</code></a> build(deps): bump actions/checkout from 3 to 4 (<a href=\"https://redirect.github.com/actions/stale/issues/1091\">#1091</a>)</li>\n<li><a href=\"https://github.com/actions/stale/commit/6e472ce44ab4197b0154601c59c54a75b73b340b\"><code>6e472ce</code></a> Merge pull request <a href=\"https://redirect.github.com/actions/stale/issues/1179\">#1179</a> from actions/Jcambass-patch-1</li>\n<li><a href=\"https://github.com/actions/stale/commit/d10ba64261d965f75165f74c55cd3ffbf690d442\"><code>d10ba64</code></a> Merge pull request <a href=\"https://redirect.github.com/actions/stale/issues/1150\">#1150</a> from actions/dependabot/npm_and_yarn/undici-5.28.4</li>\n<li><a href=\"https://github.com/actions/stale/commit/bbf3da5f64eebd003932d93293857400f7f7e18d\"><code>bbf3da5</code></a> resolve check failures</li>\n<li><a href=\"https://github.com/actions/stale/commit/6a2e61d18b155e538f85ef1bf7bd0470775e9703\"><code>6a2e61d</code></a> Add workflow file for publishing releases to immutable action package</li>\n<li>Additional commits viewable in <a href=\"https://github.com/actions/stale/compare/v9.0.0...v9.1.0\">compare view</a></li>\n</ul>\n</details>\n<br />\n\n\n[![Dependabot compatibility score](https://dependabot-badges.githubapp.com/badges/compatibility_score?dependency-name=actions/stale&package-manager=github_actions&previous-version=9.0.0&new-version=9.1.0)](https://docs.github.com/en/github/managing-security-vulnerabilities/about-dependabot-security-updates#about-compatibility-scores)\n\nDependabot will resolve any conflicts with this PR as long as you don't alter it yourself. You can also trigger a rebase manually by commenting `@dependabot rebase`.\n\n[//]: # (dependabot-automerge-start)\n[//]: # (dependabot-automerge-end)\n\n---\n\n<details>\n<summary>Dependabot commands and options</summary>\n<br />\n\nYou can trigger Dependabot actions by commenting on this PR:\n- `@dependabot rebase` will rebase this PR\n- `@dependabot recreate` will recreate this PR, overwriting any edits that have been made to it\n- `@dependabot merge` will merge this PR after your CI passes on it\n- `@dependabot squash and merge` will squash and merge this PR after your CI passes on it\n- `@dependabot cancel merge` will cancel a previously requested merge and block automerging\n- `@dependabot reopen` will reopen this PR if it is closed\n- `@dependabot close` will close this PR and stop Dependabot recreating it. You can achieve the same result by closing it manually\n- `@dependabot show <dependency name> ignore conditions` will show all of the ignore conditions of the specified dependency\n- `@dependabot ignore this major version` will close this PR and stop Dependabot creating any more for this major version (unless you reopen the PR or upgrade to it yourself)\n- `@dependabot ignore this minor version` will close this PR and stop Dependabot creating any more for this minor version (unless you reopen the PR or upgrade to it yourself)\n- `@dependabot ignore this dependency` will close this PR and stop Dependabot creating any more for this dependency (unless you reopen the PR or upgrade to it yourself)\n\n\n</details>",
+      "changed_files": 1,
+      "closed_at": "2025-01-30T05:40:43Z",
       "comments": 0,
-      "comments_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/issues/193/comments",
-      "commits": 6,
-      "commits_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/193/commits",
-      "created_at": "2025-01-22T08:31:44Z",
-      "deletions": 309,
-      "diff_url": "https://github.com/guitarrapc/githubactions-lab/pull/193.diff",
+      "comments_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/issues/194/comments",
+      "commits": 1,
+      "commits_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/194/commits",
+      "created_at": "2025-01-27T16:12:32Z",
+      "deletions": 1,
+      "diff_url": "https://github.com/guitarrapc/githubactions-lab/pull/194.diff",
       "draft": false,
       "head": {
-        "label": "guitarrapc:feature/dump",
-        "ref": "feature/dump",
+        "label": "guitarrapc:dependabot/github_actions/actions/stale-9.1.0",
+        "ref": "dependabot/github_actions/actions/stale-9.1.0",
         "repo": {
           "allow_auto_merge": false,
           "allow_forking": true,
@@ -313,13 +313,13 @@
           },
           "private": false,
           "pulls_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls{/number}",
-          "pushed_at": "2025-01-22T08:37:46Z",
+          "pushed_at": "2025-01-30T00:03:08Z",
           "releases_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/releases{/id}",
-          "size": 2411,
+          "size": 2380,
           "squash_merge_commit_message": "COMMIT_MESSAGES",
           "squash_merge_commit_title": "COMMIT_OR_PR_TITLE",
           "ssh_url": "git@github.com:guitarrapc/githubactions-lab.git",
-          "stargazers_count": 48,
+          "stargazers_count": 49,
           "stargazers_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/stargazers",
           "statuses_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/statuses/{sha}",
           "subscribers_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/subscribers",
@@ -331,15 +331,15 @@
             "github-actions"
           ],
           "trees_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/git/trees{/sha}",
-          "updated_at": "2025-01-22T08:27:46Z",
+          "updated_at": "2025-01-30T00:03:12Z",
           "url": "https://api.github.com/repos/guitarrapc/githubactions-lab",
           "use_squash_pr_title_as_default": false,
           "visibility": "public",
-          "watchers": 48,
-          "watchers_count": 48,
+          "watchers": 49,
+          "watchers_count": 49,
           "web_commit_signoff_required": false
         },
-        "sha": "bc3e1fd24bcd9e1d80addfcae6f1cb7e178da781",
+        "sha": "c254639e40075898c25caabc9b9ce0e5ab3994d8",
         "user": {
           "avatar_url": "https://avatars.githubusercontent.com/u/3856350?v=4",
           "events_url": "https://api.github.com/users/guitarrapc/events{/privacy}",
@@ -362,17 +362,27 @@
           "user_view_type": "public"
         }
       },
-      "html_url": "https://github.com/guitarrapc/githubactions-lab/pull/193",
-      "id": 2291653289,
-      "issue_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/issues/193",
-      "labels": [],
+      "html_url": "https://github.com/guitarrapc/githubactions-lab/pull/194",
+      "id": 2300276997,
+      "issue_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/issues/194",
+      "labels": [
+        {
+          "color": "0366d6",
+          "default": false,
+          "description": "Pull requests that update a dependency file",
+          "id": 5238199298,
+          "name": "dependencies",
+          "node_id": "LA_kwDOD1icfM8AAAABODiUAg",
+          "url": "https://api.github.com/repos/guitarrapc/githubactions-lab/labels/dependencies"
+        }
+      ],
       "locked": false,
       "maintainer_can_modify": false,
-      "merge_commit_sha": "e757568b09f834f27d094ae9594f252e141b3c1e",
+      "merge_commit_sha": "624bd0b41b66181d44e3df9e6a2d5c707e6e7470",
       "mergeable": null,
       "mergeable_state": "unknown",
       "merged": true,
-      "merged_at": "2025-01-22T08:39:48Z",
+      "merged_at": "2025-01-30T05:40:43Z",
       "merged_by": {
         "avatar_url": "https://avatars.githubusercontent.com/u/3856350?v=4",
         "events_url": "https://api.github.com/users/guitarrapc/events{/privacy}",
@@ -395,39 +405,39 @@
         "user_view_type": "public"
       },
       "milestone": null,
-      "node_id": "PR_kwDOD1icfM6Il9qp",
-      "number": 193,
-      "patch_url": "https://github.com/guitarrapc/githubactions-lab/pull/193.patch",
+      "node_id": "PR_kwDOD1icfM6JG3EF",
+      "number": 194,
+      "patch_url": "https://github.com/guitarrapc/githubactions-lab/pull/194.patch",
       "rebaseable": null,
       "requested_reviewers": [],
       "requested_teams": [],
       "review_comment_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/comments{/number}",
       "review_comments": 0,
-      "review_comments_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/193/comments",
+      "review_comments_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/194/comments",
       "state": "closed",
-      "statuses_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/statuses/bc3e1fd24bcd9e1d80addfcae6f1cb7e178da781",
-      "title": "chore: dump GITHUB_EVENT_PATH json",
-      "updated_at": "2025-01-22T08:39:48Z",
-      "url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/193",
+      "statuses_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/statuses/c254639e40075898c25caabc9b9ce0e5ab3994d8",
+      "title": "chore(deps): bump actions/stale from 9.0.0 to 9.1.0",
+      "updated_at": "2025-01-30T05:40:43Z",
+      "url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/194",
       "user": {
-        "avatar_url": "https://avatars.githubusercontent.com/u/3856350?v=4",
-        "events_url": "https://api.github.com/users/guitarrapc/events{/privacy}",
-        "followers_url": "https://api.github.com/users/guitarrapc/followers",
-        "following_url": "https://api.github.com/users/guitarrapc/following{/other_user}",
-        "gists_url": "https://api.github.com/users/guitarrapc/gists{/gist_id}",
+        "avatar_url": "https://avatars.githubusercontent.com/in/29110?v=4",
+        "events_url": "https://api.github.com/users/dependabot%5Bbot%5D/events{/privacy}",
+        "followers_url": "https://api.github.com/users/dependabot%5Bbot%5D/followers",
+        "following_url": "https://api.github.com/users/dependabot%5Bbot%5D/following{/other_user}",
+        "gists_url": "https://api.github.com/users/dependabot%5Bbot%5D/gists{/gist_id}",
         "gravatar_id": "",
-        "html_url": "https://github.com/guitarrapc",
-        "id": 3856350,
-        "login": "guitarrapc",
-        "node_id": "MDQ6VXNlcjM4NTYzNTA=",
-        "organizations_url": "https://api.github.com/users/guitarrapc/orgs",
-        "received_events_url": "https://api.github.com/users/guitarrapc/received_events",
-        "repos_url": "https://api.github.com/users/guitarrapc/repos",
+        "html_url": "https://github.com/apps/dependabot",
+        "id": 49699333,
+        "login": "dependabot[bot]",
+        "node_id": "MDM6Qm90NDk2OTkzMzM=",
+        "organizations_url": "https://api.github.com/users/dependabot%5Bbot%5D/orgs",
+        "received_events_url": "https://api.github.com/users/dependabot%5Bbot%5D/received_events",
+        "repos_url": "https://api.github.com/users/dependabot%5Bbot%5D/repos",
         "site_admin": false,
-        "starred_url": "https://api.github.com/users/guitarrapc/starred{/owner}{/repo}",
-        "subscriptions_url": "https://api.github.com/users/guitarrapc/subscriptions",
-        "type": "User",
-        "url": "https://api.github.com/users/guitarrapc",
+        "starred_url": "https://api.github.com/users/dependabot%5Bbot%5D/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/dependabot%5Bbot%5D/subscriptions",
+        "type": "Bot",
+        "url": "https://api.github.com/users/dependabot%5Bbot%5D",
         "user_view_type": "public"
       }
     },
@@ -517,11 +527,11 @@
       },
       "private": false,
       "pulls_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls{/number}",
-      "pushed_at": "2025-01-22T08:37:46Z",
+      "pushed_at": "2025-01-30T00:03:08Z",
       "releases_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/releases{/id}",
-      "size": 2411,
+      "size": 2380,
       "ssh_url": "git@github.com:guitarrapc/githubactions-lab.git",
-      "stargazers_count": 48,
+      "stargazers_count": 49,
       "stargazers_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/stargazers",
       "statuses_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/statuses/{sha}",
       "subscribers_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/subscribers",
@@ -533,11 +543,11 @@
         "github-actions"
       ],
       "trees_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/git/trees{/sha}",
-      "updated_at": "2025-01-22T08:27:46Z",
+      "updated_at": "2025-01-30T00:03:12Z",
       "url": "https://api.github.com/repos/guitarrapc/githubactions-lab",
       "visibility": "public",
-      "watchers": 48,
-      "watchers_count": 48,
+      "watchers": 49,
+      "watchers_count": 49,
       "web_commit_signoff_required": false
     },
     "sender": {
@@ -570,15 +580,15 @@
   "ref_type": "branch",
   "secret_source": "Actions",
   "workflow_ref": "guitarrapc/githubactions-lab/.github/workflows/auto-dump-context.yaml@refs/heads/main",
-  "workflow_sha": "e757568b09f834f27d094ae9594f252e141b3c1e",
+  "workflow_sha": "624bd0b41b66181d44e3df9e6a2d5c707e6e7470",
   "workspace": "/home/runner/work/githubactions-lab/githubactions-lab",
   "action": "__run_3",
   "event_path": "/home/runner/work/_temp/_github_workflow/event.json",
   "action_repository": "",
   "action_ref": "",
-  "path": "/home/runner/work/_temp/_runner_file_commands/add_path_dee304c0-fcd1-42e5-b3c0-9976072986bf",
-  "env": "/home/runner/work/_temp/_runner_file_commands/set_env_dee304c0-fcd1-42e5-b3c0-9976072986bf",
-  "step_summary": "/home/runner/work/_temp/_runner_file_commands/step_summary_dee304c0-fcd1-42e5-b3c0-9976072986bf",
-  "state": "/home/runner/work/_temp/_runner_file_commands/save_state_dee304c0-fcd1-42e5-b3c0-9976072986bf",
-  "output": "/home/runner/work/_temp/_runner_file_commands/set_output_dee304c0-fcd1-42e5-b3c0-9976072986bf"
+  "path": "/home/runner/work/_temp/_runner_file_commands/add_path_31c18e06-cd47-4e7b-98f3-f849bdec3c65",
+  "env": "/home/runner/work/_temp/_runner_file_commands/set_env_31c18e06-cd47-4e7b-98f3-f849bdec3c65",
+  "step_summary": "/home/runner/work/_temp/_runner_file_commands/step_summary_31c18e06-cd47-4e7b-98f3-f849bdec3c65",
+  "state": "/home/runner/work/_temp/_runner_file_commands/save_state_31c18e06-cd47-4e7b-98f3-f849bdec3c65",
+  "output": "/home/runner/work/_temp/_runner_file_commands/set_output_31c18e06-cd47-4e7b-98f3-f849bdec3c65"
 }
