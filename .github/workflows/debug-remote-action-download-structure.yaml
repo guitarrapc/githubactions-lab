@@ -8,6 +8,6 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: Cysharp/Actions/.github/actions/setup-dotnet@main
-      # wow, remote action will be download under `/home/runner/work/_actions/{Owner}/{Repository}/{RepositoryStructures}`
+      # wow, remote action will be download under `/home/runner/work/_actions/{Owner}/{Repository}/{Ref}/{RepositoryStructures}`
       - name: debug
-        run: ls -R /home/runner/work/_actions/Cysharp/Actions/
+        run: ls -R /home/runner/work/_actions/Cysharp/Actions/main
