@@ -1,4 +1,4 @@
-name: ___ test
+name: Test Remote Action
 on:
   workflow_dispatch:
 
@@ -8,5 +8,6 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: Cysharp/Actions/.github/actions/setup-dotnet@main
+      # wow, remote action will be download under `/home/runner/work/_actions/{Owner}/{Repository}/{RepositoryStructures}`
       - name: debug
-        run: ls -R /home/runner/work/_actions/
+        run: ls -R /home/runner/work/_actions/Cysharp/Actions/
