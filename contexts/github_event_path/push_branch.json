@@ -1,7 +1,7 @@
 {
-  "after": "9188862a597edc30a825db0248ff7a5137d3b6aa",
+  "after": "ddc802c30bcbb11a490654fa3ba96149451a3c68",
   "base_ref": null,
-  "before": "a77e0183ab4784eba9cc1d1e7614c7059f38ca95",
+  "before": "c4763257867744e0ef0f30426ea248a46e6d63f6",
   "commits": [
     {
       "author": {
@@ -10,19 +10,19 @@
         "username": "guitarrapc"
       },
       "committer": {
-        "email": "3856350+guitarrapc@users.noreply.github.com",
-        "name": "Ikiru Yoshizaki",
-        "username": "guitarrapc"
+        "email": "noreply@github.com",
+        "name": "GitHub",
+        "username": "web-flow"
       },
       "distinct": true,
-      "id": "9188862a597edc30a825db0248ff7a5137d3b6aa",
-      "message": "chore: trace from github.workspace",
-      "timestamp": "2025-02-19T19:50:55+09:00",
-      "tree_id": "8114d62325919b6b308f50895b48c980b44b989b",
-      "url": "https://github.com/guitarrapc/githubactions-lab/commit/9188862a597edc30a825db0248ff7a5137d3b6aa"
+      "id": "ddc802c30bcbb11a490654fa3ba96149451a3c68",
+      "message": "Update debug-remote-action-download-structure.yaml",
+      "timestamp": "2025-02-20T01:51:57+09:00",
+      "tree_id": "ae9868fcec2c6ad5d8ac0714968ae800d9412e68",
+      "url": "https://github.com/guitarrapc/githubactions-lab/commit/ddc802c30bcbb11a490654fa3ba96149451a3c68"
     }
   ],
-  "compare": "https://github.com/guitarrapc/githubactions-lab/compare/a77e0183ab47...9188862a597e",
+  "compare": "https://github.com/guitarrapc/githubactions-lab/compare/c47632578677...ddc802c30bcb",
   "created": false,
   "deleted": false,
   "forced": false,
@@ -33,16 +33,16 @@
       "username": "guitarrapc"
     },
     "committer": {
-      "email": "3856350+guitarrapc@users.noreply.github.com",
-      "name": "Ikiru Yoshizaki",
-      "username": "guitarrapc"
+      "email": "noreply@github.com",
+      "name": "GitHub",
+      "username": "web-flow"
     },
     "distinct": true,
-    "id": "9188862a597edc30a825db0248ff7a5137d3b6aa",
-    "message": "chore: trace from github.workspace",
-    "timestamp": "2025-02-19T19:50:55+09:00",
-    "tree_id": "8114d62325919b6b308f50895b48c980b44b989b",
-    "url": "https://github.com/guitarrapc/githubactions-lab/commit/9188862a597edc30a825db0248ff7a5137d3b6aa"
+    "id": "ddc802c30bcbb11a490654fa3ba96149451a3c68",
+    "message": "Update debug-remote-action-download-structure.yaml",
+    "timestamp": "2025-02-20T01:51:57+09:00",
+    "tree_id": "ae9868fcec2c6ad5d8ac0714968ae800d9412e68",
+    "url": "https://github.com/guitarrapc/githubactions-lab/commit/ddc802c30bcbb11a490654fa3ba96149451a3c68"
   },
   "pusher": {
     "email": "3856350+guitarrapc@users.noreply.github.com",
@@ -138,9 +138,9 @@
     },
     "private": false,
     "pulls_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls{/number}",
-    "pushed_at": 1739962257,
+    "pushed_at": 1739983917,
     "releases_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/releases{/id}",
-    "size": 2494,
+    "size": 2448,
     "ssh_url": "git@github.com:guitarrapc/githubactions-lab.git",
     "stargazers": 49,
     "stargazers_count": 49,
@@ -155,7 +155,7 @@
       "github-actions"
     ],
     "trees_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/git/trees{/sha}",
-    "updated_at": "2025-02-19T10:49:26Z",
+    "updated_at": "2025-02-19T10:51:48Z",
     "url": "https://github.com/guitarrapc/githubactions-lab",
     "visibility": "public",
     "watchers": 49,
