@@ -11,3 +11,5 @@ jobs:
       # wow, remote action will be download under `/home/runner/work/_actions/{Owner}/{Repository}/{Ref}/{RepositoryStructures}`
       - name: debug
         run: ls -R /home/runner/work/_actions/Cysharp/Actions/main
+      - name: debug by workspace
+        run: ls -R ${{ github.workspace }}/../../_actions/Cysharp/Actions/main
