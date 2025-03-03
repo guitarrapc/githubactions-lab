@@ -2833,7 +2833,7 @@ jobs:
 
 name: prevent file change 2
 on:
-  pull_request:
+  pull_request_target:
     branches: ["main"]
     paths:
       - .github/**/*.yaml
@@ -2848,7 +2848,7 @@ jobs:
     timeout-minutes: 3
     steps:
       - name: Prevent file change for github YAML files.
-        uses: xalvarez/prevent-file-change-action@v1
+        uses: xalvarez/prevent-file-change-action@v2
         with:
           githubToken: ${{ secrets.GITHUB_TOKEN }}
           pattern: ^\.github\/.*.y[a]?ml$ # -> .github/**/*.yaml
