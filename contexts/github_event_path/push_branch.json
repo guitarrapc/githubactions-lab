@@ -1,8 +1,98 @@
 {
-  "after": "ddc802c30bcbb11a490654fa3ba96149451a3c68",
+  "after": "17ee2810a56b105baadf05ca96389805a5b1a11f",
   "base_ref": null,
-  "before": "c4763257867744e0ef0f30426ea248a46e6d63f6",
+  "before": "4b6aa7ac317e76ad622d5abb57b251dace127cf7",
   "commits": [
+    {
+      "author": {
+        "email": "49699333+dependabot[bot]@users.noreply.github.com",
+        "name": "dependabot[bot]",
+        "username": "dependabot[bot]"
+      },
+      "committer": {
+        "email": "noreply@github.com",
+        "name": "GitHub",
+        "username": "web-flow"
+      },
+      "distinct": false,
+      "id": "38663c6295e3bc7a5d2d73490b8d9df1cb19a27b",
+      "message": "chore(deps): bump xalvarez/prevent-file-change-action from 1 to 2\n\nBumps [xalvarez/prevent-file-change-action](https://github.com/xalvarez/prevent-file-change-action) from 1 to 2.\n- [Release notes](https://github.com/xalvarez/prevent-file-change-action/releases)\n- [Commits](https://github.com/xalvarez/prevent-file-change-action/compare/v1...v2)\n\n---\nupdated-dependencies:\n- dependency-name: xalvarez/prevent-file-change-action\n  dependency-type: direct:production\n  update-type: version-update:semver-major\n...\n\nSigned-off-by: dependabot[bot] <support@github.com>",
+      "timestamp": "2025-03-03T15:45:13Z",
+      "tree_id": "4c0c1116cab755c78667cae15f3cc1fa2cc9035e",
+      "url": "https://github.com/guitarrapc/githubactions-lab/commit/38663c6295e3bc7a5d2d73490b8d9df1cb19a27b"
+    },
+    {
+      "author": {
+        "email": "3856350+guitarrapc@users.noreply.github.com",
+        "name": "Ikiru Yoshizaki",
+        "username": "guitarrapc"
+      },
+      "committer": {
+        "email": "3856350+guitarrapc@users.noreply.github.com",
+        "name": "Ikiru Yoshizaki",
+        "username": "guitarrapc"
+      },
+      "distinct": false,
+      "id": "031c20a77ffa2ab618878780cccf391f54dd29b4",
+      "message": "ci: xalvarez/prevent-file-change-action only support pull_request_target",
+      "timestamp": "2025-03-04T03:42:50+09:00",
+      "tree_id": "f45b26a7fb8b82e45978d63c591c9a88eb1269ba",
+      "url": "https://github.com/guitarrapc/githubactions-lab/commit/031c20a77ffa2ab618878780cccf391f54dd29b4"
+    },
+    {
+      "author": {
+        "email": "41898282+github-actions[bot]@users.noreply.github.com",
+        "name": "github-actions[bot]",
+        "username": "github-actions[bot]"
+      },
+      "committer": {
+        "email": "41898282+github-actions[bot]@users.noreply.github.com",
+        "name": "github-actions[bot]",
+        "username": "github-actions[bot]"
+      },
+      "distinct": false,
+      "id": "11eef3935088e0952ccefd13191a5bf2d4c9ddf6",
+      "message": "[auto commit] update context (workflow=auto dump context, event=pull_request_target, action=synchronize)",
+      "timestamp": "2025-03-03T18:44:05Z",
+      "tree_id": "7ad9f5078f527f36b5a1a5f97c0d0f7bb551ddab",
+      "url": "https://github.com/guitarrapc/githubactions-lab/commit/11eef3935088e0952ccefd13191a5bf2d4c9ddf6"
+    },
+    {
+      "author": {
+        "email": "41898282+github-actions[bot]@users.noreply.github.com",
+        "name": "github-actions[bot]",
+        "username": "github-actions[bot]"
+      },
+      "committer": {
+        "email": "41898282+github-actions[bot]@users.noreply.github.com",
+        "name": "github-actions[bot]",
+        "username": "github-actions[bot]"
+      },
+      "distinct": false,
+      "id": "1cf693427fd867a0d1da18c9cf8706bea00a8018",
+      "message": "[auto commit] update context (workflow=auto dump context, event=pull_request, action=synchronize)",
+      "timestamp": "2025-03-03T18:44:13Z",
+      "tree_id": "9573c3c1b1ea03376b3356b601d2a076ef55a0ce",
+      "url": "https://github.com/guitarrapc/githubactions-lab/commit/1cf693427fd867a0d1da18c9cf8706bea00a8018"
+    },
+    {
+      "author": {
+        "email": "41898282+github-actions[bot]@users.noreply.github.com",
+        "name": "github-actions[bot]",
+        "username": "github-actions[bot]"
+      },
+      "committer": {
+        "email": "41898282+github-actions[bot]@users.noreply.github.com",
+        "name": "github-actions[bot]",
+        "username": "github-actions[bot]"
+      },
+      "distinct": false,
+      "id": "71bd98e7fd90afd5a7e34c63d6a1c287a6435c20",
+      "message": "[auto commit] Embedded code (workflow=auto doc)",
+      "timestamp": "2025-03-03T18:46:26Z",
+      "tree_id": "f2f7b7dd169112fe620d108950a81c8b7184b1b3",
+      "url": "https://github.com/guitarrapc/githubactions-lab/commit/71bd98e7fd90afd5a7e34c63d6a1c287a6435c20"
+    },
     {
       "author": {
         "email": "3856350+guitarrapc@users.noreply.github.com",
@@ -15,14 +105,14 @@
         "username": "web-flow"
       },
       "distinct": true,
-      "id": "ddc802c30bcbb11a490654fa3ba96149451a3c68",
-      "message": "Update debug-remote-action-download-structure.yaml",
-      "timestamp": "2025-02-20T01:51:57+09:00",
-      "tree_id": "ae9868fcec2c6ad5d8ac0714968ae800d9412e68",
-      "url": "https://github.com/guitarrapc/githubactions-lab/commit/ddc802c30bcbb11a490654fa3ba96149451a3c68"
+      "id": "17ee2810a56b105baadf05ca96389805a5b1a11f",
+      "message": "Merge pull request #195 from guitarrapc/dependabot/github_actions/xalvarez/prevent-file-change-action-2\n\nchore(deps): bump xalvarez/prevent-file-change-action from 1 to 2",
+      "timestamp": "2025-03-04T03:46:49+09:00",
+      "tree_id": "f2f7b7dd169112fe620d108950a81c8b7184b1b3",
+      "url": "https://github.com/guitarrapc/githubactions-lab/commit/17ee2810a56b105baadf05ca96389805a5b1a11f"
     }
   ],
-  "compare": "https://github.com/guitarrapc/githubactions-lab/compare/c47632578677...ddc802c30bcb",
+  "compare": "https://github.com/guitarrapc/githubactions-lab/compare/4b6aa7ac317e...17ee2810a56b",
   "created": false,
   "deleted": false,
   "forced": false,
@@ -38,11 +128,11 @@
       "username": "web-flow"
     },
     "distinct": true,
-    "id": "ddc802c30bcbb11a490654fa3ba96149451a3c68",
-    "message": "Update debug-remote-action-download-structure.yaml",
-    "timestamp": "2025-02-20T01:51:57+09:00",
-    "tree_id": "ae9868fcec2c6ad5d8ac0714968ae800d9412e68",
-    "url": "https://github.com/guitarrapc/githubactions-lab/commit/ddc802c30bcbb11a490654fa3ba96149451a3c68"
+    "id": "17ee2810a56b105baadf05ca96389805a5b1a11f",
+    "message": "Merge pull request #195 from guitarrapc/dependabot/github_actions/xalvarez/prevent-file-change-action-2\n\nchore(deps): bump xalvarez/prevent-file-change-action from 1 to 2",
+    "timestamp": "2025-03-04T03:46:49+09:00",
+    "tree_id": "f2f7b7dd169112fe620d108950a81c8b7184b1b3",
+    "url": "https://github.com/guitarrapc/githubactions-lab/commit/17ee2810a56b105baadf05ca96389805a5b1a11f"
   },
   "pusher": {
     "email": "3856350+guitarrapc@users.noreply.github.com",
@@ -138,9 +228,9 @@
     },
     "private": false,
     "pulls_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls{/number}",
-    "pushed_at": 1739983917,
+    "pushed_at": 1741027609,
     "releases_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/releases{/id}",
-    "size": 2448,
+    "size": 2486,
     "ssh_url": "git@github.com:guitarrapc/githubactions-lab.git",
     "stargazers": 49,
     "stargazers_count": 49,
@@ -155,7 +245,7 @@
       "github-actions"
     ],
     "trees_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/git/trees{/sha}",
-    "updated_at": "2025-02-19T10:51:48Z",
+    "updated_at": "2025-03-03T00:03:20Z",
     "url": "https://github.com/guitarrapc/githubactions-lab",
     "visibility": "public",
     "watchers": 49,
