@@ -15,7 +15,7 @@ jobs:
     timeout-minutes: 3
     steps:
       - name: Prevent file change for github YAML files.
-        uses: xalvarez/prevent-file-change-action@v1
+        uses: xalvarez/prevent-file-change-action@v2
         with:
           githubToken: ${{ secrets.GITHUB_TOKEN }}
           pattern: ^\.github\/.*.y[a]?ml$ # -> .github/**/*.yaml
