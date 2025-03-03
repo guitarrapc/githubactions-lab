@@ -1,6 +1,6 @@
 name: prevent file change 2
 on:
-  pull_request:
+  pull_request_target:
     branches: ["main"]
     paths:
       - .github/**/*.yaml
