@@ -86,6 +86,7 @@ GitHub Actions research and test laboratory.
   - [Get Workflow Name](#get-workflow-name)
   - [Get Workflow Url](#get-workflow-url)
   - [GitHub Actions commit icon](#github-actions-commit-icon)
+  - [Path for Downloaded Remote Actions](#path-for-downloaded-remote-actions)
   - [Type converter with fromJson](#type-converter-with-fromjson)
   - [Detect PullRequest (PR) is Fork or not](#detect-pullrequest-pr-is-fork-or-not)
   - [Want to get a list of GitHub Actions scheduled workflows](#want-to-get-a-list-of-github-actions-scheduled-workflows)
@@ -3153,6 +3154,38 @@ Use following Git config to commit as GitHub Actions icon.
 ```bash
 git config user.name github-actions[bot]
 git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+```
+
+## Path for Downloaded Remote Actions
+
+If the job using remote actions or remote workflows, then it will be downloaded to `/home/runner/work/_actions/{OWNER}/{REPOSITORY}/{REF}` folder. For example, `actions/checkout@v4` will be downloaded to `/home/runner/work/_actions/actions/checkout/v4`.
+
+This path is useful when you want to touch files or use it beyond the action.
+
+```yaml
+# .github/workflows/remote-actions-download-path.yaml
+
+name: remote actions download path
+on:
+  workflow_dispatch:
+  pull_request:
+    branches: ["main"]
+
+jobs:
+  action:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v4
+      - name: Downloaded actions from the marketplace
+        run: ls -l /home/runner/work/_actions
+      - name: See actions download path
+        run: ls -l /home/runner/work/_actions/actions/checkout/
+      - name: See actions download contents
+        run: ls -lR /home/runner/work/_actions/actions/checkout/v4
+      - name: Cat action's src/main.ts
+        run: cat /home/runner/work/_actions/actions/checkout/v4/src/main.ts
+
 ```
 
 ## Type converter with fromJson
