@@ -86,6 +86,7 @@ GitHub Actions research and test laboratory.
   - [Get Workflow Name](#get-workflow-name)
   - [Get Workflow Url](#get-workflow-url)
   - [GitHub Actions commit icon](#github-actions-commit-icon)
+  - [Path for Downloaded Remote Actions](#path-for-downloaded-remote-actions)
   - [Type converter with fromJson](#type-converter-with-fromjson)
   - [Detect PullRequest (PR) is Fork or not](#detect-pullrequest-pr-is-fork-or-not)
   - [Want to get a list of GitHub Actions scheduled workflows](#want-to-get-a-list-of-github-actions-scheduled-workflows)
