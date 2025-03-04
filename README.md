@@ -3165,7 +3165,7 @@ This path is useful when you want to touch files or use it beyond the action.
 ```yaml
 # .github/workflows/remote-actions-download-path.yaml
 
-name: remote actions download path"
+name: remote actions download path
 on:
   workflow_dispatch:
   pull_request:
