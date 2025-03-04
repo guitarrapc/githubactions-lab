@@ -3163,6 +3163,28 @@ This path is useful when you want to touch files or use it beyond the action.
 
 ```yaml
 # .github/workflows/remote-actions-download-path.yaml
+
+name: remote actions download path"
+on:
+  workflow_dispatch:
+  pull_request:
+    branches: ["main"]
+
+jobs:
+  action:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v4
+      - name: Downloaded actions from the marketplace
+        run: ls -l /home/runner/work/_actions
+      - name: See actions download path
+        run: ls -l /home/runner/work/_actions/actions/checkout/
+      - name: See actions download contents
+        run: ls -lR /home/runner/work/_actions/actions/checkout/v4
+      - name: Cat action's src/main.ts
+        run: cat /home/runner/work/_actions/actions/checkout/v4/src/main.ts
+
 ```
 
 ## Type converter with fromJson
