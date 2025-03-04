@@ -3159,6 +3159,8 @@ git config user.email 41898282+github-actions[bot]@users.noreply.github.com
 
 If the job using remote actions or remote workflows, then it will be downloaded to `/home/runner/work/_actions/{OWNER}/{REPOSITORY}/{REF}` folder. For example, `actions/checkout@v4` will be downloaded to `/home/runner/work/_actions/actions/checkout/v4`.
 
+This path is useful when you want to touch files or use it beyond the action.
+
 ```yaml
 # .github/workflows/remote-actions-download-path.yaml
 ```

@@ -16,3 +16,5 @@ jobs:
         run: ls -l /home/runner/work/_actions/actions/checkout/
       - name: See actions download contents
         run: ls -lR /home/runner/work/_actions/actions/checkout/v4
+      - name: Cat action's src/main.ts
+        run: ls -lR /home/runner/work/_actions/actions/checkout/v4/src/main.ts
