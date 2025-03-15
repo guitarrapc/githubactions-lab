@@ -1763,84 +1763,6 @@ Better using manual gh.
 
 You can detect which file was changed with push or pull_request by GitHub actions. This is useful when you want to use `path-filter`, but require further file handling. Following 3 actions are available and can use same way.
 
-**Recommented**
-
-* `tj-actions/changed-files` is still actively developed. Usage is simple and output is static.
-
-```yaml
-# .github/workflows/file-change-detect-tj.yaml
-
-name: file change detect tj
-on:
-  workflow_dispatch:
-  pull_request:
-    branches: ["main"]
-  push:
-    branches: ["main"]
-
-jobs:
-  changed-files:
-    runs-on: ubuntu-24.04
-    timeout-minutes: 3
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          fetch-depth: 2 # push required 2 or 0 to detect last commit change
-      # see: https://github.com/tj-actions/changed-files
-      - id: changed-files
-        uses: tj-actions/changed-files@v45 # this action force fetch base branch and compare.
-        with:
-          separator: "," # default ' '
-      - name: Changed file list
-        run: echo "${{ steps.changed-files.outputs.all_modified_files }}"
-      - name: Is changed files include .github/workflows?
-        run: echo "${{ contains(steps.changed-files.outputs.all_modified_files, '.github/workflows')}}"
-      - name: Is changed files include .github/dummy?
-        run: echo "${{ contains(steps.changed-files.outputs.all_modified_files, '.github/dummy')}}"
-      # space separated
-      - id: changed-files2
-        uses: tj-actions/changed-files@v45
-        if: ${{ github.event.pull_request.changed_files < 100 }} # when changed files less than 100
-      - name: List all changed files
-        env:
-          CHANGED_FILES: ${{ steps.changed-files2.outputs.all_changed_files }}
-        run: |
-          for file in ${CHANGED_FILES}; do
-            echo "$file was changed"
-          done
-      # json separated
-      - id: changed-files3
-        uses: tj-actions/changed-files@v45 # this action force fetch base branch and compare.
-        with:
-          json: "true"
-      - name: Changed file list
-        run: echo "${{ steps.changed-files3.outputs.all_modified_files }}"
-
-  changed-dirs:
-    runs-on: ubuntu-24.04
-    timeout-minutes: 3
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          fetch-depth: 2 # push required 2 or 0 to detect last commit change
-      - id: changed-files
-        uses: tj-actions/changed-files@v45 # this action force fetch base branch and compare.
-        with:
-          dir_names: "true"
-      - name: Changed file list
-        run: echo "${{ steps.changed-files.outputs.all_modified_files }}"
-      - name: List all changed files
-        env:
-          CHANGED_FILES: ${{ steps.changed-files.outputs.all_changed_files }}
-        run: |
-          for file in ${CHANGED_FILES}; do
-            echo "$file was changed"
-          done
-
-```
-
-**Not recommended**
-
 `dorny/paths-filter` is still actively developed. However it's output is quite dynamic and hard to handle static lint like actionlint.
 
 ```yaml
@@ -1908,7 +1830,6 @@ jobs:
         run: echo "${{ steps.changed-files3.outputs.foo_files }}"
 
 ```
-
 
 `trilom/file-changes-action` stopped development, so I will quit using it.
 
@@ -2866,6 +2787,7 @@ on:
     branches: ["main"]
     paths:
       - .github/**/*.yaml
+      - .github/**/*.yml
 
 jobs:
   detect:
@@ -2873,20 +2795,8 @@ jobs:
     runs-on: ubuntu-24.04
     timeout-minutes: 3
     steps:
-      - uses: actions/checkout@v4
-        with:
-          fetch-depth: 2 # To retrieve the preceding commit.
-      - name: Get changed files in the .github folder
-        id: changed-files
-        uses: tj-actions/changed-files@v45
-        with:
-          files: .github/**/*.{yml,yaml}
       - name: Run step if any file(s) in the .github folder change
-        if: ${{ steps.changed-files.outputs.any_changed == 'true' }}
-        run: |
-          echo "One or more files has changed."
-          echo "List all the files that have changed: ${{ steps.changed-files.outputs.all_changed_files }}"
-          exit 1
+        run: exit 1
 
 ```
 
@@ -2906,18 +2816,9 @@ jobs:
     runs-on: ubuntu-24.04
     timeout-minutes: 3
     steps:
-      - name: Get changed files in the .github folder
-        uses: dorny/paths-filter@v3
-        id: changes
-        with:
-          filters: |
-            src:
-              - .github/**/*.yaml
       - name: Run step if any file(s) in the .github folder change
-        if: ${{ steps.changes.outputs.src == 'true' }}
         run: |
           echo "One or more files has changed."
-          echo "List all the files that have changed: ${{ steps.changes.outputs.changes }}"
           exit 1
 
 ```
