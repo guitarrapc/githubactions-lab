@@ -30,6 +30,7 @@ jobs:
               - .(png|jpeg)$
               - .(cs|csproj)$
               - ^(mynewfile|custom)
+              - .yaml$
       # do not use space in file name.
       #   OK: foo.bar
       #   NG: foo 1.bar
