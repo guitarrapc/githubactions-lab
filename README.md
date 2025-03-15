@@ -2727,7 +2727,10 @@ jobs:
 
 One of GitHub's vulnerable point is Workflow. Editting Workflow shoulbe be requirement when using `secrets` and authenticate some service on workflow.
 
-Easiest and simple way is use `pull_request` target and path filter, then detect PR is fork or not. There might be many ways to prevent file change. `xalvarez/prevent-file-change-action` can guard change in the step. Using `tj-actions/changed-files`, `dorny/paths-filter`, or others will be flexible way to detect change and do what you want.
+Easiest and simple way is use `pull_request` target and path filter, then detect PR is fork or not. There might be many ways to prevent file change. `xalvarez/prevent-file-change-action` can guard change in the step. Using `dorny/paths-filter`, or others will be flexible way to detect change and do what you want.
+
+> [!WARN]
+> Stop using `tj-actions/changed-files` as of reaction to the [security vulnerbility](https://www.stepsecurity.io/blog/harden-runner-detection-tj-actions-changed-files-action-is-compromised)
 
 ```yaml
 # .github/workflows/prevent-file-change1.yaml
