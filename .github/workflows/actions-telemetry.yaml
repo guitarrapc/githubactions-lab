@@ -12,12 +12,12 @@ jobs:
     timeout-minutes: 3
     steps:
       - name: Collect actions workflow telemetry
-        uses: runforesight/workflow-telemetry-action@v2
+        uses: runforesight/workflow-telemetry-action@94c3c3d9567a0205de6da68a76c428ce4e769af1 # v2.0.0
         with:
           theme: dark # or light. dark generate charts compatible with Github dark mode.
           comment_on_pr: false # post telemetry to PR comment. It won't override existing comment, therefore too noisy for PR.
-      - uses: actions/checkout@v4
-      - uses: actions/setup-dotnet@v4
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+      - uses: actions/setup-dotnet@3951f0dfe7a07e2313ec93c75700083e2005cbab # v4.3.0
         with:
           dotnet-version: 8.0.x
       - name: dotnet build

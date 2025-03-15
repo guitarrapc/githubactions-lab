@@ -17,8 +17,8 @@ jobs:
     runs-on: ubuntu-24.04
     timeout-minutes: 10
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-dotnet@v4
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+      - uses: actions/setup-dotnet@3951f0dfe7a07e2313ec93c75700083e2005cbab # v4.3.0
         with:
           dotnet-version: 8.0.x
       # dotnet list
@@ -32,7 +32,7 @@ jobs:
           } >> "$GITHUB_ENV"
         working-directory: ${{ env.SLN_ROOT }}
       - name: Add dotnet-format problem matcher
-        uses: xt0rted/dotnet-format-problem-matcher@v1
+        uses: xt0rted/dotnet-format-problem-matcher@b90c4f18e3daa4f8fd266e41eba4f351b2e00b75 # v1.2.0
       # dotnet format is build-in from dotnet 6.0 sdk
       - name: Dotnet Format
         run: dotnet format --verbosity diagnostic --exclude "Sandbox.Fail.Tests"
@@ -65,7 +65,7 @@ jobs:
       - name: Create PullRequest
         if: ${{ steps.git-check.outputs.modified == 'true' }}
         id: cpr
-        uses: peter-evans/create-pull-request@v7
+        uses: peter-evans/create-pull-request@271a8d0340265f705b14b6d32b9829c1cb33d45e # v7.0.8
         with:
           base: "main"
           branch: "auto-pr/dotnet-format"

@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-24.04
     timeout-minutes: 3
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
         with:
           ref: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.ref || '' }} # checkout PR HEAD commit instead of merge commit
       - name: Embedding Code into README
@@ -25,7 +25,7 @@ jobs:
           commit-message: "[auto commit] Embedded code (workflow=${{ github.workflow }})"
           ref: ${{ startsWith(github.event_name, 'pull_request') && github.event.pull_request.head.ref || github.ref_name }}
       - name: Generate TOC into README
-        uses: technote-space/toc-generator@v4
+        uses: technote-space/toc-generator@9e238e7974de5fcf7b17b7acc54c896160dda0a3 # v4.3.1
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           COMMIT_NAME: github-actions[bot]

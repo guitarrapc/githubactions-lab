@@ -11,12 +11,12 @@ jobs:
     runs-on: ubuntu-24.04
     timeout-minutes: 5
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
         with:
           fetch-depth: 2 # detect on push
       # you can specify which file to detect.
       - id: changed-files
-        uses: dorny/paths-filter@v3
+        uses: dorny/paths-filter@de90cc6fb38fc0963ad72b210f1f284cd68cea36 # v3.0.2
         with:
           list-files: csv # default 'none'. Disables listing of matching files.
           filters: |
@@ -56,7 +56,7 @@ jobs:
       # comment to PR for CRLF files.
       - if: ${{ github.event_name == 'pull_request' && env.CRLF_FILES != '' }}
         name: Comment PR
-        uses: thollander/actions-comment-pull-request@v3
+        uses: thollander/actions-comment-pull-request@65f9e5c9a1f2cd378bd74b2e057c9736982a8e74 # v3
         with:
           message: |
             [${{ github.workflow }}](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}) found CRLF files as follows.

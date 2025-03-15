@@ -12,9 +12,9 @@ jobs:
     timeout-minutes: 3
     steps:
       # Register this action before your build step. It will then be executed at the end of the job post-processing.
-      - uses: Kesin11/actions-timeline@v2
-      - uses: actions/checkout@v4
-      - uses: actions/setup-dotnet@v4
+      - uses: Kesin11/actions-timeline@427ee2cf860166e404d0d69b4f2b24012bb7af4f # v2.2.3
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+      - uses: actions/setup-dotnet@3951f0dfe7a07e2313ec93c75700083e2005cbab # v4.3.0
         with:
           dotnet-version: 8.0.x
       - name: dotnet build
