@@ -2787,6 +2787,7 @@ on:
     branches: ["main"]
     paths:
       - .github/**/*.yaml
+      - .github/**/*.yml
 
 jobs:
   detect:
@@ -2794,20 +2795,8 @@ jobs:
     runs-on: ubuntu-24.04
     timeout-minutes: 3
     steps:
-      - uses: actions/checkout@v4
-        with:
-          fetch-depth: 2 # To retrieve the preceding commit.
-      - name: Get changed files in the .github folder
-        id: changed-files
-        uses: tj-actions/changed-files@v45
-        with:
-          files: .github/**/*.{yml,yaml}
       - name: Run step if any file(s) in the .github folder change
-        if: ${{ steps.changed-files.outputs.any_changed == 'true' }}
-        run: |
-          echo "One or more files has changed."
-          echo "List all the files that have changed: ${{ steps.changed-files.outputs.all_changed_files }}"
-          exit 1
+        run: exit 1
 
 ```
 
@@ -2827,18 +2816,9 @@ jobs:
     runs-on: ubuntu-24.04
     timeout-minutes: 3
     steps:
-      - name: Get changed files in the .github folder
-        uses: dorny/paths-filter@v3
-        id: changes
-        with:
-          filters: |
-            src:
-              - .github/**/*.yaml
       - name: Run step if any file(s) in the .github folder change
-        if: ${{ steps.changes.outputs.src == 'true' }}
         run: |
           echo "One or more files has changed."
-          echo "List all the files that have changed: ${{ steps.changes.outputs.changes }}"
           exit 1
 
 ```
