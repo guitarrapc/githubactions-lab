@@ -11,16 +11,7 @@ jobs:
     runs-on: ubuntu-24.04
     timeout-minutes: 3
     steps:
-      - name: Get changed files in the .github folder
-        uses: dorny/paths-filter@v3
-        id: changes
-        with:
-          filters: |
-            src:
-              - .github/**/*.yaml
       - name: Run step if any file(s) in the .github folder change
-        if: ${{ steps.changes.outputs.src == 'true' }}
         run: |
           echo "One or more files has changed."
-          echo "List all the files that have changed: ${{ steps.changes.outputs.changes }}"
           exit 1
