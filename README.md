@@ -371,6 +371,23 @@ GitHub Actions use Build artifacts to share files between jobs in a workflow and
 
 # Basic - Fundamentables
 
+## Pin Third-Party GitHub Actions to a Specific Commit SHA
+
+Several vulnerabilities in GitHub Actions have been identified due to the use of tags or version numbers.
+To mitigate these risks, always pin your actions to a specific commit SHA.
+
+For example, instead of using:
+
+```yaml
+uses: actions/cache@v3.3.1
+```
+
+pin the action to a specific commit:
+
+```yaml
+uses: actions/cache@88522ab9f39a2ea568f7027eddc7d8d8bc9d59c8 # v3.3.1
+```
+
 ## Dump context metadata
 
 Use Context to retrive job id, name and others system info.
