@@ -9,11 +9,11 @@ jobs:
     runs-on: ubuntu-24.04
     timeout-minutes: 3
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
         with:
           fetch-depth: 2
       - id: changed-files
-        uses: trilom/file-changes-action@v1.2.4
+        uses: trilom/file-changes-action@a6ca26c14274c33b15e6499323aac178af06ad4b # v1.2.4
         with:
           output: "," # default 'json'
       - name: Changed file list
@@ -23,7 +23,7 @@ jobs:
       - name: Is changed files include .github/dummy?
         run: echo "${{ contains(steps.changed-files.outputs.files, '.github/dummy')}}"
       - id: changed-files2
-        uses: trilom/file-changes-action@v1.2.4
+        uses: trilom/file-changes-action@a6ca26c14274c33b15e6499323aac178af06ad4b # v1.2.4
         if: ${{ github.event.pull_request.changed_files < 100 }} # when changed files less than 100
         with:
           output: " "
@@ -35,7 +35,7 @@ jobs:
             echo "$file was changed"
           done
       - id: changed-files3
-        uses: trilom/file-changes-action@v1.2.4
+        uses: trilom/file-changes-action@a6ca26c14274c33b15e6499323aac178af06ad4b # v1.2.4
         if: ${{ github.event.pull_request.changed_files < 100 }} # when changed files less than 100
         with:
           output: "json"

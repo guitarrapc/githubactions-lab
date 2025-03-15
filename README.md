@@ -36,6 +36,7 @@ GitHub Actions research and test laboratory.
   - [Skip CI and commit message](#skip-ci-and-commit-message)
   - [Store Build Artifacts](#store-build-artifacts)
 - [Basic - Fundamentables](#basic---fundamentables)
+  - [Pin Third-Party GitHub Actions to a Specific Commit SHA](#pin-third-party-github-actions-to-a-specific-commit-sha)
   - [Dump context metadata](#dump-context-metadata)
   - [Environment variables in script](#environment-variables-in-script)
   - [If and context reference](#if-and-context-reference)
@@ -371,6 +372,23 @@ GitHub Actions use Build artifacts to share files between jobs in a workflow and
 
 # Basic - Fundamentables
 
+## Pin Third-Party GitHub Actions to a Specific Commit SHA
+
+Several vulnerabilities in GitHub Actions have been identified due to the use of tags or version numbers.
+To mitigate these risks, always pin your actions to a specific commit SHA.
+
+For example, instead of using:
+
+```
+uses: actions/cache@v3.3.1
+```
+
+pin the action to a specific commit:
+
+```
+uses: actions/cache@88522ab9f39a2ea568f7027eddc7d8d8bc9d59c8 # v3.3.1
+```
+
 ## Dump context metadata
 
 Use Context to retrive job id, name and others system info.
@@ -458,7 +476,7 @@ jobs:
     runs-on: ubuntu-24.04
     timeout-minutes: 3
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
       - name: Dump environment
         run: env
       - name: Dump GITHUB_EVENT_PATH json
@@ -545,7 +563,7 @@ jobs:
       run:
         shell: bash
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
       - name: Add ENV and OUTPUT by shell
         id: shell
         run: |
@@ -577,7 +595,7 @@ jobs:
       run:
         shell: pwsh
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
       - name: Add ENV and OUTPUT by shell
         id: shell
         run: |
@@ -609,7 +627,7 @@ jobs:
       run:
         shell: cmd
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
       # cmd must not use quotes!!
       - name: Add ENV and OUTPUT by shell
         id: shell
@@ -911,7 +929,7 @@ jobs:
     runs-on: ubuntu-24.04
     timeout-minutes: 10
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
 
 ```
 
@@ -943,7 +961,7 @@ jobs:
     runs-on: ubuntu-24.04
     timeout-minutes: 3
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
 
 ```
 
@@ -993,7 +1011,7 @@ jobs:
     runs-on: ubuntu-24.04
     timeout-minutes: 3
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
       - name: use local action
         uses: ./.github/actions/local-composite-actions
         with:
@@ -1049,7 +1067,7 @@ jobs:
     runs-on: ubuntu-24.04
     timeout-minutes: 3
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
       - name: use local action
         uses: ./.github/actions/local-node-actions
 
@@ -1132,7 +1150,7 @@ jobs:
       output1: ${{ steps.step1.outputs.firstword }}
       output2: ${{ steps.step2.outputs.secondword }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
         with:
           ref: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.ref || '' }} # checkout PR HEAD commit instead of merge commit
       - name: (Limitation) Callee can not refer caller environment variable.
@@ -1600,7 +1618,7 @@ jobs:
       TAGS: ${{ inputs.tags }}
     steps:
       - run: echo ${{ env.BRANCH }} ${{ env.LOGLEVEL }} ${{ env.TAGS }}
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
         with:
           ref: ${{ inputs.branch }}
       - name: dump github context
@@ -1744,7 +1762,7 @@ jobs:
     runs-on: ubuntu-24.04
     steps:
       # no check for main and tag
-      - uses: rokroskar/workflow-run-cleanup-action@v0.3.3
+      - uses: rokroskar/workflow-run-cleanup-action@ee1451b869ba1e381729b3d40489997021f0d562 # v0.3.3
         if: ${{ !startsWith(github.ref, 'refs/tags/') && github.ref != 'refs/heads/main' }}
         env:
           GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
@@ -1780,10 +1798,10 @@ jobs:
     runs-on: ubuntu-24.04
     timeout-minutes: 3
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
       # see: https://github.com/dorny/paths-filter/blob/master/README.md
       - id: changed-files
-        uses: dorny/paths-filter@v3
+        uses: dorny/paths-filter@de90cc6fb38fc0963ad72b210f1f284cd68cea36 # v3.0.2
         with:
           base: ${{ github.event_name == 'push' && github.ref || '' }}
           list-files: csv # default 'none'. Disables listing of matching files.
@@ -1802,7 +1820,7 @@ jobs:
         run: echo "${{ contains(steps.changed-files.outputs.foo_files, '.github/dummy')}}"
       # space separated
       - id: changed-files2
-        uses: dorny/paths-filter@v3
+        uses: dorny/paths-filter@de90cc6fb38fc0963ad72b210f1f284cd68cea36 # v3.0.2
         if: ${{ github.event.pull_request.changed_files < 100 }} # when changed files less than 100
         with:
           base: ${{ github.event_name == 'push' && github.ref || '' }}
@@ -1819,7 +1837,7 @@ jobs:
           done
       # json separated
       - id: changed-files3
-        uses: dorny/paths-filter@v3
+        uses: dorny/paths-filter@de90cc6fb38fc0963ad72b210f1f284cd68cea36 # v3.0.2
         with:
           base: ${{ github.event_name == 'push' && github.ref || '' }}
           list-files: json
@@ -1848,10 +1866,10 @@ jobs:
     runs-on: ubuntu-24.04
     timeout-minutes: 3
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
       # see: https://github.com/dorny/paths-filter/blob/master/README.md
       - id: changed-files
-        uses: dorny/paths-filter@v3
+        uses: dorny/paths-filter@de90cc6fb38fc0963ad72b210f1f284cd68cea36 # v3.0.2
         with:
           base: ${{ github.event_name == 'push' && github.ref || '' }}
           list-files: csv # default 'none'. Disables listing of matching files.
@@ -1870,7 +1888,7 @@ jobs:
         run: echo "${{ contains(steps.changed-files.outputs.foo_files, '.github/dummy')}}"
       # space separated
       - id: changed-files2
-        uses: dorny/paths-filter@v3
+        uses: dorny/paths-filter@de90cc6fb38fc0963ad72b210f1f284cd68cea36 # v3.0.2
         if: ${{ github.event.pull_request.changed_files < 100 }} # when changed files less than 100
         with:
           base: ${{ github.event_name == 'push' && github.ref || '' }}
@@ -1887,7 +1905,7 @@ jobs:
           done
       # json separated
       - id: changed-files3
-        uses: dorny/paths-filter@v3
+        uses: dorny/paths-filter@de90cc6fb38fc0963ad72b210f1f284cd68cea36 # v3.0.2
         with:
           base: ${{ github.event_name == 'push' && github.ref || '' }}
           list-files: json
@@ -1929,7 +1947,7 @@ jobs:
         run: echo "$CONTEXT"
         env:
           CONTEXT: ${{ toJson(github) }}
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
         with:
           ref: refs/heads/some-branch
 
@@ -1975,7 +1993,7 @@ jobs:
         id: tag
         run: echo "value=${{ inputs.tag || (github.event_name == 'pull_request' && '0.1.0-test' || github.ref_name) }}" | tee -a "$GITHUB_OUTPUT"
       # Create Tag
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
       - name: Create Tag and push if not exists
         run: |
           if ! git ls-remote --tags | grep ${{ steps.tag.outputs.value }}; then
@@ -2214,7 +2232,7 @@ jobs:
     runs-on: ubuntu-24.04
     timeout-minutes: 3
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
 
 ```
 
@@ -2240,7 +2258,7 @@ jobs:
     runs-on: ubuntu-24.04
     timeout-minutes: 3
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
 
 ```
 
@@ -2333,7 +2351,7 @@ jobs:
       - name: output
         run: |
           echo "hoge" > ./hoge.txt
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@4cec3d8aa04e39d1a68397de0c4cd6fb9dce8ec1 # v4.6.1
         with:
           name: hoge.txt
           path: ./hoge.txt
@@ -2344,7 +2362,7 @@ jobs:
     runs-on: ubuntu-24.04
     timeout-minutes: 3
     steps:
-      - uses: actions/download-artifact@v4
+      - uses: actions/download-artifact@cc203385981b70ca67e1cc392babf9cc229d5806 # v4.1.9
         with:
           name: hoge.txt
           path: .
@@ -2382,7 +2400,7 @@ jobs:
           echo "fuga" > ./directory/fuga.txt
           echo "foo" > ./directory/bin/foo.txt
           echo "bar" > ./directory/bin/bar.txt
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@4cec3d8aa04e39d1a68397de0c4cd6fb9dce8ec1 # v4.6.1
         with:
           name: directory
           path: ./directory/
@@ -2392,7 +2410,7 @@ jobs:
     runs-on: ubuntu-24.04
     timeout-minutes: 3
     steps:
-      - uses: actions/download-artifact@v4
+      - uses: actions/download-artifact@cc203385981b70ca67e1cc392babf9cc229d5806 # v4.1.9
         with:
           name: directory
           path: ./directory
@@ -2431,7 +2449,7 @@ jobs:
           echo "foo" > ./output/bin/foo.txt
           echo "bar" > ./output/bin/bar.txt
           tar -zcvf output.tar.gz ./output/
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@4cec3d8aa04e39d1a68397de0c4cd6fb9dce8ec1 # v4.6.1
         with:
           name: output.tar.gz
           path: ./output.tar.gz
@@ -2443,7 +2461,7 @@ jobs:
     timeout-minutes: 3
     steps:
       # specify path: . to download tar.gz to current directory
-      - uses: actions/download-artifact@v4
+      - uses: actions/download-artifact@cc203385981b70ca67e1cc392babf9cc229d5806 # v4.1.9
         with:
           name: output.tar.gz
           path: .
@@ -2513,7 +2531,7 @@ jobs:
     runs-on: ubuntu-24.04
     timeout-minutes: 5
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
         with:
           sparse-checkout: |
             src
@@ -2572,7 +2590,7 @@ jobs:
     runs-on: ubuntu-24.04
     timeout-minutes: 5
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
         with:
           sparse-checkout: |
             src/*
@@ -2627,7 +2645,7 @@ jobs:
     runs-on: ubuntu-24.04
     timeout-minutes: 5
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
         with:
           sparse-checkout: |
             !src/*
@@ -2773,7 +2791,7 @@ jobs:
     timeout-minutes: 3
     steps:
       - name: Prevent file change for github YAML files.
-        uses: xalvarez/prevent-file-change-action@v2
+        uses: xalvarez/prevent-file-change-action@4e88b842aed52bb42b94537ad9736eac06930266 # v2.0.0
         with:
           githubToken: ${{ secrets.GITHUB_TOKEN }}
           pattern: ^\.github\/.*.y[a]?ml$ # -> .github/**/*.yaml
@@ -2848,7 +2866,7 @@ jobs:
     runs-on: ubuntu-24.04
     timeout-minutes: 3
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
       - name: Install actionlint
         run: bash <(curl https://raw.githubusercontent.com/rhysd/actionlint/main/scripts/download-actionlint.bash)
       - name: Run actionlint
@@ -2874,9 +2892,9 @@ jobs:
     runs-on: ubuntu-24.04
     timeout-minutes: 3
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
       - name: actionlint
-        uses: reviewdog/action-actionlint@v1
+        uses: reviewdog/action-actionlint@db58217885f9a6570da9c71be4e40ec33fe44a1f # v1.65.0
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           reporter: github-pr-review
@@ -2906,8 +2924,8 @@ jobs:
     runs-on: ubuntu-24.04
     timeout-minutes: 3
     steps:
-      - uses: actions/checkout@v4
-      - uses: jwalton/gh-find-current-pr@v1
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+      - uses: jwalton/gh-find-current-pr@89ee5799558265a1e0e31fab792ebb4ee91c016b # v1.3.3
         id: pr
         with:
           state: closed
@@ -2945,12 +2963,12 @@ jobs:
     timeout-minutes: 3
     steps:
       - name: Collect actions workflow telemetry
-        uses: runforesight/workflow-telemetry-action@v2
+        uses: runforesight/workflow-telemetry-action@94c3c3d9567a0205de6da68a76c428ce4e769af1 # v2.0.0
         with:
           theme: dark # or light. dark generate charts compatible with Github dark mode.
           comment_on_pr: false # post telemetry to PR comment. It won't override existing comment, therefore too noisy for PR.
-      - uses: actions/checkout@v4
-      - uses: actions/setup-dotnet@v4
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+      - uses: actions/setup-dotnet@3951f0dfe7a07e2313ec93c75700083e2005cbab # v4.3.0
         with:
           dotnet-version: 8.0.x
       - name: dotnet build
@@ -3080,15 +3098,15 @@ jobs:
     runs-on: ubuntu-24.04
     timeout-minutes: 3
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
       - name: Downloaded actions from the marketplace
         run: ls -l /home/runner/work/_actions
       - name: See actions download path
         run: ls -l /home/runner/work/_actions/actions/checkout/
       - name: See actions download contents
-        run: ls -lR /home/runner/work/_actions/actions/checkout/v4
+        run: ls -lR /home/runner/work/_actions/actions/checkout/11bd71901bbe5b1630ceea73d27597364c9af683
       - name: Cat action's src/main.ts
-        run: cat /home/runner/work/_actions/actions/checkout/v4/src/main.ts
+        run: cat /home/runner/work/_actions/actions/checkout/11bd71901bbe5b1630ceea73d27597364c9af683/src/main.ts
 
 ```
 

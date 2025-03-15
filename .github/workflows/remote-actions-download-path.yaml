@@ -9,12 +9,12 @@ jobs:
     runs-on: ubuntu-24.04
     timeout-minutes: 3
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
       - name: Downloaded actions from the marketplace
         run: ls -l /home/runner/work/_actions
       - name: See actions download path
         run: ls -l /home/runner/work/_actions/actions/checkout/
       - name: See actions download contents
-        run: ls -lR /home/runner/work/_actions/actions/checkout/v4
+        run: ls -lR /home/runner/work/_actions/actions/checkout/11bd71901bbe5b1630ceea73d27597364c9af683
       - name: Cat action's src/main.ts
-        run: cat /home/runner/work/_actions/actions/checkout/v4/src/main.ts
+        run: cat /home/runner/work/_actions/actions/checkout/11bd71901bbe5b1630ceea73d27597364c9af683/src/main.ts

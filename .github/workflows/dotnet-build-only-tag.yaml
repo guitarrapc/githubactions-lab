@@ -16,14 +16,14 @@ jobs:
     runs-on: ubuntu-24.04
     timeout-minutes: 5
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-dotnet@v4
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+      - uses: actions/setup-dotnet@3951f0dfe7a07e2313ec93c75700083e2005cbab # v4.3.0
         with:
           dotnet-version: 8.0.x
       - run: dotnet build ./src/dotnet -c Release
       - run: dotnet test ./src/dotnet -c Release --logger GitHubActions --logger "console;verbosity=normal"
       - run: dotnet publish ./src/dotnet -c Release
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@4cec3d8aa04e39d1a68397de0c4cd6fb9dce8ec1 # v4.6.1
         with:
           name: dotnet-console
           path: ./src/dotnet/artifacts/publish/Sandbox.Console/
@@ -35,11 +35,11 @@ jobs:
     container:
       image: mcr.microsoft.com/dotnet/sdk:8.0
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
       - run: dotnet build ./src/dotnet -c Release
       - run: dotnet test ./src/dotnet -c Release --logger GitHubActions --logger "console;verbosity=normal"
       - run: dotnet publish ./src/dotnet -c Release -o ./out/dotnet-console-container
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@4cec3d8aa04e39d1a68397de0c4cd6fb9dce8ec1 # v4.6.1
         with:
           name: dotnet-container
           path: ./out/dotnet-console-container/
@@ -50,7 +50,7 @@ jobs:
     timeout-minutes: 5
     needs: [runner, container]
     steps:
-      - uses: actions/download-artifact@v4
+      - uses: actions/download-artifact@cc203385981b70ca67e1cc392babf9cc229d5806 # v4.1.9
       - run: ls -l
       # zip up files
       - run: zip -r Sandbox.Console.zip ./dotnet-console
