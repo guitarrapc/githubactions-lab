@@ -36,6 +36,7 @@ GitHub Actions research and test laboratory.
   - [Skip CI and commit message](#skip-ci-and-commit-message)
   - [Store Build Artifacts](#store-build-artifacts)
 - [Basic - Fundamentables](#basic---fundamentables)
+  - [Pin Third-Party GitHub Actions to a Specific Commit SHA](#pin-third-party-github-actions-to-a-specific-commit-sha)
   - [Dump context metadata](#dump-context-metadata)
   - [Environment variables in script](#environment-variables-in-script)
   - [If and context reference](#if-and-context-reference)
