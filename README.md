@@ -2749,7 +2749,7 @@ One of GitHub's vulnerable point is Workflow. Editting Workflow shoulbe be requi
 
 Easiest and simple way is use `pull_request` target and path filter, then detect PR is fork or not. There might be many ways to prevent file change. `xalvarez/prevent-file-change-action` can guard change in the step. Using `dorny/paths-filter`, or others will be flexible way to detect change and do what you want.
 
-> [!WARN]
+> [!Warning]
 > Stop using `tj-actions/changed-files` as of reaction to the [security vulnerbility](https://www.stepsecurity.io/blog/harden-runner-detection-tj-actions-changed-files-action-is-compromised)
 
 ```yaml
