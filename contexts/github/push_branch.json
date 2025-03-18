@@ -2,15 +2,15 @@
   "token": "<reducted>",
   "job": "dump-context",
   "ref": "refs/heads/main",
-  "sha": "60c1be9786c64f515a859164e129f6791deaafb2",
+  "sha": "d1e14db7bf28e80a6cc4b150f5749a03354a17fd",
   "repository": "guitarrapc/githubactions-lab",
   "repository_owner": "guitarrapc",
   "repository_owner_id": "3856350",
   "repositoryUrl": "git://github.com/guitarrapc/githubactions-lab.git",
-  "run_id": "13913781870",
-  "run_number": "259",
+  "run_id": "13913736152",
+  "run_number": "257",
   "retention_days": "90",
-  "run_attempt": "1",
+  "run_attempt": "2",
   "artifact_cache_size_limit": "10",
   "repository_visibility": "public",
   "repo-self-hosted-runners-disabled": false,
@@ -24,27 +24,63 @@
   "base_ref": "",
   "event_name": "push",
   "event": {
-    "after": "60c1be9786c64f515a859164e129f6791deaafb2",
+    "after": "d1e14db7bf28e80a6cc4b150f5749a03354a17fd",
     "base_ref": null,
-    "before": "ceb65cb7f9f9957871240845b9253187ad37aedc",
+    "before": "aa9ca4f3b4676e43b4d9e5693ecee38648cfb2bf",
     "commits": [
       {
         "author": {
-          "email": "49699333+dependabot[bot]@users.noreply.github.com",
-          "name": "dependabot[bot]",
-          "username": "dependabot[bot]"
+          "email": "3856350+guitarrapc@users.noreply.github.com",
+          "name": "Ikiru Yoshizaki",
+          "username": "guitarrapc"
         },
         "committer": {
-          "email": "noreply@github.com",
-          "name": "GitHub",
-          "username": "web-flow"
+          "email": "3856350+guitarrapc@users.noreply.github.com",
+          "name": "Ikiru Yoshizaki",
+          "username": "guitarrapc"
         },
         "distinct": false,
-        "id": "163c02c621c0ae0c26180a88acaecd307b70800d",
-        "message": "chore(deps): bump actions/setup-dotnet from 4.3.0 to 4.3.1\n\nBumps [actions/setup-dotnet](https://github.com/actions/setup-dotnet) from 4.3.0 to 4.3.1.\n- [Release notes](https://github.com/actions/setup-dotnet/releases)\n- [Commits](https://github.com/actions/setup-dotnet/compare/3951f0dfe7a07e2313ec93c75700083e2005cbab...67a3573c9a986a3f9c594539f4ab511d57bb3ce9)\n\n---\nupdated-dependencies:\n- dependency-name: actions/setup-dotnet\n  dependency-type: direct:production\n  update-type: version-update:semver-patch\n...\n\nSigned-off-by: dependabot[bot] <support@github.com>",
-        "timestamp": "2025-03-17T17:37:30Z",
-        "tree_id": "28f28a85d8cb325795cf963dca7960bc5c79f4b3",
-        "url": "https://github.com/guitarrapc/githubactions-lab/commit/163c02c621c0ae0c26180a88acaecd307b70800d"
+        "id": "e1ec16586d0e60db2edd5e61c4eaa2918128f46f",
+        "message": "chore: drop reviewdog",
+        "timestamp": "2025-03-18T10:39:42+09:00",
+        "tree_id": "cff000430ac8612fd0ba1f22125933116e189a17",
+        "url": "https://github.com/guitarrapc/githubactions-lab/commit/e1ec16586d0e60db2edd5e61c4eaa2918128f46f"
+      },
+      {
+        "author": {
+          "email": "41898282+github-actions[bot]@users.noreply.github.com",
+          "name": "github-actions[bot]",
+          "username": "github-actions[bot]"
+        },
+        "committer": {
+          "email": "41898282+github-actions[bot]@users.noreply.github.com",
+          "name": "github-actions[bot]",
+          "username": "github-actions[bot]"
+        },
+        "distinct": false,
+        "id": "dc8c74b9a94f4d687922a628d716f1a8d96445cc",
+        "message": "[auto commit] update context (workflow=auto dump context, event=pull_request, action=opened)",
+        "timestamp": "2025-03-18T01:40:30Z",
+        "tree_id": "8e77e043d4ba39b3492c3a4415b3dc901be2ba93",
+        "url": "https://github.com/guitarrapc/githubactions-lab/commit/dc8c74b9a94f4d687922a628d716f1a8d96445cc"
+      },
+      {
+        "author": {
+          "email": "41898282+github-actions[bot]@users.noreply.github.com",
+          "name": "github-actions[bot]",
+          "username": "github-actions[bot]"
+        },
+        "committer": {
+          "email": "41898282+github-actions[bot]@users.noreply.github.com",
+          "name": "github-actions[bot]",
+          "username": "github-actions[bot]"
+        },
+        "distinct": false,
+        "id": "dfa1a475c48fe894032a93b88d1c834d182138b9",
+        "message": "[auto commit] update context (workflow=auto dump context, event=pull_request_target, action=opened)",
+        "timestamp": "2025-03-18T01:54:37Z",
+        "tree_id": "b5cc829fb24476ff52e3f4ed6052e67243c40050",
+        "url": "https://github.com/guitarrapc/githubactions-lab/commit/dfa1a475c48fe894032a93b88d1c834d182138b9"
       },
       {
         "author": {
@@ -58,14 +94,14 @@
           "username": "web-flow"
         },
         "distinct": true,
-        "id": "60c1be9786c64f515a859164e129f6791deaafb2",
-        "message": "Merge pull request #201 from guitarrapc/dependabot/github_actions/actions/setup-dotnet-4.3.1\n\nchore(deps): bump actions/setup-dotnet from 4.3.0 to 4.3.1",
-        "timestamp": "2025-03-18T11:03:04+09:00",
-        "tree_id": "d2590254daf76c98c75184b95dded849d6cf9a9f",
-        "url": "https://github.com/guitarrapc/githubactions-lab/commit/60c1be9786c64f515a859164e129f6791deaafb2"
+        "id": "d1e14db7bf28e80a6cc4b150f5749a03354a17fd",
+        "message": "Merge pull request #202 from guitarrapc/fetaure/drop_reviewdog\n\nchore: drop reviewdog",
+        "timestamp": "2025-03-18T10:58:51+09:00",
+        "tree_id": "b5cc829fb24476ff52e3f4ed6052e67243c40050",
+        "url": "https://github.com/guitarrapc/githubactions-lab/commit/d1e14db7bf28e80a6cc4b150f5749a03354a17fd"
       }
     ],
-    "compare": "https://github.com/guitarrapc/githubactions-lab/compare/ceb65cb7f9f9...60c1be9786c6",
+    "compare": "https://github.com/guitarrapc/githubactions-lab/compare/aa9ca4f3b467...d1e14db7bf28",
     "created": false,
     "deleted": false,
     "forced": false,
@@ -81,11 +117,11 @@
         "username": "web-flow"
       },
       "distinct": true,
-      "id": "60c1be9786c64f515a859164e129f6791deaafb2",
-      "message": "Merge pull request #201 from guitarrapc/dependabot/github_actions/actions/setup-dotnet-4.3.1\n\nchore(deps): bump actions/setup-dotnet from 4.3.0 to 4.3.1",
-      "timestamp": "2025-03-18T11:03:04+09:00",
-      "tree_id": "d2590254daf76c98c75184b95dded849d6cf9a9f",
-      "url": "https://github.com/guitarrapc/githubactions-lab/commit/60c1be9786c64f515a859164e129f6791deaafb2"
+      "id": "d1e14db7bf28e80a6cc4b150f5749a03354a17fd",
+      "message": "Merge pull request #202 from guitarrapc/fetaure/drop_reviewdog\n\nchore: drop reviewdog",
+      "timestamp": "2025-03-18T10:58:51+09:00",
+      "tree_id": "b5cc829fb24476ff52e3f4ed6052e67243c40050",
+      "url": "https://github.com/guitarrapc/githubactions-lab/commit/d1e14db7bf28e80a6cc4b150f5749a03354a17fd"
     },
     "pusher": {
       "email": "3856350+guitarrapc@users.noreply.github.com",
@@ -154,8 +190,8 @@
       "name": "githubactions-lab",
       "node_id": "MDEwOlJlcG9zaXRvcnkyNTc0NjU0Njg=",
       "notifications_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/notifications{?since,all,participating}",
-      "open_issues": 7,
-      "open_issues_count": 7,
+      "open_issues": 8,
+      "open_issues_count": 8,
       "owner": {
         "avatar_url": "https://avatars.githubusercontent.com/u/3856350?v=4",
         "email": "3856350+guitarrapc@users.noreply.github.com",
@@ -181,7 +217,7 @@
       },
       "private": false,
       "pulls_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls{/number}",
-      "pushed_at": 1742263384,
+      "pushed_at": 1742263132,
       "releases_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/releases{/id}",
       "size": 2657,
       "ssh_url": "git@github.com:guitarrapc/githubactions-lab.git",
@@ -198,7 +234,7 @@
         "github-actions"
       ],
       "trees_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/git/trees{/sha}",
-      "updated_at": "2025-03-18T01:59:41Z",
+      "updated_at": "2025-03-18T00:03:18Z",
       "url": "https://github.com/guitarrapc/githubactions-lab",
       "visibility": "public",
       "watchers": 49,
@@ -235,15 +271,15 @@
   "ref_type": "branch",
   "secret_source": "Actions",
   "workflow_ref": "guitarrapc/githubactions-lab/.github/workflows/auto-dump-context.yaml@refs/heads/main",
-  "workflow_sha": "60c1be9786c64f515a859164e129f6791deaafb2",
+  "workflow_sha": "d1e14db7bf28e80a6cc4b150f5749a03354a17fd",
   "workspace": "/home/runner/work/githubactions-lab/githubactions-lab",
   "action": "__run_3",
   "event_path": "/home/runner/work/_temp/_github_workflow/event.json",
   "action_repository": "",
   "action_ref": "",
-  "path": "/home/runner/work/_temp/_runner_file_commands/add_path_11a3d5d7-2209-4127-b1de-2c1f0218e4a6",
-  "env": "/home/runner/work/_temp/_runner_file_commands/set_env_11a3d5d7-2209-4127-b1de-2c1f0218e4a6",
-  "step_summary": "/home/runner/work/_temp/_runner_file_commands/step_summary_11a3d5d7-2209-4127-b1de-2c1f0218e4a6",
-  "state": "/home/runner/work/_temp/_runner_file_commands/save_state_11a3d5d7-2209-4127-b1de-2c1f0218e4a6",
-  "output": "/home/runner/work/_temp/_runner_file_commands/set_output_11a3d5d7-2209-4127-b1de-2c1f0218e4a6"
+  "path": "/home/runner/work/_temp/_runner_file_commands/add_path_b4590cca-dadf-4e6c-bf86-c418ccd55c61",
+  "env": "/home/runner/work/_temp/_runner_file_commands/set_env_b4590cca-dadf-4e6c-bf86-c418ccd55c61",
+  "step_summary": "/home/runner/work/_temp/_runner_file_commands/step_summary_b4590cca-dadf-4e6c-bf86-c418ccd55c61",
+  "state": "/home/runner/work/_temp/_runner_file_commands/save_state_b4590cca-dadf-4e6c-bf86-c418ccd55c61",
+  "output": "/home/runner/work/_temp/_runner_file_commands/set_output_b4590cca-dadf-4e6c-bf86-c418ccd55c61"
 }
