@@ -2311,6 +2311,11 @@ updates:
     directory: "/"
     schedule:
       interval: "weekly" # Check for updates to GitHub Actions every week
+    ignore:
+      # I just want update action when major/minor version is updated. patch updates are too noisy.
+      - dependency-name: '*'
+        update-types:
+          - version-update:semver-patch
 
 ```
 
