@@ -1,7 +1,7 @@
 {
-  "after": "bbad741e0fdadd091e2e2d7bd4dc3be24d1bdfaf",
+  "after": "98d326dfde2b05cf2b93fb9a43bd023f3cf34148",
   "base_ref": null,
-  "before": "95b3f0cb8ae9037b407d9e855d362d25328334c0",
+  "before": "0c4b29f063febe45f934ae0aa5f7b7884176610f",
   "commits": [
     {
       "author": {
@@ -10,19 +10,19 @@
         "username": "guitarrapc"
       },
       "committer": {
-        "email": "noreply@github.com",
-        "name": "GitHub",
-        "username": "web-flow"
+        "email": "3856350+guitarrapc@users.noreply.github.com",
+        "name": "Ikiru Yoshizaki",
+        "username": "guitarrapc"
       },
       "distinct": true,
-      "id": "bbad741e0fdadd091e2e2d7bd4dc3be24d1bdfaf",
-      "message": "Update README.md",
-      "timestamp": "2025-03-18T11:31:01+09:00",
-      "tree_id": "1b556a49b8d0b4b7308890d0fafdc1a2a1bf50c9",
-      "url": "https://github.com/guitarrapc/githubactions-lab/commit/bbad741e0fdadd091e2e2d7bd4dc3be24d1bdfaf"
+      "id": "98d326dfde2b05cf2b93fb9a43bd023f3cf34148",
+      "message": "chore: ignore patch version update",
+      "timestamp": "2025-03-18T12:04:40+09:00",
+      "tree_id": "17bbfdc6ca3cc77b7235a4bbd1832ee1e10d9283",
+      "url": "https://github.com/guitarrapc/githubactions-lab/commit/98d326dfde2b05cf2b93fb9a43bd023f3cf34148"
     }
   ],
-  "compare": "https://github.com/guitarrapc/githubactions-lab/compare/95b3f0cb8ae9...bbad741e0fda",
+  "compare": "https://github.com/guitarrapc/githubactions-lab/compare/0c4b29f063fe...98d326dfde2b",
   "created": false,
   "deleted": false,
   "forced": false,
@@ -33,16 +33,16 @@
       "username": "guitarrapc"
     },
     "committer": {
-      "email": "noreply@github.com",
-      "name": "GitHub",
-      "username": "web-flow"
+      "email": "3856350+guitarrapc@users.noreply.github.com",
+      "name": "Ikiru Yoshizaki",
+      "username": "guitarrapc"
     },
     "distinct": true,
-    "id": "bbad741e0fdadd091e2e2d7bd4dc3be24d1bdfaf",
-    "message": "Update README.md",
-    "timestamp": "2025-03-18T11:31:01+09:00",
-    "tree_id": "1b556a49b8d0b4b7308890d0fafdc1a2a1bf50c9",
-    "url": "https://github.com/guitarrapc/githubactions-lab/commit/bbad741e0fdadd091e2e2d7bd4dc3be24d1bdfaf"
+    "id": "98d326dfde2b05cf2b93fb9a43bd023f3cf34148",
+    "message": "chore: ignore patch version update",
+    "timestamp": "2025-03-18T12:04:40+09:00",
+    "tree_id": "17bbfdc6ca3cc77b7235a4bbd1832ee1e10d9283",
+    "url": "https://github.com/guitarrapc/githubactions-lab/commit/98d326dfde2b05cf2b93fb9a43bd023f3cf34148"
   },
   "pusher": {
     "email": "3856350+guitarrapc@users.noreply.github.com",
@@ -138,9 +138,9 @@
     },
     "private": false,
     "pulls_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls{/number}",
-    "pushed_at": 1742265061,
+    "pushed_at": 1742267083,
     "releases_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/releases{/id}",
-    "size": 2657,
+    "size": 2612,
     "ssh_url": "git@github.com:guitarrapc/githubactions-lab.git",
     "stargazers": 49,
     "stargazers_count": 49,
@@ -155,7 +155,7 @@
       "github-actions"
     ],
     "trees_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/git/trees{/sha}",
-    "updated_at": "2025-03-18T02:31:00Z",
+    "updated_at": "2025-03-18T02:32:38Z",
     "url": "https://github.com/guitarrapc/githubactions-lab",
     "visibility": "public",
     "watchers": 49,
