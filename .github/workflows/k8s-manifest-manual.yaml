@@ -2,17 +2,13 @@ name: k8s manifest PR
 on:
   workflow_dispatch:
     inputs:
-      branch:
-        description: "branch name to clone"
-        required: true
-        default: "main"
-      manifest_dir:
+      manifest-dir:
         description: "manifest directory to push"
         required: true
         default: "dev"
 env:
   REPO_MANIFEST: guitarrapc/kubernetes-manifest-lab
-  MANIFEST_DIR: dev
+
 jobs:
   push_manifest_manual:
     env:
@@ -20,60 +16,48 @@ jobs:
     runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
-        with:
-          ref: ${{ inputs.branch }}
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
         with:
           repository: ${{ env.REPO_MANIFEST }}
           path: ${{ env.REPO_MANIFEST }}
           token: ${{ secrets.SYNCED_GITHUB_TOKEN_REPO }}
-      - run: echo "BRANCH=${GITHUB_REF##*/}" >> "$GITHUB_ENV"
-        env:
-          REF: ${{ inputs.branch }}
-      - run: |
-          {
-            echo "GIT_BRANCH=$(echo "$BRANCH" | sed -e 's|/|-|g' -e 's/_/-/g')"
-            echo "REMOTE_BRANCH=${REMOTE_BRANCH}"
-            echo "SHA=$(git rev-parse HEAD)"
-            echo "SHORT_SHA=$(git rev-parse --short HEAD)"
-          } >> "$GITHUB_ENV"
-        env:
-          REMOTE_BRANCH: ${{ github.event.repository.name }}/${{ env.BRANCH }}
       - name: git checkout
         run: |
-          git fetch origin "${REMOTE_BRANCH}":"${REMOTE_BRANCH}" || git switch -C "${REMOTE_BRANCH}"
-          git reset --hard "${REMOTE_BRANCH}"
+          git fetch origin "${BRANCH}":"${BRANCH}" || git switch -C "${BRANCH}"
+          git reset --hard "${BRANCH}"
+        env:
+          BRANCH: ${{ env.REPO_MANIFEST }}/${{ github.ref_name }}
         working-directory: ${{ env.REPO_MANIFEST }}
       - name: generate manifest
         run: |
-          mkdir -p "./${REPO_MANIFEST}/${MANIFEST_DIR}"
+          mkdir -p "./${REPO_MANIFEST}/${{ inputs.manifest-dir }}"
           kubectl kustomize ./src/k8s/common/overlays/development \
-            | sed -e "s|<namespace>|${NAMESPACE_PREFIX}${MANIFEST_DIR}|g" \
-            | sed -e "s|<git-sha>|${SHA}|g" \
-            | sed -e "s|<git-branch>|${GIT_BRANCH}|g" \
+            | sed -e "s|<namespace>|${NAMESPACE_PREFIX}${{ inputs.manifest-dir }}|g" \
+            | sed -e "s|<git-sha>|${{ github.sha }}|g" \
+            | sed -e "s|<git-branch>|${{ github.ref_name }}|g" \
             | sed -e "s|<git-link>|${GIT_LINK}|g" \
-            | sed -e "s|<build-id>|${{ github.run_id }}|g" > "${REPO_MANIFEST}/${MANIFEST_DIR}/all.yaml"
+            | sed -e "s|<build-id>|${{ github.run_id }}|g" > "${REPO_MANIFEST}/${{ inputs.manifest-dir }}/all.yaml"
         env:
-          GIT_LINK: ${{ github.event.repository.html_url }}/commit/${{ env.SHA }}
+          GIT_LINK: ${{ github.event.repository.html_url }}/commit/${{ github.sha }}
       - name: git commit
         run: |
           git config user.name github-actions[bot]
           git config user.email 41898282+github-actions[bot]@users.noreply.github.com
           git status
-          git add "${MANIFEST_DIR}/*"
+          git add "${{ inputs.manifest-dir }}/*"
           ret=$(git status| sed -ne 's|.*\(clean\)|\1|p')
           if [[ "$ret" != "" ]];then
-            git commit -m "(${MANIFEST_DIR}) update manifests ${REPO}@${LINK} (${RUN_ID})" -m "compare: ${COMPARE_URL}"
+            git commit -m "(${{ inputs.manifest-dir }}) update manifests ${REPO}@${LINK} (${RUN_ID})" -m "compare: ${COMPARE_URL}"
           fi
         working-directory: ${{ env.REPO_MANIFEST }}
         env:
           REPO: ${{ github.repository }}
           RUN_ID: ${{ github.run_id }}
-          LINK: ${{ env.SHORT_SHA }}
-          COMPARE_URL: https://github.com/${{ github.repository }}/compare/master...${{ env.SHORT_SHA }}
-      - uses: ad-m/github-push-action@d91a481090679876dfc4178fef17f286781251df
+          LINK: ${{ github.sha }}
+          COMPARE_URL: https://github.com/${{ github.repository }}/compare/master...${{ github.sha }}
+      - uses: ad-m/github-push-action@d91a481090679876dfc4178fef17f286781251df # v0.8.0
         with:
           github_token: ${{ secrets.SYNCED_GITHUB_TOKEN_REPO }}
           repository: ${{ env.REPO_MANIFEST }}
-          branch: ${{ env.REMOTE_BRANCH }}
+          branch: ${{ github.event.repository.name }}/${{ github.ref_name }}
           directory: ${{ env.REPO_MANIFEST }}
