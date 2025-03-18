@@ -1,4 +1,4 @@
-name: "concurrency control cancel in progress"
+name: "concurrency workflow cancel in progress"
 
 # only ${{ github }} context is available
 concurrency:
@@ -11,5 +11,6 @@ on:
 jobs:
   long_job:
     runs-on: ubuntu-24.04
+    timeout-minutes: 5
     steps:
       - run: sleep 60s

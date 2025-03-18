@@ -1,4 +1,4 @@
-name: "concurrency control"
+name: "concurrency workflow"
 
 # only ${{ github }} context is available
 concurrency: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
@@ -9,5 +9,6 @@ on:
 jobs:
   long_job:
     runs-on: ubuntu-24.04
+    timeout-minutes: 5
     steps:
       - run: sleep 60s
