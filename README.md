@@ -539,6 +539,7 @@ on:
 jobs:
   long_job:
     runs-on: ubuntu-24.04
+    timeout-minutes: 5
     steps:
       - run: sleep 60s
 
@@ -562,6 +563,7 @@ on:
 jobs:
   long_job:
     runs-on: ubuntu-24.04
+    timeout-minutes: 5
     steps:
       - run: sleep 60s
 
@@ -573,12 +575,49 @@ Job concurrency control is useful when you want to prevent job to run at same ti
 
 ```yaml
 # .github/workflows/concurrency-job.yaml
+
+name: "concurrency job"
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  job:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    concurrency:
+      group: concurrency-job
+    steps:
+      - name: Show current time
+        run: date
+
 ```
 
 Specifying `cancel-in-progress: true` will cancel parallel build.
 
 ```yaml
 # .github/workflows/concurrency-job-cancel-in-progress.yaml
+
+name: "concurrency job cancel in progress"
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  job:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    concurrency:
+      group: concurrency-job-cip
+      cancel-in-progress: true
+    steps:
+      - name: Show current time
+        run: date
+
 ```
 
 ## Environment variables in script
@@ -3013,9 +3052,9 @@ action folder naming also follow this rule.
 ```yaml
 # .github/workflows/_reusable-dump-context.yaml#L20-L22
 
-# PR should checkout HEAD ref instead of merge commit.                        -> github.head.ref
-# PR close delete branch, so it should checkout BASE ref instead of HEAD ref. -> github.base_ref
-# Tag ref is tag version, let's checkout default branch instead of ref.       -> github.event.repository.default_branch
+# pull_request and pull_request_target event may begin concurrently and conflict git operation. So, let's wait random time.
+- name: Random wait (30-60s)
+  if: ${{ github.event_name == 'pull_request_target' }}
 ```
 
 ## Get Tag
