@@ -1,6 +1,6 @@
 [![auto doc](https://github.com/guitarrapc/githubactions-lab/actions/workflows/auto-doc.yaml/badge.svg)](https://github.com/guitarrapc/githubactions-lab/actions/workflows/auto-doc.yaml)
 [![auto dump context](https://github.com/guitarrapc/githubactions-lab/actions/workflows/auto-dump-context.yaml/badge.svg)](https://github.com/guitarrapc/githubactions-lab/actions/workflows/auto-dump-context.yaml)
-[![actionlint (reviewdog)](https://github.com/guitarrapc/githubactions-lab/actions/workflows/actionlint-reviewdog.yaml/badge.svg)](https://github.com/guitarrapc/githubactions-lab/actions/workflows/actionlint-reviewdog.yaml)
+[![actionlint](https://github.com/guitarrapc/githubactions-lab/actions/workflows/actionlint.yaml/badge.svg)](https://github.com/guitarrapc/githubactions-lab/actions/workflows/actionlint.yaml)
 [![dotnet build](https://github.com/guitarrapc/githubactions-lab/actions/workflows/dotnet-build.yaml/badge.svg)](https://github.com/guitarrapc/githubactions-lab/actions/workflows/dotnet-build.yaml)
 [![dotnet lint](https://github.com/guitarrapc/githubactions-lab/actions/workflows/dotnet-lint.yaml/badge.svg)](https://github.com/guitarrapc/githubactions-lab/actions/workflows/dotnet-lint.yaml)
 
