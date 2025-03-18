@@ -26,7 +26,7 @@ jobs:
           git fetch origin "${BRANCH}":"${BRANCH}" || git switch -C "${BRANCH}"
           git reset --hard "${BRANCH}"
         env:
-          BRANCH: ${{ github.event.repository.name }}/${{ github.ref_name }}
+          BRANCH: ${{ env.REPO_MANIFEST }}/${{ github.ref_name }}
         working-directory: ${{ env.REPO_MANIFEST }}
       - name: generate manifest
         run: |

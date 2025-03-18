@@ -17,7 +17,7 @@ jobs:
           ARCH=$(arch)
           SYSTEM=$(uname)
           wget "https://github.com/open-policy-agent/conftest/releases/download/v${LATEST_VERSION}/conftest_${LATEST_VERSION}_${SYSTEM}_${ARCH}.tar.gz"
-          tar xzf conftest_${LATEST_VERSION}_${SYSTEM}_${ARCH}.tar.gz
+          tar xzf "conftest_${LATEST_VERSION}_${SYSTEM}_${ARCH}.tar.gz"
           sudo mv conftest /usr/local/bin
       - name: test dev
         run: conftest test -p ./.github/policy/dev_env.rego ./.github/workflows/k8s-manifest-manual.yaml ./.github/workflows/k8s-manifest-pr.yaml ./.github/workflows/k8s-manifest-push.yaml

@@ -27,27 +27,31 @@ jobs:
           token: ${{ secrets.SYNCED_GITHUB_TOKEN_REPO }}
       - name: git checkout
         run: |
-          git fetch origin "${{ github.event.repository.name }}/${{ github.head_ref }}":"${{ github.event.repository.name }}/${{ github.head_ref }}" || git switch -C "${{ github.event.repository.name }}/${{ github.head_ref }}"
-          git reset --hard "${{ github.head_ref }}"
+          git fetch origin "${BRANCH}":"${BRANCH}" || git switch -C "${BRANCH}"
+          git reset --hard "${BRANCH}"
+        env:
+          BRANCH: ${{ env.REPO_MANIFEST }}/${{ github.head_ref }}
         working-directory: ${{ env.REPO_MANIFEST }}
       - name: generate manifest
         run: |
-          mkdir -p "./${REPO_MANIFEST}/${MANIFEST_DIR}"
+          mkdir -p "./${{ env.REPO_MANIFEST }}/${{ env.MANIFEST_DIR }}"
           kubectl kustomize ./src/k8s/common/overlays/development \
-            | sed -e "s|<namespace>|${NAMESPACE_PREFIX}${MANIFEST_DIR}|g" \
+            | sed -e "s|<namespace>|${NAMESPACE_PREFIX}${{ env.MANIFEST_DIR }}|g" \
             | sed -e "s|<git-sha>|${{ github.sha }}|g" \
-            | sed -e "s|<git-branch>|${{ github.head_ref }}|g" \
+            | sed -e "s|<git-branch>|${BRANCH}|g" \
             | sed -e "s|<git-link>|${{ github.event.pull_request.html_url }}|g" \
-            | sed -e "s|<build-id>|${{ github.run_id }}|g" > "${REPO_MANIFEST}/${MANIFEST_DIR}/all.yaml"
+            | sed -e "s|<build-id>|${{ github.run_id }}|g" > "${{ env.REPO_MANIFEST }}/${{ env.MANIFEST_DIR }}/all.yaml"
+        env:
+          BRANCH: ${{ github.head_ref }}
       - name: git commit
         run: |
           git config user.name github-actions[bot]
           git config user.email 41898282+github-actions[bot]@users.noreply.github.com
           git status
-          git add "${MANIFEST_DIR}/*"
+          git add "${{ env.MANIFEST_DIR }}/*"
           ret=$(git status| sed -ne 's|.*\(clean\)|\1|p')
           if [[ "$ret" != "" ]];then
-            git commit -m "(${MANIFEST_DIR}) update manifests ${REPO}#${LINK} (${RUN_ID})" -m "compare: ${COMPARE_URL}"
+            git commit -m "(${{ env.MANIFEST_DIR }}) update manifests ${REPO}#${LINK} (${RUN_ID})" -m "compare: ${COMPARE_URL}"
           fi
         working-directory: ${{ env.REPO_MANIFEST }}
         env:
