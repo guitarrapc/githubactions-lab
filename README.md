@@ -389,6 +389,8 @@ pin the action to a specific commit:
 uses: actions/cache@88522ab9f39a2ea568f7027eddc7d8d8bc9d59c8 # v3.3.1
 ```
 
+Both Dependabot and Renovate can help you keep your actions up to date even pinned to a specific commit SHA.
+
 ## Dump context metadata
 
 Use Context to retrive job id, name and others system info.
@@ -2874,34 +2876,7 @@ jobs:
 
 ```
 
-If you need automated PR review, run actionlint with reviewdog.
-
-```yaml
-# .github/workflows/actionlint-reviewdog.yaml
-
-name: actionlint (reviewdog)
-on:
-  workflow_dispatch:
-  pull_request:
-    branches: ["main"]
-    paths:
-      - ".github/workflows/**"
-
-jobs:
-  actionlint:
-    runs-on: ubuntu-24.04
-    timeout-minutes: 3
-    steps:
-      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
-      - name: actionlint
-        uses: reviewdog/action-actionlint@db58217885f9a6570da9c71be4e40ec33fe44a1f # v1.65.0
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          reporter: github-pr-review
-          fail_on_error: true # workflow will fail when actionlint detect warning.
-
-```
-
+If you need automated PR review, `reviewdog/action-actionlint` is useful. However reviewdog cause [security vulnerability with reviewdog/action-setup](https://www.wiz.io/blog/new-github-action-supply-chain-attack-reviewdog-action-setup), I've recommend use with sha for future usage.
 
 ## PR info from Merge Commit
 
