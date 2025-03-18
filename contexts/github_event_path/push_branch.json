@@ -1,61 +1,25 @@
 {
-  "after": "d1e14db7bf28e80a6cc4b150f5749a03354a17fd",
+  "after": "668ad255a8a6815737d5f67a2e1163a8ba414285",
   "base_ref": null,
-  "before": "aa9ca4f3b4676e43b4d9e5693ecee38648cfb2bf",
+  "before": "7fe35a61ddfc966fee88289ffce187caac002eda",
   "commits": [
     {
       "author": {
-        "email": "3856350+guitarrapc@users.noreply.github.com",
-        "name": "Ikiru Yoshizaki",
-        "username": "guitarrapc"
+        "email": "49699333+dependabot[bot]@users.noreply.github.com",
+        "name": "dependabot[bot]",
+        "username": "dependabot[bot]"
       },
       "committer": {
-        "email": "3856350+guitarrapc@users.noreply.github.com",
-        "name": "Ikiru Yoshizaki",
-        "username": "guitarrapc"
+        "email": "noreply@github.com",
+        "name": "GitHub",
+        "username": "web-flow"
       },
       "distinct": false,
-      "id": "e1ec16586d0e60db2edd5e61c4eaa2918128f46f",
-      "message": "chore: drop reviewdog",
-      "timestamp": "2025-03-18T10:39:42+09:00",
-      "tree_id": "cff000430ac8612fd0ba1f22125933116e189a17",
-      "url": "https://github.com/guitarrapc/githubactions-lab/commit/e1ec16586d0e60db2edd5e61c4eaa2918128f46f"
-    },
-    {
-      "author": {
-        "email": "41898282+github-actions[bot]@users.noreply.github.com",
-        "name": "github-actions[bot]",
-        "username": "github-actions[bot]"
-      },
-      "committer": {
-        "email": "41898282+github-actions[bot]@users.noreply.github.com",
-        "name": "github-actions[bot]",
-        "username": "github-actions[bot]"
-      },
-      "distinct": false,
-      "id": "dc8c74b9a94f4d687922a628d716f1a8d96445cc",
-      "message": "[auto commit] update context (workflow=auto dump context, event=pull_request, action=opened)",
-      "timestamp": "2025-03-18T01:40:30Z",
-      "tree_id": "8e77e043d4ba39b3492c3a4415b3dc901be2ba93",
-      "url": "https://github.com/guitarrapc/githubactions-lab/commit/dc8c74b9a94f4d687922a628d716f1a8d96445cc"
-    },
-    {
-      "author": {
-        "email": "41898282+github-actions[bot]@users.noreply.github.com",
-        "name": "github-actions[bot]",
-        "username": "github-actions[bot]"
-      },
-      "committer": {
-        "email": "41898282+github-actions[bot]@users.noreply.github.com",
-        "name": "github-actions[bot]",
-        "username": "github-actions[bot]"
-      },
-      "distinct": false,
-      "id": "dfa1a475c48fe894032a93b88d1c834d182138b9",
-      "message": "[auto commit] update context (workflow=auto dump context, event=pull_request_target, action=opened)",
-      "timestamp": "2025-03-18T01:54:37Z",
-      "tree_id": "b5cc829fb24476ff52e3f4ed6052e67243c40050",
-      "url": "https://github.com/guitarrapc/githubactions-lab/commit/dfa1a475c48fe894032a93b88d1c834d182138b9"
+      "id": "9e0187b6fec1327386fe90de558aeb04d6c05104",
+      "message": "chore(deps): bump aws-actions/configure-aws-credentials\n\nBumps [aws-actions/configure-aws-credentials](https://github.com/aws-actions/configure-aws-credentials) from 4.0.2 to 4.1.0.\n- [Release notes](https://github.com/aws-actions/configure-aws-credentials/releases)\n- [Changelog](https://github.com/aws-actions/configure-aws-credentials/blob/main/CHANGELOG.md)\n- [Commits](https://github.com/aws-actions/configure-aws-credentials/compare/e3dd6a429d7300a6a4c196c26e071d42e0343502...ececac1a45f3b08a01d2dd070d28d111c5fe6722)\n\n---\nupdated-dependencies:\n- dependency-name: aws-actions/configure-aws-credentials\n  dependency-type: direct:production\n  update-type: version-update:semver-minor\n...\n\nSigned-off-by: dependabot[bot] <support@github.com>",
+      "timestamp": "2025-03-17T17:37:21Z",
+      "tree_id": "8e920634e0dbadb3cdfc001bcd42bb1b7551cd62",
+      "url": "https://github.com/guitarrapc/githubactions-lab/commit/9e0187b6fec1327386fe90de558aeb04d6c05104"
     },
     {
       "author": {
@@ -69,14 +33,14 @@
         "username": "web-flow"
       },
       "distinct": true,
-      "id": "d1e14db7bf28e80a6cc4b150f5749a03354a17fd",
-      "message": "Merge pull request #202 from guitarrapc/fetaure/drop_reviewdog\n\nchore: drop reviewdog",
-      "timestamp": "2025-03-18T10:58:51+09:00",
-      "tree_id": "b5cc829fb24476ff52e3f4ed6052e67243c40050",
-      "url": "https://github.com/guitarrapc/githubactions-lab/commit/d1e14db7bf28e80a6cc4b150f5749a03354a17fd"
+      "id": "668ad255a8a6815737d5f67a2e1163a8ba414285",
+      "message": "Merge pull request #199 from guitarrapc/dependabot/github_actions/aws-actions/configure-aws-credentials-4.1.0\n\nchore(deps): bump aws-actions/configure-aws-credentials from 4.0.2 to 4.1.0",
+      "timestamp": "2025-03-18T11:09:17+09:00",
+      "tree_id": "d99506fddad96c4f7a2219db70fc5187c9c12411",
+      "url": "https://github.com/guitarrapc/githubactions-lab/commit/668ad255a8a6815737d5f67a2e1163a8ba414285"
     }
   ],
-  "compare": "https://github.com/guitarrapc/githubactions-lab/compare/aa9ca4f3b467...d1e14db7bf28",
+  "compare": "https://github.com/guitarrapc/githubactions-lab/compare/7fe35a61ddfc...668ad255a8a6",
   "created": false,
   "deleted": false,
   "forced": false,
@@ -92,11 +56,11 @@
       "username": "web-flow"
     },
     "distinct": true,
-    "id": "d1e14db7bf28e80a6cc4b150f5749a03354a17fd",
-    "message": "Merge pull request #202 from guitarrapc/fetaure/drop_reviewdog\n\nchore: drop reviewdog",
-    "timestamp": "2025-03-18T10:58:51+09:00",
-    "tree_id": "b5cc829fb24476ff52e3f4ed6052e67243c40050",
-    "url": "https://github.com/guitarrapc/githubactions-lab/commit/d1e14db7bf28e80a6cc4b150f5749a03354a17fd"
+    "id": "668ad255a8a6815737d5f67a2e1163a8ba414285",
+    "message": "Merge pull request #199 from guitarrapc/dependabot/github_actions/aws-actions/configure-aws-credentials-4.1.0\n\nchore(deps): bump aws-actions/configure-aws-credentials from 4.0.2 to 4.1.0",
+    "timestamp": "2025-03-18T11:09:17+09:00",
+    "tree_id": "d99506fddad96c4f7a2219db70fc5187c9c12411",
+    "url": "https://github.com/guitarrapc/githubactions-lab/commit/668ad255a8a6815737d5f67a2e1163a8ba414285"
   },
   "pusher": {
     "email": "3856350+guitarrapc@users.noreply.github.com",
@@ -165,8 +129,8 @@
     "name": "githubactions-lab",
     "node_id": "MDEwOlJlcG9zaXRvcnkyNTc0NjU0Njg=",
     "notifications_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/notifications{?since,all,participating}",
-    "open_issues": 8,
-    "open_issues_count": 8,
+    "open_issues": 5,
+    "open_issues_count": 5,
     "owner": {
       "avatar_url": "https://avatars.githubusercontent.com/u/3856350?v=4",
       "email": "3856350+guitarrapc@users.noreply.github.com",
@@ -192,7 +156,7 @@
     },
     "private": false,
     "pulls_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls{/number}",
-    "pushed_at": 1742263132,
+    "pushed_at": 1742263757,
     "releases_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/releases{/id}",
     "size": 2657,
     "ssh_url": "git@github.com:guitarrapc/githubactions-lab.git",
@@ -209,7 +173,7 @@
       "github-actions"
     ],
     "trees_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/git/trees{/sha}",
-    "updated_at": "2025-03-18T00:03:18Z",
+    "updated_at": "2025-03-18T02:08:27Z",
     "url": "https://github.com/guitarrapc/githubactions-lab",
     "visibility": "public",
     "watchers": 49,
