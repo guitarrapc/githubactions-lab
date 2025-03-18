@@ -2,15 +2,15 @@
   "token": "<reducted>",
   "job": "dump-context",
   "ref": "refs/heads/main",
-  "sha": "17ee2810a56b105baadf05ca96389805a5b1a11f",
+  "sha": "d1e14db7bf28e80a6cc4b150f5749a03354a17fd",
   "repository": "guitarrapc/githubactions-lab",
   "repository_owner": "guitarrapc",
   "repository_owner_id": "3856350",
   "repositoryUrl": "git://github.com/guitarrapc/githubactions-lab.git",
-  "run_id": "13638124499",
-  "run_number": "181",
+  "run_id": "13913736129",
+  "run_number": "256",
   "retention_days": "90",
-  "run_attempt": "2",
+  "run_attempt": "1",
   "artifact_cache_size_limit": "10",
   "repository_visibility": "public",
   "repo-self-hosted-runners-disabled": false,
@@ -20,44 +20,44 @@
   "actor": "guitarrapc",
   "triggering_actor": "guitarrapc",
   "workflow": "auto dump context",
-  "head_ref": "dependabot/github_actions/xalvarez/prevent-file-change-action-2",
+  "head_ref": "fetaure/drop_reviewdog",
   "base_ref": "main",
   "event_name": "pull_request_target",
   "event": {
     "action": "closed",
-    "number": 195,
+    "number": 202,
     "pull_request": {
       "_links": {
         "comments": {
-          "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/issues/195/comments"
+          "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/issues/202/comments"
         },
         "commits": {
-          "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/195/commits"
+          "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/202/commits"
         },
         "html": {
-          "href": "https://github.com/guitarrapc/githubactions-lab/pull/195"
+          "href": "https://github.com/guitarrapc/githubactions-lab/pull/202"
         },
         "issue": {
-          "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/issues/195"
+          "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/issues/202"
         },
         "review_comment": {
           "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/comments{/number}"
         },
         "review_comments": {
-          "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/195/comments"
+          "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/202/comments"
         },
         "self": {
-          "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/195"
+          "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/202"
         },
         "statuses": {
-          "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/statuses/71bd98e7fd90afd5a7e34c63d6a1c287a6435c20"
+          "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/statuses/dfa1a475c48fe894032a93b88d1c834d182138b9"
         }
       },
       "active_lock_reason": null,
-      "additions": 807,
+      "additions": 247,
       "assignee": null,
       "assignees": [],
-      "author_association": "CONTRIBUTOR",
+      "author_association": "OWNER",
       "auto_merge": null,
       "base": {
         "label": "guitarrapc:main",
@@ -131,8 +131,8 @@
           "name": "githubactions-lab",
           "node_id": "MDEwOlJlcG9zaXRvcnkyNTc0NjU0Njg=",
           "notifications_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/notifications{?since,all,participating}",
-          "open_issues": 5,
-          "open_issues_count": 5,
+          "open_issues": 8,
+          "open_issues_count": 8,
           "owner": {
             "avatar_url": "https://avatars.githubusercontent.com/u/3856350?v=4",
             "events_url": "https://api.github.com/users/guitarrapc/events{/privacy}",
@@ -156,9 +156,9 @@
           },
           "private": false,
           "pulls_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls{/number}",
-          "pushed_at": "2025-03-03T18:46:27Z",
+          "pushed_at": "2025-03-18T01:54:38Z",
           "releases_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/releases{/id}",
-          "size": 2486,
+          "size": 2657,
           "squash_merge_commit_message": "COMMIT_MESSAGES",
           "squash_merge_commit_title": "COMMIT_OR_PR_TITLE",
           "ssh_url": "git@github.com:guitarrapc/githubactions-lab.git",
@@ -174,7 +174,7 @@
             "github-actions"
           ],
           "trees_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/git/trees{/sha}",
-          "updated_at": "2025-03-03T00:03:20Z",
+          "updated_at": "2025-03-18T00:03:18Z",
           "url": "https://api.github.com/repos/guitarrapc/githubactions-lab",
           "use_squash_pr_title_as_default": false,
           "visibility": "public",
@@ -182,7 +182,7 @@
           "watchers_count": 49,
           "web_commit_signoff_required": false
         },
-        "sha": "4b6aa7ac317e76ad622d5abb57b251dace127cf7",
+        "sha": "aa9ca4f3b4676e43b4d9e5693ecee38648cfb2bf",
         "user": {
           "avatar_url": "https://avatars.githubusercontent.com/u/3856350?v=4",
           "events_url": "https://api.github.com/users/guitarrapc/events{/privacy}",
@@ -205,20 +205,20 @@
           "user_view_type": "public"
         }
       },
-      "body": "Bumps [xalvarez/prevent-file-change-action](https://github.com/xalvarez/prevent-file-change-action) from 1 to 2.\n<details>\n<summary>Release notes</summary>\n<p><em>Sourced from <a href=\"https://github.com/xalvarez/prevent-file-change-action/releases\">xalvarez/prevent-file-change-action's releases</a>.</em></p>\n<blockquote>\n<h2>v2.0.0 (2025-02-25)</h2>\n<h2>What's Changed</h2>\n<ul>\n<li>Remove pull_request support by <a href=\"https://github.com/xalvarez\"><code>@​xalvarez</code></a> in <a href=\"https://redirect.github.com/xalvarez/prevent-file-change-action/pull/1109\">xalvarez/prevent-file-change-action#1109</a></li>\n</ul>\n<h2>BREAKING CHANGES</h2>\n<ul>\n<li><code>pull_request</code> support was deprecated in favour of <code>pull_request_target</code> in <a href=\"https://github.com/xalvarez/prevent-file-change-action/releases/tag/v1.8.0\">v1.8.0</a> for security reasons and has been completely removed in this version. See <a href=\"https://github.com/xalvarez/prevent-file-change-action/blob/HEAD/README.md\">https://github.com/xalvarez/prevent-file-change-action/blob/HEAD/README.md</a> or <a href=\"https://redirect.github.com/xalvarez/prevent-file-change-action/issues/1023\">this issue</a> for further details.</li>\n</ul>\n<p><strong>Full Changelog</strong>: <a href=\"https://github.com/xalvarez/prevent-file-change-action/compare/v1.9.1...v2.0.0\">https://github.com/xalvarez/prevent-file-change-action/compare/v1.9.1...v2.0.0</a></p>\n<h2>v1.9.1 (2025-02-19)</h2>\n<h2>What's Changed</h2>\n<ul>\n<li>Patch ReDoS catastrophic backtracking vulnerabilities by <a href=\"https://github.com/xalvarez\"><code>@​xalvarez</code></a> in <a href=\"https://redirect.github.com/xalvarez/prevent-file-change-action/pull/1106\">xalvarez/prevent-file-change-action#1106</a></li>\n</ul>\n<p><strong>Full Changelog</strong>: <a href=\"https://github.com/xalvarez/prevent-file-change-action/compare/v1.9.0...v1.9.1\">https://github.com/xalvarez/prevent-file-change-action/compare/v1.9.0...v1.9.1</a></p>\n<h2>v1.9.0 (2024-12-29)</h2>\n<h2>What's Changed</h2>\n<ul>\n<li>Allow closing pull request instead of exiting with error by <a href=\"https://github.com/HasanHajHasan\"><code>@​HasanHajHasan</code></a> in <a href=\"https://redirect.github.com/xalvarez/prevent-file-change-action/pull/1065\">xalvarez/prevent-file-change-action#1065</a></li>\n</ul>\n<h2>New Contributors</h2>\n<ul>\n<li><a href=\"https://github.com/HasanHajHasan\"><code>@​HasanHajHasan</code></a> made their first contribution in <a href=\"https://redirect.github.com/xalvarez/prevent-file-change-action/pull/1065\">xalvarez/prevent-file-change-action#1065</a>. Thank you so much!</li>\n</ul>\n<p><strong>Full Changelog</strong>: <a href=\"https://github.com/xalvarez/prevent-file-change-action/compare/v1.8.0...v1.9.0\">https://github.com/xalvarez/prevent-file-change-action/compare/v1.8.0...v1.9.0</a></p>\n<h2>v1.8.0 (2024-11-19)</h2>\n<h2>What's Changed</h2>\n<ul>\n<li>Deprecate <code>pull_request</code> in favour of <code>pull_request_target</code> by <a href=\"https://github.com/xalvarez\"><code>@​xalvarez</code></a> in <a href=\"https://redirect.github.com/xalvarez/prevent-file-change-action/pull/1050\">xalvarez/prevent-file-change-action#1050</a></li>\n</ul>\n<p><strong>Full Changelog</strong>: <a href=\"https://github.com/xalvarez/prevent-file-change-action/compare/v1.7.0...v1.8.0\">https://github.com/xalvarez/prevent-file-change-action/compare/v1.7.0...v1.8.0</a></p>\n<h2>v1.7.0 (2024-10-11)</h2>\n<h2>What's Changed</h2>\n<ul>\n<li>Add <code>pull_request_target</code> support by <a href=\"https://github.com/dp-sgr\"><code>@​dp-sgr</code></a> in <a href=\"https://redirect.github.com/xalvarez/prevent-file-change-action/pull/1024\">xalvarez/prevent-file-change-action#1024</a></li>\n</ul>\n<h2>New Contributors</h2>\n<ul>\n<li><a href=\"https://github.com/dp-sgr\"><code>@​dp-sgr</code></a> made their first contribution in <a href=\"https://redirect.github.com/xalvarez/prevent-file-change-action/pull/1024\">xalvarez/prevent-file-change-action#1024</a>. Thank you so much!</li>\n</ul>\n<p><strong>Full Changelog</strong>: <a href=\"https://github.com/xalvarez/prevent-file-change-action/compare/v1.7.0...v1.7.1\">https://github.com/xalvarez/prevent-file-change-action/compare/v1.7.0...v1.7.1</a></p>\n<!-- raw HTML omitted -->\n</blockquote>\n<p>... (truncated)</p>\n</details>\n<details>\n<summary>Commits</summary>\n<ul>\n<li><a href=\"https://github.com/xalvarez/prevent-file-change-action/commit/4e88b842aed52bb42b94537ad9736eac06930266\"><code>4e88b84</code></a> Prepare release 2.0.0 (<a href=\"https://redirect.github.com/xalvarez/prevent-file-change-action/issues/1110\">#1110</a>)</li>\n<li><a href=\"https://github.com/xalvarez/prevent-file-change-action/commit/3db675d80ac2bb6f4ad868216e457bc227218ae2\"><code>3db675d</code></a> Remove pull_request support (<a href=\"https://redirect.github.com/xalvarez/prevent-file-change-action/issues/1109\">#1109</a>)</li>\n<li><a href=\"https://github.com/xalvarez/prevent-file-change-action/commit/645422c1bb48d23154df430e0a9a7118052103a6\"><code>645422c</code></a> Bump the npm-dev-dependencies group with 6 updates (<a href=\"https://redirect.github.com/xalvarez/prevent-file-change-action/issues/1108\">#1108</a>)</li>\n<li><a href=\"https://github.com/xalvarez/prevent-file-change-action/commit/7fb4f6ff9e36d274cab3929b9551386dff174c09\"><code>7fb4f6f</code></a> Bump github/codeql-action from 3.28.9 to 3.28.10</li>\n<li>See full diff in <a href=\"https://github.com/xalvarez/prevent-file-change-action/compare/v1...v2\">compare view</a></li>\n</ul>\n</details>\n<br />\n\n\n[![Dependabot compatibility score](https://dependabot-badges.githubapp.com/badges/compatibility_score?dependency-name=xalvarez/prevent-file-change-action&package-manager=github_actions&previous-version=1&new-version=2)](https://docs.github.com/en/github/managing-security-vulnerabilities/about-dependabot-security-updates#about-compatibility-scores)\n\nDependabot will resolve any conflicts with this PR as long as you don't alter it yourself. You can also trigger a rebase manually by commenting `@dependabot rebase`.\n\n[//]: # (dependabot-automerge-start)\n[//]: # (dependabot-automerge-end)\n\n---\n\n<details>\n<summary>Dependabot commands and options</summary>\n<br />\n\nYou can trigger Dependabot actions by commenting on this PR:\n- `@dependabot rebase` will rebase this PR\n- `@dependabot recreate` will recreate this PR, overwriting any edits that have been made to it\n- `@dependabot merge` will merge this PR after your CI passes on it\n- `@dependabot squash and merge` will squash and merge this PR after your CI passes on it\n- `@dependabot cancel merge` will cancel a previously requested merge and block automerging\n- `@dependabot reopen` will reopen this PR if it is closed\n- `@dependabot close` will close this PR and stop Dependabot recreating it. You can achieve the same result by closing it manually\n- `@dependabot show <dependency name> ignore conditions` will show all of the ignore conditions of the specified dependency\n- `@dependabot ignore this major version` will close this PR and stop Dependabot creating any more for this major version (unless you reopen the PR or upgrade to it yourself)\n- `@dependabot ignore this minor version` will close this PR and stop Dependabot creating any more for this minor version (unless you reopen the PR or upgrade to it yourself)\n- `@dependabot ignore this dependency` will close this PR and stop Dependabot creating any more for this dependency (unless you reopen the PR or upgrade to it yourself)\n\n\n</details>",
+      "body": "I can't trust Reviewdog. Who and how they organize and where's blog or any decision made? Reaction to the reviewdog/action-setup [vulnerability](https://www.wiz.io/blog/new-github-action-supply-chain-attack-reviewdog-action-setup) is why I drop them from this repo.",
       "changed_files": 10,
-      "closed_at": "2025-03-03T18:46:49Z",
+      "closed_at": "2025-03-18T01:58:52Z",
       "comments": 0,
-      "comments_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/issues/195/comments",
-      "commits": 5,
-      "commits_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/195/commits",
-      "created_at": "2025-03-03T15:45:24Z",
-      "deletions": 286,
-      "diff_url": "https://github.com/guitarrapc/githubactions-lab/pull/195.diff",
+      "comments_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/issues/202/comments",
+      "commits": 3,
+      "commits_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/202/commits",
+      "created_at": "2025-03-18T01:39:50Z",
+      "deletions": 292,
+      "diff_url": "https://github.com/guitarrapc/githubactions-lab/pull/202.diff",
       "draft": false,
       "head": {
-        "label": "guitarrapc:dependabot/github_actions/xalvarez/prevent-file-change-action-2",
-        "ref": "dependabot/github_actions/xalvarez/prevent-file-change-action-2",
+        "label": "guitarrapc:fetaure/drop_reviewdog",
+        "ref": "fetaure/drop_reviewdog",
         "repo": {
           "allow_auto_merge": false,
           "allow_forking": true,
@@ -288,8 +288,8 @@
           "name": "githubactions-lab",
           "node_id": "MDEwOlJlcG9zaXRvcnkyNTc0NjU0Njg=",
           "notifications_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/notifications{?since,all,participating}",
-          "open_issues": 5,
-          "open_issues_count": 5,
+          "open_issues": 8,
+          "open_issues_count": 8,
           "owner": {
             "avatar_url": "https://avatars.githubusercontent.com/u/3856350?v=4",
             "events_url": "https://api.github.com/users/guitarrapc/events{/privacy}",
@@ -313,9 +313,9 @@
           },
           "private": false,
           "pulls_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls{/number}",
-          "pushed_at": "2025-03-03T18:46:27Z",
+          "pushed_at": "2025-03-18T01:54:38Z",
           "releases_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/releases{/id}",
-          "size": 2486,
+          "size": 2657,
           "squash_merge_commit_message": "COMMIT_MESSAGES",
           "squash_merge_commit_title": "COMMIT_OR_PR_TITLE",
           "ssh_url": "git@github.com:guitarrapc/githubactions-lab.git",
@@ -331,7 +331,7 @@
             "github-actions"
           ],
           "trees_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/git/trees{/sha}",
-          "updated_at": "2025-03-03T00:03:20Z",
+          "updated_at": "2025-03-18T00:03:18Z",
           "url": "https://api.github.com/repos/guitarrapc/githubactions-lab",
           "use_squash_pr_title_as_default": false,
           "visibility": "public",
@@ -339,7 +339,7 @@
           "watchers_count": 49,
           "web_commit_signoff_required": false
         },
-        "sha": "71bd98e7fd90afd5a7e34c63d6a1c287a6435c20",
+        "sha": "dfa1a475c48fe894032a93b88d1c834d182138b9",
         "user": {
           "avatar_url": "https://avatars.githubusercontent.com/u/3856350?v=4",
           "events_url": "https://api.github.com/users/guitarrapc/events{/privacy}",
@@ -362,17 +362,17 @@
           "user_view_type": "public"
         }
       },
-      "html_url": "https://github.com/guitarrapc/githubactions-lab/pull/195",
-      "id": 2368473655,
-      "issue_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/issues/195",
+      "html_url": "https://github.com/guitarrapc/githubactions-lab/pull/202",
+      "id": 2399449138,
+      "issue_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/issues/202",
       "labels": [],
       "locked": false,
       "maintainer_can_modify": false,
-      "merge_commit_sha": "17ee2810a56b105baadf05ca96389805a5b1a11f",
+      "merge_commit_sha": "d1e14db7bf28e80a6cc4b150f5749a03354a17fd",
       "mergeable": null,
       "mergeable_state": "unknown",
       "merged": true,
-      "merged_at": "2025-03-03T18:46:49Z",
+      "merged_at": "2025-03-18T01:58:52Z",
       "merged_by": {
         "avatar_url": "https://avatars.githubusercontent.com/u/3856350?v=4",
         "events_url": "https://api.github.com/users/guitarrapc/events{/privacy}",
@@ -395,39 +395,39 @@
         "user_view_type": "public"
       },
       "milestone": null,
-      "node_id": "PR_kwDOD1icfM6NLAo3",
-      "number": 195,
-      "patch_url": "https://github.com/guitarrapc/githubactions-lab/pull/195.patch",
+      "node_id": "PR_kwDOD1icfM6PBLAy",
+      "number": 202,
+      "patch_url": "https://github.com/guitarrapc/githubactions-lab/pull/202.patch",
       "rebaseable": null,
       "requested_reviewers": [],
       "requested_teams": [],
       "review_comment_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/comments{/number}",
       "review_comments": 0,
-      "review_comments_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/195/comments",
+      "review_comments_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/202/comments",
       "state": "closed",
-      "statuses_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/statuses/71bd98e7fd90afd5a7e34c63d6a1c287a6435c20",
-      "title": "chore(deps): bump xalvarez/prevent-file-change-action from 1 to 2",
-      "updated_at": "2025-03-03T18:46:50Z",
-      "url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/195",
+      "statuses_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/statuses/dfa1a475c48fe894032a93b88d1c834d182138b9",
+      "title": "chore: drop reviewdog",
+      "updated_at": "2025-03-18T01:58:52Z",
+      "url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/202",
       "user": {
-        "avatar_url": "https://avatars.githubusercontent.com/in/29110?v=4",
-        "events_url": "https://api.github.com/users/dependabot%5Bbot%5D/events{/privacy}",
-        "followers_url": "https://api.github.com/users/dependabot%5Bbot%5D/followers",
-        "following_url": "https://api.github.com/users/dependabot%5Bbot%5D/following{/other_user}",
-        "gists_url": "https://api.github.com/users/dependabot%5Bbot%5D/gists{/gist_id}",
+        "avatar_url": "https://avatars.githubusercontent.com/u/3856350?v=4",
+        "events_url": "https://api.github.com/users/guitarrapc/events{/privacy}",
+        "followers_url": "https://api.github.com/users/guitarrapc/followers",
+        "following_url": "https://api.github.com/users/guitarrapc/following{/other_user}",
+        "gists_url": "https://api.github.com/users/guitarrapc/gists{/gist_id}",
         "gravatar_id": "",
-        "html_url": "https://github.com/apps/dependabot",
-        "id": 49699333,
-        "login": "dependabot[bot]",
-        "node_id": "MDM6Qm90NDk2OTkzMzM=",
-        "organizations_url": "https://api.github.com/users/dependabot%5Bbot%5D/orgs",
-        "received_events_url": "https://api.github.com/users/dependabot%5Bbot%5D/received_events",
-        "repos_url": "https://api.github.com/users/dependabot%5Bbot%5D/repos",
+        "html_url": "https://github.com/guitarrapc",
+        "id": 3856350,
+        "login": "guitarrapc",
+        "node_id": "MDQ6VXNlcjM4NTYzNTA=",
+        "organizations_url": "https://api.github.com/users/guitarrapc/orgs",
+        "received_events_url": "https://api.github.com/users/guitarrapc/received_events",
+        "repos_url": "https://api.github.com/users/guitarrapc/repos",
         "site_admin": false,
-        "starred_url": "https://api.github.com/users/dependabot%5Bbot%5D/starred{/owner}{/repo}",
-        "subscriptions_url": "https://api.github.com/users/dependabot%5Bbot%5D/subscriptions",
-        "type": "Bot",
-        "url": "https://api.github.com/users/dependabot%5Bbot%5D",
+        "starred_url": "https://api.github.com/users/guitarrapc/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/guitarrapc/subscriptions",
+        "type": "User",
+        "url": "https://api.github.com/users/guitarrapc",
         "user_view_type": "public"
       }
     },
@@ -492,8 +492,8 @@
       "name": "githubactions-lab",
       "node_id": "MDEwOlJlcG9zaXRvcnkyNTc0NjU0Njg=",
       "notifications_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/notifications{?since,all,participating}",
-      "open_issues": 5,
-      "open_issues_count": 5,
+      "open_issues": 8,
+      "open_issues_count": 8,
       "owner": {
         "avatar_url": "https://avatars.githubusercontent.com/u/3856350?v=4",
         "events_url": "https://api.github.com/users/guitarrapc/events{/privacy}",
@@ -517,9 +517,9 @@
       },
       "private": false,
       "pulls_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls{/number}",
-      "pushed_at": "2025-03-03T18:46:27Z",
+      "pushed_at": "2025-03-18T01:54:38Z",
       "releases_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/releases{/id}",
-      "size": 2486,
+      "size": 2657,
       "ssh_url": "git@github.com:guitarrapc/githubactions-lab.git",
       "stargazers_count": 49,
       "stargazers_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/stargazers",
@@ -533,7 +533,7 @@
         "github-actions"
       ],
       "trees_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/git/trees{/sha}",
-      "updated_at": "2025-03-03T00:03:20Z",
+      "updated_at": "2025-03-18T00:03:18Z",
       "url": "https://api.github.com/repos/guitarrapc/githubactions-lab",
       "visibility": "public",
       "watchers": 49,
@@ -570,15 +570,15 @@
   "ref_type": "branch",
   "secret_source": "Actions",
   "workflow_ref": "guitarrapc/githubactions-lab/.github/workflows/auto-dump-context.yaml@refs/heads/main",
-  "workflow_sha": "17ee2810a56b105baadf05ca96389805a5b1a11f",
+  "workflow_sha": "d1e14db7bf28e80a6cc4b150f5749a03354a17fd",
   "workspace": "/home/runner/work/githubactions-lab/githubactions-lab",
   "action": "__run_3",
   "event_path": "/home/runner/work/_temp/_github_workflow/event.json",
   "action_repository": "",
   "action_ref": "",
-  "path": "/home/runner/work/_temp/_runner_file_commands/add_path_f87e7e6f-a835-425f-a7df-bbfa9523577d",
-  "env": "/home/runner/work/_temp/_runner_file_commands/set_env_f87e7e6f-a835-425f-a7df-bbfa9523577d",
-  "step_summary": "/home/runner/work/_temp/_runner_file_commands/step_summary_f87e7e6f-a835-425f-a7df-bbfa9523577d",
-  "state": "/home/runner/work/_temp/_runner_file_commands/save_state_f87e7e6f-a835-425f-a7df-bbfa9523577d",
-  "output": "/home/runner/work/_temp/_runner_file_commands/set_output_f87e7e6f-a835-425f-a7df-bbfa9523577d"
+  "path": "/home/runner/work/_temp/_runner_file_commands/add_path_4a3196b3-dfd0-470a-966f-28805dc5dbb1",
+  "env": "/home/runner/work/_temp/_runner_file_commands/set_env_4a3196b3-dfd0-470a-966f-28805dc5dbb1",
+  "step_summary": "/home/runner/work/_temp/_runner_file_commands/step_summary_4a3196b3-dfd0-470a-966f-28805dc5dbb1",
+  "state": "/home/runner/work/_temp/_runner_file_commands/save_state_4a3196b3-dfd0-470a-966f-28805dc5dbb1",
+  "output": "/home/runner/work/_temp/_runner_file_commands/set_output_4a3196b3-dfd0-470a-966f-28805dc5dbb1"
 }
