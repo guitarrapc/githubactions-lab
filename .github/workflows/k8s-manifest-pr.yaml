@@ -25,16 +25,10 @@ jobs:
           repository: ${{ env.REPO_MANIFEST }}
           path: ${{ env.REPO_MANIFEST }}
           token: ${{ secrets.SYNCED_GITHUB_TOKEN_REPO }}
-      - run: echo "GIT_BRANCH=${REF}" >> "$GITHUB_ENV"
-        env:
-          REF: ${{ github.head_ref }}
-      - run: echo "BRANCH=${BRANCH}" >> "$GITHUB_ENV"
-        env:
-          BRANCH: ${{ github.event.repository.name }}/${{ env.GIT_BRANCH }}
       - name: git checkout
         run: |
-          git fetch origin "${BRANCH}":"${BRANCH}" || git switch -C "${BRANCH}"
-          git reset --hard "${BRANCH}"
+          git fetch origin "${{ github.event.repository.name }}/${{ github.head_ref }}":"${{ github.event.repository.name }}/${{ github.head_ref }}" || git switch -C "${{ github.event.repository.name }}/${{ github.head_ref }}"
+          git reset --hard "${{ github.head_ref }}"
         working-directory: ${{ env.REPO_MANIFEST }}
       - name: generate manifest
         run: |
@@ -42,7 +36,7 @@ jobs:
           kubectl kustomize ./src/k8s/common/overlays/development \
             | sed -e "s|<namespace>|${NAMESPACE_PREFIX}${MANIFEST_DIR}|g" \
             | sed -e "s|<git-sha>|${{ github.sha }}|g" \
-            | sed -e "s|<git-branch>|${GIT_BRANCH}|g" \
+            | sed -e "s|<git-branch>|${{ github.head_ref }}|g" \
             | sed -e "s|<git-link>|${{ github.event.pull_request.html_url }}|g" \
             | sed -e "s|<build-id>|${{ github.run_id }}|g" > "${REPO_MANIFEST}/${MANIFEST_DIR}/all.yaml"
       - name: git commit
@@ -66,5 +60,5 @@ jobs:
         with:
           github_token: ${{ secrets.SYNCED_GITHUB_TOKEN_REPO }}
           repository: ${{ env.REPO_MANIFEST }}
-          branch: ${{ env.BRANCH }}
+          branch: ${{ github.event.repository.name }}/${{ github.head_ref }}
           directory: ${{ env.REPO_MANIFEST }}

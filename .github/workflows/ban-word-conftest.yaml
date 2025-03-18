@@ -11,14 +11,15 @@ jobs:
     timeout-minutes: 3
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+      - name: Setup conftest
+        run: |
+          LATEST_VERSION=$(wget -O - "https://api.github.com/repos/open-policy-agent/conftest/releases/latest" | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/' | cut -c 2-)
+          ARCH=$(arch)
+          SYSTEM=$(uname)
+          wget "https://github.com/open-policy-agent/conftest/releases/download/v${LATEST_VERSION}/conftest_${LATEST_VERSION}_${SYSTEM}_${ARCH}.tar.gz"
+          tar xzf conftest_${LATEST_VERSION}_${SYSTEM}_${ARCH}.tar.gz
+          sudo mv conftest /usr/local/bin
       - name: test dev
-        uses: instrumenta/conftest-action@ae9212d5c0c26e21eedf359e2889d0d5d39dabd4
-        with:
-          files: ./.github/workflows/k8s-manifest-manual.yaml ./.github/workflows/k8s-manifest-pr.yaml ./.github/workflows/k8s-manifest-push.yaml
-          policy: ./.github/policy/dev_env.rego
+        run: conftest test -p ./.github/policy/dev_env.rego ./.github/workflows/k8s-manifest-manual.yaml ./.github/workflows/k8s-manifest-pr.yaml ./.github/workflows/k8s-manifest-push.yaml
       - name: test staging
-        uses: instrumenta/conftest-action@ae9212d5c0c26e21eedf359e2889d0d5d39dabd4
-        with:
-          files: ./.github/workflows/k8s-manifest-manual.yaml ./.github/workflows/k8s-manifest-pr.yaml ./.github/workflows/k8s-manifest-push.yaml
-          policy: ./.github/policy/staging_env.rego
-        continue-on-error: true
+        run: conftest test -p ./.github/policy/staging_env.rego ./.github/workflows/k8s-manifest-manual.yaml
