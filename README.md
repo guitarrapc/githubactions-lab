@@ -38,6 +38,7 @@ GitHub Actions research and test laboratory.
 - [Basic - Fundamentables](#basic---fundamentables)
   - [Pin Third-Party GitHub Actions to a Specific Commit SHA](#pin-third-party-github-actions-to-a-specific-commit-sha)
   - [Dump context metadata](#dump-context-metadata)
+  - [Concurrency Control](#concurrency-control)
   - [Environment variables in script](#environment-variables-in-script)
   - [If and context reference](#if-and-context-reference)
   - [Job needs and dependency](#job-needs-and-dependency)
@@ -52,7 +53,6 @@ GitHub Actions research and test laboratory.
   - [Strategy matrix and secret dereference](#strategy-matrix-and-secret-dereference)
   - [Strategy matrix and environment variables](#strategy-matrix-and-environment-variables)
   - [Timeout settings](#timeout-settings)
-  - [Workflow Concurrency Control](#workflow-concurrency-control)
   - [Workflow dispatch and passing input](#workflow-dispatch-and-passing-input)
   - [Workflow dispatch with mixed input type](#workflow-dispatch-with-mixed-input-type)
   - [Workflow Redundant Control](#workflow-redundant-control)
@@ -514,6 +514,111 @@ jobs:
 
 You can obtain GitHub Event Context from Environment Variables `GITHUB_EVENT_PATH`.
 
+## Concurrency Control
+
+GitHub Actions has concurrency control to prevent you run Workflow or Job at same time.
+This help you archive serial build pipeline.
+
+**Workflow level concurrency**
+
+Workflow concurrency control is useful when you want to prevent workflow to run at same time. Imagine you have long running workflow and you want to run it only once at same time.
+
+You can use build context like `github.head_ref` or others. This means you can control with commit, branch, workflow and any.
+
+```yaml
+# .github/workflows/concurrency-workflow.yaml
+
+name: "concurrency workflow"
+
+# only ${{ github }} context is available
+concurrency: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+
+on:
+  workflow_dispatch:
+
+jobs:
+  long_job:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - run: sleep 60s
+
+```
+
+Specifying `cancel-in-progress: true` will cancel parallel build.
+
+```yaml
+# .github/workflows/concurrency-workflow-cancel-in-progress.yaml
+
+name: "concurrency workflow cancel in progress"
+
+# only ${{ github }} context is available
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+on:
+  workflow_dispatch:
+
+jobs:
+  long_job:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - run: sleep 60s
+
+```
+
+**Job level concurrency**
+
+Job concurrency control is useful when you want to prevent job to run at same time. Imagine you have deployment job and you want to run it only once at same time.
+
+```yaml
+# .github/workflows/concurrency-job.yaml
+
+name: "concurrency job"
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  job:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    concurrency:
+      group: concurrency-job
+    steps:
+      - name: Show current time
+        run: date
+
+```
+
+Specifying `cancel-in-progress: true` will cancel parallel build.
+
+```yaml
+# .github/workflows/concurrency-job-cancel-in-progress.yaml
+
+name: "concurrency job cancel in progress"
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  job:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    concurrency:
+      group: concurrency-job-cip
+      cancel-in-progress: true
+    steps:
+      - name: Show current time
+        run: date
+
+```
 
 ## Environment variables in script
 
@@ -1535,55 +1640,6 @@ jobs:
     steps:
       - run: echo "done before timeout"
         timeout-minutes: 1 # each step
-
-```
-
-## Workflow Concurrency Control
-
-GitHub Actions built in concurrency control prevent you to run CI at same time.
-This help you achieve serial build pipeline control.
-
-You can use build context like `github.head_ref` or others. This means you can control with commit, branch, workflow and any.
-
-```yaml
-# .github/workflows/concurrency-control.yaml
-
-name: "concurrency control"
-
-# only ${{ github }} context is available
-concurrency: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
-
-on:
-  workflow_dispatch:
-
-jobs:
-  long_job:
-    runs-on: ubuntu-24.04
-    steps:
-      - run: sleep 60s
-
-```
-
-Specify `cancel-in-progress: true` will cancel parallel build.
-
-```yaml
-# .github/workflows/concurrency-control-cancel-in-progress.yaml
-
-name: "concurrency control cancel in progress"
-
-# only ${{ github }} context is available
-concurrency:
-  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
-  cancel-in-progress: true
-
-on:
-  workflow_dispatch:
-
-jobs:
-  long_job:
-    runs-on: ubuntu-24.04
-    steps:
-      - run: sleep 60s
 
 ```
 
@@ -2996,9 +3052,9 @@ action folder naming also follow this rule.
 ```yaml
 # .github/workflows/_reusable-dump-context.yaml#L20-L22
 
-# PR should checkout HEAD ref instead of merge commit.                        -> github.head.ref
-# PR close delete branch, so it should checkout BASE ref instead of HEAD ref. -> github.base_ref
-# Tag ref is tag version, let's checkout default branch instead of ref.       -> github.event.repository.default_branch
+# pull_request and pull_request_target event may begin concurrently and conflict git operation. So, let's wait random time.
+- name: Random wait (30-60s)
+  if: ${{ github.event_name == 'pull_request_target' }}
 ```
 
 ## Get Tag

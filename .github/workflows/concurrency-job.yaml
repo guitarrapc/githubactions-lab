@@ -1,0 +1,16 @@
+name: "concurrency job"
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  job:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    concurrency:
+      group: concurrency-job
+    steps:
+      - name: Show current time
+        run: date

@@ -1,0 +1,17 @@
+name: "concurrency job cancel in progress"
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  job:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    concurrency:
+      group: concurrency-job-cip
+      cancel-in-progress: true
+    steps:
+      - name: Show current time
+        run: date
