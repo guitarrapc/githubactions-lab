@@ -5,10 +5,10 @@ runs:
   using: "composite" # this is key point
   steps:
     - name: setup terraform
-      uses: hashicorp/setup-terraform@v1
+      uses: hashicorp/setup-terraform@b9cd54a3c349d3f38e8881555d616ced269862dd # v3.1.2
     - name: Set up Docker Buildx
       id: buildx
-      uses: docker/setup-buildx-action@v1
+      uses: docker/setup-buildx-action@b5ca514318bd6ebac0fb2aedd5d36ec1b5c232a2 # v3.10.0
     - name: Inspect builder
       run: |
         echo "Name:      ${{ steps.buildx.outputs.name }}"
