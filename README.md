@@ -2425,7 +2425,7 @@ jobs:
     runs-on: ubuntu-24.04
     timeout-minutes: 3
     steps:
-      - uses: actions/download-artifact@cc203385981b70ca67e1cc392babf9cc229d5806 # v4.1.9
+      - uses: actions/download-artifact@95815c38cf2ff2164869cbab79da8d1f422bc89e # v4.2.1
         with:
           name: hoge.txt
           path: .
@@ -2473,7 +2473,7 @@ jobs:
     runs-on: ubuntu-24.04
     timeout-minutes: 3
     steps:
-      - uses: actions/download-artifact@cc203385981b70ca67e1cc392babf9cc229d5806 # v4.1.9
+      - uses: actions/download-artifact@95815c38cf2ff2164869cbab79da8d1f422bc89e # v4.2.1
         with:
           name: directory
           path: ./directory
@@ -2524,7 +2524,7 @@ jobs:
     timeout-minutes: 3
     steps:
       # specify path: . to download tar.gz to current directory
-      - uses: actions/download-artifact@cc203385981b70ca67e1cc392babf9cc229d5806 # v4.1.9
+      - uses: actions/download-artifact@95815c38cf2ff2164869cbab79da8d1f422bc89e # v4.2.1
         with:
           name: output.tar.gz
           path: .
