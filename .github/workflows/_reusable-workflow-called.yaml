@@ -17,10 +17,16 @@ on:
       secondword:
         description: "The second output string"
         value: ${{ jobs.reusable_workflow_job.outputs.output2 }}
+
+permissions:
+  contents: read
+
 env:
   FOO: foo
+
 jobs:
   reusable_workflow_job:
+    timeout-minutes: 5
     runs-on: ubuntu-24.04
     outputs:
       output1: ${{ steps.step1.outputs.firstword }}

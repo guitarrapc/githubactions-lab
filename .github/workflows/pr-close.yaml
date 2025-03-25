@@ -3,6 +3,10 @@ on:
   pull_request:
     types:
       - closed
+
+permissions:
+  contents: read
+
 jobs:
   closed:
     runs-on: ubuntu-24.04

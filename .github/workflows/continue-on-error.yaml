@@ -1,8 +1,12 @@
 name: "continue on error"
 on:
-  workflow_dispatch: null
+  workflow_dispatch:
   push:
     branches: ["main"]
+
+permissions:
+  contents: read
+
 jobs:
   continue-on-error:
     runs-on: ubuntu-24.04

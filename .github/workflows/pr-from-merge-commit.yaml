@@ -2,6 +2,10 @@ name: pr from merge commit
 on:
   push:
     branches: ["main"]
+
+permissions:
+  contents: read
+
 jobs:
   get:
     runs-on: ubuntu-24.04

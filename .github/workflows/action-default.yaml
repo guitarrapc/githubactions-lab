@@ -1,8 +1,12 @@
 name: "action default"
 on:
-  workflow_dispatch: null
+  workflow_dispatch:
   push:
     branches: ["main"]
+
+permissions:
+  contents: read
+
 jobs:
   action:
     runs-on: ubuntu-24.04

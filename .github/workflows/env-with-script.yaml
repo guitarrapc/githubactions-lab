@@ -1,6 +1,6 @@
 name: env with script
 on:
-  workflow_dispatch: null
+  workflow_dispatch:
   push:
     branches: ["main"]
   pull_request:
@@ -15,6 +15,8 @@ jobs:
       matrix:
         runs-on: [ubuntu-24.04, windows-latest]
     runs-on: ${{ matrix.runs-on }}
+    permissions:
+      contents: read
     timeout-minutes: 3
     defaults:
       run:
@@ -49,6 +51,8 @@ jobs:
       matrix:
         runs-on: [ubuntu-24.04, windows-latest]
     runs-on: ${{ matrix.runs-on }}
+    permissions:
+      contents: read
     timeout-minutes: 3
     defaults:
       run:
@@ -83,6 +87,8 @@ jobs:
       matrix:
         runs-on: [windows-latest]
     runs-on: ${{ matrix.runs-on }}
+    permissions:
+      contents: read
     timeout-minutes: 3
     defaults:
       run:

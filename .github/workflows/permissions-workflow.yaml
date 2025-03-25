@@ -2,6 +2,7 @@ name: permissions
 on:
   pull_request:
     branches: ["main"]
+
 permissions:
   # actions: write
   # checks: write
@@ -16,6 +17,7 @@ permissions:
   # repository-projects: write
   # security-events: write
   # statuses: write
+
 jobs:
   job:
     runs-on: ubuntu-24.04

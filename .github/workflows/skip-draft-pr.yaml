@@ -3,6 +3,10 @@ on:
   pull_request: null
   push:
     branches: ["main"]
+
+permissions:
+  contents: read
+
 jobs:
   job:
     if: ${{ ! github.event.pull_request.draft }}

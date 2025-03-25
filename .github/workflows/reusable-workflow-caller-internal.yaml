@@ -6,11 +6,15 @@ on:
     branches: ["main"]
   workflow_dispatch:
 
+
 # (Limitation) Callee can not refer caller environment variable.
 env:
   CALLER_VALUE: caller
+
 jobs:
   call-workflow-passing-data:
+    permissions:
+      contents: read
     uses: ./.github/workflows/_reusable-workflow-called.yaml
     with:
       username: "foo"
@@ -19,6 +23,9 @@ jobs:
 
   job2:
     runs-on: ubuntu-24.04
+    permissions:
+      contents: read
+    timeout-minutes: 1
     needs: call-workflow-passing-data
     steps:
       - run: echo ${{ needs.call-workflow-passing-data.outputs.firstword }} ${{ needs.call-workflow-passing-data.outputs.secondword }}

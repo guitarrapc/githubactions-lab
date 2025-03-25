@@ -2,6 +2,10 @@ name: comment run
 on:
   issue_comment:
     types: [created, edited]
+
+permissions:
+  contents: read
+
 jobs:
   comment-run:
     runs-on: ubuntu-24.04

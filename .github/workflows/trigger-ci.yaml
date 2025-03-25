@@ -2,6 +2,10 @@ name: trigger ci commit
 on:
   push:
     branches: ["main"]
+
+permissions:
+  contents: read
+
 jobs:
   job:
     if: ${{ contains(toJSON(github.event.commits.*.message), '[build]') }}

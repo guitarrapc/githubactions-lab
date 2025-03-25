@@ -2,6 +2,10 @@ name: schedule job
 on:
   schedule:
     - cron: "0 0 * * *"
+
+permissions:
+  contents: read
+
 jobs:
   job:
     runs-on: ubuntu-24.04

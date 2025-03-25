@@ -1,10 +1,14 @@
 name: ban word conftest
 on:
-  workflow_dispatch: null
+  workflow_dispatch:
   push:
     branches: ["main"]
   pull_request:
     branches: ["main"]
+
+permissions:
+  contents: read
+
 jobs:
   conftest:
     runs-on: ubuntu-24.04

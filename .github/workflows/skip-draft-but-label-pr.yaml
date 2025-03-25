@@ -6,6 +6,10 @@ on:
       - opened
       - reopened
       - ready_for_review
+
+permissions:
+  contents: read
+
 jobs:
   build:
     # RUN WHEN

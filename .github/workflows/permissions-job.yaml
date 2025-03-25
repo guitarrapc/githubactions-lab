@@ -2,6 +2,7 @@ name: permissions job
 on:
   pull_request:
     branches: ["main"]
+
 jobs:
   job:
     permissions:

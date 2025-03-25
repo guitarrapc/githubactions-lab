@@ -3,10 +3,12 @@ on:
   workflow_dispatch:
   push:
     branches: ["main"]
+
 # allow use id-token
 permissions:
   id-token: write
   contents: read
+
 jobs:
   aws:
     runs-on: ubuntu-24.04

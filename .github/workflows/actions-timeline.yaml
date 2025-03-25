@@ -1,10 +1,13 @@
 name: actions timeline
 on:
-  workflow_dispatch: null
+  workflow_dispatch:
   push:
     branches: ["main"]
   pull_request:
     branches: ["main"]
+
+permissions:
+  contents: read
 
 jobs:
   dotnet:

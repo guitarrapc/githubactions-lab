@@ -10,6 +10,10 @@ on:
         description: "merge to"
         required: true
         default: "staging"
+
+permissions:
+  contents: read
+
 jobs:
   merge:
     env:

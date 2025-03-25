@@ -1,6 +1,5 @@
 name: create release
 concurrency: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
-
 on:
   push:
     tags:
@@ -17,6 +16,9 @@ on:
         required: false
         default: false
         type: boolean
+
+permissions:
+  contents: read
 
 env:
   GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

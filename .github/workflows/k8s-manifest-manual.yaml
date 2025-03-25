@@ -6,6 +6,10 @@ on:
         description: "manifest directory to push"
         required: true
         default: "dev"
+
+permissions:
+  contents: read
+
 env:
   REPO_MANIFEST: guitarrapc/kubernetes-manifest-lab
 
@@ -14,6 +18,7 @@ jobs:
     env:
       NAMESPACE_PREFIX: githubactions-sample-
     runs-on: ubuntu-24.04
+    timeout-minutes: 3
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
         with:

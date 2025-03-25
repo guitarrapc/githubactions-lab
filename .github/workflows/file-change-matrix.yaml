@@ -1,9 +1,12 @@
 name: file change detect matrix
 on:
   pull_request: null
+
 jobs:
   changes:
     runs-on: ubuntu-24.04
+    permissions:
+      contents: read
     timeout-minutes: 3
     outputs:
       changes: ${{ steps.filter.outputs.changes }}
@@ -52,6 +55,8 @@ jobs:
       matrix:
         change: ${{ fromJSON(needs.changes.outputs.changes) }}
     runs-on: ubuntu-24.04
+    permissions:
+      contents: read
     timeout-minutes: 60
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
@@ -75,6 +80,8 @@ jobs:
       matrix:
         change: ${{ fromJSON(needs.changes.outputs.changes) }}
     runs-on: ubuntu-24.04
+    permissions:
+      contents: read
     timeout-minutes: 60
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2

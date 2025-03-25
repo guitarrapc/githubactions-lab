@@ -1,11 +1,13 @@
 name: git tag
-
 on:
   workflow_dispatch:
     inputs:
       tag:
         required: true
         description: input your tag value
+
+permissions:
+  contents: read
 
 jobs:
   actionlint:

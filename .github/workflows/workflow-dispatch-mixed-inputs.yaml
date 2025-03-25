@@ -20,6 +20,10 @@ on:
         type: environment
         description: "environment: Select environment"
         required: true
+
+permissions:
+  contents: read
+
 jobs:
   greet:
     runs-on: ubuntu-24.04

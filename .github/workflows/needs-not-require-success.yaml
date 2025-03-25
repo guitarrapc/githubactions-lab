@@ -10,12 +10,18 @@ on:
 jobs:
   A:
     runs-on: ubuntu-24.04
+    permissions:
+      contents: read
+    timeout-minutes: 1
     steps:
       - run: echo "a"
 
   B:
     needs: [A]
     runs-on: ubuntu-24.04
+    permissions:
+      contents: read
+    timeout-minutes: 1
     steps:
       - run: echo "b"
 
@@ -24,5 +30,8 @@ jobs:
     needs: [A, B]
     if: ${{ always() }}
     runs-on: ubuntu-24.04
+    permissions:
+      contents: read
+    timeout-minutes: 1
     steps:
       - run: echo "c"

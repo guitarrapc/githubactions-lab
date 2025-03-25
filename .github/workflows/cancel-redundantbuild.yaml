@@ -1,15 +1,18 @@
 name: cancel redundant build
-# when pull_request, both push and pull_request (synchronize) will trigger.
-# this action sample will prevent duplicate run, but run only 1 of them.
 on:
   workflow_dispatch:
   push:
     branches: ["main"]
   pull_request:
     branches: ["main"]
+
+permissions:
+  contents: read
+
 jobs:
   cancel:
     runs-on: ubuntu-24.04
+    timeout-minutes: 3
     steps:
       # no check for main and tag
       - uses: rokroskar/workflow-run-cleanup-action@ee1451b869ba1e381729b3d40489997021f0d562 # v0.3.3

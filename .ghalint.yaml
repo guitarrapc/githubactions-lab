@@ -1,0 +1,16 @@
+excludes:
+  - policy_name: deny_inherit_secrets
+    workflow_file_path: .github/workflows/_reusable-workflow-nest.yaml
+    job_name: call-workflow-passing-data
+  - policy_name: deny_inherit_secrets
+    workflow_file_path: .github/workflows/reusable-workflow-caller-internal.yaml
+    job_name: call-workflow-passing-data
+  - policy_name: deny_inherit_secrets
+    workflow_file_path: .github/workflows/reusable-workflow-caller-matrix.yaml
+    job_name: call-matrix-workflow
+  - policy_name: deny_inherit_secrets
+    workflow_file_path: .github/workflows/reusable-workflow-caller-nest.yaml
+    job_name: call-workflow-passing-data
+  - policy_name: deny_inherit_secrets
+    workflow_file_path: .github/workflows/reusable-workflow-public-caller.yaml
+    job_name: call-workflow-passing-data

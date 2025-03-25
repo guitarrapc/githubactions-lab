@@ -1,10 +1,14 @@
 name: nest actions
 on:
-  workflow_dispatch: null
+  workflow_dispatch:
   push:
     branches: ["main"]
   pull_request:
     branches: ["main"]
+
+permissions:
+  contents: read
+
 jobs:
   nest:
     runs-on: ubuntu-24.04

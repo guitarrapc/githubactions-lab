@@ -13,6 +13,10 @@ on:
         description: "dry_run: true will never create commit/pr."
         required: true
         default: "false"
+
+permissions:
+  contents: read
+
 jobs:
   update:
     runs-on: ubuntu-24.04

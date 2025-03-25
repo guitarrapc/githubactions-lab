@@ -1,8 +1,13 @@
 name: setup kubectl
 on:
   workflow_dispatch:
+
+permissions:
+  contents: read
+
 env:
-  KUBECTL_VERSION: "v1.24.0"
+  KUBECTL_VERSION: "v1.32.0"
+
 jobs:
   setup:
     runs-on: ubuntu-24.04

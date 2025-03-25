@@ -1,9 +1,11 @@
 name: "concurrency job"
-
 on:
   push:
     branches:
       - main
+
+permissions:
+  contents: read
 
 jobs:
   job:

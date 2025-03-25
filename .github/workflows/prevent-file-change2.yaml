@@ -6,7 +6,8 @@ on:
       - .github/**/*.yaml
 
 permissions:
-  pull-requests: read # only read required
+  contents: read
+  pull-requests: read
 
 jobs:
   detect:

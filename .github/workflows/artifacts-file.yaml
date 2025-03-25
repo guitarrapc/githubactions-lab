@@ -1,5 +1,4 @@
 name: artifacts (file)
-
 on:
   workflow_dispatch:
   pull_request:
@@ -11,6 +10,8 @@ jobs:
   # single file
   upload-file:
     runs-on: ubuntu-24.04
+    permissions:
+      contents: read
     timeout-minutes: 3
     steps:
       - name: output
@@ -25,6 +26,8 @@ jobs:
   download-file:
     needs: [upload-file]
     runs-on: ubuntu-24.04
+    permissions:
+      contents: read
     timeout-minutes: 3
     steps:
       - uses: actions/download-artifact@95815c38cf2ff2164869cbab79da8d1f422bc89e # v4.2.1

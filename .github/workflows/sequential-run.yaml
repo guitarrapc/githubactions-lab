@@ -5,17 +5,23 @@ on:
     branches: ["main"]
   pull_request:
     branches: ["main"]
+
 jobs:
   build:
     runs-on: ubuntu-24.04
+    permissions:
+      contents: read
     timeout-minutes: 3
     steps:
       - run: echo "$COMMIT_MESSAGES"
         env:
           COMMIT_MESSAGES: ${{ toJson(github.event.commits.*.message) }}
+
   publish:
     needs: [build]
     runs-on: ubuntu-24.04
+    permissions:
+      contents: read
     timeout-minutes: 3
     steps:
       - run: echo run when only build success

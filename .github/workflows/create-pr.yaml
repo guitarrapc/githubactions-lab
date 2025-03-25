@@ -1,6 +1,10 @@
 name: create pr
 on:
-  workflow_dispatch: null
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
 jobs:
   change:
     runs-on: ubuntu-24.04

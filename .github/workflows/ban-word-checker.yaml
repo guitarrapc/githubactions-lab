@@ -6,6 +6,10 @@ on:
       - .github/workflows/*
       - .github/scripts/lint-banwords.sh
       - .github/ban-words.txt
+
+permissions:
+  contents: read
+
 jobs:
   aws:
     runs-on: ubuntu-24.04
