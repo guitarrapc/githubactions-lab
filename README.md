@@ -1248,10 +1248,16 @@ on:
       secondword:
         description: "The second output string"
         value: ${{ jobs.reusable_workflow_job.outputs.output2 }}
+
+permissions:
+  contents: read
+
 env:
   FOO: foo
+
 jobs:
   reusable_workflow_job:
+    timeout-minutes: 5
     runs-on: ubuntu-24.04
     outputs:
       output1: ${{ steps.step1.outputs.firstword }}
@@ -1260,6 +1266,7 @@ jobs:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
         with:
           ref: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.ref || '' }} # checkout PR HEAD commit instead of merge commit
+          persist-credentials: false
       - name: (Limitation) Callee can not refer caller environment variable.
         run: echo "caller environment. ${{ env.CALLER_VALUE }}"
       - name: called username
