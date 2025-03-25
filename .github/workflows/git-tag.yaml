@@ -1,5 +1,4 @@
 name: git tag
-
 on:
   workflow_dispatch:
     inputs:
@@ -7,12 +6,17 @@ on:
         required: true
         description: input your tag value
 
+permissions:
+  contents: read
+
 jobs:
   actionlint:
     runs-on: ubuntu-24.04
     timeout-minutes: 3
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          persist-credentials: false
       - name: sleep
         run: sleep 60s
       - name: git tag

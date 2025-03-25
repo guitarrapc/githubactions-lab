@@ -10,14 +10,18 @@ on:
         options:
           - monalisa
           - cschleiden
+
 jobs:
   greet:
     # .jobs.<job_name>.name: can use ${{ inputs.value }}
     name: greet (${{ inputs.value }})
     runs-on: ubuntu-24.04
+    permissions:
+      contents: read
     timeout-minutes: 3
     steps:
       - run: echo "${{ inputs.value }}"
+
   matrix:
     name: matrix - ${{ inputs.value }} (${{ matrix.target }})
     strategy:
@@ -25,6 +29,8 @@ jobs:
       matrix:
         target: ["foo", "bar"]
     runs-on: ubuntu-24.04
+    permissions:
+      contents: read
     timeout-minutes: 3
     steps:
       - run: echo "${{ inputs.value }}"

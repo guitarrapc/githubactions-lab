@@ -1,5 +1,4 @@
 name: artifacts (tar.gz)
-
 on:
   workflow_dispatch:
   pull_request:
@@ -12,6 +11,8 @@ jobs:
   upload-targz:
     runs-on: ubuntu-24.04
     timeout-minutes: 3
+    permissions:
+      contents: read
     steps:
       - name: output
         run: |
@@ -30,6 +31,8 @@ jobs:
   download-targz:
     needs: [upload-targz]
     runs-on: ubuntu-24.04
+    permissions:
+      contents: read
     timeout-minutes: 3
     steps:
       # specify path: . to download tar.gz to current directory

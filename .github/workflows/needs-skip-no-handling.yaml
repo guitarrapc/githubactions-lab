@@ -1,5 +1,4 @@
 name: needs skip no handling
-
 on:
   push:
     branches: ["main"]
@@ -11,17 +10,26 @@ jobs:
   A:
     if: ${{ false }}
     runs-on: ubuntu-24.04
+    permissions:
+      contents: read
+    timeout-minutes: 1
     steps:
       - run: echo "a"
 
   B:
     if: ${{ false }}
     runs-on: ubuntu-24.04
+    permissions:
+      contents: read
+    timeout-minutes: 1
     steps:
       - run: echo "b"
 
   C:
     runs-on: ubuntu-24.04
+    permissions:
+      contents: read
+    timeout-minutes: 1
     steps:
       - run: echo "c"
 
@@ -29,5 +37,8 @@ jobs:
   D:
     needs: [A, B, C]
     runs-on: ubuntu-24.04
+    permissions:
+      contents: read
+    timeout-minutes: 1
     steps:
       - run: echo "d"

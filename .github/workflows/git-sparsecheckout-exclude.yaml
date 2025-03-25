@@ -4,6 +4,10 @@ on:
     branches: ["main"]
   pull_request:
     branches: ["main"]
+
+permissions:
+  contents: read
+
 jobs:
   sparse-checkout:
     runs-on: ubuntu-24.04
@@ -15,6 +19,7 @@ jobs:
             !src/*
             /*
           sparse-checkout-cone-mode: false # required for ! entry to work
+          persist-credentials: false
       - name: list root folders
         run: ls -la
       - name: list .github folders

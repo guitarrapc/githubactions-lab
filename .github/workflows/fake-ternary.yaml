@@ -8,11 +8,16 @@ on:
         required: false
   push:
     branches: ["main"]
+
+permissions:
+  contents: read
+
 env:
   # ${{ condition && if_true || if_false}}
   VALUE: ${{ github.event_name == 'workflow_dispatch' && inputs.value || 'default' }}
   GROUP: ${{ github.ref == 'refs/heads/main' && format('ci-main-{0}', github.sha) || format('ci-{0}', github.ref) }}
   GROUP2: ${{ github.ref == 'refs/heads/main2' && format('ci2-main-{0}', github.sha) || format('ci2-{0}', github.ref) }}
+
 jobs:
   job:
     runs-on: ubuntu-24.04

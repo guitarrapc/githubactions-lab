@@ -1,12 +1,12 @@
 name: "concurrency workflow cancel in progress"
-
-# only ${{ github }} context is available
 concurrency:
-  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
-
 on:
   workflow_dispatch:
+
+permissions:
+  contents: read
 
 jobs:
   long_job:

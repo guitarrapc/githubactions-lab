@@ -4,6 +4,10 @@ on:
     branches: ["main"]
   pull_request:
     branches: ["main"]
+
+permissions:
+  contents: read
+
 jobs:
   sparse-checkout:
     runs-on: ubuntu-24.04
@@ -13,6 +17,7 @@ jobs:
         with:
           sparse-checkout: |
             src
+          persist-credentials: false
       - name: list root folders
         run: ls -la
       - name: list src folders

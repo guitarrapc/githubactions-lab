@@ -2,6 +2,10 @@ name: comment run
 on:
   issue_comment:
     types: [created, edited]
+
+permissions:
+  contents: read
+
 jobs:
   comment-run:
     runs-on: ubuntu-24.04
@@ -11,6 +15,7 @@ jobs:
         with:
           # 0 indicates all history
           fetch-depth: 0
+          persist-credentials: false
       - uses: nwtgck/actions-comment-run@eef5a9123b8fdc13af1cbd4cb8292316c0cbe2c5 # v3.0.0
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}

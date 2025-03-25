@@ -4,6 +4,10 @@ on:
     branches: ["main"]
     tags:
       - "!*" # not a tag push
+
+permissions:
+  contents: read
+
 jobs:
   aws:
     runs-on: ubuntu-24.04

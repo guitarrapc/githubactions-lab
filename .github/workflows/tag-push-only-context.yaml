@@ -3,9 +3,14 @@ on:
   push:
     tags:
       - "**" # only tag
+
+permissions:
+  contents: read
+
 jobs:
   ref:
     runs-on: ubuntu-24.04
+    timeout-minutes: 3
     steps:
       - name: Use GITHUB_REF and GITHUB_OUTPUT
         run: echo "GIT_TAG=${GITHUB_REF##*/}" >> "$GITHUB_OUTPUT"

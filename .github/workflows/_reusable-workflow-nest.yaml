@@ -11,6 +11,9 @@ on:
         description: username to show
         type: boolean
 
+permissions:
+  contents: read
+
 # nested call is supported
 jobs:
   call-workflow-passing-data:

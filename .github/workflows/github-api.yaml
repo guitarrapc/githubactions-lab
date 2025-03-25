@@ -2,6 +2,10 @@ name: "github api sample"
 on:
   issues:
     types: [opened]
+
+permissions:
+  contents: read
+
 jobs:
   comment:
     runs-on: ubuntu-24.04

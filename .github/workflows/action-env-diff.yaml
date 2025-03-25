@@ -1,11 +1,13 @@
 name: actions env diff
-# Is Actions cause environment variables diff?
 on:
   push:
     branches: ["main"]
   pull_request:
     branches: ["main"]
   workflow_dispatch:
+
+permissions:
+  contents: read
 
 jobs:
   # GitHub Actions Hosted Runner default environment contains some .NET Environment.

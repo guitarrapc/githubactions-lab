@@ -13,6 +13,8 @@ jobs:
       matrix:
         runs-on: [ubuntu-24.04, ubuntu-22.04]
     runs-on: ${{ matrix.runs-on }}
+    permissions:
+      contents: read
     timeout-minutes: 3
     steps:
       - name: dotnet before setup-dotnet (/usr/bin/dotnet)
@@ -63,6 +65,8 @@ jobs:
       matrix:
         runs-on: [ubuntu-24.04, ubuntu-22.04]
     runs-on: ${{ matrix.runs-on }}
+    permissions:
+      contents: read
     timeout-minutes: 3
     steps:
     - uses: actions/setup-dotnet@67a3573c9a986a3f9c594539f4ab511d57bb3ce9 # v4.3.1

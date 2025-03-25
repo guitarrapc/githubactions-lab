@@ -2,6 +2,7 @@ name: permissions
 on:
   pull_request:
     branches: ["main"]
+
 permissions:
   # actions: write
   # checks: write
@@ -16,9 +17,12 @@ permissions:
   # repository-projects: write
   # security-events: write
   # statuses: write
+
 jobs:
   job:
     runs-on: ubuntu-24.04
     timeout-minutes: 10
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          persist-credentials: false

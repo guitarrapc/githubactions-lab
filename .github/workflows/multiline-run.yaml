@@ -3,6 +3,10 @@ on:
   workflow_dispatch:
   push:
     branches: ["main"]
+
+permissions:
+  contents: read
+
 jobs:
   push:
     runs-on: ubuntu-24.04
