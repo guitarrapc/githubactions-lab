@@ -419,6 +419,9 @@ on:
     - cron: "0 0 * * *"
   workflow_dispatch:
 
+permissions:
+  contents: read
+
 jobs:
   context:
     runs-on: ubuntu-24.04
@@ -473,12 +476,17 @@ on:
     - cron: "0 0 * * *"
   workflow_dispatch:
 
+permissions:
+  contents: read
+
 jobs:
   dump:
     runs-on: ubuntu-24.04
     timeout-minutes: 3
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          persist-credentials: false
       - name: Dump environment
         run: env
       - name: Dump GITHUB_EVENT_PATH json
@@ -529,12 +537,12 @@ You can use build context like `github.head_ref` or others. This means you can c
 # .github/workflows/concurrency-workflow.yaml
 
 name: "concurrency workflow"
-
-# only ${{ github }} context is available
-concurrency: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
-
+concurrency: ${{ github.workflow }}-${{ github.ref }}
 on:
   workflow_dispatch:
+
+permissions:
+  contents: read
 
 jobs:
   long_job:
@@ -551,14 +559,14 @@ Specifying `cancel-in-progress: true` will cancel parallel build.
 # .github/workflows/concurrency-workflow-cancel-in-progress.yaml
 
 name: "concurrency workflow cancel in progress"
-
-# only ${{ github }} context is available
 concurrency:
-  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
-
 on:
   workflow_dispatch:
+
+permissions:
+  contents: read
 
 jobs:
   long_job:
@@ -577,11 +585,13 @@ Job concurrency control is useful when you want to prevent job to run at same ti
 # .github/workflows/concurrency-job.yaml
 
 name: "concurrency job"
-
 on:
   push:
     branches:
       - main
+
+permissions:
+  contents: read
 
 jobs:
   job:
@@ -601,11 +611,13 @@ Specifying `cancel-in-progress: true` will cancel parallel build.
 # .github/workflows/concurrency-job-cancel-in-progress.yaml
 
 name: "concurrency job cancel in progress"
-
 on:
   push:
     branches:
       - main
+
+permissions:
+  contents: read
 
 jobs:
   job:
@@ -665,12 +677,16 @@ jobs:
       matrix:
         runs-on: [ubuntu-24.04, windows-latest]
     runs-on: ${{ matrix.runs-on }}
+    permissions:
+      contents: read
     timeout-minutes: 3
     defaults:
       run:
         shell: bash
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          persist-credentials: false
       - name: Add ENV and OUTPUT by shell
         id: shell
         run: |
@@ -697,12 +713,16 @@ jobs:
       matrix:
         runs-on: [ubuntu-24.04, windows-latest]
     runs-on: ${{ matrix.runs-on }}
+    permissions:
+      contents: read
     timeout-minutes: 3
     defaults:
       run:
         shell: pwsh
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          persist-credentials: false
       - name: Add ENV and OUTPUT by shell
         id: shell
         run: |
@@ -729,12 +749,16 @@ jobs:
       matrix:
         runs-on: [windows-latest]
     runs-on: ${{ matrix.runs-on }}
+    permissions:
+      contents: read
     timeout-minutes: 3
     defaults:
       run:
         shell: cmd
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          persist-credentials: false
       # cmd must not use quotes!!
       - name: Add ENV and OUTPUT by shell
         id: shell
@@ -779,6 +803,10 @@ on:
     branches: ["main"]
   pull_request:
     branches: ["main"]
+
+permissions:
+  contents: read
+
 jobs:
   matrix_reference:
     strategy:
@@ -841,12 +869,18 @@ on:
 jobs:
   A:
     runs-on: ubuntu-24.04
+    permissions:
+      contents: read
+    timeout-minutes: 1
     steps:
       - run: echo "a"
 
   B:
     needs: [A]
     runs-on: ubuntu-24.04
+    permissions:
+      contents: read
+    timeout-minutes: 1
     steps:
       - run: echo "b"
 
@@ -854,6 +888,9 @@ jobs:
   C:
     needs: [A, B]
     runs-on: ubuntu-24.04
+    permissions:
+      contents: read
+    timeout-minutes: 1
     steps:
       - run: echo "c"
 
@@ -890,12 +927,18 @@ on:
 jobs:
   A:
     runs-on: ubuntu-24.04
+    permissions:
+      contents: read
+    timeout-minutes: 1
     steps:
       - run: echo "a"
 
   B:
     needs: [A]
     runs-on: ubuntu-24.04
+    permissions:
+      contents: read
+    timeout-minutes: 1
     steps:
       - run: echo "b"
 
@@ -904,6 +947,9 @@ jobs:
     needs: [A, B]
     if: ${{ always() }}
     runs-on: ubuntu-24.04
+    permissions:
+      contents: read
+    timeout-minutes: 1
     steps:
       - run: echo "c"
 
@@ -919,7 +965,6 @@ Following workflow expected to run `D` when `C` is invoked. But skipping `A` and
 # .github/workflows/needs-skip-no-handling.yaml
 
 name: needs skip no handling
-
 on:
   push:
     branches: ["main"]
@@ -931,17 +976,26 @@ jobs:
   A:
     if: ${{ false }}
     runs-on: ubuntu-24.04
+    permissions:
+      contents: read
+    timeout-minutes: 1
     steps:
       - run: echo "a"
 
   B:
     if: ${{ false }}
     runs-on: ubuntu-24.04
+    permissions:
+      contents: read
+    timeout-minutes: 1
     steps:
       - run: echo "b"
 
   C:
     runs-on: ubuntu-24.04
+    permissions:
+      contents: read
+    timeout-minutes: 1
     steps:
       - run: echo "c"
 
@@ -949,6 +1003,9 @@ jobs:
   D:
     needs: [A, B, C]
     runs-on: ubuntu-24.04
+    permissions:
+      contents: read
+    timeout-minutes: 1
     steps:
       - run: echo "d"
 
@@ -960,7 +1017,6 @@ To handle `D` to run when `C` is invoked, you need to add `if` condition to `D`.
 # .github/workflows/needs-skip-handling.yaml
 
 name: needs skip handling
-
 on:
   push:
     branches: ["main"]
@@ -978,17 +1034,26 @@ jobs:
   A:
     if: ${{ !inputs.only-c }}
     runs-on: ubuntu-24.04
+    permissions:
+      contents: read
+    timeout-minutes: 1
     steps:
       - run: echo "a"
 
   B:
     if: ${{ !inputs.only-c }}
     runs-on: ubuntu-24.04
+    permissions:
+      contents: read
+    timeout-minutes: 1
     steps:
       - run: echo "b"
 
   C:
     runs-on: ubuntu-24.04
+    permissions:
+      contents: read
+    timeout-minutes: 1
     steps:
       - run: echo "c"
 
@@ -997,6 +1062,9 @@ jobs:
     needs: [A, B, C]
     if: ${{ inputs.only-c && needs.C.result == 'success' || success() }}
     runs-on: ubuntu-24.04
+    permissions:
+      contents: read
+    timeout-minutes: 1
     steps:
       - run: echo "d"
 
@@ -1017,6 +1085,7 @@ name: permissions
 on:
   pull_request:
     branches: ["main"]
+
 permissions:
   # actions: write
   # checks: write
@@ -1031,12 +1100,15 @@ permissions:
   # repository-projects: write
   # security-events: write
   # statuses: write
+
 jobs:
   job:
     runs-on: ubuntu-24.04
     timeout-minutes: 10
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          persist-credentials: false
 
 ```
 
@@ -1049,6 +1121,7 @@ name: permissions job
 on:
   pull_request:
     branches: ["main"]
+
 jobs:
   job:
     permissions:
@@ -1069,6 +1142,8 @@ jobs:
     timeout-minutes: 3
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          persist-credentials: false
 
 ```
 
@@ -1113,12 +1188,18 @@ on:
     branches: ["main"]
   pull_request:
     branches: ["main"]
+
+permissions:
+  contents: read
+
 jobs:
   job:
     runs-on: ubuntu-24.04
     timeout-minutes: 3
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          persist-credentials: false
       - name: use local action
         uses: ./.github/actions/local-composite-actions
         with:
@@ -1169,12 +1250,18 @@ on:
     branches: ["main"]
   pull_request:
     branches: ["main"]
+
+permissions:
+  contents: read
+
 jobs:
   job:
     runs-on: ubuntu-24.04
     timeout-minutes: 3
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          persist-credentials: false
       - name: use local action
         uses: ./.github/actions/local-node-actions
 
@@ -1248,10 +1335,16 @@ on:
       secondword:
         description: "The second output string"
         value: ${{ jobs.reusable_workflow_job.outputs.output2 }}
+
+permissions:
+  contents: read
+
 env:
   FOO: foo
+
 jobs:
   reusable_workflow_job:
+    timeout-minutes: 5
     runs-on: ubuntu-24.04
     outputs:
       output1: ${{ steps.step1.outputs.firstword }}
@@ -1260,6 +1353,7 @@ jobs:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
         with:
           ref: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.ref || '' }} # checkout PR HEAD commit instead of merge commit
+          persist-credentials: false
       - name: (Limitation) Callee can not refer caller environment variable.
         run: echo "caller environment. ${{ env.CALLER_VALUE }}"
       - name: called username
@@ -1301,11 +1395,15 @@ on:
     branches: ["main"]
   workflow_dispatch:
 
+
 # (Limitation) Callee can not refer caller environment variable.
 env:
   CALLER_VALUE: caller
+
 jobs:
   call-workflow-passing-data:
+    permissions:
+      contents: read
     uses: ./.github/workflows/_reusable-workflow-called.yaml
     with:
       username: "foo"
@@ -1314,6 +1412,9 @@ jobs:
 
   job2:
     runs-on: ubuntu-24.04
+    permissions:
+      contents: read
+    timeout-minutes: 1
     needs: call-workflow-passing-data
     steps:
       - run: echo ${{ needs.call-workflow-passing-data.outputs.firstword }} ${{ needs.call-workflow-passing-data.outputs.secondword }}
@@ -1340,16 +1441,21 @@ on:
 jobs:
   call-workflow-passing-data:
     uses: guitarrapc/githubactions-lab/.github/workflows/_reusable-workflow-called.yaml@main
+    permissions:
+      contents: read
     with:
       username: foo
       is-valid: true
     secrets: inherit
 
   job2:
+    needs: [call-workflow-passing-data]
     runs-on: ubuntu-24.04
-    needs: call-workflow-passing-data
+    permissions:
+      contents: read
+    timeout-minutes: 1
     steps:
-      - run: echo ${{ needs.call-workflow-passing-data.outputs.firstword }} ${{ needs.call-workflow-passing-data.outputs.secondword }}
+      - run: echo "${{ needs.call-workflow-passing-data.outputs.firstword }} ${{ needs.call-workflow-passing-data.outputs.secondword }}"
 
 ```
 
@@ -1367,6 +1473,9 @@ on:
   pull_request:
     branches: ["main"]
   workflow_dispatch:
+
+permissions:
+  contents: read
 
 jobs:
   call-matrix-workflow:
@@ -1401,6 +1510,9 @@ on:
         description: username to show
         type: boolean
 
+permissions:
+  contents: read
+
 # nested call is supported
 jobs:
   call-workflow-passing-data:
@@ -1409,6 +1521,7 @@ jobs:
       username: ${{ inputs.username }}
       is-valid: ${{ inputs.is-valid }}
     secrets: inherit
+
 ```
 
 ## Run when previous job is success
@@ -1427,17 +1540,23 @@ on:
     branches: ["main"]
   pull_request:
     branches: ["main"]
+
 jobs:
   build:
     runs-on: ubuntu-24.04
+    permissions:
+      contents: read
     timeout-minutes: 3
     steps:
       - run: echo "$COMMIT_MESSAGES"
         env:
           COMMIT_MESSAGES: ${{ toJson(github.event.commits.*.message) }}
+
   publish:
     needs: [build]
     runs-on: ubuntu-24.04
+    permissions:
+      contents: read
     timeout-minutes: 3
     steps:
       - run: echo run when only build success
@@ -1460,6 +1579,10 @@ on:
     branches: ["main"]
   pull_request:
     branches: ["main"]
+
+permissions:
+  contents: read
+
 jobs:
   job:
     runs-on: ubuntu-24.04
@@ -1495,6 +1618,10 @@ on:
   workflow_dispatch:
   push:
     branches: ["main"]
+
+permissions:
+  contents: read
+
 jobs:
   push:
     runs-on: ubuntu-24.04
@@ -1518,18 +1645,24 @@ on:
   workflow_dispatch:
   push:
     branches: ["main"]
+
 jobs:
   push:
     if: >-
       github.event_name == 'push' || github.event.forced == false
     runs-on: ubuntu-24.04
+    permissions:
+      contents: read
     timeout-minutes: 5
     steps:
       - run: echo "push"
+
   workflow_dispatch:
     if: >-
       github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-24.04
+    permissions:
+      contents: read
     timeout-minutes: 5
     steps:
       - run: echo "workflow_dispatch"
@@ -1554,8 +1687,13 @@ on:
     branches: ["main"]
   pull_request:
     branches: ["main"]
+
+permissions:
+  contents: read
+
 env:
   fruit: APPLES
+
 jobs:
   dereference:
     strategy:
@@ -1595,6 +1733,10 @@ on:
     branches: ["main"]
   pull_request:
     branches: ["main"]
+
+permissions:
+  contents: read
+
 jobs:
   echo:
     strategy:
@@ -1633,6 +1775,10 @@ on:
     branches: ["main"]
   pull_request:
     branches: ["main"]
+
+permissions:
+  contents: read
+
 jobs:
   my-job:
     runs-on: ubuntu-24.04
@@ -1666,6 +1812,10 @@ on:
       tags:
         description: "Test scenario tags"
         required: false
+
+permissions:
+  contents: read
+
 jobs:
   printInputs:
     runs-on: ubuntu-24.04
@@ -1679,6 +1829,7 @@ jobs:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
         with:
           ref: ${{ inputs.branch }}
+          persist-credentials: false
       - name: dump github context
         run: echo "$CONTEXT"
         env:
@@ -1745,6 +1896,10 @@ on:
         type: environment
         description: "environment: Select environment"
         required: true
+
+permissions:
+  contents: read
+
 jobs:
   greet:
     runs-on: ubuntu-24.04
@@ -1790,6 +1945,10 @@ on:
     branches: ["main"]
   pull_request:
     branches: ["main"]
+
+permissions:
+  contents: read
+
 jobs:
   my-job:
     runs-on: ubuntu-24.04
@@ -1807,17 +1966,20 @@ Cancel duplicate workflow and mark CI failure.
 # .github/workflows/cancel-redundantbuild.yaml
 
 name: cancel redundant build
-# when pull_request, both push and pull_request (synchronize) will trigger.
-# this action sample will prevent duplicate run, but run only 1 of them.
 on:
   workflow_dispatch:
   push:
     branches: ["main"]
   pull_request:
     branches: ["main"]
+
+permissions:
+  contents: read
+
 jobs:
   cancel:
     runs-on: ubuntu-24.04
+    timeout-minutes: 3
     steps:
       # no check for main and tag
       - uses: rokroskar/workflow-run-cleanup-action@ee1451b869ba1e381729b3d40489997021f0d562 # v0.3.3
@@ -1851,12 +2013,17 @@ on:
   push:
     branches: ["main"]
 
+permissions:
+  contents: read
+
 jobs:
   changed-files:
     runs-on: ubuntu-24.04
     timeout-minutes: 3
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          persist-credentials: false
       # see: https://github.com/dorny/paths-filter/blob/master/README.md
       - id: changed-files
         uses: dorny/paths-filter@de90cc6fb38fc0963ad72b210f1f284cd68cea36 # v3.0.2
@@ -1919,12 +2086,17 @@ on:
   push:
     branches: ["main"]
 
+permissions:
+  contents: read
+
 jobs:
   changed-files:
     runs-on: ubuntu-24.04
     timeout-minutes: 3
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          persist-credentials: false
       # see: https://github.com/dorny/paths-filter/blob/master/README.md
       - id: changed-files
         uses: dorny/paths-filter@de90cc6fb38fc0963ad72b210f1f284cd68cea36 # v3.0.2
@@ -1996,6 +2168,10 @@ name: schedule job
 on:
   schedule:
     - cron: "0 0 * * *"
+
+permissions:
+  contents: read
+
 jobs:
   job:
     runs-on: ubuntu-24.04
@@ -2008,6 +2184,7 @@ jobs:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
         with:
           ref: refs/heads/some-branch
+          persist-credentials: false
 
 ```
 
@@ -2019,7 +2196,6 @@ Multiple assets upload is supported by running running `actions/upload-release-a
 
 name: create release
 concurrency: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
-
 on:
   push:
     tags:
@@ -2037,6 +2213,9 @@ on:
         default: false
         type: boolean
 
+permissions:
+  contents: write
+
 env:
   GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   GH_REPO: ${{ github.repository }}
@@ -2052,6 +2231,8 @@ jobs:
         run: echo "value=${{ inputs.tag || (github.event_name == 'pull_request' && '0.1.0-test' || github.ref_name) }}" | tee -a "$GITHUB_OUTPUT"
       # Create Tag
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          persist-credentials: false
       - name: Create Tag and push if not exists
         run: |
           if ! git ls-remote --tags | grep ${{ steps.tag.outputs.value }}; then
@@ -2095,6 +2276,10 @@ on:
     branches: ["main"]
     tags:
       - "!*" # not a tag push
+
+permissions:
+  contents: read
+
 jobs:
   aws:
     runs-on: ubuntu-24.04
@@ -2113,6 +2298,10 @@ name: trigger ci commit
 on:
   push:
     branches: ["main"]
+
+permissions:
+  contents: read
+
 jobs:
   job:
     if: ${{ contains(toJSON(github.event.commits.*.message), '[build]') }}
@@ -2137,9 +2326,14 @@ on:
   push:
     tags:
       - "**" # only tag
+
+permissions:
+  contents: read
+
 jobs:
   job:
     runs-on: ubuntu-24.04
+    timeout-minutes: 3
     steps:
       - run: echo not run on branch push
 
@@ -2167,9 +2361,14 @@ on:
   push:
     tags:
       - "[0-9]+.[0-9]+.[0-9]+*" # only tag with pattern match
+
+permissions:
+  contents: read
+
 jobs:
   job:
     runs-on: ubuntu-24.04
+    timeout-minutes: 3
     steps:
       - run: echo not run on branch push
 
@@ -2193,6 +2392,10 @@ on:
       - opened
       - reopened
       - synchronize
+
+permissions:
+  contents: read
+
 jobs:
   changes:
     runs-on: ubuntu-24.04
@@ -2225,6 +2428,8 @@ jobs:
   skip:
     if: ${{ !(contains(github.event.pull_request.title, '[skip ci]') || contains(github.event.pull_request.title, '[ci skip]')) }}
     runs-on: ubuntu-24.04
+    permissions:
+      contents: read
     timeout-minutes: 3
     steps:
       - run: echo "$GITHUB_CONTEXT"
@@ -2236,6 +2441,8 @@ jobs:
   build:
     runs-on: ubuntu-24.04
     timeout-minutes: 3
+    permissions:
+      contents: read
     needs: skip
     steps:
       - run: echo run when not skipped
@@ -2259,6 +2466,10 @@ on:
     types:
       - opened
       - synchronize
+
+permissions:
+  contents: read
+
 jobs:
   build:
     # push & my repo will trigger
@@ -2281,9 +2492,13 @@ Unfortunately GitHub Webhook v3 event not provide draft pr type, but `event.pull
 
 name: skip draft pr
 on:
-  pull_request:
+  pull_request: null
   push:
     branches: ["main"]
+
+permissions:
+  contents: read
+
 jobs:
   job:
     if: ${{ ! github.event.pull_request.draft }}
@@ -2291,6 +2506,8 @@ jobs:
     timeout-minutes: 3
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          persist-credentials: false
 
 ```
 
@@ -2307,6 +2524,10 @@ on:
       - opened
       - reopened
       - ready_for_review
+
+permissions:
+  contents: read
+
 jobs:
   build:
     # RUN WHEN
@@ -2317,6 +2538,8 @@ jobs:
     timeout-minutes: 3
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          persist-credentials: false
 
 ```
 
@@ -2397,7 +2620,6 @@ GitHub Actions [actions/upload-artifact](https://github.com/actions/upload-artif
 # .github/workflows/artifacts-file.yaml
 
 name: artifacts (file)
-
 on:
   workflow_dispatch:
   pull_request:
@@ -2409,6 +2631,8 @@ jobs:
   # single file
   upload-file:
     runs-on: ubuntu-24.04
+    permissions:
+      contents: read
     timeout-minutes: 3
     steps:
       - name: output
@@ -2423,6 +2647,8 @@ jobs:
   download-file:
     needs: [upload-file]
     runs-on: ubuntu-24.04
+    permissions:
+      contents: read
     timeout-minutes: 3
     steps:
       - uses: actions/download-artifact@95815c38cf2ff2164869cbab79da8d1f422bc89e # v4.2.1
@@ -2442,7 +2668,6 @@ jobs:
 # .github/workflows/artifacts-directory.yaml
 
 name: artifacts (directory)
-
 on:
   workflow_dispatch:
   pull_request:
@@ -2454,6 +2679,8 @@ jobs:
   # directory
   upload-directory:
     runs-on: ubuntu-24.04
+    permissions:
+      contents: read
     timeout-minutes: 3
     steps:
       - name: output
@@ -2471,6 +2698,8 @@ jobs:
   download-directory:
     needs: [upload-directory]
     runs-on: ubuntu-24.04
+    permissions:
+      contents: read
     timeout-minutes: 3
     steps:
       - uses: actions/download-artifact@95815c38cf2ff2164869cbab79da8d1f422bc89e # v4.2.1
@@ -2490,7 +2719,6 @@ jobs:
 # .github/workflows/artifacts-targz.yaml
 
 name: artifacts (tar.gz)
-
 on:
   workflow_dispatch:
   pull_request:
@@ -2503,6 +2731,8 @@ jobs:
   upload-targz:
     runs-on: ubuntu-24.04
     timeout-minutes: 3
+    permissions:
+      contents: read
     steps:
       - name: output
         run: |
@@ -2521,6 +2751,8 @@ jobs:
   download-targz:
     needs: [upload-targz]
     runs-on: ubuntu-24.04
+    permissions:
+      contents: read
     timeout-minutes: 3
     steps:
       # specify path: . to download tar.gz to current directory
@@ -2589,6 +2821,10 @@ on:
     branches: ["main"]
   pull_request:
     branches: ["main"]
+
+permissions:
+  contents: read
+
 jobs:
   sparse-checkout:
     runs-on: ubuntu-24.04
@@ -2598,6 +2834,7 @@ jobs:
         with:
           sparse-checkout: |
             src
+          persist-credentials: false
       - name: list root folders
         run: ls -la
       - name: list src folders
@@ -2648,6 +2885,10 @@ on:
     branches: ["main"]
   pull_request:
     branches: ["main"]
+
+permissions:
+  contents: read
+
 jobs:
   sparse-checkout:
     runs-on: ubuntu-24.04
@@ -2658,6 +2899,7 @@ jobs:
           sparse-checkout: |
             src/*
           sparse-checkout-cone-mode: false # required for ! entry to work
+          persist-credentials: false
       - name: list root folders
         run: ls -la
       - name: list src folders
@@ -2703,6 +2945,10 @@ on:
     branches: ["main"]
   pull_request:
     branches: ["main"]
+
+permissions:
+  contents: read
+
 jobs:
   sparse-checkout:
     runs-on: ubuntu-24.04
@@ -2714,6 +2960,7 @@ jobs:
             !src/*
             /*
           sparse-checkout-cone-mode: false # required for ! entry to work
+          persist-credentials: false
       - name: list root folders
         run: ls -la
       - name: list .github folders
@@ -2782,6 +3029,10 @@ This repo will dispatch event with [Workflow Dispatch Action](https://github.com
 name: dispatch changes actions
 on:
   workflow_dispatch:
+
+permissions:
+  contents: read
+
 jobs:
   dispatch:
     runs-on: ubuntu-24.04
@@ -2823,6 +3074,9 @@ on:
     paths:
       - .github/**/*.yaml
 
+permissions:
+  contents: read
+
 jobs:
   detect:
     if: ${{ github.event.pull_request.head.repo.fork }} # is Fork
@@ -2845,7 +3099,8 @@ on:
       - .github/**/*.yaml
 
 permissions:
-  pull-requests: read # only read required
+  contents: read
+  pull-requests: read
 
 jobs:
   detect:
@@ -2873,6 +3128,9 @@ on:
       - .github/**/*.yaml
       - .github/**/*.yml
 
+permissions:
+  contents: read
+
 jobs:
   detect:
     if: ${{ github.event.pull_request.head.repo.fork }} # is Fork
@@ -2893,6 +3151,9 @@ on:
     branches: ["main"]
     paths:
       - .github/**/*.yaml
+
+permissions:
+  contents: read
 
 jobs:
   detect:
@@ -2924,16 +3185,24 @@ on:
   schedule:
     - cron: "0 0 * * *"
 
+permissions:
+  contents: read
+
 jobs:
-  actionlint:
+  lint:
     runs-on: ubuntu-24.04
-    timeout-minutes: 3
+    timeout-minutes: 5
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
-      - name: Install actionlint
-        run: bash <(curl https://raw.githubusercontent.com/rhysd/actionlint/main/scripts/download-actionlint.bash)
+        with:
+          persist-credentials: false
+      - uses: aquaproj/aqua-installer@e2d0136abcf70b7a2f6f505720640750557c4b33 # v3.1.1
+        with:
+          aqua_version: v2.43.1
       - name: Run actionlint
-        run: ./actionlint -color -oneline
+        run: actionlint -color -oneline
+      - name: Run ghalint
+        run: ghalint run
 
 ```
 
@@ -2955,12 +3224,18 @@ name: pr from merge commit
 on:
   push:
     branches: ["main"]
+
+permissions:
+  contents: read
+
 jobs:
   get:
     runs-on: ubuntu-24.04
     timeout-minutes: 3
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          persist-credentials: false
       - uses: jwalton/gh-find-current-pr@89ee5799558265a1e0e31fab792ebb4ee91c016b # v1.3.3
         id: pr
         with:
@@ -2993,6 +3268,9 @@ on:
   pull_request:
     branches: ["main"]
 
+permissions:
+  contents: read
+
 jobs:
   dotnet:
     runs-on: ubuntu-24.04
@@ -3004,6 +3282,8 @@ jobs:
           theme: dark # or light. dark generate charts compatible with Github dark mode.
           comment_on_pr: false # post telemetry to PR comment. It won't override existing comment, therefore too noisy for PR.
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          persist-credentials: false
       - uses: actions/setup-dotnet@67a3573c9a986a3f9c594539f4ab511d57bb3ce9 # v4.3.1
         with:
           dotnet-version: 8.0.x
@@ -3052,9 +3332,9 @@ action folder naming also follow this rule.
 ```yaml
 # .github/workflows/_reusable-dump-context.yaml#L20-L22
 
-# pull_request and pull_request_target event may begin concurrently and conflict git operation. So, let's wait random time.
-- name: Random wait (30-60s)
-  if: ${{ github.event_name == 'pull_request_target' }}
+    runs-on: [ubuntu-24.04]
+runs-on: ${{ matrix.runs-on }}
+timeout-minutes: 5
 ```
 
 ## Get Tag
@@ -3074,9 +3354,14 @@ on:
   push:
     tags:
       - "**" # only tag
+
+permissions:
+  contents: read
+
 jobs:
   ref:
     runs-on: ubuntu-24.04
+    timeout-minutes: 3
     steps:
       - name: Use GITHUB_REF and GITHUB_OUTPUT
         run: echo "GIT_TAG=${GITHUB_REF##*/}" >> "$GITHUB_OUTPUT"
@@ -3129,12 +3414,17 @@ on:
   pull_request:
     branches: ["main"]
 
+permissions:
+  contents: read
+
 jobs:
   action:
     runs-on: ubuntu-24.04
     timeout-minutes: 3
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          persist-credentials: false
       - name: Downloaded actions from the marketplace
         run: ls -l /home/runner/work/_actions
       - name: See actions download path
