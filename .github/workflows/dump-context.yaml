@@ -8,7 +8,7 @@ on:
   pull_request:
     branches: ["main"]
     types: [opened, synchronize, reopened, closed]
-  pull_request_target:
+  pull_request_target: # zizmor: ignore[dangerous-triggers]
     branches: ["main"]
     types: [opened, synchronize, reopened, closed]
   schedule:

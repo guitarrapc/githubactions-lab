@@ -12,7 +12,10 @@ jobs:
     timeout-minutes: 5
     steps:
       - run: echo not run on branch push
-      - run: echo ${{ github.ref_name }}
+      - run: echo "$REF_NAME"
+        env:
+          REF_NAME: ${{ github.ref_name }}
+
 
   runner:
     runs-on: ubuntu-24.04

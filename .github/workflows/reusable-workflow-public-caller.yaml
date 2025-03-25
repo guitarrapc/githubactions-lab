@@ -14,7 +14,8 @@ jobs:
     with:
       username: foo
       is-valid: true
-    secrets: inherit
+    secrets:
+      APPLES: ${{ secrets.APPLES }}
 
   job2:
     needs: [call-workflow-passing-data]

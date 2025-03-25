@@ -9,6 +9,9 @@ inputs:
   ref:
     description: "checkout ref to make git ref up to date."
     required: true
+  github-token:
+    description: "github token"
+    required: true
 runs:
   using: "composite"
   steps:
@@ -25,17 +28,25 @@ runs:
           echo "changed=1" | tee -a "${GITHUB_OUTPUT}"
         fi
       continue-on-error: true
+
     - name: update current git to latest & Push changes
       if: ${{ steps.diff.outputs.changed == '1' }}
       shell: bash
+      env:
+        COMMIT_MESSAGE: ${{ inputs.commit-message }}
+        GITHUB_TOKEN: ${{ inputs.github-token }}
       run: |
+        git remote set-url origin "https://github-actions:${GITHUB_TOKEN}@github.com/${{ github.repository }}"
         git config user.name  "github-actions[bot]"
         git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
         git add .
-        git commit -m "${{ inputs.commit-message }}"
+        git commit -m "$COMMIT_MESSAGE"
+
     - name: git push
       if: ${{ steps.diff.outputs.changed == '1' }}
       shell: bash
+      env:
+        GIT_REF: ${{ inputs.ref }}
       run: |
         max_retries=3
         retry_count=0
@@ -47,7 +58,7 @@ runs:
           fi
 
           echo "Failed to push, try 'git pull --rebase' to resolve ..."
-          if ! git pull origin ${{ inputs.ref }} --rebase; then
+          if ! git pull origin "$GIT_REF" --rebase; then
             echo "'git pull --rebase' has problen, you need resolve conflict ..."
             return 1
           fi
@@ -59,7 +70,7 @@ runs:
           echo "try 'git push' ($((retry_count + 1))/${max_retries}) ..."
           try_push
           result=$?
-          if try_push; then
+          if [ $result -eq 0 ]; then
             # exit on success
             exit 0
           elif [ $result -eq 1 ]; then

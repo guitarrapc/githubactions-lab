@@ -38,9 +38,12 @@ jobs:
           kubectl kustomize ./src/k8s/common/overlays/development \
             | sed -e "s|<namespace>|${NAMESPACE_PREFIX}${MANIFEST_DIR}|g" \
             | sed -e "s|<git-sha>|${{ github.sha }}|g" \
-            | sed -e "s|<git-branch>|${{ github.ref_name }}|g" \
-            | sed -e "s|<git-link>|${{ github.event.commits[0].url }}|g" \
+            | sed -e "s|<git-branch>|${GITHUB_REF_NAME}|g" \
+            | sed -e "s|<git-link>|${GITHUB_COMMIT_URL}|g" \
             | sed -e "s|<build-id>|${{ github.run_id }}|g" > "${REPO_MANIFEST}/${MANIFEST_DIR}/all.yaml"
+        env:
+          GITHUB_REF_NAME: ${{ github.ref_name }}
+          GITHUB_COMMIT_URL: ${{ github.event.commits[0].url }}
       - name: Check for modified files
         id: git-check
         run: echo "modified=$(if git diff-index --quiet HEAD --; then echo "false"; else echo "true"; fi)" >> "$GITHUB_OUTPUT"
@@ -50,17 +53,19 @@ jobs:
         uses: peter-evans/create-pull-request@271a8d0340265f705b14b6d32b9829c1cb33d45e # v7.0.8
         with:
           base: "main"
-          branch: ${{ github.event.repository.name }}/${{ github.ref_name }}-pr
+          branch: ${{ github.event.repository.name }}/${GITHUB_REF_NAME}-pr
           author: github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>
           committer: github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>
           delete-branch: true
           commit-message: "update manifests ${{ github.repository }}@${{ github.sha }} (${{ github.run_id }})"
-          title: "feat: (${{ env.MANIFEST_DIR }}) update manifest on ${{ github.ref_name }}"
+          title: "feat: (${{ env.MANIFEST_DIR }}) update manifest on ${GITHUB_REF_NAME}"
           body: |
-            Automated changed by https://github.com/${{ github.repository }}/tree/${{ github.ref_name }}
+            Automated changed by https://github.com/${{ github.repository }}/tree/${GITHUB_REF_NAME}
           labels: |
             automated pr
             kubernetes
+        env:
+          GITHUB_REF_NAME: ${{ github.ref_name }}
       - name: Check outputs
         if: ${{ steps.git-check.outputs.modified == 'true' }}
         run: |

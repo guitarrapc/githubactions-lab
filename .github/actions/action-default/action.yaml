@@ -5,9 +5,12 @@ inputs:
   foo:
     description: "foo inputs"
     required: false
+
 runs:
   using: "composite"
   steps:
     - name: Output foo input
       shell: bash
-      run: echo "foo is ${{ inputs.foo != '' && inputs.foo || env.FOO }}" # redirect to env when input is empty.
+      run: echo "foo is ${VALUE}" # redirect to env when input is empty.
+      env:
+        VALUE: ${{ inputs.foo != '' && inputs.foo || env.FOO }}

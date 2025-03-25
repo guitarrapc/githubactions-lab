@@ -26,6 +26,8 @@ jobs:
       LOGLEVEL: ${{ inputs.logLevel }}
       TAGS: ${{ inputs.tags }}
     steps:
+      - name: Show Environment Variables
+        run: env
       - run: echo ${{ env.BRANCH }} ${{ env.LOGLEVEL }} ${{ env.TAGS }}
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
         with:
@@ -41,21 +43,12 @@ jobs:
           CONTEXT: ${{ toJson(github.event.inputs) }}
       - name: Show Input value
         run: |
-          echo "Log level: ${{ inputs.logLevel }}"
-          echo "Tags: ${{ inputs.tags }}"
+          echo "Log level: ${LOG_LEVEL}"
+          echo "Tags: ${TAGS}"
+        env:
+          LOG_LEVEL: ${{ inputs.logLevel }}
+          TAGS: ${{ inputs.tags }}
       - name: INPUT_ is not generated automatcally
         run: |
           echo "${INPUT_TEST_VAR}"
           echo "${TEST_VAR}"
-      - name: Add PATH
-        run: echo "/path/to/dir" | tee -a "$GITHUB_PATH"
-      - name: Set inputs to Environment Variables
-        run: |
-          echo "INPUT_LOGLEVEL=${{ inputs.logLevel }}" | tee -a "$GITHUB_ENV"
-          echo "INPUT_TAGS=${{ inputs.tags }}" | tee -a "$GITHUB_ENV"
-      - name: Show Input value
-        run: |
-          echo "Log level: ${{ env.INPUT_LOGLEVEL }}"
-          echo "Tags: ${{ env.INPUT_TAGS }}"
-      - name: Show Environment Variables
-        run: env

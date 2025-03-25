@@ -11,7 +11,7 @@ permissions:
 
 jobs:
   call-workflow-passing-data:
-    uses: ./.github/workflows/_reusable-workflow-nest.yaml
+    uses: ./.github/workflows/_reusable-workflow-nest.yaml # zizmor: ignore[secrets-inherit]
     with:
       username: "foo"
       is-valid: true

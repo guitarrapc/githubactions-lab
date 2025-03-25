@@ -1,27 +1,9 @@
 excludes:
-  - policy_name: checkout_persist_credentials_should_be_false
-    workflow_file_path: .github/workflows/_reusable-dump-context.yaml
-    job_name: dump-context
-  - policy_name: checkout_persist_credentials_should_be_false
-    workflow_file_path: .github/workflows/auto-doc.yaml
-    job_name: embed-code
-  - policy_name: checkout_persist_credentials_should_be_false
-    workflow_file_path: .github/workflows/create-release.yaml
-    job_name: create-release
   - policy_name: deny_inherit_secrets
     workflow_file_path: .github/workflows/_reusable-workflow-nest.yaml
     job_name: call-workflow-passing-data
   - policy_name: deny_inherit_secrets
-    workflow_file_path: .github/workflows/reusable-workflow-caller-internal.yaml
-    job_name: call-workflow-passing-data
-  - policy_name: deny_inherit_secrets
-    workflow_file_path: .github/workflows/reusable-workflow-caller-matrix.yaml
-    job_name: call-matrix-workflow
-  - policy_name: deny_inherit_secrets
     workflow_file_path: .github/workflows/reusable-workflow-caller-nest.yaml
-    job_name: call-workflow-passing-data
-  - policy_name: deny_inherit_secrets
-    workflow_file_path: .github/workflows/reusable-workflow-public-caller.yaml
     job_name: call-workflow-passing-data
   - policy_name: action_ref_should_be_full_length_commit_sha
     workflow_file_path: .github/workflows/reusable-workflow-public-caller.yaml

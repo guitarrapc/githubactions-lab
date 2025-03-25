@@ -20,7 +20,9 @@ jobs:
       contents: read
     timeout-minutes: 3
     steps:
-      - run: echo "${{ inputs.value }}"
+      - run: echo "${VALUE}"
+        env:
+          VALUE: ${{ inputs.value }}
 
   matrix:
     name: matrix - ${{ inputs.value }} (${{ matrix.target }})
@@ -33,4 +35,6 @@ jobs:
       contents: read
     timeout-minutes: 3
     steps:
-      - run: echo "${{ inputs.value }}"
+      - run: echo "${VALUE}"
+        env:
+          VALUE: ${{ inputs.value }}

@@ -38,24 +38,26 @@ jobs:
         working-directory: ${{ env.REPO_MANIFEST }}
       - name: generate manifest
         run: |
-          mkdir -p "./${REPO_MANIFEST}/${{ inputs.manifest-dir }}"
+          mkdir -p "./${REPO_MANIFEST}/${MANIFEST_DIR}"
           kubectl kustomize ./src/k8s/common/overlays/development \
-            | sed -e "s|<namespace>|${NAMESPACE_PREFIX}${{ inputs.manifest-dir }}|g" \
+            | sed -e "s|<namespace>|${NAMESPACE_PREFIX}${MANIFEST_DIR}|g" \
             | sed -e "s|<git-sha>|${{ github.sha }}|g" \
-            | sed -e "s|<git-branch>|${{ github.ref_name }}|g" \
+            | sed -e "s|<git-branch>|${GITHUB_REF_NAME}|g" \
             | sed -e "s|<git-link>|${GIT_LINK}|g" \
-            | sed -e "s|<build-id>|${{ github.run_id }}|g" > "${REPO_MANIFEST}/${{ inputs.manifest-dir }}/all.yaml"
+            | sed -e "s|<build-id>|${{ github.run_id }}|g" > "${REPO_MANIFEST}/${MANIFEST_DIR}/all.yaml"
         env:
           GIT_LINK: ${{ github.event.repository.html_url }}/commit/${{ github.sha }}
+          GITHUB_REF_NAME: ${{ github.ref_name }}
+          MANIFEST_DIR: ${{ inputs.manifest-dir }}
       - name: git commit
         run: |
           git config user.name github-actions[bot]
           git config user.email 41898282+github-actions[bot]@users.noreply.github.com
           git status
-          git add "${{ inputs.manifest-dir }}/*"
+          git add "${MANIFEST_DIR}/*"
           ret=$(git status| sed -ne 's|.*\(clean\)|\1|p')
           if [[ "$ret" != "" ]];then
-            git commit -m "(${{ inputs.manifest-dir }}) update manifests ${REPO}@${LINK} (${RUN_ID})" -m "compare: ${COMPARE_URL}"
+            git commit -m "(${MANIFEST_DIR}) update manifests ${REPO}@${LINK} (${RUN_ID})" -m "compare: ${COMPARE_URL}"
           fi
         working-directory: ${{ env.REPO_MANIFEST }}
         env:
@@ -63,6 +65,7 @@ jobs:
           RUN_ID: ${{ github.run_id }}
           LINK: ${{ github.sha }}
           COMPARE_URL: https://github.com/${{ github.repository }}/compare/master...${{ github.sha }}
+          MANIFEST_DIR: ${{ inputs.manifest-dir }}
       - uses: ad-m/github-push-action@d91a481090679876dfc4178fef17f286781251df # v0.8.0
         with:
           github_token: ${{ secrets.SYNCED_GITHUB_TOKEN_REPO }}

@@ -31,15 +31,21 @@ jobs:
     steps:
       - name: Send greeting (github.event.inputs)
         run: |
-          echo "message: ${{ github.event.inputs.message }}"
-          echo "name: ${{ github.event.inputs.name }}"
+          echo "message: ${MESSAGE}"
+          echo "name: ${NAME}"
           echo "use-emoji (string): ${{ github.event.inputs.use-emoji == 'true' }}"
           echo "use-emoji (bool): ${{ github.event.inputs.use-emoji == true }}"
+        env:
+          MESSAGE: ${{ github.event.inputs.message }}
+          NAME: ${{ github.event.inputs.name }}
       - name: Send greeting (inputs)
         run: |
-          echo "message: ${{ inputs.message }}"
-          echo "name: ${{ inputs.name }}"
+          echo "message: ${MESSAGE}"
+          echo "name: ${NAME}"
           echo "use-emoji (string): ${{ inputs.use-emoji == 'true' }}"
           echo "use-emoji (bool): ${{ inputs.use-emoji == true }}"
+        env:
+          MESSAGE: ${{ inputs.message }}
+          NAME: ${{ inputs.name }}
       - name: Emoji
         run: echo "🥳 😊"

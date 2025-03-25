@@ -10,6 +10,9 @@ on:
         required: true
         description: username to show
         type: boolean
+    secrets:
+      APPLES:
+        required: true
     outputs:
       firstword:
         description: "The first output string"
@@ -37,19 +40,19 @@ jobs:
           ref: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.ref || '' }} # checkout PR HEAD commit instead of merge commit
           persist-credentials: false
       - name: (Limitation) Callee can not refer caller environment variable.
-        run: echo "caller environment. ${{ env.CALLER_VALUE }}"
+        run: echo "caller environment. ${CALLER_VALUE}"
       - name: called username
-        run: echo "called username. ${{ inputs.username }}"
+        env:
+          USERNAME: ${{ inputs.username }}
+        run: echo "called username. $USERNAME"
       - name: called is-valid
-        run: echo "called is-valid. ${{ inputs.is-valid }}"
+        env:
+          IS_VALID_INPUT: ${{ inputs.is-valid }}
+        run: echo "called is-valid. $IS_VALID_INPUT"
       - name: called secret
         run: echo "called secret. ${{ secrets.APPLES }}"
       - name: called env (global)
         run: echo "called global env. ${{ env.FOO }}"
-      - name: set variable (GITHUB_ENV)
-        run: echo "IS_VALID=${{ inputs.is-valid }}" >> "$GITHUB_ENV"
-      - name: called env (GITHUB_ENV)
-        run: echo "called env. ${{ env.IS_VALID }}"
       - name: output step1
         id: step1
         run: echo "firstword=hello" >> "$GITHUB_OUTPUT"

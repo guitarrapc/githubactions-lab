@@ -17,4 +17,6 @@ jobs:
       url: https://github.com/guitarrapc/githubactions-lab/tree/main
     steps:
       - run: echo "${GITHUB_REF#refs/heads/}"
-      - run: echo "${{ github.ref_name }}"
+      - env:
+          REF_NAME: ${{ github.ref_name }}
+        run: echo "$REF_NAME"
