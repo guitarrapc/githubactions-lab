@@ -32,14 +32,32 @@ jobs:
     steps:
       - name: Setup tag
         id: tag
-        run: echo "value=${{ inputs.tag || (github.event_name == 'pull_request' && '0.1.0-test' || github.ref_name) }}" | tee -a "$GITHUB_OUTPUT"
+        env:
+          INPUT_TAG: ${{ inputs.tag }}
+          EVENT_NAME: ${{ github.event_name }}
+          REF_NAME: ${{ github.ref_name }}
+        run: echo "value=$INPUT_TAG" | tee -a "$GITHUB_OUTPUT"
+        if: ${{ inputs.tag != '' }}
+      - name: Setup tag (PR)
+        id: tag_pr
+        run: echo "value=0.1.0-test" | tee -a "$GITHUB_OUTPUT"
+        if: ${{ inputs.tag == '' && github.event_name == 'pull_request' }}
+      - name: Setup tag (other)
+        id: tag_other
+        env:
+          REF_NAME: ${{ github.ref_name }}
+        run: echo "value=$REF_NAME" | tee -a "$GITHUB_OUTPUT"
+        if: ${{ inputs.tag == '' && github.event_name != 'pull_request' }}
       # Create Tag
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+      # Use the appropriate tag output from the condition steps
       - name: Create Tag and push if not exists
+        env:
+          TAG_VALUE: ${{ steps.tag.outputs.value || steps.tag_pr.outputs.value || steps.tag_other.outputs.value }}
         run: |
-          if ! git ls-remote --tags | grep ${{ steps.tag.outputs.value }}; then
-            git tag ${{ steps.tag.outputs.value }}
-            git push origin ${{ steps.tag.outputs.value }}
+          if ! git ls-remote --tags | grep $TAG_VALUE; then
+            git tag $TAG_VALUE
+            git push origin $TAG_VALUE
             git ls-remote --tags
           fi
       # set release tag(*.*.*) to version string

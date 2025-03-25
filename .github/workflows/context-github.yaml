@@ -21,9 +21,13 @@ jobs:
     timeout-minutes: 3
     steps:
       - name: job
-        run: echo ${{ github.job }}
+        run: echo "$GITHUB_JOB"
+        env:
+          GITHUB_JOB: ${{ github.job }}
       - name: ref
-        run: echo ${{ github.ref }}
+        run: echo "$GITHUB_REF"
+        env:
+          GITHUB_REF: ${{ github.ref }}
       - name: sha
         run: echo ${{ github.sha }}
       - name: repository
@@ -31,14 +35,22 @@ jobs:
       - name: repository_owner
         run: echo ${{ github.repository_owner }}
       - name: actor
-        run: echo ${{ github.actor }}
+        run: echo "$GITHUB_ACTOR"
+        env:
+          GITHUB_ACTOR: ${{ github.actor }}
       - name: run_id
         run: echo ${{ github.run_id }}
       - name: workflow
-        run: echo ${{ github.workflow }}
+        run: echo "$GITHUB_WORKFLOW"
+        env:
+          GITHUB_WORKFLOW: ${{ github.workflow }}
       - name: event_name
         run: echo ${{ github.event_name }}
       - name: event.ref
-        run: echo ${{ github.event.ref }}
+        run: echo "$GITHUB_EVENT_REF"
+        env:
+          GITHUB_EVENT_REF: ${{ github.event.ref }}
       - name: action
-        run: echo ${{ github.action }}
+        run: echo "$GITHUB_ACTION"
+        env:
+          GITHUB_ACTION: ${{ github.action }}

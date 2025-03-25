@@ -11,4 +11,6 @@ runs:
   steps:
     - name: THIS IS STEP1
       shell: bash # this is key point
-      run: echo ${{ inputs.foo }}
+      env:
+        FOO_VALUE: ${{ inputs.foo }}
+      run: echo "$FOO_VALUE"

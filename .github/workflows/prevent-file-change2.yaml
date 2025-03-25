@@ -1,6 +1,7 @@
 name: prevent file change 2
+
 on:
-  pull_request_target:
+  pull_request_target: # zizmor: ignore[dangerous-triggers]
     branches: ["main"]
     paths:
       - .github/**/*.yaml

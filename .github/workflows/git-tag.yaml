@@ -20,6 +20,8 @@ jobs:
       - name: sleep
         run: sleep 60s
       - name: git tag
+        env:
+          TAG: ${{ inputs.tag }}
         run: |
-          git tag ${{ inputs.tag }}
-          git push origin ${{ inputs.tag }}
+          git tag "$TAG"
+          git push origin "$TAG"

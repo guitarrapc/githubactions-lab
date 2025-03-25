@@ -10,15 +10,18 @@ runs:
   steps:
     - name: Show value
       shell: bash
+      env:
+        MULTILINE_INPUT: ${{ inputs.multiline-string }}
       run: |
         MULTILINE_STRINGS=$(cat << EOF
-        ${{ inputs.multiline-string }}
+        $MULTILINE_INPUT
         EOF)
+        echo "$MULTILINE_STRINGS"
     - name: multiline string for
       shell: bash
+      env:
+        MULTILINE_INPUT: ${{ inputs.multiline-string }}
       run: |
-        inputs="${{ inputs.multiline-string }}"
-        IFS=$'\n'
-        for line in $inputs; do
+        while IFS= read -r line; do
           echo "$line (foo)"
-        done
+        done <<< "$MULTILINE_INPUT"

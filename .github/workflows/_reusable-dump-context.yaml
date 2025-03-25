@@ -34,7 +34,23 @@ jobs:
           ref: ${{ (startsWith(github.event_name, 'pull_request') && github.event.action != 'closed') && github.head_ref || (startsWith(github.event_name, 'pull_request') && github.event.action == 'closed') && github.base_ref || github.ref_type == 'tag' && github.event.repository.default_branch || github.ref_name }}
       - name: file names
         id: file
-        run: echo "name=${{ github.event_name }}${{ github.event.action != '' && format('_{0}', github.event.action) || ''}}${{ github.event_name == 'push' && format('_{0}', github.ref_type) || ''}}" | tee -a "$GITHUB_OUTPUT"
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+          EVENT_ACTION: ${{ github.event.action }}
+          REF_TYPE: ${{ github.ref_type }}
+        run: |
+          ACTION_PART=""
+          if [ -n "$EVENT_ACTION" ]; then
+            ACTION_PART="_${EVENT_ACTION}"
+          fi
+
+          REF_PART=""
+          if [ "$EVENT_NAME" = "push" ]; then
+            REF_PART="_${REF_TYPE}"
+          fi
+
+          FILENAME="${EVENT_NAME}${ACTION_PART}${REF_PART}"
+          echo "name=$FILENAME" | tee -a "$GITHUB_OUTPUT"
       - name: Dump environment
         shell: bash
         run: |
