@@ -26,3 +26,5 @@ jobs:
         run: actionlint -color -oneline
       - name: Run ghalint
         run: ghalint run
+      - name: Run zizmor
+        run: docker run -it -v .:/github ghcr.io/woodruffw/zizmor:1.5.2 /github --min-severity medium
