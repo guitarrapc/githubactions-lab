@@ -22,9 +22,12 @@ jobs:
       - uses: aquaproj/aqua-installer@e2d0136abcf70b7a2f6f505720640750557c4b33 # v3.1.1
         with:
           aqua_version: v2.43.1
+      # github workflows/action's Static Checker
       - name: Run actionlint
         run: actionlint -color -oneline
+      # checkout's persist-credentials: false checker
       - name: Run ghalint
         run: ghalint run
+      # A static analysis tool for GitHub Actions
       - name: Run zizmor
         run: docker run -it -v .:/github ghcr.io/woodruffw/zizmor:1.5.2 /github --min-severity medium

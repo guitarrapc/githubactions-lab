@@ -3168,7 +3168,13 @@ jobs:
 
 ## Lint GitHub Actions workflow itself
 
-You can lint GitHub Actions yaml via actionlint. If you don't need automated PR review, run actionlint is enough.
+You can lint GitHub Actions yaml via [actionlint](https://github.com/rhysd/actionlint), [ghalint](https://github.com/suzuki-shunsuke/ghalint) and [zizmor](https://github.com/woodruffw/zizmor). If you don't need automated PR review, run any of these linter on schedule may be fine.
+
+Linter will check follows.
+
+* actionlint: Check syntax and structure of GitHub Actions workflow yaml.
+* ghalint: Check actions/checkout should set `persist-credentials: false`, Reusable workflow's `secrets: inherit`.
+* zizmor: Check GitHub Action's security vulnerability.
 
 ```yaml
 # .github/workflows/actionlint.yaml
