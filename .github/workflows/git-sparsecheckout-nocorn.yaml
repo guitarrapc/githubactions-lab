@@ -14,6 +14,7 @@ jobs:
           sparse-checkout: |
             src/*
           sparse-checkout-cone-mode: false # required for ! entry to work
+          persist-credentials: false
       - name: list root folders
         run: ls -la
       - name: list src folders

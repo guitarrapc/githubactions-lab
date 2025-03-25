@@ -1,6 +1,6 @@
 name: ban word conftest
 on:
-  workflow_dispatch:
+  workflow_dispatch: null
   push:
     branches: ["main"]
   pull_request:
@@ -11,6 +11,8 @@ jobs:
     timeout-minutes: 3
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          persist-credentials: false
       - name: Setup conftest
         run: |
           LATEST_VERSION=$(wget -O - "https://api.github.com/repos/open-policy-agent/conftest/releases/latest" | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/' | cut -c 2-)

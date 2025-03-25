@@ -13,6 +13,7 @@ jobs:
         with:
           sparse-checkout: |
             src
+          persist-credentials: false
       - name: list root folders
         run: ls -la
       - name: list src folders

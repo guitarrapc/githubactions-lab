@@ -1,12 +1,13 @@
 name: Debug Remote Action Download Structure
 on:
-  workflow_dispatch:
-
+  workflow_dispatch: null
 jobs:
   remote:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          persist-credentials: false
       # wow, remote action will be download under `/home/runner/work/_actions/{Owner}/{Repository}/{Ref}/{RepositoryStructures}`
       - name: debug
         run: ls -R /home/runner/work/_actions/actions/checkout/v4
