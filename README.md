@@ -428,9 +428,13 @@ jobs:
     timeout-minutes: 3
     steps:
       - name: job
-        run: echo ${{ github.job }}
+        run: echo "$GITHUB_JOB"
+        env:
+          GITHUB_JOB: ${{ github.job }}
       - name: ref
-        run: echo ${{ github.ref }}
+        run: echo "$GITHUB_REF"
+        env:
+          GITHUB_REF: ${{ github.ref }}
       - name: sha
         run: echo ${{ github.sha }}
       - name: repository
@@ -438,17 +442,25 @@ jobs:
       - name: repository_owner
         run: echo ${{ github.repository_owner }}
       - name: actor
-        run: echo ${{ github.actor }}
+        run: echo "$GITHUB_ACTOR"
+        env:
+          GITHUB_ACTOR: ${{ github.actor }}
       - name: run_id
         run: echo ${{ github.run_id }}
       - name: workflow
-        run: echo ${{ github.workflow }}
+        run: echo "$GITHUB_WORKFLOW"
+        env:
+          GITHUB_WORKFLOW: ${{ github.workflow }}
       - name: event_name
         run: echo ${{ github.event_name }}
       - name: event.ref
-        run: echo ${{ github.event.ref }}
+        run: echo "$GITHUB_EVENT_REF"
+        env:
+          GITHUB_EVENT_REF: ${{ github.event.ref }}
       - name: action
-        run: echo ${{ github.action }}
+        run: echo "$GITHUB_ACTION"
+        env:
+          GITHUB_ACTION: ${{ github.action }}
 
 ```
 
@@ -469,7 +481,7 @@ on:
   pull_request:
     branches: ["main"]
     types: [opened, synchronize, reopened, closed]
-  pull_request_target:
+  pull_request_target: # zizmor: ignore[dangerous-triggers]
     branches: ["main"]
     types: [opened, synchronize, reopened, closed]
   schedule:
@@ -1173,7 +1185,10 @@ runs:
   steps:
     - name: THIS IS STEP1
       shell: bash # this is key point
-      run: echo ${{ inputs.foo }}
+      env:
+        FOO_VALUE: ${{ inputs.foo }}
+      run: echo "$FOO_VALUE"
+
 ```
 
 - step3. Use actions from your workflow.
@@ -1328,6 +1343,9 @@ on:
         required: true
         description: username to show
         type: boolean
+    secrets:
+      APPLES:
+        required: true
     outputs:
       firstword:
         description: "The first output string"
@@ -1355,19 +1373,19 @@ jobs:
           ref: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.ref || '' }} # checkout PR HEAD commit instead of merge commit
           persist-credentials: false
       - name: (Limitation) Callee can not refer caller environment variable.
-        run: echo "caller environment. ${{ env.CALLER_VALUE }}"
+        run: echo "caller environment. ${CALLER_VALUE}"
       - name: called username
-        run: echo "called username. ${{ inputs.username }}"
+        env:
+          USERNAME: ${{ inputs.username }}
+        run: echo "called username. $USERNAME"
       - name: called is-valid
-        run: echo "called is-valid. ${{ inputs.is-valid }}"
+        env:
+          IS_VALID_INPUT: ${{ inputs.is-valid }}
+        run: echo "called is-valid. $IS_VALID_INPUT"
       - name: called secret
         run: echo "called secret. ${{ secrets.APPLES }}"
       - name: called env (global)
         run: echo "called global env. ${{ env.FOO }}"
-      - name: set variable (GITHUB_ENV)
-        run: echo "IS_VALID=${{ inputs.is-valid }}" >> "$GITHUB_ENV"
-      - name: called env (GITHUB_ENV)
-        run: echo "called env. ${{ env.IS_VALID }}"
       - name: output step1
         id: step1
         run: echo "firstword=hello" >> "$GITHUB_OUTPUT"
@@ -1408,7 +1426,8 @@ jobs:
     with:
       username: "foo"
       is-valid: true
-    secrets: inherit
+    secrets:
+      APPLES: ${{ secrets.APPLES }}
 
   job2:
     runs-on: ubuntu-24.04
@@ -1446,7 +1465,8 @@ jobs:
     with:
       username: foo
       is-valid: true
-    secrets: inherit
+    secrets:
+      APPLES: ${{ secrets.APPLES }}
 
   job2:
     needs: [call-workflow-passing-data]
@@ -1486,7 +1506,8 @@ jobs:
     with:
       username: ${{ matrix.username }}
       is-valid: true
-    secrets: inherit
+    secrets:
+      APPLES: ${{ secrets.APPLES }}
 
 ```
 
@@ -1520,7 +1541,8 @@ jobs:
     with:
       username: ${{ inputs.username }}
       is-valid: ${{ inputs.is-valid }}
-    secrets: inherit
+    secrets:
+      APPLES: ${{ secrets.APPLES }}
 
 ```
 
@@ -1710,11 +1732,12 @@ jobs:
     runs-on: ubuntu-24.04
     timeout-minutes: 3
     steps:
-      - run: echo "org:${{ matrix.org }} secret:${{ secrets[matrix.secret] }}"
-      - run: echo "org:${{ matrix.org }} secret:${{ secrets[env.secret] }}"
+      - run: echo "org:${{ matrix.org }} secret:${SECRET}"
         env:
-          secret: ${{ matrix.secret }}
-      - run: echo "env:${{ env.fruit }} secret:${{ secrets[env.fruit] }}"
+          SECRET: ${{ secrets[matrix.secret] }} # zizmor: ignore[overprovisioned-secrets]
+      - run: echo "env:${{ env.fruit }} secret:${SECRET}"
+        env:
+          SECRET: ${{ secrets[env.fruit] }} # zizmor: ignore[overprovisioned-secrets]
 
 ```
 
@@ -1825,6 +1848,8 @@ jobs:
       LOGLEVEL: ${{ inputs.logLevel }}
       TAGS: ${{ inputs.tags }}
     steps:
+      - name: Show Environment Variables
+        run: env
       - run: echo ${{ env.BRANCH }} ${{ env.LOGLEVEL }} ${{ env.TAGS }}
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
         with:
@@ -1840,24 +1865,15 @@ jobs:
           CONTEXT: ${{ toJson(github.event.inputs) }}
       - name: Show Input value
         run: |
-          echo "Log level: ${{ inputs.logLevel }}"
-          echo "Tags: ${{ inputs.tags }}"
+          echo "Log level: ${LOG_LEVEL}"
+          echo "Tags: ${TAGS}"
+        env:
+          LOG_LEVEL: ${{ inputs.logLevel }}
+          TAGS: ${{ inputs.tags }}
       - name: INPUT_ is not generated automatcally
         run: |
           echo "${INPUT_TEST_VAR}"
           echo "${TEST_VAR}"
-      - name: Add PATH
-        run: echo "/path/to/dir" | tee -a "$GITHUB_PATH"
-      - name: Set inputs to Environment Variables
-        run: |
-          echo "INPUT_LOGLEVEL=${{ inputs.logLevel }}" | tee -a "$GITHUB_ENV"
-          echo "INPUT_TAGS=${{ inputs.tags }}" | tee -a "$GITHUB_ENV"
-      - name: Show Input value
-        run: |
-          echo "Log level: ${{ env.INPUT_LOGLEVEL }}"
-          echo "Tags: ${{ env.INPUT_TAGS }}"
-      - name: Show Environment Variables
-        run: env
 
 ```
 
@@ -1907,16 +1923,22 @@ jobs:
     steps:
       - name: Send greeting (github.event.inputs)
         run: |
-          echo "message: ${{ github.event.inputs.message }}"
-          echo "name: ${{ github.event.inputs.name }}"
+          echo "message: ${MESSAGE}"
+          echo "name: ${NAME}"
           echo "use-emoji (string): ${{ github.event.inputs.use-emoji == 'true' }}"
           echo "use-emoji (bool): ${{ github.event.inputs.use-emoji == true }}"
+        env:
+          MESSAGE: ${{ github.event.inputs.message }}
+          NAME: ${{ github.event.inputs.name }}
       - name: Send greeting (inputs)
         run: |
-          echo "message: ${{ inputs.message }}"
-          echo "name: ${{ inputs.name }}"
+          echo "message: ${MESSAGE}"
+          echo "name: ${NAME}"
           echo "use-emoji (string): ${{ inputs.use-emoji == 'true' }}"
           echo "use-emoji (bool): ${{ inputs.use-emoji == true }}"
+        env:
+          MESSAGE: ${{ inputs.message }}
+          NAME: ${{ inputs.name }}
       - name: Emoji
         run: echo "🥳 😊"
 
@@ -2228,14 +2250,29 @@ jobs:
     steps:
       - name: Setup tag
         id: tag
-        run: echo "value=${{ inputs.tag || (github.event_name == 'pull_request' && '0.1.0-test' || github.ref_name) }}" | tee -a "$GITHUB_OUTPUT"
+        run: echo "value=${{ env.TAG_VALUE || (github.event_name == 'pull_request' && '0.1.0-test' || env.GITHUB_REF_NAME) }}" | tee -a "$GITHUB_OUTPUT"
+        env:
+          TAG_VALUE: ${{ inputs.tag }}
+          GITHUB_REF_NAME: ${{ github.ref_name }}
       # Create Tag
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
-      - name: Create Tag and push if not exists
+        with:
+          persist-credentials: false
+      # Use the appropriate tag output from the condition steps
+      - name: set git remote
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          if ! git ls-remote --tags | grep ${{ steps.tag.outputs.value }}; then
-            git tag ${{ steps.tag.outputs.value }}
-            git push origin ${{ steps.tag.outputs.value }}
+          git remote set-url origin "https://github-actions:${GITHUB_TOKEN}@github.com/${{ github.repository }}"
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+      - name: Create Tag and push if not exists
+        env:
+          TAG_VALUE: ${{ steps.tag.outputs.value  }}
+        run: |
+          if ! git ls-remote --tags | grep "$TAG_VALUE"; then
+            git tag "$TAG_VALUE"
+            git push origin "$TAG_VALUE"
             git ls-remote --tags
           fi
       # set release tag(*.*.*) to version string
@@ -2401,11 +2438,13 @@ jobs:
     env:
       IS_HOGE: "false"
     steps:
-      - run: echo "${{ toJson(github.event.pull_request.labels.*.name) }}"
-      - run: echo "IS_HOGE=${{ contains(github.event.pull_request.labels.*.name, 'hoge') }}" >> "$GITHUB_ENV"
-      - run: echo "${IS_HOGE}"
-      - run: echo "run!"
-        if: ${{ env.IS_HOGE == 'true' }}
+      - run: echo "${GITHUB_LABELS}"
+        env:
+          GITHUB_LABELS: ${{ toJson(github.event.pull_request.labels.*.name) }}
+      - if: ${{ env.IS_HOGE == 'true' }}
+        run: echo "run!"
+        env:
+          IS_HOGE: ${{ contains(github.event.pull_request.labels.*.name, 'hoge') }}
 
 ```
 
@@ -3090,8 +3129,9 @@ jobs:
 # .github/workflows/prevent-file-change2.yaml
 
 name: prevent file change 2
+
 on:
-  pull_request_target:
+  pull_request_target: # zizmor: ignore[dangerous-triggers]
     branches: ["main"]
     paths:
       - .github/**/*.yaml
@@ -3203,10 +3243,15 @@ jobs:
       - uses: aquaproj/aqua-installer@e2d0136abcf70b7a2f6f505720640750557c4b33 # v3.1.1
         with:
           aqua_version: v2.43.1
+      # github workflows/action's Static Checker
       - name: Run actionlint
         run: actionlint -color -oneline
+      # checkout's persist-credentials: false checker
       - name: Run ghalint
         run: ghalint run
+      # A static analysis tool for GitHub Actions
+      - name: Run zizmor
+        run: docker run -it -v .:/github ghcr.io/woodruffw/zizmor:1.5.2 /github --min-severity medium
 
 ```
 
@@ -3377,8 +3422,9 @@ jobs:
           echo "${{ steps.CI_TAG.outputs.GIT_TAG }}"
           echo "${{ env.GIT_TAG }}"
       - name: Show tag value by github.ref_name
-        run: |
-          echo "${{ github.ref_name }}"
+        run: echo "${GITHUB_REF_NAME}"
+        env:
+          GITHUB_REF_NAME: ${{ github.ref_name }}
 
 ```
 
