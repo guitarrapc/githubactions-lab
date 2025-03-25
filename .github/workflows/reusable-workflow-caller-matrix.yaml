@@ -18,4 +18,5 @@ jobs:
     with:
       username: ${{ matrix.username }}
       is-valid: true
-    secrets: inherit
+    secrets:
+      APPLES: ${{ secrets.APPLES }}

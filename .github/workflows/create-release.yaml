@@ -50,7 +50,16 @@ jobs:
         if: ${{ inputs.tag == '' && github.event_name != 'pull_request' }}
       # Create Tag
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          persist-credentials: false
       # Use the appropriate tag output from the condition steps
+      - name: set git remote
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git remote set-url origin https://github-actions:${GITHUB_TOKEN}@github.com/${{ github.repository }}
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
       - name: Create Tag and push if not exists
         env:
           TAG_VALUE: ${{ steps.tag.outputs.value || steps.tag_pr.outputs.value || steps.tag_other.outputs.value }}

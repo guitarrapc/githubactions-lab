@@ -65,8 +65,10 @@ jobs:
       - name: Convert to json
         id: json
         run: |
-          json=$(echo '["${{ matrix.change }}"]' | jq -c 'map(split("|") | {target: .[0], path: .[1]}) | .[]')
+          json=$(echo '["${CHANGE}"]' | jq -c 'map(split("|") | {target: .[0], path: .[1]}) | .[]')
           echo "json=${json}" | tee -a "${GITHUB_OUTPUT}"
+        env:
+          CHANGE: ${{ matrix.change }}
       - name: Set variables
         run: |
           echo "target=${{ fromJSON(steps.json.outputs.json).target }}" | tee -a "${GITHUB_ENV}"
@@ -89,6 +91,8 @@ jobs:
           persist-credentials: false
       - name: Set variables from matrix
         run: |
-          IFS='|' read -r target path <<< "${{ matrix.change }}"
+          IFS='|' read -r target path <<< "${CHANGE}"
           echo "target=$target" | tee -a "${GITHUB_ENV}"
           echo "working_dir=$path" | tee -a "${GITHUB_ENV}"
+        env:
+          CHANGE: ${{ matrix.change }}

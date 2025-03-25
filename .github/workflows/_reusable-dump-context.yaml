@@ -31,6 +31,7 @@ jobs:
       # Other event use ref, which is default branch.                               -> github.ref_name
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
         with:
+          persist-credentials: false
           ref: ${{ (startsWith(github.event_name, 'pull_request') && github.event.action != 'closed') && github.head_ref || (startsWith(github.event_name, 'pull_request') && github.event.action == 'closed') && github.base_ref || github.ref_type == 'tag' && github.event.repository.default_branch || github.ref_name }}
       - name: file names
         id: file
@@ -119,3 +120,4 @@ jobs:
         with:
           commit-message: "[auto commit] update context (workflow=${{ github.workflow }}, event=${{ github.event_name }}, action=${{ github.event.action }})"
           ref: ${{ (startsWith(github.event_name, 'pull_request') && github.event.action != 'closed') && github.head_ref || (startsWith(github.event_name, 'pull_request') && github.event.action == 'closed') && github.base_ref || github.ref_type == 'tag' && github.event.repository.default_branch || github.ref_name }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}

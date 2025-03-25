@@ -21,4 +21,5 @@ jobs:
     with:
       username: ${{ inputs.username }}
       is-valid: ${{ inputs.is-valid }}
-    secrets: inherit
+    secrets:
+      APPLES: ${{ secrets.APPLES }}

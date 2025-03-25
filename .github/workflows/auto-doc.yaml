@@ -19,6 +19,7 @@ jobs:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
         with:
           ref: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.ref || '' }} # checkout PR HEAD commit instead of merge commit
+          persist-credentials: false
       - name: Embedding Code into README
         run: |
           npm install -g embedme
@@ -38,3 +39,4 @@ jobs:
           TOC_TITLE: "# Table of Contents"
           MAX_HEADER_LEVEL: "2"
           FOLDING: false
+          github-token: ${{ secrets.GITHUB_TOKEN }}
