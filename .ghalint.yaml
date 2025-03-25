@@ -14,3 +14,7 @@ excludes:
   - policy_name: deny_inherit_secrets
     workflow_file_path: .github/workflows/reusable-workflow-public-caller.yaml
     job_name: call-workflow-passing-data
+  - policy_name: action_ref_should_be_full_length_commit_sha
+    workflow_file_path: .github/workflows/reusable-workflow-public-caller.yaml
+    job_name: call-workflow-passing-data
+    action_name: guitarrapc/githubactions-lab/.github/workflows/_reusable-workflow-called.yaml
