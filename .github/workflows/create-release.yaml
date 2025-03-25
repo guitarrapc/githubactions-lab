@@ -45,16 +45,16 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          git remote set-url origin https://github-actions:${GITHUB_TOKEN}@github.com/${{ github.repository }}
+          git remote set-url origin "https://github-actions:${GITHUB_TOKEN}@github.com/${{ github.repository }}"
           git config user.name  "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
       - name: Create Tag and push if not exists
         env:
           TAG_VALUE: ${{ steps.tag.outputs.value  }}
         run: |
-          if ! git ls-remote --tags | grep $TAG_VALUE; then
-            git tag $TAG_VALUE
-            git push origin $TAG_VALUE
+          if ! git ls-remote --tags | grep "$TAG_VALUE"; then
+            git tag "$TAG_VALUE"
+            git push origin "$TAG_VALUE"
             git ls-remote --tags
           fi
       # set release tag(*.*.*) to version string
