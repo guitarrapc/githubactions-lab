@@ -29,6 +29,8 @@ jobs:
         with:
           commit-message: "[auto commit] Embedded code (workflow=${{ github.workflow }})"
           ref: ${{ startsWith(github.event_name, 'pull_request') && github.event.pull_request.head.ref || github.ref_name }}
+      - name: Set Git Remote
+        run: git remote set-url origin https://github-actions:${GITHUB_TOKEN}@github.com/${{ github.repository }}
       - name: Generate TOC into README
         uses: technote-space/toc-generator@9e238e7974de5fcf7b17b7acc54c896160dda0a3 # v4.3.1
         with:
