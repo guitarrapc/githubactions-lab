@@ -3251,7 +3251,7 @@ jobs:
         run: ghalint run
       # A static analysis tool for GitHub Actions
       - name: Run zizmor
-        run: docker run -it -v .:/github ghcr.io/woodruffw/zizmor:1.5.2 /github --min-severity medium
+        run: docker run -t -v .:/github ghcr.io/woodruffw/zizmor:1.5.2 /github --min-severity medium
 
 ```
 
