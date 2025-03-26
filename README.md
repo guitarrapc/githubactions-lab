@@ -3235,6 +3235,8 @@ permissions:
 jobs:
   lint:
     runs-on: ubuntu-24.04
+    permissions:
+      contents: read
     timeout-minutes: 5
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
