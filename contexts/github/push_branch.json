@@ -2,13 +2,13 @@
   "token": "<reducted>",
   "job": "dump-context",
   "ref": "refs/heads/main",
-  "sha": "b43b0e369652423ecf38b2e98fb1878585d9ded0",
+  "sha": "65b0d5ac21e004a8934c53cb4b9a8f76293e16c3",
   "repository": "guitarrapc/githubactions-lab",
   "repository_owner": "guitarrapc",
   "repository_owner_id": "3856350",
   "repositoryUrl": "git://github.com/guitarrapc/githubactions-lab.git",
-  "run_id": "14081628290",
-  "run_number": "323",
+  "run_id": "14719773386",
+  "run_number": "364",
   "retention_days": "90",
   "run_attempt": "1",
   "artifact_cache_size_limit": "10",
@@ -24,10 +24,28 @@
   "base_ref": "",
   "event_name": "push",
   "event": {
-    "after": "b43b0e369652423ecf38b2e98fb1878585d9ded0",
+    "after": "65b0d5ac21e004a8934c53cb4b9a8f76293e16c3",
     "base_ref": null,
-    "before": "6cfdcddce9a2614ef77799859e0a1db2f128473c",
+    "before": "099331df3bdcf83566152002177af3ad42d994aa",
     "commits": [
+      {
+        "author": {
+          "email": "49699333+dependabot[bot]@users.noreply.github.com",
+          "name": "dependabot[bot]",
+          "username": "dependabot[bot]"
+        },
+        "committer": {
+          "email": "noreply@github.com",
+          "name": "GitHub",
+          "username": "web-flow"
+        },
+        "distinct": false,
+        "id": "7bcd3cbc7c157f98c769c0eb943360271eee2e86",
+        "message": "chore(deps): bump actions/download-artifact from 4.2.1 to 4.3.0\n\nBumps [actions/download-artifact](https://github.com/actions/download-artifact) from 4.2.1 to 4.3.0.\n- [Release notes](https://github.com/actions/download-artifact/releases)\n- [Commits](https://github.com/actions/download-artifact/compare/95815c38cf2ff2164869cbab79da8d1f422bc89e...d3f86a106a0bac45b974a628896c90dbdf5c8093)\n\n---\nupdated-dependencies:\n- dependency-name: actions/download-artifact\n  dependency-version: 4.3.0\n  dependency-type: direct:production\n  update-type: version-update:semver-minor\n...\n\nSigned-off-by: dependabot[bot] <support@github.com>",
+        "timestamp": "2025-04-28T16:48:00Z",
+        "tree_id": "9844d1382fb4bd37113693e6290ca9beda5bbcbe",
+        "url": "https://github.com/guitarrapc/githubactions-lab/commit/7bcd3cbc7c157f98c769c0eb943360271eee2e86"
+      },
       {
         "author": {
           "email": "3856350+guitarrapc@users.noreply.github.com",
@@ -35,19 +53,19 @@
           "username": "guitarrapc"
         },
         "committer": {
-          "email": "3856350+guitarrapc@users.noreply.github.com",
-          "name": "Ikiru Yoshizaki",
-          "username": "guitarrapc"
+          "email": "noreply@github.com",
+          "name": "GitHub",
+          "username": "web-flow"
         },
         "distinct": true,
-        "id": "b43b0e369652423ecf38b2e98fb1878585d9ded0",
-        "message": "ci: permission",
-        "timestamp": "2025-03-26T20:00:08+09:00",
-        "tree_id": "54b5b09b75fcbba3f16779c485a4abfed4961b34",
-        "url": "https://github.com/guitarrapc/githubactions-lab/commit/b43b0e369652423ecf38b2e98fb1878585d9ded0"
+        "id": "65b0d5ac21e004a8934c53cb4b9a8f76293e16c3",
+        "message": "Merge pull request #208 from guitarrapc/dependabot/github_actions/actions/download-artifact-4.3.0\n\nchore(deps): bump actions/download-artifact from 4.2.1 to 4.3.0",
+        "timestamp": "2025-04-29T08:18:01+09:00",
+        "tree_id": "9844d1382fb4bd37113693e6290ca9beda5bbcbe",
+        "url": "https://github.com/guitarrapc/githubactions-lab/commit/65b0d5ac21e004a8934c53cb4b9a8f76293e16c3"
       }
     ],
-    "compare": "https://github.com/guitarrapc/githubactions-lab/compare/6cfdcddce9a2...b43b0e369652",
+    "compare": "https://github.com/guitarrapc/githubactions-lab/compare/099331df3bdc...65b0d5ac21e0",
     "created": false,
     "deleted": false,
     "forced": false,
@@ -58,16 +76,16 @@
         "username": "guitarrapc"
       },
       "committer": {
-        "email": "3856350+guitarrapc@users.noreply.github.com",
-        "name": "Ikiru Yoshizaki",
-        "username": "guitarrapc"
+        "email": "noreply@github.com",
+        "name": "GitHub",
+        "username": "web-flow"
       },
       "distinct": true,
-      "id": "b43b0e369652423ecf38b2e98fb1878585d9ded0",
-      "message": "ci: permission",
-      "timestamp": "2025-03-26T20:00:08+09:00",
-      "tree_id": "54b5b09b75fcbba3f16779c485a4abfed4961b34",
-      "url": "https://github.com/guitarrapc/githubactions-lab/commit/b43b0e369652423ecf38b2e98fb1878585d9ded0"
+      "id": "65b0d5ac21e004a8934c53cb4b9a8f76293e16c3",
+      "message": "Merge pull request #208 from guitarrapc/dependabot/github_actions/actions/download-artifact-4.3.0\n\nchore(deps): bump actions/download-artifact from 4.2.1 to 4.3.0",
+      "timestamp": "2025-04-29T08:18:01+09:00",
+      "tree_id": "9844d1382fb4bd37113693e6290ca9beda5bbcbe",
+      "url": "https://github.com/guitarrapc/githubactions-lab/commit/65b0d5ac21e004a8934c53cb4b9a8f76293e16c3"
     },
     "pusher": {
       "email": "3856350+guitarrapc@users.noreply.github.com",
@@ -163,12 +181,12 @@
       },
       "private": false,
       "pulls_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls{/number}",
-      "pushed_at": 1742986811,
+      "pushed_at": 1745882281,
       "releases_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/releases{/id}",
-      "size": 2935,
+      "size": 2828,
       "ssh_url": "git@github.com:guitarrapc/githubactions-lab.git",
-      "stargazers": 49,
-      "stargazers_count": 49,
+      "stargazers": 50,
+      "stargazers_count": 50,
       "stargazers_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/stargazers",
       "statuses_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/statuses/{sha}",
       "subscribers_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/subscribers",
@@ -180,11 +198,11 @@
         "github-actions"
       ],
       "trees_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/git/trees{/sha}",
-      "updated_at": "2025-03-26T10:53:04Z",
-      "url": "https://github.com/guitarrapc/githubactions-lab",
+      "updated_at": "2025-04-28T00:03:31Z",
+      "url": "https://api.github.com/repos/guitarrapc/githubactions-lab",
       "visibility": "public",
-      "watchers": 49,
-      "watchers_count": 49,
+      "watchers": 50,
+      "watchers_count": 50,
       "web_commit_signoff_required": false
     },
     "sender": {
@@ -217,15 +235,15 @@
   "ref_type": "branch",
   "secret_source": "Actions",
   "workflow_ref": "guitarrapc/githubactions-lab/.github/workflows/auto-dump-context.yaml@refs/heads/main",
-  "workflow_sha": "b43b0e369652423ecf38b2e98fb1878585d9ded0",
+  "workflow_sha": "65b0d5ac21e004a8934c53cb4b9a8f76293e16c3",
   "workspace": "/home/runner/work/githubactions-lab/githubactions-lab",
   "action": "__run_4",
   "event_path": "/home/runner/work/_temp/_github_workflow/event.json",
   "action_repository": "",
   "action_ref": "",
-  "path": "/home/runner/work/_temp/_runner_file_commands/add_path_09aad30e-1e58-40b9-9dd3-09d44f681987",
-  "env": "/home/runner/work/_temp/_runner_file_commands/set_env_09aad30e-1e58-40b9-9dd3-09d44f681987",
-  "step_summary": "/home/runner/work/_temp/_runner_file_commands/step_summary_09aad30e-1e58-40b9-9dd3-09d44f681987",
-  "state": "/home/runner/work/_temp/_runner_file_commands/save_state_09aad30e-1e58-40b9-9dd3-09d44f681987",
-  "output": "/home/runner/work/_temp/_runner_file_commands/set_output_09aad30e-1e58-40b9-9dd3-09d44f681987"
+  "path": "/home/runner/work/_temp/_runner_file_commands/add_path_6495e002-579f-43e0-a263-cc5e25f0f188",
+  "env": "/home/runner/work/_temp/_runner_file_commands/set_env_6495e002-579f-43e0-a263-cc5e25f0f188",
+  "step_summary": "/home/runner/work/_temp/_runner_file_commands/step_summary_6495e002-579f-43e0-a263-cc5e25f0f188",
+  "state": "/home/runner/work/_temp/_runner_file_commands/save_state_6495e002-579f-43e0-a263-cc5e25f0f188",
+  "output": "/home/runner/work/_temp/_runner_file_commands/set_output_6495e002-579f-43e0-a263-cc5e25f0f188"
 }
