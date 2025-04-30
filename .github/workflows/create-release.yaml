@@ -17,9 +17,6 @@ on:
         default: false
         type: boolean
 
-permissions:
-  contents: write
-
 env:
   GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   GH_REPO: ${{ github.repository }}
@@ -27,6 +24,8 @@ env:
 jobs:
   create-release:
     if: ${{ github.actor != 'dependabot[bot]' }}
+    permissions:
+      contents: write
     runs-on: ubuntu-24.04
     timeout-minutes: 10
     steps:

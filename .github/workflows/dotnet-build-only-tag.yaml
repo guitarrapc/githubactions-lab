@@ -6,9 +6,9 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-24.04
     permissions:
       contents: read
+    runs-on: ubuntu-24.04
     timeout-minutes: 5
     steps:
       - run: echo not run on branch push
@@ -18,9 +18,9 @@ jobs:
 
 
   runner:
-    runs-on: ubuntu-24.04
     permissions:
       contents: read
+    runs-on: ubuntu-24.04
     timeout-minutes: 5
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
@@ -39,9 +39,9 @@ jobs:
           retention-days: 1
 
   container:
-    runs-on: ubuntu-24.04
     permissions:
       contents: read
+    runs-on: ubuntu-24.04
     timeout-minutes: 5
     container:
       image: mcr.microsoft.com/dotnet/sdk:8.0
@@ -59,9 +59,9 @@ jobs:
           retention-days: 1
 
   release:
-    runs-on: ubuntu-24.04
     permissions:
       contents: read
+    runs-on: ubuntu-24.04
     timeout-minutes: 5
     needs: [runner, container]
     steps:

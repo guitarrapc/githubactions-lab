@@ -9,18 +9,15 @@ on:
       - src/k8s/**/*
       - .github/workflows/k8s*
 
-permissions:
-  contents: read
-
-env:
-  REPO_MANIFEST: guitarrapc/kubernetes-manifest-lab
-  MANIFEST_DIR: dev
-
 jobs:
   push_manifest:
     if: ${{ github.actor == github.repository_owner }} # because referencing secrets, restrict to owner.
     env:
+      MANIFEST_DIR: dev
       NAMESPACE_PREFIX: githubactions-sample-
+      REPO_MANIFEST: guitarrapc/kubernetes-manifest-lab
+    permissions:
+      contents: read
     runs-on: ubuntu-24.04
     timeout-minutes: 3
     steps:

@@ -4,13 +4,11 @@ on:
   push:
     branches: ["main"]
 
-# allow use id-token
-permissions:
-  id-token: write
-  contents: read
-
 jobs:
   aws:
+    permissions:
+      id-token: write
+      contents: read
     runs-on: ubuntu-24.04
     timeout-minutes: 3
     steps:

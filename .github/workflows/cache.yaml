@@ -16,9 +16,9 @@ env:
 
 jobs:
   detect_library_change:
-    runs-on: ubuntu-24.04
     permissions:
       contents: read
+    runs-on: ubuntu-24.04
     timeout-minutes: 10
     outputs:
       cache-hit: ${{ steps.cache-sha.outputs.cache-hit }}
@@ -75,9 +75,9 @@ jobs:
   dispatch:
     needs: [detect_library_change]
     if: (github.event_name == 'push' || github.event_name == 'workflow_dispatch') && needs.detect_library_change.outputs.cache-hit != 'true'
-    runs-on: ubuntu-24.04
     permissions:
       contents: read
+    runs-on: ubuntu-24.04
     timeout-minutes: 10
     steps:
       # dispatch build if cache is not match with previous

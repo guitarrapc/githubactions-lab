@@ -3,11 +3,10 @@ on:
   schedule:
     - cron: "0 0 * * *"
 
-permissions:
-  contents: read
-
 jobs:
   job:
+    permissions:
+      contents: read
     runs-on: ubuntu-24.04
     timeout-minutes: 3
     steps:

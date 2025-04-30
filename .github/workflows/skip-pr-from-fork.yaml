@@ -8,14 +8,13 @@ on:
       - opened
       - synchronize
 
-permissions:
-  contents: read
-
 jobs:
   build:
     # push & my repo will trigger
     # pull_request on my repo will trigger
     if: ${{ (github.event_name == 'push' && github.repository_owner == 'guitarrapc') || startsWith(github.event.pull_request.head.label, 'guitarrapc:') }}
+    permissions:
+      contents: read
     runs-on: ubuntu-24.04
     timeout-minutes: 3
     steps:

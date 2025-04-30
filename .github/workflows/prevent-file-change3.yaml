@@ -6,12 +6,11 @@ on:
       - .github/**/*.yaml
       - .github/**/*.yml
 
-permissions:
-  contents: read
-
 jobs:
   detect:
     if: ${{ github.event.pull_request.head.repo.fork }} # is Fork
+    permissions:
+      contents: read
     runs-on: ubuntu-24.04
     timeout-minutes: 3
     steps:

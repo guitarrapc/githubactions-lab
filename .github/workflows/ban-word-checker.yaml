@@ -7,11 +7,10 @@ on:
       - .github/scripts/lint-banwords.sh
       - .github/ban-words.txt
 
-permissions:
-  contents: read
-
 jobs:
   aws:
+    permissions:
+      contents: read
     runs-on: ubuntu-24.04
     timeout-minutes: 3
     steps:

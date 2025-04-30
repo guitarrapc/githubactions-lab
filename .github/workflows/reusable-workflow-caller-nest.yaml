@@ -6,11 +6,10 @@ on:
     branches: ["main"]
   workflow_dispatch:
 
-permissions:
-  contents: read
-
 jobs:
   call-workflow-passing-data:
+    permissions:
+      contents: read
     uses: ./.github/workflows/_reusable-workflow-nest.yaml # zizmor: ignore[secrets-inherit]
     with:
       username: "foo"

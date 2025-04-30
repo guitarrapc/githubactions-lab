@@ -2,11 +2,10 @@ name: create pr
 on:
   workflow_dispatch:
 
-permissions:
-  contents: read
-
 jobs:
   change:
+    permissions:
+      contents: read
     runs-on: ubuntu-24.04
     timeout-minutes: 10
     steps:

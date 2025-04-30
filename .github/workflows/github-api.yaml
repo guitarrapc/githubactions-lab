@@ -3,11 +3,10 @@ on:
   issues:
     types: [opened]
 
-permissions:
-  contents: read
-
 jobs:
   comment:
+    permissions:
+      contents: read
     runs-on: ubuntu-24.04
     timeout-minutes: 3
     steps:

@@ -6,15 +6,14 @@ on:
     branches: ["main"]
   workflow_dispatch:
 
-permissions:
-  contents: read
-
 jobs:
   # GitHub Actions Hosted Runner default environment contains some .NET Environment.
   # * DOTNET_MUTILEVEL_LOOKUP=0
   # * DOTNET_NOLOGO=1
   # * DOTNET_SKIP_FIRST_TIME_EXPERIENCE=1
   setup-dotnet:
+    permissions:
+      contents: read
     runs-on: ubuntu-24.04
     timeout-minutes: 3
     steps:

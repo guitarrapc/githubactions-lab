@@ -6,21 +6,19 @@ on:
 
 jobs:
   push:
-    if: >-
-      github.event_name == 'push' || github.event.forced == false
-    runs-on: ubuntu-24.04
+    if: ${{ github.event_name == 'push' || github.event.forced == false }}
     permissions:
       contents: read
+    runs-on: ubuntu-24.04
     timeout-minutes: 5
     steps:
       - run: echo "push"
 
   workflow_dispatch:
-    if: >-
-      github.event_name == 'workflow_dispatch'
-    runs-on: ubuntu-24.04
+    if: ${{ github.event_name == 'workflow_dispatch' }}
     permissions:
       contents: read
+    runs-on: ubuntu-24.04
     timeout-minutes: 5
     steps:
       - run: echo "workflow_dispatch"

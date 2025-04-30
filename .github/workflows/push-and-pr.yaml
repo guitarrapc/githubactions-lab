@@ -3,14 +3,11 @@ on:
   push:
   pull_request:
 
-permissions:
-  contents: read
-
 jobs:
   my-job:
-    runs-on: ubuntu-24.04
     permissions:
       contents: read
+    runs-on: ubuntu-24.04
     timeout-minutes: 1
     steps:
       - run: echo push and pull_request trigger

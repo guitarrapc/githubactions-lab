@@ -4,11 +4,10 @@ on:
   push:
     branches: ["main"]
 
-permissions:
-  contents: read
-
 jobs:
   list:
+    permissions:
+      contents: read
     runs-on: ubuntu-24.04
     timeout-minutes: 3
     steps:

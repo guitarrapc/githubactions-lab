@@ -11,14 +11,13 @@ on:
         required: true
         default: "staging"
 
-permissions:
-  contents: read
-
 jobs:
   merge:
     env:
       upstream: ${{ inputs.upstream }}
       branch: ${{ inputs.branch }}
+    permissions:
+      contents: read
     runs-on: ubuntu-24.04
     timeout-minutes: 10
     steps:

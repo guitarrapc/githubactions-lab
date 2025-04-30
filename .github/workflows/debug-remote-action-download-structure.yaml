@@ -2,11 +2,10 @@ name: Debug Remote Action Download Structure
 on:
   workflow_dispatch:
 
-permissions:
-  contents: read
-
 jobs:
   remote:
+    permissions:
+      contents: read
     runs-on: ubuntu-latest
     timeout-minutes: 3
     steps:

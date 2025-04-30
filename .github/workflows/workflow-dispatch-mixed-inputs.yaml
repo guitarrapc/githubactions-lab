@@ -21,11 +21,10 @@ on:
         description: "environment: Select environment"
         required: true
 
-permissions:
-  contents: read
-
 jobs:
   greet:
+    permissions:
+      contents: read
     runs-on: ubuntu-24.04
     timeout-minutes: 3
     steps:

@@ -4,12 +4,11 @@ on:
   push:
     branches: ["main"]
 
-permissions:
-  contents: read
-
 jobs:
   job:
     if: ${{ ! github.event.pull_request.draft }}
+    permissions:
+      contents: read
     runs-on: ubuntu-24.04
     timeout-minutes: 3
     steps:

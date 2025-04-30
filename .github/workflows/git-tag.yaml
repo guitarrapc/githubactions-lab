@@ -6,11 +6,10 @@ on:
         required: true
         description: input your tag value
 
-permissions:
-  contents: read
-
 jobs:
   actionlint:
+    permissions:
+      contents: read
     runs-on: ubuntu-24.04
     timeout-minutes: 3
     steps:
