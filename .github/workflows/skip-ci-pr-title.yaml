@@ -5,9 +5,9 @@ on:
 jobs:
   skip:
     if: ${{ !(contains(github.event.pull_request.title, '[skip ci]') || contains(github.event.pull_request.title, '[ci skip]')) }}
-    runs-on: ubuntu-24.04
     permissions:
       contents: read
+    runs-on: ubuntu-24.04
     timeout-minutes: 3
     steps:
       - run: echo "$GITHUB_CONTEXT"
@@ -17,10 +17,10 @@ jobs:
         env:
           TITLE: ${{ toJson(github.event.pull_request.title) }}
   build:
-    runs-on: ubuntu-24.04
-    timeout-minutes: 3
     permissions:
       contents: read
+    runs-on: ubuntu-24.04
+    timeout-minutes: 3
     needs: skip
     steps:
       - run: echo run when not skipped

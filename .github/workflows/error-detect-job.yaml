@@ -4,17 +4,17 @@ on:
 
 jobs:
   error1:
-    runs-on: ubuntu-24.04
-    timeout-minutes: 3
     permissions:
       contents: read
+    runs-on: ubuntu-24.04
+    timeout-minutes: 3
     steps:
       - run: exit 1
 
   error2:
-    runs-on: ubuntu-24.04
     permissions:
       contents: read
+    runs-on: ubuntu-24.04
     timeout-minutes: 3
     steps:
       - run: exit 1
@@ -23,9 +23,9 @@ jobs:
   handler:
     if: ${{ failure() }}
     needs: [error1, error2]
-    runs-on: ubuntu-24.04
     permissions:
       contents: read
+    runs-on: ubuntu-24.04
     timeout-minutes: 3
     steps:
       - run: echo error happen

@@ -6,10 +6,10 @@ on:
 
 jobs:
   aws:
-    runs-on: ubuntu-24.04
     permissions:
       id-token: write
       contents: read
+    runs-on: ubuntu-24.04
     timeout-minutes: 3
     steps:
       - name: current aws-cli

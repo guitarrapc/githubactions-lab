@@ -14,10 +14,10 @@ jobs:
       fail-fast: false
       matrix:
         runs-on: [ubuntu-24.04]
-    runs-on: ${{ matrix.runs-on }}
     permissions:
       contents: write
       pull-requests: write
+    runs-on: ${{ matrix.runs-on }}
     timeout-minutes: 5
     steps:
       # pull_request and pull_request_target event may begin concurrently and conflict git operation. So, let's wait random time.

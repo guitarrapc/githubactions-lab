@@ -24,9 +24,9 @@ env:
 jobs:
   create-release:
     if: ${{ github.actor != 'dependabot[bot]' }}
-    runs-on: ubuntu-24.04
     permissions:
       contents: write
+    runs-on: ubuntu-24.04
     timeout-minutes: 10
     steps:
       - name: Setup tag

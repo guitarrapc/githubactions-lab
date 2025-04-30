@@ -9,18 +9,18 @@ on:
 
 jobs:
   A:
-    runs-on: ubuntu-24.04
     permissions:
       contents: read
+    runs-on: ubuntu-24.04
     timeout-minutes: 1
     steps:
       - run: echo "a"
 
   B:
     needs: [A]
-    runs-on: ubuntu-24.04
     permissions:
       contents: read
+    runs-on: ubuntu-24.04
     timeout-minutes: 1
     steps:
       - run: echo "b"
@@ -28,9 +28,9 @@ jobs:
   # Run only if A and B success
   C:
     needs: [A, B]
-    runs-on: ubuntu-24.04
     permissions:
       contents: read
+    runs-on: ubuntu-24.04
     timeout-minutes: 1
     steps:
       - run: echo "c"

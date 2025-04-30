@@ -14,9 +14,9 @@ jobs:
     strategy:
       matrix:
         runs-on: [ubuntu-24.04, windows-latest]
-    runs-on: ${{ matrix.runs-on }}
     permissions:
       contents: read
+    runs-on: ${{ matrix.runs-on }}
     timeout-minutes: 3
     defaults:
       run:
@@ -50,9 +50,9 @@ jobs:
     strategy:
       matrix:
         runs-on: [ubuntu-24.04, windows-latest]
-    runs-on: ${{ matrix.runs-on }}
     permissions:
       contents: read
+    runs-on: ${{ matrix.runs-on }}
     timeout-minutes: 3
     defaults:
       run:
@@ -86,9 +86,9 @@ jobs:
     strategy:
       matrix:
         runs-on: [windows-latest]
-    runs-on: ${{ matrix.runs-on }}
     permissions:
       contents: read
+    runs-on: ${{ matrix.runs-on }}
     timeout-minutes: 3
     defaults:
       run:

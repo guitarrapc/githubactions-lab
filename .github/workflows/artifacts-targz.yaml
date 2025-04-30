@@ -9,10 +9,10 @@ on:
 jobs:
   # tar.gz
   upload-targz:
-    runs-on: ubuntu-24.04
-    timeout-minutes: 3
     permissions:
       contents: read
+    runs-on: ubuntu-24.04
+    timeout-minutes: 3
     steps:
       - name: output
         run: |
@@ -30,9 +30,9 @@ jobs:
 
   download-targz:
     needs: [upload-targz]
-    runs-on: ubuntu-24.04
     permissions:
       contents: read
+    runs-on: ubuntu-24.04
     timeout-minutes: 3
     steps:
       # specify path: . to download tar.gz to current directory

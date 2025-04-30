@@ -8,9 +8,9 @@ on:
 
 jobs:
   dotnet:
-    runs-on: ubuntu-24.04
     permissions:
       contents: read
+    runs-on: ubuntu-24.04
     timeout-minutes: 3
     steps:
       # Register this action before your build step. It will then be executed at the end of the job post-processing.

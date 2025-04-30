@@ -9,10 +9,10 @@ on:
 jobs:
   detect:
     if: ${{ github.actor != 'dependabot[bot]' }}
-    runs-on: ubuntu-24.04
     permissions:
       contents: read
       pull-requests: read
+    runs-on: ubuntu-24.04
     timeout-minutes: 3
     steps:
       - name: Prevent file change for github YAML files.

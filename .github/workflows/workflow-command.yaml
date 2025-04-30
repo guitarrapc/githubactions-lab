@@ -9,9 +9,9 @@ on:
 
 jobs:
   commands:
-    runs-on: ubuntu-24.04
     permissions:
       contents: read
+    runs-on: ubuntu-24.04
     timeout-minutes: 3
     steps:
       - run: echo "action_fruit=strawberry" >> "$GITHUB_OUTPUT"

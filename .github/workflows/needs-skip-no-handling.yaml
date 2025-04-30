@@ -9,26 +9,26 @@ on:
 jobs:
   A:
     if: ${{ false }}
-    runs-on: ubuntu-24.04
     permissions:
       contents: read
+    runs-on: ubuntu-24.04
     timeout-minutes: 1
     steps:
       - run: echo "a"
 
   B:
     if: ${{ false }}
-    runs-on: ubuntu-24.04
     permissions:
       contents: read
+    runs-on: ubuntu-24.04
     timeout-minutes: 1
     steps:
       - run: echo "b"
 
   C:
-    runs-on: ubuntu-24.04
     permissions:
       contents: read
+    runs-on: ubuntu-24.04
     timeout-minutes: 1
     steps:
       - run: echo "c"
@@ -36,9 +36,9 @@ jobs:
   # D will always skip because A and B is skipped
   D:
     needs: [A, B, C]
-    runs-on: ubuntu-24.04
     permissions:
       contents: read
+    runs-on: ubuntu-24.04
     timeout-minutes: 1
     steps:
       - run: echo "d"

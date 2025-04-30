@@ -27,9 +27,9 @@ env:
 jobs:
   reusable_workflow_job:
     timeout-minutes: 5
-    runs-on: ubuntu-24.04
     permissions:
       contents: read
+    runs-on: ubuntu-24.04
     outputs:
       output1: ${{ steps.step1.outputs.firstword }}
       output2: ${{ steps.step2.outputs.secondword }}
