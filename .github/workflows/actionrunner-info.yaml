@@ -8,12 +8,11 @@ on:
   schedule:
     - cron: "0 0 * * *"
 
-permissions:
-  contents: read
-
 jobs:
   actionlint:
     runs-on: ubuntu-24.04
+    permissions:
+      contents: read
     timeout-minutes: 3
     steps:
       - name: Ubuntu Version

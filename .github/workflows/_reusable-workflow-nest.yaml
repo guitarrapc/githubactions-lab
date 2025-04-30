@@ -11,13 +11,12 @@ on:
         description: username to show
         type: boolean
 
-permissions:
-  contents: read
-
 # nested call is supported
 jobs:
   call-workflow-passing-data:
     uses: ./.github/workflows/_reusable-workflow-called.yaml
+    permissions:
+      contents: read
     with:
       username: ${{ inputs.username }}
       is-valid: ${{ inputs.is-valid }}

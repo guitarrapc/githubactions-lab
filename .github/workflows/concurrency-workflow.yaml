@@ -3,12 +3,11 @@ concurrency: ${{ github.workflow }}-${{ github.ref }}
 on:
   workflow_dispatch:
 
-permissions:
-  contents: read
-
 jobs:
   long_job:
     runs-on: ubuntu-24.04
+    permissions:
+      contents: read
     timeout-minutes: 5
     steps:
       - run: sleep 60s

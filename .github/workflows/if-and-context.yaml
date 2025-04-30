@@ -6,9 +6,6 @@ on:
   pull_request:
     branches: ["main"]
 
-permissions:
-  contents: read
-
 jobs:
   matrix_reference:
     strategy:
@@ -17,6 +14,8 @@ jobs:
     env:
       APP: hoge
     runs-on: ubuntu-24.04
+    permissions:
+      contents: read
     timeout-minutes: 3
     steps:
       # env context reference

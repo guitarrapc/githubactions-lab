@@ -4,12 +4,11 @@ on:
     tags:
       - "[0-9]+.[0-9]+.[0-9]+*" # only tag with pattern match
 
-permissions:
-  contents: read
-
 jobs:
   job:
     runs-on: ubuntu-24.04
+    permissions:
+      contents: read
     timeout-minutes: 3
     steps:
       - run: echo not run on branch push

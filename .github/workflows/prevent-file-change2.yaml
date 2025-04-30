@@ -6,14 +6,13 @@ on:
     paths:
       - .github/**/*.yaml
 
-permissions:
-  contents: read
-  pull-requests: read
-
 jobs:
   detect:
     if: ${{ github.actor != 'dependabot[bot]' }}
     runs-on: ubuntu-24.04
+    permissions:
+      contents: read
+      pull-requests: read
     timeout-minutes: 3
     steps:
       - name: Prevent file change for github YAML files.

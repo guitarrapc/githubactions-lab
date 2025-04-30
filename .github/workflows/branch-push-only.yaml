@@ -5,12 +5,11 @@ on:
     tags:
       - "!*" # not a tag push
 
-permissions:
-  contents: read
-
 jobs:
   aws:
     runs-on: ubuntu-24.04
+    permissions:
+      contents: read
     timeout-minutes: 3
     steps:
       - run: echo not run on tag

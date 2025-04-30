@@ -6,15 +6,14 @@ on:
     branches: ["main"]
   workflow_dispatch:
 
-permissions:
-  contents: read
-
 jobs:
   call-matrix-workflow:
     strategy:
       matrix:
         username: [foo, bar]
     uses: ./.github/workflows/_reusable-workflow-called.yaml
+    permissions:
+      contents: read
     with:
       username: ${{ matrix.username }}
       is-valid: true

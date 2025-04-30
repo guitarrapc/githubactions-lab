@@ -14,12 +14,11 @@ on:
         description: "Test scenario tags"
         required: false
 
-permissions:
-  contents: read
-
 jobs:
   printInputs:
     runs-on: ubuntu-24.04
+    permissions:
+      contents: read
     timeout-minutes: 3
     env:
       BRANCH: ${{ inputs.branch }}

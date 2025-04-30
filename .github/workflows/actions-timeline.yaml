@@ -6,12 +6,11 @@ on:
   pull_request:
     branches: ["main"]
 
-permissions:
-  contents: read
-
 jobs:
   dotnet:
     runs-on: ubuntu-24.04
+    permissions:
+      contents: read
     timeout-minutes: 3
     steps:
       # Register this action before your build step. It will then be executed at the end of the job post-processing.

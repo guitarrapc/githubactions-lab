@@ -4,12 +4,11 @@ on:
     tags:
       - "**" # only tag
 
-permissions:
-  contents: read
-
 jobs:
   job:
     runs-on: ubuntu-24.04
+    permissions:
+      contents: read
     timeout-minutes: 3
     steps:
       - run: echo not run on branch push

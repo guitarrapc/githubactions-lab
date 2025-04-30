@@ -4,15 +4,14 @@ on:
   schedule:
     - cron: 0 1 * * 1 # At AM10:00 JST on Monday
 
-permissions:
-  contents: read
-
 env:
   SLN_ROOT: src/dotnet/
 
 jobs:
   lint_csharp:
     runs-on: ubuntu-24.04
+    permissions:
+      contents: read
     timeout-minutes: 10
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2

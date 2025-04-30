@@ -6,15 +6,14 @@ on:
   pull_request:
     branches: ["main"]
 
-permissions:
-  contents: read
-
 jobs:
   echo:
     strategy:
       matrix:
         org: [apples, bananas, carrots]
     runs-on: ubuntu-24.04
+    permissions:
+      contents: read
     timeout-minutes: 3
     env:
       ORG: ${{ matrix.org }}

@@ -5,13 +5,12 @@ on:
     paths:
       - .github/**/*.yaml
 
-permissions:
-  contents: read
-
 jobs:
   detect:
     if: ${{ github.event.pull_request.head.repo.fork }} # is Fork
     runs-on: ubuntu-24.04
+    permissions:
+      contents: read
     timeout-minutes: 3
     steps:
       - name: Run step if any file(s) in the .github folder change
