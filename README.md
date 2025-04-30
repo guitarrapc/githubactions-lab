@@ -421,9 +421,9 @@ on:
 
 jobs:
   context:
-    runs-on: ubuntu-24.04
     permissions:
       contents: read
+    runs-on: ubuntu-24.04
     timeout-minutes: 3
     steps:
       - name: job
@@ -489,9 +489,9 @@ on:
 
 jobs:
   dump:
-    runs-on: ubuntu-24.04
     permissions:
       contents: read
+    runs-on: ubuntu-24.04
     timeout-minutes: 3
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
@@ -553,9 +553,9 @@ on:
 
 jobs:
   long_job:
-    runs-on: ubuntu-24.04
     permissions:
       contents: read
+    runs-on: ubuntu-24.04
     timeout-minutes: 5
     steps:
       - run: sleep 60s
@@ -576,9 +576,9 @@ on:
 
 jobs:
   long_job:
-    runs-on: ubuntu-24.04
     permissions:
       contents: read
+    runs-on: ubuntu-24.04
     timeout-minutes: 5
     steps:
       - run: sleep 60s
@@ -600,9 +600,9 @@ on:
 
 jobs:
   job:
-    runs-on: ubuntu-24.04
     permissions:
       contents: read
+    runs-on: ubuntu-24.04
     timeout-minutes: 5
     concurrency:
       group: concurrency-job
@@ -625,9 +625,9 @@ on:
 
 jobs:
   job:
-    runs-on: ubuntu-24.04
     permissions:
       contents: read
+    runs-on: ubuntu-24.04
     timeout-minutes: 5
     concurrency:
       group: concurrency-job-cip
@@ -682,9 +682,9 @@ jobs:
     strategy:
       matrix:
         runs-on: [ubuntu-24.04, windows-latest]
-    runs-on: ${{ matrix.runs-on }}
     permissions:
       contents: read
+    runs-on: ${{ matrix.runs-on }}
     timeout-minutes: 3
     defaults:
       run:
@@ -718,9 +718,9 @@ jobs:
     strategy:
       matrix:
         runs-on: [ubuntu-24.04, windows-latest]
-    runs-on: ${{ matrix.runs-on }}
     permissions:
       contents: read
+    runs-on: ${{ matrix.runs-on }}
     timeout-minutes: 3
     defaults:
       run:
@@ -754,9 +754,9 @@ jobs:
     strategy:
       matrix:
         runs-on: [windows-latest]
-    runs-on: ${{ matrix.runs-on }}
     permissions:
       contents: read
+    runs-on: ${{ matrix.runs-on }}
     timeout-minutes: 3
     defaults:
       run:
@@ -817,9 +817,9 @@ jobs:
         sample: ["hoge", "fuga"]
     env:
       APP: hoge
-    runs-on: ubuntu-24.04
     permissions:
       contents: read
+    runs-on: ubuntu-24.04
     timeout-minutes: 3
     steps:
       # env context reference
@@ -873,18 +873,18 @@ on:
 
 jobs:
   A:
-    runs-on: ubuntu-24.04
     permissions:
       contents: read
+    runs-on: ubuntu-24.04
     timeout-minutes: 1
     steps:
       - run: echo "a"
 
   B:
     needs: [A]
-    runs-on: ubuntu-24.04
     permissions:
       contents: read
+    runs-on: ubuntu-24.04
     timeout-minutes: 1
     steps:
       - run: echo "b"
@@ -892,9 +892,9 @@ jobs:
   # Run only if A and B success
   C:
     needs: [A, B]
-    runs-on: ubuntu-24.04
     permissions:
       contents: read
+    runs-on: ubuntu-24.04
     timeout-minutes: 1
     steps:
       - run: echo "c"
@@ -931,18 +931,18 @@ on:
 
 jobs:
   A:
-    runs-on: ubuntu-24.04
     permissions:
       contents: read
+    runs-on: ubuntu-24.04
     timeout-minutes: 1
     steps:
       - run: echo "a"
 
   B:
     needs: [A]
-    runs-on: ubuntu-24.04
     permissions:
       contents: read
+    runs-on: ubuntu-24.04
     timeout-minutes: 1
     steps:
       - run: echo "b"
@@ -951,9 +951,9 @@ jobs:
   C:
     needs: [A, B]
     if: ${{ always() }}
-    runs-on: ubuntu-24.04
     permissions:
       contents: read
+    runs-on: ubuntu-24.04
     timeout-minutes: 1
     steps:
       - run: echo "c"
@@ -980,26 +980,26 @@ on:
 jobs:
   A:
     if: ${{ false }}
-    runs-on: ubuntu-24.04
     permissions:
       contents: read
+    runs-on: ubuntu-24.04
     timeout-minutes: 1
     steps:
       - run: echo "a"
 
   B:
     if: ${{ false }}
-    runs-on: ubuntu-24.04
     permissions:
       contents: read
+    runs-on: ubuntu-24.04
     timeout-minutes: 1
     steps:
       - run: echo "b"
 
   C:
-    runs-on: ubuntu-24.04
     permissions:
       contents: read
+    runs-on: ubuntu-24.04
     timeout-minutes: 1
     steps:
       - run: echo "c"
@@ -1007,9 +1007,9 @@ jobs:
   # D will always skip because A and B is skipped
   D:
     needs: [A, B, C]
-    runs-on: ubuntu-24.04
     permissions:
       contents: read
+    runs-on: ubuntu-24.04
     timeout-minutes: 1
     steps:
       - run: echo "d"
@@ -1038,26 +1038,26 @@ on:
 jobs:
   A:
     if: ${{ !inputs.only-c }}
-    runs-on: ubuntu-24.04
     permissions:
       contents: read
+    runs-on: ubuntu-24.04
     timeout-minutes: 1
     steps:
       - run: echo "a"
 
   B:
     if: ${{ !inputs.only-c }}
-    runs-on: ubuntu-24.04
     permissions:
       contents: read
+    runs-on: ubuntu-24.04
     timeout-minutes: 1
     steps:
       - run: echo "b"
 
   C:
-    runs-on: ubuntu-24.04
     permissions:
       contents: read
+    runs-on: ubuntu-24.04
     timeout-minutes: 1
     steps:
       - run: echo "c"
@@ -1066,9 +1066,9 @@ jobs:
   D:
     needs: [A, B, C]
     if: ${{ inputs.only-c && needs.C.result == 'success' || success() }}
-    runs-on: ubuntu-24.04
     permissions:
       contents: read
+    runs-on: ubuntu-24.04
     timeout-minutes: 1
     steps:
       - run: echo "d"
@@ -1199,9 +1199,9 @@ on:
 
 jobs:
   job:
-    runs-on: ubuntu-24.04
     permissions:
       contents: read
+    runs-on: ubuntu-24.04
     timeout-minutes: 3
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
@@ -1260,9 +1260,9 @@ on:
 
 jobs:
   job:
-    runs-on: ubuntu-24.04
     permissions:
       contents: read
+    runs-on: ubuntu-24.04
     timeout-minutes: 3
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
@@ -1351,9 +1351,9 @@ env:
 jobs:
   reusable_workflow_job:
     timeout-minutes: 5
-    runs-on: ubuntu-24.04
     permissions:
       contents: read
+    runs-on: ubuntu-24.04
     outputs:
       output1: ${{ steps.step1.outputs.firstword }}
       output2: ${{ steps.step2.outputs.secondword }}
@@ -1420,9 +1420,9 @@ jobs:
       APPLES: ${{ secrets.APPLES }}
 
   job2:
-    runs-on: ubuntu-24.04
     permissions:
       contents: read
+    runs-on: ubuntu-24.04
     timeout-minutes: 1
     needs: call-workflow-passing-data
     steps:
@@ -1449,9 +1449,9 @@ on:
 
 jobs:
   call-workflow-passing-data:
-    uses: guitarrapc/githubactions-lab/.github/workflows/_reusable-workflow-called.yaml@main
     permissions:
       contents: read
+    uses: guitarrapc/githubactions-lab/.github/workflows/_reusable-workflow-called.yaml@main
     with:
       username: foo
       is-valid: true
@@ -1460,9 +1460,9 @@ jobs:
 
   job2:
     needs: [call-workflow-passing-data]
-    runs-on: ubuntu-24.04
     permissions:
       contents: read
+    runs-on: ubuntu-24.04
     timeout-minutes: 1
     steps:
       - run: echo "${{ needs.call-workflow-passing-data.outputs.firstword }} ${{ needs.call-workflow-passing-data.outputs.secondword }}"
@@ -1489,9 +1489,9 @@ jobs:
     strategy:
       matrix:
         username: [foo, bar]
-    uses: ./.github/workflows/_reusable-workflow-called.yaml
     permissions:
       contents: read
+    uses: ./.github/workflows/_reusable-workflow-called.yaml
     with:
       username: ${{ matrix.username }}
       is-valid: true
@@ -1523,9 +1523,9 @@ on:
 # nested call is supported
 jobs:
   call-workflow-passing-data:
-    uses: ./.github/workflows/_reusable-workflow-called.yaml
     permissions:
       contents: read
+    uses: ./.github/workflows/_reusable-workflow-called.yaml
     with:
       username: ${{ inputs.username }}
       is-valid: ${{ inputs.is-valid }}
@@ -1553,9 +1553,9 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-24.04
     permissions:
       contents: read
+    runs-on: ubuntu-24.04
     timeout-minutes: 3
     steps:
       - run: echo "$COMMIT_MESSAGES"
@@ -1564,9 +1564,9 @@ jobs:
 
   publish:
     needs: [build]
-    runs-on: ubuntu-24.04
     permissions:
       contents: read
+    runs-on: ubuntu-24.04
     timeout-minutes: 3
     steps:
       - run: echo run when only build success
@@ -1592,9 +1592,9 @@ on:
 
 jobs:
   job:
-    runs-on: ubuntu-24.04
     permissions:
       contents: read
+    runs-on: ubuntu-24.04
     timeout-minutes: 3
     steps:
       - run: echo "$COMMIT_MESSAGES"
@@ -1630,9 +1630,9 @@ on:
 
 jobs:
   push:
-    runs-on: ubuntu-24.04
     permissions:
       contents: read
+    runs-on: ubuntu-24.04
     timeout-minutes: 5
     steps:
       - run: |
@@ -1656,21 +1656,19 @@ on:
 
 jobs:
   push:
-    if: >-
-      github.event_name == 'push' || github.event.forced == false
-    runs-on: ubuntu-24.04
+    if: ${{ github.event_name == 'push' || github.event.forced == false }}
     permissions:
       contents: read
+    runs-on: ubuntu-24.04
     timeout-minutes: 5
     steps:
       - run: echo "push"
 
   workflow_dispatch:
-    if: >-
-      github.event_name == 'workflow_dispatch'
-    runs-on: ubuntu-24.04
+    if: ${{ github.event_name == 'workflow_dispatch' }}
     permissions:
       contents: read
+    runs-on: ubuntu-24.04
     timeout-minutes: 5
     steps:
       - run: echo "workflow_dispatch"
@@ -1712,9 +1710,9 @@ jobs:
             secret: BANANAS
           - org: carrots
             secret: CARROTS
-    runs-on: ubuntu-24.04
     permissions:
       contents: read
+    runs-on: ubuntu-24.04
     timeout-minutes: 3
     steps:
       - run: echo "org:${{ matrix.org }} secret:${SECRET}"
@@ -1747,9 +1745,9 @@ jobs:
     strategy:
       matrix:
         org: [apples, bananas, carrots]
-    runs-on: ubuntu-24.04
     permissions:
       contents: read
+    runs-on: ubuntu-24.04
     timeout-minutes: 3
     env:
       ORG: ${{ matrix.org }}
@@ -1785,9 +1783,9 @@ on:
 
 jobs:
   my-job:
-    runs-on: ubuntu-24.04
     permissions:
       contents: read
+    runs-on: ubuntu-24.04
     timeout-minutes: 5
     steps:
       - run: echo "done before timeout"
@@ -1821,9 +1819,9 @@ on:
 
 jobs:
   printInputs:
-    runs-on: ubuntu-24.04
     permissions:
       contents: read
+    runs-on: ubuntu-24.04
     timeout-minutes: 3
     env:
       BRANCH: ${{ inputs.branch }}
@@ -1897,9 +1895,9 @@ on:
 
 jobs:
   greet:
-    runs-on: ubuntu-24.04
     permissions:
       contents: read
+    runs-on: ubuntu-24.04
     timeout-minutes: 3
     steps:
       - name: Send greeting (github.event.inputs)
@@ -1951,9 +1949,9 @@ on:
 
 jobs:
   my-job:
-    runs-on: ubuntu-24.04
     permissions:
       contents: read
+    runs-on: ubuntu-24.04
     timeout-minutes: 3
     steps:
       - run: echo push and pull_request trigger
@@ -1977,9 +1975,9 @@ on:
 
 jobs:
   cancel:
-    runs-on: ubuntu-24.04
     permissions:
       contents: read
+    runs-on: ubuntu-24.04
     timeout-minutes: 3
     steps:
       # no check for main and tag
@@ -2016,9 +2014,9 @@ on:
 
 jobs:
   changed-files:
-    runs-on: ubuntu-24.04
     permissions:
       contents: read
+    runs-on: ubuntu-24.04
     timeout-minutes: 3
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
@@ -2088,9 +2086,9 @@ on:
 
 jobs:
   changed-files:
-    runs-on: ubuntu-24.04
     permissions:
       contents: read
+    runs-on: ubuntu-24.04
     timeout-minutes: 3
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
@@ -2170,9 +2168,9 @@ on:
 
 jobs:
   job:
-    runs-on: ubuntu-24.04
     permissions:
       contents: read
+    runs-on: ubuntu-24.04
     timeout-minutes: 3
     steps:
       - name: Dump GitHub context
@@ -2218,9 +2216,9 @@ env:
 jobs:
   create-release:
     if: ${{ github.actor != 'dependabot[bot]' }}
-    runs-on: ubuntu-24.04
     permissions:
       contents: write
+    runs-on: ubuntu-24.04
     timeout-minutes: 10
     steps:
       - name: Setup tag
@@ -2289,9 +2287,9 @@ on:
 
 jobs:
   aws:
-    runs-on: ubuntu-24.04
     permissions:
       contents: read
+    runs-on: ubuntu-24.04
     timeout-minutes: 3
     steps:
       - run: echo not run on tag
@@ -2337,9 +2335,9 @@ on:
 
 jobs:
   job:
-    runs-on: ubuntu-24.04
     permissions:
       contents: read
+    runs-on: ubuntu-24.04
     timeout-minutes: 3
     steps:
       - run: echo not run on branch push
@@ -2371,9 +2369,9 @@ on:
 
 jobs:
   job:
-    runs-on: ubuntu-24.04
     permissions:
       contents: read
+    runs-on: ubuntu-24.04
     timeout-minutes: 3
     steps:
       - run: echo not run on branch push
@@ -2401,9 +2399,9 @@ on:
 
 jobs:
   changes:
-    runs-on: ubuntu-24.04
     permissions:
       contents: read
+    runs-on: ubuntu-24.04
     timeout-minutes: 3
     env:
       IS_HOGE: "false"
@@ -2434,9 +2432,9 @@ on:
 jobs:
   skip:
     if: ${{ !(contains(github.event.pull_request.title, '[skip ci]') || contains(github.event.pull_request.title, '[ci skip]')) }}
-    runs-on: ubuntu-24.04
     permissions:
       contents: read
+    runs-on: ubuntu-24.04
     timeout-minutes: 3
     steps:
       - run: echo "$GITHUB_CONTEXT"
@@ -2446,10 +2444,10 @@ jobs:
         env:
           TITLE: ${{ toJson(github.event.pull_request.title) }}
   build:
-    runs-on: ubuntu-24.04
-    timeout-minutes: 3
     permissions:
       contents: read
+    runs-on: ubuntu-24.04
+    timeout-minutes: 3
     needs: skip
     steps:
       - run: echo run when not skipped
@@ -2479,9 +2477,9 @@ jobs:
     # push & my repo will trigger
     # pull_request on my repo will trigger
     if: ${{ (github.event_name == 'push' && github.repository_owner == 'guitarrapc') || startsWith(github.event.pull_request.head.label, 'guitarrapc:') }}
-    runs-on: ubuntu-24.04
     permissions:
       contents: read
+    runs-on: ubuntu-24.04
     timeout-minutes: 3
     steps:
       - run: echo build
@@ -2505,9 +2503,9 @@ on:
 jobs:
   job:
     if: ${{ ! github.event.pull_request.draft }}
-    runs-on: ubuntu-24.04
     permissions:
       contents: read
+    runs-on: ubuntu-24.04
     timeout-minutes: 3
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
@@ -2536,9 +2534,9 @@ jobs:
     # 1. PR has label 'draft_but_ci'
     # 2. Not draft, `push` and `non-draft pr`.
     if: ${{ (contains(github.event.pull_request.labels.*.name, 'draft_but_ci')) || !(github.event.pull_request.draft) }}
-    runs-on: ubuntu-24.04
     permissions:
       contents: read
+    runs-on: ubuntu-24.04
     timeout-minutes: 3
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
@@ -2634,9 +2632,9 @@ on:
 jobs:
   # single file
   upload-file:
-    runs-on: ubuntu-24.04
     permissions:
       contents: read
+    runs-on: ubuntu-24.04
     timeout-minutes: 3
     steps:
       - name: output
@@ -2650,9 +2648,9 @@ jobs:
 
   download-file:
     needs: [upload-file]
-    runs-on: ubuntu-24.04
     permissions:
       contents: read
+    runs-on: ubuntu-24.04
     timeout-minutes: 3
     steps:
       - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4.3.0
@@ -2682,9 +2680,9 @@ on:
 jobs:
   # directory
   upload-directory:
-    runs-on: ubuntu-24.04
     permissions:
       contents: read
+    runs-on: ubuntu-24.04
     timeout-minutes: 3
     steps:
       - name: output
@@ -2702,9 +2700,9 @@ jobs:
 
   download-directory:
     needs: [upload-directory]
-    runs-on: ubuntu-24.04
     permissions:
       contents: read
+    runs-on: ubuntu-24.04
     timeout-minutes: 3
     steps:
       - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4.3.0
@@ -2734,10 +2732,10 @@ on:
 jobs:
   # tar.gz
   upload-targz:
-    runs-on: ubuntu-24.04
-    timeout-minutes: 3
     permissions:
       contents: read
+    runs-on: ubuntu-24.04
+    timeout-minutes: 3
     steps:
       - name: output
         run: |
@@ -2755,9 +2753,9 @@ jobs:
 
   download-targz:
     needs: [upload-targz]
-    runs-on: ubuntu-24.04
     permissions:
       contents: read
+    runs-on: ubuntu-24.04
     timeout-minutes: 3
     steps:
       # specify path: . to download tar.gz to current directory
@@ -2829,9 +2827,9 @@ on:
 
 jobs:
   sparse-checkout:
-    runs-on: ubuntu-24.04
     permissions:
       contents: read
+    runs-on: ubuntu-24.04
     timeout-minutes: 5
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
@@ -2892,9 +2890,9 @@ on:
 
 jobs:
   sparse-checkout:
-    runs-on: ubuntu-24.04
     permissions:
       contents: read
+    runs-on: ubuntu-24.04
     timeout-minutes: 5
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
@@ -2951,9 +2949,9 @@ on:
 
 jobs:
   sparse-checkout:
-    runs-on: ubuntu-24.04
     permissions:
       contents: read
+    runs-on: ubuntu-24.04
     timeout-minutes: 5
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
@@ -3034,9 +3032,9 @@ on:
 
 jobs:
   dispatch:
-    runs-on: ubuntu-24.04
     permissions:
       contents: read
+    runs-on: ubuntu-24.04
     timeout-minutes: 5
     strategy:
       matrix:
@@ -3078,9 +3076,9 @@ on:
 jobs:
   detect:
     if: ${{ github.event.pull_request.head.repo.fork }} # is Fork
-    runs-on: ubuntu-24.04
     permissions:
       contents: read
+    runs-on: ubuntu-24.04
     timeout-minutes: 3
     steps:
       - name: "Prevent file change"
@@ -3102,10 +3100,10 @@ on:
 jobs:
   detect:
     if: ${{ github.actor != 'dependabot[bot]' }}
-    runs-on: ubuntu-24.04
     permissions:
       contents: read
       pull-requests: read
+    runs-on: ubuntu-24.04
     timeout-minutes: 3
     steps:
       - name: Prevent file change for github YAML files.
@@ -3131,9 +3129,9 @@ on:
 jobs:
   detect:
     if: ${{ github.event.pull_request.head.repo.fork }} # is Fork
-    runs-on: ubuntu-24.04
     permissions:
       contents: read
+    runs-on: ubuntu-24.04
     timeout-minutes: 3
     steps:
       - name: Run step if any file(s) in the .github folder change
@@ -3154,9 +3152,9 @@ on:
 jobs:
   detect:
     if: ${{ github.event.pull_request.head.repo.fork }} # is Fork
-    runs-on: ubuntu-24.04
     permissions:
       contents: read
+    runs-on: ubuntu-24.04
     timeout-minutes: 3
     steps:
       - name: Run step if any file(s) in the .github folder change
@@ -3191,9 +3189,9 @@ on:
 
 jobs:
   lint:
-    runs-on: ubuntu-24.04
     permissions:
       contents: read
+    runs-on: ubuntu-24.04
     timeout-minutes: 5
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
@@ -3235,9 +3233,9 @@ on:
 
 jobs:
   get:
-    runs-on: ubuntu-24.04
     permissions:
       contents: read
+    runs-on: ubuntu-24.04
     timeout-minutes: 3
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
@@ -3277,9 +3275,9 @@ on:
 
 jobs:
   dotnet:
-    runs-on: ubuntu-24.04
     permissions:
       contents: read
+    runs-on: ubuntu-24.04
     timeout-minutes: 3
     steps:
       - name: Collect actions workflow telemetry
@@ -3338,7 +3336,7 @@ action folder naming also follow this rule.
 ```yaml
 # .github/workflows/_reusable-dump-context.yaml#L20-L22
 
-  pull-requests: write
+runs-on: ${{ matrix.runs-on }}
 timeout-minutes: 5
 steps:
 ```
@@ -3363,9 +3361,9 @@ on:
 
 jobs:
   ref:
-    runs-on: ubuntu-24.04
     permissions:
       contents: read
+    runs-on: ubuntu-24.04
     timeout-minutes: 3
     steps:
       - name: Use GITHUB_REF and GITHUB_OUTPUT
@@ -3422,9 +3420,9 @@ on:
 
 jobs:
   action:
-    runs-on: ubuntu-24.04
     permissions:
       contents: read
+    runs-on: ubuntu-24.04
     timeout-minutes: 3
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
