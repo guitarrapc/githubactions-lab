@@ -419,12 +419,11 @@ on:
     - cron: "0 0 * * *"
   workflow_dispatch:
 
-permissions:
-  contents: read
-
 jobs:
   context:
     runs-on: ubuntu-24.04
+    permissions:
+      contents: read
     timeout-minutes: 3
     steps:
       - name: job
@@ -488,12 +487,11 @@ on:
     - cron: "0 0 * * *"
   workflow_dispatch:
 
-permissions:
-  contents: read
-
 jobs:
   dump:
     runs-on: ubuntu-24.04
+    permissions:
+      contents: read
     timeout-minutes: 3
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
@@ -553,12 +551,11 @@ concurrency: ${{ github.workflow }}-${{ github.ref }}
 on:
   workflow_dispatch:
 
-permissions:
-  contents: read
-
 jobs:
   long_job:
     runs-on: ubuntu-24.04
+    permissions:
+      contents: read
     timeout-minutes: 5
     steps:
       - run: sleep 60s
@@ -577,12 +574,11 @@ concurrency:
 on:
   workflow_dispatch:
 
-permissions:
-  contents: read
-
 jobs:
   long_job:
     runs-on: ubuntu-24.04
+    permissions:
+      contents: read
     timeout-minutes: 5
     steps:
       - run: sleep 60s
@@ -602,12 +598,11 @@ on:
     branches:
       - main
 
-permissions:
-  contents: read
-
 jobs:
   job:
     runs-on: ubuntu-24.04
+    permissions:
+      contents: read
     timeout-minutes: 5
     concurrency:
       group: concurrency-job
@@ -628,12 +623,11 @@ on:
     branches:
       - main
 
-permissions:
-  contents: read
-
 jobs:
   job:
     runs-on: ubuntu-24.04
+    permissions:
+      contents: read
     timeout-minutes: 5
     concurrency:
       group: concurrency-job-cip
@@ -816,9 +810,6 @@ on:
   pull_request:
     branches: ["main"]
 
-permissions:
-  contents: read
-
 jobs:
   matrix_reference:
     strategy:
@@ -827,6 +818,8 @@ jobs:
     env:
       APP: hoge
     runs-on: ubuntu-24.04
+    permissions:
+      contents: read
     timeout-minutes: 3
     steps:
       # env context reference
@@ -1204,12 +1197,11 @@ on:
   pull_request:
     branches: ["main"]
 
-permissions:
-  contents: read
-
 jobs:
   job:
     runs-on: ubuntu-24.04
+    permissions:
+      contents: read
     timeout-minutes: 3
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
@@ -1266,12 +1258,11 @@ on:
   pull_request:
     branches: ["main"]
 
-permissions:
-  contents: read
-
 jobs:
   job:
     runs-on: ubuntu-24.04
+    permissions:
+      contents: read
     timeout-minutes: 3
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
@@ -1354,9 +1345,6 @@ on:
         description: "The second output string"
         value: ${{ jobs.reusable_workflow_job.outputs.output2 }}
 
-permissions:
-  contents: read
-
 env:
   FOO: foo
 
@@ -1364,6 +1352,8 @@ jobs:
   reusable_workflow_job:
     timeout-minutes: 5
     runs-on: ubuntu-24.04
+    permissions:
+      contents: read
     outputs:
       output1: ${{ steps.step1.outputs.firstword }}
       output2: ${{ steps.step2.outputs.secondword }}
@@ -1494,15 +1484,14 @@ on:
     branches: ["main"]
   workflow_dispatch:
 
-permissions:
-  contents: read
-
 jobs:
   call-matrix-workflow:
     strategy:
       matrix:
         username: [foo, bar]
     uses: ./.github/workflows/_reusable-workflow-called.yaml
+    permissions:
+      contents: read
     with:
       username: ${{ matrix.username }}
       is-valid: true
@@ -1531,13 +1520,12 @@ on:
         description: username to show
         type: boolean
 
-permissions:
-  contents: read
-
 # nested call is supported
 jobs:
   call-workflow-passing-data:
     uses: ./.github/workflows/_reusable-workflow-called.yaml
+    permissions:
+      contents: read
     with:
       username: ${{ inputs.username }}
       is-valid: ${{ inputs.is-valid }}
@@ -1602,12 +1590,11 @@ on:
   pull_request:
     branches: ["main"]
 
-permissions:
-  contents: read
-
 jobs:
   job:
     runs-on: ubuntu-24.04
+    permissions:
+      contents: read
     timeout-minutes: 3
     steps:
       - run: echo "$COMMIT_MESSAGES"
@@ -1641,12 +1628,11 @@ on:
   push:
     branches: ["main"]
 
-permissions:
-  contents: read
-
 jobs:
   push:
     runs-on: ubuntu-24.04
+    permissions:
+      contents: read
     timeout-minutes: 5
     steps:
       - run: |
@@ -1710,9 +1696,6 @@ on:
   pull_request:
     branches: ["main"]
 
-permissions:
-  contents: read
-
 env:
   fruit: APPLES
 
@@ -1730,6 +1713,8 @@ jobs:
           - org: carrots
             secret: CARROTS
     runs-on: ubuntu-24.04
+    permissions:
+      contents: read
     timeout-minutes: 3
     steps:
       - run: echo "org:${{ matrix.org }} secret:${SECRET}"
@@ -1757,15 +1742,14 @@ on:
   pull_request:
     branches: ["main"]
 
-permissions:
-  contents: read
-
 jobs:
   echo:
     strategy:
       matrix:
         org: [apples, bananas, carrots]
     runs-on: ubuntu-24.04
+    permissions:
+      contents: read
     timeout-minutes: 3
     env:
       ORG: ${{ matrix.org }}
@@ -1799,12 +1783,11 @@ on:
   pull_request:
     branches: ["main"]
 
-permissions:
-  contents: read
-
 jobs:
   my-job:
     runs-on: ubuntu-24.04
+    permissions:
+      contents: read
     timeout-minutes: 5
     steps:
       - run: echo "done before timeout"
@@ -1836,12 +1819,11 @@ on:
         description: "Test scenario tags"
         required: false
 
-permissions:
-  contents: read
-
 jobs:
   printInputs:
     runs-on: ubuntu-24.04
+    permissions:
+      contents: read
     timeout-minutes: 3
     env:
       BRANCH: ${{ inputs.branch }}
@@ -1913,12 +1895,11 @@ on:
         description: "environment: Select environment"
         required: true
 
-permissions:
-  contents: read
-
 jobs:
   greet:
     runs-on: ubuntu-24.04
+    permissions:
+      contents: read
     timeout-minutes: 3
     steps:
       - name: Send greeting (github.event.inputs)
@@ -1968,12 +1949,11 @@ on:
   pull_request:
     branches: ["main"]
 
-permissions:
-  contents: read
-
 jobs:
   my-job:
     runs-on: ubuntu-24.04
+    permissions:
+      contents: read
     timeout-minutes: 3
     steps:
       - run: echo push and pull_request trigger
@@ -1995,12 +1975,11 @@ on:
   pull_request:
     branches: ["main"]
 
-permissions:
-  contents: read
-
 jobs:
   cancel:
     runs-on: ubuntu-24.04
+    permissions:
+      contents: read
     timeout-minutes: 3
     steps:
       # no check for main and tag
@@ -2035,12 +2014,11 @@ on:
   push:
     branches: ["main"]
 
-permissions:
-  contents: read
-
 jobs:
   changed-files:
     runs-on: ubuntu-24.04
+    permissions:
+      contents: read
     timeout-minutes: 3
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
@@ -2108,12 +2086,11 @@ on:
   push:
     branches: ["main"]
 
-permissions:
-  contents: read
-
 jobs:
   changed-files:
     runs-on: ubuntu-24.04
+    permissions:
+      contents: read
     timeout-minutes: 3
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
@@ -2191,12 +2168,11 @@ on:
   schedule:
     - cron: "0 0 * * *"
 
-permissions:
-  contents: read
-
 jobs:
   job:
     runs-on: ubuntu-24.04
+    permissions:
+      contents: read
     timeout-minutes: 3
     steps:
       - name: Dump GitHub context
@@ -2235,9 +2211,6 @@ on:
         default: false
         type: boolean
 
-permissions:
-  contents: write
-
 env:
   GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   GH_REPO: ${{ github.repository }}
@@ -2246,6 +2219,8 @@ jobs:
   create-release:
     if: ${{ github.actor != 'dependabot[bot]' }}
     runs-on: ubuntu-24.04
+    permissions:
+      contents: write
     timeout-minutes: 10
     steps:
       - name: Setup tag
@@ -2312,12 +2287,11 @@ on:
     tags:
       - "!*" # not a tag push
 
-permissions:
-  contents: read
-
 jobs:
   aws:
     runs-on: ubuntu-24.04
+    permissions:
+      contents: read
     timeout-minutes: 3
     steps:
       - run: echo not run on tag
@@ -2334,13 +2308,12 @@ on:
   push:
     branches: ["main"]
 
-permissions:
-  contents: read
-
 jobs:
   job:
     if: ${{ contains(toJSON(github.event.commits.*.message), '[build]') }}
     runs-on: ubuntu-24.04
+    permissions:
+      contents: read
     timeout-minutes: 3
     steps:
       - run: echo "$COMMIT_MESSAGES"
@@ -2362,12 +2335,11 @@ on:
     tags:
       - "**" # only tag
 
-permissions:
-  contents: read
-
 jobs:
   job:
     runs-on: ubuntu-24.04
+    permissions:
+      contents: read
     timeout-minutes: 3
     steps:
       - run: echo not run on branch push
@@ -2397,12 +2369,11 @@ on:
     tags:
       - "[0-9]+.[0-9]+.[0-9]+*" # only tag with pattern match
 
-permissions:
-  contents: read
-
 jobs:
   job:
     runs-on: ubuntu-24.04
+    permissions:
+      contents: read
     timeout-minutes: 3
     steps:
       - run: echo not run on branch push
@@ -2428,12 +2399,11 @@ on:
       - reopened
       - synchronize
 
-permissions:
-  contents: read
-
 jobs:
   changes:
     runs-on: ubuntu-24.04
+    permissions:
+      contents: read
     timeout-minutes: 3
     env:
       IS_HOGE: "false"
@@ -2504,15 +2474,14 @@ on:
       - opened
       - synchronize
 
-permissions:
-  contents: read
-
 jobs:
   build:
     # push & my repo will trigger
     # pull_request on my repo will trigger
     if: ${{ (github.event_name == 'push' && github.repository_owner == 'guitarrapc') || startsWith(github.event.pull_request.head.label, 'guitarrapc:') }}
     runs-on: ubuntu-24.04
+    permissions:
+      contents: read
     timeout-minutes: 3
     steps:
       - run: echo build
@@ -2533,13 +2502,12 @@ on:
   push:
     branches: ["main"]
 
-permissions:
-  contents: read
-
 jobs:
   job:
     if: ${{ ! github.event.pull_request.draft }}
     runs-on: ubuntu-24.04
+    permissions:
+      contents: read
     timeout-minutes: 3
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
@@ -2562,9 +2530,6 @@ on:
       - reopened
       - ready_for_review
 
-permissions:
-  contents: read
-
 jobs:
   build:
     # RUN WHEN
@@ -2572,6 +2537,8 @@ jobs:
     # 2. Not draft, `push` and `non-draft pr`.
     if: ${{ (contains(github.event.pull_request.labels.*.name, 'draft_but_ci')) || !(github.event.pull_request.draft) }}
     runs-on: ubuntu-24.04
+    permissions:
+      contents: read
     timeout-minutes: 3
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
@@ -2732,6 +2699,7 @@ jobs:
           name: directory
           path: ./directory/
           retention-days: 1
+
   download-directory:
     needs: [upload-directory]
     runs-on: ubuntu-24.04
@@ -2859,12 +2827,11 @@ on:
   pull_request:
     branches: ["main"]
 
-permissions:
-  contents: read
-
 jobs:
   sparse-checkout:
     runs-on: ubuntu-24.04
+    permissions:
+      contents: read
     timeout-minutes: 5
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
@@ -2923,12 +2890,11 @@ on:
   pull_request:
     branches: ["main"]
 
-permissions:
-  contents: read
-
 jobs:
   sparse-checkout:
     runs-on: ubuntu-24.04
+    permissions:
+      contents: read
     timeout-minutes: 5
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
@@ -2983,12 +2949,11 @@ on:
   pull_request:
     branches: ["main"]
 
-permissions:
-  contents: read
-
 jobs:
   sparse-checkout:
     runs-on: ubuntu-24.04
+    permissions:
+      contents: read
     timeout-minutes: 5
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
@@ -3067,12 +3032,11 @@ name: dispatch changes actions
 on:
   workflow_dispatch:
 
-permissions:
-  contents: read
-
 jobs:
   dispatch:
     runs-on: ubuntu-24.04
+    permissions:
+      contents: read
     timeout-minutes: 5
     strategy:
       matrix:
@@ -3111,13 +3075,12 @@ on:
     paths:
       - .github/**/*.yaml
 
-permissions:
-  contents: read
-
 jobs:
   detect:
     if: ${{ github.event.pull_request.head.repo.fork }} # is Fork
     runs-on: ubuntu-24.04
+    permissions:
+      contents: read
     timeout-minutes: 3
     steps:
       - name: "Prevent file change"
@@ -3136,14 +3099,13 @@ on:
     paths:
       - .github/**/*.yaml
 
-permissions:
-  contents: read
-  pull-requests: read
-
 jobs:
   detect:
     if: ${{ github.actor != 'dependabot[bot]' }}
     runs-on: ubuntu-24.04
+    permissions:
+      contents: read
+      pull-requests: read
     timeout-minutes: 3
     steps:
       - name: Prevent file change for github YAML files.
@@ -3166,13 +3128,12 @@ on:
       - .github/**/*.yaml
       - .github/**/*.yml
 
-permissions:
-  contents: read
-
 jobs:
   detect:
     if: ${{ github.event.pull_request.head.repo.fork }} # is Fork
     runs-on: ubuntu-24.04
+    permissions:
+      contents: read
     timeout-minutes: 3
     steps:
       - name: Run step if any file(s) in the .github folder change
@@ -3190,13 +3151,12 @@ on:
     paths:
       - .github/**/*.yaml
 
-permissions:
-  contents: read
-
 jobs:
   detect:
     if: ${{ github.event.pull_request.head.repo.fork }} # is Fork
     runs-on: ubuntu-24.04
+    permissions:
+      contents: read
     timeout-minutes: 3
     steps:
       - name: Run step if any file(s) in the .github folder change
@@ -3228,9 +3188,6 @@ on:
       - ".github/workflows/**"
   schedule:
     - cron: "0 0 * * *"
-
-permissions:
-  contents: read
 
 jobs:
   lint:
@@ -3276,12 +3233,11 @@ on:
   push:
     branches: ["main"]
 
-permissions:
-  contents: read
-
 jobs:
   get:
     runs-on: ubuntu-24.04
+    permissions:
+      contents: read
     timeout-minutes: 3
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
@@ -3319,12 +3275,11 @@ on:
   pull_request:
     branches: ["main"]
 
-permissions:
-  contents: read
-
 jobs:
   dotnet:
     runs-on: ubuntu-24.04
+    permissions:
+      contents: read
     timeout-minutes: 3
     steps:
       - name: Collect actions workflow telemetry
@@ -3383,9 +3338,9 @@ action folder naming also follow this rule.
 ```yaml
 # .github/workflows/_reusable-dump-context.yaml#L20-L22
 
-    runs-on: [ubuntu-24.04]
-runs-on: ${{ matrix.runs-on }}
+  pull-requests: write
 timeout-minutes: 5
+steps:
 ```
 
 ## Get Tag
@@ -3406,12 +3361,11 @@ on:
     tags:
       - "**" # only tag
 
-permissions:
-  contents: read
-
 jobs:
   ref:
     runs-on: ubuntu-24.04
+    permissions:
+      contents: read
     timeout-minutes: 3
     steps:
       - name: Use GITHUB_REF and GITHUB_OUTPUT
@@ -3466,12 +3420,11 @@ on:
   pull_request:
     branches: ["main"]
 
-permissions:
-  contents: read
-
 jobs:
   action:
     runs-on: ubuntu-24.04
+    permissions:
+      contents: read
     timeout-minutes: 3
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
