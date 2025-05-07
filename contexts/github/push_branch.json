@@ -2,13 +2,13 @@
   "token": "<reducted>",
   "job": "dump-context",
   "ref": "refs/heads/main",
-  "sha": "65b0d5ac21e004a8934c53cb4b9a8f76293e16c3",
+  "sha": "f33b87053be9349e514b8451249cfa3bd8d53c42",
   "repository": "guitarrapc/githubactions-lab",
   "repository_owner": "guitarrapc",
   "repository_owner_id": "3856350",
   "repositoryUrl": "git://github.com/guitarrapc/githubactions-lab.git",
-  "run_id": "14719773386",
-  "run_number": "364",
+  "run_id": "14878799841",
+  "run_number": "382",
   "retention_days": "90",
   "run_attempt": "1",
   "artifact_cache_size_limit": "10",
@@ -24,28 +24,10 @@
   "base_ref": "",
   "event_name": "push",
   "event": {
-    "after": "65b0d5ac21e004a8934c53cb4b9a8f76293e16c3",
+    "after": "f33b87053be9349e514b8451249cfa3bd8d53c42",
     "base_ref": null,
-    "before": "099331df3bdcf83566152002177af3ad42d994aa",
+    "before": "f990a9ec7af6cbcbf52d36244a0412c00cacb25d",
     "commits": [
-      {
-        "author": {
-          "email": "49699333+dependabot[bot]@users.noreply.github.com",
-          "name": "dependabot[bot]",
-          "username": "dependabot[bot]"
-        },
-        "committer": {
-          "email": "noreply@github.com",
-          "name": "GitHub",
-          "username": "web-flow"
-        },
-        "distinct": false,
-        "id": "7bcd3cbc7c157f98c769c0eb943360271eee2e86",
-        "message": "chore(deps): bump actions/download-artifact from 4.2.1 to 4.3.0\n\nBumps [actions/download-artifact](https://github.com/actions/download-artifact) from 4.2.1 to 4.3.0.\n- [Release notes](https://github.com/actions/download-artifact/releases)\n- [Commits](https://github.com/actions/download-artifact/compare/95815c38cf2ff2164869cbab79da8d1f422bc89e...d3f86a106a0bac45b974a628896c90dbdf5c8093)\n\n---\nupdated-dependencies:\n- dependency-name: actions/download-artifact\n  dependency-version: 4.3.0\n  dependency-type: direct:production\n  update-type: version-update:semver-minor\n...\n\nSigned-off-by: dependabot[bot] <support@github.com>",
-        "timestamp": "2025-04-28T16:48:00Z",
-        "tree_id": "9844d1382fb4bd37113693e6290ca9beda5bbcbe",
-        "url": "https://github.com/guitarrapc/githubactions-lab/commit/7bcd3cbc7c157f98c769c0eb943360271eee2e86"
-      },
       {
         "author": {
           "email": "3856350+guitarrapc@users.noreply.github.com",
@@ -58,14 +40,14 @@
           "username": "web-flow"
         },
         "distinct": true,
-        "id": "65b0d5ac21e004a8934c53cb4b9a8f76293e16c3",
-        "message": "Merge pull request #208 from guitarrapc/dependabot/github_actions/actions/download-artifact-4.3.0\n\nchore(deps): bump actions/download-artifact from 4.2.1 to 4.3.0",
-        "timestamp": "2025-04-29T08:18:01+09:00",
-        "tree_id": "9844d1382fb4bd37113693e6290ca9beda5bbcbe",
-        "url": "https://github.com/guitarrapc/githubactions-lab/commit/65b0d5ac21e004a8934c53cb4b9a8f76293e16c3"
+        "id": "f33b87053be9349e514b8451249cfa3bd8d53c42",
+        "message": "Update aqua.yaml",
+        "timestamp": "2025-05-07T17:29:59+09:00",
+        "tree_id": "fa3617276e040ed3d712fcd8506f7684fd9fc3f5",
+        "url": "https://github.com/guitarrapc/githubactions-lab/commit/f33b87053be9349e514b8451249cfa3bd8d53c42"
       }
     ],
-    "compare": "https://github.com/guitarrapc/githubactions-lab/compare/099331df3bdc...65b0d5ac21e0",
+    "compare": "https://github.com/guitarrapc/githubactions-lab/compare/f990a9ec7af6...f33b87053be9",
     "created": false,
     "deleted": false,
     "forced": false,
@@ -81,11 +63,11 @@
         "username": "web-flow"
       },
       "distinct": true,
-      "id": "65b0d5ac21e004a8934c53cb4b9a8f76293e16c3",
-      "message": "Merge pull request #208 from guitarrapc/dependabot/github_actions/actions/download-artifact-4.3.0\n\nchore(deps): bump actions/download-artifact from 4.2.1 to 4.3.0",
-      "timestamp": "2025-04-29T08:18:01+09:00",
-      "tree_id": "9844d1382fb4bd37113693e6290ca9beda5bbcbe",
-      "url": "https://github.com/guitarrapc/githubactions-lab/commit/65b0d5ac21e004a8934c53cb4b9a8f76293e16c3"
+      "id": "f33b87053be9349e514b8451249cfa3bd8d53c42",
+      "message": "Update aqua.yaml",
+      "timestamp": "2025-05-07T17:29:59+09:00",
+      "tree_id": "fa3617276e040ed3d712fcd8506f7684fd9fc3f5",
+      "url": "https://github.com/guitarrapc/githubactions-lab/commit/f33b87053be9349e514b8451249cfa3bd8d53c42"
     },
     "pusher": {
       "email": "3856350+guitarrapc@users.noreply.github.com",
@@ -181,9 +163,9 @@
       },
       "private": false,
       "pulls_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls{/number}",
-      "pushed_at": 1745882281,
+      "pushed_at": 1746606599,
       "releases_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/releases{/id}",
-      "size": 2828,
+      "size": 2863,
       "ssh_url": "git@github.com:guitarrapc/githubactions-lab.git",
       "stargazers": 50,
       "stargazers_count": 50,
@@ -198,7 +180,7 @@
         "github-actions"
       ],
       "trees_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/git/trees{/sha}",
-      "updated_at": "2025-04-28T00:03:31Z",
+      "updated_at": "2025-05-07T00:03:23Z",
       "url": "https://api.github.com/repos/guitarrapc/githubactions-lab",
       "visibility": "public",
       "watchers": 50,
@@ -231,19 +213,19 @@
   "api_url": "https://api.github.com",
   "graphql_url": "https://api.github.com/graphql",
   "ref_name": "main",
-  "ref_protected": false,
+  "ref_protected": true,
   "ref_type": "branch",
   "secret_source": "Actions",
   "workflow_ref": "guitarrapc/githubactions-lab/.github/workflows/auto-dump-context.yaml@refs/heads/main",
-  "workflow_sha": "65b0d5ac21e004a8934c53cb4b9a8f76293e16c3",
+  "workflow_sha": "f33b87053be9349e514b8451249cfa3bd8d53c42",
   "workspace": "/home/runner/work/githubactions-lab/githubactions-lab",
   "action": "__run_4",
   "event_path": "/home/runner/work/_temp/_github_workflow/event.json",
   "action_repository": "",
   "action_ref": "",
-  "path": "/home/runner/work/_temp/_runner_file_commands/add_path_6495e002-579f-43e0-a263-cc5e25f0f188",
-  "env": "/home/runner/work/_temp/_runner_file_commands/set_env_6495e002-579f-43e0-a263-cc5e25f0f188",
-  "step_summary": "/home/runner/work/_temp/_runner_file_commands/step_summary_6495e002-579f-43e0-a263-cc5e25f0f188",
-  "state": "/home/runner/work/_temp/_runner_file_commands/save_state_6495e002-579f-43e0-a263-cc5e25f0f188",
-  "output": "/home/runner/work/_temp/_runner_file_commands/set_output_6495e002-579f-43e0-a263-cc5e25f0f188"
+  "path": "/home/runner/work/_temp/_runner_file_commands/add_path_31b6695b-18e4-4a9a-9c62-175f90a11a33",
+  "env": "/home/runner/work/_temp/_runner_file_commands/set_env_31b6695b-18e4-4a9a-9c62-175f90a11a33",
+  "step_summary": "/home/runner/work/_temp/_runner_file_commands/step_summary_31b6695b-18e4-4a9a-9c62-175f90a11a33",
+  "state": "/home/runner/work/_temp/_runner_file_commands/save_state_31b6695b-18e4-4a9a-9c62-175f90a11a33",
+  "output": "/home/runner/work/_temp/_runner_file_commands/set_output_31b6695b-18e4-4a9a-9c62-175f90a11a33"
 }
