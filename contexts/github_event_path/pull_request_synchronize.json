@@ -1,51 +1,51 @@
 {
   "action": "synchronize",
-  "after": "d9c7667ad8a919a1cfb4bf4521b896bee33cac7c",
-  "before": "f6f5877e215c4409145900253f5ef4bb23786f35",
-  "number": 209,
+  "after": "95a6a57bb2f90af7218e5a3673bce129fc4357b4",
+  "before": "0b0b2c364e07a63f353a63224b29155c4672d93d",
+  "number": 210,
   "pull_request": {
     "_links": {
       "comments": {
-        "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/issues/209/comments"
+        "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/issues/210/comments"
       },
       "commits": {
-        "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/209/commits"
+        "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/210/commits"
       },
       "html": {
-        "href": "https://github.com/guitarrapc/githubactions-lab/pull/209"
+        "href": "https://github.com/guitarrapc/githubactions-lab/pull/210"
       },
       "issue": {
-        "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/issues/209"
+        "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/issues/210"
       },
       "review_comment": {
         "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/comments{/number}"
       },
       "review_comments": {
-        "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/209/comments"
+        "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/210/comments"
       },
       "self": {
-        "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/209"
+        "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/210"
       },
       "statuses": {
-        "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/statuses/d9c7667ad8a919a1cfb4bf4521b896bee33cac7c"
+        "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/statuses/95a6a57bb2f90af7218e5a3673bce129fc4357b4"
       }
     },
     "active_lock_reason": null,
-    "additions": 603,
+    "additions": 1,
     "assignee": null,
     "assignees": [],
-    "author_association": "OWNER",
+    "author_association": "CONTRIBUTOR",
     "auto_merge": null,
     "base": {
       "label": "guitarrapc:main",
       "ref": "main",
       "repo": {
-        "allow_auto_merge": false,
+        "allow_auto_merge": true,
         "allow_forking": true,
         "allow_merge_commit": true,
         "allow_rebase_merge": true,
         "allow_squash_merge": true,
-        "allow_update_branch": false,
+        "allow_update_branch": true,
         "archive_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/{archive_format}{/ref}",
         "archived": false,
         "assignees_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/assignees{/user}",
@@ -80,7 +80,7 @@
         "has_issues": true,
         "has_pages": false,
         "has_projects": true,
-        "has_wiki": true,
+        "has_wiki": false,
         "homepage": "",
         "hooks_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/hooks",
         "html_url": "https://github.com/guitarrapc/githubactions-lab",
@@ -133,9 +133,9 @@
         },
         "private": false,
         "pulls_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls{/number}",
-        "pushed_at": "2025-04-30T07:45:02Z",
+        "pushed_at": "2025-05-13T07:44:20Z",
         "releases_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/releases{/id}",
-        "size": 2852,
+        "size": 2899,
         "squash_merge_commit_message": "COMMIT_MESSAGES",
         "squash_merge_commit_title": "COMMIT_OR_PR_TITLE",
         "ssh_url": "git@github.com:guitarrapc/githubactions-lab.git",
@@ -151,7 +151,7 @@
           "github-actions"
         ],
         "trees_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/git/trees{/sha}",
-        "updated_at": "2025-04-30T00:03:26Z",
+        "updated_at": "2025-05-13T07:40:11Z",
         "url": "https://api.github.com/repos/guitarrapc/githubactions-lab",
         "use_squash_pr_title_as_default": false,
         "visibility": "public",
@@ -159,7 +159,7 @@
         "watchers_count": 50,
         "web_commit_signoff_required": false
       },
-      "sha": "0899ef18570e3baaf93d0248801793b6955de7b1",
+      "sha": "43bffc5669d0dc4f9cc80c2cc7714794c3b59e5c",
       "user": {
         "avatar_url": "https://avatars.githubusercontent.com/u/3856350?v=4",
         "events_url": "https://api.github.com/users/guitarrapc/events{/privacy}",
@@ -182,27 +182,27 @@
         "user_view_type": "public"
       }
     },
-    "body": null,
-    "changed_files": 120,
+    "body": "Bumps [aws-actions/configure-aws-credentials](https://github.com/aws-actions/configure-aws-credentials) from 4.1.0 to 4.2.0.\n<details>\n<summary>Release notes</summary>\n<p><em>Sourced from <a href=\"https://github.com/aws-actions/configure-aws-credentials/releases\">aws-actions/configure-aws-credentials's releases</a>.</em></p>\n<blockquote>\n<h2>v4.2.0</h2>\n<h2><a href=\"https://github.com/aws-actions/configure-aws-credentials/compare/v4.1.0...v4.2.0\">4.2.0</a> (2025-05-06)</h2>\n<h3>Features</h3>\n<ul>\n<li>add Expiration field to Outputs (<a href=\"https://github.com/aws-actions/configure-aws-credentials/commit/a4f326760c1c1bf49ab86051c658d6501816b930\">a4f3267</a>)</li>\n<li>Document role-duration-seconds range (<a href=\"https://github.com/aws-actions/configure-aws-credentials/commit/5a0cf0167f837dfa7af7d951ba6a78a38dc2b79e\">5a0cf01</a>)</li>\n<li>support action inputs as environment variables (<a href=\"https://redirect.github.com/aws-actions/configure-aws-credentials/issues/1338\">#1338</a>) (<a href=\"https://github.com/aws-actions/configure-aws-credentials/commit/2c168adcae62d67531ba83842723c8f30695116a\">2c168ad</a>)</li>\n</ul>\n<h3>Bug Fixes</h3>\n<ul>\n<li>make sure action builds, also fix dependabot autoapprove (<a href=\"https://github.com/aws-actions/configure-aws-credentials/commit/c401b8a98c5067672f52e0387cdd87d54acfe1fd\">c401b8a</a>)</li>\n<li>role chaning on mulitple runs (<a href=\"https://redirect.github.com/aws-actions/configure-aws-credentials/issues/1340\">#1340</a>) (<a href=\"https://github.com/aws-actions/configure-aws-credentials/commit/9e386419117a9edd458297e4f1822a5df7506a03\">9e38641</a>)</li>\n</ul>\n</blockquote>\n</details>\n<details>\n<summary>Changelog</summary>\n<p><em>Sourced from <a href=\"https://github.com/aws-actions/configure-aws-credentials/blob/main/CHANGELOG.md\">aws-actions/configure-aws-credentials's changelog</a>.</em></p>\n<blockquote>\n<h1>Changelog</h1>\n<p>All notable changes to this project will be documented in this file. See <a href=\"https://github.com/conventional-changelog/standard-version\">standard-version</a> for commit guidelines.</p>\n<h2><a href=\"https://github.com/aws-actions/configure-aws-credentials/compare/v4.1.0...v4.2.0\">4.2.0</a> (2025-05-06)</h2>\n<h3>Features</h3>\n<ul>\n<li>add Expiration field to Outputs (<a href=\"https://github.com/aws-actions/configure-aws-credentials/commit/a4f326760c1c1bf49ab86051c658d6501816b930\">a4f3267</a>)</li>\n<li>Document role-duration-seconds range (<a href=\"https://github.com/aws-actions/configure-aws-credentials/commit/5a0cf0167f837dfa7af7d951ba6a78a38dc2b79e\">5a0cf01</a>)</li>\n<li>support action inputs as environment variables (<a href=\"https://redirect.github.com/aws-actions/configure-aws-credentials/issues/1338\">#1338</a>) (<a href=\"https://github.com/aws-actions/configure-aws-credentials/commit/2c168adcae62d67531ba83842723c8f30695116a\">2c168ad</a>)</li>\n</ul>\n<h3>Bug Fixes</h3>\n<ul>\n<li>make sure action builds, also fix dependabot autoapprove (<a href=\"https://github.com/aws-actions/configure-aws-credentials/commit/c401b8a98c5067672f52e0387cdd87d54acfe1fd\">c401b8a</a>)</li>\n<li>role chaning on mulitple runs (<a href=\"https://redirect.github.com/aws-actions/configure-aws-credentials/issues/1340\">#1340</a>) (<a href=\"https://github.com/aws-actions/configure-aws-credentials/commit/9e386419117a9edd458297e4f1822a5df7506a03\">9e38641</a>)</li>\n</ul>\n<h2><a href=\"https://github.com/aws-actions/configure-aws-credentials/compare/v4.0.3...v4.1.0\">4.1.0</a> (2025-02-08)</h2>\n<h3>Features</h3>\n<ul>\n<li>idempotent fetch (<a href=\"https://redirect.github.com/aws-actions/configure-aws-credentials/issues/1289\">#1289</a>) (<a href=\"https://github.com/aws-actions/configure-aws-credentials/commit/eb70354fb423a380b6e4ab4b9f15d2ee9ffae911\">eb70354</a>)</li>\n</ul>\n<h3>Bug Fixes</h3>\n<ul>\n<li>build failure due to tests (<a href=\"https://redirect.github.com/aws-actions/configure-aws-credentials/issues/1283\">#1283</a>) (<a href=\"https://github.com/aws-actions/configure-aws-credentials/commit/134d71efe0ecbe9ad6965f2f766c0cae63a7685f\">134d71e</a>)</li>\n<li>Dependabot autoapprove (<a href=\"https://redirect.github.com/aws-actions/configure-aws-credentials/issues/1284\">#1284</a>) (<a href=\"https://github.com/aws-actions/configure-aws-credentials/commit/b9ee51dc600fe38c892e24f60ca26476e0e0b6de\">b9ee51d</a>)</li>\n<li>Dependabot autoapprove id-token write permission (<a href=\"https://redirect.github.com/aws-actions/configure-aws-credentials/issues/1285\">#1285</a>) (<a href=\"https://github.com/aws-actions/configure-aws-credentials/commit/f0af89b102390dcf10ce402195d74a98f24861f3\">f0af89b</a>)</li>\n<li>typo (<a href=\"https://redirect.github.com/aws-actions/configure-aws-credentials/issues/1281\">#1281</a>) (<a href=\"https://github.com/aws-actions/configure-aws-credentials/commit/39fd91c08ed8bf770034de4e62662503e8007d76\">39fd91c</a>)</li>\n</ul>\n<h2><a href=\"https://github.com/aws-actions/configure-aws-credentials/compare/v4.0.2...v4.0.3\">4.0.3</a> (2025-01-27)</h2>\n<h3>Features</h3>\n<ul>\n<li>added release-please action config (<a href=\"https://github.com/aws-actions/configure-aws-credentials/commit/0f88004d9c27e0bdbbc254b3f7c8053cb38f04d7\">0f88004</a>)</li>\n</ul>\n<h3>Bug Fixes</h3>\n<ul>\n<li>add id-token permission to automerge (<a href=\"https://github.com/aws-actions/configure-aws-credentials/commit/97834a484a5ab3c40fa9e2eb40fcf8041105a573\">97834a4</a>)</li>\n<li>cpy syntax on npm package (<a href=\"https://redirect.github.com/aws-actions/configure-aws-credentials/issues/1195\">#1195</a>) (<a href=\"https://github.com/aws-actions/configure-aws-credentials/commit/83b5a565471214aec459e234bef606339fe07111\">83b5a56</a>)</li>\n<li>force push packaged files to main (<a href=\"https://github.com/aws-actions/configure-aws-credentials/commit/bfd218503eb87938c29603a551e19c6b594f5fe5\">bfd2185</a>)</li>\n</ul>\n<h3>Miscellaneous Chores</h3>\n<!-- raw HTML omitted -->\n</blockquote>\n<p>... (truncated)</p>\n</details>\n<details>\n<summary>Commits</summary>\n<ul>\n<li><a href=\"https://github.com/aws-actions/configure-aws-credentials/commit/f24d7193d98baebaeacc7e2227925dd47cc267f5\"><code>f24d719</code></a> Merge pull request <a href=\"https://redirect.github.com/aws-actions/configure-aws-credentials/issues/1331\">#1331</a> from aws-actions/release-please--branches--main--com...</li>\n<li><a href=\"https://github.com/aws-actions/configure-aws-credentials/commit/f6095d9dc4cd15f7ca46f7bfd9dafd5a4d2c3b30\"><code>f6095d9</code></a> Merge branch 'main' into release-please--branches--main--components--configur...</li>\n<li><a href=\"https://github.com/aws-actions/configure-aws-credentials/commit/df1fa049848fa276c99dce56869ff852ca57263d\"><code>df1fa04</code></a> chore(deps-dev): bump memfs from 4.17.0 to 4.17.1 (<a href=\"https://redirect.github.com/aws-actions/configure-aws-credentials/issues/1348\">#1348</a>)</li>\n<li><a href=\"https://github.com/aws-actions/configure-aws-credentials/commit/1c397386a2aa5e84c7435e060d18dd444afa6375\"><code>1c39738</code></a> chore(deps-dev): bump <code>@​types/node</code> from 22.15.3 to 22.15.11 (<a href=\"https://redirect.github.com/aws-actions/configure-aws-credentials/issues/1345\">#1345</a>)</li>\n<li><a href=\"https://github.com/aws-actions/configure-aws-credentials/commit/21e0c4b1ca0d61048bb5f2f984e265f8e623e0e3\"><code>21e0c4b</code></a> chore(main): release 4.2.0</li>\n<li><a href=\"https://github.com/aws-actions/configure-aws-credentials/commit/b0f2baf0983674bac29361aa8238d3639ac39c62\"><code>b0f2baf</code></a> chore: Update dist</li>\n<li><a href=\"https://github.com/aws-actions/configure-aws-credentials/commit/4320d1b180b26348c87cec2ee808968aca95a0af\"><code>4320d1b</code></a> chore(deps): bump <code>@​aws-sdk/client-sts</code> from 3.798.0 to 3.803.0 (<a href=\"https://redirect.github.com/aws-actions/configure-aws-credentials/issues/1346\">#1346</a>)</li>\n<li><a href=\"https://github.com/aws-actions/configure-aws-credentials/commit/5d1959cbc99fc6e4e391b844626ac230a85a2f57\"><code>5d1959c</code></a> chore(deps): bump vite from 6.3.2 to 6.3.4 (<a href=\"https://redirect.github.com/aws-actions/configure-aws-credentials/issues/1344\">#1344</a>)</li>\n<li><a href=\"https://github.com/aws-actions/configure-aws-credentials/commit/3ecfae8a2c9d44efca0825d6a4e69b6bae6048a9\"><code>3ecfae8</code></a> chore: Update dist</li>\n<li><a href=\"https://github.com/aws-actions/configure-aws-credentials/commit/2f26d75abd16c6b819f9e91038bdc17431137d73\"><code>2f26d75</code></a> chore(deps): bump <code>@​aws-sdk/client-sts</code> from 3.787.0 to 3.798.0 (<a href=\"https://redirect.github.com/aws-actions/configure-aws-credentials/issues/1342\">#1342</a>)</li>\n<li>Additional commits viewable in <a href=\"https://github.com/aws-actions/configure-aws-credentials/compare/ececac1a45f3b08a01d2dd070d28d111c5fe6722...f24d7193d98baebaeacc7e2227925dd47cc267f5\">compare view</a></li>\n</ul>\n</details>\n<br />\n\n\n[![Dependabot compatibility score](https://dependabot-badges.githubapp.com/badges/compatibility_score?dependency-name=aws-actions/configure-aws-credentials&package-manager=github_actions&previous-version=4.1.0&new-version=4.2.0)](https://docs.github.com/en/github/managing-security-vulnerabilities/about-dependabot-security-updates#about-compatibility-scores)\n\nDependabot will resolve any conflicts with this PR as long as you don't alter it yourself. You can also trigger a rebase manually by commenting `@dependabot rebase`.\n\n[//]: # (dependabot-automerge-start)\n[//]: # (dependabot-automerge-end)\n\n---\n\n<details>\n<summary>Dependabot commands and options</summary>\n<br />\n\nYou can trigger Dependabot actions by commenting on this PR:\n- `@dependabot rebase` will rebase this PR\n- `@dependabot recreate` will recreate this PR, overwriting any edits that have been made to it\n- `@dependabot merge` will merge this PR after your CI passes on it\n- `@dependabot squash and merge` will squash and merge this PR after your CI passes on it\n- `@dependabot cancel merge` will cancel a previously requested merge and block automerging\n- `@dependabot reopen` will reopen this PR if it is closed\n- `@dependabot close` will close this PR and stop Dependabot recreating it. You can achieve the same result by closing it manually\n- `@dependabot show <dependency name> ignore conditions` will show all of the ignore conditions of the specified dependency\n- `@dependabot ignore this major version` will close this PR and stop Dependabot creating any more for this major version (unless you reopen the PR or upgrade to it yourself)\n- `@dependabot ignore this minor version` will close this PR and stop Dependabot creating any more for this minor version (unless you reopen the PR or upgrade to it yourself)\n- `@dependabot ignore this dependency` will close this PR and stop Dependabot creating any more for this dependency (unless you reopen the PR or upgrade to it yourself)\n\n\n</details>",
+    "changed_files": 1,
     "closed_at": null,
     "comments": 0,
-    "comments_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/issues/209/comments",
-    "commits": 5,
-    "commits_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/209/commits",
-    "created_at": "2025-04-30T07:22:18Z",
-    "deletions": 752,
-    "diff_url": "https://github.com/guitarrapc/githubactions-lab/pull/209.diff",
+    "comments_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/issues/210/comments",
+    "commits": 2,
+    "commits_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/210/commits",
+    "created_at": "2025-05-12T15:26:20Z",
+    "deletions": 1,
+    "diff_url": "https://github.com/guitarrapc/githubactions-lab/pull/210.diff",
     "draft": false,
     "head": {
-      "label": "guitarrapc:ci",
-      "ref": "ci",
+      "label": "guitarrapc:dependabot/github_actions/aws-actions/configure-aws-credentials-4.2.0",
+      "ref": "dependabot/github_actions/aws-actions/configure-aws-credentials-4.2.0",
       "repo": {
-        "allow_auto_merge": false,
+        "allow_auto_merge": true,
         "allow_forking": true,
         "allow_merge_commit": true,
         "allow_rebase_merge": true,
         "allow_squash_merge": true,
-        "allow_update_branch": false,
+        "allow_update_branch": true,
         "archive_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/{archive_format}{/ref}",
         "archived": false,
         "assignees_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/assignees{/user}",
@@ -237,7 +237,7 @@
         "has_issues": true,
         "has_pages": false,
         "has_projects": true,
-        "has_wiki": true,
+        "has_wiki": false,
         "homepage": "",
         "hooks_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/hooks",
         "html_url": "https://github.com/guitarrapc/githubactions-lab",
@@ -290,9 +290,9 @@
         },
         "private": false,
         "pulls_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls{/number}",
-        "pushed_at": "2025-04-30T07:45:02Z",
+        "pushed_at": "2025-05-13T07:44:20Z",
         "releases_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/releases{/id}",
-        "size": 2852,
+        "size": 2899,
         "squash_merge_commit_message": "COMMIT_MESSAGES",
         "squash_merge_commit_title": "COMMIT_OR_PR_TITLE",
         "ssh_url": "git@github.com:guitarrapc/githubactions-lab.git",
@@ -308,7 +308,7 @@
           "github-actions"
         ],
         "trees_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/git/trees{/sha}",
-        "updated_at": "2025-04-30T00:03:26Z",
+        "updated_at": "2025-05-13T07:40:11Z",
         "url": "https://api.github.com/repos/guitarrapc/githubactions-lab",
         "use_squash_pr_title_as_default": false,
         "visibility": "public",
@@ -316,7 +316,7 @@
         "watchers_count": 50,
         "web_commit_signoff_required": false
       },
-      "sha": "d9c7667ad8a919a1cfb4bf4521b896bee33cac7c",
+      "sha": "95a6a57bb2f90af7218e5a3673bce129fc4357b4",
       "user": {
         "avatar_url": "https://avatars.githubusercontent.com/u/3856350?v=4",
         "events_url": "https://api.github.com/users/guitarrapc/events{/privacy}",
@@ -339,52 +339,71 @@
         "user_view_type": "public"
       }
     },
-    "html_url": "https://github.com/guitarrapc/githubactions-lab/pull/209",
-    "id": 2490685254,
-    "issue_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/issues/209",
-    "labels": [],
+    "html_url": "https://github.com/guitarrapc/githubactions-lab/pull/210",
+    "id": 2514214916,
+    "issue_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/issues/210",
+    "labels": [
+      {
+        "color": "0366d6",
+        "default": false,
+        "description": "Pull requests that update a dependency file",
+        "id": 5238199298,
+        "name": "dependencies",
+        "node_id": "LA_kwDOD1icfM8AAAABODiUAg",
+        "url": "https://api.github.com/repos/guitarrapc/githubactions-lab/labels/dependencies"
+      },
+      {
+        "color": "000000",
+        "default": false,
+        "description": "Pull requests that update GitHub Actions code",
+        "id": 8308588862,
+        "name": "github_actions",
+        "node_id": "LA_kwDOD1icfM8AAAAB7zsBPg",
+        "url": "https://api.github.com/repos/guitarrapc/githubactions-lab/labels/github_actions"
+      }
+    ],
     "locked": false,
     "maintainer_can_modify": false,
-    "merge_commit_sha": "d6d2ab62b935b5974463fb37f90c6d51bb35489e",
+    "merge_commit_sha": "96a1b06f849a4e1580618297eef8d7e5c4780956",
     "mergeable": null,
     "mergeable_state": "unknown",
     "merged": false,
     "merged_at": null,
     "merged_by": null,
     "milestone": null,
-    "node_id": "PR_kwDOD1icfM6UdNdG",
-    "number": 209,
-    "patch_url": "https://github.com/guitarrapc/githubactions-lab/pull/209.patch",
+    "node_id": "PR_kwDOD1icfM6V2-AE",
+    "number": 210,
+    "patch_url": "https://github.com/guitarrapc/githubactions-lab/pull/210.patch",
     "rebaseable": null,
     "requested_reviewers": [],
     "requested_teams": [],
     "review_comment_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/comments{/number}",
     "review_comments": 0,
-    "review_comments_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/209/comments",
+    "review_comments_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/210/comments",
     "state": "open",
-    "statuses_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/statuses/d9c7667ad8a919a1cfb4bf4521b896bee33cac7c",
-    "title": "ci: move workflow permissions to job permissions",
-    "updated_at": "2025-04-30T07:45:03Z",
-    "url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/209",
+    "statuses_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/statuses/95a6a57bb2f90af7218e5a3673bce129fc4357b4",
+    "title": "chore(deps): bump aws-actions/configure-aws-credentials from 4.1.0 to 4.2.0",
+    "updated_at": "2025-05-13T07:44:21Z",
+    "url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/210",
     "user": {
-      "avatar_url": "https://avatars.githubusercontent.com/u/3856350?v=4",
-      "events_url": "https://api.github.com/users/guitarrapc/events{/privacy}",
-      "followers_url": "https://api.github.com/users/guitarrapc/followers",
-      "following_url": "https://api.github.com/users/guitarrapc/following{/other_user}",
-      "gists_url": "https://api.github.com/users/guitarrapc/gists{/gist_id}",
+      "avatar_url": "https://avatars.githubusercontent.com/in/29110?v=4",
+      "events_url": "https://api.github.com/users/dependabot%5Bbot%5D/events{/privacy}",
+      "followers_url": "https://api.github.com/users/dependabot%5Bbot%5D/followers",
+      "following_url": "https://api.github.com/users/dependabot%5Bbot%5D/following{/other_user}",
+      "gists_url": "https://api.github.com/users/dependabot%5Bbot%5D/gists{/gist_id}",
       "gravatar_id": "",
-      "html_url": "https://github.com/guitarrapc",
-      "id": 3856350,
-      "login": "guitarrapc",
-      "node_id": "MDQ6VXNlcjM4NTYzNTA=",
-      "organizations_url": "https://api.github.com/users/guitarrapc/orgs",
-      "received_events_url": "https://api.github.com/users/guitarrapc/received_events",
-      "repos_url": "https://api.github.com/users/guitarrapc/repos",
+      "html_url": "https://github.com/apps/dependabot",
+      "id": 49699333,
+      "login": "dependabot[bot]",
+      "node_id": "MDM6Qm90NDk2OTkzMzM=",
+      "organizations_url": "https://api.github.com/users/dependabot%5Bbot%5D/orgs",
+      "received_events_url": "https://api.github.com/users/dependabot%5Bbot%5D/received_events",
+      "repos_url": "https://api.github.com/users/dependabot%5Bbot%5D/repos",
       "site_admin": false,
-      "starred_url": "https://api.github.com/users/guitarrapc/starred{/owner}{/repo}",
-      "subscriptions_url": "https://api.github.com/users/guitarrapc/subscriptions",
-      "type": "User",
-      "url": "https://api.github.com/users/guitarrapc",
+      "starred_url": "https://api.github.com/users/dependabot%5Bbot%5D/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/dependabot%5Bbot%5D/subscriptions",
+      "type": "Bot",
+      "url": "https://api.github.com/users/dependabot%5Bbot%5D",
       "user_view_type": "public"
     }
   },
@@ -423,7 +442,7 @@
     "has_issues": true,
     "has_pages": false,
     "has_projects": true,
-    "has_wiki": true,
+    "has_wiki": false,
     "homepage": "",
     "hooks_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/hooks",
     "html_url": "https://github.com/guitarrapc/githubactions-lab",
@@ -474,9 +493,9 @@
     },
     "private": false,
     "pulls_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls{/number}",
-    "pushed_at": "2025-04-30T07:45:02Z",
+    "pushed_at": "2025-05-13T07:44:20Z",
     "releases_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/releases{/id}",
-    "size": 2852,
+    "size": 2899,
     "ssh_url": "git@github.com:guitarrapc/githubactions-lab.git",
     "stargazers_count": 50,
     "stargazers_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/stargazers",
@@ -490,7 +509,7 @@
       "github-actions"
     ],
     "trees_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/git/trees{/sha}",
-    "updated_at": "2025-04-30T00:03:26Z",
+    "updated_at": "2025-05-13T07:40:11Z",
     "url": "https://api.github.com/repos/guitarrapc/githubactions-lab",
     "visibility": "public",
     "watchers": 50,
