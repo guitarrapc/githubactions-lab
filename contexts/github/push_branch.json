@@ -2,13 +2,13 @@
   "token": "<reducted>",
   "job": "dump-context",
   "ref": "refs/heads/main",
-  "sha": "b0d5bb5959c92844d8233f8594ad912b25dc7cfa",
+  "sha": "f550a5fc2ac6a6e7af00a796020b2f7d171d45d5",
   "repository": "guitarrapc/githubactions-lab",
   "repository_owner": "guitarrapc",
   "repository_owner_id": "3856350",
   "repositoryUrl": "git://github.com/guitarrapc/githubactions-lab.git",
-  "run_id": "14990963769",
-  "run_number": "400",
+  "run_id": "14991111363",
+  "run_number": "405",
   "retention_days": "90",
   "run_attempt": "1",
   "artifact_cache_size_limit": "10",
@@ -24,10 +24,28 @@
   "base_ref": "",
   "event_name": "push",
   "event": {
-    "after": "b0d5bb5959c92844d8233f8594ad912b25dc7cfa",
+    "after": "f550a5fc2ac6a6e7af00a796020b2f7d171d45d5",
     "base_ref": null,
-    "before": "95a3fd18263c6c55357818c8e0080101dcbb4faf",
+    "before": "43bffc5669d0dc4f9cc80c2cc7714794c3b59e5c",
     "commits": [
+      {
+        "author": {
+          "email": "49699333+dependabot[bot]@users.noreply.github.com",
+          "name": "dependabot[bot]",
+          "username": "dependabot[bot]"
+        },
+        "committer": {
+          "email": "noreply@github.com",
+          "name": "GitHub",
+          "username": "web-flow"
+        },
+        "distinct": false,
+        "id": "0b0b2c364e07a63f353a63224b29155c4672d93d",
+        "message": "chore(deps): bump aws-actions/configure-aws-credentials\n\nBumps [aws-actions/configure-aws-credentials](https://github.com/aws-actions/configure-aws-credentials) from 4.1.0 to 4.2.0.\n- [Release notes](https://github.com/aws-actions/configure-aws-credentials/releases)\n- [Changelog](https://github.com/aws-actions/configure-aws-credentials/blob/main/CHANGELOG.md)\n- [Commits](https://github.com/aws-actions/configure-aws-credentials/compare/ececac1a45f3b08a01d2dd070d28d111c5fe6722...f24d7193d98baebaeacc7e2227925dd47cc267f5)\n\n---\nupdated-dependencies:\n- dependency-name: aws-actions/configure-aws-credentials\n  dependency-version: 4.2.0\n  dependency-type: direct:production\n  update-type: version-update:semver-minor\n...\n\nSigned-off-by: dependabot[bot] <support@github.com>",
+        "timestamp": "2025-05-12T15:26:19Z",
+        "tree_id": "28274f07163589c4231ee5676edf3c1395a98995",
+        "url": "https://github.com/guitarrapc/githubactions-lab/commit/0b0b2c364e07a63f353a63224b29155c4672d93d"
+      },
       {
         "author": {
           "email": "3856350+guitarrapc@users.noreply.github.com",
@@ -35,19 +53,73 @@
           "username": "guitarrapc"
         },
         "committer": {
+          "email": "noreply@github.com",
+          "name": "GitHub",
+          "username": "web-flow"
+        },
+        "distinct": false,
+        "id": "95a6a57bb2f90af7218e5a3673bce129fc4357b4",
+        "message": "Merge branch 'main' into dependabot/github_actions/aws-actions/configure-aws-credentials-4.2.0",
+        "timestamp": "2025-05-13T16:44:20+09:00",
+        "tree_id": "89b6c79001a1840eadb5301daa3f078de42b3a50",
+        "url": "https://github.com/guitarrapc/githubactions-lab/commit/95a6a57bb2f90af7218e5a3673bce129fc4357b4"
+      },
+      {
+        "author": {
+          "email": "41898282+github-actions[bot]@users.noreply.github.com",
+          "name": "github-actions[bot]",
+          "username": "github-actions[bot]"
+        },
+        "committer": {
+          "email": "41898282+github-actions[bot]@users.noreply.github.com",
+          "name": "github-actions[bot]",
+          "username": "github-actions[bot]"
+        },
+        "distinct": false,
+        "id": "391a4805c8f680db5aaf84fdeac0f713aba8279d",
+        "message": "[auto commit] update context (workflow=auto dump context, event=pull_request, action=synchronize)",
+        "timestamp": "2025-05-13T07:45:06Z",
+        "tree_id": "8da205b3564659e74b0f2aa7141ad3163d951a13",
+        "url": "https://github.com/guitarrapc/githubactions-lab/commit/391a4805c8f680db5aaf84fdeac0f713aba8279d"
+      },
+      {
+        "author": {
+          "email": "41898282+github-actions[bot]@users.noreply.github.com",
+          "name": "github-actions[bot]",
+          "username": "github-actions[bot]"
+        },
+        "committer": {
+          "email": "41898282+github-actions[bot]@users.noreply.github.com",
+          "name": "github-actions[bot]",
+          "username": "github-actions[bot]"
+        },
+        "distinct": false,
+        "id": "1198b4180d6b6f0e96bc708777d50768e04f353a",
+        "message": "[auto commit] update context (workflow=auto dump context, event=pull_request_target, action=synchronize)",
+        "timestamp": "2025-05-13T07:45:17Z",
+        "tree_id": "ba36aef5004f374f44e66a6de102df86610a454b",
+        "url": "https://github.com/guitarrapc/githubactions-lab/commit/1198b4180d6b6f0e96bc708777d50768e04f353a"
+      },
+      {
+        "author": {
           "email": "3856350+guitarrapc@users.noreply.github.com",
           "name": "Ikiru Yoshizaki",
           "username": "guitarrapc"
         },
+        "committer": {
+          "email": "noreply@github.com",
+          "name": "GitHub",
+          "username": "web-flow"
+        },
         "distinct": true,
-        "id": "b0d5bb5959c92844d8233f8594ad912b25dc7cfa",
-        "message": "fix: conftest language version from v0 to v1",
-        "timestamp": "2025-05-13T16:39:15+09:00",
-        "tree_id": "22605e9759558ce3fe827e2bc64bf68102b948ac",
-        "url": "https://github.com/guitarrapc/githubactions-lab/commit/b0d5bb5959c92844d8233f8594ad912b25dc7cfa"
+        "id": "f550a5fc2ac6a6e7af00a796020b2f7d171d45d5",
+        "message": "Merge pull request #210 from guitarrapc/dependabot/github_actions/aws-actions/configure-aws-credentials-4.2.0\n\nchore(deps): bump aws-actions/configure-aws-credentials from 4.1.0 to 4.2.0",
+        "timestamp": "2025-05-13T16:47:31+09:00",
+        "tree_id": "ba36aef5004f374f44e66a6de102df86610a454b",
+        "url": "https://github.com/guitarrapc/githubactions-lab/commit/f550a5fc2ac6a6e7af00a796020b2f7d171d45d5"
       }
     ],
-    "compare": "https://github.com/guitarrapc/githubactions-lab/compare/95a3fd18263c...b0d5bb5959c9",
+    "compare": "https://github.com/guitarrapc/githubactions-lab/compare/43bffc5669d0...f550a5fc2ac6",
     "created": false,
     "deleted": false,
     "forced": false,
@@ -58,16 +130,16 @@
         "username": "guitarrapc"
       },
       "committer": {
-        "email": "3856350+guitarrapc@users.noreply.github.com",
-        "name": "Ikiru Yoshizaki",
-        "username": "guitarrapc"
+        "email": "noreply@github.com",
+        "name": "GitHub",
+        "username": "web-flow"
       },
       "distinct": true,
-      "id": "b0d5bb5959c92844d8233f8594ad912b25dc7cfa",
-      "message": "fix: conftest language version from v0 to v1",
-      "timestamp": "2025-05-13T16:39:15+09:00",
-      "tree_id": "22605e9759558ce3fe827e2bc64bf68102b948ac",
-      "url": "https://github.com/guitarrapc/githubactions-lab/commit/b0d5bb5959c92844d8233f8594ad912b25dc7cfa"
+      "id": "f550a5fc2ac6a6e7af00a796020b2f7d171d45d5",
+      "message": "Merge pull request #210 from guitarrapc/dependabot/github_actions/aws-actions/configure-aws-credentials-4.2.0\n\nchore(deps): bump aws-actions/configure-aws-credentials from 4.1.0 to 4.2.0",
+      "timestamp": "2025-05-13T16:47:31+09:00",
+      "tree_id": "ba36aef5004f374f44e66a6de102df86610a454b",
+      "url": "https://github.com/guitarrapc/githubactions-lab/commit/f550a5fc2ac6a6e7af00a796020b2f7d171d45d5"
     },
     "pusher": {
       "email": "3856350+guitarrapc@users.noreply.github.com",
@@ -136,8 +208,8 @@
       "name": "githubactions-lab",
       "node_id": "MDEwOlJlcG9zaXRvcnkyNTc0NjU0Njg=",
       "notifications_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/notifications{?since,all,participating}",
-      "open_issues": 4,
-      "open_issues_count": 4,
+      "open_issues": 3,
+      "open_issues_count": 3,
       "owner": {
         "avatar_url": "https://avatars.githubusercontent.com/u/3856350?v=4",
         "email": "3856350+guitarrapc@users.noreply.github.com",
@@ -163,7 +235,7 @@
       },
       "private": false,
       "pulls_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls{/number}",
-      "pushed_at": 1747121960,
+      "pushed_at": 1747122451,
       "releases_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/releases{/id}",
       "size": 2899,
       "ssh_url": "git@github.com:guitarrapc/githubactions-lab.git",
@@ -180,7 +252,7 @@
         "github-actions"
       ],
       "trees_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/git/trees{/sha}",
-      "updated_at": "2025-05-13T06:19:40Z",
+      "updated_at": "2025-05-13T07:40:11Z",
       "url": "https://api.github.com/repos/guitarrapc/githubactions-lab",
       "visibility": "public",
       "watchers": 50,
@@ -217,15 +289,15 @@
   "ref_type": "branch",
   "secret_source": "Actions",
   "workflow_ref": "guitarrapc/githubactions-lab/.github/workflows/auto-dump-context.yaml@refs/heads/main",
-  "workflow_sha": "b0d5bb5959c92844d8233f8594ad912b25dc7cfa",
+  "workflow_sha": "f550a5fc2ac6a6e7af00a796020b2f7d171d45d5",
   "workspace": "/home/runner/work/githubactions-lab/githubactions-lab",
   "action": "__run_4",
   "event_path": "/home/runner/work/_temp/_github_workflow/event.json",
   "action_repository": "",
   "action_ref": "",
-  "path": "/home/runner/work/_temp/_runner_file_commands/add_path_e31886eb-a9cb-4b94-a332-beee579044ac",
-  "env": "/home/runner/work/_temp/_runner_file_commands/set_env_e31886eb-a9cb-4b94-a332-beee579044ac",
-  "step_summary": "/home/runner/work/_temp/_runner_file_commands/step_summary_e31886eb-a9cb-4b94-a332-beee579044ac",
-  "state": "/home/runner/work/_temp/_runner_file_commands/save_state_e31886eb-a9cb-4b94-a332-beee579044ac",
-  "output": "/home/runner/work/_temp/_runner_file_commands/set_output_e31886eb-a9cb-4b94-a332-beee579044ac"
+  "path": "/home/runner/work/_temp/_runner_file_commands/add_path_5e5ca1c1-28fa-479e-9b1c-f67a7c8be496",
+  "env": "/home/runner/work/_temp/_runner_file_commands/set_env_5e5ca1c1-28fa-479e-9b1c-f67a7c8be496",
+  "step_summary": "/home/runner/work/_temp/_runner_file_commands/step_summary_5e5ca1c1-28fa-479e-9b1c-f67a7c8be496",
+  "state": "/home/runner/work/_temp/_runner_file_commands/save_state_5e5ca1c1-28fa-479e-9b1c-f67a7c8be496",
+  "output": "/home/runner/work/_temp/_runner_file_commands/set_output_5e5ca1c1-28fa-479e-9b1c-f67a7c8be496"
 }
