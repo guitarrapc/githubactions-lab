@@ -2,13 +2,13 @@
   "token": "<reducted>",
   "job": "dump-context",
   "ref": "refs/heads/main",
-  "sha": "f33b87053be9349e514b8451249cfa3bd8d53c42",
+  "sha": "ac9966a1fbf05a0035fea0aab416f0777bda58ac",
   "repository": "guitarrapc/githubactions-lab",
   "repository_owner": "guitarrapc",
   "repository_owner_id": "3856350",
   "repositoryUrl": "git://github.com/guitarrapc/githubactions-lab.git",
-  "run_id": "14878799841",
-  "run_number": "382",
+  "run_id": "14989598373",
+  "run_number": "399",
   "retention_days": "90",
   "run_attempt": "1",
   "artifact_cache_size_limit": "10",
@@ -24,9 +24,9 @@
   "base_ref": "",
   "event_name": "push",
   "event": {
-    "after": "f33b87053be9349e514b8451249cfa3bd8d53c42",
+    "after": "ac9966a1fbf05a0035fea0aab416f0777bda58ac",
     "base_ref": null,
-    "before": "f990a9ec7af6cbcbf52d36244a0412c00cacb25d",
+    "before": "cc6aa784cd1f06056780b4b0ec341a24b9bfda83",
     "commits": [
       {
         "author": {
@@ -35,19 +35,19 @@
           "username": "guitarrapc"
         },
         "committer": {
-          "email": "noreply@github.com",
-          "name": "GitHub",
-          "username": "web-flow"
+          "email": "3856350+guitarrapc@users.noreply.github.com",
+          "name": "Ikiru Yoshizaki",
+          "username": "guitarrapc"
         },
         "distinct": true,
-        "id": "f33b87053be9349e514b8451249cfa3bd8d53c42",
-        "message": "Update aqua.yaml",
-        "timestamp": "2025-05-07T17:29:59+09:00",
-        "tree_id": "fa3617276e040ed3d712fcd8506f7684fd9fc3f5",
-        "url": "https://github.com/guitarrapc/githubactions-lab/commit/f33b87053be9349e514b8451249cfa3bd8d53c42"
+        "id": "ac9966a1fbf05a0035fea0aab416f0777bda58ac",
+        "message": "chore: permission",
+        "timestamp": "2025-05-13T15:18:43+09:00",
+        "tree_id": "c09c9d9cf7da1857f65ac844e1d9e348eaf6f56a",
+        "url": "https://github.com/guitarrapc/githubactions-lab/commit/ac9966a1fbf05a0035fea0aab416f0777bda58ac"
       }
     ],
-    "compare": "https://github.com/guitarrapc/githubactions-lab/compare/f990a9ec7af6...f33b87053be9",
+    "compare": "https://github.com/guitarrapc/githubactions-lab/compare/cc6aa784cd1f...ac9966a1fbf0",
     "created": false,
     "deleted": false,
     "forced": false,
@@ -58,16 +58,16 @@
         "username": "guitarrapc"
       },
       "committer": {
-        "email": "noreply@github.com",
-        "name": "GitHub",
-        "username": "web-flow"
+        "email": "3856350+guitarrapc@users.noreply.github.com",
+        "name": "Ikiru Yoshizaki",
+        "username": "guitarrapc"
       },
       "distinct": true,
-      "id": "f33b87053be9349e514b8451249cfa3bd8d53c42",
-      "message": "Update aqua.yaml",
-      "timestamp": "2025-05-07T17:29:59+09:00",
-      "tree_id": "fa3617276e040ed3d712fcd8506f7684fd9fc3f5",
-      "url": "https://github.com/guitarrapc/githubactions-lab/commit/f33b87053be9349e514b8451249cfa3bd8d53c42"
+      "id": "ac9966a1fbf05a0035fea0aab416f0777bda58ac",
+      "message": "chore: permission",
+      "timestamp": "2025-05-13T15:18:43+09:00",
+      "tree_id": "c09c9d9cf7da1857f65ac844e1d9e348eaf6f56a",
+      "url": "https://github.com/guitarrapc/githubactions-lab/commit/ac9966a1fbf05a0035fea0aab416f0777bda58ac"
     },
     "pusher": {
       "email": "3856350+guitarrapc@users.noreply.github.com",
@@ -136,8 +136,8 @@
       "name": "githubactions-lab",
       "node_id": "MDEwOlJlcG9zaXRvcnkyNTc0NjU0Njg=",
       "notifications_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/notifications{?since,all,participating}",
-      "open_issues": 3,
-      "open_issues_count": 3,
+      "open_issues": 4,
+      "open_issues_count": 4,
       "owner": {
         "avatar_url": "https://avatars.githubusercontent.com/u/3856350?v=4",
         "email": "3856350+guitarrapc@users.noreply.github.com",
@@ -163,9 +163,9 @@
       },
       "private": false,
       "pulls_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls{/number}",
-      "pushed_at": 1746606599,
+      "pushed_at": 1747117128,
       "releases_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/releases{/id}",
-      "size": 2863,
+      "size": 2890,
       "ssh_url": "git@github.com:guitarrapc/githubactions-lab.git",
       "stargazers": 50,
       "stargazers_count": 50,
@@ -180,7 +180,7 @@
         "github-actions"
       ],
       "trees_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/git/trees{/sha}",
-      "updated_at": "2025-05-07T00:03:23Z",
+      "updated_at": "2025-05-13T00:03:34Z",
       "url": "https://api.github.com/repos/guitarrapc/githubactions-lab",
       "visibility": "public",
       "watchers": 50,
@@ -217,15 +217,15 @@
   "ref_type": "branch",
   "secret_source": "Actions",
   "workflow_ref": "guitarrapc/githubactions-lab/.github/workflows/auto-dump-context.yaml@refs/heads/main",
-  "workflow_sha": "f33b87053be9349e514b8451249cfa3bd8d53c42",
+  "workflow_sha": "ac9966a1fbf05a0035fea0aab416f0777bda58ac",
   "workspace": "/home/runner/work/githubactions-lab/githubactions-lab",
   "action": "__run_4",
   "event_path": "/home/runner/work/_temp/_github_workflow/event.json",
   "action_repository": "",
   "action_ref": "",
-  "path": "/home/runner/work/_temp/_runner_file_commands/add_path_31b6695b-18e4-4a9a-9c62-175f90a11a33",
-  "env": "/home/runner/work/_temp/_runner_file_commands/set_env_31b6695b-18e4-4a9a-9c62-175f90a11a33",
-  "step_summary": "/home/runner/work/_temp/_runner_file_commands/step_summary_31b6695b-18e4-4a9a-9c62-175f90a11a33",
-  "state": "/home/runner/work/_temp/_runner_file_commands/save_state_31b6695b-18e4-4a9a-9c62-175f90a11a33",
-  "output": "/home/runner/work/_temp/_runner_file_commands/set_output_31b6695b-18e4-4a9a-9c62-175f90a11a33"
+  "path": "/home/runner/work/_temp/_runner_file_commands/add_path_1c08165a-8469-4e0b-8414-c84cb68cdb61",
+  "env": "/home/runner/work/_temp/_runner_file_commands/set_env_1c08165a-8469-4e0b-8414-c84cb68cdb61",
+  "step_summary": "/home/runner/work/_temp/_runner_file_commands/step_summary_1c08165a-8469-4e0b-8414-c84cb68cdb61",
+  "state": "/home/runner/work/_temp/_runner_file_commands/save_state_1c08165a-8469-4e0b-8414-c84cb68cdb61",
+  "output": "/home/runner/work/_temp/_runner_file_commands/set_output_1c08165a-8469-4e0b-8414-c84cb68cdb61"
 }
