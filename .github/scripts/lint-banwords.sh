@@ -1,4 +1,5 @@
-#!/bin/bash -eu
+#!/bin/bash
+set -euo pipefail
 
 # summary: lint ban word is not included in the specified file.
 # usage:
