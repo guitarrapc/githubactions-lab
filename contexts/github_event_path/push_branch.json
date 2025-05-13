@@ -1,7 +1,7 @@
 {
-  "after": "f33b87053be9349e514b8451249cfa3bd8d53c42",
+  "after": "b0d5bb5959c92844d8233f8594ad912b25dc7cfa",
   "base_ref": null,
-  "before": "f990a9ec7af6cbcbf52d36244a0412c00cacb25d",
+  "before": "95a3fd18263c6c55357818c8e0080101dcbb4faf",
   "commits": [
     {
       "author": {
@@ -10,19 +10,19 @@
         "username": "guitarrapc"
       },
       "committer": {
-        "email": "noreply@github.com",
-        "name": "GitHub",
-        "username": "web-flow"
+        "email": "3856350+guitarrapc@users.noreply.github.com",
+        "name": "Ikiru Yoshizaki",
+        "username": "guitarrapc"
       },
       "distinct": true,
-      "id": "f33b87053be9349e514b8451249cfa3bd8d53c42",
-      "message": "Update aqua.yaml",
-      "timestamp": "2025-05-07T17:29:59+09:00",
-      "tree_id": "fa3617276e040ed3d712fcd8506f7684fd9fc3f5",
-      "url": "https://github.com/guitarrapc/githubactions-lab/commit/f33b87053be9349e514b8451249cfa3bd8d53c42"
+      "id": "b0d5bb5959c92844d8233f8594ad912b25dc7cfa",
+      "message": "fix: conftest language version from v0 to v1",
+      "timestamp": "2025-05-13T16:39:15+09:00",
+      "tree_id": "22605e9759558ce3fe827e2bc64bf68102b948ac",
+      "url": "https://github.com/guitarrapc/githubactions-lab/commit/b0d5bb5959c92844d8233f8594ad912b25dc7cfa"
     }
   ],
-  "compare": "https://github.com/guitarrapc/githubactions-lab/compare/f990a9ec7af6...f33b87053be9",
+  "compare": "https://github.com/guitarrapc/githubactions-lab/compare/95a3fd18263c...b0d5bb5959c9",
   "created": false,
   "deleted": false,
   "forced": false,
@@ -33,16 +33,16 @@
       "username": "guitarrapc"
     },
     "committer": {
-      "email": "noreply@github.com",
-      "name": "GitHub",
-      "username": "web-flow"
+      "email": "3856350+guitarrapc@users.noreply.github.com",
+      "name": "Ikiru Yoshizaki",
+      "username": "guitarrapc"
     },
     "distinct": true,
-    "id": "f33b87053be9349e514b8451249cfa3bd8d53c42",
-    "message": "Update aqua.yaml",
-    "timestamp": "2025-05-07T17:29:59+09:00",
-    "tree_id": "fa3617276e040ed3d712fcd8506f7684fd9fc3f5",
-    "url": "https://github.com/guitarrapc/githubactions-lab/commit/f33b87053be9349e514b8451249cfa3bd8d53c42"
+    "id": "b0d5bb5959c92844d8233f8594ad912b25dc7cfa",
+    "message": "fix: conftest language version from v0 to v1",
+    "timestamp": "2025-05-13T16:39:15+09:00",
+    "tree_id": "22605e9759558ce3fe827e2bc64bf68102b948ac",
+    "url": "https://github.com/guitarrapc/githubactions-lab/commit/b0d5bb5959c92844d8233f8594ad912b25dc7cfa"
   },
   "pusher": {
     "email": "3856350+guitarrapc@users.noreply.github.com",
@@ -84,7 +84,7 @@
     "has_issues": true,
     "has_pages": false,
     "has_projects": true,
-    "has_wiki": true,
+    "has_wiki": false,
     "homepage": "",
     "hooks_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/hooks",
     "html_url": "https://github.com/guitarrapc/githubactions-lab",
@@ -111,8 +111,8 @@
     "name": "githubactions-lab",
     "node_id": "MDEwOlJlcG9zaXRvcnkyNTc0NjU0Njg=",
     "notifications_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/notifications{?since,all,participating}",
-    "open_issues": 3,
-    "open_issues_count": 3,
+    "open_issues": 4,
+    "open_issues_count": 4,
     "owner": {
       "avatar_url": "https://avatars.githubusercontent.com/u/3856350?v=4",
       "email": "3856350+guitarrapc@users.noreply.github.com",
@@ -138,9 +138,9 @@
     },
     "private": false,
     "pulls_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls{/number}",
-    "pushed_at": 1746606599,
+    "pushed_at": 1747121960,
     "releases_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/releases{/id}",
-    "size": 2863,
+    "size": 2899,
     "ssh_url": "git@github.com:guitarrapc/githubactions-lab.git",
     "stargazers": 50,
     "stargazers_count": 50,
@@ -155,7 +155,7 @@
       "github-actions"
     ],
     "trees_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/git/trees{/sha}",
-    "updated_at": "2025-05-07T00:03:23Z",
+    "updated_at": "2025-05-13T06:19:40Z",
     "url": "https://api.github.com/repos/guitarrapc/githubactions-lab",
     "visibility": "public",
     "watchers": 50,
