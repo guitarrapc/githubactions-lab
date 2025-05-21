@@ -681,7 +681,7 @@ jobs:
   bash:
     strategy:
       matrix:
-        runs-on: [ubuntu-24.04, windows-latest]
+        runs-on: [ubuntu-24.04, windows-2025]
     permissions:
       contents: read
     runs-on: ${{ matrix.runs-on }}
@@ -717,7 +717,7 @@ jobs:
   powershell:
     strategy:
       matrix:
-        runs-on: [ubuntu-24.04, windows-latest]
+        runs-on: [ubuntu-24.04, windows-2025]
     permissions:
       contents: read
     runs-on: ${{ matrix.runs-on }}
@@ -753,7 +753,7 @@ jobs:
   cmd:
     strategy:
       matrix:
-        runs-on: [windows-latest]
+        runs-on: [windows-2025]
     permissions:
       contents: read
     runs-on: ${{ matrix.runs-on }}
