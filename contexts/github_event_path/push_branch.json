@@ -1,26 +1,8 @@
 {
-  "after": "0aa05aaa595d78d5ed6400f83b2394bcc559f9eb",
+  "after": "3d05f798d9f47a6f3b2e6b9f87fc73cfe9723fdb",
   "base_ref": null,
-  "before": "9379912eaafcbbf3416b7afc150f71ee6e13cf5e",
+  "before": "addd876469dba33488211c7906ceedec34b14599",
   "commits": [
-    {
-      "author": {
-        "email": "49699333+dependabot[bot]@users.noreply.github.com",
-        "name": "dependabot[bot]",
-        "username": "dependabot[bot]"
-      },
-      "committer": {
-        "email": "noreply@github.com",
-        "name": "GitHub",
-        "username": "web-flow"
-      },
-      "distinct": false,
-      "id": "cf9f37375a4bb5febb2026aeb7c1ad8d12a124f3",
-      "message": "chore(deps): bump aquaproj/aqua-installer from 3.1.1 to 4.0.0\n\nBumps [aquaproj/aqua-installer](https://github.com/aquaproj/aqua-installer) from 3.1.1 to 4.0.0.\n- [Release notes](https://github.com/aquaproj/aqua-installer/releases)\n- [Commits](https://github.com/aquaproj/aqua-installer/compare/e2d0136abcf70b7a2f6f505720640750557c4b33...9ebf656952a20c45a5d66606f083ff34f58b8ce0)\n\n---\nupdated-dependencies:\n- dependency-name: aquaproj/aqua-installer\n  dependency-version: 4.0.0\n  dependency-type: direct:production\n  update-type: version-update:semver-major\n...\n\nSigned-off-by: dependabot[bot] <support@github.com>",
-      "timestamp": "2025-05-19T15:39:30Z",
-      "tree_id": "518dc09a588c9bf14920c64b68359b3db7983f14",
-      "url": "https://github.com/guitarrapc/githubactions-lab/commit/cf9f37375a4bb5febb2026aeb7c1ad8d12a124f3"
-    },
     {
       "author": {
         "email": "3856350+guitarrapc@users.noreply.github.com",
@@ -28,19 +10,19 @@
         "username": "guitarrapc"
       },
       "committer": {
-        "email": "noreply@github.com",
-        "name": "GitHub",
-        "username": "web-flow"
+        "email": "3856350+guitarrapc@users.noreply.github.com",
+        "name": "Ikiru Yoshizaki",
+        "username": "guitarrapc"
       },
       "distinct": true,
-      "id": "0aa05aaa595d78d5ed6400f83b2394bcc559f9eb",
-      "message": "Merge pull request #211 from guitarrapc/dependabot/github_actions/aquaproj/aqua-installer-4.0.0\n\nchore(deps): bump aquaproj/aqua-installer from 3.1.1 to 4.0.0",
-      "timestamp": "2025-05-21T13:00:01+09:00",
-      "tree_id": "35f0b5a75796f511d66be3db05fa866012ba1317",
-      "url": "https://github.com/guitarrapc/githubactions-lab/commit/0aa05aaa595d78d5ed6400f83b2394bcc559f9eb"
+      "id": "3d05f798d9f47a6f3b2e6b9f87fc73cfe9723fdb",
+      "message": "ci: pinact",
+      "timestamp": "2025-05-21T17:26:01+09:00",
+      "tree_id": "15db1033a890482d20cbc0b3b33e9b658a891fbe",
+      "url": "https://github.com/guitarrapc/githubactions-lab/commit/3d05f798d9f47a6f3b2e6b9f87fc73cfe9723fdb"
     }
   ],
-  "compare": "https://github.com/guitarrapc/githubactions-lab/compare/9379912eaafc...0aa05aaa595d",
+  "compare": "https://github.com/guitarrapc/githubactions-lab/compare/addd876469db...3d05f798d9f4",
   "created": false,
   "deleted": false,
   "forced": false,
@@ -51,16 +33,16 @@
       "username": "guitarrapc"
     },
     "committer": {
-      "email": "noreply@github.com",
-      "name": "GitHub",
-      "username": "web-flow"
+      "email": "3856350+guitarrapc@users.noreply.github.com",
+      "name": "Ikiru Yoshizaki",
+      "username": "guitarrapc"
     },
     "distinct": true,
-    "id": "0aa05aaa595d78d5ed6400f83b2394bcc559f9eb",
-    "message": "Merge pull request #211 from guitarrapc/dependabot/github_actions/aquaproj/aqua-installer-4.0.0\n\nchore(deps): bump aquaproj/aqua-installer from 3.1.1 to 4.0.0",
-    "timestamp": "2025-05-21T13:00:01+09:00",
-    "tree_id": "35f0b5a75796f511d66be3db05fa866012ba1317",
-    "url": "https://github.com/guitarrapc/githubactions-lab/commit/0aa05aaa595d78d5ed6400f83b2394bcc559f9eb"
+    "id": "3d05f798d9f47a6f3b2e6b9f87fc73cfe9723fdb",
+    "message": "ci: pinact",
+    "timestamp": "2025-05-21T17:26:01+09:00",
+    "tree_id": "15db1033a890482d20cbc0b3b33e9b658a891fbe",
+    "url": "https://github.com/guitarrapc/githubactions-lab/commit/3d05f798d9f47a6f3b2e6b9f87fc73cfe9723fdb"
   },
   "pusher": {
     "email": "3856350+guitarrapc@users.noreply.github.com",
@@ -156,9 +138,9 @@
     },
     "private": false,
     "pulls_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls{/number}",
-    "pushed_at": 1747800001,
+    "pushed_at": 1747815967,
     "releases_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/releases{/id}",
-    "size": 2975,
+    "size": 3006,
     "ssh_url": "git@github.com:guitarrapc/githubactions-lab.git",
     "stargazers": 50,
     "stargazers_count": 50,
@@ -173,7 +155,7 @@
       "github-actions"
     ],
     "trees_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/git/trees{/sha}",
-    "updated_at": "2025-05-21T00:03:21Z",
+    "updated_at": "2025-05-21T04:03:09Z",
     "url": "https://api.github.com/repos/guitarrapc/githubactions-lab",
     "visibility": "public",
     "watchers": 50,
