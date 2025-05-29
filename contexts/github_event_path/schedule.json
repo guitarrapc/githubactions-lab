@@ -1,4 +1,5 @@
 {
+  "schedule": "0 0 * * *",
   "repository": {
     "allow_forking": true,
     "archive_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/{archive_format}{/ref}",
@@ -85,9 +86,9 @@
     },
     "private": false,
     "pulls_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls{/number}",
-    "pushed_at": "2025-05-27T00:03:21Z",
+    "pushed_at": "2025-05-28T00:03:34Z",
     "releases_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/releases{/id}",
-    "size": 2987,
+    "size": 2989,
     "ssh_url": "git@github.com:guitarrapc/githubactions-lab.git",
     "stargazers_count": 50,
     "stargazers_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/stargazers",
@@ -101,13 +102,12 @@
       "github-actions"
     ],
     "trees_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/git/trees{/sha}",
-    "updated_at": "2025-05-27T00:03:25Z",
+    "updated_at": "2025-05-28T00:03:37Z",
     "url": "https://api.github.com/repos/guitarrapc/githubactions-lab",
     "visibility": "public",
     "watchers": 50,
     "watchers_count": 50,
     "web_commit_signoff_required": false
   },
-  "schedule": "0 0 * * *",
   "workflow": ".github/workflows/auto-dump-context.yaml"
 }
