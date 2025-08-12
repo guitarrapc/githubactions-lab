@@ -3433,9 +3433,9 @@ jobs:
       - name: See actions download path
         run: ls -l /home/runner/work/_actions/actions/checkout/
       - name: See actions download contents
-        run: ls -lR /home/runner/work/_actions/actions/checkout/11bd71901bbe5b1630ceea73d27597364c9af683
+        run: ls -lR /home/runner/work/_actions/actions/checkout/08c6903cd8c0fde910a37f88322edcfb5dd907a8
       - name: Cat action's src/main.ts
-        run: cat /home/runner/work/_actions/actions/checkout/11bd71901bbe5b1630ceea73d27597364c9af683/src/main.ts
+        run: cat /home/runner/work/_actions/actions/checkout/08c6903cd8c0fde910a37f88322edcfb5dd907a8/src/main.ts
 
 ```
 
