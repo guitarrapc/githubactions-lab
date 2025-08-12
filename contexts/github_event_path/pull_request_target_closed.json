@@ -1,35 +1,35 @@
 {
   "action": "closed",
-  "number": 211,
+  "number": 213,
   "pull_request": {
     "_links": {
       "comments": {
-        "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/issues/211/comments"
+        "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/issues/213/comments"
       },
       "commits": {
-        "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/211/commits"
+        "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/213/commits"
       },
       "html": {
-        "href": "https://github.com/guitarrapc/githubactions-lab/pull/211"
+        "href": "https://github.com/guitarrapc/githubactions-lab/pull/213"
       },
       "issue": {
-        "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/issues/211"
+        "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/issues/213"
       },
       "review_comment": {
         "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/comments{/number}"
       },
       "review_comments": {
-        "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/211/comments"
+        "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/213/comments"
       },
       "self": {
-        "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/211"
+        "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/213"
       },
       "statuses": {
-        "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/statuses/cf9f37375a4bb5febb2026aeb7c1ad8d12a124f3"
+        "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/statuses/314124bf659fcea17a4e0d589dac8ba3f5b1eada"
       }
     },
     "active_lock_reason": null,
-    "additions": 1,
+    "additions": 5,
     "assignee": null,
     "assignees": [],
     "author_association": "CONTRIBUTOR",
@@ -106,8 +106,8 @@
         "name": "githubactions-lab",
         "node_id": "MDEwOlJlcG9zaXRvcnkyNTc0NjU0Njg=",
         "notifications_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/notifications{?since,all,participating}",
-        "open_issues": 3,
-        "open_issues_count": 3,
+        "open_issues": 4,
+        "open_issues_count": 4,
         "owner": {
           "avatar_url": "https://avatars.githubusercontent.com/u/3856350?v=4",
           "events_url": "https://api.github.com/users/guitarrapc/events{/privacy}",
@@ -131,9 +131,9 @@
         },
         "private": false,
         "pulls_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls{/number}",
-        "pushed_at": "2025-05-21T00:03:18Z",
+        "pushed_at": "2025-08-12T03:04:37Z",
         "releases_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/releases{/id}",
-        "size": 2975,
+        "size": 3150,
         "squash_merge_commit_message": "COMMIT_MESSAGES",
         "squash_merge_commit_title": "COMMIT_OR_PR_TITLE",
         "ssh_url": "git@github.com:guitarrapc/githubactions-lab.git",
@@ -149,7 +149,7 @@
           "github-actions"
         ],
         "trees_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/git/trees{/sha}",
-        "updated_at": "2025-05-21T00:03:21Z",
+        "updated_at": "2025-08-12T03:04:40Z",
         "url": "https://api.github.com/repos/guitarrapc/githubactions-lab",
         "use_squash_pr_title_as_default": false,
         "visibility": "public",
@@ -157,7 +157,7 @@
         "watchers_count": 50,
         "web_commit_signoff_required": false
       },
-      "sha": "34bed7d4d09c240a841f746d28832471112ca37f",
+      "sha": "c04abbba4a3ed0aa67609e7b98ea26928a46b4d4",
       "user": {
         "avatar_url": "https://avatars.githubusercontent.com/u/3856350?v=4",
         "events_url": "https://api.github.com/users/guitarrapc/events{/privacy}",
@@ -180,20 +180,20 @@
         "user_view_type": "public"
       }
     },
-    "body": "Bumps [aquaproj/aqua-installer](https://github.com/aquaproj/aqua-installer) from 3.1.1 to 4.0.0.\n<details>\n<summary>Release notes</summary>\n<p><em>Sourced from <a href=\"https://github.com/aquaproj/aqua-installer/releases\">aquaproj/aqua-installer's releases</a>.</em></p>\n<blockquote>\n<h2>v4.0.0</h2>\n<p><a href=\"https://github.com/aquaproj/aqua-installer/compare/v3.1.2...v4.0.0\">https://github.com/aquaproj/aqua-installer/compare/v3.1.2...v4.0.0</a></p>\n<h2>SHA256 Checksum</h2>\n<pre><code>f7fa69dacb234ce9648f3008cef9120a1e59d96c37971e747668c0fada7bec68  aqua-installer\n</code></pre>\n<h2>⚠️ Breaking Changes</h2>\n<p><a href=\"https://redirect.github.com/aquaproj/aqua-installer/issues/822\">#822</a> If you pass a GitHub Access token via environment variable <code>env</code>, it would be overridden by the input <code>github_token</code>.</p>\n<pre lang=\"yaml\"><code>uses: aquaproj/aqua-installer@v2.0.0\nenv:\n  GITHUB_TOKEN: ${{secrets.PAT}} # This is overridden by ${{github.token}}\n</code></pre>\n<h3>How to migrate</h3>\n<p>Pass a GitHub access token by the input <code>github_token</code>.</p>\n<pre lang=\"yaml\"><code>uses: aquaproj/aqua-installer@v2.0.0\nwith:\n  github_token: ${{secrets.PAT}}\n</code></pre>\n<h3>Why is this breaking change required?</h3>\n<p>Recently, GitHub updated rate limits for unauthenticated requests.</p>\n<p><a href=\"https://github.blog/changelog/2025-05-08-updated-rate-limits-for-unauthenticated-requests/\">https://github.blog/changelog/2025-05-08-updated-rate-limits-for-unauthenticated-requests/</a></p>\n<p>As a result, aqua-installer often hits the API rate limit if a GitHub access token isn't passed via environment variable.</p>\n<p>e.g. <a href=\"https://github.com/szksh-lab/.github/actions/runs/15082243052/job/42400373723\">https://github.com/szksh-lab/.github/actions/runs/15082243052/job/42400373723</a></p>\n<pre><code>time=&quot;2025-05-17T05:48:24Z&quot; level=error msg=&quot;install the registry&quot; aqua_version=2.51.2 env=linux/amd64 error=&quot;get a file by Get GitHub Content API: status code 429&quot; program=aqua registry_name=standard\ntime=&quot;2025-05-17T05:48:24Z&quot; level=fatal msg=&quot;aqua failed&quot; aqua_version=2.51.2 env=linux/amd64 error=&quot;it failed to install some registries&quot; program=aqua\n</code></pre>\n<p>It failed to download the standard registry by GitHub content API.</p>\n<p>To resolve the issue, we pass a GitHub actions token by default.\nAnd we add the input <code>github_token</code> to allow you to change the access token.</p>\n<h2>Features</h2>\n<!-- raw HTML omitted -->\n</blockquote>\n<p>... (truncated)</p>\n</details>\n<details>\n<summary>Commits</summary>\n<ul>\n<li><a href=\"https://github.com/aquaproj/aqua-installer/commit/9ebf656952a20c45a5d66606f083ff34f58b8ce0\"><code>9ebf656</code></a> chore: update the bootstrap version to v2.51.2 (<a href=\"https://redirect.github.com/aquaproj/aqua-installer/issues/823\">#823</a>)</li>\n<li><a href=\"https://github.com/aquaproj/aqua-installer/commit/fec970dae1a3dbfa852347acca93706440a09e5a\"><code>fec970d</code></a> feat: pass github_token (<a href=\"https://redirect.github.com/aquaproj/aqua-installer/issues/822\">#822</a>)</li>\n<li><a href=\"https://github.com/aquaproj/aqua-installer/commit/bd1bc11083c4f44a79115f1c5f64bd6d14581eef\"><code>bd1bc11</code></a> chore(deps): update aquaproj/aqua-renovate-config to v2.8.0 (<a href=\"https://redirect.github.com/aquaproj/aqua-installer/issues/821\">#821</a>)</li>\n<li><a href=\"https://github.com/aquaproj/aqua-installer/commit/0f0af46d531adb5fcf9efe3c87931d8a16d88b92\"><code>0f0af46</code></a> chore(deps): update dependency suzuki-shunsuke/ghalint to v1.4.0 (<a href=\"https://redirect.github.com/aquaproj/aqua-installer/issues/820\">#820</a>)</li>\n<li><a href=\"https://github.com/aquaproj/aqua-installer/commit/d03980062c4f6155380f97a10b681dfcfee71b8f\"><code>d039800</code></a> chore(deps): update dependency aquaproj/aqua to v2.51.2 (<a href=\"https://redirect.github.com/aquaproj/aqua-installer/issues/819\">#819</a>)</li>\n<li><a href=\"https://github.com/aquaproj/aqua-installer/commit/a8b661928eab2e4bab37c8eeb7954abe314ff391\"><code>a8b6619</code></a> chore(config): migrate renovate config (<a href=\"https://redirect.github.com/aquaproj/aqua-installer/issues/817\">#817</a>)</li>\n<li><a href=\"https://github.com/aquaproj/aqua-installer/commit/acb94aa5ea962a9086e6deaed9e9b8f29b194009\"><code>acb94aa</code></a> chore(deps): update dependency golangci/golangci-lint to v2.1.6 (<a href=\"https://redirect.github.com/aquaproj/aqua-installer/issues/818\">#818</a>)</li>\n<li><a href=\"https://github.com/aquaproj/aqua-installer/commit/40688796460ed9c42bced0a8168803631d303b8f\"><code>4068879</code></a> chore(deps): update mirror.gcr.io/golang docker tag to v1.24.3 (<a href=\"https://redirect.github.com/aquaproj/aqua-installer/issues/816\">#816</a>)</li>\n<li><a href=\"https://github.com/aquaproj/aqua-installer/commit/07088fefc49aef51d892e13ec2ddfc5b15a4fd4f\"><code>07088fe</code></a> chore(deps): update dependency aquaproj/aqua to v2.51.1 (<a href=\"https://redirect.github.com/aquaproj/aqua-installer/issues/815\">#815</a>)</li>\n<li><a href=\"https://github.com/aquaproj/aqua-installer/commit/4f488eb8fc6df47eeb39b4a0852a37d328156ee6\"><code>4f488eb</code></a> chore(deps): update dependency aquaproj/aqua to v2.50.1 (<a href=\"https://redirect.github.com/aquaproj/aqua-installer/issues/814\">#814</a>)</li>\n<li>Additional commits viewable in <a href=\"https://github.com/aquaproj/aqua-installer/compare/e2d0136abcf70b7a2f6f505720640750557c4b33...9ebf656952a20c45a5d66606f083ff34f58b8ce0\">compare view</a></li>\n</ul>\n</details>\n<br />\n\n\n[![Dependabot compatibility score](https://dependabot-badges.githubapp.com/badges/compatibility_score?dependency-name=aquaproj/aqua-installer&package-manager=github_actions&previous-version=3.1.1&new-version=4.0.0)](https://docs.github.com/en/github/managing-security-vulnerabilities/about-dependabot-security-updates#about-compatibility-scores)\n\nDependabot will resolve any conflicts with this PR as long as you don't alter it yourself. You can also trigger a rebase manually by commenting `@dependabot rebase`.\n\n[//]: # (dependabot-automerge-start)\n[//]: # (dependabot-automerge-end)\n\n---\n\n<details>\n<summary>Dependabot commands and options</summary>\n<br />\n\nYou can trigger Dependabot actions by commenting on this PR:\n- `@dependabot rebase` will rebase this PR\n- `@dependabot recreate` will recreate this PR, overwriting any edits that have been made to it\n- `@dependabot merge` will merge this PR after your CI passes on it\n- `@dependabot squash and merge` will squash and merge this PR after your CI passes on it\n- `@dependabot cancel merge` will cancel a previously requested merge and block automerging\n- `@dependabot reopen` will reopen this PR if it is closed\n- `@dependabot close` will close this PR and stop Dependabot recreating it. You can achieve the same result by closing it manually\n- `@dependabot show <dependency name> ignore conditions` will show all of the ignore conditions of the specified dependency\n- `@dependabot ignore this major version` will close this PR and stop Dependabot creating any more for this major version (unless you reopen the PR or upgrade to it yourself)\n- `@dependabot ignore this minor version` will close this PR and stop Dependabot creating any more for this minor version (unless you reopen the PR or upgrade to it yourself)\n- `@dependabot ignore this dependency` will close this PR and stop Dependabot creating any more for this dependency (unless you reopen the PR or upgrade to it yourself)\n\n\n</details>",
-    "changed_files": 1,
-    "closed_at": "2025-05-21T04:00:01Z",
+    "body": "Bumps [actions/download-artifact](https://github.com/actions/download-artifact) from 4.3.0 to 5.0.0.\n<details>\n<summary>Release notes</summary>\n<p><em>Sourced from <a href=\"https://github.com/actions/download-artifact/releases\">actions/download-artifact's releases</a>.</em></p>\n<blockquote>\n<h2>v5.0.0</h2>\n<h2>What's Changed</h2>\n<ul>\n<li>Update README.md by <a href=\"https://github.com/nebuk89\"><code>@​nebuk89</code></a> in <a href=\"https://redirect.github.com/actions/download-artifact/pull/407\">actions/download-artifact#407</a></li>\n<li>BREAKING fix: inconsistent path behavior for single artifact downloads by ID by <a href=\"https://github.com/GrantBirki\"><code>@​GrantBirki</code></a> in <a href=\"https://redirect.github.com/actions/download-artifact/pull/416\">actions/download-artifact#416</a></li>\n</ul>\n<h2>v5.0.0</h2>\n<h3>🚨 Breaking Change</h3>\n<p>This release fixes an inconsistency in path behavior for single artifact downloads by ID. <strong>If you're downloading single artifacts by ID, the output path may change.</strong></p>\n<h4>What Changed</h4>\n<p>Previously, <strong>single artifact downloads</strong> behaved differently depending on how you specified the artifact:</p>\n<ul>\n<li><strong>By name</strong>: <code>name: my-artifact</code> → extracted to <code>path/</code> (direct)</li>\n<li><strong>By ID</strong>: <code>artifact-ids: 12345</code> → extracted to <code>path/my-artifact/</code> (nested)</li>\n</ul>\n<p>Now both methods are consistent:</p>\n<ul>\n<li><strong>By name</strong>: <code>name: my-artifact</code> → extracted to <code>path/</code> (unchanged)</li>\n<li><strong>By ID</strong>: <code>artifact-ids: 12345</code> → extracted to <code>path/</code> (fixed - now direct)</li>\n</ul>\n<h4>Migration Guide</h4>\n<h5>✅ No Action Needed If:</h5>\n<ul>\n<li>You download artifacts by <strong>name</strong></li>\n<li>You download <strong>multiple</strong> artifacts by ID</li>\n<li>You already use <code>merge-multiple: true</code> as a workaround</li>\n</ul>\n<h5>⚠️ Action Required If:</h5>\n<p>You download <strong>single artifacts by ID</strong> and your workflows expect the nested directory structure.</p>\n<p><strong>Before v5 (nested structure):</strong></p>\n<pre lang=\"yaml\"><code>- uses: actions/download-artifact@v4\n  with:\n    artifact-ids: 12345\n    path: dist\n# Files were in: dist/my-artifact/\n</code></pre>\n<blockquote>\n<p>Where <code>my-artifact</code> is the name of the artifact you previously uploaded</p>\n</blockquote>\n<p><strong>To maintain old behavior (if needed):</strong></p>\n<pre lang=\"yaml\"><code>&lt;/tr&gt;&lt;/table&gt; \n</code></pre>\n</blockquote>\n<p>... (truncated)</p>\n</details>\n<details>\n<summary>Commits</summary>\n<ul>\n<li><a href=\"https://github.com/actions/download-artifact/commit/634f93cb2916e3fdff6788551b99b062d0335ce0\"><code>634f93c</code></a> Merge pull request <a href=\"https://redirect.github.com/actions/download-artifact/issues/416\">#416</a> from actions/single-artifact-id-download-path</li>\n<li><a href=\"https://github.com/actions/download-artifact/commit/b19ff4302770b82aa4694b63703b547756dacce6\"><code>b19ff43</code></a> refactor: resolve download path correctly in artifact download tests (mainly ...</li>\n<li><a href=\"https://github.com/actions/download-artifact/commit/e262cbee4ab8c473c61c59a81ad8e9dc760e90db\"><code>e262cbe</code></a> bundle dist</li>\n<li><a href=\"https://github.com/actions/download-artifact/commit/bff23f9308ceb2f06d673043ea6311519be6a87b\"><code>bff23f9</code></a> update docs</li>\n<li><a href=\"https://github.com/actions/download-artifact/commit/fff8c148a8fdd56aa81fcb019f0b5f6c65700c4d\"><code>fff8c14</code></a> fix download path logic when downloading a single artifact by id</li>\n<li><a href=\"https://github.com/actions/download-artifact/commit/448e3f862ab3ef47aa50ff917776823c9946035b\"><code>448e3f8</code></a> Merge pull request <a href=\"https://redirect.github.com/actions/download-artifact/issues/407\">#407</a> from actions/nebuk89-patch-1</li>\n<li><a href=\"https://github.com/actions/download-artifact/commit/47225c44b359a5155efdbbbc352041b3e249fb1b\"><code>47225c4</code></a> Update README.md</li>\n<li>See full diff in <a href=\"https://github.com/actions/download-artifact/compare/d3f86a106a0bac45b974a628896c90dbdf5c8093...634f93cb2916e3fdff6788551b99b062d0335ce0\">compare view</a></li>\n</ul>\n</details>\n<br />\n\n\n[![Dependabot compatibility score](https://dependabot-badges.githubapp.com/badges/compatibility_score?dependency-name=actions/download-artifact&package-manager=github_actions&previous-version=4.3.0&new-version=5.0.0)](https://docs.github.com/en/github/managing-security-vulnerabilities/about-dependabot-security-updates#about-compatibility-scores)\n\nDependabot will resolve any conflicts with this PR as long as you don't alter it yourself. You can also trigger a rebase manually by commenting `@dependabot rebase`.\n\n[//]: # (dependabot-automerge-start)\n[//]: # (dependabot-automerge-end)\n\n---\n\n<details>\n<summary>Dependabot commands and options</summary>\n<br />\n\nYou can trigger Dependabot actions by commenting on this PR:\n- `@dependabot rebase` will rebase this PR\n- `@dependabot recreate` will recreate this PR, overwriting any edits that have been made to it\n- `@dependabot merge` will merge this PR after your CI passes on it\n- `@dependabot squash and merge` will squash and merge this PR after your CI passes on it\n- `@dependabot cancel merge` will cancel a previously requested merge and block automerging\n- `@dependabot reopen` will reopen this PR if it is closed\n- `@dependabot close` will close this PR and stop Dependabot recreating it. You can achieve the same result by closing it manually\n- `@dependabot show <dependency name> ignore conditions` will show all of the ignore conditions of the specified dependency\n- `@dependabot ignore this major version` will close this PR and stop Dependabot creating any more for this major version (unless you reopen the PR or upgrade to it yourself)\n- `@dependabot ignore this minor version` will close this PR and stop Dependabot creating any more for this minor version (unless you reopen the PR or upgrade to it yourself)\n- `@dependabot ignore this dependency` will close this PR and stop Dependabot creating any more for this dependency (unless you reopen the PR or upgrade to it yourself)\n\n\n</details>",
+    "changed_files": 5,
+    "closed_at": "2025-08-12T03:04:43Z",
     "comments": 0,
-    "comments_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/issues/211/comments",
+    "comments_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/issues/213/comments",
     "commits": 1,
-    "commits_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/211/commits",
-    "created_at": "2025-05-19T15:39:30Z",
-    "deletions": 1,
-    "diff_url": "https://github.com/guitarrapc/githubactions-lab/pull/211.diff",
+    "commits_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/213/commits",
+    "created_at": "2025-08-11T20:41:01Z",
+    "deletions": 5,
+    "diff_url": "https://github.com/guitarrapc/githubactions-lab/pull/213.diff",
     "draft": false,
     "head": {
-      "label": "guitarrapc:dependabot/github_actions/aquaproj/aqua-installer-4.0.0",
-      "ref": "dependabot/github_actions/aquaproj/aqua-installer-4.0.0",
+      "label": "guitarrapc:dependabot/github_actions/actions/download-artifact-5.0.0",
+      "ref": "dependabot/github_actions/actions/download-artifact-5.0.0",
       "repo": {
         "allow_auto_merge": true,
         "allow_forking": true,
@@ -263,8 +263,8 @@
         "name": "githubactions-lab",
         "node_id": "MDEwOlJlcG9zaXRvcnkyNTc0NjU0Njg=",
         "notifications_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/notifications{?since,all,participating}",
-        "open_issues": 3,
-        "open_issues_count": 3,
+        "open_issues": 4,
+        "open_issues_count": 4,
         "owner": {
           "avatar_url": "https://avatars.githubusercontent.com/u/3856350?v=4",
           "events_url": "https://api.github.com/users/guitarrapc/events{/privacy}",
@@ -288,9 +288,9 @@
         },
         "private": false,
         "pulls_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls{/number}",
-        "pushed_at": "2025-05-21T00:03:18Z",
+        "pushed_at": "2025-08-12T03:04:37Z",
         "releases_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/releases{/id}",
-        "size": 2975,
+        "size": 3150,
         "squash_merge_commit_message": "COMMIT_MESSAGES",
         "squash_merge_commit_title": "COMMIT_OR_PR_TITLE",
         "ssh_url": "git@github.com:guitarrapc/githubactions-lab.git",
@@ -306,7 +306,7 @@
           "github-actions"
         ],
         "trees_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/git/trees{/sha}",
-        "updated_at": "2025-05-21T00:03:21Z",
+        "updated_at": "2025-08-12T03:04:40Z",
         "url": "https://api.github.com/repos/guitarrapc/githubactions-lab",
         "use_squash_pr_title_as_default": false,
         "visibility": "public",
@@ -314,7 +314,7 @@
         "watchers_count": 50,
         "web_commit_signoff_required": false
       },
-      "sha": "cf9f37375a4bb5febb2026aeb7c1ad8d12a124f3",
+      "sha": "314124bf659fcea17a4e0d589dac8ba3f5b1eada",
       "user": {
         "avatar_url": "https://avatars.githubusercontent.com/u/3856350?v=4",
         "events_url": "https://api.github.com/users/guitarrapc/events{/privacy}",
@@ -337,9 +337,9 @@
         "user_view_type": "public"
       }
     },
-    "html_url": "https://github.com/guitarrapc/githubactions-lab/pull/211",
-    "id": 2529128333,
-    "issue_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/issues/211",
+    "html_url": "https://github.com/guitarrapc/githubactions-lab/pull/213",
+    "id": 2736862222,
+    "issue_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/issues/213",
     "labels": [
       {
         "color": "0366d6",
@@ -362,11 +362,11 @@
     ],
     "locked": false,
     "maintainer_can_modify": false,
-    "merge_commit_sha": "0aa05aaa595d78d5ed6400f83b2394bcc559f9eb",
+    "merge_commit_sha": "d5db1dd9cbc194dc3a54e59aeb7cc11301d9aa31",
     "mergeable": null,
     "mergeable_state": "unknown",
     "merged": true,
-    "merged_at": "2025-05-21T04:00:01Z",
+    "merged_at": "2025-08-12T03:04:43Z",
     "merged_by": {
       "avatar_url": "https://avatars.githubusercontent.com/u/3856350?v=4",
       "events_url": "https://api.github.com/users/guitarrapc/events{/privacy}",
@@ -389,20 +389,20 @@
       "user_view_type": "public"
     },
     "milestone": null,
-    "node_id": "PR_kwDOD1icfM6Wv2-N",
-    "number": 211,
-    "patch_url": "https://github.com/guitarrapc/githubactions-lab/pull/211.patch",
+    "node_id": "PR_kwDOD1icfM6jITQO",
+    "number": 213,
+    "patch_url": "https://github.com/guitarrapc/githubactions-lab/pull/213.patch",
     "rebaseable": null,
     "requested_reviewers": [],
     "requested_teams": [],
     "review_comment_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/comments{/number}",
     "review_comments": 0,
-    "review_comments_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/211/comments",
+    "review_comments_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/213/comments",
     "state": "closed",
-    "statuses_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/statuses/cf9f37375a4bb5febb2026aeb7c1ad8d12a124f3",
-    "title": "chore(deps): bump aquaproj/aqua-installer from 3.1.1 to 4.0.0",
-    "updated_at": "2025-05-21T04:00:01Z",
-    "url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/211",
+    "statuses_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/statuses/314124bf659fcea17a4e0d589dac8ba3f5b1eada",
+    "title": "chore(deps): bump actions/download-artifact from 4.3.0 to 5.0.0",
+    "updated_at": "2025-08-12T03:04:43Z",
+    "url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/213",
     "user": {
       "avatar_url": "https://avatars.githubusercontent.com/in/29110?v=4",
       "events_url": "https://api.github.com/users/dependabot%5Bbot%5D/events{/privacy}",
@@ -486,8 +486,8 @@
     "name": "githubactions-lab",
     "node_id": "MDEwOlJlcG9zaXRvcnkyNTc0NjU0Njg=",
     "notifications_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/notifications{?since,all,participating}",
-    "open_issues": 3,
-    "open_issues_count": 3,
+    "open_issues": 4,
+    "open_issues_count": 4,
     "owner": {
       "avatar_url": "https://avatars.githubusercontent.com/u/3856350?v=4",
       "events_url": "https://api.github.com/users/guitarrapc/events{/privacy}",
@@ -511,9 +511,9 @@
     },
     "private": false,
     "pulls_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls{/number}",
-    "pushed_at": "2025-05-21T00:03:18Z",
+    "pushed_at": "2025-08-12T03:04:37Z",
     "releases_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/releases{/id}",
-    "size": 2975,
+    "size": 3150,
     "ssh_url": "git@github.com:guitarrapc/githubactions-lab.git",
     "stargazers_count": 50,
     "stargazers_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/stargazers",
@@ -527,7 +527,7 @@
       "github-actions"
     ],
     "trees_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/git/trees{/sha}",
-    "updated_at": "2025-05-21T00:03:21Z",
+    "updated_at": "2025-08-12T03:04:40Z",
     "url": "https://api.github.com/repos/guitarrapc/githubactions-lab",
     "visibility": "public",
     "watchers": 50,
