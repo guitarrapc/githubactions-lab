@@ -50,36 +50,32 @@ runs:
       run: |
         max_retries=3
         retry_count=0
-
-        try_push() {
-          if git push; then
-            echo "Successfully completed."
-            return 0
-          fi
-
-          echo "Failed to push, try 'git pull --rebase' to resolve ..."
-          if ! git pull origin "$GIT_REF" --rebase; then
-            echo "'git pull --rebase' has problen, you need resolve conflict ..."
-            return 1
-          fi
-          return 2
-        }
-
-        # main loop
+        
         while [ $retry_count -lt $max_retries ]; do
-          echo "try 'git push' ($((retry_count + 1))/${max_retries}) ..."
-          try_push
-          result=$?
-          if [ $result -eq 0 ]; then
-            # exit on success
+          git add -N .
+          if git diff --name-only --exit-code; then
+            echo "No changes."
+            echo "changed=0" | tee -a "${GITHUB_OUTPUT}"
+            echo "Successfully completed."
             exit 0
-          elif [ $result -eq 1 ]; then
-            # exit when 'git pull --rebase' has problem
-            exit 1
           fi
-
+        
+          echo "try 'git push' ($((retry_count + 1))/${max_retries}) ..."
+          if git push origin "$GIT_REF"; then
+            echo "Push succeeded."
+            exit 0
+          else
+            echo "Failed to push, try 'git pull --rebase' to resolve ..."
+            if git pull origin "$GIT_REF" --rebase; then
+              echo "Rebase succeeded, will retry push."
+              # Do NOT exit here, continue loop to retry push
+            else
+              echo "'git pull --rebase' has problem, you need resolve conflict ..."
+              exit 1
+            fi
+          fi
           ((retry_count++))
         done
-
+        
         echo "max retry reached, but failed to push."
         exit 1
