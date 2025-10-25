@@ -8,6 +8,8 @@ jobs:
   stale:
     permissions:
       contents: read
+      issues: write
+      pull-requests: write
     runs-on: ubuntu-24.04
     timeout-minutes: 3
     steps:
@@ -15,11 +17,13 @@ jobs:
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
           # enable issue
-          stale-issue-message: "This issue is stale because it has been open 1 days with no activity. Remove stale label or comment or this will be closed in 7 days."
+          stale-issue-message: "This issue is stale because it has been open 180 days with no activity. Remove stale label or comment or this will be closed in 30 days."
+          stale-issue-label: "stale"
           # enable pr
-          stale-pr-message: "This PR is stale because it has been open 1 days with no activity. Remove stale label or comment or this will be closed in 7 days."
-          days-before-stale: 30
+          stale-pr-message: "This PR is stale because it has been open 180 days with no activity. Remove stale label or comment or this will be closed in 30 days."
+          stale-pr-label: "stale"
+          days-before-stale: 180
           days-before-close: 30
-          exempt-issue-labels: "no-stale"
-          exempt-pr-labels: "no-stale"
+          exempt-issue-labels: "wip"
+          exempt-pr-labels: "wip"
           remove-stale-when-updated: true
