@@ -7,53 +7,53 @@ set -euo pipefail
 # 2. call lint-banwords.sh with arguments, see usage --help.
 
 function usage() {
-    cat <<EOF
+  cat <<EOF
 $(basename ${0}) is a tool for detect ban-words in the file.
 
 Usage:
-    $(basename ${0}) [<Arguments>] [<Options>]
+  $(basename ${0}) [<Arguments>] [<Options>]
 
 Arguments:
-    --directory       target directory to search files.
-    --file-filter     regular expression to select target file.
+  --directory       target directory to search files.
+  --file-filter     regular expression to select target file.
 
 Options:
-    --definition      line-delimited ban-words definition file. (default: .github/ban-words.txt)
-    --fixed-word      treat banned-word as fixed word. default is regular expression. (0|1, default: 0)
-    --debug           show debug message. (0|1, default: 0)
-    --help, -h        print this
+  --definition      line-delimited ban-words definition file. (default: .github/ban-words.txt)
+  --fixed-word      treat banned-word as fixed word. default is regular expression. (0|1, default: 0)
+  --debug           show debug message. (0|1, default: 0)
+  --help, -h        print this
 
 Examples:
-    # search ".github/workflows" directory for file name matches "k8s.*yml" pattern. detect ban words written in default path, ".github/ban-words.txt".
-    $(basename ${0}) --directory .github/workflows --file-filter "k8s.*yml"
+  # search ".github/workflows" directory for file name matches "k8s.*yml" pattern. detect ban words written in default path, ".github/ban-words.txt".
+  $(basename ${0}) --directory .github/workflows --file-filter "k8s.*yml"
 
-    # use detect ban words definition from ".github/ban-words2.txt".
-    $(basename ${0}) --directory .github/workflows --file-filter "k8s.*yml" --definition .github/ban-words2.txt
+  # use detect ban words definition from ".github/ban-words2.txt".
+  $(basename ${0}) --directory .github/workflows --file-filter "k8s.*yml" --definition .github/ban-words2.txt
 
-    # enable --fixed-word to treat ban words as fixed word, not regular expression.
-    $(basename ${0}) --directory .github/workflows --file-filter "k8s.*yml" --fixed-word 1
+  # enable --fixed-word to treat ban words as fixed word, not regular expression.
+  $(basename ${0}) --directory .github/workflows --file-filter "k8s.*yml" --fixed-word 1
 
-    # show debug message.
-    $(basename ${0}) --directory .github/workflows --file-filter "k8s.*yml" --debug 1
+  # show debug message.
+  $(basename ${0}) --directory .github/workflows --file-filter "k8s.*yml" --debug 1
 EOF
 }
 
 while [ $# -gt 0 ]; do
-    case $1 in
-        # target directory
-        --directory) DIRECTORY=$2; shift 2; ;;
-        # regex target file filter
-        --file-filter) FILTER=$2; shift 2; ;;
-        # ban-words definition file
-        --definition) DEFINITION=$2; shift 2; ;;
-        # treat ban-words as fixed word, not regular expression.
-        --fixed-word) BAN_WORD_FIXED=$2; shift 2; ;;
-        # show debug message
-        --debug) DEBUG=$2; shift 2; ;;
-        --help) usage; exit 1; ;;
-        -h) usage; exit 1; ;;
-        *) shift ;;
-    esac
+  case $1 in
+    # target directory
+    --directory) DIRECTORY=$2; shift 2; ;;
+    # regex target file filter
+    --file-filter) FILTER=$2; shift 2; ;;
+    # ban-words definition file
+    --definition) DEFINITION=$2; shift 2; ;;
+    # treat ban-words as fixed word, not regular expression.
+    --fixed-word) BAN_WORD_FIXED=$2; shift 2; ;;
+    # show debug message
+    --debug) DEBUG=$2; shift 2; ;;
+    --help) usage; exit 1; ;;
+    -h) usage; exit 1; ;;
+    *) shift ;;
+  esac
 done
 
 # summary: guard arguments.
