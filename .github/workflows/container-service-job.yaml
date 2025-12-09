@@ -1,4 +1,4 @@
-name: Container Job
+name: Container Service
 on:
   workflow_dispatch:
   push:
