@@ -3463,6 +3463,40 @@ Also if workflow ran with `pull_request` trigger, then you can enable [PR commen
 
 ```yaml
 # .github/workflows/actionlint.yaml
+
+name: actionlint
+on:
+  workflow_dispatch:
+  pull_request:
+    branches: ["main"]
+    paths:
+      - ".github/workflows/**"
+  schedule:
+    - cron: "0 0 * * *"
+
+jobs:
+  lint:
+    permissions:
+      contents: read
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
+        with:
+          persist-credentials: false
+      - uses: aquaproj/aqua-installer@9ebf656952a20c45a5d66606f083ff34f58b8ce0 # v4.0.0
+        with:
+          aqua_version: v2.43.1
+      # github workflows/action's Static Checker
+      - name: Run actionlint
+        run: actionlint -color -oneline
+      # checkout's persist-credentials: false checker
+      - name: Run ghalint
+        run: ghalint run
+      # A static analysis tool for GitHub Actions
+      - name: Run zizmor
+        run: docker run -t -v .:/github ghcr.io/woodruffw/zizmor:1.5.2 /github --min-severity medium
+
 ```
 
 # Cheat Sheet
