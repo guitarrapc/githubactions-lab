@@ -3126,7 +3126,11 @@ drwxr-xr-x  3 runner docker 4096 Jun 14 10:23 workflows
 
 ## Container job
 
-GitHub Actions is running on selected OS runner, such as `ubuntu-latest`, `windows-latest`, or `macos-latest`. However, sometimes you may want to run job on specific container image. GitHub Actions supports running job on container with `container` option. Use `job.container:` to specify container image.
+GitHub Actions has 2 types of container support. One is Job container, another is Service container.
+
+**Job conatiner**
+
+GitHub Actions is running on selected OS runner, such as `ubuntu-latest`, `windows-latest`, or `macos-latest`. However, sometimes you may want to run job on specific container image. GitHub Actions supports running job on container with `jobs.<job_id>.container` option. Following example shows how to run job on `golang:1.25` container, and run Go program.
 
 ```yaml
 # .github/workflows/container-job.yaml
@@ -3157,6 +3161,14 @@ jobs:
         run: go run main.go
         working-directory: ./src/go
 
+```
+
+**Service container**
+
+Service container is used to run container alongside your job. Typical usecase is database server such as MySQL, PostgreSQL, or Redis. You can define one or more service containers with `jobs.<job_id>.services` option. Following example show how to run Redis service container alongside job container.
+
+```yaml
+# .github/workflows/container-service-job.yaml
 ```
 
 ## Dispatch other repo workflow
