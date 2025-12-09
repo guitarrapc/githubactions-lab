@@ -3168,7 +3168,7 @@ jobs:
 Service container is used to run container alongside your job. Typical usecase is database server such as MySQL, PostgreSQL, or Redis. You can define one or more service containers with `jobs.<job_id>.services` option. Following example show how to run Redis service container alongside job container.
 
 ```yaml
-# .github/workflows/container-service-job.yaml
+# .github/workflows/container-service.yaml
 ```
 
 ## Dispatch other repo workflow
