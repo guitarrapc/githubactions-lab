@@ -86,6 +86,7 @@ GitHub Actions research and test laboratory.
   - [Tool management in GitHub Actions with Aqua](#tool-management-in-github-actions-with-aqua)
 - [Cheat Sheet](#cheat-sheet)
   - [Actions naming](#actions-naming)
+  - [Actions runner info](#actions-runner-info)
   - [Get Branch](#get-branch)
   - [Get Tag](#get-tag)
   - [Get Workflow Name](#get-workflow-name)
@@ -3316,8 +3317,13 @@ jobs:
             await core.summary.addTable([
               ["Key", "Value"],
               ["GITHUB_REF", process.env.GITHUB_REF],
-              ["github.event_name", ${{ github.event_name }}],
+              ["github.event_name", '${{ github.event_name }}'],
+              ["github.head_ref", process.env.HEAD_REF],
+              ["github.ref_name", process.env.REF_NAME],
             ]).write()
+        env:
+          HEAD_REF: ${{ github.head_ref }}
+          REF_NAME: ${{ github.ref_name }}
 
   # To split summary, use different job
   bash:
@@ -3335,7 +3341,12 @@ jobs:
             echo "| --- | --- |"
             echo "| GITHUB_REF | ${GITHUB_REF} |"
             echo "| github.event_name | ${{ github.event_name }} |"
+            echo "| github.head_ref | ${HEAD_REF} |"
+            echo "| github.ref_name | ${REF_NAME} |"
           } | tee -a "$GITHUB_STEP_SUMMARY"
+        env:
+          HEAD_REF: ${{ github.head_ref }}
+          REF_NAME: ${{ github.ref_name }}
 
 ```
 
@@ -3544,6 +3555,54 @@ action folder naming also follow this rule.
 
 - ✔️: `.github/actions/setup-foo`
 - ❌: `.github/actions/setup_foo`
+
+## Actions runner info
+
+When you want to see hosted runner info, here are sample.
+
+```yaml
+# .github/workflows/actionrunner-info.yaml
+
+name: action runner info
+on:
+  workflow_dispatch:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+  schedule:
+    - cron: "0 0 * * *"
+
+jobs:
+  actionlint:
+    permissions:
+      contents: read
+    runs-on: ubuntu-24.04
+    timeout-minutes: 3
+    steps:
+      - name: Ubuntu Version
+        run: lsb_release -a
+      - name: CPU (/proc/cpuinfo)
+        run: cat /proc/cpuinfo
+      - name: CPU (lscpu)
+        run: lscpu
+      - name: CPU Name
+        id: cpu
+        run: |
+          cpu=$(less /proc/cpuinfo | grep -m 1 'model name' | cut -f 2 -d ":")
+          echo "name=${cpu:1}" | tee -a "${GITHUB_OUTPUT}"
+      - name: Memory Info (/proc/meminfo)
+        run: cat /proc/meminfo
+      - name: Storage (df)
+        run: df -h
+      - name: Network (ip)
+        run: ip -o -f inet addr show
+      - name: User (passwd)
+        run: cat /etc/passwd
+      - name: Group (group)
+        run: cat /etc/group
+
+```
 
 ## Get Branch
 
