@@ -36,7 +36,7 @@ jobs:
           echo "::endgroup::"
       - uses: actions/setup-dotnet@d4c94342e560b34958eacfc5d055d21461ed1c5d # v5.0.0
         with:
-          dotnet-version: 8.0.x
+          dotnet-version: 10.0.x
       - name: dotnet after setup-dotnet (/usr/share/dotnet/dotnet)
         run: |
           echo "::group::dotnet path"
@@ -69,29 +69,29 @@ jobs:
     runs-on: ${{ matrix.runs-on }}
     timeout-minutes: 3
     steps:
-    - uses: actions/setup-dotnet@d4c94342e560b34958eacfc5d055d21461ed1c5d # v5.0.0
-      with:
-        dotnet-version: 8.0.x
-      env:
-        DOTNET_INSTALL_DIR: ${{ runner.temp }}/.dotnet
-    - name: dotnet after setup-dotnet (/usr/share/dotnet/dotnet)
-      run: |
-        echo "::group::dotnet path"
-        command -v dotnet
-        echo "::endgroup::"
+      - uses: actions/setup-dotnet@d4c94342e560b34958eacfc5d055d21461ed1c5d # v5.0.0
+        with:
+          dotnet-version: 10.0.x
+        env:
+          DOTNET_INSTALL_DIR: ${{ runner.temp }}/.dotnet
+      - name: dotnet after setup-dotnet (/usr/share/dotnet/dotnet)
+        run: |
+          echo "::group::dotnet path"
+          command -v dotnet
+          echo "::endgroup::"
 
-        echo "::group::dotnet files under /usr/share/dotnet/sdk"
-        ls -l "$(command -v dotnet)"
-        echo "::endgroup::"
+          echo "::group::dotnet files under /usr/share/dotnet/sdk"
+          ls -l "$(command -v dotnet)"
+          echo "::endgroup::"
 
-        echo "::group::dotnet files under ${{ env.DOTNET_ROOT }}/sdk"
-        ls -l "${{ env.DOTNET_ROOT }}/sdk"
-        echo "::endgroup::"
+          echo "::group::dotnet files under ${{ env.DOTNET_ROOT }}/sdk"
+          ls -l "${{ env.DOTNET_ROOT }}/sdk"
+          echo "::endgroup::"
 
-        echo "::group::dotnet version"
-        dotnet --version
-        echo "::endgroup::"
+          echo "::group::dotnet version"
+          dotnet --version
+          echo "::endgroup::"
 
-        echo "::group::dotnet sdks"
-        dotnet --list-sdks
-        echo "::endgroup::"
+          echo "::group::dotnet sdks"
+          dotnet --list-sdks
+          echo "::endgroup::"
