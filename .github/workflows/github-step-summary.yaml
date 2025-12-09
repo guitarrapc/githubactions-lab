@@ -24,9 +24,11 @@ jobs:
               ["Key", "Value"],
               ["GITHUB_REF", process.env.GITHUB_REF],
               ["github.event_name", '${{ github.event_name }}'],
-              ["github.head_ref", '${{ github.head_ref }}'],
+              ["github.head_ref", process.env.HEAD_REF],
               ["github.ref_name", '${{ github.ref_name }}'],
             ]).write()
+        env:
+          HEAD_REF: ${{ github.head_ref }}
 
   # To split summary, use different job
   bash:
@@ -44,6 +46,8 @@ jobs:
             echo "| --- | --- |"
             echo "| GITHUB_REF | ${GITHUB_REF} |"
             echo "| github.event_name | ${{ github.event_name }} |"
-            echo "| github.head_ref | ${{ github.head_ref }} |"
+            echo "| github.head_ref | ${HEAD_REF} |"
             echo "| github.ref_name | ${{ github.ref_name }} |"
           } | tee -a "$GITHUB_STEP_SUMMARY"
+        env:
+          HEAD_REF: ${{ github.head_ref }}
