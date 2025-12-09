@@ -1804,7 +1804,7 @@ jobs:
   parallel:
     strategy:
       # If set true, then if one matrix job fails, cancel others
-      fail-fast: true # default is true.
+      fail-fast: false # default is true.
       matrix:
         version: [10, 12, 14]
         runs-on: [ubuntu-24.04, ubuntu-latest]
