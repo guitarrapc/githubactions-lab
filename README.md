@@ -443,6 +443,98 @@ There are several shell types available in [default](https://docs.github.com/en/
 
 ```yaml
 # .github/workflows/default-shell.yaml
+
+name: default shell
+on:
+  workflow_dispatch:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+
+env:
+  BRANCH_NAME: ${{ startsWith(github.event_name, 'pull_request') && github.head_ref || github.ref_name }}
+
+jobs:
+  bash:
+    strategy:
+      matrix:
+        runs-on: [ubuntu-24.04, windows-2025]
+    permissions:
+      contents: read
+    runs-on: ${{ matrix.runs-on }}
+    timeout-minutes: 3
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - name: Add ENV and OUTPUT by shell
+        id: shell
+        run: |
+          echo "BRANCH=${{ env.BRANCH_NAME }}" | tee -a "$GITHUB_ENV"
+          echo "branch=${{ env.BRANCH_NAME }}" | tee -a "$GITHUB_OUTPUT"
+      - name: Show ENV and OUTPUT
+        run: |
+          echo ${{ env.BRANCH }}
+          echo ${{ steps.shell.outputs.branch }}
+      - name: Add PATH
+        run: echo "$HOME/foo/bar" | tee -a "$GITHUB_PATH"
+      - name: Show PATH
+        run: echo "$PATH"
+
+  pwsh:
+    strategy:
+      matrix:
+        runs-on: [ubuntu-24.04, windows-2025]
+    permissions:
+      contents: read
+    runs-on: ${{ matrix.runs-on }}
+    timeout-minutes: 3
+    defaults:
+      run:
+        shell: pwsh
+    steps:
+      - name: Add ENV and OUTPUT by shell
+        id: shell
+        run: |
+          echo "BRANCH=${{ env.BRANCH_NAME }}" | Tee-Object -Append -FilePath "${env:GITHUB_ENV}"
+          echo "branch=${{ env.BRANCH_NAME }}" | Tee-Object -Append -FilePath "${env:GITHUB_OUTPUT}"
+      - name: Show ENV and OUTPUT
+        run: |
+          echo "${{ env.BRANCH }}"
+          echo "${{ steps.shell.outputs.branch }}"
+      - name: Add PATH
+        run: echo "$HOME/foo/bar" | Tee-Object -Append -FilePath "${env:GITHUB_PATH}"
+      - name: Show PATH
+        run: echo "${env:PATH}"
+
+  cmd:
+    strategy:
+      matrix:
+        runs-on: [windows-2025]
+    permissions:
+      contents: read
+    runs-on: ${{ matrix.runs-on }}
+    timeout-minutes: 3
+    defaults:
+      run:
+        shell: cmd
+    steps:
+      # cmd must not use quotes!!
+      - name: Add ENV and OUTPUT by shell
+        id: shell
+        run: |
+          echo BRANCH=${{ env.BRANCH_NAME }} >> %GITHUB_ENV%
+          echo branch=${{ env.BRANCH_NAME }} >> %GITHUB_OUTPUT%
+      - name: Show ENV and OUTPUT
+        run: |
+          echo ${{ env.BRANCH }}
+          echo ${{ steps.shell.outputs.branch }}
+      - name: Add PATH
+        run: echo "%UserProfile%\foo\bar" >> %GITHUB_PATH%
+      - name: Show PATH
+        run: echo %PATH%
+
 ```
 
 ## Dump context metadata
@@ -720,7 +812,7 @@ Call this script from workflow.
 ```yaml
 # .github/workflows/setenv-script.yaml
 
-name: env with script
+name: set env with script
 on:
   workflow_dispatch:
   push:
@@ -747,15 +839,6 @@ jobs:
       - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
         with:
           persist-credentials: false
-      - name: Add ENV and OUTPUT by shell
-        id: shell
-        run: |
-          echo "BRANCH=${{ env.BRANCH_NAME }}" | tee -a "$GITHUB_ENV"
-          echo "branch=${{ env.BRANCH_NAME }}" | tee -a "$GITHUB_OUTPUT"
-      - name: Show ENV and OUTPUT
-        run: |
-          echo ${{ env.BRANCH }}
-          echo ${{ steps.shell.outputs.branch }}
       - name: Add ENV and OUTPUT by Script
         id: script
         run: bash ./.github/scripts/setenv.sh --ref "${{ env.BRANCH_NAME }}"
@@ -763,12 +846,8 @@ jobs:
         run: |
           echo ${{ env.BRANCH_SCRIPT }}
           echo ${{ steps.script.outputs.branch }}
-      - name: Add PATH
-        run: echo "$HOME/foo/bar" | tee -a "$GITHUB_PATH"
-      - name: Show PATH
-        run: echo "$PATH"
 
-  powershell:
+  pwsh:
     strategy:
       matrix:
         runs-on: [ubuntu-24.04, windows-2025]
@@ -783,15 +862,6 @@ jobs:
       - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
         with:
           persist-credentials: false
-      - name: Add ENV and OUTPUT by shell
-        id: shell
-        run: |
-          echo "BRANCH=${{ env.BRANCH_NAME }}" | Tee-Object -Append -FilePath "${env:GITHUB_ENV}"
-          echo "branch=${{ env.BRANCH_NAME }}" | Tee-Object -Append -FilePath "${env:GITHUB_OUTPUT}"
-      - name: Show ENV and OUTPUT
-        run: |
-          echo "${{ env.BRANCH }}"
-          echo "${{ steps.shell.outputs.branch }}"
       - name: Add ENV and OUTPUT by Script
         id: script
         run: ./.github/scripts/setenv.ps1 -Ref "${{ env.BRANCH_NAME }}"
@@ -799,10 +869,6 @@ jobs:
         run: |
           echo "${{ env.BRANCH_SCRIPT }}"
           echo "${{ steps.script.outputs.branch }}"
-      - name: Add PATH
-        run: echo "$HOME/foo/bar" | Tee-Object -Append -FilePath "${env:GITHUB_PATH}"
-      - name: Show PATH
-        run: echo "${env:PATH}"
 
   cmd:
     strategy:
@@ -819,16 +885,6 @@ jobs:
       - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
         with:
           persist-credentials: false
-      # cmd must not use quotes!!
-      - name: Add ENV and OUTPUT by shell
-        id: shell
-        run: |
-          echo BRANCH=${{ env.BRANCH_NAME }} >> %GITHUB_ENV%
-          echo branch=${{ env.BRANCH_NAME }} >> %GITHUB_OUTPUT%
-      - name: Show ENV and OUTPUT
-        run: |
-          echo ${{ env.BRANCH }}
-          echo ${{ steps.shell.outputs.branch }}
       - name: Add ENV and OUTPUT by Script
         id: script
         run: .github/scripts/setenv.bat --ref "${{ env.BRANCH_NAME }}"
@@ -836,10 +892,6 @@ jobs:
         run: |
           echo ${{ env.BRANCH_SCRIPT }}
           echo ${{ steps.script.outputs.branch }}
-      - name: Add PATH
-        run: echo "%UserProfile%\foo\bar" >> %GITHUB_PATH%
-      - name: Show PATH
-        run: echo %PATH%
 
 ```
 
