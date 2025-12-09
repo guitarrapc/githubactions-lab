@@ -87,14 +87,15 @@ GitHub Actions research and test laboratory.
 - [Cheat Sheet](#cheat-sheet)
   - [Actions naming](#actions-naming)
   - [Actions runner info](#actions-runner-info)
+  - [Detect PullRequest (PR) is Fork or not](#detect-pullrequest-pr-is-fork-or-not)
   - [Get Branch](#get-branch)
   - [Get Tag](#get-tag)
   - [Get Workflow Name](#get-workflow-name)
   - [Get Workflow Url](#get-workflow-url)
   - [GitHub Actions commit icon](#github-actions-commit-icon)
   - [Path for Downloaded Remote Actions](#path-for-downloaded-remote-actions)
+  - [Stale Issue and PR close automation](#stale-issue-and-pr-close-automation)
   - [Type converter with fromJson](#type-converter-with-fromjson)
-  - [Detect PullRequest (PR) is Fork or not](#detect-pullrequest-pr-is-fork-or-not)
   - [Want to get a list of GitHub Actions scheduled workflows](#want-to-get-a-list-of-github-actions-scheduled-workflows)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
@@ -3604,6 +3605,40 @@ jobs:
 
 ```
 
+## Detect PullRequest (PR) is Fork or not
+
+There are several way to achieve it. Most simple and easy to understand is `fork` boolean.
+
+1. Check `fork` boolean.
+
+```
+# Fork
+if: ${{ github.event.pull_request.head.repo.fork }}
+
+# Not Fork
+if: ${{ ! github.event.pull_request.head.repo.fork }}
+```
+
+2. Check `full_name` is match to repo.
+
+```
+# Fork
+if: ${{ github.event.pull_request.head.repo.full_name != 'org/repo' }}
+
+# Not Fork
+if: ${{ github.event.pull_request.head.repo.full_name == 'org/repo' }}
+```
+
+3. Check label is match to owner. Org member commit label is match to owner.
+
+```
+# Fork
+if: ${{ ! startsWith(github.event.pull_request.head.label, format('{0}:', github.repository_owner)) }}
+
+# Not Fork
+if: ${{ startsWith(github.event.pull_request.head.label, format('{0}:', github.repository_owner)) }}
+```
+
 ## Get Branch
 
 `github.ref` context will return branch name, however it is unsafe to directly reference in ref. It is recommended to use through env.
@@ -3717,6 +3752,45 @@ jobs:
 
 ```
 
+## Stale Issue and PR close automation
+
+You can automatically close stale issues and PRs with [actions/stale](https://github.com/actions/stale). This actions will mark issues and PRs as stale after a certain period of inactivity, then close them after another period of inactivity. If an update/comment occur on stale issues or pull requests, the stale label will be removed and the timer will restart
+
+```yaml
+# .github/workflows/stale.yaml
+
+name: "stale"
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 0 * * *"
+
+jobs:
+  stale:
+    permissions:
+      contents: read
+      issues: write
+      pull-requests: write
+    runs-on: ubuntu-24.04
+    timeout-minutes: 3
+    steps:
+      - uses: actions/stale@5f858e3efba33a5ca4407a664cc011ad407f2008 # v10.1.0
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          # enable issue
+          stale-issue-message: "This issue is stale because it has been open 180 days with no activity. Remove stale label or comment or this will be closed in 30 days."
+          stale-issue-label: "stale"
+          # enable pr
+          stale-pr-message: "This PR is stale because it has been open 180 days with no activity. Remove stale label or comment or this will be closed in 30 days."
+          stale-pr-label: "stale"
+          days-before-stale: 180
+          days-before-close: 30
+          exempt-issue-labels: "no-stale"
+          exempt-pr-labels: "no-stale"
+          remove-stale-when-updated: true
+
+```
+
 ## Type converter with fromJson
 
 There are some cases you want convert string to other type.
@@ -3737,39 +3811,6 @@ ${{ inputs.foobar == 'true' }} # false. type is not string
 ${{ inputs.foobar == true }} # true. type is boolean
 ```
 
-## Detect PullRequest (PR) is Fork or not
-
-There are several way to achieve it. Most simple and easy to understand is `fork` boolean.
-
-1. Check `fork` boolean.
-
-```
-# Fork
-if: ${{ github.event.pull_request.head.repo.fork }}
-
-# Not Fork
-if: ${{ ! github.event.pull_request.head.repo.fork }}
-```
-
-2. Check `full_name` is match to repo.
-
-```
-# Fork
-if: ${{ github.event.pull_request.head.repo.full_name != 'org/repo' }}
-
-# Not Fork
-if: ${{ github.event.pull_request.head.repo.full_name == 'org/repo' }}
-```
-
-3. Check label is match to owner. Org member commit label is match to owner.
-
-```
-# Fork
-if: ${{ ! startsWith(github.event.pull_request.head.label, format('{0}:', github.repository_owner)) }}
-
-# Not Fork
-if: ${{ startsWith(github.event.pull_request.head.label, format('{0}:', github.repository_owner)) }}
-```
 
 ## Want to get a list of GitHub Actions scheduled workflows
 
