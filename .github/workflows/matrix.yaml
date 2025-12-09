@@ -1,0 +1,43 @@
+name: matrix
+on:
+  workflow_dispatch:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+
+jobs:
+  parallel:
+    strategy:
+      # If set true, then if one matrix job fails, cancel others
+      fail-fast: true # default is true.
+      matrix:
+        version: [10, 12, 14]
+        runs-on: [ubuntu-24.04, ubuntu-latest]
+    permissions:
+      contents: read
+    runs-on: ${{ matrix.runs-on }}
+    timeout-minutes: 3
+    steps:
+      - name: Show runner info
+        run: |
+          echo "runner.os: ${{ runner.os }}"
+          echo "matrix.runs-on: ${{ matrix.runs-on }}"
+          echo "matrix.version: ${{ matrix.version }}"
+
+  serial:
+    strategy:
+      # run matrix jobs one by one = serial execution
+      max-parallel: 1
+      matrix:
+        version: [10, 12, 14]
+        runs-on: [ubuntu-24.04, ubuntu-latest]
+    permissions:
+      contents: read
+    runs-on: ${{ matrix.runs-on }}
+    timeout-minutes: 3
+    steps:
+      - name: Show runner info
+        run: |
+          echo "runner.os: ${{ runner.os }}"
+          echo "matrix.runs-on: ${{ matrix.runs-on }}"

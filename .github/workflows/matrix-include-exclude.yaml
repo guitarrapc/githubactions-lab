@@ -1,4 +1,4 @@
-name: matrix include only
+name: matrix include exclude
 on:
   workflow_dispatch:
   push:
@@ -11,18 +11,15 @@ jobs:
     strategy:
       matrix:
         include:
-          - { org: apples }
-          - { org: bananas }
-          - { org: carrots }
+          - fruit: apples
+          - fruit: bananas
+          - fruit: carrots
+        exclude:
+          - fruit: bananas
     permissions:
       contents: read
     runs-on: ubuntu-24.04
     timeout-minutes: 3
-    env:
-      ORG: ${{ matrix.org }}
-      # you can not use expression. do it on step.
-      # output on step is -> ci-`date '+%Y%m%d-%H%M%S'`+${GITHUB_SHA:0:6}
-      # GIT_TAG: "ci-`date '+%Y%m%d-%H%M%S'`+${GITHUB_SHA:0:6}"
     steps:
       - run: echo "${ORG}"
       - run: echo "${NEW_ORG}"
