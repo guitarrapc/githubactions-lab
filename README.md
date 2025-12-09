@@ -373,25 +373,6 @@ GitHub Actions use Build artifacts to share files between jobs in a workflow and
 
 # Basic - Fundamentables
 
-## Pin Third-Party GitHub Actions to a Specific Commit SHA
-
-Several vulnerabilities in GitHub Actions have been identified due to the use of tags or version numbers.
-To mitigate these risks, always pin your actions to a specific commit SHA.
-
-For example, instead of using:
-
-```
-uses: actions/cache@v3.3.1
-```
-
-pin the action to a specific commit:
-
-```
-uses: actions/cache@88522ab9f39a2ea568f7027eddc7d8d8bc9d59c8 # v3.3.1
-```
-
-Both Dependabot and Renovate can help you keep your actions up to date even pinned to a specific commit SHA.
-
 ## Checkout without persist-credentials
 
 When you use `actions/checkout`, by default it keep git remote url with token authentication after checkout. This should be not needed for normal case, and it may cause security issue. So that you should set `persist-credentials: false` to disable it.
@@ -452,6 +433,16 @@ jobs:
           git remote rm origin
           git config --unset user.email
           git config --unset user.name
+```
+
+## default shell
+
+You can select shell type for `run` step with `step.shell:`. Also you can select default shell type for `run` step with `defaults.run.shell:`.
+
+There are several shell types available in [default](https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-syntax#defaultsrunshell). Following example shows how to set `bash`, `pwsh` and `cmd`.
+
+```yaml
+# .github/workflows/default-shell.yaml
 ```
 
 ## Dump context metadata
@@ -1216,6 +1207,25 @@ jobs:
 ```
 
 The most important permission is `id-tokens: write`. It enables job to use OIDC like AWS, Azure and GCP.
+
+## Pin Third-Party Actions to Commit SHA
+
+Several vulnerabilities in GitHub Actions have been identified due to the use of tags or version numbers.
+To mitigate these risks, always pin your actions to a specific commit SHA.
+
+For example, instead of using:
+
+```
+uses: actions/cache@v3.3.1
+```
+
+pin the action to a specific commit:
+
+```
+uses: actions/cache@88522ab9f39a2ea568f7027eddc7d8d8bc9d59c8 # v3.3.1
+```
+
+Both Dependabot and Renovate can help you keep your actions up to date even pinned to a specific commit SHA.
 
 ## Reusable actions written in yaml - composite
 

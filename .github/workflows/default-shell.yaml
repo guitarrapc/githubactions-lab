@@ -1,4 +1,4 @@
-name: env with script
+name: default shell
 on:
   workflow_dispatch:
   push:
@@ -22,9 +22,6 @@ jobs:
       run:
         shell: bash
     steps:
-      - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
-        with:
-          persist-credentials: false
       - name: Add ENV and OUTPUT by shell
         id: shell
         run: |
@@ -34,19 +31,12 @@ jobs:
         run: |
           echo ${{ env.BRANCH }}
           echo ${{ steps.shell.outputs.branch }}
-      - name: Add ENV and OUTPUT by Script
-        id: script
-        run: bash ./.github/scripts/setenv.sh --ref "${{ env.BRANCH_NAME }}"
-      - name: Show Script  ENV and OUTPUT
-        run: |
-          echo ${{ env.BRANCH_SCRIPT }}
-          echo ${{ steps.script.outputs.branch }}
       - name: Add PATH
         run: echo "$HOME/foo/bar" | tee -a "$GITHUB_PATH"
       - name: Show PATH
         run: echo "$PATH"
 
-  powershell:
+  pwsh:
     strategy:
       matrix:
         runs-on: [ubuntu-24.04, windows-2025]
@@ -58,9 +48,6 @@ jobs:
       run:
         shell: pwsh
     steps:
-      - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
-        with:
-          persist-credentials: false
       - name: Add ENV and OUTPUT by shell
         id: shell
         run: |
@@ -70,13 +57,6 @@ jobs:
         run: |
           echo "${{ env.BRANCH }}"
           echo "${{ steps.shell.outputs.branch }}"
-      - name: Add ENV and OUTPUT by Script
-        id: script
-        run: ./.github/scripts/setenv.ps1 -Ref "${{ env.BRANCH_NAME }}"
-      - name: Show Script ENV and OUTPUT
-        run: |
-          echo "${{ env.BRANCH_SCRIPT }}"
-          echo "${{ steps.script.outputs.branch }}"
       - name: Add PATH
         run: echo "$HOME/foo/bar" | Tee-Object -Append -FilePath "${env:GITHUB_PATH}"
       - name: Show PATH
@@ -94,9 +74,6 @@ jobs:
       run:
         shell: cmd
     steps:
-      - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
-        with:
-          persist-credentials: false
       # cmd must not use quotes!!
       - name: Add ENV and OUTPUT by shell
         id: shell
@@ -107,13 +84,6 @@ jobs:
         run: |
           echo ${{ env.BRANCH }}
           echo ${{ steps.shell.outputs.branch }}
-      - name: Add ENV and OUTPUT by Script
-        id: script
-        run: .github/scripts/setenv.bat --ref "${{ env.BRANCH_NAME }}"
-      - name: Show Script ENV and OUTPUT
-        run: |
-          echo ${{ env.BRANCH_SCRIPT }}
-          echo ${{ steps.script.outputs.branch }}
       - name: Add PATH
         run: echo "%UserProfile%\foo\bar" >> %GITHUB_PATH%
       - name: Show PATH
