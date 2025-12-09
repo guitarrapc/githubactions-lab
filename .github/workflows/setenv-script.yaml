@@ -1,4 +1,4 @@
-name: default shell and script
+name: set env with script
 on:
   workflow_dispatch:
   push:

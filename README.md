@@ -718,7 +718,7 @@ echo branch=${GITHUB_REF} | tee -a "$GITHUB_OUTPUT"
 Call this script from workflow.
 
 ```yaml
-# .github/workflows/env-with-script.yaml
+# .github/workflows/setenv-script.yaml
 
 name: env with script
 on:
