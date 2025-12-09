@@ -23,7 +23,7 @@ jobs:
             await core.summary.addTable([
               ["Key", "Value"],
               ["GITHUB_REF", process.env.GITHUB_REF],
-              ["github.event_name", ${{ github.event_name }}],
+              ["github.event_name", '${{ github.event_name }}'],
             ]).write()
 
   # To split summary, use different job
