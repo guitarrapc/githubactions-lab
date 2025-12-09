@@ -3320,6 +3320,8 @@ Linter will check follows.
 * ghalint: Check actions/checkout should set `persist-credentials: false`, Reusable workflow's `secrets: inherit`.
 * zizmor: Check GitHub Action's security vulnerability.
 
+> TIPS: See [Tool management in GitHub Actions with Aqua](#tool-management-in-github-actions-with-aqua) for Aqua usage.
+
 ```yaml
 # .github/workflows/actionlint.yaml
 
@@ -3454,6 +3456,14 @@ Also if workflow ran with `pull_request` trigger, then you can enable [PR commen
 
 ![image](https://github.com/guitarrapc/githubactions-lab/assets/3856350/c1194994-a3ef-4ccb-a4d4-9a0e1bf287fd)
 
+
+## Tool management in GitHub Actions with Aqua
+
+[Aqua](https://aquaproj.github.io/) is a tool manager and useful for GitHub Actions. Aqua can install and manage multiple tools in your GitHub Actions workflow. Aqua uses `aqua.yaml` file to define which tools and versions to install. Just calling `aqua install` command will install all tools defined in `aqua.yaml`, you don't need to install each tool one by one.
+
+```yaml
+# .github/workflows/actionlint.yaml
+```
 
 # Cheat Sheet
 
