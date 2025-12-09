@@ -37,7 +37,7 @@ GitHub Actions research and test laboratory.
   - [Store Build Artifacts](#store-build-artifacts)
 - [Basic - Fundamentables](#basic---fundamentables)
   - [Checkout without persist-credentials](#checkout-without-persist-credentials)
-  - [default shell](#default-shell)
+  - [Default shell](#default-shell)
   - [Dump context metadata](#dump-context-metadata)
   - [Concurrency Control](#concurrency-control)
   - [Environment variables in script](#environment-variables-in-script)
@@ -436,7 +436,7 @@ jobs:
           git config --unset user.name
 ```
 
-## default shell
+## Default shell
 
 You can select shell type for `run` step with `step.shell:`. Also you can select default shell type for `run` step with `defaults.run.shell:`.
 
