@@ -1924,7 +1924,7 @@ jobs:
 
 **Matrix includes/excludes**
 
-Ise `include` to expand existing matrix, and use `exclude` to remove matrix combinations. Both are optional, and you can directly specify `include` without specifying base matrix.
+Use `include` to expand existing matrix, and use `exclude` to remove matrix combinations. Both are optional, and you can directly specify `include` without specifying base matrix.
 
 Following example shows `include` to define 3 matrix items, then `exclude` to remove one item from matrix. Result is 2 matrix jobs `apples` and `carrots`.
 
