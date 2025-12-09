@@ -87,14 +87,15 @@ GitHub Actions research and test laboratory.
 - [Cheat Sheet](#cheat-sheet)
   - [Actions naming](#actions-naming)
   - [Actions runner info](#actions-runner-info)
+  - [Detect PullRequest (PR) is Fork or not](#detect-pullrequest-pr-is-fork-or-not)
   - [Get Branch](#get-branch)
   - [Get Tag](#get-tag)
   - [Get Workflow Name](#get-workflow-name)
   - [Get Workflow Url](#get-workflow-url)
   - [GitHub Actions commit icon](#github-actions-commit-icon)
   - [Path for Downloaded Remote Actions](#path-for-downloaded-remote-actions)
+  - [Stale Issue and PR close automation](#stale-issue-and-pr-close-automation)
   - [Type converter with fromJson](#type-converter-with-fromjson)
-  - [Detect PullRequest (PR) is Fork or not](#detect-pullrequest-pr-is-fork-or-not)
   - [Want to get a list of GitHub Actions scheduled workflows](#want-to-get-a-list-of-github-actions-scheduled-workflows)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
