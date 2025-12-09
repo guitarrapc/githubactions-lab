@@ -1803,7 +1803,8 @@ on:
 jobs:
   parallel:
     strategy:
-      fail-fast: false # default is true.
+      # If set true, then if one matrix job fails, cancel others
+      fail-fast: true # default is true.
       matrix:
         version: [10, 12, 14]
         runs-on: [ubuntu-24.04, ubuntu-latest]
@@ -1911,8 +1912,8 @@ jobs:
     runs-on: ubuntu-24.04
     timeout-minutes: 3
     env:
-      # you can not use expression inside env:. do it on step.
       ORG: ${{ matrix.org }}
+      # you can not use expression inside env:. do it on step.
     steps:
       - run: echo "${ORG}"
       - run: echo "${NEW_ORG}"
@@ -1953,7 +1954,10 @@ jobs:
     runs-on: ubuntu-24.04
     timeout-minutes: 3
     steps:
-      - run: echo "${{ matrix.fruit }}"
+      - run: echo "${ORG}"
+      - run: echo "${NEW_ORG}"
+        env:
+          NEW_ORG: new-${{ env.ORG }}
 
 ```
 
@@ -3257,6 +3261,39 @@ Service container is used to run container alongside your job. Typical usecase i
 
 ```yaml
 # .github/workflows/container-service.yaml
+
+name: Container Service
+on:
+  workflow_dispatch:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+
+jobs:
+  container:
+    permissions:
+      contents: read
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    services:
+      redis:
+        image: redis:8
+        ports:
+          - 6379:6379
+    steps:
+      - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
+        with:
+          persist-credentials: false
+      - uses: actions/setup-go@4dc6199c7b1a012772edbd06daecab0f50c9053c # v6.1.0
+        with:
+          go-version: "1.25"
+      - name: Show Go version
+        run: go version
+      - name: Run Go program
+        run: go run main.go
+        working-directory: ./src/go-db
+
 ```
 
 ## Dispatch other repo workflow
