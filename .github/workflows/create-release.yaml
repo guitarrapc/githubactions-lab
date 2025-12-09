@@ -1,9 +1,11 @@
 name: create release
 concurrency: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
 on:
+  # auto clean up
   push:
     tags:
       - "[0-9]+.[0-9]+.[0-9]+*"
+  # auto clean up
   pull_request:
     branches: ["main"]
   workflow_dispatch:
