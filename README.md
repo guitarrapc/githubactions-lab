@@ -438,7 +438,7 @@ jobs:
 
 ## Default shell
 
-You can select shell type for `run` step with `step.shell:`. Also you can select default shell type for `run` step with `defaults.run.shell:`.
+You can select shell type for `run` step with `shell:`. Also you can select default shell type for `run` step with `defaults.run.shell:`.
 
 There are several shell types available in [default](https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-syntax#defaultsrunshell). Following example shows how to set `bash`, `pwsh` and `cmd`.
 
