@@ -37,6 +37,7 @@ GitHub Actions research and test laboratory.
   - [Store Build Artifacts](#store-build-artifacts)
 - [Basic - Fundamentables](#basic---fundamentables)
   - [Pin Third-Party GitHub Actions to a Specific Commit SHA](#pin-third-party-github-actions-to-a-specific-commit-sha)
+  - [Checkout without persist-credentials](#checkout-without-persist-credentials)
   - [Dump context metadata](#dump-context-metadata)
   - [Concurrency Control](#concurrency-control)
   - [Environment variables in script](#environment-variables-in-script)
