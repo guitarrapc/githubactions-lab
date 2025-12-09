@@ -1260,13 +1260,14 @@ uses: actions/cache@88522ab9f39a2ea568f7027eddc7d8d8bc9d59c8 # v3.3.1
 
 Both Dependabot and Renovate can help you keep your actions up to date even pinned to a specific commit SHA.
 
-## Reusable actions written in yaml - composite
+## Reusable actions written in yaml - Composite Actions
 
 To reuse local job, create local composite action is easiest way to do, this is calls `composite actions`.
-Create yaml file inside local action path, then declare `using: "composite"` in local action.yaml.
 
-- step1. Place your yaml to `.github/actions/YOUR_DIR/action.yaml`
-- step2. Write your composite actions yaml.
+Place your composite actions yaml under `.github/actions/<ACTION_NAME>/action.yaml`. Then write your composite actions yaml. Key point is `runs.using: "composite"`.
+
+- `inputs`: If you want to pass input parameters to composite actions, define `inputs:` section.
+- `outputs`: If you want to pass output parameters from composite actions, define `outputs:` section. Following example shows `id: output_example` step output `number` is passed to composite action output `number`.
 
 ```yaml
 # .github/actions/local-composite-actions/action.yaml
@@ -1274,11 +1275,18 @@ Create yaml file inside local action path, then declare `using: "composite"` in 
 name: YOUR ACTION NAME
 description: |
   Desctiption of your action
+# Define input parameters to pass from caller to callee.
 inputs:
   foo:
     description: thi is foo input
     default: FOO
     required: false
+# Define output parameters to pass from callee to caller.
+outputs:
+  number:
+    description: "an example output number"
+    value: ${{ steps.output_example.outputs.number }}
+
 runs:
   using: "composite" # this is key point
   steps:
@@ -1287,13 +1295,17 @@ runs:
       env:
         FOO_VALUE: ${{ inputs.foo }}
       run: echo "$FOO_VALUE"
+    - name: output example
+      shell: bash
+      id: output_example
+      run: echo "number=123" | tee -a "$GITHUB_OUTPUT"
 
 ```
 
-- step3. Use actions from your workflow.
+To use composite actions from your workflow, refer local action path with `uses: ./PATH/TO/ACTION`. If you have input parameters, set `with:` section. If composite action has output parameters, you can get it with `steps.<STEP_ID>.outputs.<OUTPUT_NAME>`.
 
 ```yaml
-# .github/workflows/reuse-local-actions.yaml
+# .github/workflows/reuse-local-actions-composite.yaml
 
 name: reuse local action
 on:
@@ -1314,22 +1326,20 @@ jobs:
         with:
           persist-credentials: false
       - name: use local action
+        id: composite
         uses: ./.github/actions/local-composite-actions
         with:
           foo: BAR
+      - name: show output
+        run: echo "output number is ${{ steps.composite.outputs.number }}"
 
 ```
 
-## Reusable actions written in node - node12
+## Reusable actions written in node - Node Actions
 
-To reuse local job, create local node action is another way to do, this is calls `node actions`.
-Create yaml file inside local action path, then declare `using: "node12"` in local action.yaml.
-Next place your Node.js source files inside actions directory, you may require `index.js` for entrypoint.
+If you want to write in node, then use `node actions`. Place your ation.yaml to `.github/actions/YOUR_DIR/actions.yaml` Place your Node.js source code to `index.js` under same directory. Key point is `runs.using: "node20"`.
 
-> TIPS: You may find it is useful when you are running on GHE and copy GitHub Actions to your local.
-
-- step1. Place your ation.yaml to `.github/actions/YOUR_DIR/actions.yaml`
-- step2. Write your node actions yaml.
+This is useful when you want run, or debug, public GitHub Actions in your environment.
 
 ```yaml
 # .github/actions/local-node-actions/action.yaml
@@ -1340,10 +1350,16 @@ description: |
 runs:
   using: "node20"
   main: "index.js"
+inputs:
+  name:
+    description: "Name to greet"
+    required: false
+    default: "World"
+outputs:
+  greeting:
+    description: "The greeting message"
 
 ```
-
-- step3. Write your source code to `.github/actions/YOUR_DIR/*.js`.
 
 ```js
 // .github/actions/local-node-actions/index.js
@@ -1386,44 +1402,11 @@ You can call local workflow of the same repository (Private repository), and rem
 
 > detail: [Reusing workflows \- GitHub Docs](https://docs.github.com/ja/actions/using-workflows/reusing-workflows)
 
-### Caller Limitations
+Place Reusable workflow yaml file under `.github/workflows/` then set `on.workflow_call` trigger, you are ready for reusable workflow. Define `inputs`, `secrets` and `outputs` under on.workflow_call to pass data between caller and callee.
 
-There are limitations on Reusable workflow caller.
-
-1. Private repo can call same repo's reusable workflow, but can not call other private repo's workflow.
-1. Caller cannot use ${{ env.FOO }} for `with` inputs.
-   ```yaml
-   jobs:
-     bad:
-       runs-on: ubuntu-latest
-       steps:
-         uses: ./.github/workflows/dummy.yaml
-         with:
-           value: ${{ env.FOO }} # caller can not use `env.` in with block.
-         secrets: inherit
-   ```
-
-### Callee Limitations
-
-1. Callee workflow must place under `.github/workflows/`. Otherwise caller treated as calling public workflow.
-   ```bash
-   $ ls -l ./.github/workflows/
-   ```
-1. Callee cannot refer Caller's Environment Variable.
-   ```yaml
-   env:
-     FOO: foo # Reusable workflow callee cannot refer this env.
-   jobs:
-     bad:
-       runs-on: ubuntu-latest
-       steps:
-         uses: ./.github/workflows/dummy.yaml
-   ```
-
-### Reusable workflow definition sample
-
-Place Reusable workflow yaml file under `.github/workflows/` then set `on.workflow_call` trigger, you are ready for reusable workflow.
-Any `inputs`, `secrets` and `outputs` should define onder on.workflow_call.
+- inputs: define input parameters to pass from caller to callee.
+- secrets: define secret parameters to pass from caller to callee.
+- outputs: define output parameters to pass from callee to caller.
 
 ```yaml
 # .github/workflows/_reusable-workflow-called.yaml
@@ -1639,6 +1622,40 @@ jobs:
       APPLES: ${{ secrets.APPLES }}
 
 ```
+
+### Caller Limitations
+
+There are limitations on Reusable workflow caller.
+
+1. Private repo can call same repo's reusable workflow, but can not call other private repo's workflow.
+1. Caller cannot use ${{ env.FOO }} for `with` inputs.
+   ```yaml
+   jobs:
+     bad:
+       runs-on: ubuntu-latest
+       steps:
+         uses: ./.github/workflows/dummy.yaml
+         with:
+           value: ${{ env.FOO }} # caller can not use `env.` in with block.
+         secrets: inherit
+   ```
+
+### Callee Limitations
+
+1. Callee workflow must place under `.github/workflows/`. Otherwise caller treated as calling public workflow.
+   ```bash
+   $ ls -l ./.github/workflows/
+   ```
+1. Callee cannot refer Caller's Environment Variable.
+   ```yaml
+   env:
+     FOO: foo # Reusable workflow callee cannot refer this env.
+   jobs:
+     bad:
+       runs-on: ubuntu-latest
+       steps:
+         uses: ./.github/workflows/dummy.yaml
+   ```
 
 ## Run when previous job is success
 
@@ -3292,6 +3309,24 @@ jobs:
         working-directory: ./src/go-db
 
 ```
+
+## Data passing
+
+### Data passing between steps
+
+There are several ways to pass data between steps in the same job.
+
+- step outputs
+- environment variables
+- files
+
+### Data passing between jobs
+
+There are several ways to pass data between jobs.
+
+- job outputs and needs
+- artifacts (files)
+
 
 ## Dispatch other repo workflow
 

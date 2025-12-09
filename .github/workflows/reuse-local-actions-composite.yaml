@@ -17,6 +17,9 @@ jobs:
         with:
           persist-credentials: false
       - name: use local action
+        id: composite
         uses: ./.github/actions/local-composite-actions
         with:
           foo: BAR
+      - name: show output
+        run: echo "output number is ${{ steps.composite.outputs.number }}"

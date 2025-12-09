@@ -4,3 +4,11 @@ description: |
 runs:
   using: "node20"
   main: "index.js"
+inputs:
+  name:
+    description: "Name to greet"
+    required: false
+    default: "World"
+outputs:
+  greeting:
+    description: "The greeting message"
