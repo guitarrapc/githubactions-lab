@@ -36,8 +36,8 @@ GitHub Actions research and test laboratory.
   - [Skip CI and commit message](#skip-ci-and-commit-message)
   - [Store Build Artifacts](#store-build-artifacts)
 - [Basic - Fundamentables](#basic---fundamentables)
-  - [Pin Third-Party GitHub Actions to a Specific Commit SHA](#pin-third-party-github-actions-to-a-specific-commit-sha)
   - [Checkout without persist-credentials](#checkout-without-persist-credentials)
+  - [default shell](#default-shell)
   - [Dump context metadata](#dump-context-metadata)
   - [Concurrency Control](#concurrency-control)
   - [Environment variables in script](#environment-variables-in-script)
@@ -45,6 +45,7 @@ GitHub Actions research and test laboratory.
   - [Job needs and dependency](#job-needs-and-dependency)
   - [Job skip handling](#job-skip-handling)
   - [Permissions](#permissions)
+  - [Pin Third-Party Actions to Commit SHA](#pin-third-party-actions-to-commit-sha)
   - [Reusable actions written in yaml - composite](#reusable-actions-written-in-yaml---composite)
   - [Reusable actions written in node - node12](#reusable-actions-written-in-node---node12)
   - [Reusable workflow](#reusable-workflow)
@@ -373,25 +374,6 @@ GitHub Actions use Build artifacts to share files between jobs in a workflow and
 
 # Basic - Fundamentables
 
-## Pin Third-Party GitHub Actions to a Specific Commit SHA
-
-Several vulnerabilities in GitHub Actions have been identified due to the use of tags or version numbers.
-To mitigate these risks, always pin your actions to a specific commit SHA.
-
-For example, instead of using:
-
-```
-uses: actions/cache@v3.3.1
-```
-
-pin the action to a specific commit:
-
-```
-uses: actions/cache@88522ab9f39a2ea568f7027eddc7d8d8bc9d59c8 # v3.3.1
-```
-
-Both Dependabot and Renovate can help you keep your actions up to date even pinned to a specific commit SHA.
-
 ## Checkout without persist-credentials
 
 When you use `actions/checkout`, by default it keep git remote url with token authentication after checkout. This should be not needed for normal case, and it may cause security issue. So that you should set `persist-credentials: false` to disable it.
@@ -452,6 +434,108 @@ jobs:
           git remote rm origin
           git config --unset user.email
           git config --unset user.name
+```
+
+## default shell
+
+You can select shell type for `run` step with `step.shell:`. Also you can select default shell type for `run` step with `defaults.run.shell:`.
+
+There are several shell types available in [default](https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-syntax#defaultsrunshell). Following example shows how to set `bash`, `pwsh` and `cmd`.
+
+```yaml
+# .github/workflows/default-shell.yaml
+
+name: default shell
+on:
+  workflow_dispatch:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+
+env:
+  BRANCH_NAME: ${{ startsWith(github.event_name, 'pull_request') && github.head_ref || github.ref_name }}
+
+jobs:
+  bash:
+    strategy:
+      matrix:
+        runs-on: [ubuntu-24.04, windows-2025]
+    permissions:
+      contents: read
+    runs-on: ${{ matrix.runs-on }}
+    timeout-minutes: 3
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - name: Add ENV and OUTPUT by shell
+        id: shell
+        run: |
+          echo "BRANCH=${{ env.BRANCH_NAME }}" | tee -a "$GITHUB_ENV"
+          echo "branch=${{ env.BRANCH_NAME }}" | tee -a "$GITHUB_OUTPUT"
+      - name: Show ENV and OUTPUT
+        run: |
+          echo ${{ env.BRANCH }}
+          echo ${{ steps.shell.outputs.branch }}
+      - name: Add PATH
+        run: echo "$HOME/foo/bar" | tee -a "$GITHUB_PATH"
+      - name: Show PATH
+        run: echo "$PATH"
+
+  pwsh:
+    strategy:
+      matrix:
+        runs-on: [ubuntu-24.04, windows-2025]
+    permissions:
+      contents: read
+    runs-on: ${{ matrix.runs-on }}
+    timeout-minutes: 3
+    defaults:
+      run:
+        shell: pwsh
+    steps:
+      - name: Add ENV and OUTPUT by shell
+        id: shell
+        run: |
+          echo "BRANCH=${{ env.BRANCH_NAME }}" | Tee-Object -Append -FilePath "${env:GITHUB_ENV}"
+          echo "branch=${{ env.BRANCH_NAME }}" | Tee-Object -Append -FilePath "${env:GITHUB_OUTPUT}"
+      - name: Show ENV and OUTPUT
+        run: |
+          echo "${{ env.BRANCH }}"
+          echo "${{ steps.shell.outputs.branch }}"
+      - name: Add PATH
+        run: echo "$HOME/foo/bar" | Tee-Object -Append -FilePath "${env:GITHUB_PATH}"
+      - name: Show PATH
+        run: echo "${env:PATH}"
+
+  cmd:
+    strategy:
+      matrix:
+        runs-on: [windows-2025]
+    permissions:
+      contents: read
+    runs-on: ${{ matrix.runs-on }}
+    timeout-minutes: 3
+    defaults:
+      run:
+        shell: cmd
+    steps:
+      # cmd must not use quotes!!
+      - name: Add ENV and OUTPUT by shell
+        id: shell
+        run: |
+          echo BRANCH=${{ env.BRANCH_NAME }} >> %GITHUB_ENV%
+          echo branch=${{ env.BRANCH_NAME }} >> %GITHUB_OUTPUT%
+      - name: Show ENV and OUTPUT
+        run: |
+          echo ${{ env.BRANCH }}
+          echo ${{ steps.shell.outputs.branch }}
+      - name: Add PATH
+        run: echo "%UserProfile%\foo\bar" >> %GITHUB_PATH%
+      - name: Show PATH
+        run: echo %PATH%
+
 ```
 
 ## Dump context metadata
@@ -727,9 +811,9 @@ echo branch=${GITHUB_REF} | tee -a "$GITHUB_OUTPUT"
 Call this script from workflow.
 
 ```yaml
-# .github/workflows/env-with-script.yaml
+# .github/workflows/setenv-script.yaml
 
-name: env with script
+name: set env with script
 on:
   workflow_dispatch:
   push:
@@ -756,15 +840,6 @@ jobs:
       - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
         with:
           persist-credentials: false
-      - name: Add ENV and OUTPUT by shell
-        id: shell
-        run: |
-          echo "BRANCH=${{ env.BRANCH_NAME }}" | tee -a "$GITHUB_ENV"
-          echo "branch=${{ env.BRANCH_NAME }}" | tee -a "$GITHUB_OUTPUT"
-      - name: Show ENV and OUTPUT
-        run: |
-          echo ${{ env.BRANCH }}
-          echo ${{ steps.shell.outputs.branch }}
       - name: Add ENV and OUTPUT by Script
         id: script
         run: bash ./.github/scripts/setenv.sh --ref "${{ env.BRANCH_NAME }}"
@@ -772,12 +847,8 @@ jobs:
         run: |
           echo ${{ env.BRANCH_SCRIPT }}
           echo ${{ steps.script.outputs.branch }}
-      - name: Add PATH
-        run: echo "$HOME/foo/bar" | tee -a "$GITHUB_PATH"
-      - name: Show PATH
-        run: echo "$PATH"
 
-  powershell:
+  pwsh:
     strategy:
       matrix:
         runs-on: [ubuntu-24.04, windows-2025]
@@ -792,15 +863,6 @@ jobs:
       - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
         with:
           persist-credentials: false
-      - name: Add ENV and OUTPUT by shell
-        id: shell
-        run: |
-          echo "BRANCH=${{ env.BRANCH_NAME }}" | Tee-Object -Append -FilePath "${env:GITHUB_ENV}"
-          echo "branch=${{ env.BRANCH_NAME }}" | Tee-Object -Append -FilePath "${env:GITHUB_OUTPUT}"
-      - name: Show ENV and OUTPUT
-        run: |
-          echo "${{ env.BRANCH }}"
-          echo "${{ steps.shell.outputs.branch }}"
       - name: Add ENV and OUTPUT by Script
         id: script
         run: ./.github/scripts/setenv.ps1 -Ref "${{ env.BRANCH_NAME }}"
@@ -808,10 +870,6 @@ jobs:
         run: |
           echo "${{ env.BRANCH_SCRIPT }}"
           echo "${{ steps.script.outputs.branch }}"
-      - name: Add PATH
-        run: echo "$HOME/foo/bar" | Tee-Object -Append -FilePath "${env:GITHUB_PATH}"
-      - name: Show PATH
-        run: echo "${env:PATH}"
 
   cmd:
     strategy:
@@ -828,16 +886,6 @@ jobs:
       - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
         with:
           persist-credentials: false
-      # cmd must not use quotes!!
-      - name: Add ENV and OUTPUT by shell
-        id: shell
-        run: |
-          echo BRANCH=${{ env.BRANCH_NAME }} >> %GITHUB_ENV%
-          echo branch=${{ env.BRANCH_NAME }} >> %GITHUB_OUTPUT%
-      - name: Show ENV and OUTPUT
-        run: |
-          echo ${{ env.BRANCH }}
-          echo ${{ steps.shell.outputs.branch }}
       - name: Add ENV and OUTPUT by Script
         id: script
         run: .github/scripts/setenv.bat --ref "${{ env.BRANCH_NAME }}"
@@ -845,10 +893,6 @@ jobs:
         run: |
           echo ${{ env.BRANCH_SCRIPT }}
           echo ${{ steps.script.outputs.branch }}
-      - name: Add PATH
-        run: echo "%UserProfile%\foo\bar" >> %GITHUB_PATH%
-      - name: Show PATH
-        run: echo %PATH%
 
 ```
 
@@ -1216,6 +1260,25 @@ jobs:
 ```
 
 The most important permission is `id-tokens: write`. It enables job to use OIDC like AWS, Azure and GCP.
+
+## Pin Third-Party Actions to Commit SHA
+
+Several vulnerabilities in GitHub Actions have been identified due to the use of tags or version numbers.
+To mitigate these risks, always pin your actions to a specific commit SHA.
+
+For example, instead of using:
+
+```
+uses: actions/cache@v3.3.1
+```
+
+pin the action to a specific commit:
+
+```
+uses: actions/cache@88522ab9f39a2ea568f7027eddc7d8d8bc9d59c8 # v3.3.1
+```
+
+Both Dependabot and Renovate can help you keep your actions up to date even pinned to a specific commit SHA.
 
 ## Reusable actions written in yaml - composite
 
