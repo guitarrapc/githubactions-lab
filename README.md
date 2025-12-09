@@ -2710,6 +2710,11 @@ You can use [Dependabot](https://docs.github.com/en/code-security/dependabot/wor
 
 To enable Dependabot for GitHub Actions update, add `.github/dependabot.yml` to your repository.
 
+Following is my example dependabot.yaml file.
+
+- Update GitHub Actions/NuGet weekly, but ignore patch version update.
+- Also set cooldown period to 14 days, this means Dependabot will not create new PR for same dependency within 14 days after previous update PR created. This is usedful to reduce security risk from transient dependency vulnerability.
+
 ```yaml
 # .github/dependabot.yaml
 
