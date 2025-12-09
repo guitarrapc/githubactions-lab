@@ -3123,6 +3123,14 @@ drwxr-xr-x  3 runner docker 4096 Jun 14 10:23 workflows
 .... others
 ```
 
+## Container job
+
+GitHub Actions is running on selected OS runner, such as `ubuntu-latest`, `windows-latest`, or `macos-latest`. However, sometimes you may want to run job on specific container image. GitHub Actions supports running job on container with `container` option. Use `job.container:` to specify container image.
+
+```yaml
+# .github/workflows/container-job.yaml
+```
+
 ## Dispatch other repo workflow
 
 You can dispatch this repository to other repository via calling GitHub `workflow_dispatch` event API.
