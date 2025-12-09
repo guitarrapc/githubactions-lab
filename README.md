@@ -532,33 +532,6 @@ jobs:
       - name: Show PATH
         run: echo "${env:PATH}"
 
-  cmd:
-    strategy:
-      matrix:
-        runs-on: [windows-2025]
-    permissions:
-      contents: read
-    runs-on: ${{ matrix.runs-on }}
-    timeout-minutes: 3
-    defaults:
-      run:
-        shell: cmd
-    steps:
-      # cmd must not use quotes!!
-      - name: Add ENV and OUTPUT by shell
-        id: shell
-        run: |
-          echo BRANCH=${{ env.BRANCH_NAME }} >> %GITHUB_ENV%
-          echo branch=${{ env.BRANCH_NAME }} >> %GITHUB_OUTPUT%
-      - name: Show ENV and OUTPUT
-        run: |
-          echo ${{ env.BRANCH }}
-          echo ${{ steps.shell.outputs.branch }}
-      - name: Add PATH
-        run: echo "%UserProfile%\foo\bar" >> %GITHUB_PATH%
-      - name: Show PATH
-        run: echo %PATH%
-
 ```
 
 ## Dump context metadata
@@ -3316,6 +3289,53 @@ If you want adding a job summary, use [GITHUB_STEP_SUMMARY](https://docs.github.
 
 ```yaml
 # .github/workflows/github-step-summary.yaml
+
+name: GitHub Step Summary
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  # Summary is consolidated per job
+  script:
+    permissions:
+      contents: read
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - name: add summary
+        uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd # v8.0.0
+        with:
+          script: |
+            await core.summary.addHeading("Hello world! 🚀").write()
+            await core.summary.addTable([
+              ["Key", "Value"],
+              ["GITHUB_REF", process.env.GITHUB_REF],
+              ["github.event_name", ${{ github.event_name }}],
+            ]).write()
+
+  # To split summary, use different job
+  bash:
+    permissions:
+      contents: read
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - name: add summary
+        run: |
+          {
+            echo "### Parameters"
+            echo ""
+            echo "| Key | Value |"
+            echo "| --- | --- |"
+            echo "| GITHUB_REF | ${GITHUB_REF} |"
+            echo "| github.event_name | ${{ github.event_name }} |"
+          } | tee -a "$GITHUB_STEP_SUMMARY"
+
 ```
 
 ## Lint GitHub Actions workflow itself
@@ -3364,7 +3384,7 @@ jobs:
         run: ghalint run
       # A static analysis tool for GitHub Actions
       - name: Run zizmor
-        run: docker run -t -v .:/github ghcr.io/zizmorcore/zizmor:1.18.0 /github --min-severity medium
+        run: docker run -t -v .:/github ghcr.io/woodruffw/zizmor:1.5.2 /github --min-severity medium
 
 ```
 
