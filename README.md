@@ -391,6 +391,14 @@ uses: actions/cache@88522ab9f39a2ea568f7027eddc7d8d8bc9d59c8 # v3.3.1
 
 Both Dependabot and Renovate can help you keep your actions up to date even pinned to a specific commit SHA.
 
+## Checkout without persist-credentials
+
+When you use `actions/checkout`, by default it keep git remote url with token authentication after checkout. This should be not needed for normal case, and it may cause security issue. So that you should set `persist-credentials: false` to disable it.
+
+```yaml
+# .github/workflows/checkout-without-persistcredentials.yaml
+```
+
 ## Dump context metadata
 
 Use Context to retrive job id, name and others system info.
