@@ -82,6 +82,7 @@ GitHub Actions research and test laboratory.
   - [Lint GitHub Actions workflow itself](#lint-github-actions-workflow-itself)
   - [PR info from Merge Commit](#pr-info-from-merge-commit)
   - [Telemetry for GitHub Workflow execution](#telemetry-for-github-workflow-execution)
+  - [Tool management in GitHub Actions with Aqua](#tool-management-in-github-actions-with-aqua)
 - [Cheat Sheet](#cheat-sheet)
   - [Actions naming](#actions-naming)
   - [Get Branch](#get-branch)
@@ -3320,6 +3321,8 @@ Linter will check follows.
 * ghalint: Check actions/checkout should set `persist-credentials: false`, Reusable workflow's `secrets: inherit`.
 * zizmor: Check GitHub Action's security vulnerability.
 
+> TIPS: See [Tool management in GitHub Actions with Aqua](#tool-management-in-github-actions-with-aqua) for Aqua usage.
+
 ```yaml
 # .github/workflows/actionlint.yaml
 
@@ -3454,6 +3457,48 @@ Also if workflow ran with `pull_request` trigger, then you can enable [PR commen
 
 ![image](https://github.com/guitarrapc/githubactions-lab/assets/3856350/c1194994-a3ef-4ccb-a4d4-9a0e1bf287fd)
 
+
+## Tool management in GitHub Actions with Aqua
+
+[Aqua](https://aquaproj.github.io/) is a tool manager and useful for GitHub Actions. Aqua can install and manage multiple tools in your GitHub Actions workflow. Aqua uses `aqua.yaml` file to define which tools and versions to install. Just calling `aqua install` command will install all tools defined in `aqua.yaml`, you don't need to install each tool one by one.
+
+```yaml
+# .github/workflows/actionlint.yaml
+
+name: actionlint
+on:
+  workflow_dispatch:
+  pull_request:
+    branches: ["main"]
+    paths:
+      - ".github/workflows/**"
+  schedule:
+    - cron: "0 0 * * *"
+
+jobs:
+  lint:
+    permissions:
+      contents: read
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
+        with:
+          persist-credentials: false
+      - uses: aquaproj/aqua-installer@9ebf656952a20c45a5d66606f083ff34f58b8ce0 # v4.0.0
+        with:
+          aqua_version: v2.43.1
+      # github workflows/action's Static Checker
+      - name: Run actionlint
+        run: actionlint -color -oneline
+      # checkout's persist-credentials: false checker
+      - name: Run ghalint
+        run: ghalint run
+      # A static analysis tool for GitHub Actions
+      - name: Run zizmor
+        run: docker run -t -v .:/github ghcr.io/woodruffw/zizmor:1.5.2 /github --min-severity medium
+
+```
 
 # Cheat Sheet
 
