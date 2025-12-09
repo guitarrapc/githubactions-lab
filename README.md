@@ -52,8 +52,7 @@ GitHub Actions research and test laboratory.
   - [Run when previous job is success](#run-when-previous-job-is-success)
   - [Run when previous step status is specific](#run-when-previous-step-status-is-specific)
   - [Run write Multiline code](#run-write-multiline-code)
-  - [Strategy matrix and secret dereference](#strategy-matrix-and-secret-dereference)
-  - [Strategy matrix and environment variables](#strategy-matrix-and-environment-variables)
+  - [Matrix](#matrix)
   - [Timeout settings](#timeout-settings)
   - [Workflow dispatch and passing input](#workflow-dispatch-and-passing-input)
   - [Workflow dispatch with mixed input type](#workflow-dispatch-with-mixed-input-type)
@@ -1782,11 +1781,68 @@ jobs:
 
 ```
 
-## Strategy matrix and secret dereference
+## Matrix
 
-matrix cannot reference `secret` context, so pass secret key in matrix then dereference secret with `secrets[matrix.SECRET_KEY]`.
+Matrix is useful when you want to run same job with different parameters like OS, version and so on. Matrix can define with `jobs.<job_id>.strategy.matrix`. Following example shows how to use matrix.
 
-let's set secrets in settings.
+- To control how job failures are handled, use `fail-fast: false` to continue other matrix jobs when one of matrix job fails.
+- Matrix runs jobs in parallel by default. However you can set parallelism with `max-parallel` to limit number of parallel jobs.
+- Matrix can define multiple axis like OS and version. Following example will run 6 jobs in parallel (3 versions x 2 OS).
+
+```yaml
+# .github/workflows/matrix.yaml
+
+name: matrix
+on:
+  workflow_dispatch:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+
+jobs:
+  parallel:
+    strategy:
+      # If set true, then if one matrix job fails, cancel others
+      fail-fast: false # default is true.
+      matrix:
+        version: [10, 12, 14]
+        runs-on: [ubuntu-24.04, ubuntu-latest]
+    permissions:
+      contents: read
+    runs-on: ${{ matrix.runs-on }}
+    timeout-minutes: 3
+    steps:
+      - name: Show runner info
+        run: |
+          echo "runner.os: ${{ runner.os }}"
+          echo "matrix.runs-on: ${{ matrix.runs-on }}"
+          echo "matrix.version: ${{ matrix.version }}"
+
+  serial:
+    strategy:
+      # run matrix jobs one by one = serial execution
+      max-parallel: 1
+      matrix:
+        version: [10, 12, 14]
+        runs-on: [ubuntu-24.04, ubuntu-latest]
+    permissions:
+      contents: read
+    runs-on: ${{ matrix.runs-on }}
+    timeout-minutes: 3
+    steps:
+      - name: Show runner info
+        run: |
+          echo "runner.os: ${{ runner.os }}"
+          echo "matrix.runs-on: ${{ matrix.runs-on }}"
+
+```
+
+**Secret dereference in matrix**
+
+You cannot reference `secret` context inside `strategy.matrix` section, so pass secret key in matrix then dereference secret with `secrets[matrix.SECRET_KEY]`.
+
+Let's set secrets in settings, then run following workflow.
 
 ![image](https://user-images.githubusercontent.com/3856350/79934065-99de6c00-848c-11ea-8995-bfe948e6c0fb.png)
 
@@ -1831,10 +1887,9 @@ jobs:
 
 ```
 
-## Strategy matrix and environment variables
+**Matrix reference in env**
 
-you can refer matrix in job's `env:` section before steps.
-However you cannot use expression, you must evaluate in step.
+You can refer matrix in job's `env:` section before steps.
 
 ```yaml
 # .github/workflows/matrix-envvar.yaml
@@ -1858,14 +1913,48 @@ jobs:
     timeout-minutes: 3
     env:
       ORG: ${{ matrix.org }}
-      # you can not use expression. do it on step.
-      # output on step is -> ci-`date '+%Y%m%d-%H%M%S'`+${GITHUB_SHA:0:6}
-      # GIT_TAG: "ci-`date '+%Y%m%d-%H%M%S'`+${GITHUB_SHA:0:6}"
+      # you can not use expression inside env:. do it on step.
     steps:
       - run: echo "${ORG}"
       - run: echo "${NEW_ORG}"
         env:
           NEW_ORG: new-${{ env.ORG }}
+
+```
+
+**Matrix includes/excludes**
+
+Ise `include` to expand existing matrix, and use `exclude` to remove matrix combinations. Both are optional, and you can directly specify `include` without specifying base matrix.
+
+Following example shows `include` to define 3 matrix items, then `exclude` to remove one item from matrix. Result is 2 matrix jobs `apples` and `carrots`.
+
+```yaml
+# .github/workflows/matrix-include-exclude.yaml
+
+name: matrix include exclude
+on:
+  workflow_dispatch:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+
+jobs:
+  echo:
+    strategy:
+      matrix:
+        include:
+          - fruit: apples
+          - fruit: bananas
+          - fruit: carrots
+        exclude:
+          - fruit: bananas
+    permissions:
+      contents: read
+    runs-on: ubuntu-24.04
+    timeout-minutes: 3
+    steps:
+      - run: echo "${matrix.fruit}"
 
 ```
 
@@ -3169,6 +3258,39 @@ Service container is used to run container alongside your job. Typical usecase i
 
 ```yaml
 # .github/workflows/container-service.yaml
+
+name: Container Service
+on:
+  workflow_dispatch:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+
+jobs:
+  container:
+    permissions:
+      contents: read
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    services:
+      redis:
+        image: redis:8
+        ports:
+          - 6379:6379
+    steps:
+      - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
+        with:
+          persist-credentials: false
+      - uses: actions/setup-go@4dc6199c7b1a012772edbd06daecab0f50c9053c # v6.1.0
+        with:
+          go-version: "1.25"
+      - name: Show Go version
+        run: go version
+      - name: Run Go program
+        run: go run main.go
+        working-directory: ./src/go-db
+
 ```
 
 ## Dispatch other repo workflow

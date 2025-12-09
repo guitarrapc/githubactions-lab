@@ -17,9 +17,7 @@ jobs:
     timeout-minutes: 3
     env:
       ORG: ${{ matrix.org }}
-      # you can not use expression. do it on step.
-      # output on step is -> ci-`date '+%Y%m%d-%H%M%S'`+${GITHUB_SHA:0:6}
-      # GIT_TAG: "ci-`date '+%Y%m%d-%H%M%S'`+${GITHUB_SHA:0:6}"
+      # you can not use expression inside env:. do it on step.
     steps:
       - run: echo "${ORG}"
       - run: echo "${NEW_ORG}"
