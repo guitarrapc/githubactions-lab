@@ -3545,6 +3545,14 @@ action folder naming also follow this rule.
 - ✔️: `.github/actions/setup-foo`
 - ❌: `.github/actions/setup_foo`
 
+## Actions runner info
+
+When you want to see hosted runner info, here are sample.
+
+```yaml
+# .github/workflows/runner-info.yaml
+```
+
 ## Get Branch
 
 `github.ref` context will return branch name, however it is unsafe to directly reference in ref. It is recommended to use through env.
