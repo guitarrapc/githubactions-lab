@@ -3129,6 +3129,33 @@ GitHub Actions is running on selected OS runner, such as `ubuntu-latest`, `windo
 
 ```yaml
 # .github/workflows/container-job.yaml
+
+name: Container Job
+on:
+  workflow_dispatch:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+
+jobs:
+  container:
+    permissions:
+      contents: read
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    container:
+      image: golang:1.25
+    steps:
+      - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
+        with:
+          persist-credentials: false
+      - name: Show Go version
+        run: go version
+      - name: Run Go program
+        run: go run main.go
+        working-directory: ./src/go
+
 ```
 
 ## Dispatch other repo workflow
