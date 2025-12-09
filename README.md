@@ -1954,10 +1954,7 @@ jobs:
     runs-on: ubuntu-24.04
     timeout-minutes: 3
     steps:
-      - run: echo "${ORG}"
-      - run: echo "${NEW_ORG}"
-        env:
-          NEW_ORG: new-${{ env.ORG }}
+      - run: echo "${matrix.fruit}"
 
 ```
 
