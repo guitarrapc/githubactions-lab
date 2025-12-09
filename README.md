@@ -872,29 +872,6 @@ jobs:
           echo "${{ env.BRANCH_SCRIPT }}"
           echo "${{ steps.script.outputs.branch }}"
 
-  cmd:
-    strategy:
-      matrix:
-        runs-on: [windows-2025]
-    permissions:
-      contents: read
-    runs-on: ${{ matrix.runs-on }}
-    timeout-minutes: 3
-    defaults:
-      run:
-        shell: cmd
-    steps:
-      - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
-        with:
-          persist-credentials: false
-      - name: Add ENV and OUTPUT by Script
-        id: script
-        run: .github/scripts/setenv.bat --ref "${{ env.BRANCH_NAME }}"
-      - name: Show Script ENV and OUTPUT
-        run: |
-          echo ${{ env.BRANCH_SCRIPT }}
-          echo ${{ steps.script.outputs.branch }}
-
 ```
 
 ## If and context reference
@@ -3357,7 +3334,7 @@ jobs:
         run: ghalint run
       # A static analysis tool for GitHub Actions
       - name: Run zizmor
-        run: docker run -t -v .:/github ghcr.io/woodruffw/zizmor:1.5.2 /github --min-severity medium
+        run: docker run -t -v .:/github ghcr.io/zizmorcore/zizmor:1.18.0 /github --min-severity medium
 
 ```
 
