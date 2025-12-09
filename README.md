@@ -3310,6 +3310,14 @@ jobs:
 
 ```
 
+## GitHub Step Summary
+
+If you want adding a job summary, use [GITHUB_STEP_SUMMARY](https://docs.github.com/en/actions/using-workflows/workflow-commands-for-github-actions#adding-a-job-summary). Job summary is useful to show important information after job finished. You can see Job Summary on the bottom of job page.
+
+```yaml
+# .github/workflows/github-step-summary.yaml
+```
+
 ## Lint GitHub Actions workflow itself
 
 You can lint GitHub Actions yaml via [actionlint](https://github.com/rhysd/actionlint), [ghalint](https://github.com/suzuki-shunsuke/ghalint) and [zizmor](https://github.com/woodruffw/zizmor). If you don't need automated PR review, run any of these linter on schedule may be fine.

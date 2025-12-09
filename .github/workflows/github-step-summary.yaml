@@ -1,0 +1,45 @@
+name: GitHub Step Summary
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  # Summary is consolidated per job
+  script:
+    permissions:
+      contents: read
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - name: add summary
+        uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd # v8.0.0
+        with:
+          script: |
+            await core.summary.addHeading("Hello world! 🚀").write()
+            await core.summary.addTable([
+              ["Key", "Value"],
+              ["GITHUB_REF", process.env.GITHUB_REF],
+              ["github.event_name", ${{ github.event_name }}],
+            ]).write()
+
+  # To split summary, use different job
+  bash:
+    permissions:
+      contents: read
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - name: add summary
+        run: |
+          {
+            echo "### Parameters"
+            echo ""
+            echo "| Key | Value |"
+            echo "| --- | --- |"
+            echo "| GITHUB_REF | ${GITHUB_REF} |"
+            echo "| github.event_name | ${{ github.event_name }} |"
+          } | tee -a "$GITHUB_STEP_SUMMARY"
