@@ -77,6 +77,7 @@ GitHub Actions research and test laboratory.
   - [Automatic Actions version update via Dependabot](#automatic-actions-version-update-via-dependabot)
   - [Build Artifacts](#build-artifacts)
   - [Checkout faster with Git sparse-checkout](#checkout-faster-with-git-sparse-checkout)
+  - [Container job](#container-job)
   - [Dispatch other repo workflow](#dispatch-other-repo-workflow)
   - [Fork user workflow change prevention](#fork-user-workflow-change-prevention)
   - [GitHub Step Summary](#github-step-summary)
