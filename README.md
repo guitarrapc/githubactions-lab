@@ -397,6 +397,43 @@ When you use `actions/checkout`, by default it keep git remote url with token au
 
 ```yaml
 # .github/workflows/checkout-without-persistcredentials.yaml
+
+name: checkout without persist-credentials
+on:
+  pull_request:
+    branches: ["main"]
+
+jobs:
+  checkout:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
+        with:
+          # default is true. Set to false to avoid persisting the token in git config.
+          persist-credentials: false
+
+      # If you need to do git operations, you need to set git remote again
+      - name: set git remote
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git remote set-url origin "https://github-actions:${GITHUB_TOKEN}@github.com/${{ github.repository }}"
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+      - name: Pull main
+        run: |
+          git config --global pull.rebase false
+          git pull origin main
+
+      # Delete git config to avoid affecting other steps
+      - name: Remove git config
+        if: always()
+        run: |
+          git remote rm origin
+          git config unset --global user.email
+          git config unset --global user.name
+
 ```
 
 ## Dump context metadata
@@ -658,10 +695,10 @@ This syntax can be write in the script, let's see `.github/scripts/setenv.sh`.
 set -eux
 
 while [ $# -gt 0 ]; do
-    case $1 in
-        --ref) GITHUB_REF=$2; shift 2; ;;
-        *) shift ;;
-    esac
+  case $1 in
+    --ref) GITHUB_REF=$2; shift 2; ;;
+    *) shift ;;
+  esac
 done
 
 echo BRANCH_SCRIPT=${GITHUB_REF} | tee -a "$GITHUB_ENV"
@@ -2201,9 +2238,11 @@ Multiple assets upload is supported by running running `actions/upload-release-a
 name: create release
 concurrency: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
 on:
+  # auto clean up
   push:
     tags:
       - "[0-9]+.[0-9]+.[0-9]+*"
+  # auto clean up
   pull_request:
     branches: ["main"]
   workflow_dispatch:
@@ -2600,9 +2639,22 @@ updates:
     directory: "/"
     schedule:
       interval: "weekly" # Check for updates to GitHub Actions every week
+    cooldown:
+      default-days: 14
     ignore:
       # I just want update action when major/minor version is updated. patch updates are too noisy.
-      - dependency-name: '*'
+      - dependency-name: "*"
+        update-types:
+          - version-update:semver-patch
+  - package-ecosystem: "nuget"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    cooldown:
+      default-days: 14
+    ignore:
+      # I just want update action when major/minor version is updated. patch updates are too noisy.
+      - dependency-name: "*"
         update-types:
           - version-update:semver-patch
 
@@ -2648,7 +2700,7 @@ jobs:
       - name: output
         run: |
           echo "hoge" > ./hoge.txt
-      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+      - uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4 # v5.0.0
         with:
           name: hoge.txt
           path: ./hoge.txt
@@ -2661,7 +2713,7 @@ jobs:
     runs-on: ubuntu-24.04
     timeout-minutes: 3
     steps:
-      - uses: actions/download-artifact@634f93cb2916e3fdff6788551b99b062d0335ce0 # v5.0.0
+      - uses: actions/download-artifact@018cc2cf5baa6db3ef3c5f8a56943fffe632ef53 # v6.0.0
         with:
           name: hoge.txt
           path: .
@@ -2700,7 +2752,7 @@ jobs:
           echo "fuga" > ./directory/fuga.txt
           echo "foo" > ./directory/bin/foo.txt
           echo "bar" > ./directory/bin/bar.txt
-      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+      - uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4 # v5.0.0
         with:
           name: directory
           path: ./directory/
@@ -2713,7 +2765,7 @@ jobs:
     runs-on: ubuntu-24.04
     timeout-minutes: 3
     steps:
-      - uses: actions/download-artifact@634f93cb2916e3fdff6788551b99b062d0335ce0 # v5.0.0
+      - uses: actions/download-artifact@018cc2cf5baa6db3ef3c5f8a56943fffe632ef53 # v6.0.0
         with:
           name: directory
           path: ./directory
@@ -2753,7 +2805,7 @@ jobs:
           echo "foo" > ./output/bin/foo.txt
           echo "bar" > ./output/bin/bar.txt
           tar -zcvf output.tar.gz ./output/
-      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+      - uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4 # v5.0.0
         with:
           name: output.tar.gz
           path: ./output.tar.gz
@@ -2767,7 +2819,7 @@ jobs:
     timeout-minutes: 3
     steps:
       # specify path: . to download tar.gz to current directory
-      - uses: actions/download-artifact@634f93cb2916e3fdff6788551b99b062d0335ce0 # v5.0.0
+      - uses: actions/download-artifact@018cc2cf5baa6db3ef3c5f8a56943fffe632ef53 # v6.0.0
         with:
           name: output.tar.gz
           path: .
@@ -3115,7 +3167,7 @@ jobs:
     timeout-minutes: 3
     steps:
       - name: Prevent file change for github YAML files.
-        uses: xalvarez/prevent-file-change-action@4e88b842aed52bb42b94537ad9736eac06930266 # v2.0.0
+        uses: xalvarez/prevent-file-change-action@8ba6c9f0f3c6c73caea35ae4b13988047f9cd104 # v3.0.0
         with:
           githubToken: ${{ secrets.GITHUB_TOKEN }}
           pattern: ^\.github\/.*.y[a]?ml$ # -> .github/**/*.yaml
@@ -3296,9 +3348,9 @@ jobs:
       - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
         with:
           persist-credentials: false
-      - uses: actions/setup-dotnet@67a3573c9a986a3f9c594539f4ab511d57bb3ce9 # v4.3.1
+      - uses: actions/setup-dotnet@d4c94342e560b34958eacfc5d055d21461ed1c5d # v5.0.0
         with:
-          dotnet-version: 8.0.x
+          dotnet-version: 10.0.x
       - name: dotnet build
         run: dotnet build ./src/dotnet -c Debug
       - name: dotnet test
