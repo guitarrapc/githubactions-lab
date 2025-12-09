@@ -86,6 +86,7 @@ GitHub Actions research and test laboratory.
   - [Tool management in GitHub Actions with Aqua](#tool-management-in-github-actions-with-aqua)
 - [Cheat Sheet](#cheat-sheet)
   - [Actions naming](#actions-naming)
+  - [Actions runner info](#actions-runner-info)
   - [Get Branch](#get-branch)
   - [Get Tag](#get-tag)
   - [Get Workflow Name](#get-workflow-name)
