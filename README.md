@@ -52,7 +52,7 @@ GitHub Actions research and test laboratory.
   - [Run when previous job is success](#run-when-previous-job-is-success)
   - [Run when previous step status is specific](#run-when-previous-step-status-is-specific)
   - [Run write Multiline code](#run-write-multiline-code)
-  - [Strategy matrix](#strategy-matrix)
+  - [Matrix](#matrix)
   - [Timeout settings](#timeout-settings)
   - [Workflow dispatch and passing input](#workflow-dispatch-and-passing-input)
   - [Workflow dispatch with mixed input type](#workflow-dispatch-with-mixed-input-type)
