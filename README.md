@@ -135,6 +135,28 @@ Relax the limit for `GitHub Team Plan` is my strong expectation.
 
 - [ ] `Environment > Deployment protection rules` is not allowed in GitHub team Plan. You cannot use `Required reviewers` (Approvabl) and `Wait timer`.
 
+**GitHub Pro (Private Repository)**
+
+Missing `Required reviewers` and `Wait timer` for Environment protection rules.
+
+<details><summary>Click to show screenshot</summary>
+
+![](images/private-repo.png)
+
+</details>
+
+---
+
+**GitHub Pro (Public Repository)**
+
+Can use `Required reviewers` and `Wait timer` for Environment protection rules.
+
+<details><summary>Click to show screenshot</summary>
+
+![](images/public-repo.png)
+
+</details>
+
 # Difference from other CI
 
 ## CI Migration
