@@ -3550,7 +3550,7 @@ action folder naming also follow this rule.
 When you want to see hosted runner info, here are sample.
 
 ```yaml
-# .github/workflows/runner-info.yaml
+# .github/workflows/actionrunner-info.yaml
 ```
 
 ## Get Branch
