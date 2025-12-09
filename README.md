@@ -77,6 +77,7 @@ GitHub Actions research and test laboratory.
   - [Automatic Actions version update via Dependabot](#automatic-actions-version-update-via-dependabot)
   - [Build Artifacts](#build-artifacts)
   - [Checkout faster with Git sparse-checkout](#checkout-faster-with-git-sparse-checkout)
+  - [Container job](#container-job)
   - [Dispatch other repo workflow](#dispatch-other-repo-workflow)
   - [Fork user workflow change prevention](#fork-user-workflow-change-prevention)
   - [GitHub Step Summary](#github-step-summary)
@@ -3121,6 +3122,41 @@ drwxr-xr-x  2 runner docker 4096 Jun 14 10:23 scripts
 drwxr-xr-x  3 runner docker 4096 Jun 14 10:23 workflows
 
 .... others
+```
+
+## Container job
+
+GitHub Actions is running on selected OS runner, such as `ubuntu-latest`, `windows-latest`, or `macos-latest`. However, sometimes you may want to run job on specific container image. GitHub Actions supports running job on container with `container` option. Use `job.container:` to specify container image.
+
+```yaml
+# .github/workflows/container-job.yaml
+
+name: Container Job
+on:
+  workflow_dispatch:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+
+jobs:
+  container:
+    permissions:
+      contents: read
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    container:
+      image: golang:1.25
+    steps:
+      - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
+        with:
+          persist-credentials: false
+      - name: Show Go version
+        run: go version
+      - name: Run Go program
+        run: go run main.go
+        working-directory: ./src/go
+
 ```
 
 ## Dispatch other repo workflow
