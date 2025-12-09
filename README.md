@@ -82,6 +82,7 @@ GitHub Actions research and test laboratory.
   - [Lint GitHub Actions workflow itself](#lint-github-actions-workflow-itself)
   - [PR info from Merge Commit](#pr-info-from-merge-commit)
   - [Telemetry for GitHub Workflow execution](#telemetry-for-github-workflow-execution)
+  - [Tool management in GitHub Actions with Aqua](#tool-management-in-github-actions-with-aqua)
 - [Cheat Sheet](#cheat-sheet)
   - [Actions naming](#actions-naming)
   - [Get Branch](#get-branch)
