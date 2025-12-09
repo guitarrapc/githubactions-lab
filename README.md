@@ -468,6 +468,10 @@ You can select shell type for `run` step with `shell:`. Also you can select defa
 
 There are several shell types available in [default](https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-syntax#defaultsrunshell). Following example shows how to set `bash`, `pwsh` and `cmd`.
 
+**Personal recommendation:**
+
+Considering the current boom in AI, it's best to use `bash` as the default shell across all operating systems. If you need to use PowerShell on Windows, I recommend using `pwsh` whenever possible to avoid encoding issues.
+
 ```yaml
 # .github/workflows/default-shell.yaml
 
