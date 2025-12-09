@@ -1,0 +1,55 @@
+name: GitHub Step Summary
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  # Summary is consolidated per job
+  script:
+    permissions:
+      contents: read
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - name: add summary
+        uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd # v8.0.0
+        with:
+          script: |
+            await core.summary.addHeading("Hello world! 🚀").write()
+            await core.summary.addTable([
+              ["Key", "Value"],
+              ["GITHUB_REF", process.env.GITHUB_REF],
+              ["github.event_name", '${{ github.event_name }}'],
+              ["github.head_ref", process.env.HEAD_REF],
+              ["github.ref_name", process.env.REF_NAME],
+            ]).write()
+        env:
+          HEAD_REF: ${{ github.head_ref }}
+          REF_NAME: ${{ github.ref_name }}
+
+  # To split summary, use different job
+  bash:
+    permissions:
+      contents: read
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - name: add summary
+        run: |
+          {
+            echo "### Parameters"
+            echo ""
+            echo "| Key | Value |"
+            echo "| --- | --- |"
+            echo "| GITHUB_REF | ${GITHUB_REF} |"
+            echo "| github.event_name | ${{ github.event_name }} |"
+            echo "| github.head_ref | ${HEAD_REF} |"
+            echo "| github.ref_name | ${REF_NAME} |"
+          } | tee -a "$GITHUB_STEP_SUMMARY"
+        env:
+          HEAD_REF: ${{ github.head_ref }}
+          REF_NAME: ${{ github.ref_name }}

@@ -79,6 +79,7 @@ GitHub Actions research and test laboratory.
   - [Checkout faster with Git sparse-checkout](#checkout-faster-with-git-sparse-checkout)
   - [Dispatch other repo workflow](#dispatch-other-repo-workflow)
   - [Fork user workflow change prevention](#fork-user-workflow-change-prevention)
+  - [GitHub Step Summary](#github-step-summary)
   - [Lint GitHub Actions workflow itself](#lint-github-actions-workflow-itself)
   - [PR info from Merge Commit](#pr-info-from-merge-commit)
   - [Telemetry for GitHub Workflow execution](#telemetry-for-github-workflow-execution)
@@ -531,33 +532,6 @@ jobs:
         run: echo "$HOME/foo/bar" | Tee-Object -Append -FilePath "${env:GITHUB_PATH}"
       - name: Show PATH
         run: echo "${env:PATH}"
-
-  cmd:
-    strategy:
-      matrix:
-        runs-on: [windows-2025]
-    permissions:
-      contents: read
-    runs-on: ${{ matrix.runs-on }}
-    timeout-minutes: 3
-    defaults:
-      run:
-        shell: cmd
-    steps:
-      # cmd must not use quotes!!
-      - name: Add ENV and OUTPUT by shell
-        id: shell
-        run: |
-          echo BRANCH=${{ env.BRANCH_NAME }} >> %GITHUB_ENV%
-          echo branch=${{ env.BRANCH_NAME }} >> %GITHUB_OUTPUT%
-      - name: Show ENV and OUTPUT
-        run: |
-          echo ${{ env.BRANCH }}
-          echo ${{ steps.shell.outputs.branch }}
-      - name: Add PATH
-        run: echo "%UserProfile%\foo\bar" >> %GITHUB_PATH%
-      - name: Show PATH
-        run: echo %PATH%
 
 ```
 
@@ -3310,6 +3284,61 @@ jobs:
 
 ```
 
+## GitHub Step Summary
+
+If you want adding a job summary, use [GITHUB_STEP_SUMMARY](https://docs.github.com/en/actions/using-workflows/workflow-commands-for-github-actions#adding-a-job-summary). Job summary is useful to show important information after job finished. You can see Job Summary on the bottom of job page.
+
+```yaml
+# .github/workflows/github-step-summary.yaml
+
+name: GitHub Step Summary
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  # Summary is consolidated per job
+  script:
+    permissions:
+      contents: read
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - name: add summary
+        uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd # v8.0.0
+        with:
+          script: |
+            await core.summary.addHeading("Hello world! 🚀").write()
+            await core.summary.addTable([
+              ["Key", "Value"],
+              ["GITHUB_REF", process.env.GITHUB_REF],
+              ["github.event_name", ${{ github.event_name }}],
+            ]).write()
+
+  # To split summary, use different job
+  bash:
+    permissions:
+      contents: read
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - name: add summary
+        run: |
+          {
+            echo "### Parameters"
+            echo ""
+            echo "| Key | Value |"
+            echo "| --- | --- |"
+            echo "| GITHUB_REF | ${GITHUB_REF} |"
+            echo "| github.event_name | ${{ github.event_name }} |"
+          } | tee -a "$GITHUB_STEP_SUMMARY"
+
+```
+
 ## Lint GitHub Actions workflow itself
 
 You can lint GitHub Actions yaml via [actionlint](https://github.com/rhysd/actionlint), [ghalint](https://github.com/suzuki-shunsuke/ghalint) and [zizmor](https://github.com/woodruffw/zizmor). If you don't need automated PR review, run any of these linter on schedule may be fine.
@@ -3356,7 +3385,7 @@ jobs:
         run: ghalint run
       # A static analysis tool for GitHub Actions
       - name: Run zizmor
-        run: docker run -t -v .:/github ghcr.io/zizmorcore/zizmor:1.18.0 /github --min-severity medium
+        run: docker run -t -v .:/github ghcr.io/woodruffw/zizmor:1.5.2 /github --min-severity medium
 
 ```
 
