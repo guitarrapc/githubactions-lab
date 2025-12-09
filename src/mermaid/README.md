@@ -1,4 +1,4 @@
-# gantt chart
+## gantt chart
 
 ```mermaid
 gantt
@@ -29,7 +29,7 @@ flowchart TD
     B ---->|No| E[End]
 ```
 
-# sequence
+## sequence
 
 ```mermaid
 sequenceDiagram

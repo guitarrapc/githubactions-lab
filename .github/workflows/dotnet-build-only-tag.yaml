@@ -16,7 +16,6 @@ jobs:
         env:
           REF_NAME: ${{ github.ref_name }}
 
-
   runner:
     permissions:
       contents: read
@@ -28,7 +27,7 @@ jobs:
           persist-credentials: false
       - uses: actions/setup-dotnet@d4c94342e560b34958eacfc5d055d21461ed1c5d # v5.0.0
         with:
-          dotnet-version: 8.0.x
+          dotnet-version: 10.0.x
       - run: dotnet build ./src/dotnet -c Release
       - run: dotnet test ./src/dotnet -c Release --logger GitHubActions --logger "console;verbosity=normal"
       - run: dotnet publish ./src/dotnet -c Release
@@ -44,7 +43,7 @@ jobs:
     runs-on: ubuntu-24.04
     timeout-minutes: 5
     container:
-      image: mcr.microsoft.com/dotnet/sdk:8.0
+      image: mcr.microsoft.com/dotnet/sdk:10.0
     steps:
       - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
         with:

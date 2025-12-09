@@ -1,14 +1,12 @@
 namespace Sandbox.Console;
-
-public class Hoge
+public record class Hoge
 {
     public string Name { get; init; } = "";
-    public bool FooBar => foobar;
-    private readonly bool foobar;
+    public bool FooBar => field;
 
     public Hoge() { }
     public Hoge(bool foobar)
     {
-        this.foobar = foobar;
+        FooBar = foobar;
     }
 }

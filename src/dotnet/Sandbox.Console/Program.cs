@@ -1,5 +1,3 @@
-using Sandbox.Console;
-
 var hoge = new Hoge()
 {
     Name = "hoge"
