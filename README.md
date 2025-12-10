@@ -1179,24 +1179,70 @@ jobs:
 
 The most important permission is `id-tokens: write`. It enables job to use OIDC like AWS, Azure and GCP.
 
-## Pin Third-Party Actions to Commit SHA
+## Redundant Control
 
-Several vulnerabilities in GitHub Actions have been identified due to the use of tags or version numbers.
-To mitigate these risks, always pin your actions to a specific commit SHA.
+> **Note**
+> Consider using Workflow Concurrency control instead of redundant control.
 
-For example, instead of using:
+Creating PR emmits two events, `push` and `pull_request/synchronize`. This means duplicate build began and wastes build time.
+Redundant build may trouble when you are runnning Private Repository, bacause there are build time limits. In other words, you don't need mind build comsume time when repo is Public.
+
+### Avoid push on pull_request trigger on same repo
+
+In this example `push` will trigger only when `main`, default branch. This means push will not run when `pull_request` synchronize event was emmited.
+Simple enough for almost usage.
+
+```yaml
+# .github/workflows/push-and-pr-avoid-redundant.yaml
+
+name: push and pull_request avoid redundant
+on:
+  # prevent push run on pull_request
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+
+jobs:
+  my-job:
+    permissions:
+      contents: read
+    runs-on: ubuntu-24.04
+    timeout-minutes: 3
+    steps:
+      - run: echo push and pull_request trigger
 
 ```
-uses: actions/cache@v3.3.1
-```
 
-pin the action to a specific commit:
+### redundant build cancel
+
+Cancel duplicate workflow and mark CI failure.
+
+```yaml
+# .github/workflows/cancel-redundantbuild.yaml
+
+name: cancel redundant build
+on:
+  workflow_dispatch:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+
+jobs:
+  cancel:
+    permissions:
+      contents: read
+    runs-on: ubuntu-24.04
+    timeout-minutes: 3
+    steps:
+      # no check for main and tag
+      - uses: rokroskar/workflow-run-cleanup-action@ee1451b869ba1e381729b3d40489997021f0d562 # v0.3.3
+        if: ${{ !startsWith(github.ref, 'refs/tags/') && github.ref != 'refs/heads/main' }}
+        env:
+          GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
 
 ```
-uses: actions/cache@88522ab9f39a2ea568f7027eddc7d8d8bc9d59c8 # v3.3.1
-```
-
-Both Dependabot and Renovate can help you keep your actions up to date even pinned to a specific commit SHA.
 
 ## Run when previous job is success
 
@@ -1632,15 +1678,36 @@ jobs:
 
 ```
 
-## Workflow dispatch and passing input
+## Workflow dispatch to invoke manually
 
-GitHub Actions offer `workflow_dispatch` event to execute workflow manually from Web UI.
-Also you can use [action inputs](https://docs.github.com/en/actions/creating-actions/metadata-syntax-for-github-actions#inputs) to specify value trigger on manual trigger.
+When you want to run workflow manually, use `workflow_dispatch` event trigger.
+
+- Web UI offers `Run workflow` button on Actions tab.
+- `gh` CLI can trigger workflow dispatch.
+- You can use GitHub API to trigger workflow dispatch.
+
+### Workflow dispatch and passing value
+
+You can specify [action inputs](https://docs.github.com/en/actions/creating-actions/metadata-syntax-for-github-actions#inputs) to pass value when you invoke workflow dispatch.
+
+inputs are defined in `on.workflow_dispatch.inputs` section. Following example shows how to define inputs and refer them in job steps.
+
+- `on.workflow_dispatch.inputs`: Define input parameters to pass when invoking workflow dispatch.
+  - input parameters have `description`, `required`, `default` and `type` properties. You can specify `type` as `string`, `boolean`, `choice` and `environment`.
+- In job steps, you can refer input values with `${{ inputs.<input_name> }}` syntax.
+
+Input types supported are:
+
+- `string`: default type, Web UI offers text box.
+- `number`: numeric value, Web UI offers text box.
+- `boolean`: `true` or `false` and Web UI offers checkbox.
+- `choice`: enum options and Web UI offers selection box. You need to define `options` property.
+- `environment`: enum GitHub Environments and Web UI offers selection box.
 
 ```yaml
-# .github/workflows/manual-trigger.yaml
+# .github/workflows/workflowdispatch-inputs.yaml
 
-name: manual trigger
+name: workflowdispatch inputs
 on:
   workflow_dispatch:
     inputs:
@@ -1648,10 +1715,26 @@ on:
         description: "branch name to clone"
         required: true
         default: "main"
+        type: string
       logLevel:
         description: "Log level"
         required: true
         default: "warning"
+        type: choice
+        options:
+          - debug
+          - info
+          - warning
+          - error
+      dry-run:
+        description: "Enable dry-run mode"
+        required: false
+        type: boolean
+      number:
+        description: "An optional number"
+        required: false
+        default: 0
+        type: number
       tags:
         description: "Test scenario tags"
         required: false
@@ -1666,164 +1749,26 @@ jobs:
       BRANCH: ${{ inputs.branch }}
       LOGLEVEL: ${{ inputs.logLevel }}
       TAGS: ${{ inputs.tags }}
+      DRY_RUN: ${{ inputs.dry-run }}
     steps:
       - name: Show Environment Variables
         run: env
-      - run: echo ${{ env.BRANCH }} ${{ env.LOGLEVEL }} ${{ env.TAGS }}
+      - run: echo "BRANCH=${{ env.BRANCH }}, LOGLEVEL=${{ env.LOGLEVEL }}, TAGS=${{ env.TAGS }}, DRY_RUN=${{ env.DRY_RUN }}"
       - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
         with:
           ref: ${{ inputs.branch }}
           persist-credentials: false
-      - name: dump github context
-        run: echo "$CONTEXT"
-        env:
-          CONTEXT: ${{ toJson(github) }}
-      - name: dump inputs context
-        run: echo "$CONTEXT"
-        env:
-          CONTEXT: ${{ toJson(github.event.inputs) }}
       - name: Show Input value
         run: |
           echo "Log level: ${LOG_LEVEL}"
-          echo "Tags: ${TAGS}"
+          echo "Number: ${NUMBER}"
         env:
           LOG_LEVEL: ${{ inputs.logLevel }}
-          TAGS: ${{ inputs.tags }}
+          NUMBER: ${{ inputs.number }}
       - name: INPUT_ is not generated automatcally
         run: |
-          echo "${INPUT_TEST_VAR}"
-          echo "${TEST_VAR}"
-
-```
-
-Even if you specify action inputs, input value will not store as ENV var `INPUT_{INPUTS_ID}` as usual.
-
-## Workflow dispatch with mixed input type
-
-Workflow dispatch supported input type.
-
-- boolean: `true` or `false` and Web UI offers checkbox.
-- choice: enum options and Web UI offers selection box.
-- environment: enum GitHub Environments and Web UI offers selection box.
-
-```yaml
-# .github/workflows/workflow-dispatch-mixed-inputs.yaml
-
-name: workflow dispatch mixed inputs
-on:
-  workflow_dispatch:
-    inputs:
-      name:
-        type: choice
-        description: "name: Who to greet"
-        required: true
-        options:
-          - monalisa
-          - cschleiden
-      message:
-        description: "mnessage: add message"
-        required: true
-      use-emoji:
-        type: boolean
-        description: "use-emoji: Include 🎉🤣 emojis"
-        required: true
-      environment:
-        type: environment
-        description: "environment: Select environment"
-        required: true
-
-jobs:
-  greet:
-    permissions:
-      contents: read
-    runs-on: ubuntu-24.04
-    timeout-minutes: 3
-    steps:
-      - name: Send greeting (github.event.inputs)
-        run: |
-          echo "message: ${MESSAGE}"
-          echo "name: ${NAME}"
-          echo "use-emoji (string): ${{ github.event.inputs.use-emoji == 'true' }}"
-          echo "use-emoji (bool): ${{ github.event.inputs.use-emoji == true }}"
-        env:
-          MESSAGE: ${{ github.event.inputs.message }}
-          NAME: ${{ github.event.inputs.name }}
-      - name: Send greeting (inputs)
-        run: |
-          echo "message: ${MESSAGE}"
-          echo "name: ${NAME}"
-          echo "use-emoji (string): ${{ inputs.use-emoji == 'true' }}"
-          echo "use-emoji (bool): ${{ inputs.use-emoji == true }}"
-        env:
-          MESSAGE: ${{ inputs.message }}
-          NAME: ${{ inputs.name }}
-      - name: Emoji
-        run: echo "🥳 😊"
-
-```
-
-## Workflow Redundant Control
-
-> **Note**
-> Consider using Workflow Concurrency control instead of redundant control.
-
-Creating PR emmits two events, `push` and `pull_request/synchronize`. This means duplicate build began and wastes build time.
-Redundant build may trouble when you are runnning Private Repository, bacause there are build time limits. In other words, you don't need mind build comsume time when repo is Public.
-
-**Avoid push on pull_request trigger on same repo**
-
-In this example `push` will trigger only when `main`, default branch. This means push will not run when `pull_request` synchronize event was emmited.
-Simple enough for almost usage.
-
-```yaml
-# .github/workflows/push-and-pr-avoid-redundant.yaml
-
-name: push and pull_request avoid redundant
-on:
-  # prevent push run on pull_request
-  push:
-    branches: ["main"]
-  pull_request:
-    branches: ["main"]
-
-jobs:
-  my-job:
-    permissions:
-      contents: read
-    runs-on: ubuntu-24.04
-    timeout-minutes: 3
-    steps:
-      - run: echo push and pull_request trigger
-
-```
-
-**redundant build cancel**
-
-Cancel duplicate workflow and mark CI failure.
-
-```yaml
-# .github/workflows/cancel-redundantbuild.yaml
-
-name: cancel redundant build
-on:
-  workflow_dispatch:
-  push:
-    branches: ["main"]
-  pull_request:
-    branches: ["main"]
-
-jobs:
-  cancel:
-    permissions:
-      contents: read
-    runs-on: ubuntu-24.04
-    timeout-minutes: 3
-    steps:
-      # no check for main and tag
-      - uses: rokroskar/workflow-run-cleanup-action@ee1451b869ba1e381729b3d40489997021f0d562 # v0.3.3
-        if: ${{ !startsWith(github.ref, 'refs/tags/') && github.ref != 'refs/heads/main' }}
-        env:
-          GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+          echo "INPUT_BRANCH: ${INPUT_BRANCH}"
+          echo "TEST_number: ${TEST_numer}"
 
 ```
 
@@ -2866,7 +2811,7 @@ $ touch action.yaml
 
 Write your Composite actions in action.yaml.
 
-- `inputs`: Define input parameters to Composite actions.
+- `inputs`: Define input parameters to Composite actions. You cannot use `type:` field, all inputs are string type. Even if you specify action inputs, input value will not store as ENV var `INPUT_{INPUTS_ID}` as usual.
 - `outputs`: Define output parameters from Composite actions.
 - `runs.using: "composite"`: This is key point to define Composite action.
 
@@ -3510,58 +3455,6 @@ jobs:
 
 ```
 
-## Lint GitHub Actions workflow itself
-
-You can lint GitHub Actions yaml via [actionlint](https://github.com/rhysd/actionlint), [ghalint](https://github.com/suzuki-shunsuke/ghalint) and [zizmor](https://github.com/woodruffw/zizmor). If you don't need automated PR review, run any of these linter on schedule may be fine.
-
-Linter will check follows.
-
-* actionlint: Check syntax and structure of GitHub Actions workflow yaml.
-* ghalint: Check actions/checkout should set `persist-credentials: false`, Reusable workflow's `secrets: inherit`.
-* zizmor: Check GitHub Action's security vulnerability.
-
-> TIPS: See [Tool management in GitHub Actions with Aqua](#tool-management-in-github-actions-with-aqua) for Aqua usage.
-
-```yaml
-# .github/workflows/actionlint.yaml
-
-name: actionlint
-on:
-  workflow_dispatch:
-  pull_request:
-    branches: ["main"]
-    paths:
-      - ".github/workflows/**"
-  schedule:
-    - cron: "0 0 * * *"
-
-jobs:
-  lint:
-    permissions:
-      contents: read
-    runs-on: ubuntu-24.04
-    timeout-minutes: 5
-    steps:
-      - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
-        with:
-          persist-credentials: false
-      - uses: aquaproj/aqua-installer@9ebf656952a20c45a5d66606f083ff34f58b8ce0 # v4.0.0
-        with:
-          aqua_version: v2.43.1
-      # github workflows/action's Static Checker
-      - name: Run actionlint
-        run: actionlint -color -oneline
-      # checkout's persist-credentials: false checker
-      - name: Run ghalint
-        run: ghalint run
-      # A static analysis tool for GitHub Actions
-      - name: Run zizmor
-        run: docker run -t -v .:/github ghcr.io/woodruffw/zizmor:1.5.2 /github --min-severity medium
-
-```
-
-If you need automated PR review, `reviewdog/action-actionlint` is useful. However reviewdog cause [security vulnerability with reviewdog/action-setup](https://www.wiz.io/blog/new-github-action-supply-chain-attack-reviewdog-action-setup), I've recommend use with sha for future usage.
-
 ## PR info from Merge Commit
 
 You have two choice.
@@ -3655,6 +3548,7 @@ Write your Reusable workflow in `_reusable-workflow-called.yaml`.
 
 - `on.workflow_call`: Key point to define Reusable workflow.
 - `on.workflow_call.inputs`: Define input parameters to pass from caller to callee.
+  - You can specify `type` of input parameter. Supported types are `string`, `boolean`, `number`.
 - `on.workflow_call.secrets`: Define input secret parameters to pass from caller to callee.
 - `on.workflow_call.outputs`: Define output parameters to pass from callee to caller.
 
@@ -3937,7 +3831,7 @@ jobs:
 
 ```
 
-# BAD PATTERN
+# Bad Pattern
 
 ## Env refer env
 
@@ -3962,6 +3856,84 @@ jobs:
     steps:
       - run: echo "${{ env.global_env }}"
       - run: echo "${{ env.job_env }}"
+```
+
+# Security
+
+## Lint GitHub Actions workflow itself
+
+You can lint GitHub Actions yaml via [actionlint](https://github.com/rhysd/actionlint), [ghalint](https://github.com/suzuki-shunsuke/ghalint) and [zizmor](https://github.com/woodruffw/zizmor). If you don't need automated PR review, run any of these linter on schedule may be fine.
+
+Linter will check follows.
+
+* actionlint: Check syntax and structure of GitHub Actions workflow yaml.
+* ghalint: Check actions/checkout should set `persist-credentials: false`, Reusable workflow's `secrets: inherit`.
+* zizmor: Check GitHub Action's security vulnerability.
+
+> TIPS: See [Tool management in GitHub Actions with Aqua](#tool-management-in-github-actions-with-aqua) for Aqua usage.
+
+```yaml
+# .github/workflows/actionlint.yaml
+
+name: actionlint
+on:
+  workflow_dispatch:
+  pull_request:
+    branches: ["main"]
+    paths:
+      - ".github/workflows/**"
+  schedule:
+    - cron: "0 0 * * *"
+
+jobs:
+  lint:
+    permissions:
+      contents: read
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
+        with:
+          persist-credentials: false
+      - uses: aquaproj/aqua-installer@9ebf656952a20c45a5d66606f083ff34f58b8ce0 # v4.0.0
+        with:
+          aqua_version: v2.43.1
+      # github workflows/action's Static Checker
+      - name: Run actionlint
+        run: actionlint -color -oneline
+      # checkout's persist-credentials: false checker
+      - name: Run ghalint
+        run: ghalint run
+      # A static analysis tool for GitHub Actions
+      - name: Run zizmor
+        run: docker run -t -v .:/github ghcr.io/woodruffw/zizmor:1.5.2 /github --min-severity medium
+
+```
+
+
+## Pin Third-Party Actions to Commit SHA
+
+Several vulnerabilities in GitHub Actions have been identified due to the use of tags or version numbers. To mitigate these risks, always pin your actions to a specific commit SHA.
+
+- There are several ways to find the commit SHA for a specific version of an action, I recommend using the [suzuki-shunsuke/pinact](https://github.com/suzuki-shunsuke/pinact).
+- Both Dependabot and Renovate can help you keep your actions up to date even pinned to a specific commit SHA.
+
+For example, instead of using action version like below:
+
+```
+uses: actions/checkout@v5
+```
+
+Run pinact to get the commit SHA.
+
+```sh
+$ pinact run
+```
+
+Then action will be pinned to specific commit SHA like below:
+
+```
+uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
 ```
 
 # Cheat Sheet

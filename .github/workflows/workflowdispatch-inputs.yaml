@@ -1,4 +1,4 @@
-name: manual trigger
+name: workflowdispatch inputs
 on:
   workflow_dispatch:
     inputs:
@@ -6,10 +6,26 @@ on:
         description: "branch name to clone"
         required: true
         default: "main"
+        type: string
       logLevel:
         description: "Log level"
         required: true
         default: "warning"
+        type: choice
+        options:
+          - debug
+          - info
+          - warning
+          - error
+      dry-run:
+        description: "Enable dry-run mode"
+        required: false
+        type: boolean
+      number:
+        description: "An optional number"
+        required: false
+        default: 0
+        type: number
       tags:
         description: "Test scenario tags"
         required: false
@@ -24,30 +40,23 @@ jobs:
       BRANCH: ${{ inputs.branch }}
       LOGLEVEL: ${{ inputs.logLevel }}
       TAGS: ${{ inputs.tags }}
+      DRY_RUN: ${{ inputs.dry-run }}
     steps:
       - name: Show Environment Variables
         run: env
-      - run: echo ${{ env.BRANCH }} ${{ env.LOGLEVEL }} ${{ env.TAGS }}
+      - run: echo "BRANCH=${{ env.BRANCH }}, LOGLEVEL=${{ env.LOGLEVEL }}, TAGS=${{ env.TAGS }}, DRY_RUN=${{ env.DRY_RUN }}"
       - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
         with:
           ref: ${{ inputs.branch }}
           persist-credentials: false
-      - name: dump github context
-        run: echo "$CONTEXT"
-        env:
-          CONTEXT: ${{ toJson(github) }}
-      - name: dump inputs context
-        run: echo "$CONTEXT"
-        env:
-          CONTEXT: ${{ toJson(github.event.inputs) }}
       - name: Show Input value
         run: |
           echo "Log level: ${LOG_LEVEL}"
-          echo "Tags: ${TAGS}"
+          echo "Number: ${NUMBER}"
         env:
           LOG_LEVEL: ${{ inputs.logLevel }}
-          TAGS: ${{ inputs.tags }}
+          NUMBER: ${{ inputs.number }}
       - name: INPUT_ is not generated automatcally
         run: |
-          echo "${INPUT_TEST_VAR}"
-          echo "${TEST_VAR}"
+          echo "INPUT_BRANCH: ${INPUT_BRANCH}"
+          echo "TEST_number: ${TEST_numer}"
