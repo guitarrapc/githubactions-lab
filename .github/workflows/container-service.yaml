@@ -1,4 +1,4 @@
-name: Container Service
+name: container service
 on:
   workflow_dispatch:
   push:

@@ -89,6 +89,7 @@ GitHub Actions research and test laboratory.
   - [Actions naming](#actions-naming)
   - [Actions runner info](#actions-runner-info)
   - [Detect PullRequest (PR) is Fork or not](#detect-pullrequest-pr-is-fork-or-not)
+  - [Debug downloaded remote action](#debug-downloaded-remote-action)
   - [Get Branch](#get-branch)
   - [Get Tag](#get-tag)
   - [Get Workflow Name](#get-workflow-name)
@@ -2754,7 +2755,7 @@ GitHub Actions is running on selected OS runner, such as `ubuntu-latest`, `windo
 ```yaml
 # .github/workflows/container-job.yaml
 
-name: Container Job
+name: container job
 on:
   workflow_dispatch:
   push:
@@ -2789,7 +2790,7 @@ Service container is used to run container alongside your job. Typical usecase i
 ```yaml
 # .github/workflows/container-service.yaml
 
-name: Container Service
+name: container service
 on:
   workflow_dispatch:
   push:
@@ -4040,6 +4041,35 @@ if: ${{ ! startsWith(github.event.pull_request.head.label, format('{0}:', github
 
 # Not Fork
 if: ${{ startsWith(github.event.pull_request.head.label, format('{0}:', github.repository_owner)) }}
+```
+
+## Debug downloaded remote action
+
+Specified remote action is downloaded to `/home/runner/work/_actions/{Owner}/{Repository}/{Ref}/{RepositoryStructures}` folder. You can check the downloaded action contents by listing the folder. This is useful when you want to see how remote action works under the hood.
+
+```yaml
+# .github/workflows/debug-downloaded-remote-action.yaml
+
+name: debug downloaded remote action
+on:
+  workflow_dispatch:
+
+jobs:
+  remote:
+    permissions:
+      contents: read
+    runs-on: ubuntu-24.04
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
+        with:
+          persist-credentials: false
+      # wow, remote action will be download under `/home/runner/work/_actions/{Owner}/{Repository}/{Ref}/{RepositoryStructures}`
+      - name: debug
+        run: ls -R /home/runner/work/_actions/actions/checkout/v4
+      - name: debug by workspace
+        run: ls -R ${{ github.workspace }}/../../_actions/actions/checkout/v4
+
 ```
 
 ## Get Branch
