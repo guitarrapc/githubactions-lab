@@ -1339,7 +1339,7 @@ jobs:
 
 There are many place to support multiline.
 
-**run**
+### run
 
 Use `run: |` to write `run` statement in multiline.
 
@@ -1365,7 +1365,7 @@ jobs:
 
 ```
 
-**if**
+### if
 
 Use `if: >-` to write `if` statement in multiline.
 
@@ -1456,7 +1456,7 @@ jobs:
 
 ```
 
-**Secret dereference in matrix**
+### Secret dereference in matrix
 
 You cannot reference `secret` context inside `strategy.matrix` section, so pass secret key in matrix then dereference secret with `secrets[matrix.SECRET_KEY]`.
 
@@ -1505,7 +1505,7 @@ jobs:
 
 ```
 
-**Matrix reference in env**
+### Matrix reference in env
 
 You can refer matrix in job's `env:` section before steps.
 
@@ -1540,16 +1540,16 @@ jobs:
 
 ```
 
-**Matrix includes/excludes**
+### Include
 
-Use `include` to expand existing matrix, and use `exclude` to remove matrix combinations. Both are optional, and you can directly specify `include` without specifying base matrix.
+You can expand or adding matrix combinations with `jobs.<job_id>.strategy.matrix.include`. The value of include is a list of objects. See details [link](https://docs.github.com/en/actions/how-tos/write-workflows/choose-what-workflows-do/run-job-variations#expanding-or-adding-matrix-configurations).
 
-Following example shows `include` to define 3 matrix items, then `exclude` to remove one item from matrix. Result is 2 matrix jobs `apples` and `carrots`.
+Let's create following workflow.
 
 ```yaml
-# .github/workflows/matrix-include-exclude.yaml
+# .github/workflows/matrix-include.yaml
 
-name: matrix include exclude
+name: matrix include
 on:
   workflow_dispatch:
   push:
@@ -1558,22 +1558,86 @@ on:
     branches: ["main"]
 
 jobs:
-  echo:
-    strategy:
-      matrix:
-        include:
-          - fruit: apples
-          - fruit: bananas
-          - fruit: carrots
-        exclude:
-          - fruit: bananas
+  include:
     permissions:
       contents: read
+    strategy:
+      matrix:
+        fruta: [manzana, pera]
+        animal: [gato, perro]
+        include:
+          - color: verde
+          - color: rosa
+            animal: gato
+          - fruit: manzana
+            forma: círculo
+          - fruit: plátano
+            forma: cuadrado
+          - fruit: plátano
+            animal: gato
     runs-on: ubuntu-24.04
     timeout-minutes: 3
     steps:
-      - run: echo "${matrix.fruit}"
+      - run: echo "${CONTEXT}"
+        env:
+          CONTEXT: ${{ toJson(matrix) }}
 
+```
+
+Following matrix will run 6 jobs in total.
+
+```json
+{fruit: manzana, animal: gato, color: rosa, forma: círculo}
+{fruit: manzana, animal: perro, color: verde, forma: círculo}
+{fruit: pera, animal: gato, color: rosa}
+{fruit: pera, animal: perro, color: verde}
+{fruit: plátano}
+{fruit: plátano, animal: gato}
+```
+
+### Exclude
+
+You can exclude specific matrix combinations with `jobs.<job_id>.strategy.matrix.exclude`. See details [link](https://docs.github.com/en/actions/how-tos/write-workflows/choose-what-workflows-do/run-job-variations#excluding-matrix-configurations).
+
+Let's create following workflow.
+
+```yaml
+# .github/workflows/matrix-exclude.yaml
+
+name: matrix exclude
+on:
+  workflow_dispatch:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+
+jobs:
+  exclude:
+    permissions:
+      contents: read
+    strategy:
+      matrix:
+        fruta: [manzana, pera]
+        animal: [gato, perro]
+        exclude:
+          - fruit: manzana
+            animal: gato
+    runs-on: ubuntu-24.04
+    timeout-minutes: 3
+    steps:
+      - run: echo "${CONTEXT}"
+        env:
+          CONTEXT: ${{ toJson(matrix) }}
+
+```
+
+Following matrix will run 3 jobs in total.
+
+```json
+{fruit: manzana, animal: perro}
+{fruit: pera, animal: gato}
+{fruit: pera, animal: perro}
 ```
 
 ## Timeout settings

@@ -1,0 +1,25 @@
+name: matrix exclude
+on:
+  workflow_dispatch:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+
+jobs:
+  exclude:
+    permissions:
+      contents: read
+    strategy:
+      matrix:
+        fruta: [manzana, pera]
+        animal: [gato, perro]
+        exclude:
+          - fruit: manzana
+            animal: gato
+    runs-on: ubuntu-24.04
+    timeout-minutes: 3
+    steps:
+      - run: echo "${CONTEXT}"
+        env:
+          CONTEXT: ${{ toJson(matrix) }}
