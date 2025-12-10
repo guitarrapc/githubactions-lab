@@ -41,7 +41,7 @@ jobs:
         id: cpr
         if: ${{ steps.git-check.outputs.modified == 'true' }}
         run: |
-          if ! gh pr view auto/create_pr --base main >/dev/null 2>&1; then
+          if ! gh pr list --head "auto/create_pr" --base "main" >/dev/null 2>&1; then
             title="[report.txt] Automated changes"
             body="GitHub Actions [${GITHUB_WORKFLOW}](${GITHUB_ACTIONS_RUN_URL}) generated changes :rocket:"
             gh pr create --title "$title" --body "$body" --label "automated"
