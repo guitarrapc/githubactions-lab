@@ -3872,6 +3872,27 @@ In general, it is a good practice to set `contents: read` permission for workflo
 
 ```yaml
 # .github/workflows/permissions-minimum.yaml
+
+name: permissions minimum
+on:
+  pull_request:
+    branches: ["main"]
+
+jobs:
+  check-permissions:
+    # specify minimum permissions as possible
+    permissions:
+      contents: read
+    runs-on: ubuntu-24.04
+    timeout-minutes: 3
+    steps:
+      - name: Check job permissions
+        run: echo "permissions ${CONTEXT}"
+        env:
+          CONTEXT: ${{ toJson(job.permissions) }}
+      # checkout
+      # build
+
 ```
 
 Avoiding workflow level permissions like below is also recommended. Instead, set job level permissions as needed.
