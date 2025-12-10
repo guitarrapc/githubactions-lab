@@ -40,7 +40,7 @@ GitHub Actions research and test laboratory.
   - [Environment variables in script](#environment-variables-in-script)
   - [If and context reference](#if-and-context-reference)
   - [Job needs and dependency](#job-needs-and-dependency)
-  - [Job skip handling](#job-skip-handling)
+  - [Job output](#job-output)
   - [Permissions](#permissions)
   - [Pin Third-Party Actions to Commit SHA](#pin-third-party-actions-to-commit-sha)
   - [Run when previous job is success](#run-when-previous-job-is-success)
