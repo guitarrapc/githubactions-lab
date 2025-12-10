@@ -822,51 +822,18 @@ jobs:
 
 GitHub Actions workflow execution order is `Workflow` -> `Job` -> `Step`.
 
-- Workflow run in parallel by default, but you can control workflow execution order with [workflow_run](https://docs.github.com/en/actions/reference/workflows-and-actions/events-that-trigger-workflows#workflow_run) event defined in `on.workflow_run`.
+- Workflow run in parallel by default, but you can control workflow execution order with [workflow_call](https://docs.github.com/en/actions/reference/workflows-and-actions/events-that-trigger-workflows#workflow_call) event defined in `on.workflow_call`.
 - Job run in parallel by default, but you can control job execution order with [needs](https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#jobsjob_idneeds) defined in `jobs.<job_id>.needs`.
 - Step run in sequential order in each job.
 
-### Workflow execution order control with workflow_run
+### Workflow execution order control with workflow_call
 
-If workflow has no `on.workflow_run` section, workflow run in parallel with other workflows. When you set `on.workflow_run` section, workflow run after workflow defined in `on.workflow_run` section.
+If workflow has no `on.workflow_call` section, workflow run in parallel with other workflows. When you set `on.workflow_call` section, workflow can be called from other workflow. In result, workflow are run sequentially in order of caller workflow -> callee workflow.
 
-Following example flow shows `workflow-run` will run after `job needs basic` [workflow](.github/workflows/job-needs-basic.yaml) is completed. In result, workflow are run sequentially in order of `job-needs-basic.yaml` -> `workflow-run.yaml`.
+See [workflow_call](#reusable-workflow) section for actual sample.
 
-
-```yaml
-# .github/workflows/workflow-run.yaml
-
-name: workflow run
-on:
-  workflow_run:
-    workflows:
-      - "job needs basic"
-    types:
-      - completed
-    # optional: limit to specific branches
-    branches:
-      - main
-
-jobs:
-  on-success:
-    if: ${{ github.event.workflow_run.conclusion == 'success' }}
-    permissions:
-      contents: read
-    runs-on: ubuntu-24.04
-    timeout-minutes: 5
-    steps:
-      - run: echo 'The triggering workflow passed'
-
-  on-failure:
-    if: ${{ github.event.workflow_run.conclusion == 'failure' }}
-    permissions:
-      contents: read
-    runs-on: ubuntu-24.04
-    timeout-minutes: 5
-    steps:
-      - run: echo 'The triggering workflow failed'
-
-```
+> [!WARNING]
+> Avoid using `workflow_run` event to control workflow execution order. As [official document](https://docs.github.com/en/actions/reference/workflows-and-actions/events-that-trigger-workflows#workflow_run) mensions, Running untrusted code on the workflow_run trigger may lead to security vulnerabilities. These vulnerabilities include cache poisoning and granting unintended access to write privileges or secrets.
 
 ### Job execution order control with needs
 
