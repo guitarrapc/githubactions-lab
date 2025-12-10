@@ -116,11 +116,6 @@ GitHub Actions research and test laboratory.
   - Like [CircleCI](https://circleci.com/docs/insights-tests) and [Azure Pipeline](https://docs.microsoft.com/en-us/azure/devops/pipelines/test/review-continuous-test-results-after-build?view=azure-devops) provides.
   - Workaround: Use [$GITHUB_STEP_SUMMARY](https://github.blog/2022-05-09-supercharging-github-actions-with-job-summaries/)
 
-## YAML syntax
-- [ ] YAML anchor support
-  - [Support for YAML anchors \- GitHub Community Forum](https://github.community/t5/GitHub-Actions/Support-for-YAML-anchors/td-p/30336)
-  - Workaround: There are Composite Actions and Reusable workflow to reuse same set of actions.
-
 ## Functionarity
 - [ ] Workflow level `timeout-minutes`
   - Currently timeout-minutes can set to jobs and steps, but workflow cannot change from default 360min.
@@ -330,7 +325,7 @@ GitHub Actions not support exact functionality as CircleCI provide, but you can 
 
 Write script is better than directly write on the step, so that we can reuse same execution from other workflows or jobs.
 
-- ✔️: GitHub Actions can reuse yaml via `Reusable workflow`, `Composite Actions` and `Organization workflow`.
+- ✔️: GitHub Actions can reuse yaml via `Reusable workflow`, `Composite Actions`, `Organization workflow`, and also `YAML anchor`.
 - ✔️: CircleCI can reuse job, and also `YAML anchor` is useul.
 - ✔️: Azure Pipeline has template to refer stage, job and step from other yaml.
 - ⚠️: Jenkins pipeline could refer other pipeline. However a lot case you would prefer define job step in script and reuse it. Reusing pipeline easily make it complex with Jenkins.
@@ -3830,6 +3825,47 @@ jobs:
           echo "::add-mask::$MY_NAME"
 
 ```
+
+## YAML anchor
+
+> [!WARNING]
+> I don't recommend using complex anchor structure, because it may make yaml hard to read. Instead, use Reusable Workflow, Composite Actions, JavaScript Actions to share common logic.
+
+You can use YAML anchor to reduce duplication in GitHub Actions workflow yaml. Define anchor with `&anchor_name` and refer anchor with `*anchor_name`.
+
+```yaml
+# .github/workflows/yaml-anchor-basic.yaml
+```
+
+To debug anchor, use `yq` command to see expanded yaml.
+
+```sh
+$ yq "explode(.)" .github/workflows/yaml-anchor-basic.yaml
+name: yaml anchor basic
+on:
+  push:
+    branches: ["main"]
+    # Define an anchor named common_paths with `&NAME`
+    paths:
+      - ".github/workflows/**.yaml"
+      - "README.md"
+  pull_request:
+    branches: ["main"]
+    # Reference the anchor with `*NAME`
+    paths:
+      - ".github/workflows/**.yaml"
+      - "README.md"
+jobs:
+  job:
+    permissions:
+      contents: read
+    runs-on: ubuntu-24.04
+    timeout-minutes: 3
+    steps:
+      - name: Show message
+        run: echo "This workflow is triggered by changes in paths defined with YAML anchor."
+```
+
 
 # Bad Pattern
 
