@@ -3866,6 +3866,7 @@ jobs:
         run: echo "This workflow is triggered by changes in paths defined with YAML anchor."
 ```
 
+Be aware that YAML Merge Keys `<<: *anchor_name` is not supported, yet.
 
 # Bad Pattern
 
