@@ -46,8 +46,6 @@ GitHub Actions research and test laboratory.
   - [Job skip handling](#job-skip-handling)
   - [Permissions](#permissions)
   - [Pin Third-Party Actions to Commit SHA](#pin-third-party-actions-to-commit-sha)
-  - [Reusable actions written in yaml - composite](#reusable-actions-written-in-yaml---composite)
-  - [Reusable actions written in node - node12](#reusable-actions-written-in-node---node12)
   - [Reusable workflow](#reusable-workflow)
   - [Run when previous job is success](#run-when-previous-job-is-success)
   - [Run when previous step status is specific](#run-when-previous-step-status-is-specific)
@@ -116,7 +114,7 @@ GitHub Actions research and test laboratory.
 ## YAML syntax
 - [ ] YAML anchor support
   - [Support for YAML anchors \- GitHub Community Forum](https://github.community/t5/GitHub-Actions/Support-for-YAML-anchors/td-p/30336)
-  - Workaround: There are CompositeActions and Reusable workflow to reuse same set of actions.
+  - Workaround: There are Composite Actions and Reusable workflow to reuse same set of actions.
 
 ## Functionarity
 - [ ] Workflow level `timeout-minutes`
@@ -1259,403 +1257,6 @@ uses: actions/cache@88522ab9f39a2ea568f7027eddc7d8d8bc9d59c8 # v3.3.1
 ```
 
 Both Dependabot and Renovate can help you keep your actions up to date even pinned to a specific commit SHA.
-
-## Reusable actions written in yaml - Composite Actions
-
-To reuse local job, create local composite action is easiest way to do, this is calls `composite actions`.
-
-Place your composite actions yaml under `.github/actions/<ACTION_NAME>/action.yaml`. Then write your composite actions yaml. Key point is `runs.using: "composite"`.
-
-- `inputs`: If you want to pass input parameters to composite actions, define `inputs:` section.
-- `outputs`: If you want to pass output parameters from composite actions, define `outputs:` section. Following example shows `id: output_example` step output `number` is passed to composite action output `number`.
-
-```yaml
-# .github/actions/local-composite-actions/action.yaml
-
-name: YOUR ACTION NAME
-description: |
-  Desctiption of your action
-# Define input parameters to pass from caller to callee.
-inputs:
-  foo:
-    description: thi is foo input
-    default: FOO
-    required: false
-# Define output parameters to pass from callee to caller.
-outputs:
-  number:
-    description: "an example output number"
-    value: ${{ steps.output_example.outputs.number }}
-
-runs:
-  using: "composite" # this is key point
-  steps:
-    - name: THIS IS STEP1
-      shell: bash # this is key point
-      env:
-        FOO_VALUE: ${{ inputs.foo }}
-      run: echo "$FOO_VALUE"
-    - name: output example
-      shell: bash
-      id: output_example
-      run: echo "number=123" | tee -a "$GITHUB_OUTPUT"
-
-```
-
-To use composite actions from your workflow, refer local action path with `uses: ./PATH/TO/ACTION`. If you have input parameters, set `with:` section. If composite action has output parameters, you can get it with `steps.<STEP_ID>.outputs.<OUTPUT_NAME>`.
-
-```yaml
-# .github/workflows/reuse-local-actions-composite.yaml
-
-name: reuse local action
-on:
-  workflow_dispatch:
-  push:
-    branches: ["main"]
-  pull_request:
-    branches: ["main"]
-
-jobs:
-  job:
-    permissions:
-      contents: read
-    runs-on: ubuntu-24.04
-    timeout-minutes: 3
-    steps:
-      - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
-        with:
-          persist-credentials: false
-      - name: use local action
-        id: composite
-        uses: ./.github/actions/local-composite-actions
-        with:
-          foo: BAR
-      - name: show output
-        run: echo "output number is ${{ steps.composite.outputs.number }}"
-
-```
-
-## Reusable actions written in node - Node Actions
-
-If you want to write in node, then use `node actions`. Place your ation.yaml to `.github/actions/YOUR_DIR/actions.yaml` Place your Node.js source code to `index.js` under same directory. Key point is `runs.using: "node20"`.
-
-This is useful when you want run, or debug, public GitHub Actions in your environment.
-
-```yaml
-# .github/actions/local-node-actions/action.yaml
-
-name: "Hello World"
-description: |
-  Desctiption of your action
-runs:
-  using: "node20"
-  main: "index.js"
-inputs:
-  name:
-    description: "Name to greet"
-    required: false
-    default: "World"
-outputs:
-  greeting:
-    description: "The greeting message"
-
-```
-
-```js
-// .github/actions/local-node-actions/index.js
-
-console.log("Hello, World!");
-```
-
-- step4. Use actions from your workflow.
-
-```yaml
-# .github/workflows/reuse-local-actions-node.yaml
-
-name: reuse local action node
-on:
-  workflow_dispatch:
-  push:
-    branches: ["main"]
-  pull_request:
-    branches: ["main"]
-
-jobs:
-  job:
-    permissions:
-      contents: read
-    runs-on: ubuntu-24.04
-    timeout-minutes: 3
-    steps:
-      - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
-        with:
-          persist-credentials: false
-      - name: use local action
-        uses: ./.github/actions/local-node-actions
-
-```
-
-## Reusable workflow
-
-GitHub Actions allow call workflow from workflow.
-You can call local workflow of the same repository (Private repository), and remote workflow of the Public repository.
-
-> detail: [Reusing workflows \- GitHub Docs](https://docs.github.com/ja/actions/using-workflows/reusing-workflows)
-
-Place Reusable workflow yaml file under `.github/workflows/` then set `on.workflow_call` trigger, you are ready for reusable workflow. Define `inputs`, `secrets` and `outputs` under on.workflow_call to pass data between caller and callee.
-
-- inputs: define input parameters to pass from caller to callee.
-- secrets: define secret parameters to pass from caller to callee.
-- outputs: define output parameters to pass from callee to caller.
-
-```yaml
-# .github/workflows/_reusable-workflow-called.yaml
-
-name: _reusable workflow called
-on:
-  workflow_call:
-    inputs:
-      username:
-        required: true
-        description: username to show
-        type: string
-      is-valid:
-        required: true
-        description: username to show
-        type: boolean
-    secrets:
-      APPLES:
-        required: true
-    outputs:
-      firstword:
-        description: "The first output string"
-        value: ${{ jobs.reusable_workflow_job.outputs.output1 }}
-      secondword:
-        description: "The second output string"
-        value: ${{ jobs.reusable_workflow_job.outputs.output2 }}
-
-env:
-  FOO: foo
-
-jobs:
-  reusable_workflow_job:
-    timeout-minutes: 5
-    permissions:
-      contents: read
-    runs-on: ubuntu-24.04
-    outputs:
-      output1: ${{ steps.step1.outputs.firstword }}
-      output2: ${{ steps.step2.outputs.secondword }}
-    steps:
-      - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
-        with:
-          ref: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.ref || '' }} # checkout PR HEAD commit instead of merge commit
-          persist-credentials: false
-      - name: (Limitation) Callee can not refer caller environment variable.
-        run: echo "caller environment. ${CALLER_VALUE}"
-      - name: called username
-        env:
-          USERNAME: ${{ inputs.username }}
-        run: echo "called username. $USERNAME"
-      - name: called is-valid
-        env:
-          IS_VALID_INPUT: ${{ inputs.is-valid }}
-        run: echo "called is-valid. $IS_VALID_INPUT"
-      - name: called secret
-        run: echo "called secret. ${{ secrets.APPLES }}"
-      - name: called env (global)
-        run: echo "called global env. ${{ env.FOO }}"
-      - name: output step1
-        id: step1
-        run: echo "firstword=hello" >> "$GITHUB_OUTPUT"
-      - name: output step2
-        id: step2
-        run: echo "secondword=world" >> "$GITHUB_OUTPUT"
-
-```
-
-### Call repository's reusable workflow
-
-To call Reusable workflow, use `uses: ./.github/workflows/xxxx.yaml`.
-
-When you want pass `boolean` type of input from workflow_dispatch to workflow_call, use `fromJson(inputs.YOUR_BOOLEAN_PARAMETER)`.
-See [Type converter with fromJson](#type-converter-with-fromJson) for the detail.
-
-```yaml
-# .github/workflows/reusable-workflow-caller-internal.yaml
-
-name: reusable workflow caller (internal)
-on:
-  push:
-    branches: ["main"]
-  pull_request:
-    branches: ["main"]
-  workflow_dispatch:
-
-
-# (Limitation) Callee can not refer caller environment variable.
-env:
-  CALLER_VALUE: caller
-
-jobs:
-  call-workflow-passing-data:
-    permissions:
-      contents: read
-    uses: ./.github/workflows/_reusable-workflow-called.yaml
-    with:
-      username: "foo"
-      is-valid: true
-    secrets:
-      APPLES: ${{ secrets.APPLES }}
-
-  job2:
-    permissions:
-      contents: read
-    runs-on: ubuntu-24.04
-    timeout-minutes: 1
-    needs: call-workflow-passing-data
-    steps:
-      - run: echo ${{ needs.call-workflow-passing-data.outputs.firstword }} ${{ needs.call-workflow-passing-data.outputs.secondword }}
-
-```
-
-### Call public repository's reusable workflow
-
-Yo call public repository's reusable workflow, use `uses: GITHUB_OWNER/REPOSITORY/.github/workflows/xxxx.yaml@<ref>`.
-
-> **Warning**: To call private repository's reusable workflow, you must use absolute path of self repository.
-
-```yaml
-# .github/workflows/reusable-workflow-public-caller.yaml
-
-name: reusable workflow caller (public)
-on:
-  push:
-    branches: ["main"]
-  pull_request:
-    branches: ["main"]
-  workflow_dispatch:
-
-jobs:
-  call-workflow-passing-data:
-    permissions:
-      contents: read
-    uses: guitarrapc/githubactions-lab/.github/workflows/_reusable-workflow-called.yaml@main
-    with:
-      username: foo
-      is-valid: true
-    secrets:
-      APPLES: ${{ secrets.APPLES }}
-
-  job2:
-    needs: [call-workflow-passing-data]
-    permissions:
-      contents: read
-    runs-on: ubuntu-24.04
-    timeout-minutes: 1
-    steps:
-      - run: echo "${{ needs.call-workflow-passing-data.outputs.firstword }} ${{ needs.call-workflow-passing-data.outputs.secondword }}"
-
-```
-
-### Call reusable workflow with matrix
-
-Reusable Workflow caller cannot use matrix, but callee can use matrix. (see limitation.)
-
-```yaml
-# .github/workflows/reusable-workflow-caller-matrix.yaml
-
-name: reusable workflow caller (matrix)
-on:
-  push:
-    branches: ["main"]
-  pull_request:
-    branches: ["main"]
-  workflow_dispatch:
-
-jobs:
-  call-matrix-workflow:
-    strategy:
-      matrix:
-        username: [foo, bar]
-    permissions:
-      contents: read
-    uses: ./.github/workflows/_reusable-workflow-called.yaml
-    with:
-      username: ${{ matrix.username }}
-      is-valid: true
-    secrets:
-      APPLES: ${{ secrets.APPLES }}
-
-```
-
-### Nest reusable workflow
-
-Reusalbe workflow can call other reusable workflow, it means nested call is supported.
-
-```yaml
-# .github/workflows/_reusable-workflow-nest.yaml
-
-name: _reusable workflow nest
-on:
-  workflow_call:
-    inputs:
-      username:
-        required: true
-        description: username to show
-        type: string
-      is-valid:
-        required: true
-        description: username to show
-        type: boolean
-
-# nested call is supported
-jobs:
-  call-workflow-passing-data:
-    permissions:
-      contents: read
-    uses: ./.github/workflows/_reusable-workflow-called.yaml
-    with:
-      username: ${{ inputs.username }}
-      is-valid: ${{ inputs.is-valid }}
-    secrets:
-      APPLES: ${{ secrets.APPLES }}
-
-```
-
-### Caller Limitations
-
-There are limitations on Reusable workflow caller.
-
-1. Private repo can call same repo's reusable workflow, but can not call other private repo's workflow.
-1. Caller cannot use ${{ env.FOO }} for `with` inputs.
-   ```yaml
-   jobs:
-     bad:
-       runs-on: ubuntu-latest
-       steps:
-         uses: ./.github/workflows/dummy.yaml
-         with:
-           value: ${{ env.FOO }} # caller can not use `env.` in with block.
-         secrets: inherit
-   ```
-
-### Callee Limitations
-
-1. Callee workflow must place under `.github/workflows/`. Otherwise caller treated as calling public workflow.
-   ```bash
-   $ ls -l ./.github/workflows/
-   ```
-1. Callee cannot refer Caller's Environment Variable.
-   ```yaml
-   env:
-     FOO: foo # Reusable workflow callee cannot refer this env.
-   jobs:
-     bad:
-       runs-on: ubuntu-latest
-       steps:
-         uses: ./.github/workflows/dummy.yaml
-   ```
 
 ## Run when previous job is success
 
@@ -3310,6 +2911,196 @@ jobs:
 
 ```
 
+## Custom actions
+
+There are 2 types of custom actions. Composite actions and JavaScript actions. Both are useful to create reusable action logic. If you want to reusse workflow logic, you can also use [Reusable workflows](#reusable-workflow) feature.
+
+- If you just want to run shell commands, then Composite actions is easiest way.
+- If you want to write complex logic in Node.js, then JavaScript actions is way to go.
+
+### Composite Actions
+
+[Composite action](https://docs.github.com/en/actions/tutorials/create-actions/create-a-composite-action) is kind of meta action which runs multiple steps in single action. You can write shell script steps in Composite actions. To create Composite actions, follow steps below.
+
+Place your actions yaml under `.github/actions/<ACTION_NAME>/action.yaml`.
+
+```sh
+$ mkdir -p .github/actions/composite-actions
+$ cd .github/actions/composite-actions
+$ touch action.yaml
+```
+
+Write your Composite actions in action.yaml.
+
+- `inputs`: Define input parameters to Composite actions.
+- `outputs`: Define output parameters from Composite actions.
+- `runs.using: "composite"`: This is key point to define Composite action.
+
+```yaml
+# .github/actions/composite-actions/action.yaml
+
+name: composite actions
+on:
+  workflow_dispatch:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+
+jobs:
+  job:
+    permissions:
+      contents: read
+    runs-on: ubuntu-24.04
+    timeout-minutes: 3
+    steps:
+      # require checkout to use local action
+      - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
+        with:
+          persist-credentials: false
+      # specify local action path with `uses: ./PATH/TO/ACTION`
+      - name: Use Composite action
+        id: action
+        uses: ./.github/actions/composite-actions
+        with:
+          foo: BAR
+      - name: show output
+        run: echo "output number is ${{ steps.action.outputs.number }}"
+
+```
+
+To use a Composite action within the same repository, refer action path with `uses: ./PATH/TO/ACTION`. If you have input parameters, set `with:` section. If a Composite action has output parameters, you can get it with `steps.<STEP_ID>.outputs.<OUTPUT_NAME>`.
+
+```yaml
+# .github/workflows/composite-actions.yaml
+
+name: composite action
+on:
+  workflow_dispatch:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+
+jobs:
+  job:
+    permissions:
+      contents: read
+    runs-on: ubuntu-24.04
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
+        with:
+          persist-credentials: false
+      - name: use local action
+        id: composite
+        uses: ./.github/actions/composite-actions
+        with:
+          foo: BAR
+      - name: show output
+        run: echo "output number is ${{ steps.composite.outputs.random-number }}"
+
+```
+
+## Custom actions - JavaScript Actions
+
+[JavaScript action](https://docs.github.com/en/actions/tutorials/create-actions/create-a-javascript-action) is custom action written in Node.js. You can write complex logic in JavaScript action. To create JavaScript actions, follow steps below.
+
+> [!Note]
+> Most cases, JavaScript actions are written in TypeScript, then  compile into JavaScript, place compiled JavaScript file under `dist/` folder. Following example just use plain JavaScript for simplicity.
+
+Place your actions yaml under `.github/actions/<ACTION_NAME>/action.yaml`, and main JavaScript file `dist/index.js` in same folder.
+
+```sh
+$ mkdir -p .github/actions/javascript-actions
+$ cd .github/actions/javascript-actions
+$ touch action.yaml
+$ touch dist/index.js
+```
+
+Write your JavaScript actions definition in action.yaml.
+
+- `inputs`: Define input parameters to JavaScript actions.
+- `outputs`: Define output parameters from JavaScript actions.
+- `runs.using: "node20"`: This is key point to define JavaScript action.
+
+```yaml
+# .github/actions/javascript-actions/action.yaml
+
+name: "Hello World"
+description: |
+  Desctiption of your action
+
+# Define input parameters to pass from caller to callee.
+inputs:
+  name:
+    description: "Name to greet"
+    required: false
+    default: "World"
+
+# Define output parameters to pass from callee to caller.
+outputs:
+  greeting:
+    description: "The greeting message"
+
+runs:
+  using: "node20"
+  main: "index.js"
+
+```
+
+Write your logic in `dist/index.js`. Following example shows standard output, input parameter usage, and output parameter setting.
+
+```js
+// .github/actions/javascript-actions/index.js
+
+// Standard output
+console.log("Hello, World!");
+
+// input example
+const name = process.env['INPUT_NAME'];
+
+// output example
+const greeting = `Hello, ${name}!`;
+console.log(greeting);
+console.log(`::set-output name=greeting::${greeting}`);
+
+```
+
+To use a JavaScript action within the same repository, refer action path with `uses: ./PATH/TO/ACTION`. If you have input parameters, set `with:` section. If a JavaScript action has output parameters, you can get it with `steps.<STEP_ID>.outputs.<OUTPUT_NAME>`.
+
+```yaml
+# .github/workflows/reuse-local-actions-node.yaml
+
+name: javascript actions
+on:
+  workflow_dispatch:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+
+jobs:
+  job:
+    permissions:
+      contents: read
+    runs-on: ubuntu-24.04
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
+        with:
+          persist-credentials: false
+      # specify local action path with `uses: ./PATH/TO/ACTION`
+      - name: Use JavaScript action
+        id: action
+        uses: ./.github/actions/javascript-actions
+        with:
+          name: John
+      - name: show output
+        run: echo "greeting is ${{ steps.composite.outputs.greeting }}"
+
+```
+
 ## Data passing
 
 ### Data passing between steps
@@ -3652,6 +3443,245 @@ jobs:
           PR_TITLE: ${{ steps.pr.outputs.title }}
 
 ```
+
+## Reusable workflow
+
+GitHub Actions allows you to create [Reusable workflows](https://docs.github.com/en/actions/how-tos/reuse-automations/reuse-workflows) to share common workflow logic across multiple workflows and repositories. You can call local workflow of the same repository, public repository's workflow, or same Organization's private repository's workflow. To create reusable workflow, follow steps below.
+
+**Limitations**
+
+There are some limitations when calling reusable workflows.
+
+1. Private repo can call same repo's reusable workflow, but can not call other private repo's workflow.
+1. Caller cannot use ${{ env.FOO }} for `with` inputs.
+   ```yaml
+   jobs:
+     bad:
+       runs-on: ubuntu-latest
+       steps:
+         uses: ./.github/workflows/dummy.yaml
+         with:
+           value: ${{ env.FOO }} # caller can not use `env.` in with block.
+         secrets: inherit
+   ```
+
+There are some limitations for reusable workflow callee.
+
+1. Callee workflow must place under `.github/workflows/`. Otherwise caller treated as calling public workflow.
+   ```bash
+   $ ls -l ./.github/workflows/
+   ```
+1. Callee cannot refer Caller's Environment Variable.
+   ```yaml
+   env:
+     FOO: foo # Reusable workflow callee cannot refer this env.
+   jobs:
+     bad:
+       runs-on: ubuntu-latest
+       steps:
+         uses: ./.github/workflows/dummy.yaml
+   ```
+
+### Create reusable workflow
+
+Place Reusable workflow yaml file under `.github/workflows/<WORKFLOW_NAME>.yaml`.
+
+```sh
+$ mkdir -p .github/workflows
+$ cd .github/workflows
+$ touch _reusable-workflow-called.yaml
+```
+
+Write your Reusable workflow in `_reusable-workflow-called.yaml`.
+
+- `on.workflow_call`: Key point to define Reusable workflow.
+- `on.workflow_call.inputs`: Define input parameters to pass from caller to callee.
+- `on.workflow_call.secrets`: Define input secret parameters to pass from caller to callee.
+- `on.workflow_call.outputs`: Define output parameters to pass from callee to caller.
+
+```yaml
+# .github/workflows/_reusable-workflow-called.yaml
+
+name: _reusable workflow called
+on:
+  workflow_call:
+    inputs:
+      username:
+        required: true
+        description: username to show
+        type: string
+      is-valid:
+        required: true
+        description: username to show
+        type: boolean
+    secrets:
+      APPLES:
+        required: true
+    outputs:
+      firstword:
+        description: "The first output string"
+        value: ${{ jobs.reusable_workflow_job.outputs.output1 }}
+      secondword:
+        description: "The second output string"
+        value: ${{ jobs.reusable_workflow_job.outputs.output2 }}
+
+env:
+  FOO: foo
+
+jobs:
+  reusable_workflow_job:
+    timeout-minutes: 5
+    permissions:
+      contents: read
+    runs-on: ubuntu-24.04
+    outputs:
+      output1: ${{ steps.step1.outputs.firstword }}
+      output2: ${{ steps.step2.outputs.secondword }}
+    steps:
+      - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
+        with:
+          ref: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.ref || '' }} # checkout PR HEAD commit instead of merge commit
+          persist-credentials: false
+      - name: (Limitation) Callee can not refer caller environment variable.
+        run: echo "caller environment. ${CALLER_VALUE}"
+      - name: called username
+        env:
+          USERNAME: ${{ inputs.username }}
+        run: echo "called username. $USERNAME"
+      - name: called is-valid
+        env:
+          IS_VALID_INPUT: ${{ inputs.is-valid }}
+        run: echo "called is-valid. $IS_VALID_INPUT"
+      - name: called secret
+        run: echo "called secret. ${{ secrets.APPLES }}"
+      - name: called env (global)
+        run: echo "called global env. ${{ env.FOO }}"
+      - name: output step1
+        id: step1
+        run: echo "firstword=hello" >> "$GITHUB_OUTPUT"
+      - name: output step2
+        id: step2
+        run: echo "secondword=world" >> "$GITHUB_OUTPUT"
+
+```
+
+### Call Reusable workflow in same repository
+
+To call Reusable workflow in same repository, use `uses: ./.github/workflows/xxxx.yaml`.
+
+> [!TIPS]
+> If you want pass `boolean` type of input from workflow_dispatch to workflow_call, use `fromJson(inputs.YOUR_BOOLEAN_PARAMETER)`.
+See [Type converter with fromJson](#type-converter-with-fromJson) for the detail.
+
+```yaml
+# .github/workflows/reusable-workflow-caller-internal.yaml
+
+name: reusable workflow caller (internal)
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+  workflow_dispatch:
+
+
+# (Limitation) Callee can not refer caller environment variable.
+env:
+  CALLER_VALUE: caller
+
+jobs:
+  call-workflow-passing-data:
+    permissions:
+      contents: read
+    uses: ./.github/workflows/_reusable-workflow-called.yaml
+    with:
+      username: "foo"
+      is-valid: true
+    secrets:
+      APPLES: ${{ secrets.APPLES }}
+
+  job2:
+    permissions:
+      contents: read
+    runs-on: ubuntu-24.04
+    timeout-minutes: 1
+    needs: call-workflow-passing-data
+    steps:
+      - run: echo ${{ needs.call-workflow-passing-data.outputs.firstword }} ${{ needs.call-workflow-passing-data.outputs.secondword }}
+
+```
+
+### Call Reusable workflow in public repository
+
+To call Reusable workflow in public repository, use `uses: GITHUB_OWNER/REPOSITORY/.github/workflows/xxxx.yaml@<ref>`.
+
+```yaml
+# .github/workflows/reusable-workflow-public-caller.yaml
+
+name: reusable workflow caller (public)
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+  workflow_dispatch:
+
+jobs:
+  call-workflow-passing-data:
+    permissions:
+      contents: read
+    uses: guitarrapc/githubactions-lab/.github/workflows/_reusable-workflow-called.yaml@main
+    with:
+      username: foo
+      is-valid: true
+    secrets:
+      APPLES: ${{ secrets.APPLES }}
+
+  job2:
+    needs: [call-workflow-passing-data]
+    permissions:
+      contents: read
+    runs-on: ubuntu-24.04
+    timeout-minutes: 1
+    steps:
+      - run: echo "${{ needs.call-workflow-passing-data.outputs.firstword }} ${{ needs.call-workflow-passing-data.outputs.secondword }}"
+
+```
+
+### Nested reusable workflow
+
+Reusalbe workflow support nested call. Callee workflow can call another reusable workflow.
+
+```yaml
+# .github/workflows/_reusable-workflow-nest.yaml
+
+name: _reusable workflow nest
+on:
+  workflow_call:
+    inputs:
+      username:
+        required: true
+        description: username to show
+        type: string
+      is-valid:
+        required: true
+        description: username to show
+        type: boolean
+
+# nested call is supported
+jobs:
+  call-workflow-passing-data:
+    permissions:
+      contents: read
+    uses: ./.github/workflows/_reusable-workflow-called.yaml
+    with:
+      username: ${{ inputs.username }}
+      is-valid: ${{ inputs.is-valid }}
+    secrets:
+      APPLES: ${{ secrets.APPLES }}
+
+```
+
 
 ## Telemetry for GitHub Workflow execution
 

@@ -1,4 +1,4 @@
-name: reuse local action node
+name: javascript actions
 on:
   workflow_dispatch:
   push:
@@ -16,5 +16,11 @@ jobs:
       - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
         with:
           persist-credentials: false
-      - name: use local action
-        uses: ./.github/actions/local-node-actions
+      # specify local action path with `uses: ./PATH/TO/ACTION`
+      - name: Use JavaScript action
+        id: action
+        uses: ./.github/actions/javascript-actions
+        with:
+          name: John
+      - name: show output
+        run: echo "greeting is ${{ steps.composite.outputs.greeting }}"

@@ -1,12 +1,14 @@
-name: YOUR ACTION NAME
+name: "Hello World"
 description: |
   Desctiption of your action
+
 # Define input parameters to pass from caller to callee.
 inputs:
   foo:
     description: thi is foo input
-    default: FOO
     required: false
+    default: FOO
+
 # Define output parameters to pass from callee to caller.
 outputs:
   number:
