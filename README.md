@@ -779,7 +779,7 @@ Following example shows how to use `if` condition for job level and step level.
 ```yaml
 # .github/workflows/if-basic.yaml
 
-name: if expression
+name: if basic
 on:
   workflow_dispatch:
   push:
