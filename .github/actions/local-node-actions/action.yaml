@@ -1,6 +1,0 @@
-name: "Hello World"
-description: |
-  Desctiption of your action
-runs:
-  using: "node20"
-  main: "index.js"

@@ -1,0 +1,29 @@
+name: "Hello World"
+description: |
+  Desctiption of your action
+
+# Define input parameters to pass from caller to callee.
+inputs:
+  foo:
+    description: thi is foo input
+    required: false
+    default: FOO
+
+# Define output parameters to pass from callee to caller.
+outputs:
+  number:
+    description: "an example output number"
+    value: ${{ steps.output_example.outputs.number }}
+
+runs:
+  using: "composite" # this is key point
+  steps:
+    - name: THIS IS STEP1
+      shell: bash # this is key point
+      env:
+        FOO_VALUE: ${{ inputs.foo }}
+      run: echo "$FOO_VALUE"
+    - name: output example
+      shell: bash
+      id: output_example
+      run: echo "number=123" | tee -a "$GITHUB_OUTPUT"

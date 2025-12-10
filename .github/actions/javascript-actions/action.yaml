@@ -1,0 +1,19 @@
+name: "Hello World"
+description: |
+  Desctiption of your action
+
+# Define input parameters to pass from caller to callee.
+inputs:
+  name:
+    description: "Name to greet"
+    required: false
+    default: "World"
+
+# Define output parameters to pass from callee to caller.
+outputs:
+  greeting:
+    description: "The greeting message"
+
+runs:
+  using: "node20"
+  main: "index.js"
