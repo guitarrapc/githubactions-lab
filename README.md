@@ -349,7 +349,8 @@ Defining `output` in each job step and reusing it in later steps has fewer side 
 - ✔️: Azure Pipeline use task.setvariable via `echo "##vso[task.setvariable variable=NAME;isoutput=true]VALUE"` syntax.
 - ⚠️: Jenkins has no equivalent but use Environment Variables.
 
-> **Info** GitHub Actions `::set-output` syntax has been deprecated for [security reason](https://github.blog/changelog/2022-10-11-github-actions-deprecating-save-state-and-set-output-commands/).
+> [!WARNING]
+> GitHub Actions `::set-output` syntax has been deprecated for [security reason](https://github.blog/changelog/2022-10-11-github-actions-deprecating-save-state-and-set-output-commands/).
 
 ## Set PATH Environment variables
 
@@ -1123,7 +1124,7 @@ jobs:
 
 ## Redundant Control
 
-> **Note**
+> [!WARNING]
 > Consider using Workflow Concurrency control instead of redundant control.
 
 Creating a PR emits two events: `push` and `pull_request/synchronize`. This means duplicate builds begin and waste build time.
@@ -3498,7 +3499,7 @@ jobs:
 
 To call Reusable workflow in same repository, use `uses: ./.github/workflows/xxxx.yaml`.
 
-> [!TIPS]
+> [!TIP]
 > If you want pass `boolean` type of input from workflow_dispatch to workflow_call, use `fromJson(inputs.YOUR_BOOLEAN_PARAMETER)`.
 See [Type converter with fromJson](#type-converter-with-fromJson) for the detail.
 
