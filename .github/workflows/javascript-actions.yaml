@@ -23,4 +23,4 @@ jobs:
         with:
           name: John
       - name: show output
-        run: echo "greeting is ${{ steps.composite.outputs.greeting }}"
+        run: echo "greeting is ${{ steps.action.outputs.greeting }}"

@@ -3070,7 +3070,7 @@ console.log(`::set-output name=greeting::${greeting}`);
 To use a JavaScript action within the same repository, refer action path with `uses: ./PATH/TO/ACTION`. If you have input parameters, set `with:` section. If a JavaScript action has output parameters, you can get it with `steps.<STEP_ID>.outputs.<OUTPUT_NAME>`.
 
 ```yaml
-# .github/workflows/reuse-local-actions-node.yaml
+# .github/workflows/javascript-actions.yaml
 
 name: javascript actions
 on:
