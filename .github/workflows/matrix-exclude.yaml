@@ -15,7 +15,7 @@ jobs:
         fruta: [manzana, pera]
         animal: [gato, perro]
         exclude:
-          - fruit: manzana
+          - fruta: manzana
             animal: gato
     runs-on: ubuntu-24.04
     timeout-minutes: 3
