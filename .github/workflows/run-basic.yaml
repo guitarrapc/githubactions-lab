@@ -1,0 +1,28 @@
+name: run basic
+on:
+  workflow_dispatch:
+  push:
+    branches: ["main"]
+
+jobs:
+  push:
+    permissions:
+      contents: read
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - run: echo "Hello world!"
+      - run: |
+          echo "foo"
+          echo "bar"
+      - name: name to run steps
+        run: cat << 'EOF' > script.sh
+          echo "step 1"
+          echo "step 2"
+          echo "step 3"
+          echo "${FOO}"
+          EOF
+      - name: execute script
+        run: bash ./script.sh
+        env:
+          FOO: "This is an environment variable"

@@ -1,4 +1,4 @@
-name: if and concat
+name: expression string concat
 on:
   workflow_dispatch:
   push:

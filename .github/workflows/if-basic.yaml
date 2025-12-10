@@ -1,4 +1,4 @@
-name: multiline if
+name: if basic
 on:
   workflow_dispatch:
   push:
@@ -22,3 +22,14 @@ jobs:
     timeout-minutes: 5
     steps:
       - run: echo "workflow_dispatch"
+
+  always:
+    if: ${{ always() }}
+    permissions:
+      contents: read
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - run: echo "always"
+      - run: echo "this is push"
+        if: ${{ github.event_name == 'push' }}

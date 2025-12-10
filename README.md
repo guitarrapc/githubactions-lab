@@ -770,52 +770,50 @@ jobs:
 
 ```
 
-## If and context reference
+## if basic
 
-GitHub Actions allow `if` condition for `step`.
-You can refer any context inside `if` condition.
-You don't need add `${{}}` to context reference. but I do recomment add it for easier read.
+You can use `if:` condition to control whether `job`/`step` run or not. `if` statement can use [expression](https://docs.github.com/ja/actions/reference/workflows-and-actions/expressions) syntax like `success()`, `failure()`, `contains()`, `startsWith()` and so on.
 
-> NOTE: `matrix` cannot refer with `job.if`.
-
-> [Solved: What is the correct if condition syntax for checki/././. /- GitHub Community Forum](https://github.community/t5/GitHub-Actions/What-is-the-correct-if-condition-syntax-for-checking-matrix-os/td-p/31269)
+Following example shows how to use `if` condition for job level and step level.
 
 ```yaml
-# .github/workflows/if-and-context.yaml
+# .github/workflows/if-basic.yaml
 
-name: if and context reference
+name: if expression
 on:
   workflow_dispatch:
   push:
     branches: ["main"]
-  pull_request:
-    branches: ["main"]
 
 jobs:
-  matrix_reference:
-    strategy:
-      matrix:
-        sample: ["hoge", "fuga"]
-    env:
-      APP: hoge
+  push:
+    if: ${{ github.event_name == 'push' || github.event.forced == false }}
     permissions:
       contents: read
     runs-on: ubuntu-24.04
-    timeout-minutes: 3
+    timeout-minutes: 5
     steps:
-      # env context reference
-      - run: echo "this is env if for hoge"
-        if: ${{ env.APP == matrix.sample }}
-      - run: echo "this is env if for fuga"
-        if: ${{ env.APP == matrix.sample }}
-      # github context reference
-      - run: echo "this is github if event push"
+      - run: echo "push"
+
+  workflow_dispatch:
+    if: ${{ github.event_name == 'workflow_dispatch' }}
+    permissions:
+      contents: read
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - run: echo "workflow_dispatch"
+
+  always:
+    if: ${{ always() }}
+    permissions:
+      contents: read
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - run: echo "always"
+      - run: echo "this is push"
         if: ${{ github.event_name == 'push' }}
-      # matrix context reference
-      - run: echo "this is matrix if for hoge"
-        if: ${{ matrix.sample == 'hoge' }}
-      - run: echo "this is matrix if for fuga"
-        if: ${{ matrix.sample == 'fuga' }}
 
 ```
 
@@ -1276,69 +1274,6 @@ jobs:
 
 ```
 
-## Run write Multiline code
-
-There are many place to support multiline.
-
-### run
-
-Use `run: |` to write `run` statement in multiline.
-
-```yaml
-# .github/workflows/multiline-run.yaml
-
-name: multiline run
-on:
-  workflow_dispatch:
-  push:
-    branches: ["main"]
-
-jobs:
-  push:
-    permissions:
-      contents: read
-    runs-on: ubuntu-24.04
-    timeout-minutes: 5
-    steps:
-      - run: |
-          echo "foo"
-          echo "bar"
-
-```
-
-### if
-
-Use `if: >-` to write `if` statement in multiline.
-
-```yaml
-# .github/workflows/multiline-if.yaml
-
-name: multiline if
-on:
-  workflow_dispatch:
-  push:
-    branches: ["main"]
-
-jobs:
-  push:
-    if: ${{ github.event_name == 'push' || github.event.forced == false }}
-    permissions:
-      contents: read
-    runs-on: ubuntu-24.04
-    timeout-minutes: 5
-    steps:
-      - run: echo "push"
-
-  workflow_dispatch:
-    if: ${{ github.event_name == 'workflow_dispatch' }}
-    permissions:
-      contents: read
-    runs-on: ubuntu-24.04
-    timeout-minutes: 5
-    steps:
-      - run: echo "workflow_dispatch"
-
-```
 
 ## Matrix
 
@@ -1620,6 +1555,48 @@ jobs:
       - run: echo "${NEW_ORG}"
         env:
           NEW_ORG: new-${{ env.ORG }}
+
+```
+
+## Run basic
+
+You can use `run:` to execute shell command in steps. Here are some tips for `run` statement.
+
+- Add `name:` to describe step name.
+- Use `run: |` to write `run` statement in multiline.
+- Use `env:` to set environment variables for step.
+
+```yaml
+# .github/workflows/run-basic.yaml
+
+name: run basic
+on:
+  workflow_dispatch:
+  push:
+    branches: ["main"]
+
+jobs:
+  push:
+    permissions:
+      contents: read
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - run: echo "Hello world!"
+      - run: |
+          echo "foo"
+          echo "bar"
+      - name: name to run steps
+        run: cat << 'EOF' > script.sh
+          echo "step 1"
+          echo "step 2"
+          echo "step 3"
+          echo "${FOO}"
+          EOF
+      - name: execute script
+        run: bash ./script.sh
+        env:
+          FOO: "This is an environment variable"
 
 ```
 
@@ -4113,6 +4090,41 @@ jobs:
         run: ls -R ${{ github.workspace }}/../../_actions/actions/checkout/v4
 
 ```
+
+## Expression string concat
+
+You may confuse how to concatenate string and use it in `if` condition. Following example shows how to use `format()` to concatenate string and use it in `if` condition.
+
+```yaml
+# .github/workflows/expression-string-concat.yaml
+
+name: expression string concat
+on:
+  workflow_dispatch:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+
+jobs:
+  matrix_reference:
+    strategy:
+      matrix:
+        sample: ["hoge", "fuga"]
+    env:
+      APP: hoge
+    permissions:
+      contents: read
+    runs-on: ubuntu-24.04
+    timeout-minutes: 3
+    steps:
+      - run: echo "this is hoge FORMAT"
+        if: ${{ format('local/{0}', matrix.sample) == 'local/hoge' }}
+      - run: echo "this is fuga FORMAT"
+        if: ${{ format('local/{0}', matrix.sample) == 'local/fuga' }}
+
+```
+
 
 ## Get Branch
 
