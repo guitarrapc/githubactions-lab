@@ -40,7 +40,14 @@ jobs:
       - name: Create PullRequest
         id: cpr
         if: ${{ steps.git-check.outputs.modified == 'true' }}
-        run: gh pr create --title "[report.txt] Automated changes" --body "GitHub Actions [${{ github.workflow }}](${{ env.GITHUB_ACTIONS_RUN_URL }}) generated changes :rocket:" --label "automated pr" --base "main" --head "auto/create_pr"
+        run: |
+          if ! gh pr view auto/create_pr --base main >/dev/null 2>&1; then
+            title="[report.txt] Automated changes"
+            body="GitHub Actions [${GITHUB_WORKFLOW}](${GITHUB_ACTIONS_RUN_URL}) generated changes :rocket:"
+            gh pr create --title "$title" --body "$body" --label "automated"
+          else
+            echo "PR already exists for auto/create_pr -> main. Skipping creation."
+          fi
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITHUB_ACTIONS_RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
