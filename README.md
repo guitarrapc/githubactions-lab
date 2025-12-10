@@ -400,6 +400,98 @@ GitHub Actions use Build artifacts to share files between jobs in a workflow and
 - ✔️: Azure Pipeline [store build artifacts](https://learn.microsoft.com/en-us/azure/devops/pipelines/artifacts/pipeline-artifacts?view=azure-devops&tabs=yaml) with `PublishPipelineArtifact` task, and download via `DownloadPipelineArtifact` task. There are not retention period for upload artifact.
 - ⚠️: Jenkins can [store build artifacts](https://www.jenkins.io/doc/pipeline/steps/core/#archiveartifacts-archive-the-artifacts) with `archiveArtifacts` step, however you need call API to download stored artifacts. There are not retention period for upload artifact.
 
+# Basic - Onboarding
+
+## run step
+
+You can use `run:` to execute shell command in steps. Here are some tips for `run` statement.
+
+- Add `name:` to describe step name.
+- Use `run: |` to write `run` statement in multiline.
+- Use `env:` to set environment variables for step.
+
+```yaml
+# .github/workflows/run-basic.yaml
+
+name: run basic
+on:
+  workflow_dispatch:
+  push:
+    branches: ["main"]
+
+jobs:
+  push:
+    permissions:
+      contents: read
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - run: echo "Hello world!"
+      - run: |
+          echo "foo"
+          echo "bar"
+      - name: name to run steps
+        run: |
+          cat << 'EOF' > script.sh
+          echo "step 1"
+          echo "step 2"
+          echo "step 3"
+          echo "${FOO}"
+          EOF
+      - name: execute script
+        run: bash ./script.sh
+        env:
+          FOO: "This is an environment variable"
+
+```
+
+## if section
+
+You can use `if:` condition to control whether `job`/`step` run or not. `if` statement can use [expression](https://docs.github.com/ja/actions/reference/workflows-and-actions/expressions) syntax like `success()`, `failure()`, `contains()`, `startsWith()` and so on.
+
+Following example shows how to use `if` condition for job level and step level.
+
+```yaml
+# .github/workflows/if-basic.yaml
+
+name: if basic
+on:
+  workflow_dispatch:
+  push:
+    branches: ["main"]
+
+jobs:
+  push:
+    if: ${{ github.event_name == 'push' || github.event.forced == false }}
+    permissions:
+      contents: read
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - run: echo "push"
+
+  workflow_dispatch:
+    if: ${{ github.event_name == 'workflow_dispatch' }}
+    permissions:
+      contents: read
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - run: echo "workflow_dispatch"
+
+  always:
+    if: ${{ always() }}
+    permissions:
+      contents: read
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - run: echo "always"
+      - run: echo "this is push"
+        if: ${{ github.event_name == 'push' }}
+
+```
+
 # Basic - Fundamentables
 
 ## Checkout without persist-credentials
@@ -769,53 +861,6 @@ jobs:
         run: |
           echo "${{ env.BRANCH_SCRIPT }}"
           echo "${{ steps.script.outputs.branch }}"
-
-```
-
-## if basic
-
-You can use `if:` condition to control whether `job`/`step` run or not. `if` statement can use [expression](https://docs.github.com/ja/actions/reference/workflows-and-actions/expressions) syntax like `success()`, `failure()`, `contains()`, `startsWith()` and so on.
-
-Following example shows how to use `if` condition for job level and step level.
-
-```yaml
-# .github/workflows/if-basic.yaml
-
-name: if basic
-on:
-  workflow_dispatch:
-  push:
-    branches: ["main"]
-
-jobs:
-  push:
-    if: ${{ github.event_name == 'push' || github.event.forced == false }}
-    permissions:
-      contents: read
-    runs-on: ubuntu-24.04
-    timeout-minutes: 5
-    steps:
-      - run: echo "push"
-
-  workflow_dispatch:
-    if: ${{ github.event_name == 'workflow_dispatch' }}
-    permissions:
-      contents: read
-    runs-on: ubuntu-24.04
-    timeout-minutes: 5
-    steps:
-      - run: echo "workflow_dispatch"
-
-  always:
-    if: ${{ always() }}
-    permissions:
-      contents: read
-    runs-on: ubuntu-24.04
-    timeout-minutes: 5
-    steps:
-      - run: echo "always"
-      - run: echo "this is push"
-        if: ${{ github.event_name == 'push' }}
 
 ```
 
@@ -1613,49 +1658,6 @@ jobs:
       - run: echo "${NEW_ORG}"
         env:
           NEW_ORG: new-${{ env.ORG }}
-
-```
-
-## Run basic
-
-You can use `run:` to execute shell command in steps. Here are some tips for `run` statement.
-
-- Add `name:` to describe step name.
-- Use `run: |` to write `run` statement in multiline.
-- Use `env:` to set environment variables for step.
-
-```yaml
-# .github/workflows/run-basic.yaml
-
-name: run basic
-on:
-  workflow_dispatch:
-  push:
-    branches: ["main"]
-
-jobs:
-  push:
-    permissions:
-      contents: read
-    runs-on: ubuntu-24.04
-    timeout-minutes: 5
-    steps:
-      - run: echo "Hello world!"
-      - run: |
-          echo "foo"
-          echo "bar"
-      - name: name to run steps
-        run: |
-          cat << 'EOF' > script.sh
-          echo "step 1"
-          echo "step 2"
-          echo "step 3"
-          echo "${FOO}"
-          EOF
-      - name: execute script
-        run: bash ./script.sh
-        env:
-          FOO: "This is an environment variable"
 
 ```
 
