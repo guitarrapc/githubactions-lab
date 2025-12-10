@@ -1,8 +1,6 @@
 [![auto doc](https://github.com/guitarrapc/githubactions-lab/actions/workflows/auto-doc.yaml/badge.svg)](https://github.com/guitarrapc/githubactions-lab/actions/workflows/auto-doc.yaml)
 [![auto dump context](https://github.com/guitarrapc/githubactions-lab/actions/workflows/auto-dump-context.yaml/badge.svg)](https://github.com/guitarrapc/githubactions-lab/actions/workflows/auto-dump-context.yaml)
 [![actionlint](https://github.com/guitarrapc/githubactions-lab/actions/workflows/actionlint.yaml/badge.svg)](https://github.com/guitarrapc/githubactions-lab/actions/workflows/actionlint.yaml)
-[![dotnet build](https://github.com/guitarrapc/githubactions-lab/actions/workflows/dotnet-build.yaml/badge.svg)](https://github.com/guitarrapc/githubactions-lab/actions/workflows/dotnet-build.yaml)
-[![dotnet lint](https://github.com/guitarrapc/githubactions-lab/actions/workflows/dotnet-lint.yaml/badge.svg)](https://github.com/guitarrapc/githubactions-lab/actions/workflows/dotnet-lint.yaml)
 
 # githubactions-lab
 
@@ -146,7 +144,7 @@ Missing `Required reviewers` and `Wait timer` for Environment protection rules.
 
 <details><summary>Click to show screenshot</summary>
 
-![](images/private-repo.png)
+![Environment Private Repository](./images/environment-private-repo.png)
 
 </details>
 
@@ -158,7 +156,7 @@ Can use `Required reviewers` and `Wait timer` for Environment protection rules.
 
 <details><summary>Click to show screenshot</summary>
 
-![](images/public-repo.png)
+![Environment Public Repository](./images/environment-public-repo.png)
 
 </details>
 
@@ -1502,7 +1500,7 @@ You cannot reference `secret` context inside `strategy.matrix` section, so pass 
 
 Let's set secrets in settings, then run following workflow.
 
-![image](https://user-images.githubusercontent.com/3856350/79934065-99de6c00-848c-11ea-8995-bfe948e6c0fb.png)
+![GitHub Secrets sample](./images/secrets.png)
 
 ```yaml
 # .github/workflows/matrix-secret.yaml
@@ -3216,7 +3214,7 @@ jobs:
 
 Shallow clones use the `--depth=<N>` parameter in `git clone` to truncate the commit history. Typically, --depth=1 signifies that we only care about the most recent commits. This drastically reduces the amount of data that needs to be fetched, leading to faster clones and less storage of shallow history.
 
-![](./images/shallow-clone.png)
+![Shallow clone](./images/shallow-clone.png)
 
 > ref: https://github.blog/2020-12-21-get-up-to-speed-with-partial-clone-and-shallow-clone/
 
@@ -3224,7 +3222,7 @@ Shallow clones use the `--depth=<N>` parameter in `git clone` to truncate the co
 
 Sparse checkout use the `git sparse-checkout set <PATH>` before `git clone` to truncate the checkout files and folders. This amazingly reduces the amount of data that needs to be fetched, leading to faster checkout and less storage of limited paths.
 
-![](./images/sparse-checkout.png)
+![Sparse checkout](./images/sparse-checkout.png)
 
 > ref: https://github.blog/2020-01-17-bring-your-monorepo-down-to-size-with-sparse-checkout/
 
@@ -3868,12 +3866,11 @@ jobs:
 
 Telemetry is posted to [Job Summary](https://github.com/guitarrapc/githubactions-lab/actions/runs/6266182534).
 
-![image](https://github.com/guitarrapc/githubactions-lab/assets/3856350/76e10d30-ec4b-4449-84d8-e8bbbfc3664c)
+![GitHub Workflow Telemetry in GitHub Step Summary](./images/workflow-telemetry-action-githubstepsummary.png)
 
 Also if workflow ran with `pull_request` trigger, then you can enable [PR comment](https://github.com/guitarrapc/githubactions-lab/pull/109) by default or set `comment_on_pr: true`.
 
-![image](https://github.com/guitarrapc/githubactions-lab/assets/3856350/c1194994-a3ef-4ccb-a4d4-9a0e1bf287fd)
-
+![GitHub Workflow Telemetry PR Comment](./images/workflow-telemetry-action-prcomment.png)
 
 ## Tool management in GitHub Actions with Aqua
 
