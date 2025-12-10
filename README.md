@@ -2754,7 +2754,7 @@ GitHub Actions is running on selected OS runner, such as `ubuntu-latest`, `windo
 ```yaml
 # .github/workflows/container-job.yaml
 
-name: Container Job
+name: container job
 on:
   workflow_dispatch:
   push:
@@ -2789,7 +2789,7 @@ Service container is used to run container alongside your job. Typical usecase i
 ```yaml
 # .github/workflows/container-service.yaml
 
-name: Container Service
+name: container service
 on:
   workflow_dispatch:
   push:
