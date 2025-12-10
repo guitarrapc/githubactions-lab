@@ -1587,7 +1587,7 @@ jobs:
 
 ```
 
-Following matrix will run 4 jobs in total.
+Following matrix will run 6 jobs in total.
 
 ```json
 // manzana, gato
@@ -1595,32 +1595,36 @@ Following matrix will run 4 jobs in total.
   "fruta": "manzana",
   "animal": "gato",
   "color": "rosa",
-  "fruit": "plátano",
-  "forma": "cuadrado"
+  "forma": "círculo"
 }
 // manzana, perro
 {
   "fruta": "manzana",
   "animal": "perro",
   "color": "verde",
-  "fruit": "plátano",
-  "forma": "cuadrado"
+  "forma": "círculo"
 }
 // pera, gato
 {
   "fruta": "pera",
   "animal": "gato",
-  "color": "rosa",
-  "fruit": "plátano",
-  "forma": "cuadrado"
+  "color": "rosa"
 }
 // pera, perro
 {
   "fruta": "pera",
   "animal": "perro",
-  "color": "verde",
-  "fruit": "plátano",
+  "color": "verde"
+}
+// plátano, cuadrado
+{
+  "fruta": "plátano",
   "forma": "cuadrado"
+}
+// plátano, gato
+{
+  "fruta": "plátano",
+  "animal": "gato"
 }
 ```
 
