@@ -12,7 +12,7 @@ GitHub Actions research and test laboratory.
 
 - [Not yet support](#not-yet-support)
   - [View](#view)
-  - [Functionarity](#functionarity)
+  - [Functionality](#functionality)
 - [Functionality limitation](#functionality-limitation)
 - [Difference from other CI](#difference-from-other-ci)
   - [CI Migration](#ci-migration)
@@ -116,12 +116,12 @@ GitHub Actions research and test laboratory.
   - Like [CircleCI](https://circleci.com/docs/insights-tests) and [Azure Pipeline](https://docs.microsoft.com/en-us/azure/devops/pipelines/test/review-continuous-test-results-after-build?view=azure-devops) provides.
   - Workaround: Use [$GITHUB_STEP_SUMMARY](https://github.blog/2022-05-09-supercharging-github-actions-with-job-summaries/)
 
-## Functionarity
+## Functionality
 - [ ] Workflow level `timeout-minutes`
   - Currently timeout-minutes can set to jobs and steps, but workflow cannot change from default 360min.
   - Workaround: None. Please set `timeout-minutes` to every job.
 - [ ] Workflow concurrency control customization
-  - Currently concurrency control can handle with `key` and `cancel-in-progress` option, it will terminate action when at least 1 pending job is exsits. However you cannot customize how many pending actions are allowed, do not cancel pending job.
+  - Currently concurrency control can be handled with `key` and `cancel-in-progress` options. It will terminate the action when at least 1 pending job exists. However, you cannot customize how many pending actions are allowed or prevent cancellation of pending jobs.
   - Workaround: None.
 - [ ] SSH Debug
   - Like [CircleCI provides](https://circleci.com/docs/ssh-access-jobs).
@@ -185,7 +185,7 @@ GitHub Actions support handling fork PR.
 
 ## Git Checkout
 
-GitHub Actions support checkout by actions and supports variety of checkout options include sparse checkout.
+GitHub Actions supports checkout via actions and offers a variety of checkout options including sparse checkout.
 
 - ✔️: GitHub Actions [actions/checkout](https://github.com/actions/checkout) support `ssh` or `https` protocol, `submodule`, `shallow-clone`, `sparse checkout` and `lfs`. `actions/checkout` is default `shallow-clone` (depth 1).
 - ⚠️: CircleCI [checkout](https://circleci.com/docs/configuration-reference/#checkout) support `ssh` or `https` protocol. It missing `submodule`, `shallow-clone`, `sparse-checkout` and `lfs` support. `checkout` is default full clone.
@@ -271,8 +271,8 @@ Every CI offer you to configure runner sizing for SelfHosted Runner, but some CI
 
 - ✔️: GitHub Actions offers [larger runners](https://docs.github.com/en/actions/using-github-hosted-runners/about-larger-runners/about-larger-runners) to run faster and static IP addresses.
 - ✔️: CircleCI offer [resource class](https://circleci.com/docs/resource-class-overview/) to run faster.
-- ❌: Azure Pipeline not offer hosted runner sizing. Hosted runner is limited to spec `2Core CPU, 7GB RAM and 14GB SSD Disk`.
-- ❌: Jenkins is self hosted solution. Hosted runner sizing is not avaiable.
+- ❌: Azure Pipeline does not offer hosted runner sizing. Hosted runner is limited to spec `2Core CPU, 7GB RAM and 14GB SSD Disk`.
+- ❌: Jenkins is a self-hosted solution. Hosted runner sizing is not available.
 
 ## Job Approval
 
@@ -285,14 +285,14 @@ This functionality enables you to stop next job until manually approved.
 
 ## Meta values and JobId
 
-GitHub Actions has Context concept, you can access job specific info via `github`.
-for example, `github.run_id` is A unique number for each run within a repository.
-Also you can access default environment variables like `GITHUB_RUN_ID`.
+GitHub Actions has a Context concept, allowing you to access job-specific information via `github`.
+For example, `github.run_id` is a unique number for each run within a repository.
+You can also access default environment variables like `GITHUB_RUN_ID`.
 
 - ✔️: GitHub Actions [environment variable](https://help.github.com/en/actions/configuring-and-managing-workflows/using-environment-variables#default-environment-variables) `GITHUB_RUN_ID` or [context](https://help.github.com/en/actions/reference/context-and-expression-syntax-for-github-actions#github-context) `github.run_id`
-- ✔️: CircleCI [environment vairable](https://circleci.com/docs/2.0/env-vars/#built-in-environment-variables) `CIRCLE_BUILD_NUM` and `CIRCLE_WORKFLOW_ID`
+- ✔️: CircleCI [environment variable](https://circleci.com/docs/2.0/env-vars/#built-in-environment-variables) `CIRCLE_BUILD_NUM` and `CIRCLE_WORKFLOW_ID`
 - ✔️: Azure Pipeline [environment variable](https://docs.microsoft.com/ja-jp/azure/devops/pipelines/process/run-number?view=azure-devops&tabs=yaml#tokens) `BuildID`.
-- ✔️: Jenkins [environment vairable](https://wiki.jenkins.io/display/JENKINS/Building+a+software+project) `BUILD_NUMBER`
+- ✔️: Jenkins [environment variable](https://wiki.jenkins.io/display/JENKINS/Building+a+software+project) `BUILD_NUMBER`
 
 ## Path filter
 
@@ -307,7 +307,7 @@ GitHub Actions can use `on.<event>.paths-ignore:` and `on.<event>.paths:` by def
 
 ## Redundant build cancellation
 
-GitHub Actions not support exact functionality as CircleCI provide, but you can do via concurrency control. Another option is community actions like [rokroskar/workflow-run-cleanup-action](https://github.com/marketplace/actions/workflow-run-cleanup-action), [fauguste/auto-cancellation-running-action](https://github.com/marketplace/actions/auto-cancellation-running-action) and [yellowmegaman/gh-build-canceller](https://github.com/marketplace/actions/gh-actions-stale-run-canceller).
+GitHub Actions does not support the exact functionality that CircleCI provides, but you can achieve this via concurrency control. Another option is to use community actions like [rokroskar/workflow-run-cleanup-action](https://github.com/marketplace/actions/workflow-run-cleanup-action), [fauguste/auto-cancellation-running-action](https://github.com/marketplace/actions/auto-cancellation-running-action) and [yellowmegaman/gh-build-canceller](https://github.com/marketplace/actions/gh-actions-stale-run-canceller).
 
 - ✔️: GitHub Actions has concurrency control and it can cancel in progress build. Or your can use community Actions.
 - ✔️: CircleCI support cancel redundant build.
@@ -316,14 +316,14 @@ GitHub Actions not support exact functionality as CircleCI provide, but you can 
 
 ## Rerun failed workflow
 
-- ✔️: GitHub Actions support Re-run jobs. You can re-run for `whole workflow`, `single job` and `failed job`.
-- ✔️: CircleCI support Re-run jobs. You can re-run `whole workflow` or `failed job` again.
-- ⚠️: Azure Pipeline not support Re-run stage but you can not re-run `failed job` only.
-- ✔️: Jenkins Declarative Pipeline support Re-run jobs. You can re-run `Job` or `Stage` again. But you may find it is unstable.
+- ✔️: GitHub Actions supports re-running jobs. You can re-run the `whole workflow`, a `single job`, or `failed jobs`.
+- ✔️: CircleCI supports re-running jobs. You can re-run the `whole workflow` or `failed jobs`.
+- ⚠️: Azure Pipeline does not support re-running stages, and you cannot re-run `failed jobs` only.
+- ✔️: Jenkins Declarative Pipeline supports re-running jobs. You can re-run a `Job` or `Stage`. However, you may find it is unstable.
 
 ## Reusable job and workflow
 
-Write script is better than directly write on the step, so that we can reuse same execution from other workflows or jobs.
+Writing scripts is better than writing directly in steps, as this allows us to reuse the same execution across different workflows or jobs.
 
 - ✔️: GitHub Actions can reuse yaml via `Reusable workflow`, `Composite Actions`, `Organization workflow`, and also `YAML anchor`.
 - ✔️: CircleCI can reuse job, and also `YAML anchor` is useul.
@@ -332,7 +332,7 @@ Write script is better than directly write on the step, so that we can reuse sam
 
 ## Set Environment variables
 
-Define `Environment varialbes` in each job step, then reuse it later step is common pattern.
+Defining `Environment variables` in each job step and reusing them in later steps is a common pattern.
 
 - ✔️: GitHub Actions [use redirect to special Environment variable](https://help.github.com/en/actions/reference/workflow-commands-for-github-actions#setting-an-environment-variable) `$GITHUB_ENV` via `echo "{environment_variable_name}={value}" >> $GITHUB_ENV` (Linux) or `"{environment_variable_name}={value}" >> $env:GITHUB_ENV` (Windows) syntax.
 - `::set-env` syntax has been deprecated for [security reason](https://github.blog/changelog/2020-10-01-github-actions-deprecating-set-env-and-add-path-commands/).
@@ -342,7 +342,7 @@ Define `Environment varialbes` in each job step, then reuse it later step is com
 
 ## Set Output
 
-Define `output` in each job step, then reuse it later step is less side-effect than environment variable. Also it can pass value between job via `job output` , and it can't achieve with environment variable pattern.
+Defining `output` in each job step and reusing it in later steps has fewer side effects than using environment variables. Additionally, it can pass values between jobs via `job output`, which cannot be achieved with the environment variable pattern.
 
 - ✔️: GitHub Actions [use redirect to special Environment variable](https://docs.github.com/en/actions/using-workflows/workflow-commands-for-github-actions#setting-an-output-parameter) `$GITHUB_OUTPUT` via `echo "{name}={value}" >> "$GITHUB_OUTPUT"` (Linux) or `"{name}=value" >> $env:GITHUB_OUTPUT` (Windows) syntax.
 - ⚠️: CircleCI has no equivalent but use Environment Variables.
@@ -361,7 +361,7 @@ Define `output` in each job step, then reuse it later step is less side-effect t
 
 ## Set Secrets for Job
 
-GitHub ACtions offer Secrets for each repository and Organization. Secrets will be masked on the log, and also [you can mask desired output in log](https://docs.github.com/en/actions/using-workflows/workflow-commands-for-github-actions#masking-a-value-in-a-log).
+GitHub Actions offers Secrets for each repository and Organization. Secrets will be masked in the log, and you can also [mask desired output in the log](https://docs.github.com/en/actions/using-workflows/workflow-commands-for-github-actions#masking-a-value-in-a-log).
 
 - ✔️: GitHub Actions use Secrets and Environment Secrets.
 - ✔️: CircleCI offer Environment Variables and Context.
@@ -374,27 +374,27 @@ GitHub Actions supports "Organization Secrets", "Repository Secrets" and "Enviro
 - You can set secrets for each repository with `Repository > Settings > Secrets`.
 - You can set Environment secrets for each repository with `Repository > Environment > Secrets`.
 
-If same secrets key is exists, winner is `Environment Secrets` > `Repository Secrets` > `Organization Secrets`.
+If the same secret key exists in multiple places, the priority is: `Environment Secrets` > `Repository Secrets` > `Organization Secrets`.
 
-If you want spread your secrets with personal account, you need set each repository secrets or use [google/secrets\-sync\-action](https://github.com/google/secrets-sync-action).
+If you want to share your secrets across repositories in a personal account, you need to set secrets for each repository or use [google/secrets\-sync\-action](https://github.com/google/secrets-sync-action).
 
 ## Skip CI and commit message
 
-GitHub Actions support when HEAD commit contains key word like other ci.
+GitHub Actions supports skipping CI when the HEAD commit contains a keyword, similar to other CI systems.
 
 - ✔️: GitHub Actions can skip workflow via `[skip ci]`, `[ci skip]`, `[no ci]`, `[skip actions]` or `[actions skip]`. If PR last commit message contains `[skip ci]`, then merge commit also skip.
 - ✔️: CircleCI can skip job via `[skip ci]` or `[ci skip]`. If PR last commit message contains `[skip ci]`, then merge commit also skip.
 - ✔️: Azure Pipeline can skip job via `***NO_CI***`, `[skip ci]` or `[ci skip]`, or [others](https://github.com/Microsoft/azure-pipelines-agent/issues/858#issuecomment-475768046).
-- ❌: Jenkins not support skip ci on default, but there are plugins to support `[skip ci]` or any expression w/pipeline like [SCM Skip \| Jenkins plugin](https://plugins.jenkins.io/scmskip/).
+- ❌: Jenkins does not support skip ci by default, but there are plugins to support `[skip ci]` or any expression with pipelines like [SCM Skip \| Jenkins plugin](https://plugins.jenkins.io/scmskip/).
 
 ## Store Build Artifacts
 
 GitHub Actions use Build artifacts to share files between jobs in a workflow and also download artifacts from completed workflows.
 
 - ✔️: GitHub Actions can store build artifacts via [actions/upload-artifact](https://github.com/actions/upload-artifact) and [actions/download-artifact](https://github.com/actions/download-artifact). You can specify retention period for upload artifact.
-- ⚠️: CircleCI can [store build artifacts](https://circleci.com/docs/artifacts/) with `store_artifacts` step, however you need call API to download stored artifacts. There are not retention period for upload artifact.
-- ✔️: Azure Pipeline [store build artifacts](https://learn.microsoft.com/en-us/azure/devops/pipelines/artifacts/pipeline-artifacts?view=azure-devops&tabs=yaml) with `PublishPipelineArtifact` task, and download via `DownloadPipelineArtifact` task. There are not retention period for upload artifact.
-- ⚠️: Jenkins can [store build artifacts](https://www.jenkins.io/doc/pipeline/steps/core/#archiveartifacts-archive-the-artifacts) with `archiveArtifacts` step, however you need call API to download stored artifacts. There are not retention period for upload artifact.
+- ⚠️: CircleCI can [store build artifacts](https://circleci.com/docs/artifacts/) with the `store_artifacts` step, however you need to call the API to download stored artifacts. There is no retention period for uploaded artifacts.
+- ✔️: Azure Pipeline [stores build artifacts](https://learn.microsoft.com/en-us/azure/devops/pipelines/artifacts/pipeline-artifacts?view=azure-devops&tabs=yaml) with the `PublishPipelineArtifact` task, and downloads via the `DownloadPipelineArtifact` task. There is no retention period for uploaded artifacts.
+- ⚠️: Jenkins can [store build artifacts](https://www.jenkins.io/doc/pipeline/steps/core/#archiveartifacts-archive-the-artifacts) with the `archiveArtifacts` step, however you need to call the API to download stored artifacts. There is no retention period for uploaded artifacts.
 
 # Basic - Onboarding
 
@@ -585,7 +585,7 @@ jobs:
 
 ## Default shell
 
-You can select shell type for `run` step with `shell:`. Also you can select default shell type for `run` step with `defaults.run.shell:`.
+You can select the shell type for a `run` step with `shell:`. You can also set the default shell type for `run` steps with `defaults.run.shell:`.
 
 There are several shell types available in [default](https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-syntax#defaultsrunshell). Following example shows how to set `bash`, `pwsh` and `cmd`.
 
@@ -664,8 +664,8 @@ jobs:
 
 ## Dump context metadata
 
-Use Context to retrive job id, name and others system info.
-Make sure you can not refer `gitHub` context in script.
+Use Context to retrieve job id, name and other system information.
+Note that you cannot refer to the `github` context directly in scripts.
 
 > see: [Context and expression syntax for GitHub Actions \- GitHub Help](https://help.github.com/en/actions/reference/context-and-expression-syntax-for-github-actions#github-context)
 
@@ -895,24 +895,24 @@ jobs:
 
 GitHub Actions workflow execution order is `Workflow` -> `Job` -> `Step`.
 
-- Workflow run in parallel by default, but you can control workflow execution order with [workflow_call](https://docs.github.com/en/actions/reference/workflows-and-actions/events-that-trigger-workflows#workflow_call) event defined in `on.workflow_call`.
-- Job run in parallel by default, but you can control job execution order with [needs](https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#jobsjob_idneeds) defined in `jobs.<job_id>.needs`.
-- Step run in sequential order in each job.
+- Workflows run in parallel by default, but you can control workflow execution order with the [workflow_call](https://docs.github.com/en/actions/reference/workflows-and-actions/events-that-trigger-workflows#workflow_call) event defined in `on.workflow_call`.
+- Jobs run in parallel by default, but you can control job execution order with [needs](https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#jobsjob_idneeds) defined in `jobs.<job_id>.needs`.
+- Steps run in sequential order within each job.
 
 ### Workflow execution order control with workflow_call
 
-If workflow has no `on.workflow_call` section, workflow run in parallel with other workflows. When you set `on.workflow_call` section, workflow can be called from other workflow. In result, workflow are run sequentially in order of caller workflow -> callee workflow.
+If a workflow has no `on.workflow_call` section, it runs in parallel with other workflows. When you add an `on.workflow_call` section, the workflow can be called from another workflow. As a result, workflows run sequentially in the order: caller workflow -> callee workflow.
 
 See [workflow_call](#reusable-workflow) section for actual sample.
 
 > [!WARNING]
-> Avoid using `workflow_run` event to control workflow execution order. As [official document](https://docs.github.com/en/actions/reference/workflows-and-actions/events-that-trigger-workflows#workflow_run) mensions, Running untrusted code on the workflow_run trigger may lead to security vulnerabilities. These vulnerabilities include cache poisoning and granting unintended access to write privileges or secrets.
+> Avoid using the `workflow_run` event to control workflow execution order. As the [official documentation](https://docs.github.com/en/actions/reference/workflows-and-actions/events-that-trigger-workflows#workflow_run) mentions, running untrusted code on the workflow_run trigger may lead to security vulnerabilities. These vulnerabilities include cache poisoning and granting unintended access to write privileges or secrets.
 
 ### Job execution order control with needs
 
-If job has no `needs` section, job run in parallel with other jobs. When you set `needs` section, job run after previous job(s) defined in `needs` section. Job needs by default require success result of previous job.
+If a job has no `needs` section, it runs in parallel with other jobs. When you set a `needs` section, the job runs after the previous job(s) defined in the `needs` section. By default, a job with `needs` requires the previous job to succeed.
 
-Following example flow shows `job2` will run after `job1` is success, and `job3` will run after `job1` and `job2` are success. It means `job2` & `job3` never run when `job1` failed, `job3` never run when `job2` failed. In result, jobs are run seqientially in order of `job1` -> `job2` -> `job3`.
+The following example flow shows that `job2` will run after `job1` succeeds, and `job3` will run after both `job1` and `job2` succeed. This means `job2` & `job3` will never run when `job1` fails, and `job3` will never run when `job2` fails. As a result, jobs run sequentially in the order: `job1` -> `job2` -> `job3`.
 
 ```yaml
 jobs:
@@ -969,7 +969,7 @@ jobs:
 
 ### Job needs dependency without success result requirement
 
-Following example flow shows job `job2` will run after `job1` is success, but `job3` uses the `always()` conditional expression. So that`job3` will run regardless of `job1` and `job2` job result is success or failure. Because of `needs` section, jobs are run seqientially in order of `job1` -> `job2` -> `job3`.
+The following example flow shows that job `job2` will run after `job1` succeeds, but `job3` uses the `always()` conditional expression. Therefore, `job3` will run regardless of whether `job1` and `job2` succeed or fail. Due to the `needs` section, jobs run sequentially in the order: `job1` -> `job2` -> `job3`.
 
 ```yaml
 jobs:
@@ -1028,7 +1028,7 @@ jobs:
 
 ### Job needs and skip handling
 
-Following example shows how to handle skip job with `needs` section. Job `needs` can be used for skip handling. However skipping dependent job cause trouble for next job. Following workflow expected to run `D` when `C` is invoked. But skipping `A` and `B` cause `D` skip.
+The following example shows how to handle job skipping with the `needs` section. Job `needs` can be used for skip handling. However, skipping a dependent job causes problems for the next job. The following workflow is expected to run `D` when `C` is invoked. However, skipping `A` and `B` causes `D` to be skipped as well.
 
 ```yaml
 # .github/workflows/job-needs-skip-handling-bad.yaml
@@ -1080,7 +1080,7 @@ jobs:
 
 ```
 
-Correcting above example, handle `D` to run when `C` is invoked, you need to add `if` condition to `D`. Also handle when no conditional `C` invokation, `A`, `B` and `C` is success, then `D` must run.
+To correct the above example and ensure `D` runs when `C` is invoked, you need to add an `if` condition to `D`. This should also handle the case when there is no conditional invocation: when `A`, `B` and `C` succeed, then `D` must run.
 
 ```yaml
 # .github/workflows/job-needs-skip-handling-ok.yaml
@@ -1141,11 +1141,11 @@ jobs:
 
 ## Job output
 
-If you want pass value between jobs, you can use [job output](https://docs.github.com/en/actions/how-tos/write-workflows/choose-what-workflows-do/pass-job-outputs) and [job needs](https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-syntax#jobsjob_idneeds). Use `jobs.<job_id>.output` to set job output, and other job can refer it via `needs.<job_id>.outputs.<output_name>`.
+If you want to pass values between jobs, you can use [job output](https://docs.github.com/en/actions/how-tos/write-workflows/choose-what-workflows-do/pass-job-outputs) and [job needs](https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-syntax#jobsjob_idneeds). Use `jobs.<job_id>.outputs` to set job output, and other jobs can refer to it via `needs.<job_id>.outputs.<output_name>`.
 
-If you want pass value between steps in same job, you can use [step output](https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-commands#setting-an-output-parameter). Use `steps.<step_id>.output` to set step output, and other step can refer it via `steps.<step_id>.outputs.<output_name>`.
+If you want to pass values between steps in the same job, you can use [step output](https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-commands#setting-an-output-parameter). Use `steps.<step_id>.outputs` to set step output, and other steps can refer to it via `steps.<step_id>.outputs.<output_name>`.
 
-Following example shows how to set job output in `a` job, and refer it in `b` job.
+The following example shows how to set job output in the `a` job and refer to it in the `b` job.
 
 ```yaml
 # .github/workflows/job-outputs.yaml
@@ -1188,13 +1188,13 @@ jobs:
 > **Note**
 > Consider using Workflow Concurrency control instead of redundant control.
 
-Creating PR emmits two events, `push` and `pull_request/synchronize`. This means duplicate build began and wastes build time.
-Redundant build may trouble when you are runnning Private Repository, bacause there are build time limits. In other words, you don't need mind build comsume time when repo is Public.
+Creating a PR emits two events: `push` and `pull_request/synchronize`. This means duplicate builds begin and waste build time.
+Redundant builds may cause issues when you are running a Private Repository because there are build time limits. In other words, you don't need to worry about build time consumption when the repo is Public.
 
 ### Avoid push on pull_request trigger on same repo
 
-In this example `push` will trigger only when `main`, default branch. This means push will not run when `pull_request` synchronize event was emmited.
-Simple enough for almost usage.
+In this example, `push` will trigger only on `main`, the default branch. This means push will not run when the `pull_request` synchronize event is emitted.
+This is simple enough for most use cases.
 
 ```yaml
 # .github/workflows/push-and-pr-avoid-redundant.yaml
@@ -1250,9 +1250,9 @@ jobs:
 
 ## Run when previous job is success
 
-to accomplish sequential job run inside workflow, use `needs:` for which you want the job to depends on.
+To accomplish sequential job execution within a workflow, use `needs:` to specify which job the current job depends on.
 
-this enforce job to be run when only previous job is **success**.
+This enforces the job to run only when the previous job is **successful**.
 
 ```yaml
 # .github/workflows/sequential-run.yaml
@@ -1291,7 +1291,7 @@ jobs:
 
 > [job-status-check-functions /- Context and expression syntax for GitHub Actions /- GitHub Help](https://help.github.com/en/actions/reference/context-and-expression-syntax-for-github-actions#job-status-check-functions)
 
-use `if:` you want set step to be run on particular status.
+Use `if:` when you want to set a step to run based on a particular status.
 
 ```yaml
 # .github/workflows/status-step.yaml
@@ -1314,13 +1314,13 @@ jobs:
       - run: echo "$COMMIT_MESSAGES"
         env:
           COMMIT_MESSAGES: ${{ toJson(github.event.commits.*.message) }}
-      - run: echo "success() run when none of previous steps  have failed or been canceled"
+      - run: echo "success() runs when none of the previous steps have failed or been canceled"
         if: ${{ success() }}
-      - run: echo "always() run even cancelled. it runs only when critical failure prevents the task."
+      - run: echo "always() runs even when cancelled. It runs only when a critical failure prevents the task."
         if: ${{ always() }}
-      - run: echo "cancelled() run when Workflow cancelled."
+      - run: echo "cancelled() runs when workflow is cancelled."
         if: ${{ cancelled() }}
-      - run: echo "failure() run when any previous step of a job fails."
+      - run: echo "failure() runs when any previous step of a job fails."
         if: ${{ failure() }}
 
 ```
@@ -1328,11 +1328,11 @@ jobs:
 
 ## Matrix
 
-Matrix is useful when you want to run same job with different parameters like OS, version and so on. Matrix can define with `jobs.<job_id>.strategy.matrix`. Following example shows how to use matrix.
+Matrix is useful when you want to run the same job with different parameters like OS, version, and so on. A matrix is defined with `jobs.<job_id>.strategy.matrix`. The following example shows how to use a matrix.
 
-- To control how job failures are handled, use `fail-fast: false` to continue other matrix jobs when one of matrix job fails.
-- Matrix runs jobs in parallel by default. However you can set parallelism with `max-parallel` to limit number of parallel jobs.
-- Matrix can define multiple axis like OS and version. Following example will run 6 jobs in parallel (3 versions x 2 OS).
+- To control how job failures are handled, use `fail-fast: false` to continue other matrix jobs when one matrix job fails.
+- Matrix runs jobs in parallel by default. However, you can set parallelism with `max-parallel` to limit the number of parallel jobs.
+- A matrix can define multiple axes like OS and version. The following example will run 6 jobs in parallel (3 versions x 2 OS).
 
 ```yaml
 # .github/workflows/matrix.yaml
@@ -1703,9 +1703,9 @@ jobs:
 
 ## Create release
 
-You can create GitHub Release with `gh` CLI tool. There are some actions, but I recommend use `gh` CLI tool directly because release creation is simple enough.
+You can create a GitHub Release with the `gh` CLI tool. There are some actions, but I recommend using the `gh` CLI tool directly because release creation is simple enough.
 
-Key commands are `gh release create` and `gh release upload`. I recommend create draft release first, then upload files to the release. Change draft release to publish when everything is ready.
+The key commands are `gh release create` and `gh release upload`. I recommend creating a draft release first, then uploading files to the release. Change the draft release to published when everything is ready.
 
 ```sh
 # create draft release with auto generated notes
@@ -1715,7 +1715,7 @@ gh release create <TAG> --draft --verify-tag --title "Ver.<TAG>" --generate-note
 gh release upload <TAG> file-1.txt file-2.txt
 ```
 
-Following example trigger when you push tag like `v1.0.0`. A workflow creates draft release with auto generated notes, uploads files.
+The following example triggers when you push a tag like `v1.0.0`. The workflow creates a draft release with auto-generated notes and uploads files.
 
 ```yaml
 # .github/workflows/create-release-simple.yaml
@@ -1759,9 +1759,9 @@ jobs:
 
 ## Detect file changed
 
-You can detect which file was changed with push or pull_request by GitHub actions. This is useful when you want to use `path-filter`, but require further file handling. Following 3 actions are available and can use same way.
+You can detect which files were changed with push or pull_request events in GitHub Actions. This is useful when you want to use `path-filter` but require further file handling. The following actions are available and can be used in the same way.
 
-`dorny/paths-filter` is still actively developed. However it's output is quite dynamic and hard to handle static lint like actionlint.
+`dorny/paths-filter` is still actively developed. However, its output is quite dynamic and hard to handle with static linters like actionlint.
 
 ```yaml
 # .github/workflows/file-change-detect-dorny.yaml
@@ -1833,7 +1833,7 @@ jobs:
 
 ```
 
-`trilom/file-changes-action` stopped development, so I will quit using it.
+`trilom/file-changes-action` has stopped development, so I have stopped using it.
 
 ```yaml
 # .github/workflows/file-change-detect-dorny.yaml
@@ -1907,17 +1907,17 @@ jobs:
 
 ## Schedule job on non-default branch
 
-Schedule job will offer `Last commit on default branch`.
+Scheduled jobs will use the `Last commit on default branch`.
 
 > ref: [Events that trigger workflows /- GitHub Help](https://help.github.com/en/actions/reference/events-that-trigger-workflows#scheduled-events-schedule)
 
-schedule workflow should merge to default branch to apply workflow change.
+A scheduled workflow must be merged to the default branch to apply workflow changes.
 
-Pass branch info when you want run checkout on non-default branch.
-Don't forget pretend `refs/heads/` to your branch.
+Pass branch info when you want to run checkout on a non-default branch.
+Don't forget to prepend `refs/heads/` to your branch.
 
-- good: refs/heads/some-branch
-- bad: some-branch
+- Good: refs/heads/some-branch
+- Bad: some-branch
 
 ```yaml
 # .github/workflows/schedule-job.yaml
@@ -1945,8 +1945,8 @@ jobs:
 
 ```
 
-You can create release and upload assets through GitHub Actions.
-Multiple assets upload is supported by running running `actions/upload-release-asset` for each asset.
+You can create releases and upload assets through GitHub Actions.
+Multiple asset uploads are supported by running `actions/upload-release-asset` for each asset.
 
 ```yaml
 # .github/workflows/create-release.yaml
@@ -2036,7 +2036,7 @@ jobs:
 
 ## Trigger branch push only but skip on tag push
 
-If you want run job only when push to branch, and not for tag push.
+If you want to run a job only when pushing to a branch, and not for tag pushes.
 
 ```yaml
 # .github/workflows/branch-push-only.yaml
@@ -2085,7 +2085,7 @@ jobs:
 
 ## Trigger tag push only but skip on branch push
 
-If you want run job only when push to tag, and not for branch push.
+If you want to run a job only when pushing to a tag, and not for branch pushes.
 
 ```yaml
 # .github/workflows/tag-push-only.yaml
@@ -2145,8 +2145,8 @@ jobs:
 
 ## Detect labels on pull request
 
-`pull_request` event contains tags and you can use it to filter step execution.
-`${{ contains(github.event.pull_request.labels.*.name, 'hoge') }}` will return `true` if tag contains `hoge`.
+The `pull_request` event contains labels and you can use them to filter step execution.
+`${{ contains(github.event.pull_request.labels.*.name, 'hoge') }}` will return `true` if the label contains `hoge`.
 
 ```yaml
 # .github/workflows/pr-label-get.yaml
@@ -2181,7 +2181,7 @@ jobs:
 
 ## Skip ci on pull request title
 
-original `pull_request` event will invoke when activity type is `opened`, `synchronize`, or `reopened`.
+The default `pull_request` event will trigger when the activity type is `opened`, `synchronize`, or `reopened`.
 
 > [Events that trigger workflows /- GitHub Help](https://help.github.com/en/actions/reference/events-that-trigger-workflows#pull-request-event-pull_request)
 
@@ -2219,8 +2219,8 @@ jobs:
 
 ## Skip pr from fork repo
 
-default `pull_request` event trigger from even fork repository, however fork pr could not read `secrets` and may fail PR checks.
-To control job to be skip from fork but run on self pr or push, use `if` conditions.
+By default, the `pull_request` event triggers even from fork repositories. However, fork PRs cannot read `secrets` and may fail PR checks.
+To skip jobs from forks but run them on your own PRs or pushes, use `if` conditions.
 
 ```yaml
 # .github/workflows/skip-pr-from-fork.yaml
@@ -2251,8 +2251,8 @@ jobs:
 
 ## Skip job when Draft PR
 
-You can skip job and steps if Pull Request is Draft.
-Unfortunately GitHub Webhook v3 event not provide draft pr type, but `event.pull_request.draft` shows `true` when PR is draft.
+You can skip jobs and steps if the Pull Request is a draft.
+Unfortunately, the GitHub Webhook v3 event does not provide a draft PR type, but `event.pull_request.draft` returns `true` when the PR is a draft.
 
 ```yaml
 # .github/workflows/skip-draft-pr.yaml
@@ -2314,14 +2314,14 @@ Advanced tips.
 
 ## Automatic Actions version update via Dependabot
 
-You can use [Dependabot](https://docs.github.com/en/code-security/dependabot/working-with-dependabot/automating-dependabot-with-github-actions) to update GitHub Actions version automatically. Dependabot create pull request to keep your actions up to date, and you can merge it manually or automatically.
+You can use [Dependabot](https://docs.github.com/en/code-security/dependabot/working-with-dependabot/automating-dependabot-with-github-actions) to update GitHub Actions versions automatically. Dependabot creates pull requests to keep your actions up to date, and you can merge them manually or automatically.
 
 To enable Dependabot for GitHub Actions update, add `.github/dependabot.yml` to your repository.
 
-Following is my example dependabot.yaml file.
+The following is an example dependabot.yaml file.
 
-- Update GitHub Actions/NuGet weekly, but ignore patch version update.
-- Also set cooldown period to 14 days, this means Dependabot will not create new PR for same dependency within 14 days after previous update PR created. This is usedful to reduce security risk from transient dependency vulnerability.
+- Update GitHub Actions/NuGet weekly, but ignore patch version updates.
+- Also set a cooldown period of 14 days, which means Dependabot will not create a new PR for the same dependency within 14 days after the previous update PR was created. This is useful for reducing security risks from transient dependency vulnerabilities.
 
 ```yaml
 # .github/dependabot.yaml
@@ -2356,7 +2356,7 @@ updates:
 
 **Customize dependabot.yaml**
 
-There are some [configuration options for dependabot.yaml file](https://docs.github.com/en/code-security/dependabot/dependabot-version-updates/configuration-options-for-the-dependabot.yml-file).
+There are several [configuration options for the dependabot.yaml file](https://docs.github.com/en/code-security/dependabot/dependabot-version-updates/configuration-options-for-the-dependabot.yml-file).
 
 **Accessing secrets on dependabot action**
 
@@ -2364,11 +2364,11 @@ When a Dependabot event triggers a workflow, the only secrets available to the w
 
 > ref: https://docs.github.com/en/code-security/dependabot/working-with-dependabot/automating-dependabot-with-github-actions#accessing-secrets
 
-Therefore I recommend not to use secret for Dependabot triggered workflows. If you need secrets, then put same named secret to Dependabot secret.
+Therefore, I recommend not using secrets for Dependabot-triggered workflows. If you need secrets, add the same secret name to Dependabot secrets.
 
 ## Build Artifacts
 
-GitHub Actions [actions/upload-artifact](https://github.com/actions/upload-artifact) and [actions/download-artifact](https://github.com/actions/download-artifact) offer artifact handling between jobs. You can upload and download artifact to/from GitHub Actions.
+GitHub Actions [actions/upload-artifact](https://github.com/actions/upload-artifact) and [actions/download-artifact](https://github.com/actions/download-artifact) offer artifact handling between jobs. You can upload and download artifacts to/from GitHub Actions.
 
 **file**
 
@@ -2533,14 +2533,14 @@ jobs:
 
 ## Concurrency Control
 
-GitHub Actions has concurrency control to prevent you run Workflow or Job at same time.
-This help you archive serial build pipeline.
+GitHub Actions has concurrency control to prevent you from running Workflows or Jobs at the same time.
+This helps you achieve a serial build pipeline.
 
 ### Workflow level concurrency
 
-Workflow concurrency control is useful when you want to prevent workflow to run at same time. Imagine you have long running workflow and you want to run it only once at same time.
+Workflow concurrency control is useful when you want to prevent workflows from running at the same time. Imagine you have a long-running workflow and you want to run it only once at a time.
 
-You can use build context like `github.head_ref` or others. This means you can control with commit, branch, workflow and any.
+You can use build context like `github.head_ref` or others. This means you can control concurrency based on commit, branch, workflow, or any other context.
 
 ```yaml
 # .github/workflows/concurrency-workflow.yaml
@@ -2586,7 +2586,7 @@ jobs:
 
 ### Job level concurrency
 
-Job concurrency control is useful when you want to prevent job to run at same time. Imagine you have deployment job and you want to run it only once at same time.
+Job concurrency control is useful when you want to prevent jobs from running at the same time. Imagine you have a deployment job and you want to run it only once at a time.
 
 ```yaml
 # .github/workflows/concurrency-job.yaml
@@ -3319,7 +3319,7 @@ drwxr-xr-x  3 runner docker 4096 Jun 14 10:23 workflows
 
 ## GitHub Step Summary
 
-If you want adding a job summary, use [GITHUB_STEP_SUMMARY](https://docs.github.com/en/actions/using-workflows/workflow-commands-for-github-actions#adding-a-job-summary). Job summary is useful to show important information after job finished. You can see Job Summary on the bottom of job page.
+If you want to add a job summary, use [GITHUB_STEP_SUMMARY](https://docs.github.com/en/actions/using-workflows/workflow-commands-for-github-actions#adding-a-job-summary). Job summaries are useful for displaying important information after a job finishes. You can see the Job Summary at the bottom of the job page.
 
 ```yaml
 # .github/workflows/github-step-summary.yaml
@@ -3384,10 +3384,10 @@ jobs:
 
 ## PR info from Merge Commit
 
-You have two choice.
+You have two choices:
 
-1. Use Git cli. Retrieve 1st and 3rd line of merge commit.
-2. Use some action to retrieve PR info from merge commit.
+1. Use Git CLI to retrieve the 1st and 3rd lines of the merge commit.
+2. Use an action to retrieve PR info from the merge commit.
 
 Below use [jwalton/gh-find-current-pr](https://github.com/jwalton/gh-find-current-pr) to retrieve PR info from merge commit.
 
@@ -3425,13 +3425,13 @@ jobs:
 
 ## Reusable workflow
 
-GitHub Actions allows you to create [Reusable workflows](https://docs.github.com/en/actions/how-tos/reuse-automations/reuse-workflows) to share common workflow logic across multiple workflows and repositories. You can call local workflow of the same repository, public repository's workflow, or same Organization's private repository's workflow. To create reusable workflow, follow steps below.
+GitHub Actions allows you to create [Reusable workflows](https://docs.github.com/en/actions/how-tos/reuse-automations/reuse-workflows) to share common workflow logic across multiple workflows and repositories. You can call a local workflow from the same repository, a public repository's workflow, or a private repository's workflow from the same Organization. To create a reusable workflow, follow the steps below.
 
 ### Limitations
 
-There are some limitations when calling reusable workflows.
+There are some limitations when calling reusable workflows:
 
-1. Private repo can call same repo's reusable workflow, but can not call other private repo's workflow.
+1. A private repo can call the same repo's reusable workflow, but cannot call other private repos' workflows.
 2. Caller cannot use ${{ env.FOO }} for `with` inputs.
 
    ```yaml
@@ -3445,7 +3445,7 @@ There are some limitations when calling reusable workflows.
          secrets: inherit
    ```
 
-3. Callee workflow must place under `.github/workflows/`. Otherwise caller treated as calling public workflow.
+3. The callee workflow must be placed under `.github/workflows/`. Otherwise, the caller is treated as calling a public workflow.
 
    ```bash
    $ ls -l ./.github/workflows/
@@ -4062,24 +4062,24 @@ uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
 
 # Cheat Sheet
 
-Cheet sheet for GitHub Actions.
+Cheat sheet for GitHub Actions.
 
 ## Actions naming
 
-Follow to `setup-foo` style.
-Use Hyphen `-` instead of Underscore `_`.
+Follow the `setup-foo` style.
+Use hyphens `-` instead of underscores `_`.
 
 - ✔️: `setup-foo`
 - ❌: `setup_foo`
 
-action folder naming also follow this rule.
+Action folder naming also follows this rule.
 
 - ✔️: `.github/actions/setup-foo`
 - ❌: `.github/actions/setup_foo`
 
 ## Actions runner info
 
-When you want to see hosted runner info, here are sample.
+When you want to see hosted runner information, here is a sample.
 
 ```yaml
 # .github/workflows/actionrunner-info.yaml
@@ -4127,7 +4127,7 @@ jobs:
 
 ## Detect PullRequest (PR) is Fork or not
 
-There are several way to achieve it. Most simple and easy to understand is `fork` boolean.
+There are several ways to achieve this. The simplest and easiest to understand is the `fork` boolean.
 
 1. Check `fork` boolean.
 
@@ -4149,7 +4149,7 @@ if: ${{ github.event.pull_request.head.repo.full_name != 'org/repo' }}
 if: ${{ github.event.pull_request.head.repo.full_name == 'org/repo' }}
 ```
 
-3. Check label is match to owner. Org member commit label is match to owner.
+3. Check if the label matches the owner. An org member's commit label matches the owner.
 
 ```
 # Fork
@@ -4161,7 +4161,7 @@ if: ${{ startsWith(github.event.pull_request.head.label, format('{0}:', github.r
 
 ## Debug downloaded remote action
 
-Specified remote action is downloaded to `/home/runner/work/_actions/{Owner}/{Repository}/{Ref}/{RepositoryStructures}` folder. You can check the downloaded action contents by listing the folder. This is useful when you want to see how remote action works under the hood.
+A specified remote action is downloaded to the `/home/runner/work/_actions/{Owner}/{Repository}/{Ref}/{RepositoryStructures}` folder. You can check the downloaded action contents by listing the folder. This is useful when you want to see how a remote action works under the hood.
 
 ```yaml
 # .github/workflows/debug-downloaded-remote-action.yaml
@@ -4190,7 +4190,7 @@ jobs:
 
 ## Expression string concat
 
-You may confuse how to concatenate string and use it in `if` condition. Following example shows how to use `format()` to concatenate string and use it in `if` condition.
+You may be confused about how to concatenate strings and use them in an `if` condition. The following example shows how to use `format()` to concatenate strings and use them in an `if` condition.
 
 ```yaml
 # .github/workflows/expression-string-concat.yaml
@@ -4240,7 +4240,7 @@ steps:
 
 ## Get Tag
 
-Trigger push with tag, then you have 2 choice.
+When triggering a push with a tag, you have 2 choices:
 
 1. `echo "${{ github.ref_name }}"`
 2. `echo "${GITHUB_REF##*/}"`
@@ -4302,9 +4302,9 @@ git config user.email 41898282+github-actions[bot]@users.noreply.github.com
 
 ## Path for Downloaded Remote Actions
 
-If the job using remote actions or remote workflows, then it will be downloaded to `/home/runner/work/_actions/{OWNER}/{REPOSITORY}/{REF}` folder. For example, `actions/checkout@v4` will be downloaded to `/home/runner/work/_actions/actions/checkout/v4`.
+If a job uses remote actions or remote workflows, they will be downloaded to the `/home/runner/work/_actions/{OWNER}/{REPOSITORY}/{REF}` folder. For example, `actions/checkout@v4` will be downloaded to `/home/runner/work/_actions/actions/checkout/v4`.
 
-This path is useful when you want to touch files or use it beyond the action.
+This path is useful when you want to access files or use them beyond the action.
 
 ```yaml
 # .github/workflows/remote-actions-download-path.yaml
@@ -4338,7 +4338,7 @@ jobs:
 
 ## Stale Issue and PR close automation
 
-You can automatically close stale issues and PRs with [actions/stale](https://github.com/actions/stale). This actions will mark issues and PRs as stale after a certain period of inactivity, then close them after another period of inactivity. If an update/comment occur on stale issues or pull requests, the stale label will be removed and the timer will restart
+You can automatically close stale issues and PRs with [actions/stale](https://github.com/actions/stale). This action will mark issues and PRs as stale after a certain period of inactivity, then close them after another period of inactivity. If an update/comment occurs on stale issues or pull requests, the stale label will be removed and the timer will restart.
 
 ```yaml
 # .github/workflows/stale.yaml
@@ -4377,18 +4377,18 @@ jobs:
 
 ## Type converter with fromJson
 
-There are some cases you want convert string to other type.
-Consider you want use boolean input `is-valid` with workflow_dispatch, then pass it to workflow_call as boolean.
+There are some cases where you want to convert a string to another type.
+Consider a case where you want to use a boolean input `is-valid` with workflow_dispatch, then pass it to workflow_call as a boolean.
 
-`github.event.inputs` context treat all value as `string`, so `github.event.inputs.is-valid` isn't boolean any more.
-`fromJson` expression is the trick to convert type from string to boolean.
+The `github.event.inputs` context treats all values as `string`, so `github.event.inputs.is-valid` is no longer a boolean.
+The `fromJson` expression is the trick to convert types from string to boolean.
 
 ```yaml
 ${{ github.event.inputs.foobar == "true" }} # true. type is string
 ${{ fromJson(github.event.inputs.foobar) == true }} # true. string convert to boolean
 ```
 
-Other way is use `inputs.foobar` context. `inputs` have type information and pass exactly as is to other workflow calls.
+Another way is to use the `inputs.foobar` context. `inputs` has type information and passes it exactly as-is to other workflow calls.
 
 ```yaml
 ${{ inputs.foobar == 'true' }} # false. type is not string

@@ -16,11 +16,11 @@ jobs:
       - run: echo "$COMMIT_MESSAGES"
         env:
           COMMIT_MESSAGES: ${{ toJson(github.event.commits.*.message) }}
-      - run: echo "success() run when none of previous steps  have failed or been canceled"
+      - run: echo "success() runs when none of the previous steps have failed or been canceled"
         if: ${{ success() }}
-      - run: echo "always() run even cancelled. it runs only when critical failure prevents the task."
+      - run: echo "always() runs even when cancelled. It runs only when a critical failure prevents the task."
         if: ${{ always() }}
-      - run: echo "cancelled() run when Workflow cancelled."
+      - run: echo "cancelled() runs when workflow is cancelled."
         if: ${{ cancelled() }}
-      - run: echo "failure() run when any previous step of a job fails."
+      - run: echo "failure() runs when any previous step of a job fails."
         if: ${{ failure() }}
