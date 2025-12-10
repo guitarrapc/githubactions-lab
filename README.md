@@ -3824,33 +3824,6 @@ jobs:
         run: echo "This workflow is triggered by changes in paths defined with YAML anchor."
 ```
 
-# Bad Pattern
-
-## Env refer env
-
-You cannot use `${{ env. }}` in `env:` section.
-Following is invalid with error.
-
-> The workflow is not valid. .github/workflows/env-refer-env.yaml (Line: 12, Col: 16): Unrecognized named-value: 'env'. Located at position 1 within expression: env.global_env
-
-```yaml
-name: you can not refer env in env
-
-on: ["push"]
-
-env:
-  global_env: global
-
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    env:
-      job_env: ${{ env.global_env }}
-    steps:
-      - run: echo "${{ env.global_env }}"
-      - run: echo "${{ env.job_env }}"
-```
-
 # Security
 
 ## Checkout without persist-credentials
