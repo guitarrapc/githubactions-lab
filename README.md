@@ -36,6 +36,7 @@ GitHub Actions research and test laboratory.
 - [Basic - Onboarding](#basic---onboarding)
   - [run step](#run-step)
   - [if section](#if-section)
+  - [Timeout settings](#timeout-settings)
 - [Basic - Fundamentables](#basic---fundamentables)
   - [Checkout without persist-credentials](#checkout-without-persist-credentials)
   - [Default shell](#default-shell)
@@ -43,12 +44,10 @@ GitHub Actions research and test laboratory.
   - [Environment variables in script](#environment-variables-in-script)
   - [Execution order](#execution-order)
   - [Job output](#job-output)
-  - [Permissions](#permissions)
   - [Redundant Control](#redundant-control)
   - [Run when previous job is success](#run-when-previous-job-is-success)
   - [Run when previous step status is specific](#run-when-previous-step-status-is-specific)
   - [Matrix](#matrix)
-  - [Timeout settings](#timeout-settings)
   - [Workflow dispatch to invoke manually](#workflow-dispatch-to-invoke-manually)
 - [Basic - Commit, Branch and Tag handling](#basic---commit-branch-and-tag-handling)
   - [Create release](#create-release)
@@ -83,7 +82,8 @@ GitHub Actions research and test laboratory.
 - [Bad Pattern](#bad-pattern)
   - [Env refer env](#env-refer-env)
 - [Security](#security)
-  - [Lint GitHub Actions workflow itself](#lint-github-actions-workflow-itself)
+  - [Permissions](#permissions)
+  - [Lint GitHub Actions workflow](#lint-github-actions-workflow)
   - [Pin Third-Party Actions to Commit SHA](#pin-third-party-actions-to-commit-sha)
 - [Cheat Sheet](#cheat-sheet)
   - [Actions naming](#actions-naming)
@@ -490,6 +490,37 @@ jobs:
       - run: echo "always"
       - run: echo "this is push"
         if: ${{ github.event_name == 'push' }}
+
+```
+
+## Timeout settings
+
+You can set timeout for both `job` and `steps`.
+
+default timeout is 360min. (6hours)
+
+It is better set much more shorten timeout like 15min or 30min to prevent spending a lot build time.
+
+```yaml
+# .github/workflows/timeout.yaml
+
+name: timeout
+on:
+  workflow_dispatch:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+
+jobs:
+  my-job:
+    permissions:
+      contents: read
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - run: echo "done before timeout"
+        timeout-minutes: 1 # each step
 
 ```
 
@@ -1157,85 +1188,6 @@ jobs:
 
 ```
 
-## Permissions
-
-GitHub Actions supports specify permissions for each job or workflow.
-
-You can turn all permission off with `permissions: {}`.
-
-Workflow permission can be done with root `permissions:`.
-
-```yaml
-# .github/workflows/permissions-workflow.yaml
-
-name: permissions
-on:
-  pull_request:
-    branches: ["main"]
-
-permissions:
-  # actions: write
-  # checks: write
-  contents: read
-  # deployments: write
-  # discussions: write
-  # id-token: write
-  # issues: write
-  # packages: write
-  # pages: write
-  # pull-requests: write
-  # repository-projects: write
-  # security-events: write
-  # statuses: write
-
-jobs:
-  job:
-    runs-on: ubuntu-24.04
-    timeout-minutes: 10
-    steps:
-      - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
-        with:
-          persist-credentials: false
-
-```
-
-job permission can be done with `job.<job_name>.permissions`.
-
-```yaml
-# .github/workflows/permissions-job.yaml
-
-name: permissions job
-on:
-  pull_request:
-    branches: ["main"]
-
-jobs:
-  job:
-    permissions:
-      # actions: write
-      # checks: write
-      contents: read
-      # deployments: write
-      # discussions: write
-      # id-token: write
-      # issues: write
-      # packages: write
-      # pages: write
-      # pull-requests: write
-      # repository-projects: write
-      # security-events: write
-      # statuses: write
-    runs-on: ubuntu-24.04
-    timeout-minutes: 3
-    steps:
-      - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
-        with:
-          persist-credentials: false
-
-```
-
-The most important permission is `id-tokens: write`. It enables job to use OIDC like AWS, Azure and GCP.
-
 ## Redundant Control
 
 > **Note**
@@ -1659,37 +1611,6 @@ jobs:
       - run: echo "${NEW_ORG}"
         env:
           NEW_ORG: new-${{ env.ORG }}
-
-```
-
-## Timeout settings
-
-You can set timeout for both `job` and `steps`.
-
-default timeout is 360min. (6hours)
-
-It is better set much more shorten timeout like 15min or 30min to prevent spending a lot build time.
-
-```yaml
-# .github/workflows/timeout.yaml
-
-name: timeout
-on:
-  workflow_dispatch:
-  push:
-    branches: ["main"]
-  pull_request:
-    branches: ["main"]
-
-jobs:
-  my-job:
-    permissions:
-      contents: read
-    runs-on: ubuntu-24.04
-    timeout-minutes: 5
-    steps:
-      - run: echo "done before timeout"
-        timeout-minutes: 1 # each step
 
 ```
 
@@ -3939,7 +3860,69 @@ jobs:
 
 # Security
 
-## Lint GitHub Actions workflow itself
+## Permissions
+
+Newly created repository's GitHub Actions token `github.token` permissions are set to `readonly` by default in 2025. However if you have an older repository, your actions token may still have `write` permissions. To enhance security, it is recommended to explicitly set the minimum required permissions for each workflow. You can confirm your repository's default permissions in the repository settings under "Actions" > "General" > "Workflow permissions".
+
+![](./images/workflow-permissions.png)
+
+GitHub Actions supports specify permissions for each job or workflow. You can set `permissions:` at workflow level or job level. Job level permission override workflow level permission and can set `job.<job_name>.permissions`. You can turn all permission off with `permissions: {}`.
+
+In general, it is a good practice to set `contents: read` permission for workflows that do not require write access. This minimizes the potential impact of any security vulnerabilities in your workflows. If you just checkout and build code, you probably only need `contents: read` permission.
+
+```yaml
+# .github/workflows/permissions-minimum.yaml
+
+name: permissions minimum
+on:
+  pull_request:
+    branches: ["main"]
+
+jobs:
+  check-permissions:
+    # specify minimum permissions as possible
+    permissions:
+      contents: read
+    runs-on: ubuntu-24.04
+    timeout-minutes: 3
+    steps:
+      - name: Check job permissions
+        run: echo "permissions ${CONTEXT}"
+        env:
+          CONTEXT: ${{ toJson(job.permissions) }}
+      # checkout
+      # build
+
+```
+
+Avoiding workflow level permissions like below is also recommended. Instead, set job level permissions as needed.
+
+```yaml
+# Avoid this
+permissions:
+  contents: write
+
+jobs:
+  need-write:
+    # specify job level permissions as needed
+    permissions:
+      contents: write
+    runs-on: ubuntu-24.04
+    timeout-minutes: 3
+    steps:
+      - run: echo "foo"
+
+  need-read:
+    # specify job level permissions as needed
+    permissions:
+      contents: read
+    runs-on: ubuntu-24.04
+    timeout-minutes: 3
+    steps:
+      - run: echo "bar"
+```
+
+## Lint GitHub Actions workflow
 
 You can lint GitHub Actions yaml via [actionlint](https://github.com/rhysd/actionlint), [ghalint](https://github.com/suzuki-shunsuke/ghalint) and [zizmor](https://github.com/woodruffw/zizmor). If you don't need automated PR review, run any of these linter on schedule may be fine.
 
