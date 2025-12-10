@@ -493,6 +493,37 @@ jobs:
 
 ```
 
+## Timeout settings
+
+You can set timeout for both `job` and `steps`.
+
+default timeout is 360min. (6hours)
+
+It is better set much more shorten timeout like 15min or 30min to prevent spending a lot build time.
+
+```yaml
+# .github/workflows/timeout.yaml
+
+name: timeout
+on:
+  workflow_dispatch:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+
+jobs:
+  my-job:
+    permissions:
+      contents: read
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - run: echo "done before timeout"
+        timeout-minutes: 1 # each step
+
+```
+
 # Basic - Fundamentables
 
 ## Checkout without persist-credentials
@@ -1659,37 +1690,6 @@ jobs:
       - run: echo "${NEW_ORG}"
         env:
           NEW_ORG: new-${{ env.ORG }}
-
-```
-
-## Timeout settings
-
-You can set timeout for both `job` and `steps`.
-
-default timeout is 360min. (6hours)
-
-It is better set much more shorten timeout like 15min or 30min to prevent spending a lot build time.
-
-```yaml
-# .github/workflows/timeout.yaml
-
-name: timeout
-on:
-  workflow_dispatch:
-  push:
-    branches: ["main"]
-  pull_request:
-    branches: ["main"]
-
-jobs:
-  my-job:
-    permissions:
-      contents: read
-    runs-on: ubuntu-24.04
-    timeout-minutes: 5
-    steps:
-      - run: echo "done before timeout"
-        timeout-minutes: 1 # each step
 
 ```
 
@@ -3939,7 +3939,47 @@ jobs:
 
 # Security
 
-## Lint GitHub Actions workflow itself
+## Permissions
+
+Newly created repository's GitHub Actions token `github.token` permissions are set to `readonly` by default in 2025. However if you have an older repository, your actions token may still have `write` permissions. To enhance security, it is recommended to explicitly set the minimum required permissions for each workflow. You can confirm your repository's default permissions in the repository settings under "Actions" > "General" > "Workflow permissions".
+
+![](./images/workflow-permissions.png)
+
+In general, it is a good practice to set `contents: read` permission for workflows that do not require write access. This minimizes the potential impact of any security vulnerabilities in your workflows. If you just checkout and build code, you probably only need `contents: read` permission.
+
+```yaml
+# .github/workflows/permissions.yaml
+```
+
+Avoiding workflow level permissions like below is also recommended. Instead, set job level permissions as needed.
+
+```yaml
+# Avoid this
+permissions:
+  contents: write
+
+jobs:
+  need-write:
+    # specify job level permissions as needed
+    permissions:
+      contents: write
+    runs-on: ubuntu-24.04
+    timeout-minutes: 3
+    steps:
+      - run: echo "foo"
+
+  need-read:
+    # specify job level permissions as needed
+    permissions:
+      contents: read
+    runs-on: ubuntu-24.04
+    timeout-minutes: 3
+    steps:
+      - run: echo "bar"
+```
+
+
+## Lint GitHub Actions workflow
 
 You can lint GitHub Actions yaml via [actionlint](https://github.com/rhysd/actionlint), [ghalint](https://github.com/suzuki-shunsuke/ghalint) and [zizmor](https://github.com/woodruffw/zizmor). If you don't need automated PR review, run any of these linter on schedule may be fine.
 
