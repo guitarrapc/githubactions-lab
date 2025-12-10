@@ -3003,6 +3003,43 @@ Write your Composite actions in action.yaml.
 ```yaml
 # .github/actions/composite-actions/action.yaml
 
+name: "Hello World"
+description: |
+  Desctiption of your action
+
+# Define input parameters to pass from caller to callee.
+inputs:
+  foo:
+    description: thi is foo input
+    required: false
+    default: FOO
+
+# Define output parameters to pass from callee to caller.
+outputs:
+  number:
+    description: "an example output number"
+    value: ${{ steps.output_example.outputs.number }}
+
+runs:
+  using: "composite" # this is key point
+  steps:
+    - name: THIS IS STEP1
+      shell: bash # this is key point
+      env:
+        FOO_VALUE: ${{ inputs.foo }}
+      run: echo "$FOO_VALUE"
+    - name: output example
+      shell: bash
+      id: output_example
+      run: echo "number=123" | tee -a "$GITHUB_OUTPUT"
+
+```
+
+To use a Composite action within the same repository, refer action path with `uses: ./PATH/TO/ACTION`. If you have input parameters, set `with:` section. If a Composite action has output parameters, you can get it with `steps.<STEP_ID>.outputs.<OUTPUT_NAME>`.
+
+```yaml
+# .github/workflows/composite-actions.yaml
+
 name: composite actions
 on:
   workflow_dispatch:
@@ -3030,39 +3067,6 @@ jobs:
           foo: BAR
       - name: show output
         run: echo "output number is ${{ steps.action.outputs.number }}"
-
-```
-
-To use a Composite action within the same repository, refer action path with `uses: ./PATH/TO/ACTION`. If you have input parameters, set `with:` section. If a Composite action has output parameters, you can get it with `steps.<STEP_ID>.outputs.<OUTPUT_NAME>`.
-
-```yaml
-# .github/workflows/composite-actions.yaml
-
-name: composite action
-on:
-  workflow_dispatch:
-  push:
-    branches: ["main"]
-  pull_request:
-    branches: ["main"]
-
-jobs:
-  job:
-    permissions:
-      contents: read
-    runs-on: ubuntu-24.04
-    timeout-minutes: 3
-    steps:
-      - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
-        with:
-          persist-credentials: false
-      - name: use local action
-        id: composite
-        uses: ./.github/actions/composite-actions
-        with:
-          foo: BAR
-      - name: show output
-        run: echo "output number is ${{ steps.composite.outputs.random-number }}"
 
 ```
 
@@ -3161,7 +3165,7 @@ jobs:
         with:
           name: John
       - name: show output
-        run: echo "greeting is ${{ steps.composite.outputs.greeting }}"
+        run: echo "greeting is ${{ steps.action.outputs.greeting }}"
 
 ```
 
