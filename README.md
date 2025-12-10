@@ -78,8 +78,6 @@ GitHub Actions research and test laboratory.
   - [Tool management in GitHub Actions with Aqua](#tool-management-in-github-actions-with-aqua)
   - [Workflow command](#workflow-command)
   - [YAML anchor](#yaml-anchor)
-- [Bad Pattern](#bad-pattern)
-  - [Env refer env](#env-refer-env)
 - [Security](#security)
   - [Checkout without persist-credentials](#checkout-without-persist-credentials)
   - [Lint GitHub Actions workflow](#lint-github-actions-workflow)
