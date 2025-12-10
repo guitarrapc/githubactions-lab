@@ -23,8 +23,6 @@ jobs:
         run: echo "modified=$(if [[ "$(git status --porcelain=v1 2>/dev/null | wc -l)" == "0" ]]; then echo "false"; else echo "true"; fi)" >> "$GITHUB_OUTPUT"
       # commit
       - name: commit
-        env:
-          GITHUB_WORKFLOW: ${{ github.workflow }}
         run: |
           git remote set-url origin "https://github-actions:${GITHUB_TOKEN}@github.com/${{ github.repository }}"
           git config user.name github-actions[bot]
@@ -34,6 +32,9 @@ jobs:
           git add .
           git commit -m "[automated] PR by $GITHUB_WORKFLOW"
           git push -u origin "auto/create_pr"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_WORKFLOW: ${{ github.workflow }}
       # pr if change happen (force push when branch/pr already exists)
       - name: Create PullRequest
         id: cpr
