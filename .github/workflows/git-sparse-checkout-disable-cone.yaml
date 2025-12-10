@@ -1,4 +1,4 @@
-name: git sparsecheckout nocorn
+name: git sparse checkout (disable cone)
 on:
   push:
     branches: ["main"]
@@ -15,11 +15,10 @@ jobs:
       - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
         with:
           sparse-checkout: |
-            !src/*
-            /*
+            src/*
           sparse-checkout-cone-mode: false # required for ! entry to work
           persist-credentials: false
       - name: list root folders
         run: ls -la
-      - name: list .github folders
-        run: ls -laR ./.github
+      - name: list src folders
+        run: ls -laR ./src

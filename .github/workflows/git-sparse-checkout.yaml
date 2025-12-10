@@ -1,4 +1,4 @@
-name: git sparsecheckout (no corn)
+name: git sparse checkout
 on:
   push:
     branches: ["main"]
@@ -15,8 +15,7 @@ jobs:
       - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
         with:
           sparse-checkout: |
-            src/*
-          sparse-checkout-cone-mode: false # required for ! entry to work
+            src
           persist-credentials: false
       - name: list root folders
         run: ls -la

@@ -683,112 +683,6 @@ jobs:
 
 You can obtain GitHub Event Context from Environment Variables `GITHUB_EVENT_PATH`.
 
-## Concurrency Control
-
-GitHub Actions has concurrency control to prevent you run Workflow or Job at same time.
-This help you archive serial build pipeline.
-
-**Workflow level concurrency**
-
-Workflow concurrency control is useful when you want to prevent workflow to run at same time. Imagine you have long running workflow and you want to run it only once at same time.
-
-You can use build context like `github.head_ref` or others. This means you can control with commit, branch, workflow and any.
-
-```yaml
-# .github/workflows/concurrency-workflow.yaml
-
-name: "concurrency workflow"
-concurrency: ${{ github.workflow }}-${{ github.ref }}
-on:
-  workflow_dispatch:
-
-jobs:
-  long_job:
-    permissions:
-      contents: read
-    runs-on: ubuntu-24.04
-    timeout-minutes: 5
-    steps:
-      - run: sleep 60s
-
-```
-
-Specifying `cancel-in-progress: true` will cancel parallel build.
-
-```yaml
-# .github/workflows/concurrency-workflow-cancel-in-progress.yaml
-
-name: "concurrency workflow cancel in progress"
-concurrency:
-  group: ${{ github.workflow }}-${{ github.ref }}
-  cancel-in-progress: true
-on:
-  workflow_dispatch:
-
-jobs:
-  long_job:
-    permissions:
-      contents: read
-    runs-on: ubuntu-24.04
-    timeout-minutes: 5
-    steps:
-      - run: sleep 60s
-
-```
-
-**Job level concurrency**
-
-Job concurrency control is useful when you want to prevent job to run at same time. Imagine you have deployment job and you want to run it only once at same time.
-
-```yaml
-# .github/workflows/concurrency-job.yaml
-
-name: "concurrency job"
-on:
-  push:
-    branches:
-      - main
-
-jobs:
-  job:
-    permissions:
-      contents: read
-    runs-on: ubuntu-24.04
-    timeout-minutes: 5
-    concurrency:
-      group: concurrency-job
-    steps:
-      - name: Show current time
-        run: date
-
-```
-
-Specifying `cancel-in-progress: true` will cancel parallel build.
-
-```yaml
-# .github/workflows/concurrency-job-cancel-in-progress.yaml
-
-name: "concurrency job cancel in progress"
-on:
-  push:
-    branches:
-      - main
-
-jobs:
-  job:
-    permissions:
-      contents: read
-    runs-on: ubuntu-24.04
-    timeout-minutes: 5
-    concurrency:
-      group: concurrency-job-cip
-      cancel-in-progress: true
-    steps:
-      - name: Show current time
-        run: date
-
-```
-
 ## Environment variables in script
 
 [set environment variables for next step](#set-environment-variables-for-next-step) explains how to set environment variables for next step.
@@ -2743,224 +2637,110 @@ jobs:
 ```
 
 
-## Checkout faster with Git sparse-checkout
+## Concurrency Control
 
-[actions/checkout](https://github.com/actions) supports both [shallow-clone](https://git-scm.com/docs/shallow) and [sparse checkout](https://git-scm.com/docs/git-sparse-checkout) which is quite useful for monorepository. Typically, monorepository contains many folders and files, but you may want to checkout only specific folder or files.
+GitHub Actions has concurrency control to prevent you run Workflow or Job at same time.
+This help you archive serial build pipeline.
 
-- `shallow-clone` offers faster checkout by limiting depth of clone to latest 1 or N commits.
-- `sparse checkout` offers faster checkout by limiting checkout files and folders.
+### Workflow level concurrency
 
-> **Note**: actions/checkout supports `git sparse-checkout`, since 2023/June.
+Workflow concurrency control is useful when you want to prevent workflow to run at same time. Imagine you have long running workflow and you want to run it only once at same time.
 
-Let's see what is difference between `shallow-clone` and `sparse-checkout`.
-
-**Shallow clone**
-
-Shallow clones use the `--depth=<N>` parameter in `git clone` to truncate the commit history. Typically, --depth=1 signifies that we only care about the most recent commits. This drastically reduces the amount of data that needs to be fetched, leading to faster clones and less storage of shallow history.
-
-![](https://github.blog/jp/wp-content/uploads/sites/2/2021/01/Image4.png?w=800&resize=800%2C414)
-
-> ref: https://github.blog/2020-12-21-get-up-to-speed-with-partial-clone-and-shallow-clone/
-
-**Sparse checkout**
-
-Sparse checkout use the `git sparse-checkout set <PATH>` before `git clone` to truncate the checkout files and folders. This amazingly reduces the amount of data that needs to be fetched, leading to faster checkout and less storage of limited paths.
-
-![](https://i0.wp.com/user-images.githubusercontent.com/121322/72286599-50af8e00-35fa-11ea-9025-d7cbb730192c.png?ssl=1)
-
-> ref: https://github.blog/2020-01-17-bring-your-monorepo-down-to-size-with-sparse-checkout/
-
-Sparce checkout has 2 modes, `git sparse-checkout` and `git sparse-checkout --cone`. You can specify `cone` or not with `sparse-checkout-cone-mode` option. So what the difference between `cone` and not `cone`? Normally `sparse-checkout-cone-mode: true` is faster than `sparse-checkout-cone-mode: false`. But `cone` mode has some limitation, you cannot exclude specific folder. So you need to choose which mode is better for you.
-
-- `sparse checkout: src` & `sparse-checkout-cone-mode: true`, checkout `src` folder and root files.
-- `sparse checkout: src/*` & `sparse-checkout-cone-mode: false`, checkout `src` folder only.
-- `sparse checkout: !src` & `sparse-checkout-cone-mode: true`, you can not use `sparse-checkout-cone-mode: true` with exclude folder.
-- `sparse checkout: !src/*` & `sparse-checkout-cone-mode: false`, you can exlude `src` folder from checkout, but you need specify which folder you want to checkout.
-
-**Sparse checkout**
-
-Checkout "src/\*" and root files, but not checkout any not specified folders.
+You can use build context like `github.head_ref` or others. This means you can control with commit, branch, workflow and any.
 
 ```yaml
-# .github/workflows/git-sparsecheckout.yaml
+# .github/workflows/concurrency-workflow.yaml
 
-name: git sparsecheckout
+name: "concurrency workflow"
+concurrency: ${{ github.workflow }}-${{ github.ref }}
 on:
-  push:
-    branches: ["main"]
-  pull_request:
-    branches: ["main"]
+  workflow_dispatch:
 
 jobs:
-  sparse-checkout:
+  long_job:
     permissions:
       contents: read
     runs-on: ubuntu-24.04
     timeout-minutes: 5
     steps:
-      - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
-        with:
-          sparse-checkout: |
-            src
-          persist-credentials: false
-      - name: list root folders
-        run: ls -la
-      - name: list src folders
-        run: ls -laR ./src
+      - run: sleep 60s
 
 ```
 
-Result is selected `src` folder and root files will checkout.
-
-```sh
-$ ls -la
-total 104
-drwxr-xr-x 4 runner docker  4096 Jun 14 10:23 .
-drwxr-xr-x 3 runner docker  4096 Jun 14 10:23 ..
--rw-r--r-- 1 runner docker  3557 Jun 14 10:23 .editorconfig
-drwxr-xr-x 8 runner docker  4096 Jun 14 10:23 .git
--rw-r--r-- 1 runner docker   103 Jun 14 10:23 .gitattributes
--rw-r--r-- 1 runner docker     5 Jun 14 10:23 .gitignore
--rw-r--r-- 1 runner docker  1083 Jun 14 10:23 LICENSE.md
--rw-r--r-- 1 runner docker 70249 Jun 14 10:23 README.md
-drwxr-xr-x 8 runner docker  4096 Jun 14 10:23 src
-
-$ ls -laR ./src
-./src:
-total 32
-drwxr-xr-x 8 runner docker 4096 Jun 14 10:23 .
-drwxr-xr-x 4 runner docker 4096 Jun 14 10:23 ..
-drwxr-xr-x 5 runner docker 4096 Jun 14 10:23 dotnet
-drwxr-xr-x 2 runner docker 4096 Jun 14 10:23 json
-drwxr-xr-x 6 runner docker 4096 Jun 14 10:23 k8s
-drwxr-xr-x 2 runner docker 4096 Jun 14 10:23 mermaid
-drwxr-xr-x 2 runner docker 4096 Jun 14 10:23 shellscript
-drwxr-xr-x 2 runner docker 4096 Jun 14 10:23 txt
-
-.... others
-```
-
-**Sparse checkout and specify which file to checkout**
-
-Checkout only "src/\*" path. All other files and folders will not checkout.
+Specifying `cancel-in-progress: true` will cancel parallel build.
 
 ```yaml
-# .github/workflows/git-sparsecheckout-nocorn.yaml
+# .github/workflows/concurrency-workflow-cancel-in-progress.yaml
 
-name: git sparsecheckout (no corn)
+name: "concurrency workflow cancel in progress"
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 on:
-  push:
-    branches: ["main"]
-  pull_request:
-    branches: ["main"]
+  workflow_dispatch:
 
 jobs:
-  sparse-checkout:
+  long_job:
     permissions:
       contents: read
     runs-on: ubuntu-24.04
     timeout-minutes: 5
     steps:
-      - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
-        with:
-          sparse-checkout: |
-            src/*
-          sparse-checkout-cone-mode: false # required for ! entry to work
-          persist-credentials: false
-      - name: list root folders
-        run: ls -la
-      - name: list src folders
-        run: ls -laR ./src
+      - run: sleep 60s
 
 ```
 
-Result is selected `src` folder and root files will checkout.
+### Job level concurrency
 
-```sh
-$ ls -la
-total 16
-drwxr-xr-x 4 runner docker 4096 Jun 14 10:23 .
-drwxr-xr-x 3 runner docker 4096 Jun 14 10:23 ..
-drwxr-xr-x 8 runner docker 4096 Jun 14 10:23 .git
-drwxr-xr-x 8 runner docker 4096 Jun 14 10:23 src
-
-$ ls -laR ./src
-./src:
-total 32
-drwxr-xr-x 8 runner docker 4096 Jun 14 10:23 .
-drwxr-xr-x 4 runner docker 4096 Jun 14 10:23 ..
-drwxr-xr-x 5 runner docker 4096 Jun 14 10:23 dotnet
-drwxr-xr-x 2 runner docker 4096 Jun 14 10:23 json
-drwxr-xr-x 6 runner docker 4096 Jun 14 10:23 k8s
-drwxr-xr-x 2 runner docker 4096 Jun 14 10:23 mermaid
-drwxr-xr-x 2 runner docker 4096 Jun 14 10:23 shellscript
-drwxr-xr-x 2 runner docker 4096 Jun 14 10:23 txt
-
-.... others
-```
-
-**Sparse checkout exclude path**
-
-Checkout except "src/_" path. All other files and folders will checkout by `/_`.
+Job concurrency control is useful when you want to prevent job to run at same time. Imagine you have deployment job and you want to run it only once at same time.
 
 ```yaml
-# .github/workflows/git-sparsecheckout-exclude.yaml
+# .github/workflows/concurrency-job.yaml
 
-name: git sparsecheckout nocorn
+name: "concurrency job"
 on:
   push:
-    branches: ["main"]
-  pull_request:
-    branches: ["main"]
+    branches:
+      - main
 
 jobs:
-  sparse-checkout:
+  job:
     permissions:
       contents: read
     runs-on: ubuntu-24.04
     timeout-minutes: 5
+    concurrency:
+      group: concurrency-job
     steps:
-      - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
-        with:
-          sparse-checkout: |
-            !src/*
-            /*
-          sparse-checkout-cone-mode: false # required for ! entry to work
-          persist-credentials: false
-      - name: list root folders
-        run: ls -la
-      - name: list .github folders
-        run: ls -laR ./.github
+      - name: Show current time
+        run: date
 
 ```
 
-Result is exclude `src` folder and all other files are checkout.
+Specifying `cancel-in-progress: true` will cancel parallel build.
 
-```sh
-$ ls -la
-total 108
-drwxr-xr-x 5 runner docker  4096 Jun 14 10:23 .
-drwxr-xr-x 3 runner docker  4096 Jun 14 10:23 ..
--rw-r--r-- 1 runner docker  3557 Jun 14 10:23 .editorconfig
-drwxr-xr-x 8 runner docker  4096 Jun 14 10:23 .git
--rw-r--r-- 1 runner docker   103 Jun 14 10:23 .gitattributes
-drwxr-xr-x 5 runner docker  4096 Jun 14 10:23 .github
--rw-r--r-- 1 runner docker     5 Jun 14 10:23 .gitignore
--rw-r--r-- 1 runner docker  1083 Jun 14 10:23 LICENSE.md
--rw-r--r-- 1 runner docker 70249 Jun 14 10:23 README.md
-drwxr-xr-x 5 runner docker  4096 Jun 14 10:23 samples
+```yaml
+# .github/workflows/concurrency-job-cancel-in-progress.yaml
 
-$ ls -laR ./.github
-./.github:
-total 24
-drwxr-xr-x  5 runner docker 4096 Jun 14 10:23 .
-drwxr-xr-x  5 runner docker 4096 Jun 14 10:23 ..
-drwxr-xr-x 12 runner docker 4096 Jun 14 10:23 actions
--rw-r--r--  1 runner docker  117 Jun 14 10:23 ban-words.txt
-drwxr-xr-x  2 runner docker 4096 Jun 14 10:23 scripts
-drwxr-xr-x  3 runner docker 4096 Jun 14 10:23 workflows
+name: "concurrency job cancel in progress"
+on:
+  push:
+    branches:
+      - main
 
-.... others
+jobs:
+  job:
+    permissions:
+      contents: read
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    concurrency:
+      group: concurrency-job-cip
+      cancel-in-progress: true
+    steps:
+      - name: Show current time
+        run: date
+
 ```
 
 ## Container job
@@ -3421,6 +3201,202 @@ jobs:
           exit 1
 
 ```
+
+## git checkout faster
+
+[actions/checkout](https://github.com/actions) supports both [shallow-clone](https://git-scm.com/docs/shallow) and [sparse checkout](https://git-scm.com/docs/git-sparse-checkout) which is quite useful for monorepository. Typically, monorepository contains huge number of files and folders, so normal git clone/checkout may take long time and huge disk space. If you want to speed up git checkout, enable both `shallow-clone` and `sparse checkout`.
+
+- `shallow-clone` (Enable by default): Offers faster clone by limiting commit history depth.
+- `sparse checkout` (Added 2023/June -): Offers faster checkout by limiting checked out files and folders.
+
+<details><summary>Click to show explanation of shallow clone and sparse checkout</summary>
+
+**What's Shallow clone**
+
+Shallow clones use the `--depth=<N>` parameter in `git clone` to truncate the commit history. Typically, --depth=1 signifies that we only care about the most recent commits. This drastically reduces the amount of data that needs to be fetched, leading to faster clones and less storage of shallow history.
+
+![](./images/shallow-clone.png)
+
+> ref: https://github.blog/2020-12-21-get-up-to-speed-with-partial-clone-and-shallow-clone/
+
+**What's Sparse checkout**
+
+Sparse checkout use the `git sparse-checkout set <PATH>` before `git clone` to truncate the checkout files and folders. This amazingly reduces the amount of data that needs to be fetched, leading to faster checkout and less storage of limited paths.
+
+![](./images/sparse-checkout.png)
+
+> ref: https://github.blog/2020-01-17-bring-your-monorepo-down-to-size-with-sparse-checkout/
+
+Sparce checkout has 2 modes, `git sparse-checkout` and `git sparse-checkout --cone`. You can specify `cone` or not with `sparse-checkout-cone-mode` option. So what the difference between `cone` and not `cone`? Normally `sparse-checkout-cone-mode: true` is faster than `sparse-checkout-cone-mode: false`. But `cone` mode has some limitation, you cannot exclude specific folder. So you need to choose which mode is better for you.
+
+- `sparse checkout: src` & `sparse-checkout-cone-mode: true`, checkout `src` folder and root files.
+- `sparse checkout: src/*` & `sparse-checkout-cone-mode: false`, checkout `src` folder only.
+- `sparse checkout: !src` & `sparse-checkout-cone-mode: true`, you can not use `sparse-checkout-cone-mode: true` with exclude folder.
+- `sparse checkout: !src/*` & `sparse-checkout-cone-mode: false`, you can exlude `src` folder from checkout, but you need specify which folder you want to checkout.
+
+</details>
+
+### Sparse checkout
+
+To use sparse checkout, just specify `sparse-checkout` option to `actions/checkout` action. Following example checkout only `src/` folder and root files.
+
+```yaml
+# .github/workflows/git-sparse-checkout.yaml
+
+name: git sparse checkout
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+
+jobs:
+  sparse-checkout:
+    permissions:
+      contents: read
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
+        with:
+          sparse-checkout: |
+            src/
+          persist-credentials: false
+      - name: list root folders
+        run: ls -la
+      - name: list src folders
+        run: ls -laR ./src
+
+```
+
+Result is selected `src` folder and root files will checkout.
+
+```sh
+$ ls -la
+total 104
+drwxr-xr-x 4 runner docker  4096 Jun 14 10:23 .
+drwxr-xr-x 3 runner docker  4096 Jun 14 10:23 ..
+-rw-r--r-- 1 runner docker  3557 Jun 14 10:23 .editorconfig
+drwxr-xr-x 8 runner docker  4096 Jun 14 10:23 .git
+-rw-r--r-- 1 runner docker   103 Jun 14 10:23 .gitattributes
+-rw-r--r-- 1 runner docker     5 Jun 14 10:23 .gitignore
+-rw-r--r-- 1 runner docker  1083 Jun 14 10:23 LICENSE.md
+-rw-r--r-- 1 runner docker 70249 Jun 14 10:23 README.md
+drwxr-xr-x 8 runner docker  4096 Jun 14 10:23 src
+
+$ ls -laR ./src
+./src:
+total 32
+drwxr-xr-x 8 runner docker 4096 Jun 14 10:23 .
+drwxr-xr-x 4 runner docker 4096 Jun 14 10:23 ..
+drwxr-xr-x 5 runner docker 4096 Jun 14 10:23 dotnet
+drwxr-xr-x 2 runner docker 4096 Jun 14 10:23 json
+drwxr-xr-x 6 runner docker 4096 Jun 14 10:23 k8s
+drwxr-xr-x 2 runner docker 4096 Jun 14 10:23 mermaid
+drwxr-xr-x 2 runner docker 4096 Jun 14 10:23 shellscript
+drwxr-xr-x 2 runner docker 4096 Jun 14 10:23 txt
+
+.... others
+```
+
+### Sparse checkout and specify which file to checkout
+
+To use sparse checkout and specify which file/folder to checkout, just specify `sparse-checkout` option to `actions/checkout` action. Following example checkout only `src/*` folder. Disable cone mode by `sparse-checkout-cone-mode: false` to use `!` exclude pattern.
+
+```yaml
+# .github/workflows/git-sparse-checkout-disable-cone.yaml
+
+```
+
+Result is selected `src` folder and root files will checkout.
+
+```sh
+$ ls -la
+total 16
+drwxr-xr-x 4 runner docker 4096 Jun 14 10:23 .
+drwxr-xr-x 3 runner docker 4096 Jun 14 10:23 ..
+drwxr-xr-x 8 runner docker 4096 Jun 14 10:23 .git
+drwxr-xr-x 8 runner docker 4096 Jun 14 10:23 src
+
+$ ls -laR ./src
+./src:
+total 32
+drwxr-xr-x 8 runner docker 4096 Jun 14 10:23 .
+drwxr-xr-x 4 runner docker 4096 Jun 14 10:23 ..
+drwxr-xr-x 5 runner docker 4096 Jun 14 10:23 dotnet
+drwxr-xr-x 2 runner docker 4096 Jun 14 10:23 json
+drwxr-xr-x 6 runner docker 4096 Jun 14 10:23 k8s
+drwxr-xr-x 2 runner docker 4096 Jun 14 10:23 mermaid
+drwxr-xr-x 2 runner docker 4096 Jun 14 10:23 shellscript
+drwxr-xr-x 2 runner docker 4096 Jun 14 10:23 txt
+
+.... others
+```
+
+### Sparse checkout exclude path
+
+To use sparse checkout and exclude specific file/folder from checkout, just specify `sparse-checkout` option to `actions/checkout` action. Following example exclude `src/*` folder. Disable cone mode by `sparse-checkout-cone-mode: false` to use `!` exclude pattern.
+
+```yaml
+# .github/workflows/git-sparse-checkout-exclude.yaml
+
+name: git sparsecheckout nocorn
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+
+jobs:
+  sparse-checkout:
+    permissions:
+      contents: read
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
+        with:
+          sparse-checkout: |
+            !src/*
+            /*
+          sparse-checkout-cone-mode: false # required for ! entry to work
+          persist-credentials: false
+      - name: list root folders
+        run: ls -la
+      - name: list .github folders
+        run: ls -laR ./.github
+
+```
+
+Result is exclude `src` folder and all other files are checkout.
+
+```sh
+$ ls -la
+total 108
+drwxr-xr-x 5 runner docker  4096 Jun 14 10:23 .
+drwxr-xr-x 3 runner docker  4096 Jun 14 10:23 ..
+-rw-r--r-- 1 runner docker  3557 Jun 14 10:23 .editorconfig
+drwxr-xr-x 8 runner docker  4096 Jun 14 10:23 .git
+-rw-r--r-- 1 runner docker   103 Jun 14 10:23 .gitattributes
+drwxr-xr-x 5 runner docker  4096 Jun 14 10:23 .github
+-rw-r--r-- 1 runner docker     5 Jun 14 10:23 .gitignore
+-rw-r--r-- 1 runner docker  1083 Jun 14 10:23 LICENSE.md
+-rw-r--r-- 1 runner docker 70249 Jun 14 10:23 README.md
+drwxr-xr-x 5 runner docker  4096 Jun 14 10:23 samples
+
+$ ls -laR ./.github
+./.github:
+total 24
+drwxr-xr-x  5 runner docker 4096 Jun 14 10:23 .
+drwxr-xr-x  5 runner docker 4096 Jun 14 10:23 ..
+drwxr-xr-x 12 runner docker 4096 Jun 14 10:23 actions
+-rw-r--r--  1 runner docker  117 Jun 14 10:23 ban-words.txt
+drwxr-xr-x  2 runner docker 4096 Jun 14 10:23 scripts
+drwxr-xr-x  3 runner docker 4096 Jun 14 10:23 workflows
+
+.... others
+```
+
 
 ## GitHub Step Summary
 
