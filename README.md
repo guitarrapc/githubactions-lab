@@ -1066,7 +1066,7 @@ If you want pass value between steps in same job, you can use [step output](http
 Following example shows how to set job output in `a` job, and refer it in `b` job.
 
 ```yaml
-# .github/workflows/job-output.yaml
+# .github/workflows/job-outputs.yaml
 
 name: job needs basic
 
