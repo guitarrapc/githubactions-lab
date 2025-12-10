@@ -47,7 +47,7 @@ jobs:
           else
             title="[report.txt] Automated changes"
             body="GitHub Actions [${GITHUB_WORKFLOW}](${GITHUB_ACTIONS_RUN_URL}) generated changes :rocket:"
-            gh pr create --title "$title" --body "$body" --label "automated"
+            gh pr create --title "$title" --body "$body" --label "automated pr"
           fi
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
