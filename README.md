@@ -1188,85 +1188,6 @@ jobs:
 
 ```
 
-## Permissions
-
-GitHub Actions supports specify permissions for each job or workflow.
-
-You can turn all permission off with `permissions: {}`.
-
-Workflow permission can be done with root `permissions:`.
-
-```yaml
-# .github/workflows/permissions-workflow.yaml
-
-name: permissions
-on:
-  pull_request:
-    branches: ["main"]
-
-permissions:
-  # actions: write
-  # checks: write
-  contents: read
-  # deployments: write
-  # discussions: write
-  # id-token: write
-  # issues: write
-  # packages: write
-  # pages: write
-  # pull-requests: write
-  # repository-projects: write
-  # security-events: write
-  # statuses: write
-
-jobs:
-  job:
-    runs-on: ubuntu-24.04
-    timeout-minutes: 10
-    steps:
-      - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
-        with:
-          persist-credentials: false
-
-```
-
-job permission can be done with `job.<job_name>.permissions`.
-
-```yaml
-# .github/workflows/permissions-job.yaml
-
-name: permissions job
-on:
-  pull_request:
-    branches: ["main"]
-
-jobs:
-  job:
-    permissions:
-      # actions: write
-      # checks: write
-      contents: read
-      # deployments: write
-      # discussions: write
-      # id-token: write
-      # issues: write
-      # packages: write
-      # pages: write
-      # pull-requests: write
-      # repository-projects: write
-      # security-events: write
-      # statuses: write
-    runs-on: ubuntu-24.04
-    timeout-minutes: 3
-    steps:
-      - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
-        with:
-          persist-credentials: false
-
-```
-
-The most important permission is `id-tokens: write`. It enables job to use OIDC like AWS, Azure and GCP.
-
 ## Redundant Control
 
 > **Note**
@@ -3945,10 +3866,12 @@ Newly created repository's GitHub Actions token `github.token` permissions are s
 
 ![](./images/workflow-permissions.png)
 
+GitHub Actions supports specify permissions for each job or workflow. You can set `permissions:` at workflow level or job level. Job level permission override workflow level permission and can set `job.<job_name>.permissions`. You can turn all permission off with `permissions: {}`.
+
 In general, it is a good practice to set `contents: read` permission for workflows that do not require write access. This minimizes the potential impact of any security vulnerabilities in your workflows. If you just checkout and build code, you probably only need `contents: read` permission.
 
 ```yaml
-# .github/workflows/permissions.yaml
+# .github/workflows/permissions-minimum.yaml
 ```
 
 Avoiding workflow level permissions like below is also recommended. Instead, set job level permissions as needed.
@@ -3977,7 +3900,6 @@ jobs:
     steps:
       - run: echo "bar"
 ```
-
 
 ## Lint GitHub Actions workflow
 
