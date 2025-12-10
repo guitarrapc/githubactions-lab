@@ -12,7 +12,6 @@ GitHub Actions research and test laboratory.
 
 - [Not yet support](#not-yet-support)
   - [View](#view)
-  - [YAML syntax](#yaml-syntax)
   - [Functionarity](#functionarity)
 - [Functionality limitation](#functionality-limitation)
 - [Difference from other CI](#difference-from-other-ci)
@@ -79,6 +78,7 @@ GitHub Actions research and test laboratory.
   - [Telemetry for GitHub Workflow execution](#telemetry-for-github-workflow-execution)
   - [Tool management in GitHub Actions with Aqua](#tool-management-in-github-actions-with-aqua)
   - [Workflow command](#workflow-command)
+  - [YAML anchor](#yaml-anchor)
 - [Bad Pattern](#bad-pattern)
   - [Env refer env](#env-refer-env)
 - [Security](#security)
