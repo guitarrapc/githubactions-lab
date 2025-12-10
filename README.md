@@ -3260,7 +3260,7 @@ jobs:
       - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
         with:
           sparse-checkout: |
-            src/
+            src
           persist-credentials: false
       - name: list root folders
         run: ls -la
@@ -3306,6 +3306,31 @@ To use sparse checkout and specify which file/folder to checkout, just specify `
 ```yaml
 # .github/workflows/git-sparse-checkout-disable-cone.yaml
 
+name: git sparse checkout (disable cone)
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+
+jobs:
+  sparse-checkout:
+    permissions:
+      contents: read
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
+        with:
+          sparse-checkout: |
+            src/*
+          sparse-checkout-cone-mode: false # required for ! entry to work
+          persist-credentials: false
+      - name: list root folders
+        run: ls -la
+      - name: list src folders
+        run: ls -laR ./src
+
 ```
 
 Result is selected `src` folder and root files will checkout.
@@ -3340,7 +3365,7 @@ To use sparse checkout and exclude specific file/folder from checkout, just spec
 ```yaml
 # .github/workflows/git-sparse-checkout-exclude.yaml
 
-name: git sparsecheckout nocorn
+name: git sparse checkout exclude
 on:
   push:
     branches: ["main"]
