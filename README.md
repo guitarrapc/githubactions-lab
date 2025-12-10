@@ -12,7 +12,7 @@ GitHub Actions research and test laboratory.
 
 - [Not yet support](#not-yet-support)
   - [View](#view)
-  - [Functionarity](#functionarity)
+  - [Functionality](#functionality)
 - [Functionality limitation](#functionality-limitation)
 - [Difference from other CI](#difference-from-other-ci)
   - [CI Migration](#ci-migration)
