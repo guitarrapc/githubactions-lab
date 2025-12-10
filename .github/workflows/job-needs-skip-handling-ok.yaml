@@ -1,14 +1,20 @@
-name: needs skip no handling
+name: job needs skip handling (ok)
 on:
   push:
     branches: ["main"]
   pull_request:
     branches: ["main"]
   workflow_dispatch:
+    inputs:
+      only-c:
+        description: "Run only Job C"
+        required: false
+        default: false
+        type: boolean
 
 jobs:
   A:
-    if: ${{ false }}
+    if: ${{ !inputs.only-c }}
     permissions:
       contents: read
     runs-on: ubuntu-24.04
@@ -17,7 +23,7 @@ jobs:
       - run: echo "a"
 
   B:
-    if: ${{ false }}
+    if: ${{ !inputs.only-c }}
     permissions:
       contents: read
     runs-on: ubuntu-24.04
@@ -33,9 +39,10 @@ jobs:
     steps:
       - run: echo "c"
 
-  # D will always skip because A and B is skipped
+  # D will run when "C is success" or "all the jobs are success".
   D:
     needs: [A, B, C]
+    if: ${{ inputs.only-c && needs.C.result == 'success' || success() }}
     permissions:
       contents: read
     runs-on: ubuntu-24.04

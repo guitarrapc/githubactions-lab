@@ -40,7 +40,7 @@ GitHub Actions research and test laboratory.
   - [Environment variables in script](#environment-variables-in-script)
   - [If and context reference](#if-and-context-reference)
   - [Job needs and dependency](#job-needs-and-dependency)
-  - [Job skip handling](#job-skip-handling)
+  - [Job output](#job-output)
   - [Permissions](#permissions)
   - [Pin Third-Party Actions to Commit SHA](#pin-third-party-actions-to-commit-sha)
   - [Run when previous job is success](#run-when-previous-job-is-success)
@@ -821,13 +821,15 @@ jobs:
 
 ## Job needs and dependency
 
-You can handle Job dependency with `needs`.
+You can handle Job dependency with `jobs.<job_id>.needs`.
 
 Basic usage is `needs: <job_name>`. Let's check [official example](https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#jobsjob_idneeds).
 
-**Requiring successful dependent jobs**
+### Job needs dependency basic
 
-Following example shows require successful dependent jobs.`job2` will run after `job1` is success, and `job3` will run after `job1` and `job2` are success. It means `job2` & `job3` never run when `job1` failed, `job3` never run when `job2` failed. In result, jobs are run seqientially in order of `job1` -> `job2` -> `job3`.
+Job needs by default require success result of previous job.
+
+Following example flow shows `job2` will run after `job1` is success, and `job3` will run after `job1` and `job2` are success. It means `job2` & `job3` never run when `job1` failed, `job3` never run when `job2` failed. In result, jobs are run seqientially in order of `job1` -> `job2` -> `job3`.
 
 ```yaml
 jobs:
@@ -841,9 +843,9 @@ jobs:
 See actual sample.
 
 ```yaml
-# .github/workflows/needs-require-success.yaml
+# .github/workflows/job-needs-basic.yaml
 
-name: needs require success
+name: job needs basic
 
 on:
   push:
@@ -882,7 +884,7 @@ jobs:
 
 ```
 
-**Not requiring successful dependent jobs**
+### Job needs dependency without success result requirement
 
 `job3` uses the `always()` conditional expression. So that`job3` will run regardless of `job1` and `job2` job result is success or failure. Because of `needs` section, jobs are run seqientially in order of `job1` -> `job2` -> `job3`.
 
@@ -899,9 +901,9 @@ jobs:
 See actual sample.
 
 ```yaml
-# .github/workflows/needs-not-require-success.yaml
+# .github/workflows/job-needs-always.yaml
 
-name: needs not require success
+name: job needs always
 
 on:
   push:
@@ -941,16 +943,15 @@ jobs:
 
 ```
 
-## Job skip handling
+### Job needs and skip handling
 
-Job `needs` can be used for skip handling. However skipping dependent job cause trouble.
-
+Job `needs` can be used for skip handling. However skipping dependent job cause trouble for next job.
 Following workflow expected to run `D` when `C` is invoked. But skipping `A` and `B` cause `D` skip.
 
 ```yaml
-# .github/workflows/needs-skip-no-handling.yaml
+# .github/workflows/job-needs-skip-handling-bad.yaml
 
-name: needs skip no handling
+name: job needs skip handling (bad)
 on:
   push:
     branches: ["main"]
@@ -1000,9 +1001,9 @@ jobs:
 To handle `D` to run when `C` is invoked, you need to add `if` condition to `D`. Also handle when no conditional `C` invokation, `A`, `B` and `C` is success, then `D` must run.
 
 ```yaml
-# .github/workflows/needs-skip-handling.yaml
+# .github/workflows/job-needs-skip-handling-ok.yaml
 
-name: needs skip handling
+name: job needs skip handling (ok)
 on:
   push:
     branches: ["main"]
@@ -1011,7 +1012,7 @@ on:
   workflow_dispatch:
     inputs:
       only-c:
-        description: 'Run only Job C'
+        description: "Run only Job C"
         required: false
         default: false
         type: boolean
@@ -1053,6 +1054,50 @@ jobs:
     timeout-minutes: 1
     steps:
       - run: echo "d"
+
+```
+
+## Job output
+
+If you want pass value between jobs, you can use [job output](https://docs.github.com/en/actions/how-tos/write-workflows/choose-what-workflows-do/pass-job-outputs) and [job needs](https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-syntax#jobsjob_idneeds). Use `jobs.<job_id>.output` to set job output, and other job can refer it via `needs.<job_id>.outputs.<output_name>`.
+
+If you want pass value between steps in same job, you can use [step output](https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-commands#setting-an-output-parameter). Use `steps.<step_id>.output` to set step output, and other step can refer it via `steps.<step_id>.outputs.<output_name>`.
+
+Following example shows how to set job output in `a` job, and refer it in `b` job.
+
+```yaml
+# .github/workflows/job-outputs.yaml
+
+name: job needs basic
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+  workflow_dispatch:
+
+jobs:
+  a:
+    permissions:
+      contents: read
+    runs-on: ubuntu-24.04
+    timeout-minutes: 1
+    outputs:
+      result: ${{ steps.a-step.outputs.result }}
+    steps:
+      - name: run a
+        id: a-step
+        run: echo "result=a" | tee -a "$GITHUB_OUTPUT"
+
+  b:
+    needs: [a]
+    permissions:
+      contents: read
+    runs-on: ubuntu-24.04
+    timeout-minutes: 1
+    steps:
+      - run: echo "a=${{ needs.a.outputs.result }}"
 
 ```
 
