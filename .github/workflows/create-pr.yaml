@@ -41,12 +41,13 @@ jobs:
         id: cpr
         if: ${{ steps.git-check.outputs.modified == 'true' }}
         run: |
-          if ! gh pr list --head "auto/create_pr" --base "main" >/dev/null 2>&1; then
+          pr_exists=$(gh pr list --head "auto/create_pr" --base "main")
+          if [ -n "$pr_exists" ]; then
+            echo "PR already exists for auto/create_pr -> main. Skipping creation."
+          else
             title="[report.txt] Automated changes"
             body="GitHub Actions [${GITHUB_WORKFLOW}](${GITHUB_ACTIONS_RUN_URL}) generated changes :rocket:"
             gh pr create --title "$title" --body "$body" --label "automated"
-          else
-            echo "PR already exists for auto/create_pr -> main. Skipping creation."
           fi
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
