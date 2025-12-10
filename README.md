@@ -1587,15 +1587,41 @@ jobs:
 
 ```
 
-Following matrix will run 6 jobs in total.
+Following matrix will run 4 jobs in total.
 
 ```json
-{fruit: manzana, animal: gato, color: rosa, forma: círculo}
-{fruit: manzana, animal: perro, color: verde, forma: círculo}
-{fruit: pera, animal: gato, color: rosa}
-{fruit: pera, animal: perro, color: verde}
-{fruit: plátano}
-{fruit: plátano, animal: gato}
+// manzana, gato
+{
+  "fruta": "manzana",
+  "animal": "gato",
+  "color": "rosa",
+  "fruit": "plátano",
+  "forma": "cuadrado"
+}
+// manzana, perro
+{
+  "fruta": "manzana",
+  "animal": "perro",
+  "color": "verde",
+  "fruit": "plátano",
+  "forma": "cuadrado"
+}
+// pera, gato
+{
+  "fruta": "pera",
+  "animal": "gato",
+  "color": "rosa",
+  "fruit": "plátano",
+  "forma": "cuadrado"
+}
+// pera, perro
+{
+  "fruta": "pera",
+  "animal": "perro",
+  "color": "verde",
+  "fruit": "plátano",
+  "forma": "cuadrado"
+}
 ```
 
 ### Exclude
@@ -1624,7 +1650,7 @@ jobs:
         fruta: [manzana, pera]
         animal: [gato, perro]
         exclude:
-          - fruit: manzana
+          - fruta: manzana
             animal: gato
     runs-on: ubuntu-24.04
     timeout-minutes: 3
@@ -1638,9 +1664,9 @@ jobs:
 Following matrix will run 3 jobs in total.
 
 ```json
-{fruit: manzana, animal: perro}
-{fruit: pera, animal: gato}
-{fruit: pera, animal: perro}
+{fruta: manzana, animal: perro}
+{fruta: pera, animal: gato}
+{fruta: pera, animal: perro}
 ```
 
 ## Timeout settings
