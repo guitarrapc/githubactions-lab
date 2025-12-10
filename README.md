@@ -3501,12 +3501,13 @@ jobs:
 
 GitHub Actions allows you to create [Reusable workflows](https://docs.github.com/en/actions/how-tos/reuse-automations/reuse-workflows) to share common workflow logic across multiple workflows and repositories. You can call local workflow of the same repository, public repository's workflow, or same Organization's private repository's workflow. To create reusable workflow, follow steps below.
 
-**Limitations**
+### Limitations
 
 There are some limitations when calling reusable workflows.
 
 1. Private repo can call same repo's reusable workflow, but can not call other private repo's workflow.
-1. Caller cannot use ${{ env.FOO }} for `with` inputs.
+2. Caller cannot use ${{ env.FOO }} for `with` inputs.
+
    ```yaml
    jobs:
      bad:
@@ -3518,13 +3519,14 @@ There are some limitations when calling reusable workflows.
          secrets: inherit
    ```
 
-There are some limitations for reusable workflow callee.
+3. Callee workflow must place under `.github/workflows/`. Otherwise caller treated as calling public workflow.
 
-1. Callee workflow must place under `.github/workflows/`. Otherwise caller treated as calling public workflow.
    ```bash
    $ ls -l ./.github/workflows/
    ```
-1. Callee cannot refer Caller's Environment Variable.
+
+4. Callee cannot refer Caller's Environment Variable.
+
    ```yaml
    env:
      FOO: foo # Reusable workflow callee cannot refer this env.
@@ -3535,7 +3537,7 @@ There are some limitations for reusable workflow callee.
          uses: ./.github/workflows/dummy.yaml
    ```
 
-### Create reusable workflow
+### Reusable workflow basic
 
 Place Reusable workflow yaml file under `.github/workflows/<WORKFLOW_NAME>.yaml`.
 
@@ -3545,7 +3547,7 @@ $ cd .github/workflows
 $ touch _reusable-workflow-called.yaml
 ```
 
-Write your Reusable workflow in `_reusable-workflow-called.yaml`.
+Write your Reusable workflow in `_reusable-workflow-called.yaml`. You can pass value by `inputs` and get value by `outputs`.
 
 - `on.workflow_call`: Key point to define Reusable workflow.
 - `on.workflow_call.inputs`: Define input parameters to pass from caller to callee.
@@ -3839,6 +3841,26 @@ jobs:
       - name: Run zizmor
         run: docker run -t -v .:/github ghcr.io/woodruffw/zizmor:1.5.2 /github --min-severity medium
 
+```
+
+## Workflow command
+
+GitHub Actions support [Workflow commands](https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-commands) to interact with workflow runner. You can use workflow commands to set output parameters, add debug messages to the output logs, and other tasks.
+
+Most workflow commands use the echo command in a specific format, while others are invoked by writing to a file.
+
+```sh
+echo "::workflow-command parameter1={data},parameter2={data}::{command value}"
+```
+
+If you are using JavaScript or TypeScript to create GitHub Actions, you can use the [@actions/core](https://github.com/actions/toolkit).
+
+```js
+core.error('Missing semicolon', {file: 'app.js', startLine: 1})
+```
+
+```yaml
+# .github/workflows/workflow-command.yaml
 ```
 
 # Bad Pattern
