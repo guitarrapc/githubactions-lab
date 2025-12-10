@@ -1,4 +1,4 @@
-name: Debug Remote Action Download Structure
+name: debug downloaded remote action
 on:
   workflow_dispatch:
 
