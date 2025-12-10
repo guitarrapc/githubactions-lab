@@ -3831,7 +3831,7 @@ jobs:
 > [!WARNING]
 > I don't recommend using complex anchor structure, because it may make yaml hard to read. Instead, use Reusable Workflow, Composite Actions, JavaScript Actions to share common logic.
 
-You can use YAML anchor to reduce duplication in GitHub Actions workflow yaml. Define anchor with `&anchor_name` and refer anchor with `*anchor_name`.
+You can use [YAML anchor](https://docs.github.com/ja/actions/reference/workflows-and-actions/reusing-workflow-configurations#yaml-anchors-and-aliases) to reduce duplication in GitHub Actions workflow yaml. Define anchor with `&anchor_name` and refer anchor with `*anchor_name`. Be aware that YAML Merge Keys `<<: *anchor_name` is not supported, yet.
 
 ```yaml
 # .github/workflows/yaml-anchor-basic.yaml
@@ -3889,8 +3889,6 @@ jobs:
       - name: Show message
         run: echo "This workflow is triggered by changes in paths defined with YAML anchor."
 ```
-
-Be aware that YAML Merge Keys `<<: *anchor_name` is not supported, yet.
 
 # Bad Pattern
 
