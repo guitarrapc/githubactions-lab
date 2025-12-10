@@ -1,0 +1,4 @@
+paths:
+  .github/workflows/yaml-anchor-basic.yaml:
+    ignore:
+      - '"paths" section must be sequence node but got alias node with "" tag'

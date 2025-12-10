@@ -12,7 +12,6 @@ GitHub Actions research and test laboratory.
 
 - [Not yet support](#not-yet-support)
   - [View](#view)
-  - [YAML syntax](#yaml-syntax)
   - [Functionarity](#functionarity)
 - [Functionality limitation](#functionality-limitation)
 - [Difference from other CI](#difference-from-other-ci)
@@ -79,6 +78,7 @@ GitHub Actions research and test laboratory.
   - [Telemetry for GitHub Workflow execution](#telemetry-for-github-workflow-execution)
   - [Tool management in GitHub Actions with Aqua](#tool-management-in-github-actions-with-aqua)
   - [Workflow command](#workflow-command)
+  - [YAML anchor](#yaml-anchor)
 - [Bad Pattern](#bad-pattern)
   - [Env refer env](#env-refer-env)
 - [Security](#security)
@@ -115,11 +115,6 @@ GitHub Actions research and test laboratory.
 - [ ] Test Insight view
   - Like [CircleCI](https://circleci.com/docs/insights-tests) and [Azure Pipeline](https://docs.microsoft.com/en-us/azure/devops/pipelines/test/review-continuous-test-results-after-build?view=azure-devops) provides.
   - Workaround: Use [$GITHUB_STEP_SUMMARY](https://github.blog/2022-05-09-supercharging-github-actions-with-job-summaries/)
-
-## YAML syntax
-- [ ] YAML anchor support
-  - [Support for YAML anchors \- GitHub Community Forum](https://github.community/t5/GitHub-Actions/Support-for-YAML-anchors/td-p/30336)
-  - Workaround: There are Composite Actions and Reusable workflow to reuse same set of actions.
 
 ## Functionarity
 - [ ] Workflow level `timeout-minutes`
@@ -330,7 +325,7 @@ GitHub Actions not support exact functionality as CircleCI provide, but you can 
 
 Write script is better than directly write on the step, so that we can reuse same execution from other workflows or jobs.
 
-- ✔️: GitHub Actions can reuse yaml via `Reusable workflow`, `Composite Actions` and `Organization workflow`.
+- ✔️: GitHub Actions can reuse yaml via `Reusable workflow`, `Composite Actions`, `Organization workflow`, and also `YAML anchor`.
 - ✔️: CircleCI can reuse job, and also `YAML anchor` is useul.
 - ✔️: Azure Pipeline has template to refer stage, job and step from other yaml.
 - ⚠️: Jenkins pipeline could refer other pipeline. However a lot case you would prefer define job step in script and reuse it. Reusing pipeline easily make it complex with Jenkins.
@@ -3831,6 +3826,70 @@ jobs:
 
 ```
 
+## YAML anchor
+
+> [!WARNING]
+> I don't recommend using complex anchor structure, because it may make yaml hard to read. Instead, use Reusable Workflow, Composite Actions, JavaScript Actions to share common logic.
+
+You can use [YAML anchor](https://docs.github.com/ja/actions/reference/workflows-and-actions/reusing-workflow-configurations#yaml-anchors-and-aliases) to reduce duplication in GitHub Actions workflow yaml. Define anchor with `&anchor_name` and refer anchor with `*anchor_name`. Be aware that YAML Merge Keys `<<: *anchor_name` is not supported, yet.
+
+```yaml
+# .github/workflows/yaml-anchor-basic.yaml
+
+name: yaml anchor basic
+on:
+  push:
+    branches: ["main"]
+    # Define an anchor named common_paths with `&NAME`
+    paths: &common_paths
+      - ".github/workflows/**.yaml"
+      - "README.md"
+  pull_request:
+    branches: ["main"]
+    # Reference the anchor with `*NAME`
+    paths: *common_paths
+
+jobs:
+  job:
+    permissions:
+      contents: read
+    runs-on: ubuntu-24.04
+    timeout-minutes: 3
+    steps:
+      - name: Show message
+        run: echo "This workflow is triggered by changes in paths defined with YAML anchor."
+
+```
+
+To debug anchor, use `yq` command to see expanded yaml.
+
+```sh
+$ yq "explode(.)" .github/workflows/yaml-anchor-basic.yaml
+name: yaml anchor basic
+on:
+  push:
+    branches: ["main"]
+    # Define an anchor named common_paths with `&NAME`
+    paths:
+      - ".github/workflows/**.yaml"
+      - "README.md"
+  pull_request:
+    branches: ["main"]
+    # Reference the anchor with `*NAME`
+    paths:
+      - ".github/workflows/**.yaml"
+      - "README.md"
+jobs:
+  job:
+    permissions:
+      contents: read
+    runs-on: ubuntu-24.04
+    timeout-minutes: 3
+    steps:
+      - name: Show message
+        run: echo "This workflow is triggered by changes in paths defined with YAML anchor."
+```
+
 # Bad Pattern
 
 ## Env refer env
@@ -3878,20 +3937,27 @@ on:
   pull_request:
     branches: ["main"]
 
+# avoid workflow level permission, set job level permission as needed
+# permissions:
+#   contents: write
+
 jobs:
-  check-permissions:
+  build:
     # specify minimum permissions as possible
     permissions:
       contents: read
     runs-on: ubuntu-24.04
     timeout-minutes: 3
     steps:
-      - name: Check job permissions
-        run: echo "permissions ${CONTEXT}"
-        env:
-          CONTEXT: ${{ toJson(job.permissions) }}
-      # checkout
-      # build
+      - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
+        with:
+          persist-credentials: false
+      - uses: actions/setup-go@4dc6199c7b1a012772edbd06daecab0f50c9053c # v6.1.0
+        with:
+          go-version: "1.25"
+      - name: Build
+        run: go build
+        working-directory: ./src/go
 
 ```
 
