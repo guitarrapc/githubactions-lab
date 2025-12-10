@@ -37,7 +37,6 @@ GitHub Actions research and test laboratory.
   - [if section](#if-section)
   - [Timeout settings](#timeout-settings)
 - [Basic - Fundamentables](#basic---fundamentables)
-  - [Checkout without persist-credentials](#checkout-without-persist-credentials)
   - [Default shell](#default-shell)
   - [Dump context metadata](#dump-context-metadata)
   - [Environment variables in script](#environment-variables-in-script)
@@ -82,8 +81,9 @@ GitHub Actions research and test laboratory.
 - [Bad Pattern](#bad-pattern)
   - [Env refer env](#env-refer-env)
 - [Security](#security)
-  - [Permissions](#permissions)
+  - [Checkout without persist-credentials](#checkout-without-persist-credentials)
   - [Lint GitHub Actions workflow](#lint-github-actions-workflow)
+  - [Permissions](#permissions)
   - [Pin Third-Party Actions to Commit SHA](#pin-third-party-actions-to-commit-sha)
 - [Cheat Sheet](#cheat-sheet)
   - [Actions naming](#actions-naming)
@@ -520,68 +520,6 @@ jobs:
 ```
 
 # Basic - Fundamentables
-
-## Checkout without persist-credentials
-
-When you use `actions/checkout`, by default it keep git remote url with token authentication after checkout. This should be not needed for normal case, and it may cause security issue. So that you should set `persist-credentials: false` to disable it.
-
-```yaml
-# .github/workflows/checkout-without-persistcredentials.yaml
-
-name: checkout without persist-credentials
-on:
-  pull_request:
-    branches: ["main"]
-
-jobs:
-  checkout:
-    permissions:
-      contents: write
-    runs-on: ubuntu-24.04
-    timeout-minutes: 10
-    steps:
-      - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
-        with:
-          # default is true. Set to false to avoid persisting the token in git config.
-          persist-credentials: false
-
-      - name: tag setup
-        run: git tag test-auth-checkout
-
-      - name: verify credentials are not persisted
-        run: |
-          if ! git push origin test-auth-checkout; then
-            echo "✔️ push tag failed as expected due to missing credentials"
-          else
-            echo "❌ push tag succeeded unexpectedly, credentials were persisted"
-            git push --delete origin test-auth-checkout
-            exit 1
-          fi
-
-      # If you need to do git operations, you need to set git remote again
-      - name: set git remote
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          git remote set-url origin "https://github-actions:${GITHUB_TOKEN}@github.com/${{ github.repository }}"
-          git config user.name  "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-
-      - name: Push and delete test tag to confirm auth
-        run: |
-          git push origin test-auth-checkout
-          git push --delete origin test-auth-checkout
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      # Delete git config to avoid affecting other steps
-      - name: Remove git config
-        if: always()
-        run: |
-          git remote rm origin
-          git config --unset user.email
-          git config --unset user.name
-```
 
 ## Default shell
 
@@ -3915,6 +3853,120 @@ jobs:
 
 # Security
 
+## Checkout without persist-credentials
+
+When you use `actions/checkout`, by default it keep git remote url with token authentication after checkout. This should be not needed for normal case, and it may cause security issue. So that you should set `persist-credentials: false` to disable it.
+
+```yaml
+# .github/workflows/checkout-without-persistcredentials.yaml
+
+name: checkout without persist-credentials
+on:
+  pull_request:
+    branches: ["main"]
+
+jobs:
+  checkout:
+    permissions:
+      contents: write
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
+        with:
+          # default is true. Set to false to avoid persisting the token in git config.
+          persist-credentials: false
+
+      - name: tag setup
+        run: git tag test-auth-checkout
+
+      - name: verify credentials are not persisted
+        run: |
+          if ! git push origin test-auth-checkout; then
+            echo "✔️ push tag failed as expected due to missing credentials"
+          else
+            echo "❌ push tag succeeded unexpectedly, credentials were persisted"
+            git push --delete origin test-auth-checkout
+            exit 1
+          fi
+
+      # If you need to do git operations, you need to set git remote again
+      - name: set git remote
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git remote set-url origin "https://github-actions:${GITHUB_TOKEN}@github.com/${{ github.repository }}"
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+      - name: Push and delete test tag to confirm auth
+        run: |
+          git push origin test-auth-checkout
+          git push --delete origin test-auth-checkout
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      # Delete git config to avoid affecting other steps
+      - name: Remove git config
+        if: always()
+        run: |
+          git remote rm origin
+          git config --unset user.email
+          git config --unset user.name
+```
+
+
+## Lint GitHub Actions workflow
+
+You can lint GitHub Actions yaml via [actionlint](https://github.com/rhysd/actionlint), [ghalint](https://github.com/suzuki-shunsuke/ghalint) and [zizmor](https://github.com/woodruffw/zizmor). If you don't need automated PR review, run any of these linter on schedule may be fine.
+
+Linter will check follows.
+
+* actionlint: Check syntax and structure of GitHub Actions workflow yaml.
+* ghalint: Check actions/checkout should set `persist-credentials: false`, Reusable workflow's `secrets: inherit`.
+* zizmor: Check GitHub Action's security vulnerability.
+
+> TIPS: See [Tool management in GitHub Actions with Aqua](#tool-management-in-github-actions-with-aqua) for Aqua usage.
+
+```yaml
+# .github/workflows/actionlint.yaml
+
+name: actionlint
+on:
+  workflow_dispatch:
+  pull_request:
+    branches: ["main"]
+    paths:
+      - ".github/workflows/**"
+  schedule:
+    - cron: "0 0 * * *"
+
+jobs:
+  lint:
+    permissions:
+      contents: read
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
+        with:
+          persist-credentials: false
+      - uses: aquaproj/aqua-installer@9ebf656952a20c45a5d66606f083ff34f58b8ce0 # v4.0.0
+        with:
+          aqua_version: v2.43.1
+      # github workflows/action's Static Checker
+      - name: Run actionlint
+        run: actionlint -color -oneline
+      # checkout's persist-credentials: false checker
+      - name: Run ghalint
+        run: ghalint run
+      # A static analysis tool for GitHub Actions
+      - name: Run zizmor
+        run: docker run -t -v .:/github ghcr.io/woodruffw/zizmor:1.5.2 /github --min-severity medium
+
+```
+
+
 ## Permissions
 
 Newly created repository's GitHub Actions token `github.token` permissions are set to `readonly` by default in 2025. However if you have an older repository, your actions token may still have `write` permissions. To enhance security, it is recommended to explicitly set the minimum required permissions for each workflow. You can confirm your repository's default permissions in the repository settings under "Actions" > "General" > "Workflow permissions".
@@ -3983,57 +4035,6 @@ jobs:
     steps:
       - run: echo "bar"
 ```
-
-## Lint GitHub Actions workflow
-
-You can lint GitHub Actions yaml via [actionlint](https://github.com/rhysd/actionlint), [ghalint](https://github.com/suzuki-shunsuke/ghalint) and [zizmor](https://github.com/woodruffw/zizmor). If you don't need automated PR review, run any of these linter on schedule may be fine.
-
-Linter will check follows.
-
-* actionlint: Check syntax and structure of GitHub Actions workflow yaml.
-* ghalint: Check actions/checkout should set `persist-credentials: false`, Reusable workflow's `secrets: inherit`.
-* zizmor: Check GitHub Action's security vulnerability.
-
-> TIPS: See [Tool management in GitHub Actions with Aqua](#tool-management-in-github-actions-with-aqua) for Aqua usage.
-
-```yaml
-# .github/workflows/actionlint.yaml
-
-name: actionlint
-on:
-  workflow_dispatch:
-  pull_request:
-    branches: ["main"]
-    paths:
-      - ".github/workflows/**"
-  schedule:
-    - cron: "0 0 * * *"
-
-jobs:
-  lint:
-    permissions:
-      contents: read
-    runs-on: ubuntu-24.04
-    timeout-minutes: 5
-    steps:
-      - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
-        with:
-          persist-credentials: false
-      - uses: aquaproj/aqua-installer@9ebf656952a20c45a5d66606f083ff34f58b8ce0 # v4.0.0
-        with:
-          aqua_version: v2.43.1
-      # github workflows/action's Static Checker
-      - name: Run actionlint
-        run: actionlint -color -oneline
-      # checkout's persist-credentials: false checker
-      - name: Run ghalint
-        run: ghalint run
-      # A static analysis tool for GitHub Actions
-      - name: Run zizmor
-        run: docker run -t -v .:/github ghcr.io/woodruffw/zizmor:1.5.2 /github --min-severity medium
-
-```
-
 
 ## Pin Third-Party Actions to Commit SHA
 
