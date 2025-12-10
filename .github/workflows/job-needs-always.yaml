@@ -1,4 +1,4 @@
-name: needs not require success
+name: job needs always
 
 on:
   push:

@@ -1,4 +1,4 @@
-name: needs require success
+name: job needs basic
 
 on:
   push:
@@ -8,29 +8,23 @@ on:
   workflow_dispatch:
 
 jobs:
-  A:
+  a:
     permissions:
       contents: read
     runs-on: ubuntu-24.04
     timeout-minutes: 1
+    outputs:
+      result: ${{ steps.a-step.outputs.result }}
     steps:
-      - run: echo "a"
+      - name: run a
+        id: a-step
+        run: echo "result=a" | tee -a "$GITHUB_OUTPUT"
 
-  B:
-    needs: [A]
+  b:
+    needs: [a]
     permissions:
       contents: read
     runs-on: ubuntu-24.04
     timeout-minutes: 1
     steps:
-      - run: echo "b"
-
-  # Run only if A and B success
-  C:
-    needs: [A, B]
-    permissions:
-      contents: read
-    runs-on: ubuntu-24.04
-    timeout-minutes: 1
-    steps:
-      - run: echo "c"
+      - run: echo "a=${{ needs.a.outputs.result }}"
