@@ -26,8 +26,10 @@ jobs:
         env:
           GITHUB_WORKFLOW: ${{ github.workflow }}
         run: |
+          git remote set-url origin "https://github-actions:${GITHUB_TOKEN}@github.com/${{ github.repository }}"
           git config user.name github-actions[bot]
           git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+
           git switch -c "auto/create_pr"
           git add .
           git commit -m "[automated] PR by $GITHUB_WORKFLOW"
