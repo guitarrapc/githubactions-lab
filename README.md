@@ -3871,6 +3871,39 @@ core.error('Missing semicolon', {file: 'app.js', startLine: 1})
 
 ```yaml
 # .github/workflows/workflow-command.yaml
+
+name: workflow commands
+# https://docs.github.com/en/actions/reference/workflow-commands-for-github-actions
+on:
+  workflow_dispatch:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+
+jobs:
+  commands:
+    permissions:
+      contents: read
+    runs-on: ubuntu-24.04
+    timeout-minutes: 3
+    steps:
+      - run: echo "action_fruit=strawberry" >> "$GITHUB_OUTPUT"
+      - run: echo "::debug::Set the Octocat variable"
+      - run: echo "::warning file=app.js,line=1,col=5::Missing semicolon"
+      - run: echo "::error file=app.js,line=10,col=15::Something went wrong"
+      - run: |
+          echo "::group::My title"
+            echo "Inside group"
+          echo "::endgroup::"
+
+          echo "::group::My next title"
+            echo "Inside group"
+          echo "::endgroup::"
+      - run: |
+          MY_NAME="Mona The Octocat"
+          echo "::add-mask::$MY_NAME"
+
 ```
 
 # Bad Pattern
