@@ -1915,9 +1915,23 @@ jobs:
 
 ## Create release
 
-Better using manual gh.
+You can create GitHub Release with `gh` CLI tool. There are some actions, but I recommend use `gh` CLI tool directly because release creation is simple enough.
 
-[TBD]
+Key commands are `gh release create` and `gh release upload`. I recommend create draft release first, then upload files to the release. Change draft release to publish when everything is ready.
+
+```sh
+# create draft release with auto generated notes
+gh release create <TAG> --draft --verify-tag --title "Ver.<TAG>" --generate-notes
+
+# upload files to release
+gh release upload <TAG> file-1.txt file-2.txt
+```
+
+Following example trigger when you push tag like `v1.0.0`. A workflow creates draft release with auto generated notes, uploads files.
+
+```yaml
+# .github/workflows/create-release-simple.yaml
+```
 
 ## Detect file changed
 
