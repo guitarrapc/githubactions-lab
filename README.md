@@ -1634,7 +1634,8 @@ jobs:
           echo "foo"
           echo "bar"
       - name: name to run steps
-        run: cat << 'EOF' > script.sh
+        run: |
+          cat << 'EOF' > script.sh
           echo "step 1"
           echo "step 2"
           echo "step 3"
@@ -3567,6 +3568,11 @@ on:
         required: true
         description: username to show
         type: boolean
+      number:
+        required: false
+        description: an optional number
+        type: number
+        default: 0
     secrets:
       APPLES:
         required: true
@@ -3598,13 +3604,17 @@ jobs:
       - name: (Limitation) Callee can not refer caller environment variable.
         run: echo "caller environment. ${CALLER_VALUE}"
       - name: called username
+        run: echo "called username. $USERNAME"
         env:
           USERNAME: ${{ inputs.username }}
-        run: echo "called username. $USERNAME"
       - name: called is-valid
+        run: echo "called is-valid. $IS_VALID_INPUT"
         env:
           IS_VALID_INPUT: ${{ inputs.is-valid }}
-        run: echo "called is-valid. $IS_VALID_INPUT"
+      - name: called number
+        run: echo "called number. $NUMBER_INPUT"
+        env:
+          NUMBER_INPUT: ${{ inputs.number }}
       - name: called secret
         run: echo "called secret. ${{ secrets.APPLES }}"
       - name: called env (global)
@@ -3971,7 +3981,7 @@ on:
     - cron: "0 0 * * *"
 
 jobs:
-  actionlint:
+  info:
     permissions:
       contents: read
     runs-on: ubuntu-24.04
