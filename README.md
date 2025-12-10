@@ -89,6 +89,7 @@ GitHub Actions research and test laboratory.
   - [Actions naming](#actions-naming)
   - [Actions runner info](#actions-runner-info)
   - [Detect PullRequest (PR) is Fork or not](#detect-pullrequest-pr-is-fork-or-not)
+  - [Debug downloaded remote action](#debug-downloaded-remote-action)
   - [Get Branch](#get-branch)
   - [Get Tag](#get-tag)
   - [Get Workflow Name](#get-workflow-name)
