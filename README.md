@@ -845,7 +845,7 @@ See actual sample.
 ```yaml
 # .github/workflows/job-needs-basic.yaml
 
-name: job needs require success
+name: job needs basic
 
 on:
   push:
@@ -1012,7 +1012,7 @@ on:
   workflow_dispatch:
     inputs:
       only-c:
-        description: 'Run only Job C'
+        description: "Run only Job C"
         required: false
         default: false
         type: boolean
