@@ -1,0 +1,53 @@
+name: create release simple
+concurrency: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+on:
+  push:
+    tags:
+      - "v[0-9]+.[0-9]+.[0-9]+*"
+
+env:
+  GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  GH_REPO: ${{ github.repository }}
+
+jobs:
+  create-release:
+    permissions:
+      contents: write
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - name: Setup tag
+        id: tag
+        run: echo "value=${{ env.TAG_VALUE }}" | tee -a "$GITHUB_OUTPUT"
+        env:
+          TAG_VALUE: ${{ github.ref_name }}
+      # Create Tag
+      - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
+        with:
+          persist-credentials: false
+      # Use the appropriate tag output from the condition steps
+      - name: set git remote
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git remote set-url origin "https://github-actions:${GITHUB_TOKEN}@github.com/${{ github.repository }}"
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+      - name: Create Tag and push if not exists
+        env:
+          TAG_VALUE: ${{ steps.tag.outputs.value  }}
+        run: |
+          if ! git ls-remote --tags | grep "$TAG_VALUE"; then
+            git tag "$TAG_VALUE"
+            git push origin "$TAG_VALUE"
+            git ls-remote --tags
+          fi
+      # create dummy files
+      - run: echo "hoge" > "hoge.${{ steps.tag.outputs.value }}.txt"
+      - run: echo "fuga" > "fuga.${{ steps.tag.outputs.value }}.txt"
+      # create draft release
+      - name: Create Release
+        run: gh release create ${{ steps.tag.outputs.value }} --draft --verify-tag --title "Ver.${{ steps.tag.outputs.value }}" --generate-notes
+      # upload files to release
+      - name: Upload file to release
+        run: gh release upload ${{ steps.tag.outputs.value }} hoge.${{ steps.tag.outputs.value }}.txt fuga.${{ steps.tag.outputs.value }}.txt

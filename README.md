@@ -67,8 +67,6 @@ GitHub Actions research and test laboratory.
   - [Skip ci on pull request title](#skip-ci-on-pull-request-title)
   - [Skip pr from fork repo](#skip-pr-from-fork-repo)
   - [Skip job when Draft PR](#skip-job-when-draft-pr)
-- [Basic - BAD PATTERN](#basic---bad-pattern)
-  - [Env refer env](#env-refer-env)
 - [Advanced](#advanced)
   - [Automatic Actions version update via Dependabot](#automatic-actions-version-update-via-dependabot)
   - [Build Artifacts](#build-artifacts)
@@ -85,6 +83,8 @@ GitHub Actions research and test laboratory.
   - [Reusable workflow](#reusable-workflow)
   - [Telemetry for GitHub Workflow execution](#telemetry-for-github-workflow-execution)
   - [Tool management in GitHub Actions with Aqua](#tool-management-in-github-actions-with-aqua)
+- [BAD PATTERN](#bad-pattern)
+  - [Env refer env](#env-refer-env)
 - [Cheat Sheet](#cheat-sheet)
   - [Actions naming](#actions-naming)
   - [Actions runner info](#actions-runner-info)
@@ -1915,9 +1915,78 @@ jobs:
 
 ## Create release
 
-Better using manual gh.
+You can create GitHub Release with `gh` CLI tool. There are some actions, but I recommend use `gh` CLI tool directly because release creation is simple enough.
 
-[TBD]
+Key commands are `gh release create` and `gh release upload`. I recommend create draft release first, then upload files to the release. Change draft release to publish when everything is ready.
+
+```sh
+# create draft release with auto generated notes
+gh release create <TAG> --draft --verify-tag --title "Ver.<TAG>" --generate-notes
+
+# upload files to release
+gh release upload <TAG> file-1.txt file-2.txt
+```
+
+Following example trigger when you push tag like `v1.0.0`. A workflow creates draft release with auto generated notes, uploads files.
+
+```yaml
+# .github/workflows/create-release-simple.yaml
+
+name: create release simple
+concurrency: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+on:
+  push:
+    tags:
+      - "v[0-9]+.[0-9]+.[0-9]+*"
+
+env:
+  GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  GH_REPO: ${{ github.repository }}
+
+jobs:
+  create-release:
+    permissions:
+      contents: write
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - name: Setup tag
+        id: tag
+        run: echo "value=${{ env.TAG_VALUE }}" | tee -a "$GITHUB_OUTPUT"
+        env:
+          TAG_VALUE: ${{ github.ref_name }}
+      # Create Tag
+      - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
+        with:
+          persist-credentials: false
+      # Use the appropriate tag output from the condition steps
+      - name: set git remote
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git remote set-url origin "https://github-actions:${GITHUB_TOKEN}@github.com/${{ github.repository }}"
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+      - name: Create Tag and push if not exists
+        env:
+          TAG_VALUE: ${{ steps.tag.outputs.value  }}
+        run: |
+          if ! git ls-remote --tags | grep "$TAG_VALUE"; then
+            git tag "$TAG_VALUE"
+            git push origin "$TAG_VALUE"
+            git ls-remote --tags
+          fi
+      # create dummy files
+      - run: echo "hoge" > "hoge.${{ steps.tag.outputs.value }}.txt"
+      - run: echo "fuga" > "fuga.${{ steps.tag.outputs.value }}.txt"
+      # create draft release
+      - name: Create Release
+        run: gh release create ${{ steps.tag.outputs.value }} --draft --verify-tag --title "Ver.${{ steps.tag.outputs.value }}" --generate-notes
+      # upload files to release
+      - name: Upload file to release
+        run: gh release upload ${{ steps.tag.outputs.value }} hoge.${{ steps.tag.outputs.value }}.txt fuga.${{ steps.tag.outputs.value }}.txt
+
+```
 
 ## Detect file changed
 
@@ -2468,33 +2537,6 @@ jobs:
         with:
           persist-credentials: false
 
-```
-
-# Basic - BAD PATTERN
-
-## Env refer env
-
-You cannot use `${{ env. }}` in `env:` section.
-Following is invalid with error.
-
-> The workflow is not valid. .github/workflows/env-refer-env.yaml (Line: 12, Col: 16): Unrecognized named-value: 'env'. Located at position 1 within expression: env.global_env
-
-```yaml
-name: you can not refer env in env
-
-on: ["push"]
-
-env:
-  global_env: global
-
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    env:
-      job_env: ${{ env.global_env }}
-    steps:
-      - run: echo "${{ env.global_env }}"
-      - run: echo "${{ env.job_env }}"
 ```
 
 # Advanced
@@ -3892,9 +3934,36 @@ jobs:
 
 ```
 
+# BAD PATTERN
+
+## Env refer env
+
+You cannot use `${{ env. }}` in `env:` section.
+Following is invalid with error.
+
+> The workflow is not valid. .github/workflows/env-refer-env.yaml (Line: 12, Col: 16): Unrecognized named-value: 'env'. Located at position 1 within expression: env.global_env
+
+```yaml
+name: you can not refer env in env
+
+on: ["push"]
+
+env:
+  global_env: global
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      job_env: ${{ env.global_env }}
+    steps:
+      - run: echo "${{ env.global_env }}"
+      - run: echo "${{ env.job_env }}"
+```
+
 # Cheat Sheet
 
-GitHub Actions cheet sheet.
+Cheet sheet for GitHub Actions.
 
 ## Actions naming
 
