@@ -18,11 +18,11 @@ jobs:
           - color: verde
           - color: rosa
             animal: gato
-          - fruit: manzana
+          - fruta: manzana
             forma: círculo
-          - fruit: plátano
+          - fruta: plátano
             forma: cuadrado
-          - fruit: plátano
+          - fruta: plátano
             animal: gato
     runs-on: ubuntu-24.04
     timeout-minutes: 3

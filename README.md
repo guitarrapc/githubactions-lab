@@ -1572,11 +1572,11 @@ jobs:
           - color: verde
           - color: rosa
             animal: gato
-          - fruit: manzana
+          - fruta: manzana
             forma: círculo
-          - fruit: plátano
+          - fruta: plátano
             forma: cuadrado
-          - fruit: plátano
+          - fruta: plátano
             animal: gato
     runs-on: ubuntu-24.04
     timeout-minutes: 3
@@ -1661,12 +1661,24 @@ jobs:
 
 ```
 
-Following matrix will run 3 jobs in total.
+Following matrix will run 3 jobs in total, because `manzana` and `gato` combination is excluded.
 
 ```json
-{fruta: manzana, animal: perro}
-{fruta: pera, animal: gato}
-{fruta: pera, animal: perro}
+// manzana, gato
+{
+  "fruta": "manzana",
+  "animal": "gato"
+}
+// pera, gato
+{
+  "fruta": "pera",
+  "animal": "gato"
+}
+// pera, perro
+{
+  "fruta": "pera",
+  "animal": "perro"
+}
 ```
 
 ## Timeout settings
