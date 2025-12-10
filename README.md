@@ -1459,90 +1459,6 @@ jobs:
 
 ```
 
-### Secret dereference in matrix
-
-You cannot reference `secret` context inside `strategy.matrix` section, so pass secret key in matrix then dereference secret with `secrets[matrix.SECRET_KEY]`.
-
-Let's set secrets in settings, then run following workflow.
-
-![image](https://user-images.githubusercontent.com/3856350/79934065-99de6c00-848c-11ea-8995-bfe948e6c0fb.png)
-
-```yaml
-# .github/workflows/matrix-secret.yaml
-
-name: matrix secret
-on:
-  workflow_dispatch:
-  push:
-    branches: ["main"]
-  pull_request:
-    branches: ["main"]
-
-env:
-  fruit: APPLES
-
-jobs:
-  dereference:
-    strategy:
-      matrix:
-        org: [apples, bananas, carrots] #Array of org mnemonics to use below
-        include:
-          # includes a new variable for each org (this is effectively a switch statement)
-          - org: apples
-            secret: APPLES
-          - org: bananas
-            secret: BANANAS
-          - org: carrots
-            secret: CARROTS
-    permissions:
-      contents: read
-    runs-on: ubuntu-24.04
-    timeout-minutes: 3
-    steps:
-      - run: echo "org:${{ matrix.org }} secret:${SECRET}"
-        env:
-          SECRET: ${{ secrets[matrix.secret] }} # zizmor: ignore[overprovisioned-secrets]
-      - run: echo "env:${{ env.fruit }} secret:${SECRET}"
-        env:
-          SECRET: ${{ secrets[env.fruit] }} # zizmor: ignore[overprovisioned-secrets]
-
-```
-
-### Matrix reference in env
-
-You can refer matrix in job's `env:` section before steps.
-
-```yaml
-# .github/workflows/matrix-envvar.yaml
-
-name: matrix envvar
-on:
-  workflow_dispatch:
-  push:
-    branches: ["main"]
-  pull_request:
-    branches: ["main"]
-
-jobs:
-  echo:
-    strategy:
-      matrix:
-        org: [apples, bananas, carrots]
-    permissions:
-      contents: read
-    runs-on: ubuntu-24.04
-    timeout-minutes: 3
-    env:
-      ORG: ${{ matrix.org }}
-      # you can not use expression inside env:. do it on step.
-    steps:
-      - run: echo "${ORG}"
-      - run: echo "${NEW_ORG}"
-        env:
-          NEW_ORG: new-${{ env.ORG }}
-
-```
-
 ### Include
 
 You can expand or adding matrix combinations with `jobs.<job_id>.strategy.matrix.include`. The value of include is a list of objects. See details [link](https://docs.github.com/en/actions/how-tos/write-workflows/choose-what-workflows-do/run-job-variations#expanding-or-adding-matrix-configurations).
@@ -1683,6 +1599,90 @@ Following matrix will run 3 jobs in total, because `manzana` and `gato` combinat
   "fruta": "pera",
   "animal": "perro"
 }
+```
+
+### Secret dereference in matrix
+
+You cannot reference `secret` context inside `strategy.matrix` section, so pass secret key in matrix then dereference secret with `secrets[matrix.SECRET_KEY]`.
+
+Let's set secrets in settings, then run following workflow.
+
+![image](https://user-images.githubusercontent.com/3856350/79934065-99de6c00-848c-11ea-8995-bfe948e6c0fb.png)
+
+```yaml
+# .github/workflows/matrix-secret.yaml
+
+name: matrix secret
+on:
+  workflow_dispatch:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+
+env:
+  fruit: APPLES
+
+jobs:
+  dereference:
+    strategy:
+      matrix:
+        org: [apples, bananas, carrots] #Array of org mnemonics to use below
+        include:
+          # includes a new variable for each org (this is effectively a switch statement)
+          - org: apples
+            secret: APPLES
+          - org: bananas
+            secret: BANANAS
+          - org: carrots
+            secret: CARROTS
+    permissions:
+      contents: read
+    runs-on: ubuntu-24.04
+    timeout-minutes: 3
+    steps:
+      - run: echo "org:${{ matrix.org }} secret:${SECRET}"
+        env:
+          SECRET: ${{ secrets[matrix.secret] }} # zizmor: ignore[overprovisioned-secrets]
+      - run: echo "env:${{ env.fruit }} secret:${SECRET}"
+        env:
+          SECRET: ${{ secrets[env.fruit] }} # zizmor: ignore[overprovisioned-secrets]
+
+```
+
+### Matrix reference in env
+
+You can refer matrix in job's `env:` section before steps.
+
+```yaml
+# .github/workflows/matrix-envvar.yaml
+
+name: matrix envvar
+on:
+  workflow_dispatch:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+
+jobs:
+  echo:
+    strategy:
+      matrix:
+        org: [apples, bananas, carrots]
+    permissions:
+      contents: read
+    runs-on: ubuntu-24.04
+    timeout-minutes: 3
+    env:
+      ORG: ${{ matrix.org }}
+      # you can not use expression inside env:. do it on step.
+    steps:
+      - run: echo "${ORG}"
+      - run: echo "${NEW_ORG}"
+        env:
+          NEW_ORG: new-${{ env.ORG }}
+
 ```
 
 ## Timeout settings
