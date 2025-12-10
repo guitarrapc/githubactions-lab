@@ -1383,8 +1383,6 @@ jobs:
 
 ```
 
-### Include
-
 You can expand or adding matrix combinations with `jobs.<job_id>.strategy.matrix.include`. The value of include is a list of objects. See details [link](https://docs.github.com/en/actions/how-tos/write-workflows/choose-what-workflows-do/run-job-variations#expanding-or-adding-matrix-configurations).
 
 Let's create following workflow.
@@ -1467,8 +1465,6 @@ Following matrix will run 6 jobs in total.
   "animal": "gato"
 }
 ```
-
-### Exclude
 
 You can exclude specific matrix combinations with `jobs.<job_id>.strategy.matrix.exclude`. See details [link](https://docs.github.com/en/actions/how-tos/write-workflows/choose-what-workflows-do/run-job-variations#excluding-matrix-configurations).
 
