@@ -18,7 +18,7 @@ jobs:
     steps:
       - name: Setup tag
         id: tag
-        run: echo "value=${{ env.TAG_VALUE) }}" | tee -a "$GITHUB_OUTPUT"
+        run: echo "value=${{ env.TAG_VALUE }}" | tee -a "$GITHUB_OUTPUT"
         env:
           TAG_VALUE: ${{ github.ref_name }}
       # Create Tag
