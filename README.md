@@ -818,15 +818,59 @@ jobs:
 
 ```
 
-## Job needs and dependency
+## Execution order
 
-You can handle Job dependency with `jobs.<job_id>.needs`.
+GitHub Actions workflow execution order is `Workflow` -> `Job` -> `Step`.
 
-Basic usage is `needs: <job_name>`. Let's check [official example](https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#jobsjob_idneeds).
+- Workflow run in parallel by default, but you can control workflow execution order with [workflow_run](https://docs.github.com/en/actions/reference/workflows-and-actions/events-that-trigger-workflows#workflow_run) event defined in `on.workflow_run`.
+- Job run in parallel by default, but you can control job execution order with [needs](https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#jobsjob_idneeds) defined in `jobs.<job_id>.needs`.
+- Step run in sequential order in each job.
 
-### Job needs dependency basic
+### Workflow execution order control with workflow_run
 
-Job needs by default require success result of previous job.
+If workflow has no `on.workflow_run` section, workflow run in parallel with other workflows. When you set `on.workflow_run` section, workflow run after workflow defined in `on.workflow_run` section.
+
+Following example flow shows `workflow-run` will run after `job needs basic` [workflow](.github/workflows/job-needs-basic.yaml) is completed. In result, workflow are run sequentially in order of `job-needs-basic.yaml` -> `workflow-run.yaml`.
+
+
+```yaml
+# .github/workflows/workflow-run.yaml
+
+name: workflow run
+on:
+  workflow_run:
+    workflows:
+      - "job needs basic"
+    types:
+      - completed
+    # optional: limit to specific branches
+    branches:
+      - main
+
+jobs:
+  on-success:
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    permissions:
+      contents: read
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - run: echo 'The triggering workflow passed'
+
+  on-failure:
+    if: ${{ github.event.workflow_run.conclusion == 'failure' }}
+    permissions:
+      contents: read
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - run: echo 'The triggering workflow failed'
+
+```
+
+### Job execution order control with needs
+
+If job has no `needs` section, job run in parallel with other jobs. When you set `needs` section, job run after previous job(s) defined in `needs` section. Job needs by default require success result of previous job.
 
 Following example flow shows `job2` will run after `job1` is success, and `job3` will run after `job1` and `job2` are success. It means `job2` & `job3` never run when `job1` failed, `job3` never run when `job2` failed. In result, jobs are run seqientially in order of `job1` -> `job2` -> `job3`.
 
@@ -885,7 +929,7 @@ jobs:
 
 ### Job needs dependency without success result requirement
 
-`job3` uses the `always()` conditional expression. So that`job3` will run regardless of `job1` and `job2` job result is success or failure. Because of `needs` section, jobs are run seqientially in order of `job1` -> `job2` -> `job3`.
+Following example flow shows job `job2` will run after `job1` is success, but `job3` uses the `always()` conditional expression. So that`job3` will run regardless of `job1` and `job2` job result is success or failure. Because of `needs` section, jobs are run seqientially in order of `job1` -> `job2` -> `job3`.
 
 ```yaml
 jobs:
@@ -944,8 +988,7 @@ jobs:
 
 ### Job needs and skip handling
 
-Job `needs` can be used for skip handling. However skipping dependent job cause trouble for next job.
-Following workflow expected to run `D` when `C` is invoked. But skipping `A` and `B` cause `D` skip.
+Following example shows how to handle skip job with `needs` section. Job `needs` can be used for skip handling. However skipping dependent job cause trouble for next job. Following workflow expected to run `D` when `C` is invoked. But skipping `A` and `B` cause `D` skip.
 
 ```yaml
 # .github/workflows/job-needs-skip-handling-bad.yaml
@@ -997,7 +1040,7 @@ jobs:
 
 ```
 
-To handle `D` to run when `C` is invoked, you need to add `if` condition to `D`. Also handle when no conditional `C` invokation, `A`, `B` and `C` is success, then `D` must run.
+Correcting above example, handle `D` to run when `C` is invoked, you need to add `if` condition to `D`. Also handle when no conditional `C` invokation, `A`, `B` and `C` is success, then `D` must run.
 
 ```yaml
 # .github/workflows/job-needs-skip-handling-ok.yaml

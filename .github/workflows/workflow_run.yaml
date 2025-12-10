@@ -1,0 +1,29 @@
+name: workflow run
+on:
+  workflow_run:
+    workflows:
+      - "job needs basic"
+    types:
+      - completed
+    # optional: limit to specific branches
+    branches:
+      - main
+
+jobs:
+  on-success:
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    permissions:
+      contents: read
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - run: echo 'The triggering workflow passed'
+
+  on-failure:
+    if: ${{ github.event.workflow_run.conclusion == 'failure' }}
+    permissions:
+      contents: read
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - run: echo 'The triggering workflow failed'
