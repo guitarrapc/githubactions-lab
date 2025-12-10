@@ -60,15 +60,19 @@ jobs:
       # comment to PR for CRLF files.
       - if: ${{ github.event_name == 'pull_request' && env.CRLF_FILES != '' }}
         name: Comment PR
-        uses: thollander/actions-comment-pull-request@24bffb9b452ba05a4f3f77933840a6a841d1b32b # v3.0.1
-        with:
-          message: |
-            [${{ github.workflow }}](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}) found CRLF files as follows.
+        run: |
+          cat << 'EOF' > pr_comment.md
+            Workflow [${{ env.GITHUB_ACTIONS_RUN_URL }}) found CRLF files as follows.
 
             ```
             ${{ env.CRLF_FILES }}
             ```
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+          EOF
+        env:
+          GITHUB_ACTIONS_RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+          GH_REPO: ${{ github.repository }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       # Fail action if CRLF file found.
       - if: ${{ env.CRLF_FILES != '' }}
         name: Exit action if detected

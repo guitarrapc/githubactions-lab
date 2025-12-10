@@ -128,13 +128,13 @@ GitHub Actions research and test laboratory.
   - Like [CircleCI provides](https://circleci.com/docs/dynamic-config).
   - Workaround: Reusable Workflow / Composite Actions with inputs parameter.
 
-# Functionality limitation
+# Plan limitation
 
-Relax the limit for `GitHub Team Plan` is my strong expectation.
+## GitHub Team Plan, GitHub Pro Plan
 
 - [ ] `Environment > Deployment protection rules` is not allowed in GitHub team Plan. You cannot use `Required reviewers` (Approvabl) and `Wait timer`.
 
-**GitHub Pro (Private Repository)**
+**Private Repository**
 
 Missing `Required reviewers` and `Wait timer` for Environment protection rules.
 
@@ -146,7 +146,7 @@ Missing `Required reviewers` and `Wait timer` for Environment protection rules.
 
 ---
 
-**GitHub Pro (Public Repository)**
+**Public Repository**
 
 Can use `Required reviewers` and `Wait timer` for Environment protection rules.
 
@@ -4262,6 +4262,13 @@ ${{ github.workflow }}
 ```yaml
 ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
 ```
+
+## Get Job Url
+
+```yaml
+${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}/job/${{ job.check_run_id }}
+```
+
 
 ## GitHub Actions commit icon
 
