@@ -3835,6 +3835,30 @@ You can use YAML anchor to reduce duplication in GitHub Actions workflow yaml. D
 
 ```yaml
 # .github/workflows/yaml-anchor-basic.yaml
+
+name: yaml anchor basic
+on:
+  push:
+    branches: ["main"]
+    # Define an anchor named common_paths with `&NAME`
+    paths: &common_paths
+      - ".github/workflows/**.yaml"
+      - "README.md"
+  pull_request:
+    branches: ["main"]
+    # Reference the anchor with `*NAME`
+    paths: *common_paths
+
+jobs:
+  job:
+    permissions:
+      contents: read
+    runs-on: ubuntu-24.04
+    timeout-minutes: 3
+    steps:
+      - name: Show message
+        run: echo "This workflow is triggered by changes in paths defined with YAML anchor."
+
 ```
 
 To debug anchor, use `yq` command to see expanded yaml.
@@ -3915,20 +3939,27 @@ on:
   pull_request:
     branches: ["main"]
 
+# avoid workflow level permission, set job level permission as needed
+# permissions:
+#   contents: write
+
 jobs:
-  check-permissions:
+  build:
     # specify minimum permissions as possible
     permissions:
       contents: read
     runs-on: ubuntu-24.04
     timeout-minutes: 3
     steps:
-      - name: Check job permissions
-        run: echo "permissions ${CONTEXT}"
-        env:
-          CONTEXT: ${{ toJson(job.permissions) }}
-      # checkout
-      # build
+      - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
+        with:
+          persist-credentials: false
+      - uses: actions/setup-go@4dc6199c7b1a012772edbd06daecab0f50c9053c # v6.1.0
+        with:
+          go-version: "1.25"
+      - name: Build
+        run: go build
+        working-directory: ./src/go
 
 ```
 
