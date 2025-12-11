@@ -17,7 +17,6 @@ GitHub Actions research and test laboratory.
   - [GitHub Team Plan, GitHub Pro Plan](#github-team-plan-github-pro-plan)
 - [Migrating CI to GitHub Actions](#migrating-ci-to-github-actions)
 - [GitHub Actions vs Other CI Platforms](#github-actions-vs-other-ci-platforms)
-  - [Quick Comparison Table](#quick-comparison-table)
   - [Core Workflow Features](#core-workflow-features)
   - [Security & Access Control](#security--access-control)
   - [Infrastructure & Performance](#infrastructure--performance)
@@ -162,9 +161,7 @@ Also you may consider migrate from GitHub Actions.
 
 # GitHub Actions vs Other CI Platforms
 
-## Quick Comparison Table
-
-A high-level overview of key features across CI platforms:
+A quick comparison table of key features across CI platforms:
 
 | Feature | GitHub Actions | CircleCI | Azure Pipeline | Jenkins |
 |---------|---------------|----------|----------------|---------|
@@ -588,6 +585,9 @@ jobs:
         run: echo "$HOME/foo/bar" | tee -a "$GITHUB_PATH"
       - name: Show PATH
         run: echo "$PATH"
+      - name: Show PATH overwrite shell to pwsh
+        run: echo "${env:PATH}"
+        shell: pwsh
 
   pwsh:
     strategy:
@@ -614,6 +614,9 @@ jobs:
         run: echo "$HOME/foo/bar" | Tee-Object -Append -FilePath "${env:GITHUB_PATH}"
       - name: Show PATH
         run: echo "${env:PATH}"
+      - name: Show PATH overwrite shell to bash
+        run: echo "$PATH"
+        shell: bash
 
 ```
 
