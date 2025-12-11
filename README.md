@@ -162,9 +162,7 @@ Also you may consider migrate from GitHub Actions.
 
 # GitHub Actions vs Other CI Platforms
 
-## Quick Comparison Table
-
-A high-level overview of key features across CI platforms:
+A quick comparison table of key features across CI platforms:
 
 | Feature | GitHub Actions | CircleCI | Azure Pipeline | Jenkins |
 |---------|---------------|----------|----------------|---------|
