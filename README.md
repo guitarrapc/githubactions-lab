@@ -526,10 +526,10 @@ jobs:
     permissions:
       contents: read
     runs-on: ubuntu-24.04
-    timeout-minutes: 5
+    timeout-minutes: 5 # timeout for job
     steps:
       - run: echo "done before timeout"
-        timeout-minutes: 1 # each step
+        timeout-minutes: 1 # timeout for step
 
 ```
 
