@@ -171,7 +171,7 @@ Also you may consider migrate from GitHub Actions.
 
 - GitHub Actions -> CircleCI: [Migrating from Github Actions \- CircleCI](https://circleci.com/docs/migrating-from-github)
 
-# Difference from other CI
+# GitHub Actions vs Other CI Platforms
 
 ## Quick Comparison Table
 
