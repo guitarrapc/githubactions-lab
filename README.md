@@ -118,6 +118,8 @@ GitHub Actions research and test laboratory.
   - Like [CircleCI provides](https://circleci.com/docs/dynamic-config).
   - Workaround: Reusable Workflow / Composite Actions with inputs parameter.
 
+---
+
 # Plan limitation
 
 ## GitHub Team Plan, GitHub Pro Plan
@@ -134,8 +136,6 @@ Missing `Required reviewers` and `Wait timer` for Environment protection rules.
 
 </details>
 
----
-
 **Public Repository**
 
 Can use `Required reviewers` and `Wait timer` for Environment protection rules.
@@ -145,6 +145,8 @@ Can use `Required reviewers` and `Wait timer` for Environment protection rules.
 ![Environment Public Repository](./images/environment-public-repo.png)
 
 </details>
+
+---
 
 # Migrating CI to GitHub Actions
 
@@ -2266,6 +2268,8 @@ jobs:
 
 ```
 
+---
+
 # Advanced
 
 Advanced tips.
@@ -3844,6 +3848,8 @@ jobs:
         run: echo "This workflow is triggered by changes in paths defined with YAML anchor."
 ```
 
+---
+
 # Security
 
 ## Checkout without persist-credentials
@@ -4053,6 +4059,8 @@ Then action will be pinned to specific commit SHA like below:
 ```
 uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
 ```
+
+---
 
 # Cheat Sheet
 
