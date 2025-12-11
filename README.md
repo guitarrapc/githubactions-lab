@@ -253,6 +253,15 @@ pipeline {
 
 </details>
 
+### Path filter
+
+Filter workflow execution based on changed file paths:
+
+- ✔️ **GitHub Actions**: Built-in support via [`on.<event>.paths`/`paths-ignore`](https://help.github.com/en/actions/reference/workflow-syntax-for-github-actions#onpushpull_requestpaths)
+- ❌ **CircleCI**: No built-in path filter support
+- ✔️ **Azure Pipeline**: Built-in path filter support
+- ❌ **Jenkins**: No built-in support; manual implementation required
+
 ### Reusable job and workflow
 
 - ✔️ **GitHub Actions**: Multiple reuse options: `Reusable workflow`, `Composite Actions`, `Organization workflow`, `YAML anchor`
@@ -274,25 +283,64 @@ pipeline {
 - ⚠️ **Azure Pipeline**: Cannot re-run individual stages or failed jobs only
 - ✔️ **Jenkins**: Re-run `Job` or `Stage` (may be unstable)
 
-### Path filter
+### Skip CI and commit message
 
-Filter workflow execution based on changed file paths:
+- ✔️ **GitHub Actions**: Skip keywords: `[skip ci]`, `[ci skip]`, `[no ci]`, `[skip actions]`, `[actions skip]`
+- ✔️ **CircleCI**: Skip keywords: `[skip ci]`, `[ci skip]`
+- ✔️ **Azure Pipeline**: Skip keywords: `***NO_CI***`, `[skip ci]`, `[ci skip]`, [and more](https://github.com/Microsoft/azure-pipelines-agent/issues/858#issuecomment-475768046)
+- ❌ **Jenkins**: No built-in support; requires plugins like [SCM Skip](https://plugins.jenkins.io/scmskip/)
 
-- ✔️ **GitHub Actions**: Built-in support via [`on.<event>.paths`/`paths-ignore`](https://help.github.com/en/actions/reference/workflow-syntax-for-github-actions#onpushpull_requestpaths)
-- ❌ **CircleCI**: No built-in path filter support
-- ✔️ **Azure Pipeline**: Built-in path filter support
-- ❌ **Jenkins**: No built-in support; manual implementation required
+### Store Build Artifacts
+
+- ✔️ **GitHub Actions**: [actions/upload-artifact](https://github.com/actions/upload-artifact) / [download-artifact](https://github.com/actions/download-artifact). Configurable retention period.
+- ⚠️ **CircleCI**: [`store_artifacts`](https://circleci.com/docs/artifacts/) step. Download requires API call. No retention period.
+- ✔️ **Azure Pipeline**: [`PublishPipelineArtifact`](https://learn.microsoft.com/en-us/azure/devops/pipelines/artifacts/pipeline-artifacts?view=azure-devops&tabs=yaml) / `DownloadPipelineArtifact` tasks. No retention period.
+- ⚠️ **Jenkins**: [`archiveArtifacts`](https://www.jenkins.io/doc/pipeline/steps/core/#archiveartifacts-archive-the-artifacts) step. Download requires API call. No retention period.
+
+---
+
+## Security & Access Control
+
+### Fork handling
+
+- ✔️ **GitHub Actions**: Supports fork PR triggers with [workflow approval system](https://docs.github.com/en/actions/managing-workflow-runs/approving-workflow-runs-from-public-forks). Offers [practical security patterns](https://securitylab.github.com/research/github-actions-preventing-pwn-requests/) for secret access.
+- ⚠️ **CircleCI**: Supports fork PRs but [limited by branch naming rules](https://circleci.com/docs/oss/#build-pull-requests-from-forked-repositories) like `/pull\/[0-9]+/`. No easy way to handle secret access securely.
+- ✔️ **Azure Pipeline**: [Supports fork PR triggers](https://learn.microsoft.com/en-us/azure/devops/pipelines/repos/github?view=azure-devops&tabs=yaml#contributions-from-forks) with secret access, but lacks built-in security patterns.
+- ❌ **Jenkins**: Not recommended for public CI; fork PR handling not a priority.
+
+### Job Approval
+
+- ⚠️ **GitHub Actions**: Supports approval via Environment protection rules. Limitation: Not available in `GitHub Team` plan for private repos.
+- ✔️ **CircleCI**: Full approval support.
+- ✔️ **Azure Pipeline**: Full approval support.
+- ✔️ **Jenkins**: Full approval support.
+
+### Set Secrets for Job
+
+- ✔️ **GitHub Actions**: Organization/Repository/Environment Secrets with automatic log masking
+- ✔️ **CircleCI**: Environment Variables and Context
+- ✔️ **Azure Pipeline**: Environment Variables and Parameters
+- ✔️ **Jenkins**: Credential Provider
+
+<details><summary>Click to show GitHub Actions secret details</summary>
+
+GitHub Actions supports three secret scopes:
+
+- **Organization Secrets**: `Organization > Settings > Secrets` (can filter by repository)
+- **Repository Secrets**: `Repository > Settings > Secrets`
+- **Environment Secrets**: `Repository > Environment > Secrets`
+
+**Priority**: `Environment Secrets` > `Repository Secrets` > `Organization Secrets`
+
+**Personal accounts**: Set secrets per repository or use [google/secrets-sync-action](https://github.com/google/secrets-sync-action).
+
+Secrets are automatically [masked in logs](https://docs.github.com/en/actions/using-workflows/workflow-commands-for-github-actions#masking-a-value-in-a-log).
+
+</details>
 
 ---
 
 ## Infrastructure & Performance
-
-### Hosted Runner sizing
-
-- ✔️ **GitHub Actions**: Offers [Single-CPU runners](https://docs.github.com/en/actions/reference/runners/github-hosted-runners#single-cpu-runners) and [Larger runners](https://docs.github.com/en/actions/using-github-hosted-runners/about-larger-runners/about-larger-runners) with configurable sizing and static IP addresses.
-- ✔️ **CircleCI**: Offers [resource classes](https://circleci.com/docs/resource-class-overview/) for different runner sizes.
-- ❌ **Azure Pipeline**: Fixed size only: `2Core CPU, 7GB RAM, 14GB SSD`.
-- ❌ **Jenkins**: Self-hosted solution; hosted runner concept not applicable.
 
 ### Git Checkout
 
@@ -300,6 +348,13 @@ Filter workflow execution based on changed file paths:
 - ⚠️ **CircleCI**: [checkout](https://circleci.com/docs/configuration-reference/#checkout) only supports `ssh/https`. Missing: `submodule`, `shallow-clone`, `sparse-checkout`, `lfs`. Default: full clone.
 - ✔️ **Azure Pipeline**: [checkout](https://learn.microsoft.com/en-us/azure/devops/pipelines/yaml-schema/steps-checkout?view=azure-pipelines) supports `ssh/https`, `submodule`, `shallow-clone` (default depth 1 since Sept 2022), `lfs`. Missing: `sparse-checkout`.
 - ✔️ **Jenkins**: [GitSCM](https://www.jenkins.io/doc/pipeline/steps/params/gitscm/) supports all features: `ssh/https`, `submodule`, `shallow-clone`, `sparse checkout`, `lfs`. Default: full clone.
+
+### Hosted Runner sizing
+
+- ✔️ **GitHub Actions**: Offers [Single-CPU runners](https://docs.github.com/en/actions/reference/runners/github-hosted-runners#single-cpu-runners) and [Larger runners](https://docs.github.com/en/actions/using-github-hosted-runners/about-larger-runners/about-larger-runners) with configurable sizing and static IP addresses.
+- ✔️ **CircleCI**: Offers [resource classes](https://circleci.com/docs/resource-class-overview/) for different runner sizes.
+- ❌ **Azure Pipeline**: Fixed size only: `2Core CPU, 7GB RAM, 14GB SSD`.
+- ❌ **Jenkins**: Self-hosted solution; hosted runner concept not applicable.
 
 ---
 
@@ -336,65 +391,6 @@ Pass values between steps and jobs with dedicated output parameters:
 - ✔️ **CircleCI**: Redirect to `$BASH_ENV`: `echo "export PATH=$GOPATH/bin:$PATH" >> $BASH_ENV`
 - ✔️ **Azure Pipeline**: Use task.setvariable: `echo '##vso[task.setvariable variable=path]$(PATH):/dir/to/whatever'`
 - ✔️ **Jenkins**: Use `Env.` object
-
----
-
-## Security & Access Control
-
-### Fork handling
-
-- ✔️ **GitHub Actions**: Supports fork PR triggers with [workflow approval system](https://docs.github.com/en/actions/managing-workflow-runs/approving-workflow-runs-from-public-forks). Offers [practical security patterns](https://securitylab.github.com/research/github-actions-preventing-pwn-requests/) for secret access.
-- ⚠️ **CircleCI**: Supports fork PRs but [limited by branch naming rules](https://circleci.com/docs/oss/#build-pull-requests-from-forked-repositories) like `/pull\/[0-9]+/`. No easy way to handle secret access securely.
-- ✔️ **Azure Pipeline**: [Supports fork PR triggers](https://learn.microsoft.com/en-us/azure/devops/pipelines/repos/github?view=azure-devops&tabs=yaml#contributions-from-forks) with secret access, but lacks built-in security patterns.
-- ❌ **Jenkins**: Not recommended for public CI; fork PR handling not a priority.
-
-### Set Secrets for Job
-
-- ✔️ **GitHub Actions**: Organization/Repository/Environment Secrets with automatic log masking
-- ✔️ **CircleCI**: Environment Variables and Context
-- ✔️ **Azure Pipeline**: Environment Variables and Parameters
-- ✔️ **Jenkins**: Credential Provider
-
-<details><summary>Click to show GitHub Actions secret details</summary>
-
-GitHub Actions supports three secret scopes:
-
-- **Organization Secrets**: `Organization > Settings > Secrets` (can filter by repository)
-- **Repository Secrets**: `Repository > Settings > Secrets`
-- **Environment Secrets**: `Repository > Environment > Secrets`
-
-**Priority**: `Environment Secrets` > `Repository Secrets` > `Organization Secrets`
-
-**Personal accounts**: Set secrets per repository or use [google/secrets-sync-action](https://github.com/google/secrets-sync-action).
-
-Secrets are automatically [masked in logs](https://docs.github.com/en/actions/using-workflows/workflow-commands-for-github-actions#masking-a-value-in-a-log).
-
-</details>
-
-### Job Approval
-
-- ⚠️ **GitHub Actions**: Supports approval via Environment protection rules. Limitation: Not available in `GitHub Team` plan for private repos.
-- ✔️ **CircleCI**: Full approval support.
-- ✔️ **Azure Pipeline**: Full approval support.
-- ✔️ **Jenkins**: Full approval support.
-
----
-
-## Build Management
-
-### Store Build Artifacts
-
-- ✔️ **GitHub Actions**: [actions/upload-artifact](https://github.com/actions/upload-artifact) / [download-artifact](https://github.com/actions/download-artifact). Configurable retention period.
-- ⚠️ **CircleCI**: [`store_artifacts`](https://circleci.com/docs/artifacts/) step. Download requires API call. No retention period.
-- ✔️ **Azure Pipeline**: [`PublishPipelineArtifact`](https://learn.microsoft.com/en-us/azure/devops/pipelines/artifacts/pipeline-artifacts?view=azure-devops&tabs=yaml) / `DownloadPipelineArtifact` tasks. No retention period.
-- ⚠️ **Jenkins**: [`archiveArtifacts`](https://www.jenkins.io/doc/pipeline/steps/core/#archiveartifacts-archive-the-artifacts) step. Download requires API call. No retention period.
-
-### Skip CI and commit message
-
-- ✔️ **GitHub Actions**: Skip keywords: `[skip ci]`, `[ci skip]`, `[no ci]`, `[skip actions]`, `[actions skip]`
-- ✔️ **CircleCI**: Skip keywords: `[skip ci]`, `[ci skip]`
-- ✔️ **Azure Pipeline**: Skip keywords: `***NO_CI***`, `[skip ci]`, `[ci skip]`, [and more](https://github.com/Microsoft/azure-pipelines-agent/issues/858#issuecomment-475768046)
-- ❌ **Jenkins**: No built-in support; requires plugins like [SCM Skip](https://plugins.jenkins.io/scmskip/)
 
 ---
 
