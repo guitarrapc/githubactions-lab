@@ -504,9 +504,9 @@ jobs:
 
 ```
 
-## Timeout settings
+## Timeout
 
-You can set job timeout with `jobs.<job_id>.timeout-minutes`, and step timeout with `steps.timeout-minutes`. The default timeout is 360 minutes (6 hours). You can set a value from 1 to 4320 minutes (30 days). I recommend setting a reasonable timeout for every job to avoid wasting build time.
+You can set [job timeout](https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-syntax#jobsjob_idtimeout-minutes) with `jobs.<job_id>.timeout-minutes`, and [step timeout](https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-syntax#jobsjob_idstepstimeout-minutes) with `steps.timeout-minutes`. The default timeout is 360 minutes (6 hours). You can set a value from 1 to 4320 minutes (30 days). I recommend setting a reasonable timeout for every job to avoid wasting build time.
 
 Following example shows how to set timeout for job and step.
 
