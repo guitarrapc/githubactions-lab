@@ -160,7 +160,7 @@ Can use `Required reviewers` and `Wait timer` for Environment protection rules.
 
 # Difference from other CI
 
-## CI Migration
+## Migrating CI
 
 There are several documents for migration.
 
@@ -175,29 +175,29 @@ Also you may consider migrate from GitHub Actions.
 
 ## Fork handling
 
-GitHub Actions support handling fork PR.
-
-- ✔️: GitHub Actions [support fork PR to be trigger workflow](https://docs.github.com/en/actions/managing-workflow-runs/approving-workflow-runs-from-public-forks) and accessing secret. However allowing public fork to be access secret is not recommended, and there are [some practical way](https://securitylab.github.com/research/github-actions-preventing-pwn-requests/) to allow accessing secret.
-- ⚠️: CircleCI [support fork PR to be trigger workflow](https://circleci.com/docs/oss/#build-pull-requests-from-forked-repositories) and accessing secret. However handling fork PR in YAML is limited by branch naming rule like `/pull\/[0-9]+/`. Also allowing public fork to be access secret is not recommended, and there are no easy way to handle it.
-- ✔️: Azure Pipeline [supports fork PR to be trigger job](https://learn.microsoft.com/en-us/azure/devops/pipelines/repos/github?view=azure-devops&tabs=yaml#contributions-from-forks) and accessing secret. However allowing public fork to be access secret is not recommended.
-- ❌: Jenkins normally not recommended to use for Public CI, it means fork PR won't consider to be important for Jenkins.
+- ✔️ **GitHub Actions**: Supports fork PR triggers with [workflow approval system](https://docs.github.com/en/actions/managing-workflow-runs/approving-workflow-runs-from-public-forks). Offers [practical security patterns](https://securitylab.github.com/research/github-actions-preventing-pwn-requests/) for secret access.
+- ⚠️ **CircleCI**: Supports fork PRs but [limited by branch naming rules](https://circleci.com/docs/oss/#build-pull-requests-from-forked-repositories) like `/pull\/[0-9]+/`. No easy way to handle secret access securely.
+- ✔️ **Azure Pipeline**: [Supports fork PR triggers](https://learn.microsoft.com/en-us/azure/devops/pipelines/repos/github?view=azure-devops&tabs=yaml#contributions-from-forks) with secret access, but lacks built-in security patterns.
+- ❌ **Jenkins**: Not recommended for public CI; fork PR handling not a priority.
 
 
 ## Git Checkout
 
-GitHub Actions supports checkout via actions and offers a variety of checkout options including sparse checkout.
-
-- ✔️: GitHub Actions [actions/checkout](https://github.com/actions/checkout) support `ssh` or `https` protocol, `submodule`, `shallow-clone`, `sparse checkout` and `lfs`. `actions/checkout` is default `shallow-clone` (depth 1).
-- ⚠️: CircleCI [checkout](https://circleci.com/docs/configuration-reference/#checkout) support `ssh` or `https` protocol. It missing `submodule`, `shallow-clone`, `sparse-checkout` and `lfs` support. `checkout` is default full clone.
-- ✔️: Azure Pipeline [checkout](https://learn.microsoft.com/en-us/azure/devops/pipelines/yaml-schema/steps-checkout?view=azure-pipelines) support `ssh` or `https` protocol, `submodule`, `shallow-clone` and `lfs`. It missing `sparse-checkout` support. `checkout` is default `shallow-clone` (depth 1) for new pipeline created after the September 2022.
-- ✔️: Jenkins [GitSCM](https://www.jenkins.io/doc/pipeline/steps/params/gitscm/) support `ssh` or `https` protocol, `submodule`, `shallow-clone`, `sparse checkout` and `lfs`. `GitSCM` is default full clone.
+- ✔️ **GitHub Actions**: [actions/checkout](https://github.com/actions/checkout) supports all features: `ssh/https`, `submodule`, `shallow-clone` (default depth 1), `sparse checkout`, `lfs`.
+- ⚠️ **CircleCI**: [checkout](https://circleci.com/docs/configuration-reference/#checkout) only supports `ssh/https`. Missing: `submodule`, `shallow-clone`, `sparse-checkout`, `lfs`. Default: full clone.
+- ✔️ **Azure Pipeline**: [checkout](https://learn.microsoft.com/en-us/azure/devops/pipelines/yaml-schema/steps-checkout?view=azure-pipelines) supports `ssh/https`, `submodule`, `shallow-clone` (default depth 1 since Sept 2022), `lfs`. Missing: `sparse-checkout`.
+- ✔️ **Jenkins**: [GitSCM](https://www.jenkins.io/doc/pipeline/steps/params/gitscm/) supports all features: `ssh/https`, `submodule`, `shallow-clone`, `sparse checkout`, `lfs`. Default: full clone.
 
 ## Job and workflow
 
-All CI has yaml definitions.
+- ✔️ **GitHub Actions**: Jobs defined inside workflow. Triggers both Push and PR.
+- ✔️ **CircleCI**: Jobs combined in workflow. Cannot trigger both Push and PR simultaneously.
+- ✔️ **Azure Pipeline**: Jobs combined in stages. Triggers both Push and PR.
+- ⚠️ **Jenkins**: Uses Declarative Pipeline (Groovy, not YAML). Triggers defined outside pipeline.
 
-- ✔️: GitHub Actions can define jobs inside workflow. Can trigger both Push and PR.
+<details><summary>Click to show syntax examples</summary>
 
+**GitHub Actions**
 ```yaml
 name: workflow name
 on:
@@ -211,8 +211,7 @@ jobs:
       - run: echo foo
 ```
 
-- ✔️: CircleCI can define jobs and conbinate them in workflow. Can not trigger both Push and PR.
-
+**CircleCI**
 ```yaml
 version: 2.1
 
@@ -228,8 +227,7 @@ workflows:
       - Job_Name
 ```
 
-- ✔️: Azure Pipeline can define jobs and conbinate them in stage. Can trigger both Push and PR.
-
+**Azure Pipeline**
 ```yaml
 trigger:
   - main
@@ -247,8 +245,7 @@ jobs:
       - bash: echo "foo"
 ```
 
-- ⚠️: Jenkins use Declaretive Pipeline. Trigger needs to be defined outside pipeline, means you need create job to trigger pipeline. Also Declaretive Pipeline is not yaml, it is groovy.
-
+**Jenkins**
 ```groovy
 pipeline {
   agent any
@@ -265,137 +262,120 @@ pipeline {
 }
 ```
 
+</details>
+
 ## Hosted Runner sizing
 
-Every CI offer you to configure runner sizing for SelfHosted Runner, but some CI has limitation for sizing Hosted Runner.
-
-- ✔️: GitHub Actions offers [larger runners](https://docs.github.com/en/actions/using-github-hosted-runners/about-larger-runners/about-larger-runners) to run faster and static IP addresses.
-- ✔️: CircleCI offer [resource class](https://circleci.com/docs/resource-class-overview/) to run faster.
-- ❌: Azure Pipeline does not offer hosted runner sizing. Hosted runner is limited to spec `2Core CPU, 7GB RAM and 14GB SSD Disk`.
-- ❌: Jenkins is a self-hosted solution. Hosted runner sizing is not available.
+- ✔️ **GitHub Actions**: Offers [Single-CPU runners](https://docs.github.com/en/actions/reference/runners/github-hosted-runners#single-cpu-runners) and [Larger runners](https://docs.github.com/en/actions/using-github-hosted-runners/about-larger-runners/about-larger-runners) with configurable sizing and static IP addresses.
+- ✔️ **CircleCI**: Offers [resource classes](https://circleci.com/docs/resource-class-overview/) for different runner sizes.
+- ❌ **Azure Pipeline**: Fixed size only: `2Core CPU, 7GB RAM, 14GB SSD`.
+- ❌ **Jenkins**: Self-hosted solution; hosted runner concept not applicable.
 
 ## Job Approval
 
-This functionality enables you to stop next job until manually approved.
-
-- ⚠️: GitHub Actions supports Approval on **Environment**. However Environment cannot use in `GitHub Team` pricing.
-- ✔️: CircleCI supports Approval.
-- ✔️: Azure Pipeline supports Approval.
-- ✔️: Jenkins supports Approval.
+- ⚠️ **GitHub Actions**: Supports approval via Environment protection rules. Limitation: Not available in `GitHub Team` plan for private repos.
+- ✔️ **CircleCI**: Full approval support.
+- ✔️ **Azure Pipeline**: Full approval support.
+- ✔️ **Jenkins**: Full approval support.
 
 ## Meta values and JobId
 
-GitHub Actions has a Context concept, allowing you to access job-specific information via `github`.
-For example, `github.run_id` is a unique number for each run within a repository.
-You can also access default environment variables like `GITHUB_RUN_ID`.
+All CIs provide access to job metadata and unique identifiers:
 
-- ✔️: GitHub Actions [environment variable](https://help.github.com/en/actions/configuring-and-managing-workflows/using-environment-variables#default-environment-variables) `GITHUB_RUN_ID` or [context](https://help.github.com/en/actions/reference/context-and-expression-syntax-for-github-actions#github-context) `github.run_id`
-- ✔️: CircleCI [environment variable](https://circleci.com/docs/2.0/env-vars/#built-in-environment-variables) `CIRCLE_BUILD_NUM` and `CIRCLE_WORKFLOW_ID`
-- ✔️: Azure Pipeline [environment variable](https://docs.microsoft.com/ja-jp/azure/devops/pipelines/process/run-number?view=azure-devops&tabs=yaml#tokens) `BuildID`.
-- ✔️: Jenkins [environment variable](https://wiki.jenkins.io/display/JENKINS/Building+a+software+project) `BUILD_NUMBER`
+- ✔️ **GitHub Actions**: [Context](https://help.github.com/en/actions/reference/context-and-expression-syntax-for-github-actions#github-context) `github.run_id` or [env var](https://help.github.com/en/actions/configuring-and-managing-workflows/using-environment-variables#default-environment-variables) `GITHUB_RUN_ID`
+- ✔️ **CircleCI**: [Env vars](https://circleci.com/docs/2.0/env-vars/#built-in-environment-variables) `CIRCLE_BUILD_NUM`, `CIRCLE_WORKFLOW_ID`
+- ✔️ **Azure Pipeline**: [Env var](https://docs.microsoft.com/ja-jp/azure/devops/pipelines/process/run-number?view=azure-devops&tabs=yaml#tokens) `BuildID`
+- ✔️ **Jenkins**: [Env var](https://wiki.jenkins.io/display/JENKINS/Building+a+software+project) `BUILD_NUMBER`
 
 ## Path filter
 
-GitHub Actions can use `on.<event>.paths-ignore:` and `on.<event>.paths:` by default.
+Filter workflow execution based on changed file paths:
 
-> [paths - Workflow syntax for GitHub Actions \- GitHub Help](https://help.github.com/en/actions/reference/workflow-syntax-for-github-actions#onpushpull_requestpaths)
-
-- ✔️: GitHub Actions **CAN** set path-filter.
-- ❌: CircleCI can not set path-filter.
-- ✔️: Azure Pipeline can set path-filter.
-- ❌: Jenkins can not set path-filter. User should prepare by theirself.
+- ✔️ **GitHub Actions**: Built-in support via [`on.<event>.paths`/`paths-ignore`](https://help.github.com/en/actions/reference/workflow-syntax-for-github-actions#onpushpull_requestpaths)
+- ❌ **CircleCI**: No built-in path filter support
+- ✔️ **Azure Pipeline**: Built-in path filter support
+- ❌ **Jenkins**: No built-in support; manual implementation required
 
 ## Redundant build cancellation
 
-GitHub Actions does not support the exact functionality that CircleCI provides, but you can achieve this via concurrency control. Another option is to use community actions like [rokroskar/workflow-run-cleanup-action](https://github.com/marketplace/actions/workflow-run-cleanup-action), [fauguste/auto-cancellation-running-action](https://github.com/marketplace/actions/auto-cancellation-running-action) and [yellowmegaman/gh-build-canceller](https://github.com/marketplace/actions/gh-actions-stale-run-canceller).
-
-- ✔️: GitHub Actions has concurrency control and it can cancel in progress build. Or your can use community Actions.
-- ✔️: CircleCI support cancel redundant build.
-- ❌: Azure Pipeline not support cancel redundant build.
-- ❌: Jenkins not support cancel redundant build, you need cancel it from parallel job.
+- ✔️ **GitHub Actions**: Built-in [concurrency control](https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#concurrency) with `cancel-in-progress`. Alternative: community actions ([workflow-run-cleanup-action](https://github.com/marketplace/actions/workflow-run-cleanup-action), etc.)
+- ✔️ **CircleCI**: Built-in redundant build cancellation
+- ❌ **Azure Pipeline**: No built-in support
+- ❌ **Jenkins**: No built-in support; requires manual implementation
 
 ## Rerun failed workflow
 
-- ✔️: GitHub Actions supports re-running jobs. You can re-run the `whole workflow`, a `single job`, or `failed jobs`.
-- ✔️: CircleCI supports re-running jobs. You can re-run the `whole workflow` or `failed jobs`.
-- ⚠️: Azure Pipeline does not support re-running stages, and you cannot re-run `failed jobs` only.
-- ✔️: Jenkins Declarative Pipeline supports re-running jobs. You can re-run a `Job` or `Stage`. However, you may find it is unstable.
+- ✔️ **GitHub Actions**: Re-run `whole workflow`, `single job`, or `failed jobs only`
+- ✔️ **CircleCI**: Re-run `whole workflow` or `failed jobs only`
+- ⚠️ **Azure Pipeline**: Cannot re-run individual stages or failed jobs only
+- ✔️ **Jenkins**: Re-run `Job` or `Stage` (may be unstable)
 
 ## Reusable job and workflow
 
-Writing scripts is better than writing directly in steps, as this allows us to reuse the same execution across different workflows or jobs.
-
-- ✔️: GitHub Actions can reuse yaml via `Reusable workflow`, `Composite Actions`, `Organization workflow`, and also `YAML anchor`.
-- ✔️: CircleCI can reuse job, and also `YAML anchor` is useul.
-- ✔️: Azure Pipeline has template to refer stage, job and step from other yaml.
-- ⚠️: Jenkins pipeline could refer other pipeline. However a lot case you would prefer define job step in script and reuse it. Reusing pipeline easily make it complex with Jenkins.
+- ✔️ **GitHub Actions**: Multiple reuse options: `Reusable workflow`, `Composite Actions`, `Organization workflow`, `YAML anchor`
+- ✔️ **CircleCI**: Job reuse and `YAML anchor` support
+- ✔️ **Azure Pipeline**: Template system for stage/job/step reuse
+- ⚠️ **Jenkins**: Pipeline references available but often complex; script-based reuse preferred
 
 ## Set Environment variables
 
-Defining `Environment variables` in each job step and reusing them in later steps is a common pattern.
-
-- ✔️: GitHub Actions [use redirect to special Environment variable](https://help.github.com/en/actions/reference/workflow-commands-for-github-actions#setting-an-environment-variable) `$GITHUB_ENV` via `echo "{environment_variable_name}={value}" >> $GITHUB_ENV` (Linux) or `"{environment_variable_name}={value}" >> $env:GITHUB_ENV` (Windows) syntax.
-- `::set-env` syntax has been deprecated for [security reason](https://github.blog/changelog/2020-10-01-github-actions-deprecating-set-env-and-add-path-commands/).
-- ✔️: CircleCI use redirect to special Environment variable `$BASH_ENV` via `echo "export GIT_SHA1=$CIRCLE_SHA1" >> $BASH_ENV` syntax.
-- ✔️: Azure Pipeline use task.setvariable via `echo "##vso[task.setvariable variable=NAME]VALUE"` syntax.
-- ✔️: Jenkins use `Env.`.
+- ✔️ **GitHub Actions**: Redirect to [`$GITHUB_ENV`](https://help.github.com/en/actions/reference/workflow-commands-for-github-actions#setting-an-environment-variable): `echo "NAME=value" >> $GITHUB_ENV`
+- ✔️ **CircleCI**: Redirect to `$BASH_ENV`: `echo "export NAME=value" >> $BASH_ENV`
+- ✔️ **Azure Pipeline**: Use task.setvariable: `echo "##vso[task.setvariable variable=NAME]VALUE"`
+- ✔️ **Jenkins**: Use `Env.` object
 
 ## Set Output
 
-Defining `output` in each job step and reusing it in later steps has fewer side effects than using environment variables. Additionally, it can pass values between jobs via `job output`, which cannot be achieved with the environment variable pattern.
+Pass values between steps and jobs with dedicated output parameters:
 
-- ✔️: GitHub Actions [use redirect to special Environment variable](https://docs.github.com/en/actions/using-workflows/workflow-commands-for-github-actions#setting-an-output-parameter) `$GITHUB_OUTPUT` via `echo "{name}={value}" >> "$GITHUB_OUTPUT"` (Linux) or `"{name}=value" >> $env:GITHUB_OUTPUT` (Windows) syntax.
-- ⚠️: CircleCI has no equivalent but use Environment Variables.
-- ✔️: Azure Pipeline use task.setvariable via `echo "##vso[task.setvariable variable=NAME;isoutput=true]VALUE"` syntax.
-- ⚠️: Jenkins has no equivalent but use Environment Variables.
-
-> [!WARNING]
-> GitHub Actions `::set-output` syntax has been deprecated for [security reason](https://github.blog/changelog/2022-10-11-github-actions-deprecating-save-state-and-set-output-commands/).
+- ✔️ **GitHub Actions**: Redirect to [`$GITHUB_OUTPUT`](https://docs.github.com/en/actions/using-workflows/workflow-commands-for-github-actions#setting-an-output-parameter): `echo "name=value" >> "$GITHUB_OUTPUT"`. Supports job-to-job passing.
+- ⚠️ **CircleCI**: No dedicated output; use environment variables
+- ✔️ **Azure Pipeline**: Use task.setvariable with `isoutput=true`: `echo "##vso[task.setvariable variable=NAME;isoutput=true]VALUE"`
+- ⚠️ **Jenkins**: No dedicated output; use environment variables
 
 ## Set PATH Environment variables
 
-- ✔️: GitHub Actions use redirect to special Environment variable `$GITHUB_PATH` via `echo "{path}" >> "$GITHUB_PATH"` or `echo "{path}" | tee -a "$GITHUB_PATH"` syntax.
-- `::add-path` syntax has been deprecated for [security reason](https://github.blog/changelog/2020-10-01-github-actions-deprecating-set-env-and-add-path-commands/).
-- ✔️: CircleCI use redirect to special Environment variable `$BASH_ENV` wiht name `PATH` via `echo "export PATH=$GOPATH/bin:$PATH" >> $BASH_ENV` syntax.
-- ✔️: Azure Pipeline use task.setvariable via `echo '##vso[task.setvariable variable=path]$(PATH):/dir/to/whatever'` syntax.
-- ✔️: Jenkins use `Env.`.
+- ✔️ **GitHub Actions**: Redirect to `$GITHUB_PATH`: `echo "/path/to/dir" >> "$GITHUB_PATH"`
+- ✔️ **CircleCI**: Redirect to `$BASH_ENV`: `echo "export PATH=$GOPATH/bin:$PATH" >> $BASH_ENV`
+- ✔️ **Azure Pipeline**: Use task.setvariable: `echo '##vso[task.setvariable variable=path]$(PATH):/dir/to/whatever'`
+- ✔️ **Jenkins**: Use `Env.` object
 
 ## Set Secrets for Job
 
-GitHub Actions offers Secrets for each repository and Organization. Secrets will be masked in the log, and you can also [mask desired output in the log](https://docs.github.com/en/actions/using-workflows/workflow-commands-for-github-actions#masking-a-value-in-a-log).
+- ✔️ **GitHub Actions**: Organization/Repository/Environment Secrets with automatic log masking
+- ✔️ **CircleCI**: Environment Variables and Context
+- ✔️ **Azure Pipeline**: Environment Variables and Parameters
+- ✔️ **Jenkins**: Credential Provider
 
-- ✔️: GitHub Actions use Secrets and Environment Secrets.
-- ✔️: CircleCI offer Environment Variables and Context.
-- ✔️: Azure Pipeline has Environment Variables and Paramter.
-- ✔️: Jenkins has Credential Provider.
+<details><summary>Click to show GitHub Actions secret details</summary>
 
-GitHub Actions supports "Organization Secrets", "Repository Secrets" and "Environment Secrets".
+GitHub Actions supports three secret scopes:
 
-- You can set secrets for Organization and filter to selected repository with `Organization > Settings > Secrets`.
-- You can set secrets for each repository with `Repository > Settings > Secrets`.
-- You can set Environment secrets for each repository with `Repository > Environment > Secrets`.
+- **Organization Secrets**: `Organization > Settings > Secrets` (can filter by repository)
+- **Repository Secrets**: `Repository > Settings > Secrets`
+- **Environment Secrets**: `Repository > Environment > Secrets`
 
-If the same secret key exists in multiple places, the priority is: `Environment Secrets` > `Repository Secrets` > `Organization Secrets`.
+**Priority**: `Environment Secrets` > `Repository Secrets` > `Organization Secrets`
 
-If you want to share your secrets across repositories in a personal account, you need to set secrets for each repository or use [google/secrets\-sync\-action](https://github.com/google/secrets-sync-action).
+**Personal accounts**: Set secrets per repository or use [google/secrets-sync-action](https://github.com/google/secrets-sync-action).
+
+Secrets are automatically [masked in logs](https://docs.github.com/en/actions/using-workflows/workflow-commands-for-github-actions#masking-a-value-in-a-log).
+
+</details>
 
 ## Skip CI and commit message
 
-GitHub Actions supports skipping CI when the HEAD commit contains a keyword, similar to other CI systems.
-
-- ✔️: GitHub Actions can skip workflow via `[skip ci]`, `[ci skip]`, `[no ci]`, `[skip actions]` or `[actions skip]`. If PR last commit message contains `[skip ci]`, then merge commit also skip.
-- ✔️: CircleCI can skip job via `[skip ci]` or `[ci skip]`. If PR last commit message contains `[skip ci]`, then merge commit also skip.
-- ✔️: Azure Pipeline can skip job via `***NO_CI***`, `[skip ci]` or `[ci skip]`, or [others](https://github.com/Microsoft/azure-pipelines-agent/issues/858#issuecomment-475768046).
-- ❌: Jenkins does not support skip ci by default, but there are plugins to support `[skip ci]` or any expression with pipelines like [SCM Skip \| Jenkins plugin](https://plugins.jenkins.io/scmskip/).
+- ✔️ **GitHub Actions**: Skip keywords: `[skip ci]`, `[ci skip]`, `[no ci]`, `[skip actions]`, `[actions skip]`
+- ✔️ **CircleCI**: Skip keywords: `[skip ci]`, `[ci skip]`
+- ✔️ **Azure Pipeline**: Skip keywords: `***NO_CI***`, `[skip ci]`, `[ci skip]`, [and more](https://github.com/Microsoft/azure-pipelines-agent/issues/858#issuecomment-475768046)
+- ❌ **Jenkins**: No built-in support; requires plugins like [SCM Skip](https://plugins.jenkins.io/scmskip/)
 
 ## Store Build Artifacts
 
-GitHub Actions use Build artifacts to share files between jobs in a workflow and also download artifacts from completed workflows.
-
-- ✔️: GitHub Actions can store build artifacts via [actions/upload-artifact](https://github.com/actions/upload-artifact) and [actions/download-artifact](https://github.com/actions/download-artifact). You can specify retention period for upload artifact.
-- ⚠️: CircleCI can [store build artifacts](https://circleci.com/docs/artifacts/) with the `store_artifacts` step, however you need to call the API to download stored artifacts. There is no retention period for uploaded artifacts.
-- ✔️: Azure Pipeline [stores build artifacts](https://learn.microsoft.com/en-us/azure/devops/pipelines/artifacts/pipeline-artifacts?view=azure-devops&tabs=yaml) with the `PublishPipelineArtifact` task, and downloads via the `DownloadPipelineArtifact` task. There is no retention period for uploaded artifacts.
-- ⚠️: Jenkins can [store build artifacts](https://www.jenkins.io/doc/pipeline/steps/core/#archiveartifacts-archive-the-artifacts) with the `archiveArtifacts` step, however you need to call the API to download stored artifacts. There is no retention period for uploaded artifacts.
+- ✔️ **GitHub Actions**: [actions/upload-artifact](https://github.com/actions/upload-artifact) / [download-artifact](https://github.com/actions/download-artifact). Configurable retention period.
+- ⚠️ **CircleCI**: [`store_artifacts`](https://circleci.com/docs/artifacts/) step. Download requires API call. No retention period.
+- ✔️ **Azure Pipeline**: [`PublishPipelineArtifact`](https://learn.microsoft.com/en-us/azure/devops/pipelines/artifacts/pipeline-artifacts?view=azure-devops&tabs=yaml) / `DownloadPipelineArtifact` tasks. No retention period.
+- ⚠️ **Jenkins**: [`archiveArtifacts`](https://www.jenkins.io/doc/pipeline/steps/core/#archiveartifacts-archive-the-artifacts) step. Download requires API call. No retention period.
 
 # Basic - Onboarding
 
