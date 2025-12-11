@@ -17,7 +17,6 @@ GitHub Actions research and test laboratory.
   - [GitHub Team Plan, GitHub Pro Plan](#github-team-plan-github-pro-plan)
 - [Migrating CI to GitHub Actions](#migrating-ci-to-github-actions)
 - [GitHub Actions vs Other CI Platforms](#github-actions-vs-other-ci-platforms)
-  - [Quick Comparison Table](#quick-comparison-table)
   - [Core Workflow Features](#core-workflow-features)
   - [Security & Access Control](#security--access-control)
   - [Infrastructure & Performance](#infrastructure--performance)
