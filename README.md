@@ -586,6 +586,9 @@ jobs:
         run: echo "$HOME/foo/bar" | tee -a "$GITHUB_PATH"
       - name: Show PATH
         run: echo "$PATH"
+      - name: Show PATH overwrite shell to pwsh
+        run: echo "${env:PATH}"
+        shell: pwsh
 
   pwsh:
     strategy:
@@ -612,6 +615,9 @@ jobs:
         run: echo "$HOME/foo/bar" | Tee-Object -Append -FilePath "${env:GITHUB_PATH}"
       - name: Show PATH
         run: echo "${env:PATH}"
+      - name: Show PATH overwrite shell to bash
+        run: echo "$PATH"
+        shell: bash
 
 ```
 
