@@ -134,7 +134,7 @@ GitHub Actions research and test laboratory.
 
 ## GitHub Team Plan, GitHub Pro Plan
 
-- [ ] `Environment > Deployment protection rules` is not allowed in GitHub team Plan. You cannot use `Required reviewers` (Approvabl) and `Wait timer`.
+- [ ] `Environment > Deployment protection rules` is not allowed in GitHub Team/Pro Plan. You cannot use `Required reviewers` (Approvabl) and `Wait timer`. GitHub Enterprise Plan is required to use these features in private repository.
 
 **Private Repository**
 
@@ -172,6 +172,38 @@ Also you may consider migrate from GitHub Actions.
 - GitHub Actions -> CircleCI: [Migrating from Github Actions \- CircleCI](https://circleci.com/docs/migrating-from-github)
 
 # Difference from other CI
+
+## Quick Comparison Table
+
+A high-level overview of key features across CI platforms:
+
+| Feature | GitHub Actions | CircleCI | Azure Pipeline | Jenkins |
+|---------|---------------|----------|----------------|---------|
+| **Core Workflow** |
+| YAML-based config | ✔️ | ✔️ | ✔️ | ❌ Groovy |
+| Trigger Push & PR | ✔️ | ❌ | ✔️ | ⚠️ Separate |
+| Reusable workflows | ✔️ Multiple | ✔️ | ✔️ | ⚠️ Complex |
+| Path filter | ✔️ Built-in | ❌ | ✔️ Built-in | ❌ |
+| Concurrency control | ✔️ Built-in | ✔️ | ❌ | ❌ |
+| Re-run failed jobs | ✔️ | ✔️ | ⚠️ Limited | ✔️ |
+| **Security** |
+| Fork PR handling | ✔️ Approved | ⚠️ Limited | ✔️ | ❌ |
+| Secrets management | ✔️ 3 scopes | ✔️ Context | ✔️ | ✔️ |
+| Job approval | ⚠️ Paid plan | ✔️ | ✔️ | ✔️ |
+| **Infrastructure** |
+| Runner sizing | ✔️ Configurable | ✔️ | ❌ Fixed | N/A |
+| Git sparse checkout | ✔️ | ❌ | ❌ | ✔️ |
+| Git shallow clone | ✔️ Default | ❌ | ✔️ Default | ✔️ |
+| **Development** |
+| Step output | ✔️ Dedicated | ⚠️ Env only | ✔️ | ⚠️ Env only |
+| Job metadata | ✔️ Context | ✔️ Env vars | ✔️ Env vars | ✔️ Env vars |
+| **Build Management** |
+| Artifact retention | ✔️ Configurable | ⚠️ Permanent | ⚠️ Permanent | ⚠️ Permanent |
+| Skip CI keywords | ✔️ 5 types | ✔️ 2 types | ✔️ 3+ types | ❌ |
+
+**Legend:** ✔️ Full support | ⚠️ Limited/Partial | ❌ Not supported | N/A Not applicable
+
+---
 
 ## Core Workflow Features
 
@@ -308,7 +340,7 @@ Filter workflow execution based on changed file paths:
 
 ### Job Approval
 
-- ⚠️ **GitHub Actions**: Supports approval via Environment protection rules. Limitation: Not available in `GitHub Team` plan for private repos.
+- ⚠️ **GitHub Actions**: Supports approval via Environment protection rules. Limitation: Not available in `GitHub Team` plan for private repos, requires `GitHub Enterprise` plan.
 - ✔️ **CircleCI**: Full approval support.
 - ✔️ **Azure Pipeline**: Full approval support.
 - ✔️ **Jenkins**: Full approval support.
