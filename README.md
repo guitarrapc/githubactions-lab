@@ -158,9 +158,7 @@ Can use `Required reviewers` and `Wait timer` for Environment protection rules.
 
 </details>
 
-# Difference from other CI
-
-## Migrating CI
+# Migrating CI to GitHub Actions
 
 There are several documents for migration.
 
@@ -173,7 +171,7 @@ Also you may consider migrate from GitHub Actions.
 
 - GitHub Actions -> CircleCI: [Migrating from Github Actions \- CircleCI](https://circleci.com/docs/migrating-from-github)
 
----
+# Difference from other CI
 
 ## Core Workflow Features
 
