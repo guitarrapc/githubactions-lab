@@ -3980,6 +3980,17 @@ jobs:
           git config --unset user.name
 ```
 
+## Injection attack via context
+
+GitHub Actions context may be vulnerable to injection attacks if untrusted data is used. For example, if you use `${{ github.event.head_commit.message }}` directly in a shell command, an attacker could craft a commit message that includes shell commands, leading to arbitrary code execution.
+
+To mitigate this risk, avoid directly embedding untrusted data into shell commands or scripts. Instead, use safe methods to handle such data, like passing it as environment variables, then referencing those variables in your commands.
+
+You can detect potential injection attacks via context with [ghalint](https://github.com/suzuki-shunsuke/ghalint), [zizmor](https://github.com/woodruffw/zizmor), and others. See detail in [Lint GitHub Actions workflow](#lint-github-actions-workflow).
+
+```yaml
+# .github/workflows/injection-attack-via-context.yaml
+```
 
 ## Lint GitHub Actions workflow
 
