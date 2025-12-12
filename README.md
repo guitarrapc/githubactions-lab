@@ -176,8 +176,8 @@ A quick comparison table of key features across CI platforms:
 | Trigger Push & PR | ✔️ | ❌ | ✔️ | ⚠️ Separate |
 | Reusable workflows | ✔️ Multiple | ✔️ | ✔️ | ⚠️ Complex |
 | Path filter | ✔️ Built-in | ❌ | ✔️ Built-in | ❌ |
-| Concurrency control | ✔️ Built-in | ✔️ | ✔️ Stage-level | ❌ |
-| Re-run failed jobs | ✔️ | ✔️ | ✔️ Single stage | ✔️ |
+| Concurrency control | ✔️ Built-in | ✔️ | ✔️ Stage-level | ⚠️ Built-in |
+| Re-run failed jobs | ✔️ | ✔️ | ✔️ Single stage | ⚠️ Job-level |
 | **Security** |
 | Fork PR handling | ✔️ Approved | ⚠️ Limited | ✔️ | ❌ |
 | Secrets management | ✔️ 3 scopes | ✔️ Context | ✔️ | ✔️ |
@@ -297,28 +297,28 @@ Filter workflow execution based on changed file paths:
 - ✔️ **GitHub Actions**: Built-in [concurrency control](https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#concurrency) with `cancel-in-progress`. Alternative: community actions ([workflow-run-cleanup-action](https://github.com/marketplace/actions/workflow-run-cleanup-action), etc.)
 - ✔️ **CircleCI**: Built-in redundant build cancellation
 - ✔️ **Azure Pipeline**: [Stage-level concurrency](https://learn.microsoft.com/en-us/azure/devops/release-notes/features-timeline) (available since 2024 Q3)
-- ❌ **Jenkins**: No built-in support; requires manual implementation
+- ⚠️ **Jenkins**: Built-in [`disableConcurrentBuilds()`](https://www.jenkins.io/doc/book/pipeline/syntax/#options) option in Declarative Pipeline. Can abort previous builds with `disableConcurrentBuilds(abortPrevious: true)`
 
 ### Rerun failed workflow
 
 - ✔️ **GitHub Actions**: Re-run `whole workflow`, `single job`, or `failed jobs only`
 - ✔️ **CircleCI**: Re-run `whole workflow` or `failed jobs only`. Also supports [automatic step reruns](https://circleci.com/docs/configuration-reference/#automatic-step-reruns) with `max_auto_reruns` and configurable delays
 - ✔️ **Azure Pipeline**: [Re-run single stage](https://learn.microsoft.com/en-us/azure/devops/release-notes/features-timeline) (available since 2024 Q1), manual stage queuing supported
-- ✔️ **Jenkins**: Re-run `Job` or `Stage` (may be unstable)
+- ⚠️ **Jenkins**: Re-run `whole job` (stable). Stage-level restart available with [`preserveStashes`](https://www.jenkins.io/doc/book/pipeline/syntax/#options) option (experimental feature)
 
 ### Skip CI and commit message
 
 - ✔️ **GitHub Actions**: Skip keywords: `[skip ci]`, `[ci skip]`, `[no ci]`, `[skip actions]`, `[actions skip]`
 - ✔️ **CircleCI**: Skip keywords: `[skip ci]`, `[ci skip]`
 - ✔️ **Azure Pipeline**: Skip keywords: `***NO_CI***`, `[skip ci]`, `[ci skip]`, [and more](https://github.com/Microsoft/azure-pipelines-agent/issues/858#issuecomment-475768046)
-- ❌ **Jenkins**: No built-in support; requires plugins like [SCM Skip](https://plugins.jenkins.io/scmskip/)
+- ⚠️ **Jenkins**: Requires [SCM Skip plugin](https://plugins.jenkins.io/scmskip/). Default pattern: `.*\[ci skip\].*` (supports both freestyle and pipeline jobs with customizable regex)
 
 ### Store Build Artifacts
 
 - ✔️ **GitHub Actions**: [actions/upload-artifact](https://github.com/actions/upload-artifact) / [download-artifact](https://github.com/actions/download-artifact). Configurable retention period.
 - ⚠️ **CircleCI**: [`store_artifacts`](https://circleci.com/docs/artifacts/) step. Download requires API call. No retention period.
 - ✔️ **Azure Pipeline**: [`PublishPipelineArtifact`](https://learn.microsoft.com/en-us/azure/devops/pipelines/artifacts/pipeline-artifacts?view=azure-devops&tabs=yaml) / `DownloadPipelineArtifact` tasks. No retention period.
-- ⚠️ **Jenkins**: [`archiveArtifacts`](https://www.jenkins.io/doc/pipeline/steps/core/#archiveartifacts-archive-the-artifacts) step. Download requires API call. No retention period.
+- ⚠️ **Jenkins**: [`archiveArtifacts`](https://www.jenkins.io/doc/pipeline/steps/core/#archiveartifacts-archive-the-artifacts) step with [`buildDiscarder`](https://www.jenkins.io/doc/book/pipeline/syntax/#options) for retention policy. Download via Jenkins UI or API.
 
 ---
 
