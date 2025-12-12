@@ -118,9 +118,9 @@ GitHub Actions research and test laboratory.
 - [ ] SSH Debug
   - Like [CircleCI provides](https://circleci.com/docs/ssh-access-jobs).
   - Workaround: Use [Debugging with ssh Actions](https://github.com/marketplace/actions/debugging-with-ssh)
-- [ ] Dynamic Config
-  - Like [CircleCI provides](https://circleci.com/docs/dynamic-config).
-  - Workaround: Reusable Workflow / Composite Actions with inputs parameter.
+- [x] Dynamic Config
+  - CircleCI provides [Dynamic Config](https://circleci.com/docs/dynamic-config) with setup workflows, path filtering via [path-filtering orb](https://circleci.com/developer/orbs/orb/circleci/path-filtering), and [continuation orb](https://circleci.com/developer/orbs/orb/circleci/continuation). Enabled by default for projects created after Dec 1, 2023.
+  - GitHub Actions offers similar functionality: Reusable Workflow / Composite Actions with inputs parameter, and conditional workflow execution.
 
 ---
 
@@ -229,7 +229,8 @@ version: 2.1
 jobs:
   Job_Name:
     docker:
-      - image: circleci/<language>:<version TAG>
+      - image: cimg/<language>:<version TAG>  # Recommended: cimg/* (new convenience images)
+      # Legacy: circleci/<language>:<version TAG>
     steps:
       - run: echo foo
 workflows:
@@ -280,7 +281,7 @@ pipeline {
 Filter workflow execution based on changed file paths:
 
 - ✔️ **GitHub Actions**: Built-in support via [`on.<event>.paths`/`paths-ignore`](https://help.github.com/en/actions/reference/workflow-syntax-for-github-actions#onpushpull_requestpaths)
-- ❌ **CircleCI**: No built-in path filter support
+- ✔️ **CircleCI**: [Path filtering via official orb](https://circleci.com/developer/orbs/orb/circleci/path-filtering) (requires dynamic config)
 - ✔️ **Azure Pipeline**: Built-in path filter support
 - ❌ **Jenkins**: No built-in support; manual implementation required
 
@@ -301,7 +302,7 @@ Filter workflow execution based on changed file paths:
 ### Rerun failed workflow
 
 - ✔️ **GitHub Actions**: Re-run `whole workflow`, `single job`, or `failed jobs only`
-- ✔️ **CircleCI**: Re-run `whole workflow` or `failed jobs only`
+- ✔️ **CircleCI**: Re-run `whole workflow` or `failed jobs only`. Also supports [automatic step reruns](https://circleci.com/docs/configuration-reference/#automatic-step-reruns) with `max_auto_reruns` and configurable delays
 - ⚠️ **Azure Pipeline**: Cannot re-run individual stages or failed jobs only
 - ✔️ **Jenkins**: Re-run `Job` or `Stage` (may be unstable)
 
@@ -367,7 +368,7 @@ Secrets are automatically [masked in logs](https://docs.github.com/en/actions/us
 ### Git Checkout
 
 - ✔️ **GitHub Actions**: [actions/checkout](https://github.com/actions/checkout) supports all features: `ssh/https`, `submodule`, `shallow-clone` (default depth 1), `sparse checkout`, `lfs`.
-- ⚠️ **CircleCI**: [checkout](https://circleci.com/docs/configuration-reference/#checkout) only supports `ssh/https`. Missing: `submodule`, `shallow-clone`, `sparse-checkout`, `lfs`. Default: full clone.
+- ✔️ **CircleCI**: [checkout](https://circleci.com/docs/configuration-reference/#checkout) supports `ssh/https`, `submodule`, `blobless clone` (default since 2024), `lfs`. Missing: `sparse-checkout`. Can select `method: blobless` or `method: full`.
 - ✔️ **Azure Pipeline**: [checkout](https://learn.microsoft.com/en-us/azure/devops/pipelines/yaml-schema/steps-checkout?view=azure-pipelines) supports `ssh/https`, `submodule`, `shallow-clone` (default depth 1 since Sept 2022), `lfs`. Missing: `sparse-checkout`.
 - ✔️ **Jenkins**: [GitSCM](https://www.jenkins.io/doc/pipeline/steps/params/gitscm/) supports all features: `ssh/https`, `submodule`, `shallow-clone`, `sparse checkout`, `lfs`. Default: full clone.
 
