@@ -175,7 +175,7 @@ A quick comparison table of key features across CI platforms:
 | YAML-based config | ✔️ | ✔️ | ✔️ | ❌ Groovy |
 | Trigger Push & PR | ✔️ | ❌ | ✔️ | ⚠️ Separate |
 | Reusable workflows | ✔️ Multiple | ✔️ | ✔️ | ⚠️ Complex |
-| Path filter | ✔️ Built-in | ❌ | ✔️ Built-in | ❌ |
+| Path filter | ✔️ Built-in | ⚠️ Orb | ✔️ Built-in | ❌ |
 | Concurrency control | ✔️ Built-in | ✔️ | ✔️ Stage-level | ⚠️ Built-in |
 | Re-run failed jobs | ✔️ | ✔️ | ✔️ Single stage | ⚠️ Job-level |
 | **Security** |
@@ -185,13 +185,13 @@ A quick comparison table of key features across CI platforms:
 | **Infrastructure** |
 | Runner sizing | ✔️ Configurable | ✔️ | ❌ Fixed | N/A |
 | Git sparse checkout | ✔️ | ❌ | ❌ | ✔️ |
-| Git shallow clone | ✔️ Default | ❌ | ✔️ Default | ✔️ |
+| Git shallow clone | ✔️ Default | ✔️ Blobless | ✔️ Default | ✔️ |
 | **Development** |
 | Step output | ✔️ Dedicated | ⚠️ Env only | ✔️ | ⚠️ Env only |
 | Job metadata | ✔️ Context | ✔️ Env vars | ✔️ Env vars | ✔️ Env vars |
 | **Build Management** |
-| Artifact retention | ✔️ Configurable | ⚠️ Permanent | ⚠️ Permanent | ⚠️ Permanent |
-| Skip CI keywords | ✔️ 5 types | ✔️ 2 types | ✔️ 3+ types | ❌ |
+| Artifact retention | ✔️ Configurable | ⚠️ Permanent | ⚠️ Permanent | ⚠️ Configurable |
+| Skip CI keywords | ✔️ 5 types | ✔️ 2 types | ✔️ 3+ types | ⚠️ Plugin |
 
 **Legend:** ✔️ Full support | ⚠️ Limited/Partial | ❌ Not supported | N/A Not applicable
 
