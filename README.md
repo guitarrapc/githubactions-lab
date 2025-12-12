@@ -64,8 +64,6 @@ GitHub Actions research and test laboratory.
   - [GitHub Step Summary](#github-step-summary)
   - [PR info from Merge Commit](#pr-info-from-merge-commit)
   - [Reusable workflow](#reusable-workflow)
-  - [Telemetry for GitHub Workflow execution](#telemetry-for-github-workflow-execution)
-  - [Tool management in GitHub Actions with Aqua](#tool-management-in-github-actions-with-aqua)
   - [Workflow command](#workflow-command)
   - [YAML anchor](#yaml-anchor)
 - [Security](#security)
@@ -90,6 +88,8 @@ GitHub Actions research and test laboratory.
   - [GitHub Actions commit icon](#github-actions-commit-icon)
   - [Path for Downloaded Remote Actions](#path-for-downloaded-remote-actions)
   - [Stale Issue and PR close automation](#stale-issue-and-pr-close-automation)
+  - [Telemetry for GitHub Workflow execution](#telemetry-for-github-workflow-execution)
+  - [Tool management in GitHub Actions with Aqua](#tool-management-in-github-actions-with-aqua)
   - [Type converter with fromJson](#type-converter-with-fromjson)
   - [Want to get a list of GitHub Actions scheduled workflows](#want-to-get-a-list-of-github-actions-scheduled-workflows)
 
