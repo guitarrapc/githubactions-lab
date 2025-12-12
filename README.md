@@ -569,7 +569,7 @@ jobs:
     runs-on: ubuntu-slim
     timeout-minutes: 3
     steps:
-      - run: echo "This job runs on a single CPU runner."
+      - run: echo "This job runs on single-cpu runner. ${{ runner.os }}/${{ runner.arch }}"
 
 ```
 
