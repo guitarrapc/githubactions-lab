@@ -1,0 +1,16 @@
+name: single cpu runner
+on:
+  workflow_dispatch:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+
+jobs:
+  single-cpu-runner:
+    permissions:
+      contents: read
+    runs-on: ubuntu-slim
+    timeout-minutes: 3
+    steps:
+      - run: echo "This job runs on single-cpu runner. ${{ runner.os }}/${{ runner.arch }}"
