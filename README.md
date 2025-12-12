@@ -70,6 +70,7 @@ GitHub Actions research and test laboratory.
   - [YAML anchor](#yaml-anchor)
 - [Security](#security)
   - [Checkout without persist-credentials](#checkout-without-persist-credentials)
+  - [Injection attack via context](#injection-attack-via-context)
   - [Lint GitHub Actions workflow](#lint-github-actions-workflow)
   - [Permissions](#permissions)
   - [Pin Third-Party Actions to Commit SHA](#pin-third-party-actions-to-commit-sha)
