@@ -4107,6 +4107,36 @@ Following is an example of using OIDC to access AWS resources.
 
 ```yaml
 # .github/workflows/aws-oidc-credential.yaml
+
+name: aws oidc credential
+on:
+  workflow_dispatch:
+  push:
+    branches: ["main"]
+
+jobs:
+  aws:
+    strategy:
+      fail-fast: true
+      matrix:
+        multi: [a, b, c, d, e, f, g, h, i, j]
+    permissions:
+      id-token: write
+      contents: read
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
+        with:
+          persist-credentials: false
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@00943011d9042930efac3dcd3a170e4273319bc8 # v5.1.0
+        with:
+          aws-region: ap-northeast-1
+          role-to-assume: ${{ secrets.AWS_ROLE_TO_ASSUME }}
+          role-session-name: GitHubActions-${{ github.run_id }}
+          role-duration-seconds: 900 # minimum: 900sec, maximum: iam role session duration
+
 ```
 
 ## Permissions
