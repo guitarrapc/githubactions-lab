@@ -4239,6 +4239,12 @@ uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
 
 </details>
 
+Following is an example of using pinned sha in your workflow.
+
+```yaml
+# .github/workflows/pin-sha.yaml
+```
+
 ---
 
 # Cheat Sheet
