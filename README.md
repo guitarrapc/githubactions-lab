@@ -176,8 +176,8 @@ A quick comparison table of key features across CI platforms:
 | Trigger Push & PR | ✔️ | ❌ | ✔️ | ⚠️ Separate |
 | Reusable workflows | ✔️ Multiple | ✔️ | ✔️ | ⚠️ Complex |
 | Path filter | ✔️ Built-in | ❌ | ✔️ Built-in | ❌ |
-| Concurrency control | ✔️ Built-in | ✔️ | ❌ | ❌ |
-| Re-run failed jobs | ✔️ | ✔️ | ⚠️ Limited | ✔️ |
+| Concurrency control | ✔️ Built-in | ✔️ | ✔️ Stage-level | ❌ |
+| Re-run failed jobs | ✔️ | ✔️ | ✔️ Single stage | ✔️ |
 | **Security** |
 | Fork PR handling | ✔️ Approved | ⚠️ Limited | ✔️ | ❌ |
 | Secrets management | ✔️ 3 scopes | ✔️ Context | ✔️ | ✔️ |
@@ -296,14 +296,14 @@ Filter workflow execution based on changed file paths:
 
 - ✔️ **GitHub Actions**: Built-in [concurrency control](https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#concurrency) with `cancel-in-progress`. Alternative: community actions ([workflow-run-cleanup-action](https://github.com/marketplace/actions/workflow-run-cleanup-action), etc.)
 - ✔️ **CircleCI**: Built-in redundant build cancellation
-- ❌ **Azure Pipeline**: No built-in support
+- ✔️ **Azure Pipeline**: [Stage-level concurrency](https://learn.microsoft.com/en-us/azure/devops/release-notes/features-timeline) (available since 2024 Q3)
 - ❌ **Jenkins**: No built-in support; requires manual implementation
 
 ### Rerun failed workflow
 
 - ✔️ **GitHub Actions**: Re-run `whole workflow`, `single job`, or `failed jobs only`
 - ✔️ **CircleCI**: Re-run `whole workflow` or `failed jobs only`. Also supports [automatic step reruns](https://circleci.com/docs/configuration-reference/#automatic-step-reruns) with `max_auto_reruns` and configurable delays
-- ⚠️ **Azure Pipeline**: Cannot re-run individual stages or failed jobs only
+- ✔️ **Azure Pipeline**: [Re-run single stage](https://learn.microsoft.com/en-us/azure/devops/release-notes/features-timeline) (available since 2024 Q1), manual stage queuing supported
 - ✔️ **Jenkins**: Re-run `Job` or `Stage` (may be unstable)
 
 ### Skip CI and commit message
@@ -376,7 +376,7 @@ Secrets are automatically [masked in logs](https://docs.github.com/en/actions/us
 
 - ✔️ **GitHub Actions**: Offers [Single-CPU runners](https://docs.github.com/en/actions/reference/runners/github-hosted-runners#single-cpu-runners) and [Larger runners](https://docs.github.com/en/actions/using-github-hosted-runners/about-larger-runners/about-larger-runners) with configurable sizing and static IP addresses.
 - ✔️ **CircleCI**: Offers [resource classes](https://circleci.com/docs/resource-class-overview/) for different runner sizes.
-- ❌ **Azure Pipeline**: Fixed size only: `2Core CPU, 7GB RAM, 14GB SSD`.
+- ⚠️ **Azure Pipeline**: Fixed size for Microsoft-hosted agents: [Standard_DS2_v2](https://learn.microsoft.com/en-us/azure/devops/pipelines/agents/hosted#hardware) (2 vCPU, 7GB RAM, 14GB SSD). For flexible sizing, use [Managed DevOps Pools](https://learn.microsoft.com/en-us/azure/devops/managed-devops-pools/overview) or self-hosted agents.
 - ❌ **Jenkins**: Self-hosted solution; hosted runner concept not applicable.
 
 ---
