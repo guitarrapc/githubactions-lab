@@ -535,8 +535,16 @@ jobs:
     runs-on: ${{ matrix.runner }}
     timeout-minutes: 3
     steps:
-      - run: echo "This job runs on standard runner. ${{ runner.os }}/${{ runner.arch }}"
+      - run: echo "standard runner is suitable for build. ${{ runner.os }}/${{ runner.arch }}"
         shell: bash
+
+  single-cpu-runner:
+    permissions:
+      contents: read
+    runs-on: ubuntu-slim
+    timeout-minutes: 3
+    steps:
+      - run: echo "single-cpu runner is suitable for lightweight tasks, like linting or GitHub API operation. ${{ runner.os }}/${{ runner.arch }}"
 
 ```
 
@@ -3990,6 +3998,43 @@ You can detect potential injection attacks via context with [ghalint](https://gi
 
 ```yaml
 # .github/workflows/injection-attack-via-context.yaml
+
+name: injection attack via context
+on:
+  workflow_dispatch:
+    inputs:
+      dummy:
+        description: "A dummy input to trigger the workflow"
+        required: false
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+
+jobs:
+  sample:
+    permissions:
+      contents: read
+    runs-on: ubuntu-24.04
+    timeout-minutes: 3
+    steps:
+      - name: Avoid injection attack via PR title
+        run: echo "PR_TITLE=${PR_TITLE}"
+        env:
+          PR_TITLE: ${{ github.event.pull_request.title }}
+      - name: Avoid injection attack via branch name
+        run: echo "BRANCH_NAME=${BRANCH_NAME}"
+        env:
+          BRANCH_NAME: ${{ github.ref_name }}
+      - name: Avoid injection attack via commit message
+        run: echo "COMMIT_MESSAGE=${COMMIT_MESSAGE}"
+        env:
+          COMMIT_MESSAGE: ${{ github.event.head_commit.message }}
+      - name: Avoid injection attack via workflow input
+        run: echo "DUMMY_INPUT=${DUMMY_INPUT}"
+        env:
+          DUMMY_INPUT: ${{ inputs.dummy }}
+
 ```
 
 ## Lint GitHub Actions workflow
