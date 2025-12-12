@@ -1,0 +1,28 @@
+name: standard runner
+on:
+  workflow_dispatch:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+
+jobs:
+  standard-runner:
+    permissions:
+      contents: read
+    strategy:
+      matrix:
+        runner: ["ubuntu-24.04", "windows-2025", "macos-26"]
+    runs-on: ${{ matrix.runner }}
+    timeout-minutes: 3
+    steps:
+      - run: echo "standard runner is suitable for build. ${{ runner.os }}/${{ runner.arch }}"
+        shell: bash
+
+  single-cpu-runner:
+    permissions:
+      contents: read
+    runs-on: ubuntu-slim
+    timeout-minutes: 3
+    steps:
+      - run: echo "single-cpu runner is suitable for lightweight tasks, like linting or GitHub API operation. ${{ runner.os }}/${{ runner.arch }}"
