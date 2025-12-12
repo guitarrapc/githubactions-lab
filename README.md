@@ -943,7 +943,7 @@ If a workflow has no `on.workflow_call` section, it runs in parallel with other 
 See [workflow_call](#reusable-workflow) section for actual sample.
 
 > [!WARNING]
-> Avoid using the `workflow_run` event to control workflow execution order. As the [official documentation](https://docs.github.com/en/actions/reference/workflows-and-actions/events-that-trigger-workflows#workflow_run) mentions, running untrusted code on the workflow_run trigger may lead to security vulnerabilities. These vulnerabilities include cache poisoning and granting unintended access to write privileges or secrets.
+> Concider avoid using the `workflow_run` event to control workflow execution order. As the [official documentation](https://docs.github.com/en/actions/reference/workflows-and-actions/events-that-trigger-workflows#workflow_run) mentions, running untrusted code on the `workflow_run` trigger may lead to security vulnerabilities. These vulnerabilities include cache poisoning and granting unintended access to write privileges or secrets.
 
 ### Job execution order control with needs
 
