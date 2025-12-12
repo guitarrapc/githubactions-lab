@@ -4243,6 +4243,26 @@ Following is an example of using pinned sha in your workflow.
 
 ```yaml
 # .github/workflows/pin-sha.yaml
+
+name: pin sha
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+
+jobs:
+  pin-sha:
+    permissions:
+      contents: read
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      # Don't use a tag or branch, but specify the full sha instead
+      - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
+        with:
+          persist-credentials: false
+
 ```
 
 ---
