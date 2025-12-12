@@ -3993,7 +3993,7 @@ jobs:
 
 GitHub Actions context may be vulnerable to injection attacks if untrusted data is used. For example, if you use `${{ github.event.head_commit.message }}` directly in a shell command, an attacker could craft a commit message that includes shell commands, leading to arbitrary code execution.
 
-To mitigate this risk, avoid directly embedding untrusted data into shell commands or scripts. Instead, use an intermediate environment variable.
+To mitigate this risk, avoid directly embedding untrusted data into shell commands or scripts. Instead, [use an intermediate environment variable](https://docs.github.com/en/actions/reference/security/secure-use#use-an-action-instead-of-an-inline-script).
 
 You can detect potential injection attacks via context with [ghalint](https://github.com/suzuki-shunsuke/ghalint), [zizmor](https://github.com/woodruffw/zizmor), and others. See detail in [Lint GitHub Actions workflow](#lint-github-actions-workflow).
 
@@ -4037,6 +4037,15 @@ jobs:
           DUMMY_INPUT: ${{ inputs.dummy }}
 
 ```
+
+## Keep update the actions in your workflow
+
+[Dependabot](https://docs.github.com/en/actions/reference/security/secure-use#using-dependabot-version-updates-to-keep-actions-up-to-date), or Renovate, can automatically check for updates to the GitHub Actions used in your workflows. To enable Dependabot for GitHub Actions, create a `.github/dependabot.yaml` file.
+
+Here's some tips for configuring Dependabot for GitHub Actions.
+
+- Use cooldown period like `cooldown.default-days: 14` to avoid updating right after a new version is released. This gives time to monitor for any issues with the new version.
+- Use `ignore.dependency-name[].update-types` to control which types of updates to apply (e.g., `version-update:semver-patch` if you want to avoid patch version updates).
 
 ## Lint GitHub Actions workflow
 
@@ -4088,6 +4097,17 @@ jobs:
 
 ```
 
+## OIDC Connect to access external providers
+
+Since 2024 and later, many cloud providers and Programing language's package registries support OIDC (OpenID Connect) to authenticate GitHub Actions workflows. OIDC allows your workflow to securely access external resources without needing to store long-lived credentials like API keys or tokens in your repository secrets.
+
+To use OIDC in your GitHub Actions workflow, `permissions` must include `id-token: write`. Each resistry or cloud provider may have different actions to request OIDC token and different `audience` value. Please refer to the documentation of the respective provider for details. GitHub also provides [OIDC documentation](https://docs.github.com/en/actions/concepts/security/openid-connect) for more information.
+
+Following is an example of using OIDC to access AWS resources.
+
+```yaml
+# .github/workflows/aws-oidc-credential.yaml
+```
 
 ## Permissions
 
@@ -4160,10 +4180,12 @@ jobs:
 
 ## Pin Third-Party Actions to Commit SHA
 
-Several vulnerabilities in GitHub Actions have been identified due to the use of tags or version numbers. To mitigate these risks, always pin your actions to a specific commit SHA.
+Several vulnerabilities in GitHub Actions have been identified due to the use of tags or version numbers. To mitigate these risks, [always pin your actions to a specific commit SHA](https://docs.github.com/en/actions/reference/security/secure-use#using-third-party-actions).
 
 - There are several ways to find the commit SHA for a specific version of an action, I recommend using the [suzuki-shunsuke/pinact](https://github.com/suzuki-shunsuke/pinact).
 - Both Dependabot and Renovate can help you keep your actions up to date even pinned to a specific commit SHA.
+
+<details><summary>How to use pinact</summary>
 
 For example, instead of using action version like below:
 
@@ -4182,6 +4204,8 @@ Then action will be pinned to specific commit SHA like below:
 ```
 uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
 ```
+
+</details>
 
 ---
 
