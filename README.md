@@ -514,14 +514,8 @@ There are 3 types of GitHub hosted runners: Standard runners, Larger runners, an
 - Larger runners are suitable for resource-intensive jobs that require more CPU and RAM. (It's out of scope of this document.)
 - Self-hosted runners are runners that you set up and manage on your own infrastructure. You can customize the hardware and software configuration of self-hosted runners to meet your specific needs. (It's out of scope of this document.)
 
-### Standard runners
-
-Most GitHub Actions jobs run on GitHub hosted runners. These are virtual machines (VMs) that GitHub manages and maintains for you. Each time a job is triggered, a new VM is created, the job runs on it, and then the VM is destroyed.
-
-You can select `ubuntu-latest`, `windows-latest`, `macos-latest` or specific version like `ubuntu-24.04`, `windows-2025`, `macos-26` as runner type. It's specification is different by OS type and Public/Private repository. Please refer to [GitHub hosted runners](https://docs.github.com/en/actions/reference/runners/github-hosted-runners#supported-runners-and-hardware-resources) for details.
-
 ```yaml
-# .github/workflows/standard-runner.yaml
+# .github/workflows/runner-sizing.yaml
 
 name: standard runner
 on:
@@ -546,33 +540,17 @@ jobs:
 
 ```
 
+<details><summary>Click to show runner sizing example</summary>
+
+### Standard runners
+
+Most GitHub Actions jobs run on GitHub hosted runners. These are virtual machines (VMs) that GitHub manages and maintains for you. Each time a job is triggered, a new VM is created, the job runs on it, and then the VM is destroyed.
+
+You can select `ubuntu-latest`, `windows-latest`, `macos-latest` or specific version like `ubuntu-24.04`, `windows-2025`, `macos-26` as runner type. It's specification is different by OS type and Public/Private repository. Please refer to [GitHub hosted runners](https://docs.github.com/en/actions/reference/runners/github-hosted-runners#supported-runners-and-hardware-resources) for details.
+
 ### Single-CPU runners
 
 You can use [Single-CPU runners](https://docs.github.com/en/actions/reference/runners/github-hosted-runners#single-cpu-runners) to save minutes cost for jobs that do not require multiple CPUs. Single-CPU runners are available on `ubuntu-slim` and it's timeout is 15 minutes. `ubuntu-slim` runner is not a VM but a container-based runner with 1 vCPU and 5 GB RAM. It is suitable for lightweight jobs such as documentation generation, code linting, and static analysis.
-
-Following example shows how to use `ubuntu-slim` runner for single-CPU job.
-
-```yaml
-# .github/workflows/single-cpu-runner.yaml
-
-name: single cpu runner
-on:
-  workflow_dispatch:
-  push:
-    branches: ["main"]
-  pull_request:
-    branches: ["main"]
-
-jobs:
-  single-cpu-runner:
-    permissions:
-      contents: read
-    runs-on: ubuntu-slim
-    timeout-minutes: 3
-    steps:
-      - run: echo "This job runs on single-cpu runner. ${{ runner.os }}/${{ runner.arch }}"
-
-```
 
 ### Larger runners
 
@@ -591,6 +569,8 @@ If you want other specifications, you can create custom larger runner type. Foll
 ![](./images/larger-hosted-runners-spec.png)
 
 You can use larger runners in workflow by specifying `runs-on:` with larger name you specified.
+
+</details>
 
 ## Timeout
 
