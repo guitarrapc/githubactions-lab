@@ -557,7 +557,16 @@ jobs:
 
 Most GitHub Actions jobs run on GitHub hosted runners. These are virtual machines (VMs) that GitHub manages and maintains for you. Each time a job is triggered, a new VM is created, the job runs on it, and then the VM is destroyed.
 
-You can select `ubuntu-latest`, `windows-latest`, `macos-latest` or specific version like `ubuntu-24.04`, `windows-2025`, `macos-26` as runner type. It's specification is different by OS type and Public/Private repository. Please refer to [GitHub hosted runners](https://docs.github.com/en/actions/reference/runners/github-hosted-runners#supported-runners-and-hardware-resources) for details.
+You can select `ubuntu-latest`, `windows-latest`, `macos-latest` or specific version like `ubuntu-24.04`, `windows-2025`, `macos-26` as runner type. [Runner specification](https://docs.github.com/en/actions/reference/runners/github-hosted-runners#supported-runners-and-hardware-resources) is different by OS type and Public/Private repository.
+
+Also you can specify architecture like `x64` and `arm64`, see list on [docs](https://docs.github.com/en/actions/reference/runners/github-hosted-runners). For example...
+
+- Linux x86_64 is `ubuntu-24.04`
+- Linux ARM64 is `ubuntu-24.04-arm` (available for Public repository only)
+- Windows x86_64 is `windows-2025`
+- Windows ARM64 is `windows-11-arm` (available for Public repository only)
+- macOS x86_64 is `macos-15-intel`
+- macOS ARM64 is `macos-26`.
 
 ### Single-CPU runners
 
