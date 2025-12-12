@@ -2073,7 +2073,7 @@ jobs:
 
 ## Trigger branch push only but skip on tag push
 
-If you want to run a job only when pushing to a branch, and not for tag pushes.
+If you want to run a job only when pushing to a branch, and not for tag pushes. Just remove `tags` section from `on.push` or set negation pattern `!*`.
 
 ```yaml
 # .github/workflows/branch-push-only.yaml
