@@ -64,8 +64,6 @@ GitHub Actions research and test laboratory.
   - [GitHub Step Summary](#github-step-summary)
   - [PR info from Merge Commit](#pr-info-from-merge-commit)
   - [Reusable workflow](#reusable-workflow)
-  - [Telemetry for GitHub Workflow execution](#telemetry-for-github-workflow-execution)
-  - [Tool management in GitHub Actions with Aqua](#tool-management-in-github-actions-with-aqua)
   - [Workflow command](#workflow-command)
   - [YAML anchor](#yaml-anchor)
 - [Security](#security)
@@ -90,6 +88,8 @@ GitHub Actions research and test laboratory.
   - [GitHub Actions commit icon](#github-actions-commit-icon)
   - [Path for Downloaded Remote Actions](#path-for-downloaded-remote-actions)
   - [Stale Issue and PR close automation](#stale-issue-and-pr-close-automation)
+  - [Telemetry for GitHub Workflow execution](#telemetry-for-github-workflow-execution)
+  - [Tool management in GitHub Actions with Aqua](#tool-management-in-github-actions-with-aqua)
   - [Type converter with fromJson](#type-converter-with-fromjson)
   - [Want to get a list of GitHub Actions scheduled workflows](#want-to-get-a-list-of-github-actions-scheduled-workflows)
 
@@ -3712,102 +3712,6 @@ jobs:
 
 ```
 
-
-## Telemetry for GitHub Workflow execution
-
-GitHub Actions [runforesight/workflow-telemetry-action](https://github.com/runforesight/workflow-telemetry-action) offers workflow telemetry. Telemetry indicate which step consume much Execution Time, CPU, Memory and Network I/O. Default settings post telemetry result to PR comment and JOB Summary.
-
-
-To enable telemetry, set `runforesight/workflow-telemetry-action@v1` on the first step of your job, then action collect telemetry for later steps.
-
-```yaml
-# .github/workflows/actions-telemetry.yaml
-
-name: actions telemetry
-on:
-  workflow_dispatch:
-  push:
-    branches: ["main"]
-  pull_request:
-    branches: ["main"]
-
-jobs:
-  dotnet:
-    permissions:
-      contents: read
-    runs-on: ubuntu-24.04
-    timeout-minutes: 3
-    steps:
-      - name: Collect actions workflow telemetry
-        uses: runforesight/workflow-telemetry-action@94c3c3d9567a0205de6da68a76c428ce4e769af1 # v2.0.0
-        with:
-          theme: dark # or light. dark generate charts compatible with Github dark mode.
-          comment_on_pr: false # post telemetry to PR comment. It won't override existing comment, therefore too noisy for PR.
-      - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
-        with:
-          persist-credentials: false
-      - uses: actions/setup-dotnet@d4c94342e560b34958eacfc5d055d21461ed1c5d # v5.0.0
-        with:
-          dotnet-version: 10.0.x
-      - name: dotnet build
-        run: dotnet build ./src/dotnet -c Debug
-      - name: dotnet test
-        run: dotnet test ./src/dotnet -c Debug --logger GitHubActions --logger "console;verbosity=normal"
-      - name: dotnet publish
-        run: dotnet publish ./src/dotnet/ -c Debug
-
-```
-
-Telemetry is posted to [Job Summary](https://github.com/guitarrapc/githubactions-lab/actions/runs/6266182534).
-
-![GitHub Workflow Telemetry in GitHub Step Summary](./images/workflow-telemetry-action-githubstepsummary.png)
-
-Also if workflow ran with `pull_request` trigger, then you can enable [PR comment](https://github.com/guitarrapc/githubactions-lab/pull/109) by default or set `comment_on_pr: true`.
-
-![GitHub Workflow Telemetry PR Comment](./images/workflow-telemetry-action-prcomment.png)
-
-## Tool management in GitHub Actions with Aqua
-
-[Aqua](https://aquaproj.github.io/) is a tool manager and useful for GitHub Actions. Aqua can install and manage multiple tools in your GitHub Actions workflow. Aqua uses `aqua.yaml` file to define which tools and versions to install. Just calling `aqua install` command will install all tools defined in `aqua.yaml`, you don't need to install each tool one by one.
-
-```yaml
-# .github/workflows/actionlint.yaml
-
-name: actionlint
-on:
-  workflow_dispatch:
-  pull_request:
-    branches: ["main"]
-    paths:
-      - ".github/workflows/**"
-  schedule:
-    - cron: "0 0 * * *"
-
-jobs:
-  lint:
-    permissions:
-      contents: read
-    runs-on: ubuntu-24.04
-    timeout-minutes: 5
-    steps:
-      - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
-        with:
-          persist-credentials: false
-      - uses: aquaproj/aqua-installer@9ebf656952a20c45a5d66606f083ff34f58b8ce0 # v4.0.0
-        with:
-          aqua_version: v2.43.1
-      # github workflows/action's Static Checker
-      - name: Run actionlint
-        run: actionlint -color -oneline
-      # checkout's persist-credentials: false checker
-      - name: Run ghalint
-        run: ghalint run
-      # A static analysis tool for GitHub Actions
-      - name: Run zizmor
-        run: docker run -t -v .:/github ghcr.io/woodruffw/zizmor:1.5.2 /github --min-severity medium
-
-```
-
 ## Workflow command
 
 GitHub Actions support [Workflow commands](https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-commands) to interact with workflow runner. You can use workflow commands to set output parameters, add debug messages to the output logs, and other tasks.
@@ -4586,6 +4490,101 @@ jobs:
           exempt-issue-labels: "no-stale"
           exempt-pr-labels: "no-stale"
           remove-stale-when-updated: true
+
+```
+
+## Telemetry for GitHub Workflow execution
+
+GitHub Actions [runforesight/workflow-telemetry-action](https://github.com/runforesight/workflow-telemetry-action) offers workflow telemetry. Telemetry indicate which step consume much Execution Time, CPU, Memory and Network I/O. Default settings post telemetry result to PR comment and JOB Summary.
+
+
+To enable telemetry, set `runforesight/workflow-telemetry-action@v1` on the first step of your job, then action collect telemetry for later steps.
+
+```yaml
+# .github/workflows/actions-telemetry.yaml
+
+name: actions telemetry
+on:
+  workflow_dispatch:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+
+jobs:
+  dotnet:
+    permissions:
+      contents: read
+    runs-on: ubuntu-24.04
+    timeout-minutes: 3
+    steps:
+      - name: Collect actions workflow telemetry
+        uses: runforesight/workflow-telemetry-action@94c3c3d9567a0205de6da68a76c428ce4e769af1 # v2.0.0
+        with:
+          theme: dark # or light. dark generate charts compatible with Github dark mode.
+          comment_on_pr: false # post telemetry to PR comment. It won't override existing comment, therefore too noisy for PR.
+      - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
+        with:
+          persist-credentials: false
+      - uses: actions/setup-dotnet@d4c94342e560b34958eacfc5d055d21461ed1c5d # v5.0.0
+        with:
+          dotnet-version: 10.0.x
+      - name: dotnet build
+        run: dotnet build ./src/dotnet -c Debug
+      - name: dotnet test
+        run: dotnet test ./src/dotnet -c Debug --logger GitHubActions --logger "console;verbosity=normal"
+      - name: dotnet publish
+        run: dotnet publish ./src/dotnet/ -c Debug
+
+```
+
+Telemetry is posted to [Job Summary](https://github.com/guitarrapc/githubactions-lab/actions/runs/6266182534).
+
+![GitHub Workflow Telemetry in GitHub Step Summary](./images/workflow-telemetry-action-githubstepsummary.png)
+
+Also if workflow ran with `pull_request` trigger, then you can enable [PR comment](https://github.com/guitarrapc/githubactions-lab/pull/109) by default or set `comment_on_pr: true`.
+
+![GitHub Workflow Telemetry PR Comment](./images/workflow-telemetry-action-prcomment.png)
+
+## Tool management in GitHub Actions with Aqua
+
+[Aqua](https://aquaproj.github.io/) is a tool manager and useful for GitHub Actions. Aqua can install and manage multiple tools in your GitHub Actions workflow. Aqua uses `aqua.yaml` file to define which tools and versions to install. Just calling `aqua install` command will install all tools defined in `aqua.yaml`, you don't need to install each tool one by one.
+
+```yaml
+# .github/workflows/actionlint.yaml
+
+name: actionlint
+on:
+  workflow_dispatch:
+  pull_request:
+    branches: ["main"]
+    paths:
+      - ".github/workflows/**"
+  schedule:
+    - cron: "0 0 * * *"
+
+jobs:
+  lint:
+    permissions:
+      contents: read
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
+        with:
+          persist-credentials: false
+      - uses: aquaproj/aqua-installer@9ebf656952a20c45a5d66606f083ff34f58b8ce0 # v4.0.0
+        with:
+          aqua_version: v2.43.1
+      # github workflows/action's Static Checker
+      - name: Run actionlint
+        run: actionlint -color -oneline
+      # checkout's persist-credentials: false checker
+      - name: Run ghalint
+        run: ghalint run
+      # A static analysis tool for GitHub Actions
+      - name: Run zizmor
+        run: docker run -t -v .:/github ghcr.io/woodruffw/zizmor:1.5.2 /github --min-severity medium
 
 ```
 
