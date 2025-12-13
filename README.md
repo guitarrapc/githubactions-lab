@@ -4194,7 +4194,7 @@ Action folder naming also follows this rule.
 When you want to see hosted runner information, here is a sample.
 
 ```yaml
-# .github/workflows/actionrunner-info.yaml
+# .github/workflows/action-runner-info.yaml
 
 name: action runner info
 on:
@@ -4641,11 +4641,11 @@ Following is the result of the script.
 
 | Workflow | File Name | Schedule (UTC) | Last Commit by |
 | ---- | ---- | ---- | ---- |
-| action runner info | .github/workflows/actionrunner-info.yaml | 0 0 * * * | guitarrapc |
+| action runner info | .github/workflows/action-runner-info.yaml | 0 0 * * 0 | guitarrapc |
 | actionlint | .github/workflows/actionlint.yaml | 0 0 * * * | guitarrapc |
-| auto dump context | .github/workflows/auto-dump-context.yaml | 0 0 * * * | guitarrapc |
-| context github | .github/workflows/context-github.yaml | 0 0 * * * | guitarrapc |
+| auto dump context | .github/workflows/auto-dump-context.yaml | 0 0 * * 0 | guitarrapc |
+| context github | .github/workflows/context-github.yaml | 0 0 * * 1 | guitarrapc |
 | dotnet lint | .github/workflows/dotnet-lint.yaml | 0 1 * * 1 | guitarrapc |
-| dump context | .github/workflows/dump-context.yaml | 0 0 * * * | guitarrapc |
-| schedule job | .github/workflows/schedule-job.yaml | 0 0 * * * | guitarrapc |
+| dump context | .github/workflows/dump-context.yaml | 0 0 * * 1 | guitarrapc |
+| schedule job | .github/workflows/schedule-job.yaml | 0 0 * * 1 | guitarrapc |
 | stale | .github/workflows/stale.yaml | 0 0 * * * | guitarrapc |
