@@ -48,18 +48,17 @@ runs:
       env:
         GIT_REF: ${{ inputs.ref }}
       run: |
+        if [[ "${{ steps.diff.outputs.changed }}" == "0" ]]; then
+          echo "No changes."
+          echo "changed=0" | tee -a "${GITHUB_OUTPUT}"
+          echo "Successfully completed."
+          exit 0
+        fi
+
         max_retries=3
         retry_count=0
-        
+
         while [ $retry_count -lt $max_retries ]; do
-          git add -N .
-          if git diff --name-only --exit-code; then
-            echo "No changes."
-            echo "changed=0" | tee -a "${GITHUB_OUTPUT}"
-            echo "Successfully completed."
-            exit 0
-          fi
-        
           echo "try 'git push' ($((retry_count + 1))/${max_retries}) ..."
           if git push origin "$GIT_REF"; then
             echo "Push succeeded."
@@ -76,6 +75,6 @@ runs:
           fi
           ((retry_count++))
         done
-        
+
         echo "max retry reached, but failed to push."
         exit 1
