@@ -34,10 +34,6 @@ jobs:
           ref: ${{ (startsWith(github.event_name, 'pull_request') && github.event.action != 'closed') && github.head_ref || (startsWith(github.event_name, 'pull_request') && github.event.action == 'closed') && github.base_ref || github.ref_type == 'tag' && github.event.repository.default_branch || github.ref_name }}
       - name: file names
         id: file
-        env:
-          EVENT_NAME: ${{ github.event_name }}
-          EVENT_ACTION: ${{ github.event.action }}
-          REF_TYPE: ${{ github.ref_type }}
         run: |
           ACTION_PART=""
           if [ -n "$EVENT_ACTION" ]; then
@@ -51,6 +47,10 @@ jobs:
 
           FILENAME="${EVENT_NAME}${ACTION_PART}${REF_PART}"
           echo "name=$FILENAME" | tee -a "$GITHUB_OUTPUT"
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+          EVENT_ACTION: ${{ github.event.action }}
+          REF_TYPE: ${{ github.ref_type }}
       - name: Dump environment
         shell: bash
         run: |
