@@ -50,32 +50,27 @@ runs:
       run: |
         max_retries=3
         retry_count=0
-        
+
         while [ $retry_count -lt $max_retries ]; do
-          git add -N .
-          if git diff --name-only --exit-code; then
-            echo "No changes."
-            echo "changed=0" | tee -a "${GITHUB_OUTPUT}"
-            echo "Successfully completed."
-            exit 0
-          fi
-        
           echo "try 'git push' ($((retry_count + 1))/${max_retries}) ..."
           if git push origin "$GIT_REF"; then
             echo "Push succeeded."
             exit 0
-          else
+          fi
+
+          # Push failed, increment retry count
+          ((retry_count++))
+
+          # If we haven't exceeded max retries, try to rebase and retry
+          if [ $retry_count -lt $max_retries ]; then
             echo "Failed to push, try 'git pull --rebase' to resolve ..."
-            if git pull origin "$GIT_REF" --rebase; then
-              echo "Rebase succeeded, will retry push."
-              # Do NOT exit here, continue loop to retry push
-            else
+            if ! git pull origin "$GIT_REF" --rebase; then
               echo "'git pull --rebase' has problem, you need resolve conflict ..."
               exit 1
             fi
+            echo "Rebase succeeded, will retry push."
           fi
-          ((retry_count++))
         done
-        
+
         echo "max retry reached, but failed to push."
         exit 1
