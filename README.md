@@ -781,8 +781,6 @@ Use `toJson(<CONTEXT>)` To show context values in json.
 
 name: dump context
 on:
-  branch_protection_rule:
-    types: [created, edited, deleted]
   issues:
     types: [opened, transferred, closed]
   issue_comment:
