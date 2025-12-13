@@ -725,7 +725,7 @@ on:
     branches: ["main"]
     types: [opened, synchronize, reopened, closed]
   schedule:
-    - cron: "0 0 * * *"
+    - cron: "0 0 * * 1"
   workflow_dispatch:
 
 jobs:
@@ -781,6 +781,10 @@ Use `toJson(<CONTEXT>)` To show context values in json.
 
 name: dump context
 on:
+  branch_protection_rule:
+    types: [created, edited, deleted]
+  issues:
+    types: [opened, transferred, closed]
   issue_comment:
     types: [created]
   push:
@@ -792,8 +796,10 @@ on:
   pull_request_target: # zizmor: ignore[dangerous-triggers]
     branches: ["main"]
     types: [opened, synchronize, reopened, closed]
+  release:
+    types: [created]
   schedule:
-    - cron: "0 0 * * *"
+    - cron: "0 0 * * 1"
   workflow_dispatch:
 
 jobs:
@@ -1963,7 +1969,7 @@ Don't forget to prepend `refs/heads/` to your branch.
 name: schedule job
 on:
   schedule:
-    - cron: "0 0 * * *"
+    - cron: "0 0 * * 1"
 
 jobs:
   job:
@@ -4204,7 +4210,7 @@ on:
   pull_request:
     branches: ["main"]
   schedule:
-    - cron: "0 0 * * *"
+    - cron: "0 0 * * 0"
 
 jobs:
   info:
