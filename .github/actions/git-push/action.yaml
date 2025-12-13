@@ -48,13 +48,6 @@ runs:
       env:
         GIT_REF: ${{ inputs.ref }}
       run: |
-        if [[ "${{ steps.diff.outputs.changed }}" == "0" ]]; then
-          echo "No changes."
-          echo "changed=0" | tee -a "${GITHUB_OUTPUT}"
-          echo "Successfully completed."
-          exit 0
-        fi
-
         max_retries=3
         retry_count=0
 
@@ -63,17 +56,20 @@ runs:
           if git push origin "$GIT_REF"; then
             echo "Push succeeded."
             exit 0
-          else
+          fi
+
+          # Push failed, increment retry count
+          ((retry_count++))
+
+          # If we haven't exceeded max retries, try to rebase and retry
+          if [ $retry_count -lt $max_retries ]; then
             echo "Failed to push, try 'git pull --rebase' to resolve ..."
-            if git pull origin "$GIT_REF" --rebase; then
-              echo "Rebase succeeded, will retry push."
-              # Do NOT exit here, continue loop to retry push
-            else
+            if ! git pull origin "$GIT_REF" --rebase; then
               echo "'git pull --rebase' has problem, you need resolve conflict ..."
               exit 1
             fi
+            echo "Rebase succeeded, will retry push."
           fi
-          ((retry_count++))
         done
 
         echo "max retry reached, but failed to push."
