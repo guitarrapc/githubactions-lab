@@ -122,29 +122,23 @@ GitHub Actions research and test laboratory.
   - CircleCI provides [Dynamic Config](https://circleci.com/docs/dynamic-config) with setup workflows, path filtering via [path-filtering orb](https://circleci.com/developer/orbs/orb/circleci/path-filtering), and [continuation orb](https://circleci.com/developer/orbs/orb/circleci/continuation). Enabled by default for projects created after Dec 1, 2023.
   - GitHub Actions offers similar functionality: Reusable Workflow / Composite Actions with inputs parameter, and conditional workflow execution.
 
----
+## Plan limitation
 
-# Plan limitation
-
-## GitHub Team Plan, GitHub Pro Plan
+### GitHub Team Plan, GitHub Pro Plan
 
 - [ ] `Environment > Deployment protection rules` is not allowed in GitHub Team/Pro Plan. You cannot use `Required reviewers` (Approvabl) and `Wait timer`. GitHub Enterprise Plan is required to use these features in private repository.
+
+<details><summary>Click to show details</summary>
 
 **Private Repository**
 
 Missing `Required reviewers` and `Wait timer` for Environment protection rules.
 
-<details><summary>Click to show screenshot</summary>
-
 ![Environment Private Repository](./images/environment-private-repo.png)
-
-</details>
 
 **Public Repository**
 
 Can use `Required reviewers` and `Wait timer` for Environment protection rules.
-
-<details><summary>Click to show screenshot</summary>
 
 ![Environment Public Repository](./images/environment-public-repo.png)
 
@@ -194,8 +188,6 @@ A quick comparison table of key features across CI platforms:
 | Skip CI keywords | ✔️ 5 types | ✔️ 2 types | ✔️ 3+ types | ⚠️ Plugin |
 
 **Legend:** ✔️ Full support | ⚠️ Limited/Partial | ❌ Not supported | N/A Not applicable
-
----
 
 ## Core Workflow Features
 
