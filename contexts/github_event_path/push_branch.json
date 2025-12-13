@@ -1,25 +1,25 @@
 {
-  "after": "f272267517c9f93e0ccfcbc734174d7a1dd91e34",
+  "after": "338ed536e28c8dde5898418f368a7c9741e77642",
   "base_ref": null,
-  "before": "07816278a88486ebd1c5b2efc3a85c795dfa136a",
+  "before": "8cf4cc0ccffbae8f9fb1c247cb2241f2a949e2bf",
   "commits": [
     {
       "author": {
-        "email": "49699333+dependabot[bot]@users.noreply.github.com",
-        "name": "dependabot[bot]",
-        "username": "dependabot[bot]"
+        "email": "3856350+guitarrapc@users.noreply.github.com",
+        "name": "Ikiru Yoshizaki",
+        "username": "guitarrapc"
       },
       "committer": {
-        "email": "noreply@github.com",
-        "name": "GitHub",
-        "username": "web-flow"
+        "email": "3856350+guitarrapc@users.noreply.github.com",
+        "name": "Ikiru Yoshizaki",
+        "username": "guitarrapc"
       },
       "distinct": false,
-      "id": "ba72cdcfba699996aec67a3cfdfd0db58848d40e",
-      "message": "chore(deps): bump actions/checkout from 4.2.2 to 5.0.0\n\nBumps [actions/checkout](https://github.com/actions/checkout) from 4.2.2 to 5.0.0.\n- [Release notes](https://github.com/actions/checkout/releases)\n- [Changelog](https://github.com/actions/checkout/blob/main/CHANGELOG.md)\n- [Commits](https://github.com/actions/checkout/compare/11bd71901bbe5b1630ceea73d27597364c9af683...08c6903cd8c0fde910a37f88322edcfb5dd907a8)\n\n---\nupdated-dependencies:\n- dependency-name: actions/checkout\n  dependency-version: 5.0.0\n  dependency-type: direct:production\n  update-type: version-update:semver-major\n...\n\nSigned-off-by: dependabot[bot] <support@github.com>",
-      "timestamp": "2025-08-12T03:06:42Z",
-      "tree_id": "8979574e9ed66ce99a5292bbf8e743d20b6eaa9c",
-      "url": "https://github.com/guitarrapc/githubactions-lab/commit/ba72cdcfba699996aec67a3cfdfd0db58848d40e"
+      "id": "8a9a9fb1d96b3aa8c1586ea13adf71ba1385f5f8",
+      "message": "ci: fix git push",
+      "timestamp": "2025-12-14T00:25:20+09:00",
+      "tree_id": "eaec18880c29d779efd76bbe2ea6186396f47579",
+      "url": "https://github.com/guitarrapc/githubactions-lab/commit/8a9a9fb1d96b3aa8c1586ea13adf71ba1385f5f8"
     },
     {
       "author": {
@@ -28,88 +28,16 @@
         "username": "guitarrapc"
       },
       "committer": {
-        "email": "noreply@github.com",
-        "name": "GitHub",
-        "username": "web-flow"
-      },
-      "distinct": false,
-      "id": "0c4acca3a5cafb83f289f1d101be348fadafb47d",
-      "message": "Merge branch 'main' into dependabot/github_actions/actions/checkout-5.0.0",
-      "timestamp": "2025-08-12T12:11:34+09:00",
-      "tree_id": "f5739b8b1f083701a2339fab01db89d52d035ff7",
-      "url": "https://github.com/guitarrapc/githubactions-lab/commit/0c4acca3a5cafb83f289f1d101be348fadafb47d"
-    },
-    {
-      "author": {
-        "email": "41898282+github-actions[bot]@users.noreply.github.com",
-        "name": "github-actions[bot]",
-        "username": "github-actions[bot]"
-      },
-      "committer": {
-        "email": "41898282+github-actions[bot]@users.noreply.github.com",
-        "name": "github-actions[bot]",
-        "username": "github-actions[bot]"
-      },
-      "distinct": false,
-      "id": "1bf857562fe18a45adc23fb5474f2696b537471d",
-      "message": "[auto commit] update context (workflow=auto dump context, event=pull_request, action=synchronize)",
-      "timestamp": "2025-08-12T03:12:00Z",
-      "tree_id": "5e4785b84be764a169abcd26f9205f090e206490",
-      "url": "https://github.com/guitarrapc/githubactions-lab/commit/1bf857562fe18a45adc23fb5474f2696b537471d"
-    },
-    {
-      "author": {
-        "email": "41898282+github-actions[bot]@users.noreply.github.com",
-        "name": "github-actions[bot]",
-        "username": "github-actions[bot]"
-      },
-      "committer": {
-        "email": "41898282+github-actions[bot]@users.noreply.github.com",
-        "name": "github-actions[bot]",
-        "username": "github-actions[bot]"
-      },
-      "distinct": false,
-      "id": "6cd238bf7421eb8306069657c86af69170fac9e5",
-      "message": "[auto commit] update context (workflow=auto dump context, event=pull_request_target, action=synchronize)",
-      "timestamp": "2025-08-12T03:12:39Z",
-      "tree_id": "94be0d350d3c7f427b17207a8312ac94f8ae61a1",
-      "url": "https://github.com/guitarrapc/githubactions-lab/commit/6cd238bf7421eb8306069657c86af69170fac9e5"
-    },
-    {
-      "author": {
-        "email": "41898282+github-actions[bot]@users.noreply.github.com",
-        "name": "github-actions[bot]",
-        "username": "github-actions[bot]"
-      },
-      "committer": {
-        "email": "41898282+github-actions[bot]@users.noreply.github.com",
-        "name": "github-actions[bot]",
-        "username": "github-actions[bot]"
-      },
-      "distinct": false,
-      "id": "feca01bc3f8cb6847ffcbe588779168291f4b2c7",
-      "message": "[auto commit] Embedded code (workflow=auto doc)",
-      "timestamp": "2025-08-12T03:13:08Z",
-      "tree_id": "c2fbdeac579128f79e8a2c1e4986da851d406f37",
-      "url": "https://github.com/guitarrapc/githubactions-lab/commit/feca01bc3f8cb6847ffcbe588779168291f4b2c7"
-    },
-    {
-      "author": {
         "email": "3856350+guitarrapc@users.noreply.github.com",
         "name": "Ikiru Yoshizaki",
         "username": "guitarrapc"
       },
-      "committer": {
-        "email": "noreply@github.com",
-        "name": "GitHub",
-        "username": "web-flow"
-      },
       "distinct": false,
-      "id": "7252e0f75c1d830b3f7b6542a4039669e1733ea6",
-      "message": "Update remote-actions-download-path.yaml",
-      "timestamp": "2025-08-12T12:14:05+09:00",
-      "tree_id": "dfc633d3f836f51d7fa2135a72c1ce37d3dce819",
-      "url": "https://github.com/guitarrapc/githubactions-lab/commit/7252e0f75c1d830b3f7b6542a4039669e1733ea6"
+      "id": "d2d1274c4e364a0a0f6463c2befe8777bf7fcc8b",
+      "message": "fix: logic",
+      "timestamp": "2025-12-14T00:27:52+09:00",
+      "tree_id": "55fa7b47cf6e8fe366799ddff827d6bf856df66a",
+      "url": "https://github.com/guitarrapc/githubactions-lab/commit/d2d1274c4e364a0a0f6463c2befe8777bf7fcc8b"
     },
     {
       "author": {
@@ -123,47 +51,47 @@
         "username": "github-actions[bot]"
       },
       "distinct": false,
-      "id": "67c27151707b0b052825c63ab391afb6502af9eb",
-      "message": "[auto commit] update context (workflow=auto dump context, event=pull_request, action=synchronize)",
-      "timestamp": "2025-08-12T03:14:21Z",
-      "tree_id": "36b5152c417e122cc3813cf5d8cfe426492a46da",
-      "url": "https://github.com/guitarrapc/githubactions-lab/commit/67c27151707b0b052825c63ab391afb6502af9eb"
-    },
-    {
-      "author": {
-        "email": "41898282+github-actions[bot]@users.noreply.github.com",
-        "name": "github-actions[bot]",
-        "username": "github-actions[bot]"
-      },
-      "committer": {
-        "email": "41898282+github-actions[bot]@users.noreply.github.com",
-        "name": "github-actions[bot]",
-        "username": "github-actions[bot]"
-      },
-      "distinct": false,
-      "id": "3c483c4b14685199828c79e80aeee6a19f05fec2",
-      "message": "[auto commit] update context (workflow=auto dump context, event=pull_request_target, action=synchronize)",
-      "timestamp": "2025-08-12T03:15:04Z",
-      "tree_id": "6cdc061bf21882674060d799f2c460bac8d0b948",
-      "url": "https://github.com/guitarrapc/githubactions-lab/commit/3c483c4b14685199828c79e80aeee6a19f05fec2"
-    },
-    {
-      "author": {
-        "email": "41898282+github-actions[bot]@users.noreply.github.com",
-        "name": "github-actions[bot]",
-        "username": "github-actions[bot]"
-      },
-      "committer": {
-        "email": "41898282+github-actions[bot]@users.noreply.github.com",
-        "name": "github-actions[bot]",
-        "username": "github-actions[bot]"
-      },
-      "distinct": false,
-      "id": "b584893062dfd7c573c504b505bec75d107293b2",
+      "id": "09ac5b7aeecf691e8400a0db0d77d0438bfac0d1",
       "message": "[auto commit] Embedded code (workflow=auto doc)",
-      "timestamp": "2025-08-12T03:16:16Z",
-      "tree_id": "45e539edad3451f2a6a4aeec41ffd6be96b3385e",
-      "url": "https://github.com/guitarrapc/githubactions-lab/commit/b584893062dfd7c573c504b505bec75d107293b2"
+      "timestamp": "2025-12-13T15:28:52Z",
+      "tree_id": "3bda1810444b34de14d9966dba8efd23a8da30c4",
+      "url": "https://github.com/guitarrapc/githubactions-lab/commit/09ac5b7aeecf691e8400a0db0d77d0438bfac0d1"
+    },
+    {
+      "author": {
+        "email": "41898282+github-actions[bot]@users.noreply.github.com",
+        "name": "github-actions[bot]",
+        "username": "github-actions[bot]"
+      },
+      "committer": {
+        "email": "41898282+github-actions[bot]@users.noreply.github.com",
+        "name": "github-actions[bot]",
+        "username": "github-actions[bot]"
+      },
+      "distinct": false,
+      "id": "4d669a4c2a426608691c6c9a438661ee23cf9c7b",
+      "message": "[auto commit] update context (workflow=auto dump context, event=pull_request, action=opened)",
+      "timestamp": "2025-12-13T15:29:00Z",
+      "tree_id": "5c500c67cc2881c61d529b2988991a86bb77165e",
+      "url": "https://github.com/guitarrapc/githubactions-lab/commit/4d669a4c2a426608691c6c9a438661ee23cf9c7b"
+    },
+    {
+      "author": {
+        "email": "41898282+github-actions[bot]@users.noreply.github.com",
+        "name": "github-actions[bot]",
+        "username": "github-actions[bot]"
+      },
+      "committer": {
+        "email": "41898282+github-actions[bot]@users.noreply.github.com",
+        "name": "github-actions[bot]",
+        "username": "github-actions[bot]"
+      },
+      "distinct": false,
+      "id": "1daebb25102662933ea332c4b17125573d7ed2ca",
+      "message": "[auto commit] update context (workflow=auto dump context, event=pull_request_target, action=opened)",
+      "timestamp": "2025-12-13T15:29:36Z",
+      "tree_id": "a39869cca8a9b559e264a5fb013a386c4e542512",
+      "url": "https://github.com/guitarrapc/githubactions-lab/commit/1daebb25102662933ea332c4b17125573d7ed2ca"
     },
     {
       "author": {
@@ -177,14 +105,14 @@
         "username": "web-flow"
       },
       "distinct": true,
-      "id": "f272267517c9f93e0ccfcbc734174d7a1dd91e34",
-      "message": "Merge pull request #214 from guitarrapc/dependabot/github_actions/actions/checkout-5.0.0\n\nchore(deps): bump actions/checkout from 4.2.2 to 5.0.0",
-      "timestamp": "2025-08-12T12:16:55+09:00",
-      "tree_id": "45e539edad3451f2a6a4aeec41ffd6be96b3385e",
-      "url": "https://github.com/guitarrapc/githubactions-lab/commit/f272267517c9f93e0ccfcbc734174d7a1dd91e34"
+      "id": "338ed536e28c8dde5898418f368a7c9741e77642",
+      "message": "Merge pull request #268 from guitarrapc/git_push\n\nfix: git push not working",
+      "timestamp": "2025-12-14T00:30:55+09:00",
+      "tree_id": "a39869cca8a9b559e264a5fb013a386c4e542512",
+      "url": "https://github.com/guitarrapc/githubactions-lab/commit/338ed536e28c8dde5898418f368a7c9741e77642"
     }
   ],
-  "compare": "https://github.com/guitarrapc/githubactions-lab/compare/07816278a884...f272267517c9",
+  "compare": "https://github.com/guitarrapc/githubactions-lab/compare/8cf4cc0ccffb...338ed536e28c",
   "created": false,
   "deleted": false,
   "forced": false,
@@ -200,11 +128,11 @@
       "username": "web-flow"
     },
     "distinct": true,
-    "id": "f272267517c9f93e0ccfcbc734174d7a1dd91e34",
-    "message": "Merge pull request #214 from guitarrapc/dependabot/github_actions/actions/checkout-5.0.0\n\nchore(deps): bump actions/checkout from 4.2.2 to 5.0.0",
-    "timestamp": "2025-08-12T12:16:55+09:00",
-    "tree_id": "45e539edad3451f2a6a4aeec41ffd6be96b3385e",
-    "url": "https://github.com/guitarrapc/githubactions-lab/commit/f272267517c9f93e0ccfcbc734174d7a1dd91e34"
+    "id": "338ed536e28c8dde5898418f368a7c9741e77642",
+    "message": "Merge pull request #268 from guitarrapc/git_push\n\nfix: git push not working",
+    "timestamp": "2025-12-14T00:30:55+09:00",
+    "tree_id": "a39869cca8a9b559e264a5fb013a386c4e542512",
+    "url": "https://github.com/guitarrapc/githubactions-lab/commit/338ed536e28c8dde5898418f368a7c9741e77642"
   },
   "pusher": {
     "email": "3856350+guitarrapc@users.noreply.github.com",
@@ -257,7 +185,7 @@
     "issues_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/issues{/number}",
     "keys_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/keys{/key_id}",
     "labels_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/labels{/name}",
-    "language": "C#",
+    "language": "Go",
     "languages_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/languages",
     "license": {
       "key": "mit",
@@ -273,8 +201,8 @@
     "name": "githubactions-lab",
     "node_id": "MDEwOlJlcG9zaXRvcnkyNTc0NjU0Njg=",
     "notifications_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/notifications{?since,all,participating}",
-    "open_issues": 3,
-    "open_issues_count": 3,
+    "open_issues": 2,
+    "open_issues_count": 2,
     "owner": {
       "avatar_url": "https://avatars.githubusercontent.com/u/3856350?v=4",
       "email": "3856350+guitarrapc@users.noreply.github.com",
@@ -300,12 +228,12 @@
     },
     "private": false,
     "pulls_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls{/number}",
-    "pushed_at": 1754968615,
+    "pushed_at": 1765639855,
     "releases_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/releases{/id}",
-    "size": 3150,
+    "size": 4356,
     "ssh_url": "git@github.com:guitarrapc/githubactions-lab.git",
-    "stargazers": 50,
-    "stargazers_count": 50,
+    "stargazers": 54,
+    "stargazers_count": 54,
     "stargazers_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/stargazers",
     "statuses_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/statuses/{sha}",
     "subscribers_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/subscribers",
@@ -317,11 +245,11 @@
       "github-actions"
     ],
     "trees_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/git/trees{/sha}",
-    "updated_at": "2025-08-12T03:06:17Z",
+    "updated_at": "2025-12-13T15:18:39Z",
     "url": "https://api.github.com/repos/guitarrapc/githubactions-lab",
     "visibility": "public",
-    "watchers": 50,
-    "watchers_count": 50,
+    "watchers": 54,
+    "watchers_count": 54,
     "web_commit_signoff_required": false
   },
   "sender": {
