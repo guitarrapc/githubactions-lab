@@ -1,5 +1,5 @@
 {
-  "schedule": "0 0 * * *",
+  "schedule": "0 0 * * 0",
   "repository": {
     "allow_forking": true,
     "archive_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/{archive_format}{/ref}",
@@ -46,7 +46,7 @@
     "issues_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/issues{/number}",
     "keys_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/keys{/key_id}",
     "labels_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/labels{/name}",
-    "language": "C#",
+    "language": "Go",
     "languages_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/languages",
     "license": {
       "key": "mit",
@@ -61,8 +61,8 @@
     "name": "githubactions-lab",
     "node_id": "MDEwOlJlcG9zaXRvcnkyNTc0NjU0Njg=",
     "notifications_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/notifications{?since,all,participating}",
-    "open_issues": 6,
-    "open_issues_count": 6,
+    "open_issues": 2,
+    "open_issues_count": 2,
     "owner": {
       "avatar_url": "https://avatars.githubusercontent.com/u/3856350?v=4",
       "events_url": "https://api.github.com/users/guitarrapc/events{/privacy}",
@@ -86,11 +86,11 @@
     },
     "private": false,
     "pulls_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls{/number}",
-    "pushed_at": "2025-08-11T21:41:48Z",
+    "pushed_at": "2025-12-13T17:17:47Z",
     "releases_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/releases{/id}",
-    "size": 3148,
+    "size": 4365,
     "ssh_url": "git@github.com:guitarrapc/githubactions-lab.git",
-    "stargazers_count": 50,
+    "stargazers_count": 54,
     "stargazers_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/stargazers",
     "statuses_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/statuses/{sha}",
     "subscribers_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/subscribers",
@@ -102,11 +102,11 @@
       "github-actions"
     ],
     "trees_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/git/trees{/sha}",
-    "updated_at": "2025-08-11T00:03:46Z",
+    "updated_at": "2025-12-13T17:17:51Z",
     "url": "https://api.github.com/repos/guitarrapc/githubactions-lab",
     "visibility": "public",
-    "watchers": 50,
-    "watchers_count": 50,
+    "watchers": 54,
+    "watchers_count": 54,
     "web_commit_signoff_required": false
   },
   "workflow": ".github/workflows/auto-dump-context.yaml"
