@@ -29,4 +29,6 @@ jobs:
         run: ghalint run
       # A static analysis tool for GitHub Actions
       - name: Run zizmor
-        run: docker run -t -v .:/github ghcr.io/woodruffw/zizmor:1.5.2 /github --min-severity medium
+        run: docker run -t --env "GH_TOKEN=${GH_TOKEN}" -v .:/github ghcr.io/zizmorcore/zizmor:1.18.0 /github --min-severity medium --format github
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
