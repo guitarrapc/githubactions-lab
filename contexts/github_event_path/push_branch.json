@@ -1,7 +1,7 @@
 {
-  "after": "94701406a5a515f86aaa7ff574a4ea0338a0f4f4",
+  "after": "ee4f3eb87011223ff323359d96fe42067f0b1a1c",
   "base_ref": null,
-  "before": "fd9da32b506be5c3c84f09581ad796bf38500e4e",
+  "before": "452a5da2027743431d046cf6b95e918c2bb2968f",
   "commits": [
     {
       "author": {
@@ -10,19 +10,73 @@
         "username": "guitarrapc"
       },
       "committer": {
+        "email": "noreply@github.com",
+        "name": "GitHub",
+        "username": "web-flow"
+      },
+      "distinct": false,
+      "id": "dbdf1ca3aac8e1811b5b25883f16dd9797e90210",
+      "message": "Add pull-requests permission to lint job",
+      "timestamp": "2025-12-15T12:58:52+09:00",
+      "tree_id": "868cda00851a920ed6048c21b14e4d315e0d700a",
+      "url": "https://github.com/guitarrapc/githubactions-lab/commit/dbdf1ca3aac8e1811b5b25883f16dd9797e90210"
+    },
+    {
+      "author": {
+        "email": "41898282+github-actions[bot]@users.noreply.github.com",
+        "name": "github-actions[bot]",
+        "username": "github-actions[bot]"
+      },
+      "committer": {
+        "email": "41898282+github-actions[bot]@users.noreply.github.com",
+        "name": "github-actions[bot]",
+        "username": "github-actions[bot]"
+      },
+      "distinct": false,
+      "id": "537facfe57733798f5fc2bd3772f36a77cb53c4c",
+      "message": "[auto commit] update context (workflow=auto dump context, event=pull_request, action=opened)",
+      "timestamp": "2025-12-15T03:59:15Z",
+      "tree_id": "df5d16acec61185733b29834d036ca1c5f7076e9",
+      "url": "https://github.com/guitarrapc/githubactions-lab/commit/537facfe57733798f5fc2bd3772f36a77cb53c4c"
+    },
+    {
+      "author": {
+        "email": "41898282+github-actions[bot]@users.noreply.github.com",
+        "name": "github-actions[bot]",
+        "username": "github-actions[bot]"
+      },
+      "committer": {
+        "email": "41898282+github-actions[bot]@users.noreply.github.com",
+        "name": "github-actions[bot]",
+        "username": "github-actions[bot]"
+      },
+      "distinct": false,
+      "id": "9e15fcbd2897177ee6d80d35144bd44c7d07a36b",
+      "message": "[auto commit] update context (workflow=auto dump context, event=pull_request_target, action=opened)",
+      "timestamp": "2025-12-15T03:59:46Z",
+      "tree_id": "966434d1b1c47309931de7211207450cfe901965",
+      "url": "https://github.com/guitarrapc/githubactions-lab/commit/9e15fcbd2897177ee6d80d35144bd44c7d07a36b"
+    },
+    {
+      "author": {
         "email": "3856350+guitarrapc@users.noreply.github.com",
         "name": "Ikiru Yoshizaki",
         "username": "guitarrapc"
       },
+      "committer": {
+        "email": "noreply@github.com",
+        "name": "GitHub",
+        "username": "web-flow"
+      },
       "distinct": true,
-      "id": "94701406a5a515f86aaa7ff574a4ea0338a0f4f4",
-      "message": "chore: git commit",
-      "timestamp": "2025-12-14T02:17:25+09:00",
-      "tree_id": "417aa75a517d0f514bb1f2f25a05d4a016a788a4",
-      "url": "https://github.com/guitarrapc/githubactions-lab/commit/94701406a5a515f86aaa7ff574a4ea0338a0f4f4"
+      "id": "ee4f3eb87011223ff323359d96fe42067f0b1a1c",
+      "message": "Merge pull request #269 from guitarrapc/guitarrapc-patch-1\n\nAdd pull-requests permission to lint job",
+      "timestamp": "2025-12-15T16:50:16+09:00",
+      "tree_id": "966434d1b1c47309931de7211207450cfe901965",
+      "url": "https://github.com/guitarrapc/githubactions-lab/commit/ee4f3eb87011223ff323359d96fe42067f0b1a1c"
     }
   ],
-  "compare": "https://github.com/guitarrapc/githubactions-lab/compare/fd9da32b506b...94701406a5a5",
+  "compare": "https://github.com/guitarrapc/githubactions-lab/compare/452a5da20277...ee4f3eb87011",
   "created": false,
   "deleted": false,
   "forced": false,
@@ -33,16 +87,16 @@
       "username": "guitarrapc"
     },
     "committer": {
-      "email": "3856350+guitarrapc@users.noreply.github.com",
-      "name": "Ikiru Yoshizaki",
-      "username": "guitarrapc"
+      "email": "noreply@github.com",
+      "name": "GitHub",
+      "username": "web-flow"
     },
     "distinct": true,
-    "id": "94701406a5a515f86aaa7ff574a4ea0338a0f4f4",
-    "message": "chore: git commit",
-    "timestamp": "2025-12-14T02:17:25+09:00",
-    "tree_id": "417aa75a517d0f514bb1f2f25a05d4a016a788a4",
-    "url": "https://github.com/guitarrapc/githubactions-lab/commit/94701406a5a515f86aaa7ff574a4ea0338a0f4f4"
+    "id": "ee4f3eb87011223ff323359d96fe42067f0b1a1c",
+    "message": "Merge pull request #269 from guitarrapc/guitarrapc-patch-1\n\nAdd pull-requests permission to lint job",
+    "timestamp": "2025-12-15T16:50:16+09:00",
+    "tree_id": "966434d1b1c47309931de7211207450cfe901965",
+    "url": "https://github.com/guitarrapc/githubactions-lab/commit/ee4f3eb87011223ff323359d96fe42067f0b1a1c"
   },
   "pusher": {
     "email": "3856350+guitarrapc@users.noreply.github.com",
@@ -138,9 +192,9 @@
     },
     "private": false,
     "pulls_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls{/number}",
-    "pushed_at": 1765646248,
+    "pushed_at": 1765785016,
     "releases_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/releases{/id}",
-    "size": 4458,
+    "size": 4381,
     "ssh_url": "git@github.com:guitarrapc/githubactions-lab.git",
     "stargazers": 54,
     "stargazers_count": 54,
@@ -155,7 +209,7 @@
       "github-actions"
     ],
     "trees_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/git/trees{/sha}",
-    "updated_at": "2025-12-13T15:50:28Z",
+    "updated_at": "2025-12-14T00:10:41Z",
     "url": "https://api.github.com/repos/guitarrapc/githubactions-lab",
     "visibility": "public",
     "watchers": 54,
