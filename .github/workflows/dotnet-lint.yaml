@@ -11,6 +11,7 @@ jobs:
   lint_csharp:
     permissions:
       contents: read
+      pull-requests: write
     runs-on: ubuntu-24.04
     timeout-minutes: 10
     steps:
