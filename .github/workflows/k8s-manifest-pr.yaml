@@ -45,7 +45,8 @@ jobs:
             | sed -e "s|<git-sha>|${{ github.sha }}|g" \
             | sed -e "s|<git-branch>|${BRANCH}|g" \
             | sed -e "s|<git-link>|${GITHUB_PR_URL}|g" \
-            | sed -e "s|<build-id>|${{ github.run_id }}|g" > "${{ env.REPO_MANIFEST }}/${{ env.MANIFEST_DIR }}/all.yaml"
+            | sed -e "s|<build-id>|${{ github.run_id }}|g" \
+            | tee "${{ env.REPO_MANIFEST }}/${{ env.MANIFEST_DIR }}/all.yaml"
         env:
           BRANCH: ${{ github.head_ref }}
           GITHUB_PR_URL: ${{ github.event.pull_request.html_url }}
