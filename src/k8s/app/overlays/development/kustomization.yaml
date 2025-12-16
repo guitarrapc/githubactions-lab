@@ -1,5 +1,5 @@
 namespace: <namespace>
-bases:
+resources:
   - ../../base
   - ../../../frontend/overlays/development
   - ../../../redis-master/overlays/development
