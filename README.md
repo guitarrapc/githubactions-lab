@@ -67,6 +67,7 @@ GitHub Actions research and test laboratory.
   - [YAML anchor](#yaml-anchor)
 - [Security](#security)
   - [Checkout without persist-credentials](#checkout-without-persist-credentials)
+  - [GitHub App Token instead of Personal Access Token](#github-app-token-instead-of-personal-access-token)
   - [Injection attack via context](#injection-attack-via-context)
   - [Keep update the actions in your workflow](#keep-update-the-actions-in-your-workflow)
   - [Lint GitHub Actions workflow](#lint-github-actions-workflow)
@@ -3368,7 +3369,7 @@ If you want to add a job summary, use [GITHUB_STEP_SUMMARY](https://docs.github.
 ```yaml
 # .github/workflows/github-step-summary.yaml
 
-name: GitHub Step Summary
+name: gitHub step summary
 on:
   push:
     branches:
@@ -3898,6 +3899,53 @@ jobs:
           git remote rm origin
           git config --unset user.email
           git config --unset user.name
+```
+
+## GitHub App Token instead of Personal Access Token
+
+GitHub Actions provide a built-in token, `GITHUB_TOKEN`, most of actions can use it instead of Personal Access Token (PAT). However some actions may require PAT to access specific resources. In such cases, consider using a GitHub App Token instead of PAT for better security.
+
+Here are situations where GitHub App Token is needed instead of built-in `GITHUB_TOKEN`.
+
+- Trigger Workflow when creating a Pull Request. (Built-in token created PR never trigger workflow)
+- Access another private repository even if it is same organization/ownner.
+
+Following example use GitHub App Token via [actions/create-github-app-token](https://github.com/actions/create-github-app-token) action. See [official instruction](https://docs.github.com/en/enterprise-cloud@latest/apps/creating-github-apps/authenticating-with-a-github-app/making-authenticated-api-requests-with-a-github-app-in-a-github-actions-workflow) for how to create GitHub App, and authenticate with GitHub App.
+
+```yaml
+# .github/workflows/github-app-token.yaml
+
+name: github app token
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  push_manifest:
+    if: ${{ github.actor == github.repository_owner }} # because referencing secrets, restrict to owner.
+    permissions:
+      contents: read # no pull request permission
+    runs-on: ubuntu-24.04
+    timeout-minutes: 3
+    steps:
+      - uses: actions/create-github-app-token@29824e69f54612133e76f7eaac726eef6c875baf # v2.2.1
+        id: app-token
+        with:
+          app-id: ${{ secrets.SYNCED_ACTIONS_BOT_APPID }}
+          private-key: ${{ secrets.SYNCED_ACTIONS_BOT_PRIVATE_KEY }}
+          permission-pull-requests: read # grant read access to pull requests
+      - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
+        with:
+          persist-credentials: false
+      - name: List open PRs
+        run: gh pr list --state open --limit 5
+        env:
+          GH_TOKEN: ${{ steps.app-token.outputs.token }} # GitHub App token permission to read pull requests
+          GH_REPO: ${{ github.repository }}
+
 ```
 
 ## Injection attack via context
