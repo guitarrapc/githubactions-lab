@@ -3903,14 +3903,14 @@ jobs:
 
 ## GitHub App Token instead of Personal Access Token
 
-GitHub Actions provide a built-in token, `GITHUB_TOKEN`, most of actions can use it instead of Personal Access Token (PAT). However some actions may require PAT to access specific resources. In such cases, consider using a GitHub App Token instead of PAT for better security.
-
-Here are situations where GitHub App Token is needed instead of built-in `GITHUB_TOKEN`.
+GitHub Actions provide a built-in token, `GITHUB_TOKEN`, most of actions can use it instead of Personal Access Token (PAT). However some actions may require PAT to access specific resources. In such cases, consider using a GitHub App Token instead of PAT for better security. Here are situations where GitHub App Token is needed instead of built-in `GITHUB_TOKEN`.
 
 - Trigger Workflow when creating a Pull Request. (Built-in token created PR never trigger workflow)
 - Access another private repository even if it is same organization/ownner.
 
-Following example use GitHub App Token via [actions/create-github-app-token](https://github.com/actions/create-github-app-token) action. See [official instruction](https://docs.github.com/en/enterprise-cloud@latest/apps/creating-github-apps/authenticating-with-a-github-app/making-authenticated-api-requests-with-a-github-app-in-a-github-actions-workflow) for how to create GitHub App, and authenticate with GitHub App.
+See [official instruction](https://docs.github.com/en/enterprise-cloud@latest/apps/creating-github-apps/authenticating-with-a-github-app/making-authenticated-api-requests-with-a-github-app-in-a-github-actions-workflow) for how to create GitHub App, and authenticate with GitHub App.
+
+Following example use GitHub App Token via [actions/create-github-app-token](https://github.com/actions/create-github-app-token) action.
 
 ```yaml
 # .github/workflows/github-app-token.yaml
