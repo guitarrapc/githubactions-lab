@@ -6,6 +6,10 @@ inputs:
   commit-message:
     description: "commit message"
     required: true
+  repository:
+    description: "target repository"
+    required: false
+    default: "${{ github.repository }}"
   ref:
     description: "checkout ref to make git ref up to date."
     required: true
@@ -37,7 +41,7 @@ runs:
     - name: git commit
       if: ${{ steps.diff.outputs.changed == '1' }}
       run: |
-        git remote set-url origin "https://github-actions:${GITHUB_TOKEN}@github.com/${{ github.repository }}"
+        git remote set-url origin "https://github-actions:${GITHUB_TOKEN}@github.com/${{ inputs.repository }}"
         git config user.name  "github-actions[bot]"
         git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
         git add .
