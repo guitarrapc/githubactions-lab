@@ -40,9 +40,9 @@ jobs:
       - name: Create PullRequest
         if: ${{ steps.git-check.outputs.modified == 'true' }}
         run: |
-          pr_exists=$(gh pr list --head "auto/create_pr" --base "${{ github.event.repository.default_branch}}")
+          pr_exists=$(gh pr list --head "auto/create_pr" --base "${GITHUB_DEFAULT_BRANCH}")
           if [ -n "$pr_exists" ]; then
-            echo "PR already exists for auto/create_pr -> ${{ github.event.repository.default_branch}}. Skipping creation."
+            echo "PR already exists for auto/create_pr -> ${GITHUB_DEFAULT_BRANCH}. Skipping creation."
           else
             title="[automated] Automated changes"
             body="GitHub Actions [${GITHUB_WORKFLOW}](${GITHUB_ACTIONS_RUN_URL}) generated changes :rocket:"
@@ -50,5 +50,6 @@ jobs:
           fi
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_DEFAULT_BRANCH: ${{ github.event.repository.default_branch }}
           GITHUB_ACTIONS_RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
           GITHUB_ACTIONS_JOB_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}/jobs/${{ job.check_run_id }}
