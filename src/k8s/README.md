@@ -1,9 +1,9 @@
 ## k8s
 
 ```shell
-kubectl kustomize ./src/k8s/common/overlays/development
-kubectl kustomize ./src/k8s/common/overlays/development | kubeval
-kubectl kustomize ./src/k8s/common/overlays/development | kubectl apply -f -
+kubectl kustomize ./src/k8s/app/overlays/development
+kubectl kustomize ./src/k8s/app/overlays/development | kubeval
+kubectl kustomize ./src/k8s/app/overlays/development | kubectl apply -f -
 ```
 
 

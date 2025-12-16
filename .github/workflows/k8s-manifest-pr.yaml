@@ -40,7 +40,7 @@ jobs:
       - name: generate manifest
         run: |
           mkdir -p "./${{ env.REPO_MANIFEST }}/${{ env.MANIFEST_DIR }}"
-          kubectl kustomize ./src/k8s/common/overlays/development \
+          kubectl kustomize ./src/k8s/app/overlays/development \
             | sed -e "s|<namespace>|${NAMESPACE_PREFIX}${{ env.MANIFEST_DIR }}|g" \
             | sed -e "s|<git-sha>|${{ github.sha }}|g" \
             | sed -e "s|<git-branch>|${BRANCH}|g" \
