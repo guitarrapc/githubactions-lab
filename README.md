@@ -3927,7 +3927,7 @@ jobs:
   push_manifest:
     if: ${{ github.actor == github.repository_owner }} # because referencing secrets, restrict to owner.
     permissions:
-      contents: read # no issues permission
+      contents: read # no pull request permission
     runs-on: ubuntu-24.04
     timeout-minutes: 3
     steps:
@@ -3936,14 +3936,14 @@ jobs:
         with:
           app-id: ${{ secrets.SYNCED_ACTIONS_BOT_APPID }}
           private-key: ${{ secrets.SYNCED_ACTIONS_BOT_PRIVATE_KEY }}
-          permission-issues: read # grant read access to issues
+          permission-pull-requests: read # grant read access to pull requests
       - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
         with:
           persist-credentials: false
-      - name: List issues
-        run: gh issue list --state open --limit 5
+      - name: List open PRs
+        run: gh pr list --state open --limit 5
         env:
-          GH_TOKEN: ${{ steps.app-token.outputs.token }} # GitHub App token permission to read issues
+          GH_TOKEN: ${{ steps.app-token.outputs.token }} # GitHub App token permission to read pull requests
           GH_REPO: ${{ github.repository }}
 
 ```
