@@ -53,7 +53,11 @@ jobs:
       - name: git push
         uses: ./.github/actions/git-push
         with:
-          commit-message: "[automate] update manifests. origin: ${{ github.repository }}, trigger: ${{ github.event_name }}, pr: ${{ github.event.pull_request.html_url }}\n\ncompare: https://github.com/${{ github.repository }}/compare/main...${{ github.event.after }}\nUpdate by: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}/job/${{ job.check_run_id }}"
+          commit-message: |
+            "[automate] update manifests. origin: ${{ github.repository }}, trigger: ${{ github.event_name }}
+
+            Compare: ${{ github.event_name == 'pull_request' && github.event.pull_request.html_url || format('https://github.com/{0}/commit/{1}', github.repository, github.event.after) }}
+            Update by: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}/job/${{ job.check_run_id }}"
           ref: ${{ github.event.repository.default_branch }} # update default branch ref
           repository: ${{ github.repository_owner }}/${{ env.MANIFEST_REPO }}
           github-token: ${{ steps.app-token.outputs.token }}
