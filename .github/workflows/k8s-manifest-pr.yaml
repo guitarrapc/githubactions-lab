@@ -1,19 +1,16 @@
 name: git-ops k8s manifest
 on:
   pull_request:
-    types:
-      - opened
-      - synchronize
-      - reopened
-    paths:
-      - src/k8s/**/*
-      - .github/workflows/k8s*
+    branches: [main]
+  push:
+    branches: [main]
+  workflow_dispatch:
 
 jobs:
   push_manifest:
     if: ${{ github.actor == github.repository_owner }} # because referencing secrets, restrict to owner.
     env:
-      MANIFEST_DIR: dev
+      MANIFEST_DIR: dev/${{ github.event.repository.name }}/${{ github.event_name == 'pull_request' && github.head_ref || github.ref }}
       NAMESPACE_PREFIX: githubactions-sample-
       REPO_MANIFEST: kubernetes-manifest-lab
     permissions:
@@ -62,6 +59,6 @@ jobs:
         uses: ./.github/actions/git-push
         with:
           commit-message: "(${{ env.MANIFEST_DIR }}) update manifests ${{ github.repository }}#${{ github.event.pull_request.number }} (${{ github.run_id }})\n\ncompare: https://github.com/${{ github.repository }}/compare/main...${{ github.event.after }}"
-          ref: ${{ github.event.repository.name }}/${{ github.ref_name }}
+          ref: ${{ github.event.repository.name }}/${{ github.event.repository.default_branch }} # update default branch ref
           github-token: ${{ steps.app-token.outputs.token }}
           working-directory: ${{ env.REPO_MANIFEST }}
