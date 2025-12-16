@@ -1,7 +1,7 @@
 {
   "action": "synchronize",
-  "after": "31fd13a45df009a7347428cc801c9a67a4d30e2a",
-  "before": "cfb35bd53199c6b79b9ae2c333724a1c37d0e5e6",
+  "after": "57e44e13bf71881d0f2d00070ab83bb92cdf9cee",
+  "before": "5f0c95c21ed0e1956c315cfac1095e983ba5035e",
   "number": 271,
   "pull_request": {
     "_links": {
@@ -27,11 +27,11 @@
         "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/271"
       },
       "statuses": {
-        "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/statuses/31fd13a45df009a7347428cc801c9a67a4d30e2a"
+        "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/statuses/57e44e13bf71881d0f2d00070ab83bb92cdf9cee"
       }
     },
     "active_lock_reason": null,
-    "additions": 496,
+    "additions": 497,
     "assignee": null,
     "assignees": [],
     "author_association": "OWNER",
@@ -133,7 +133,7 @@
         },
         "private": false,
         "pulls_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls{/number}",
-        "pushed_at": "2025-12-16T09:29:21Z",
+        "pushed_at": "2025-12-16T09:31:32Z",
         "releases_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/releases{/id}",
         "size": 4475,
         "squash_merge_commit_message": "COMMIT_MESSAGES",
@@ -187,10 +187,10 @@
     "closed_at": null,
     "comments": 0,
     "comments_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/issues/271/comments",
-    "commits": 19,
+    "commits": 22,
     "commits_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/271/commits",
     "created_at": "2025-12-16T08:45:37Z",
-    "deletions": 643,
+    "deletions": 644,
     "diff_url": "https://github.com/guitarrapc/githubactions-lab/pull/271.diff",
     "draft": false,
     "head": {
@@ -290,7 +290,7 @@
         },
         "private": false,
         "pulls_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls{/number}",
-        "pushed_at": "2025-12-16T09:29:21Z",
+        "pushed_at": "2025-12-16T09:31:32Z",
         "releases_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/releases{/id}",
         "size": 4475,
         "squash_merge_commit_message": "COMMIT_MESSAGES",
@@ -316,7 +316,7 @@
         "watchers_count": 54,
         "web_commit_signoff_required": false
       },
-      "sha": "31fd13a45df009a7347428cc801c9a67a4d30e2a",
+      "sha": "57e44e13bf71881d0f2d00070ab83bb92cdf9cee",
       "user": {
         "avatar_url": "https://avatars.githubusercontent.com/u/3856350?v=4",
         "events_url": "https://api.github.com/users/guitarrapc/events{/privacy}",
@@ -345,7 +345,7 @@
     "labels": [],
     "locked": false,
     "maintainer_can_modify": false,
-    "merge_commit_sha": "d64f089e12cec585f22fba50a7513cbfbfb2c4ab",
+    "merge_commit_sha": "adeadb9c821385a64a2282787256eb4fbd3c0423",
     "mergeable": null,
     "mergeable_state": "unknown",
     "merged": false,
@@ -362,9 +362,9 @@
     "review_comments": 0,
     "review_comments_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/271/comments",
     "state": "open",
-    "statuses_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/statuses/31fd13a45df009a7347428cc801c9a67a4d30e2a",
+    "statuses_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/statuses/57e44e13bf71881d0f2d00070ab83bb92cdf9cee",
     "title": "feat: use githubapp token instead of PAT",
-    "updated_at": "2025-12-16T09:29:22Z",
+    "updated_at": "2025-12-16T09:31:33Z",
     "url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/271",
     "user": {
       "avatar_url": "https://avatars.githubusercontent.com/u/3856350?v=4",
@@ -474,7 +474,7 @@
     },
     "private": false,
     "pulls_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls{/number}",
-    "pushed_at": "2025-12-16T09:29:21Z",
+    "pushed_at": "2025-12-16T09:31:32Z",
     "releases_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/releases{/id}",
     "size": 4475,
     "ssh_url": "git@github.com:guitarrapc/githubactions-lab.git",
