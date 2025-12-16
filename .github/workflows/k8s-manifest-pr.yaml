@@ -15,7 +15,7 @@ jobs:
     env:
       MANIFEST_DIR: dev
       NAMESPACE_PREFIX: githubactions-sample-
-      REPO_MANIFEST: guitarrapc/kubernetes-manifest-lab
+      REPO_MANIFEST: kubernetes-manifest-lab
     permissions:
       contents: read
     runs-on: ubuntu-24.04
