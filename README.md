@@ -67,6 +67,7 @@ GitHub Actions research and test laboratory.
   - [YAML anchor](#yaml-anchor)
 - [Security](#security)
   - [Checkout without persist-credentials](#checkout-without-persist-credentials)
+  - [GitHub App Token instead of Personal Access Token](#github-app-token-instead-of-personal-access-token)
   - [Injection attack via context](#injection-attack-via-context)
   - [Keep update the actions in your workflow](#keep-update-the-actions-in-your-workflow)
   - [Lint GitHub Actions workflow](#lint-github-actions-workflow)
