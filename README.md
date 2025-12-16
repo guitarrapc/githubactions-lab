@@ -3900,6 +3900,21 @@ jobs:
           git config --unset user.name
 ```
 
+## GitHub App Token instead of Personal Access Token
+
+GitHub Actions provide a built-in token, `GITHUB_TOKEN`, most of actions can use it instead of Personal Access Token (PAT). However some actions may require PAT to access specific resources. In such cases, consider using a GitHub App Token instead of PAT for better security.
+
+Here are situations where GitHub App Token is needed instead of built-in `GITHUB_TOKEN`.
+
+- Trigger Workflow when creating a Pull Request. (Built-in token created PR never trigger workflow)
+- Access another private repository even if it is same organization/ownner.
+
+Following example use GitHub App Token via [actions/create-github-app-token](https://github.com/actions/create-github-app-token) action. See [official instruction](https://docs.github.com/en/enterprise-cloud@latest/apps/creating-github-apps/authenticating-with-a-github-app/making-authenticated-api-requests-with-a-github-app-in-a-github-actions-workflow) for how to create GitHub App, and authenticate with GitHub App.
+
+```yaml
+# .github/workflows/github-app-token.yaml
+```
+
 ## Injection attack via context
 
 GitHub Actions context may be vulnerable to injection attacks if untrusted data is used. For example, if you use `${{ github.event.head_commit.message }}` directly in a shell command, an attacker could craft a commit message that includes shell commands, leading to arbitrary code execution.
