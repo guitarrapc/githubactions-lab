@@ -3368,7 +3368,7 @@ If you want to add a job summary, use [GITHUB_STEP_SUMMARY](https://docs.github.
 ```yaml
 # .github/workflows/github-step-summary.yaml
 
-name: GitHub Step Summary
+name: gitHub step summary
 on:
   push:
     branches:
@@ -3913,6 +3913,38 @@ Following example use GitHub App Token via [actions/create-github-app-token](htt
 
 ```yaml
 # .github/workflows/github-app-token.yaml
+
+name: github app token
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  push_manifest:
+    if: ${{ github.actor == github.repository_owner }} # because referencing secrets, restrict to owner.
+    permissions:
+      contents: read # no issues permission
+    runs-on: ubuntu-24.04
+    timeout-minutes: 3
+    steps:
+      - uses: actions/create-github-app-token@29824e69f54612133e76f7eaac726eef6c875baf # v2.2.1
+        id: app-token
+        with:
+          app-id: ${{ secrets.SYNCED_ACTIONS_BOT_APPID }}
+          private-key: ${{ secrets.SYNCED_ACTIONS_BOT_PRIVATE_KEY }}
+          permission-issues: read # grant read access to issues
+      - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
+        with:
+          persist-credentials: false
+      - name: List issues
+        run: gh issue list --state open --limit 5
+        env:
+          GH_TOKEN: ${{ steps.app-token.outputs.token }} # GitHub App token permission to read issues
+          GH_REPO: ${{ github.repository }}
+
 ```
 
 ## Injection attack via context
