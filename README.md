@@ -3529,7 +3529,7 @@ Write your Reusable workflow in `_reusable-workflow-called.yaml`. You can pass v
 ```yaml
 # .github/workflows/_reusable-workflow-called.yaml
 
-name: _reusable workflow called
+name: (R) reusable workflow called
 on:
   workflow_call:
     inputs:
@@ -3691,7 +3691,7 @@ Reusalbe workflow support nested call. Callee workflow can call another reusable
 ```yaml
 # .github/workflows/_reusable-workflow-nest.yaml
 
-name: _reusable workflow nest
+name: (R) reusable workflow nest
 on:
   workflow_call:
     inputs:
