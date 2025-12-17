@@ -10,10 +10,6 @@ GitHub Actions research and test laboratory.
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 # Table of Contents
 
-- [Not yet support](#not-yet-support)
-  - [View](#view)
-  - [Functionality](#functionality)
-  - [Plan limitation](#plan-limitation)
 - [Migrating CI to GitHub Actions](#migrating-ci-to-github-actions)
 - [GitHub Actions vs Other CI Platforms](#github-actions-vs-other-ci-platforms)
   - [Core Workflow Features](#core-workflow-features)
@@ -4393,11 +4389,11 @@ jobs:
 
 `github.ref` context will return branch name, however it is unsafe to directly reference in ref. It is recommended to use through env.
 
-- pull_request: `${{ github.event.pull_request.head.ref }}`
+- pull_request: `${{ github.head.ref }}`
 - push and others: `${{ github.ref }}`
 
 ```yaml
-# .github/workflows/_reusable-dump-context.yaml#L20-L22
+# .github/workflows/_reusable-dump-context.yaml#L37-L41
 
 runs-on: ${{ matrix.runs-on }}
 timeout-minutes: 5
