@@ -4395,9 +4395,11 @@ jobs:
 ```yaml
 # .github/workflows/_reusable-dump-context.yaml#L37-L41
 
-runs-on: ${{ matrix.runs-on }}
-timeout-minutes: 5
-steps:
+- uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
+  with:
+    persist-credentials: false
+    ref: ${{ (startsWith(github.event_name, 'pull_request') && github.event.action != 'closed') && github.head_ref || (startsWith(github.event_name, 'pull_request') && github.event.action == 'closed') && github.base_ref || github.ref_type == 'tag' && github.event.repository.default_branch || github.ref_name }}
+- name: file names
 ```
 
 ## Get Tag
