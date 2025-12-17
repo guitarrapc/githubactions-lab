@@ -1,4 +1,4 @@
-name: _reusable workflow nest
+name: (R) reusable workflow nest
 on:
   workflow_call:
     inputs:
