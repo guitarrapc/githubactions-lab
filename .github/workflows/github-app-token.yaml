@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  push_manifest:
+  app-token:
     if: ${{ github.actor == github.repository_owner }} # because referencing secrets, restrict to owner.
     permissions:
       contents: read # no pull request permission
