@@ -1,4 +1,5 @@
 namespace Sandbox.Console;
+
 public record class Hoge
 {
     public string Name { get; init; } = "";
