@@ -1,80 +1,80 @@
 name: create release
 concurrency: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
 on:
-  # auto clean up
-  push:
-    tags:
-      - "[0-9]+.[0-9]+.[0-9]+*"
-  # auto clean up
-  pull_request:
-    branches: ["main"]
-  workflow_dispatch:
-    inputs:
-      tag:
-        description: "tag: git tag you want create. (1.0.0)"
-        required: true
-      delete-release:
-        description: "delete-release: delete release after creation. (true/false)"
-        required: false
-        default: false
-        type: boolean
+    # auto clean up
+    push:
+        tags:
+            - "[0-9]+.[0-9]+.[0-9]+*"
+    # auto clean up
+    pull_request:
+        branches: ["main"]
+    workflow_dispatch:
+        inputs:
+            tag:
+                description: "tag: git tag you want create. (1.0.0)"
+                required: true
+            delete-release:
+                description: "delete-release: delete release after creation. (true/false)"
+                required: false
+                default: false
+                type: boolean
 
 env:
-  GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-  GH_REPO: ${{ github.repository }}
+    GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    GH_REPO: ${{ github.repository }}
 
 jobs:
-  create-release:
-    if: ${{ github.actor != 'dependabot[bot]' }}
-    permissions:
-      contents: write
-    runs-on: ubuntu-24.04
-    timeout-minutes: 10
-    steps:
-      - name: Setup tag
-        id: tag
-        run: echo "value=${{ env.TAG_VALUE || (github.event_name == 'pull_request' && '0.1.0-test' || env.GITHUB_REF_NAME) }}" | tee -a "$GITHUB_OUTPUT"
-        env:
-          TAG_VALUE: ${{ inputs.tag }}
-          GITHUB_REF_NAME: ${{ github.ref_name }}
-      # Create Tag
-      - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
-        with:
-          persist-credentials: false
-      # Use the appropriate tag output from the condition steps
-      - name: set git remote
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          git remote set-url origin "https://github-actions:${GITHUB_TOKEN}@github.com/${{ github.repository }}"
-          git config user.name  "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-      - name: Create Tag and push if not exists
-        env:
-          TAG_VALUE: ${{ steps.tag.outputs.value  }}
-        run: |
-          if ! git ls-remote --tags | grep "$TAG_VALUE"; then
-            git tag "$TAG_VALUE"
-            git push origin "$TAG_VALUE"
-            git ls-remote --tags
-          fi
-      # set release tag(*.*.*) to version string
-      - run: echo "foo" > "foo.${{ steps.tag.outputs.value }}.txt"
-      - run: echo "hoge" > "hoge.${{ steps.tag.outputs.value }}.txt"
-      - run: echo "fuga" > "fuga.${{ steps.tag.outputs.value }}.txt"
-      - run: ls -l
-      # Create Releases
-      - name: Create Release
-        run: gh release create ${{ steps.tag.outputs.value }} --draft --verify-tag --title "Ver.${{ steps.tag.outputs.value }}" --generate-notes
-      - name: Upload file to release
-        run: gh release upload ${{ steps.tag.outputs.value }} hoge.${{ steps.tag.outputs.value }}.txt fuga.${{ steps.tag.outputs.value }}.txt
-      - name: Upload additional file to release
-        run: gh release upload ${{ steps.tag.outputs.value }} foo.${{ steps.tag.outputs.value }}.txt
-      # Clean up
-      - name: Clean up (Wait 60s and delete Release)
-        run: |
-          if gh release list | grep Draft | grep ${{ steps.tag.outputs.value }}; then
-            sleep 60
-            gh release delete ${{ steps.tag.outputs.value }} --yes --cleanup-tag
-          fi
-        if: ${{ failure() || inputs.delete-release || (github.event_name == 'pull_request' || github.event_name == 'push') }}
+    create-release:
+        if: ${{ github.actor != 'dependabot[bot]' }}
+        permissions:
+            contents: write
+        runs-on: ubuntu-24.04
+        timeout-minutes: 10
+        steps:
+            - name: Setup tag
+              id: tag
+              run: echo "value=${{ env.TAG_VALUE || (github.event_name == 'pull_request' && '0.1.0-test' || env.GITHUB_REF_NAME) }}" | tee -a "$GITHUB_OUTPUT"
+              env:
+                  TAG_VALUE: ${{ inputs.tag }}
+                  GITHUB_REF_NAME: ${{ github.ref_name }}
+            # Create Tag
+            - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
+              with:
+                  persist-credentials: false
+            # Use the appropriate tag output from the condition steps
+            - name: set git remote
+              env:
+                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+              run: |
+                  git remote set-url origin "https://github-actions:${GITHUB_TOKEN}@github.com/${{ github.repository }}"
+                  git config user.name  "github-actions[bot]"
+                  git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            - name: Create Tag and push if not exists
+              env:
+                  TAG_VALUE: ${{ steps.tag.outputs.value  }}
+              run: |
+                  if ! git ls-remote --tags | grep "$TAG_VALUE"; then
+                    git tag "$TAG_VALUE"
+                    git push origin "$TAG_VALUE"
+                    git ls-remote --tags
+                  fi
+            # set release tag(*.*.*) to version string
+            - run: echo "foo" > "foo.${{ steps.tag.outputs.value }}.txt"
+            - run: echo "hoge" > "hoge.${{ steps.tag.outputs.value }}.txt"
+            - run: echo "fuga" > "fuga.${{ steps.tag.outputs.value }}.txt"
+            - run: ls -l
+            # Create Releases
+            - name: Create Release
+              run: gh release create ${{ steps.tag.outputs.value }} --draft --verify-tag --title "Ver.${{ steps.tag.outputs.value }}" --generate-notes
+            - name: Upload file to release
+              run: gh release upload ${{ steps.tag.outputs.value }} hoge.${{ steps.tag.outputs.value }}.txt fuga.${{ steps.tag.outputs.value }}.txt
+            - name: Upload additional file to release
+              run: gh release upload ${{ steps.tag.outputs.value }} foo.${{ steps.tag.outputs.value }}.txt
+            # Clean up
+            - name: Clean up (Wait 60s and delete Release)
+              run: |
+                  if gh release list | grep Draft | grep ${{ steps.tag.outputs.value }}; then
+                    sleep 60
+                    gh release delete ${{ steps.tag.outputs.value }} --yes --cleanup-tag
+                  fi
+              if: ${{ failure() || inputs.delete-release || (github.event_name == 'pull_request' || github.event_name == 'push') }}

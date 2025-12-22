@@ -1,25 +1,25 @@
 name: git sparse checkout exclude
 on:
-  push:
-    branches: ["main"]
-  pull_request:
-    branches: ["main"]
+    push:
+        branches: ["main"]
+    pull_request:
+        branches: ["main"]
 
 jobs:
-  sparse-checkout:
-    permissions:
-      contents: read
-    runs-on: ubuntu-24.04
-    timeout-minutes: 5
-    steps:
-      - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
-        with:
-          sparse-checkout: |
-            !src/*
-            /*
-          sparse-checkout-cone-mode: false # required for ! entry to work
-          persist-credentials: false
-      - name: list root folders
-        run: ls -la
-      - name: list .github folders
-        run: ls -laR ./.github
+    sparse-checkout:
+        permissions:
+            contents: read
+        runs-on: ubuntu-24.04
+        timeout-minutes: 5
+        steps:
+            - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
+              with:
+                  sparse-checkout: |
+                      !src/*
+                      /*
+                  sparse-checkout-cone-mode: false # required for ! entry to work
+                  persist-credentials: false
+            - name: list root folders
+              run: ls -la
+            - name: list .github folders
+              run: ls -laR ./.github

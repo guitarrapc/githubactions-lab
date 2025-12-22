@@ -1,24 +1,24 @@
 name: remote actions download path
 on:
-  workflow_dispatch:
-  pull_request:
-    branches: ["main"]
+    workflow_dispatch:
+    pull_request:
+        branches: ["main"]
 
 jobs:
-  action:
-    permissions:
-      contents: read
-    runs-on: ubuntu-24.04
-    timeout-minutes: 3
-    steps:
-      - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
-        with:
-          persist-credentials: false
-      - name: Downloaded actions from the marketplace
-        run: ls -l /home/runner/work/_actions
-      - name: See actions download path
-        run: ls -l /home/runner/work/_actions/actions/checkout/
-      - name: See actions download contents
-        run: ls -lR /home/runner/work/_actions/actions/checkout/08c6903cd8c0fde910a37f88322edcfb5dd907a8
-      - name: Cat action's src/main.ts
-        run: cat /home/runner/work/_actions/actions/checkout/08c6903cd8c0fde910a37f88322edcfb5dd907a8/src/main.ts
+    action:
+        permissions:
+            contents: read
+        runs-on: ubuntu-24.04
+        timeout-minutes: 3
+        steps:
+            - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
+              with:
+                  persist-credentials: false
+            - name: Downloaded actions from the marketplace
+              run: ls -l /home/runner/work/_actions
+            - name: See actions download path
+              run: ls -l /home/runner/work/_actions/actions/checkout/
+            - name: See actions download contents
+              run: ls -lR /home/runner/work/_actions/actions/checkout/8e8c483db84b4bee98b60c0593521ed34d9990e8
+            - name: Cat action's src/main.ts
+              run: cat /home/runner/work/_actions/actions/checkout/8e8c483db84b4bee98b60c0593521ed34d9990e8/src/main.ts

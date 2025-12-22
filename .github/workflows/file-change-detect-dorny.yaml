@@ -1,64 +1,64 @@
 name: file change detect dorny
 on:
-  pull_request:
-    branches: ["main"]
-  push:
-    branches: ["main"]
+    pull_request:
+        branches: ["main"]
+    push:
+        branches: ["main"]
 
 jobs:
-  changed-files:
-    permissions:
-      contents: read
-    runs-on: ubuntu-24.04
-    timeout-minutes: 3
-    steps:
-      - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
-        with:
-          persist-credentials: false
-      # see: https://github.com/dorny/paths-filter/blob/master/README.md
-      - id: changed-files
-        uses: dorny/paths-filter@de90cc6fb38fc0963ad72b210f1f284cd68cea36 # v3.0.2
-        with:
-          base: ${{ github.event_name == 'push' && github.ref || '' }}
-          list-files: csv # default 'none'. Disables listing of matching files.
-          filters: |
-            foo:
-              - '**'
-      - name: Is any change happen on some filters?
-        run: echo "${{ steps.changed-files.outputs.changes }}"
-      - name: Is change happen on foo filter?
-        run: echo "${{ steps.changed-files.outputs.foo }}"
-      - name: Changed file list for foo filter
-        run: echo "${{ steps.changed-files.outputs.foo_files }}"
-      - name: Is foo filter changed files include .github/workflows?
-        run: echo "${{ contains(steps.changed-files.outputs.foo_files, '.github/workflows')}}"
-      - name: Is foo filter changed files include .github/dummy?
-        run: echo "${{ contains(steps.changed-files.outputs.foo_files, '.github/dummy')}}"
-      # space separated
-      - id: changed-files2
-        uses: dorny/paths-filter@de90cc6fb38fc0963ad72b210f1f284cd68cea36 # v3.0.2
-        if: ${{ github.event.pull_request.changed_files < 100 }} # when changed files less than 100
-        with:
-          base: ${{ github.event_name == 'push' && github.ref || '' }}
-          list-files: shell
-          filters: |
-            foo:
-              - '**'
-      - name: List all changed files
-        env:
-          CHANGED_FILES: ${{ steps.changed-files2.outputs.foo_files }}
-        run: |
-          for file in ${CHANGED_FILES}; do
-            echo "$file was changed"
-          done
-      # json separated
-      - id: changed-files3
-        uses: dorny/paths-filter@de90cc6fb38fc0963ad72b210f1f284cd68cea36 # v3.0.2
-        with:
-          base: ${{ github.event_name == 'push' && github.ref || '' }}
-          list-files: json
-          filters: |
-            foo:
-              - '**'
-      - name: Changed file list for foo filter
-        run: echo "${{ steps.changed-files3.outputs.foo_files }}"
+    changed-files:
+        permissions:
+            contents: read
+        runs-on: ubuntu-24.04
+        timeout-minutes: 3
+        steps:
+            - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
+              with:
+                  persist-credentials: false
+            # see: https://github.com/dorny/paths-filter/blob/master/README.md
+            - id: changed-files
+              uses: dorny/paths-filter@de90cc6fb38fc0963ad72b210f1f284cd68cea36 # v3.0.2
+              with:
+                  base: ${{ github.event_name == 'push' && github.ref || '' }}
+                  list-files: csv # default 'none'. Disables listing of matching files.
+                  filters: |
+                      foo:
+                        - '**'
+            - name: Is any change happen on some filters?
+              run: echo "${{ steps.changed-files.outputs.changes }}"
+            - name: Is change happen on foo filter?
+              run: echo "${{ steps.changed-files.outputs.foo }}"
+            - name: Changed file list for foo filter
+              run: echo "${{ steps.changed-files.outputs.foo_files }}"
+            - name: Is foo filter changed files include .github/workflows?
+              run: echo "${{ contains(steps.changed-files.outputs.foo_files, '.github/workflows')}}"
+            - name: Is foo filter changed files include .github/dummy?
+              run: echo "${{ contains(steps.changed-files.outputs.foo_files, '.github/dummy')}}"
+            # space separated
+            - id: changed-files2
+              uses: dorny/paths-filter@de90cc6fb38fc0963ad72b210f1f284cd68cea36 # v3.0.2
+              if: ${{ github.event.pull_request.changed_files < 100 }} # when changed files less than 100
+              with:
+                  base: ${{ github.event_name == 'push' && github.ref || '' }}
+                  list-files: shell
+                  filters: |
+                      foo:
+                        - '**'
+            - name: List all changed files
+              env:
+                  CHANGED_FILES: ${{ steps.changed-files2.outputs.foo_files }}
+              run: |
+                  for file in ${CHANGED_FILES}; do
+                    echo "$file was changed"
+                  done
+            # json separated
+            - id: changed-files3
+              uses: dorny/paths-filter@de90cc6fb38fc0963ad72b210f1f284cd68cea36 # v3.0.2
+              with:
+                  base: ${{ github.event_name == 'push' && github.ref || '' }}
+                  list-files: json
+                  filters: |
+                      foo:
+                        - '**'
+            - name: Changed file list for foo filter
+              run: echo "${{ steps.changed-files3.outputs.foo_files }}"

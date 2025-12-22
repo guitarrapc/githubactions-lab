@@ -1,98 +1,98 @@
 name: file change detect matrix
 on:
-  pull_request: null
+    pull_request: null
 
 jobs:
-  changes:
-    permissions:
-      contents: read
-    runs-on: ubuntu-24.04
-    timeout-minutes: 3
-    outputs:
-      changes: ${{ steps.filter.outputs.changes }}
-    steps:
-      - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
-        with:
-          persist-credentials: false
-      - uses: dorny/paths-filter@de90cc6fb38fc0963ad72b210f1f284cd68cea36 # v3.0.2
-        id: paths-filter
-        with:
-          filters: |
-            .github|.github:
-              - .github/**
-            workflows|.github/workflows:
-              - .github/workflows/**
-            actions|.github/actions:
-              - .github/actions/**
-            scripts|.github/scripts:
-              - .github/scripts/**
-            dotnet|src/dotnet:
-              - src/dotnet/**
-            json|src/json:
-              - src/json/**
-            k8s|src/k8s:
-              - src/k8s/**
-            mermaid|src/mermaid:
-              - src/mermaid/**
-            shellscript|src/shellscript:
-              - src/shellscript/**
-            txt|src/txt:
-              - src/txt/**
-            README|README.md:
-              - README.md
-      - name: Convert to json
-        run: |
-          echo '${{ steps.paths-filter.outputs.changes }}' | jq -c 'map(split("|") | {target: .[0], path: .[1]})' | tee -a ./changes.json
-      - name: output filter
-        id: filter
-        run: echo 'changes=${{ steps.paths-filter.outputs.changes }}' | tee -a "$GITHUB_OUTPUT"
+    changes:
+        permissions:
+            contents: read
+        runs-on: ubuntu-24.04
+        timeout-minutes: 3
+        outputs:
+            changes: ${{ steps.filter.outputs.changes }}
+        steps:
+            - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
+              with:
+                  persist-credentials: false
+            - uses: dorny/paths-filter@de90cc6fb38fc0963ad72b210f1f284cd68cea36 # v3.0.2
+              id: paths-filter
+              with:
+                  filters: |
+                      .github|.github:
+                        - .github/**
+                      workflows|.github/workflows:
+                        - .github/workflows/**
+                      actions|.github/actions:
+                        - .github/actions/**
+                      scripts|.github/scripts:
+                        - .github/scripts/**
+                      dotnet|src/dotnet:
+                        - src/dotnet/**
+                      json|src/json:
+                        - src/json/**
+                      k8s|src/k8s:
+                        - src/k8s/**
+                      mermaid|src/mermaid:
+                        - src/mermaid/**
+                      shellscript|src/shellscript:
+                        - src/shellscript/**
+                      txt|src/txt:
+                        - src/txt/**
+                      README|README.md:
+                        - README.md
+            - name: Convert to json
+              run: |
+                  echo '${{ steps.paths-filter.outputs.changes }}' | jq -c 'map(split("|") | {target: .[0], path: .[1]})' | tee -a ./changes.json
+            - name: output filter
+              id: filter
+              run: echo 'changes=${{ steps.paths-filter.outputs.changes }}' | tee -a "$GITHUB_OUTPUT"
 
-  json_convert:
-    needs: [changes]
-    if: ${{ needs.changes.outputs.changes != '[]' }}
-    strategy:
-      max-parallel: 1 # let's run sequencial
-      matrix:
-        change: ${{ fromJSON(needs.changes.outputs.changes) }}
-    runs-on: ubuntu-24.04
-    permissions:
-      contents: read
-    timeout-minutes: 60
-    steps:
-      - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
-        with:
-          persist-credentials: false
-      - name: Convert to json
-        id: json
-        run: |
-          json=$(echo "[\"${CHANGE}\"]" | jq -c 'map(split("|") | {target: .[0], path: .[1]}) | .[]')
-          echo "json=${json}" | tee -a "${GITHUB_OUTPUT}"
-        env:
-          CHANGE: ${{ matrix.change }}
-      - name: Set variables
-        run: |
-          echo "target=${{ fromJSON(steps.json.outputs.json).target }}" | tee -a "${GITHUB_ENV}"
-          echo "workking-dir=${{ fromJSON(steps.json.outputs.json).path }}" | tee -a "${GITHUB_ENV}"
+    json_convert:
+        needs: [changes]
+        if: ${{ needs.changes.outputs.changes != '[]' }}
+        strategy:
+            max-parallel: 1 # let's run sequencial
+            matrix:
+                change: ${{ fromJSON(needs.changes.outputs.changes) }}
+        runs-on: ubuntu-24.04
+        permissions:
+            contents: read
+        timeout-minutes: 60
+        steps:
+            - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
+              with:
+                  persist-credentials: false
+            - name: Convert to json
+              id: json
+              run: |
+                  json=$(echo "[\"${CHANGE}\"]" | jq -c 'map(split("|") | {target: .[0], path: .[1]}) | .[]')
+                  echo "json=${json}" | tee -a "${GITHUB_OUTPUT}"
+              env:
+                  CHANGE: ${{ matrix.change }}
+            - name: Set variables
+              run: |
+                  echo "target=${{ fromJSON(steps.json.outputs.json).target }}" | tee -a "${GITHUB_ENV}"
+                  echo "workking-dir=${{ fromJSON(steps.json.outputs.json).path }}" | tee -a "${GITHUB_ENV}"
 
-  string_convert:
-    needs: [changes]
-    if: ${{ needs.changes.outputs.changes != '[]' }}
-    strategy:
-      max-parallel: 1 # let's run sequencial
-      matrix:
-        change: ${{ fromJSON(needs.changes.outputs.changes) }}
-    runs-on: ubuntu-24.04
-    permissions:
-      contents: read
-    timeout-minutes: 60
-    steps:
-      - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
-        with:
-          persist-credentials: false
-      - name: Set variables from matrix
-        run: |
-          IFS='|' read -r target path <<< "${CHANGE}"
-          echo "target=$target" | tee -a "${GITHUB_ENV}"
-          echo "working_dir=$path" | tee -a "${GITHUB_ENV}"
-        env:
-          CHANGE: ${{ matrix.change }}
+    string_convert:
+        needs: [changes]
+        if: ${{ needs.changes.outputs.changes != '[]' }}
+        strategy:
+            max-parallel: 1 # let's run sequencial
+            matrix:
+                change: ${{ fromJSON(needs.changes.outputs.changes) }}
+        runs-on: ubuntu-24.04
+        permissions:
+            contents: read
+        timeout-minutes: 60
+        steps:
+            - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
+              with:
+                  persist-credentials: false
+            - name: Set variables from matrix
+              run: |
+                  IFS='|' read -r target path <<< "${CHANGE}"
+                  echo "target=$target" | tee -a "${GITHUB_ENV}"
+                  echo "working_dir=$path" | tee -a "${GITHUB_ENV}"
+              env:
+                  CHANGE: ${{ matrix.change }}

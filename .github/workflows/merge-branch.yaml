@@ -1,34 +1,34 @@
 name: merge branch
 on:
-  workflow_dispatch:
-    inputs:
-      upstream:
-        description: "merge from"
-        required: true
-        default: "main"
-      branch:
-        description: "merge to"
-        required: true
-        default: "staging"
+    workflow_dispatch:
+        inputs:
+            upstream:
+                description: "merge from"
+                required: true
+                default: "main"
+            branch:
+                description: "merge to"
+                required: true
+                default: "staging"
 
 jobs:
-  merge:
-    env:
-      upstream: ${{ inputs.upstream }}
-      branch: ${{ inputs.branch }}
-    permissions:
-      contents: read
-    runs-on: ubuntu-24.04
-    timeout-minutes: 10
-    steps:
-      - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
-        with:
-          persist-credentials: false
-      # merge main to staging
-      - uses: devmasx/merge-branch@854d3ac71ed1e9deb668e0074781b81fdd6e771f # v1.4.0
-        with:
-          type: now
-          from_branch: ${{ env.upstream }}
-          target_branch: ${{ env.branch }}
-          github_token: ${{ secrets.SYNCED_GITHUB_TOKEN_REPO }} # enable github actions workflow chain
-          #github_token: ${{ github.token }} # disable github actions workflow chain
+    merge:
+        env:
+            upstream: ${{ inputs.upstream }}
+            branch: ${{ inputs.branch }}
+        permissions:
+            contents: read
+        runs-on: ubuntu-24.04
+        timeout-minutes: 10
+        steps:
+            - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
+              with:
+                  persist-credentials: false
+            # merge main to staging
+            - uses: devmasx/merge-branch@854d3ac71ed1e9deb668e0074781b81fdd6e771f # v1.4.0
+              with:
+                  type: now
+                  from_branch: ${{ env.upstream }}
+                  target_branch: ${{ env.branch }}
+                  github_token: ${{ secrets.SYNCED_GITHUB_TOKEN_REPO }} # enable github actions workflow chain
+                  #github_token: ${{ github.token }} # disable github actions workflow chain

@@ -1,28 +1,28 @@
 name: "gh"
 on:
-  workflow_dispatch:
-  push:
-    branches: ["main"]
+    workflow_dispatch:
+    push:
+        branches: ["main"]
 
 jobs:
-  gh:
-    permissions:
-      contents: read
-    runs-on: ubuntu-24.04
-    timeout-minutes: 3
-    steps:
-      - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
-        with:
-          persist-credentials: false
-      - name: gh pr list
-        run: gh pr list --json headRefName --jq ".[].headRefName"
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - name: gh api repos/${{ github.repository }}/pulls
-        run: gh api repos/${{ github.repository }}/pulls --jq '.[].head.ref'
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - name: gh pr list --label hoge
-        run: gh pr list --label hoge --json headRefName --jq ".[].headRefName"
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    gh:
+        permissions:
+            contents: read
+        runs-on: ubuntu-24.04
+        timeout-minutes: 3
+        steps:
+            - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
+              with:
+                  persist-credentials: false
+            - name: gh pr list
+              run: gh pr list --json headRefName --jq ".[].headRefName"
+              env:
+                  GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+            - name: gh api repos/${{ github.repository }}/pulls
+              run: gh api repos/${{ github.repository }}/pulls --jq '.[].head.ref'
+              env:
+                  GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+            - name: gh pr list --label hoge
+              run: gh pr list --label hoge --json headRefName --jq ".[].headRefName"
+              env:
+                  GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
