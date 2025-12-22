@@ -11,10 +11,15 @@ jobs:
   lint_csharp:
     permissions:
       contents: read
-      pull-requests: write
     runs-on: ubuntu-24.04
     timeout-minutes: 10
     steps:
+      - uses: actions/create-github-app-token@29824e69f54612133e76f7eaac726eef6c875baf # v2.2.1
+        id: app-token
+        with:
+          app-id: ${{ secrets.SYNCED_ACTIONS_BOT_APPID }}
+          private-key: ${{ secrets.SYNCED_ACTIONS_BOT_PRIVATE_KEY }}
+          permission-pull-requests: read # grant read access to pull requests
       - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
         with:
           persist-credentials: false
@@ -41,6 +46,7 @@ jobs:
       - name: Check for modified files
         id: git-check
         run: echo "modified=$(if git diff-index --quiet HEAD --; then echo "false"; else echo "true"; fi)" >> "$GITHUB_OUTPUT"
+
       # get directory stats
       - name: List modified directories
         if: ${{ steps.git-check.outputs.modified == 'true' }}
@@ -50,7 +56,8 @@ jobs:
             echo "CHANGED_DIRS<<EOF"
             echo "${dirs}"
             echo "EOF"
-          } >> "$GITHUB_ENV"
+          } | tee -a "$GITHUB_ENV"
+
       # get files stats
       - name: List modified files
         if: ${{ steps.git-check.outputs.modified == 'true' }}
@@ -60,50 +67,70 @@ jobs:
             echo "CHANGED_FILES<<EOF"
             echo "${files}"
             echo "EOF"
-          } >> "$GITHUB_ENV"
+          } | tee -a "$GITHUB_ENV"
+
       # Commit if change happen, then craete PR. force push when branch/pr already exists.
+      - name: commit
+        run: |
+          git remote set-url origin "https://github-actions:${GITHUB_TOKEN}@github.com/${{ github.repository }}"
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+
+          git checkout -b "auto-pr/dotnet-format"
+          git add .
+          git commit -m "[automated] dotnet format by $GITHUB_WORKFLOW" || true
+          git push -u origin "auto-pr/dotnet-format" --force
+        env:
+          GITHUB_TOKEN: ${{ steps.app-token.outputs.token }}
+          GITHUB_WORKFLOW: ${{ github.workflow }}
+
       - name: Create PullRequest
         if: ${{ steps.git-check.outputs.modified == 'true' }}
-        id: cpr
-        uses: peter-evans/create-pull-request@271a8d0340265f705b14b6d32b9829c1cb33d45e # v7.0.8
-        with:
-          base: "main"
-          branch: "auto-pr/dotnet-format"
-          author: github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>
-          committer: github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>
-          delete-branch: true
-          commit-message: "[dotnet format] Automated changes"
-          title: "[dotnet format] Automated changes"
-          body: |
-            ## tl;dr;
-            dotnet format generated changes based on .editorconfig
-
-            ## Stats
-
-            changed directories
-
-            ```
-            ${{ env.CHANGED_DIRS }}
-            ```
-
-            ## Files
-
-            <details>
-            <summary>Click to show.</summary>
-
-            ```
-            ${{ env.CHANGED_FILES }}
-            ```
-
-            </details>
-
-            ## Target Projects
-
-            ${{ env.FORMAT_PROJECTS }}
-          labels: |
-            automated pr
-      - name: Check outputs
-        if: ${{ steps.git-check.outputs.modified == 'true' }}
         run: |
-          echo "Pull Request Number - ${{ steps.cpr.outputs.pull-request-number }}"
-          echo "Pull Request URL - ${{ steps.cpr.outputs.pull-request-url }}"
+          pr_exists=$(gh pr list --head "auto-pr/dotnet-format" --base "${{ github.event.repository.default_branch}}")
+          if [ -n "$pr_exists" ]; then
+            echo "PR already exists for auto-pr/dotnet-format -> ${{ github.event.repository.default_branch}}. Skipping creation."
+            exit 0
+          fi
+
+          title="[dotnet format] Automated changes"
+          cat << 'EOF' > pr_body.txt
+          ## tl;dr;
+          dotnet format generated changes based on .editorconfig
+
+          ## Stats
+
+          changed directories
+
+          ```
+          ${{ env.CHANGED_DIRS }}
+          ```
+
+          ## Files
+
+          <details>
+          <summary>Click to show.</summary>
+
+          ```
+          ${{ env.CHANGED_FILES }}
+          ```
+
+          </details>
+
+          ## Target Projects
+
+          Target project number is ${{ env.PROJECT_LENGTH }}.
+
+          ${{ env.FORMAT_PROJECTS }}
+
+          ---
+
+          This PR was created automatically via [${{ github.workflow }}]($GITHUB_ACTIONS_RUN_URL), job [link]($GITHUB_ACTIONS_JOB_URL)._
+          EOF
+
+          gh pr create --title "$title" --body-file "./pr_body.txt" --label "automated pr"
+        env:
+          GH_TOKEN: ${{ steps.app-token.outputs.token }}
+          GITHUB_DEFAULT_BRANCH: ${{ github.event.repository.default_branch }}
+          GITHUB_ACTIONS_RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+          GITHUB_ACTIONS_JOB_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}/job/${{ job.check_run_id }}
