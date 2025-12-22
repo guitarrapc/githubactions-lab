@@ -1,98 +1,8 @@
 {
-  "after": "a6540e354ac721152f31f638b39b9376c797efd8",
+  "after": "b64a29a80ada99d07e1c6042e952267d624bfd4c",
   "base_ref": null,
-  "before": "9b563e135bf08ce0302628082c01874ae5ec61a0",
+  "before": "caf69806314cd29378a8e318a5ff261241b187a3",
   "commits": [
-    {
-      "author": {
-        "email": "41898282+github-actions[bot]@users.noreply.github.com",
-        "name": "github-actions[bot]",
-        "username": "github-actions[bot]"
-      },
-      "committer": {
-        "email": "41898282+github-actions[bot]@users.noreply.github.com",
-        "name": "github-actions[bot]",
-        "username": "github-actions[bot]"
-      },
-      "distinct": false,
-      "id": "62f51961c0631c7f8c671940f94d3f91acd8fc42",
-      "message": "[automated] dotnet format by dotnet lint",
-      "timestamp": "2025-12-22T05:04:43Z",
-      "tree_id": "a2aa265a78947dbcd361acdfd733f21ccb84c89f",
-      "url": "https://github.com/guitarrapc/githubactions-lab/commit/62f51961c0631c7f8c671940f94d3f91acd8fc42"
-    },
-    {
-      "author": {
-        "email": "41898282+github-actions[bot]@users.noreply.github.com",
-        "name": "github-actions[bot]",
-        "username": "github-actions[bot]"
-      },
-      "committer": {
-        "email": "41898282+github-actions[bot]@users.noreply.github.com",
-        "name": "github-actions[bot]",
-        "username": "github-actions[bot]"
-      },
-      "distinct": false,
-      "id": "63e7ff9233c47aef5419bd1f6cff51475be2c0b7",
-      "message": "[auto commit] update context (workflow=auto dump context, event=pull_request, action=labeled)",
-      "timestamp": "2025-12-22T05:04:55Z",
-      "tree_id": "b0d3d8ae2f08afe7d7a7d87f60190b15f6f299bc",
-      "url": "https://github.com/guitarrapc/githubactions-lab/commit/63e7ff9233c47aef5419bd1f6cff51475be2c0b7"
-    },
-    {
-      "author": {
-        "email": "41898282+github-actions[bot]@users.noreply.github.com",
-        "name": "github-actions[bot]",
-        "username": "github-actions[bot]"
-      },
-      "committer": {
-        "email": "41898282+github-actions[bot]@users.noreply.github.com",
-        "name": "github-actions[bot]",
-        "username": "github-actions[bot]"
-      },
-      "distinct": false,
-      "id": "900420f189d3c713668de7dc7862f9e0eeafee28",
-      "message": "[auto commit] update context (workflow=auto dump context, event=pull_request, action=opened)",
-      "timestamp": "2025-12-22T05:04:59Z",
-      "tree_id": "5cf7d0c8347bcb0b7ca376536079037f32653f76",
-      "url": "https://github.com/guitarrapc/githubactions-lab/commit/900420f189d3c713668de7dc7862f9e0eeafee28"
-    },
-    {
-      "author": {
-        "email": "41898282+github-actions[bot]@users.noreply.github.com",
-        "name": "github-actions[bot]",
-        "username": "github-actions[bot]"
-      },
-      "committer": {
-        "email": "41898282+github-actions[bot]@users.noreply.github.com",
-        "name": "github-actions[bot]",
-        "username": "github-actions[bot]"
-      },
-      "distinct": false,
-      "id": "9d087a8e80dc1ba5fe3c557db92a3dd7d873d87d",
-      "message": "[auto commit] update context (workflow=auto dump context, event=pull_request_target, action=labeled)",
-      "timestamp": "2025-12-22T05:05:50Z",
-      "tree_id": "a0b9b217d3f909df34356ec992f8bc237f1f64da",
-      "url": "https://github.com/guitarrapc/githubactions-lab/commit/9d087a8e80dc1ba5fe3c557db92a3dd7d873d87d"
-    },
-    {
-      "author": {
-        "email": "41898282+github-actions[bot]@users.noreply.github.com",
-        "name": "github-actions[bot]",
-        "username": "github-actions[bot]"
-      },
-      "committer": {
-        "email": "41898282+github-actions[bot]@users.noreply.github.com",
-        "name": "github-actions[bot]",
-        "username": "github-actions[bot]"
-      },
-      "distinct": false,
-      "id": "3b8407840a29ac7631cffd3ca15133fd38d9151a",
-      "message": "[auto commit] update context (workflow=auto dump context, event=pull_request_target, action=opened)",
-      "timestamp": "2025-12-22T05:05:55Z",
-      "tree_id": "b1d7d2c2a5b4c2cd89db9d56f0be60f8294ea814",
-      "url": "https://github.com/guitarrapc/githubactions-lab/commit/3b8407840a29ac7631cffd3ca15133fd38d9151a"
-    },
     {
       "author": {
         "email": "3856350+guitarrapc@users.noreply.github.com",
@@ -100,19 +10,19 @@
         "username": "guitarrapc"
       },
       "committer": {
-        "email": "noreply@github.com",
-        "name": "GitHub",
-        "username": "web-flow"
+        "email": "3856350+guitarrapc@users.noreply.github.com",
+        "name": "Ikiru Yoshizaki",
+        "username": "guitarrapc"
       },
       "distinct": true,
-      "id": "a6540e354ac721152f31f638b39b9376c797efd8",
-      "message": "Merge pull request #275 from guitarrapc/auto-pr/dotnet-format\n\n[dotnet format] Automated changes",
-      "timestamp": "2025-12-22T14:16:31+09:00",
-      "tree_id": "c96d35ccaa4fcd70093b2db25179028645b77d54",
-      "url": "https://github.com/guitarrapc/githubactions-lab/commit/a6540e354ac721152f31f638b39b9376c797efd8"
+      "id": "b64a29a80ada99d07e1c6042e952267d624bfd4c",
+      "message": "chore: bump actions/checkout",
+      "timestamp": "2025-12-23T00:39:04+09:00",
+      "tree_id": "9e61c7e786c8667ae9ca47881f0d30bb11e32088",
+      "url": "https://github.com/guitarrapc/githubactions-lab/commit/b64a29a80ada99d07e1c6042e952267d624bfd4c"
     }
   ],
-  "compare": "https://github.com/guitarrapc/githubactions-lab/compare/9b563e135bf0...a6540e354ac7",
+  "compare": "https://github.com/guitarrapc/githubactions-lab/compare/caf69806314c...b64a29a80ada",
   "created": false,
   "deleted": false,
   "forced": false,
@@ -123,16 +33,16 @@
       "username": "guitarrapc"
     },
     "committer": {
-      "email": "noreply@github.com",
-      "name": "GitHub",
-      "username": "web-flow"
+      "email": "3856350+guitarrapc@users.noreply.github.com",
+      "name": "Ikiru Yoshizaki",
+      "username": "guitarrapc"
     },
     "distinct": true,
-    "id": "a6540e354ac721152f31f638b39b9376c797efd8",
-    "message": "Merge pull request #275 from guitarrapc/auto-pr/dotnet-format\n\n[dotnet format] Automated changes",
-    "timestamp": "2025-12-22T14:16:31+09:00",
-    "tree_id": "c96d35ccaa4fcd70093b2db25179028645b77d54",
-    "url": "https://github.com/guitarrapc/githubactions-lab/commit/a6540e354ac721152f31f638b39b9376c797efd8"
+    "id": "b64a29a80ada99d07e1c6042e952267d624bfd4c",
+    "message": "chore: bump actions/checkout",
+    "timestamp": "2025-12-23T00:39:04+09:00",
+    "tree_id": "9e61c7e786c8667ae9ca47881f0d30bb11e32088",
+    "url": "https://github.com/guitarrapc/githubactions-lab/commit/b64a29a80ada99d07e1c6042e952267d624bfd4c"
   },
   "pusher": {
     "email": "3856350+guitarrapc@users.noreply.github.com",
@@ -201,8 +111,8 @@
     "name": "githubactions-lab",
     "node_id": "MDEwOlJlcG9zaXRvcnkyNTc0NjU0Njg=",
     "notifications_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/notifications{?since,all,participating}",
-    "open_issues": 2,
-    "open_issues_count": 2,
+    "open_issues": 3,
+    "open_issues_count": 3,
     "owner": {
       "avatar_url": "https://avatars.githubusercontent.com/u/3856350?v=4",
       "email": "3856350+guitarrapc@users.noreply.github.com",
@@ -228,9 +138,9 @@
     },
     "private": false,
     "pulls_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls{/number}",
-    "pushed_at": 1766380591,
+    "pushed_at": 1766417949,
     "releases_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/releases{/id}",
-    "size": 4585,
+    "size": 4688,
     "ssh_url": "git@github.com:guitarrapc/githubactions-lab.git",
     "stargazers": 55,
     "stargazers_count": 55,
@@ -245,7 +155,7 @@
       "github-actions"
     ],
     "trees_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/git/trees{/sha}",
-    "updated_at": "2025-12-22T05:04:26Z",
+    "updated_at": "2025-12-22T05:17:37Z",
     "url": "https://api.github.com/repos/guitarrapc/githubactions-lab",
     "visibility": "public",
     "watchers": 55,
