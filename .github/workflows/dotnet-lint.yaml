@@ -19,7 +19,8 @@ jobs:
         with:
           app-id: ${{ secrets.SYNCED_ACTIONS_BOT_APPID }}
           private-key: ${{ secrets.SYNCED_ACTIONS_BOT_PRIVATE_KEY }}
-          permission-pull-requests: read # grant read access to pull requests
+          permission-contents: write
+          permission-pull-requests: write
       - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
         with:
           persist-credentials: false
