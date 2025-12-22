@@ -1,5 +1,14 @@
 {
-  "action": "opened",
+  "action": "labeled",
+  "label": {
+    "color": "ededed",
+    "default": false,
+    "description": null,
+    "id": 2688431583,
+    "name": "automated pr",
+    "node_id": "MDU6TGFiZWwyNjg4NDMxNTgz",
+    "url": "https://api.github.com/repos/guitarrapc/githubactions-lab/labels/automated%20pr"
+  },
   "number": 275,
   "pull_request": {
     "_links": {
@@ -353,9 +362,9 @@
     ],
     "locked": false,
     "maintainer_can_modify": false,
-    "merge_commit_sha": "8c688eb17e314d97711cf9861bc03b176702cc12",
-    "mergeable": true,
-    "mergeable_state": "unstable",
+    "merge_commit_sha": null,
+    "mergeable": null,
+    "mergeable_state": "unknown",
     "merged": false,
     "merged_at": null,
     "merged_by": null,
@@ -363,7 +372,7 @@
     "node_id": "PR_kwDOD1icfM66ENR9",
     "number": 275,
     "patch_url": "https://github.com/guitarrapc/githubactions-lab/pull/275.patch",
-    "rebaseable": true,
+    "rebaseable": null,
     "requested_reviewers": [],
     "requested_teams": [],
     "review_comment_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/comments{/number}",
