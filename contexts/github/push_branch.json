@@ -2,13 +2,13 @@
   "token": "<reducted>",
   "job": "dump-context",
   "ref": "refs/heads/main",
-  "sha": "2425463db949b5140e378c931cf0eb062941d6b7",
+  "sha": "dbb2ef04944018f99478eae4a69ef31d44f7a6f8",
   "repository": "guitarrapc/githubactions-lab",
   "repository_owner": "guitarrapc",
   "repository_owner_id": "3856350",
   "repositoryUrl": "git://github.com/guitarrapc/githubactions-lab.git",
-  "run_id": "20420933354",
-  "run_number": "1242",
+  "run_id": "20422338982",
+  "run_number": "1243",
   "retention_days": "90",
   "run_attempt": "1",
   "artifact_cache_size_limit": "10",
@@ -27,9 +27,9 @@
   "ref_type": "branch",
   "secret_source": "Actions",
   "event": {
-    "after": "2425463db949b5140e378c931cf0eb062941d6b7",
+    "after": "dbb2ef04944018f99478eae4a69ef31d44f7a6f8",
     "base_ref": null,
-    "before": "0e1560341e0c479fc325096cdb970fdffa8421c3",
+    "before": "e203c515ad9c869756fa2dc081050f000aa273ea",
     "commits": [
       {
         "author": {
@@ -43,14 +43,32 @@
           "username": "guitarrapc"
         },
         "distinct": true,
-        "id": "2425463db949b5140e378c931cf0eb062941d6b7",
-        "message": "fix: use gh instead of action",
-        "timestamp": "2025-12-22T12:34:34+09:00",
-        "tree_id": "0f6ebdd63bbd58d2895c01117c06bcbeff091b6d",
-        "url": "https://github.com/guitarrapc/githubactions-lab/commit/2425463db949b5140e378c931cf0eb062941d6b7"
+        "id": "5825d4a621bbb037d19a77449bbecea53a7fcbd4",
+        "message": "chore: allow commit / pr",
+        "timestamp": "2025-12-22T14:03:44+09:00",
+        "tree_id": "34412544adc48961543c2b925c1103d225b01efc",
+        "url": "https://github.com/guitarrapc/githubactions-lab/commit/5825d4a621bbb037d19a77449bbecea53a7fcbd4"
+      },
+      {
+        "author": {
+          "email": "3856350+guitarrapc@users.noreply.github.com",
+          "name": "Ikiru Yoshizaki",
+          "username": "guitarrapc"
+        },
+        "committer": {
+          "email": "3856350+guitarrapc@users.noreply.github.com",
+          "name": "Ikiru Yoshizaki",
+          "username": "guitarrapc"
+        },
+        "distinct": true,
+        "id": "dbb2ef04944018f99478eae4a69ef31d44f7a6f8",
+        "message": "Merge remote-tracking branch 'origin/main'",
+        "timestamp": "2025-12-22T14:03:55+09:00",
+        "tree_id": "9f17db1694a260715441eab34a530cb53c85bc47",
+        "url": "https://github.com/guitarrapc/githubactions-lab/commit/dbb2ef04944018f99478eae4a69ef31d44f7a6f8"
       }
     ],
-    "compare": "https://github.com/guitarrapc/githubactions-lab/compare/0e1560341e0c...2425463db949",
+    "compare": "https://github.com/guitarrapc/githubactions-lab/compare/e203c515ad9c...dbb2ef049440",
     "created": false,
     "deleted": false,
     "forced": false,
@@ -66,11 +84,11 @@
         "username": "guitarrapc"
       },
       "distinct": true,
-      "id": "2425463db949b5140e378c931cf0eb062941d6b7",
-      "message": "fix: use gh instead of action",
-      "timestamp": "2025-12-22T12:34:34+09:00",
-      "tree_id": "0f6ebdd63bbd58d2895c01117c06bcbeff091b6d",
-      "url": "https://github.com/guitarrapc/githubactions-lab/commit/2425463db949b5140e378c931cf0eb062941d6b7"
+      "id": "dbb2ef04944018f99478eae4a69ef31d44f7a6f8",
+      "message": "Merge remote-tracking branch 'origin/main'",
+      "timestamp": "2025-12-22T14:03:55+09:00",
+      "tree_id": "9f17db1694a260715441eab34a530cb53c85bc47",
+      "url": "https://github.com/guitarrapc/githubactions-lab/commit/dbb2ef04944018f99478eae4a69ef31d44f7a6f8"
     },
     "pusher": {
       "email": "3856350+guitarrapc@users.noreply.github.com",
@@ -166,9 +184,9 @@
       },
       "private": false,
       "pulls_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls{/number}",
-      "pushed_at": 1766374476,
+      "pushed_at": 1766379837,
       "releases_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/releases{/id}",
-      "size": 4574,
+      "size": 4585,
       "ssh_url": "git@github.com:guitarrapc/githubactions-lab.git",
       "stargazers": 55,
       "stargazers_count": 55,
@@ -183,7 +201,7 @@
         "github-actions"
       ],
       "trees_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/git/trees{/sha}",
-      "updated_at": "2025-12-21T12:44:51Z",
+      "updated_at": "2025-12-22T03:35:08Z",
       "url": "https://api.github.com/repos/guitarrapc/githubactions-lab",
       "visibility": "public",
       "watchers": 55,
@@ -213,7 +231,7 @@
     }
   },
   "workflow_ref": "guitarrapc/githubactions-lab/.github/workflows/auto-dump-context.yaml@refs/heads/main",
-  "workflow_sha": "2425463db949b5140e378c931cf0eb062941d6b7",
+  "workflow_sha": "dbb2ef04944018f99478eae4a69ef31d44f7a6f8",
   "repository_id": "257465468",
   "triggering_actor": "guitarrapc",
   "workspace": "/home/runner/work/githubactions-lab/githubactions-lab",
@@ -221,9 +239,9 @@
   "event_path": "/home/runner/work/_temp/_github_workflow/event.json",
   "action_repository": "",
   "action_ref": "",
-  "path": "/home/runner/work/_temp/_runner_file_commands/add_path_2fdc884b-b7a8-459e-b16c-c337f40664bc",
-  "env": "/home/runner/work/_temp/_runner_file_commands/set_env_2fdc884b-b7a8-459e-b16c-c337f40664bc",
-  "step_summary": "/home/runner/work/_temp/_runner_file_commands/step_summary_2fdc884b-b7a8-459e-b16c-c337f40664bc",
-  "state": "/home/runner/work/_temp/_runner_file_commands/save_state_2fdc884b-b7a8-459e-b16c-c337f40664bc",
-  "output": "/home/runner/work/_temp/_runner_file_commands/set_output_2fdc884b-b7a8-459e-b16c-c337f40664bc"
+  "path": "/home/runner/work/_temp/_runner_file_commands/add_path_c86720e3-f909-437a-9397-649a2646ba8f",
+  "env": "/home/runner/work/_temp/_runner_file_commands/set_env_c86720e3-f909-437a-9397-649a2646ba8f",
+  "step_summary": "/home/runner/work/_temp/_runner_file_commands/step_summary_c86720e3-f909-437a-9397-649a2646ba8f",
+  "state": "/home/runner/work/_temp/_runner_file_commands/save_state_c86720e3-f909-437a-9397-649a2646ba8f",
+  "output": "/home/runner/work/_temp/_runner_file_commands/set_output_c86720e3-f909-437a-9397-649a2646ba8f"
 }
