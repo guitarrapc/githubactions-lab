@@ -6,11 +6,11 @@
 
 # githubactions-lab
 
-GitHub Actions research and test laboratory.
+GitHub Actionsの研究とテストラボです。
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-# Table of Contents
+# 目次
 
 - [Not yet support](#not-yet-support)
   - [View](#view)
@@ -97,50 +97,50 @@ GitHub Actions research and test laboratory.
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
-# Not yet support
+# まだサポートされていない機能
 
-## View
-- [ ] Workflow overview status view
-  - There are no view for workflow status overview. Jenkins provides view for Job status which allow user to understand current status in 1 step.
-  - Workaround: None.
-- [ ] GitHub Actions workflow view grouping
-  - Group GitHub Actions workflows.
-  - Workaround: None.
-- [ ] Test Insight view
-  - Like [CircleCI](https://circleci.com/docs/insights-tests) and [Azure Pipeline](https://docs.microsoft.com/en-us/azure/devops/pipelines/test/review-continuous-test-results-after-build?view=azure-devops) provides.
-  - Workaround: Use [$GITHUB_STEP_SUMMARY](https://github.blog/2022-05-09-supercharging-github-actions-with-job-summaries/)
+## ビュー
+- [ ] ワークフロー概要ステータスビュー
+  - ワークフローステータスの概要ビューがありません。Jenkinsはジョブステータスのビューを提供しており、1ステップで現在のステータスを把握できます。
+  - 回避策: なし。
+- [ ] GitHub Actionsワークフロービューのグループ化
+  - GitHub Actionsワークフローをグループ化できません。
+  - 回避策: なし。
+- [ ] テストインサイトビュー
+  - [CircleCI](https://circleci.com/docs/insights-tests)や[Azure Pipeline](https://docs.microsoft.com/en-us/azure/devops/pipelines/test/review-continuous-test-results-after-build?view=azure-devops)が提供するようなテストインサイトビューがありません。
+  - 回避策: [$GITHUB_STEP_SUMMARY](https://github.blog/2022-05-09-supercharging-github-actions-with-job-summaries/)を使用してください。
 
-## Functionality
-- [ ] Workflow level `timeout-minutes`
-  - Currently timeout-minutes can set to jobs and steps, but workflow cannot change from default 360min.
-  - Workaround: None. Please set `timeout-minutes` to every job.
-- [ ] Workflow concurrency control customization
-  - Currently concurrency control can be handled with `key` and `cancel-in-progress` options. It will terminate the action when at least 1 pending job exists. However, you cannot customize how many pending actions are allowed or prevent cancellation of pending jobs.
-  - Workaround: None.
-- [ ] SSH Debug
-  - Like [CircleCI provides](https://circleci.com/docs/ssh-access-jobs).
-  - Workaround: Use [Debugging with ssh Actions](https://github.com/marketplace/actions/debugging-with-ssh)
-- [x] Dynamic Config
-  - CircleCI provides [Dynamic Config](https://circleci.com/docs/dynamic-config) with setup workflows, path filtering via [path-filtering orb](https://circleci.com/developer/orbs/orb/circleci/path-filtering), and [continuation orb](https://circleci.com/developer/orbs/orb/circleci/continuation). Enabled by default for projects created after Dec 1, 2023.
-  - GitHub Actions offers similar functionality: Reusable Workflow / Composite Actions with inputs parameter, and conditional workflow execution.
+## 機能
+- [ ] ワークフローレベルの`timeout-minutes`
+  - 現在、timeout-minutesはジョブとステップに設定できますが、ワークフロー全体のデフォルト360分を変更できません。
+  - 回避策: なし。すべてのジョブに`timeout-minutes`を設定してください。
+- [ ] ワークフロー並行制御のカスタマイズ
+  - 現在、並行制御は`key`と`cancel-in-progress`オプションで処理できます。少なくとも1つの保留中のジョブが存在する場合、アクションは終了します。ただし、保留中のアクションの数をカスタマイズしたり、保留中のジョブのキャンセルを防止したりすることはできません。
+  - 回避策: なし。
+- [ ] SSHデバッグ
+  - [CircleCIが提供](https://circleci.com/docs/ssh-access-jobs)するようなSSHデバッグ機能がありません。
+  - 回避策: [Debugging with ssh Actions](https://github.com/marketplace/actions/debugging-with-ssh)を使用してください。
+- [x] 動的設定
+  - CircleCIは[Dynamic Config](https://circleci.com/docs/dynamic-config)を提供しており、セットアップワークフロー、[path-filtering orb](https://circleci.com/developer/orbs/orb/circleci/path-filtering)によるパスフィルタリング、[continuation orb](https://circleci.com/developer/orbs/orb/circleci/continuation)が利用できます。2023年12月1日以降に作成されたプロジェクトではデフォルトで有効です。
+  - GitHub Actionsは同様の機能を提供しています: 再利用可能なワークフロー/入力パラメータを持つComposite Actions、および条件付きワークフロー実行。
 
-## Plan limitation
+## プラン制限
 
 ### GitHub Team Plan, GitHub Pro Plan
 
-- [ ] `Environment > Deployment protection rules` is not allowed in GitHub Team/Pro Plan. You cannot use `Required reviewers` (Approvabl) and `Wait timer`. GitHub Enterprise Plan is required to use these features in private repository.
+- [ ] `Environment > Deployment protection rules`はGitHub Team/Proプランでは利用できません。`Required reviewers`（承認）と`Wait timer`を使用できません。プライベートリポジトリでこれらの機能を使用するには、GitHub Enterpriseプランが必要です。
 
-<details><summary>Click to show details</summary>
+<details><summary>詳細を表示するにはクリック</summary>
 
-**Private Repository**
+**プライベートリポジトリ**
 
-Missing `Required reviewers` and `Wait timer` for Environment protection rules.
+Environment protection rulesで`Required reviewers`と`Wait timer`が使用できません。
 
 ![Environment Private Repository](./images/environment-private-repo.png)
 
-**Public Repository**
+**パブリックリポジトリ**
 
-Can use `Required reviewers` and `Wait timer` for Environment protection rules.
+Environment protection rulesで`Required reviewers`と`Wait timer`が使用できます。
 
 ![Environment Public Repository](./images/environment-public-repo.png)
 
@@ -148,22 +148,22 @@ Can use `Required reviewers` and `Wait timer` for Environment protection rules.
 
 ---
 
-# Migrating CI to GitHub Actions
+# GitHub ActionsへのCIの移行
 
-There are several documents for migration.
+移行に関するいくつかのドキュメントがあります。
 
 - CircleCI -> GitHub Actions: [Migrating from CircleCI to GitHub Actions \- GitHub Help](https://help.github.com/en/actions/migrating-to-github-actions/migrating-from-circleci-to-github-actions)
 - Azure pipeline -> GitHub Actions: [Migrating from Azure Pipelines to GitHub Actions \- GitHub Help](https://help.github.com/en/actions/migrating-to-github-actions/migrating-from-azure-pipelines-to-github-actions)
 - GitLab -> GitHub Actions: [Migrating from GitLab CI/CD to GitHub Actions \- GitHub Docs](https://docs.github.com/en/actions/migrating-to-github-actions/migrating-from-gitlab-cicd-to-github-actions)
 - Jenkins -> GitHub Actions: [Migrating from Jenkins to GitHub Actions \- GitHub Help](https://help.github.com/en/actions/migrating-to-github-actions/migrating-from-jenkins-to-github-actions)
 
-Also you may consider migrate from GitHub Actions.
+GitHub Actionsからの移行も検討できます。
 
 - GitHub Actions -> CircleCI: [Migrating from Github Actions \- CircleCI](https://circleci.com/docs/migrating-from-github)
 
-# GitHub Actions vs Other CI Platforms
+# GitHub Actions vs 他のCIプラットフォーム
 
-A quick comparison table of key features across CI platforms:
+CIプラットフォーム間の主要機能の簡単な比較表:
 
 | Feature | GitHub Actions | CircleCI | Azure Pipeline | Jenkins |
 |---------|---------------|----------|----------------|---------|
@@ -189,18 +189,18 @@ A quick comparison table of key features across CI platforms:
 | Artifact retention | ✔️ Configurable | ⚠️ Permanent | ⚠️ Permanent | ⚠️ Configurable |
 | Skip CI keywords | ✔️ 5 types | ✔️ 2 types | ✔️ 3+ types | ⚠️ Plugin |
 
-**Legend:** ✔️ Full support | ⚠️ Limited/Partial | ❌ Not supported | N/A Not applicable
+**凡例:** ✔️ 完全サポート | ⚠️ 制限付き/部分的 | ❌ サポートなし | N/A 該当なし
 
-## Core Workflow Features
+## コアワークフロー機能
 
-### Job and workflow
+### ジョブとワークフロー
 
-- ✔️ **GitHub Actions**: Jobs defined inside workflow. Triggers both Push and PR.
-- ✔️ **CircleCI**: Jobs combined in workflow. Cannot trigger both Push and PR simultaneously.
-- ✔️ **Azure Pipeline**: Jobs combined in stages. Triggers both Push and PR.
-- ⚠️ **Jenkins**: Uses Declarative Pipeline (Groovy, not YAML). Triggers defined outside pipeline.
+- ✔️ **GitHub Actions**: ジョブはワークフロー内で定義。PushとPR両方をトリガー。
+- ✔️ **CircleCI**: ジョブはワークフロー内で結合。PushとPRを同時にトリガーできない。
+- ✔️ **Azure Pipeline**: ジョブはstageで結合。PushとPR両方をトリガー。
+- ⚠️ **Jenkins**: Declarative Pipeline(Groovy、YAMLではない)を使用。トリガーはパイプライン外で定義。
 
-<details><summary>Click to show syntax examples</summary>
+<details><summary>構文例を表示するにはクリック</summary>
 
 **GitHub Actions**
 ```yaml
@@ -270,156 +270,156 @@ pipeline {
 
 </details>
 
-### Path filter
+### パスフィルター
 
-Filter workflow execution based on changed file paths:
+変更されたファイルパスに基づいてワークフロー実行をフィルタリング:
 
-- ✔️ **GitHub Actions**: Built-in support via [`on.<event>.paths`/`paths-ignore`](https://help.github.com/en/actions/reference/workflow-syntax-for-github-actions#onpushpull_requestpaths)
-- ✔️ **CircleCI**: [Path filtering via official orb](https://circleci.com/developer/orbs/orb/circleci/path-filtering) (requires dynamic config)
-- ✔️ **Azure Pipeline**: Built-in path filter support
-- ❌ **Jenkins**: No built-in support; manual implementation required
+- ✔️ **GitHub Actions**: [`on.<event>.paths`/`paths-ignore`](https://help.github.com/en/actions/reference/workflow-syntax-for-github-actions#onpushpull_requestpaths)経由で組み込みサポート
+- ✔️ **CircleCI**: [公式orbでパスフィルタリング](https://circleci.com/developer/orbs/orb/circleci/path-filtering)(動的設定が必要)
+- ✔️ **Azure Pipeline**: 組み込みパスフィルターサポート
+- ❌ **Jenkins**: 組み込みサポートなし。手動実装が必要。
 
-### Reusable job and workflow
+### 再利用可能なジョブとワークフロー
 
-- ✔️ **GitHub Actions**: Multiple reuse options: `Reusable workflow`, `Composite Actions`, `Organization workflow`, `YAML anchor`
-- ✔️ **CircleCI**: Job reuse and `YAML anchor` support
-- ✔️ **Azure Pipeline**: Template system for stage/job/step reuse
-- ⚠️ **Jenkins**: Pipeline references available but often complex; script-based reuse preferred
+- ✔️ **GitHub Actions**: 複数の再利用オプション: `再利用可能なワークフロー`、`Composite Actions`、`組織ワークフロー`、`YAMLアンカー`
+- ✔️ **CircleCI**: ジョブの再利用と`YAMLアンカー`サポート
+- ✔️ **Azure Pipeline**: stage/job/stepの再利用のためのテンプレートシステム
+- ⚠️ **Jenkins**: パイプライン参照が利用可能だが複雑なことが多い。スクリプトベースの再利用が推奨される。
 
-### Redundant build cancellation
+### 冗長ビルドのキャンセル
 
-- ✔️ **GitHub Actions**: Built-in [concurrency control](https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#concurrency) with `cancel-in-progress`. Alternative: community actions ([workflow-run-cleanup-action](https://github.com/marketplace/actions/workflow-run-cleanup-action), etc.)
-- ✔️ **CircleCI**: Built-in redundant build cancellation
-- ✔️ **Azure Pipeline**: [Stage-level concurrency](https://learn.microsoft.com/en-us/azure/devops/release-notes/features-timeline) (available since 2024 Q3)
-- ⚠️ **Jenkins**: Built-in [`disableConcurrentBuilds()`](https://www.jenkins.io/doc/book/pipeline/syntax/#options) option in Declarative Pipeline. Can abort previous builds with `disableConcurrentBuilds(abortPrevious: true)`
+- ✔️ **GitHub Actions**: `cancel-in-progress`を使用した組み込み[並行制御](https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#concurrency)。代替: コミュニティアクション([workflow-run-cleanup-action](https://github.com/marketplace/actions/workflow-run-cleanup-action)など)
+- ✔️ **CircleCI**: 組み込み冗長ビルドキャンセル
+- ✔️ **Azure Pipeline**: [ステージレベルの並行制御](https://learn.microsoft.com/en-us/azure/devops/release-notes/features-timeline)(2024 Q3以降利用可能)
+- ⚠️ **Jenkins**: Declarative Pipelineに組み込み[`disableConcurrentBuilds()`](https://www.jenkins.io/doc/book/pipeline/syntax/#options)オプション。`disableConcurrentBuilds(abortPrevious: true)`で以前のビルドを中止可能
 
-### Rerun failed workflow
+### 失敗したワークフローの再実行
 
-- ✔️ **GitHub Actions**: Re-run `whole workflow`, `single job`, or `failed jobs only`
-- ✔️ **CircleCI**: Re-run `whole workflow` or `failed jobs only`. Also supports [automatic step reruns](https://circleci.com/docs/configuration-reference/#automatic-step-reruns) with `max_auto_reruns` and configurable delays
-- ✔️ **Azure Pipeline**: [Re-run single stage](https://learn.microsoft.com/en-us/azure/devops/release-notes/features-timeline) (available since 2024 Q1), manual stage queuing supported
-- ⚠️ **Jenkins**: Re-run `whole job` (stable). Stage-level restart available with [`preserveStashes`](https://www.jenkins.io/doc/book/pipeline/syntax/#options) option (experimental feature)
+- ✔️ **GitHub Actions**: `ワークフロー全体`、`単一ジョブ`、または`失敗したジョブのみ`を再実行
+- ✔️ **CircleCI**: `ワークフロー全体`または`失敗したジョブのみ`を再実行。また、`max_auto_reruns`と設定可能な遅延を使用した[自動ステップ再試行](https://circleci.com/docs/configuration-reference/#automatic-step-reruns)もサポート
+- ✔️ **Azure Pipeline**: [単一ステージの再実行](https://learn.microsoft.com/en-us/azure/devops/release-notes/features-timeline)(2024 Q1以降利用可能)、手動ステージキューイングサポート
+- ⚠️ **Jenkins**: `ジョブ全体`の再実行(安定版)。[`preserveStashes`](https://www.jenkins.io/doc/book/pipeline/syntax/#options)オプションでステージレベルの再起動が利用可能(実験的機能)
 
-### Skip CI and commit message
+### CIのスキップとコミットメッセージ
 
-- ✔️ **GitHub Actions**: Skip keywords: `[skip ci]`, `[ci skip]`, `[no ci]`, `[skip actions]`, `[actions skip]`
-- ✔️ **CircleCI**: Skip keywords: `[skip ci]`, `[ci skip]`
-- ✔️ **Azure Pipeline**: Skip keywords: `***NO_CI***`, `[skip ci]`, `[ci skip]`, [and more](https://github.com/Microsoft/azure-pipelines-agent/issues/858#issuecomment-475768046)
-- ⚠️ **Jenkins**: Requires [SCM Skip plugin](https://plugins.jenkins.io/scmskip/). Default pattern: `.*\[ci skip\].*` (supports both freestyle and pipeline jobs with customizable regex)
+- ✔️ **GitHub Actions**: スキップキーワード: `[skip ci]`、`[ci skip]`、`[no ci]`、`[skip actions]`、`[actions skip]`
+- ✔️ **CircleCI**: スキップキーワード: `[skip ci]`、`[ci skip]`
+- ✔️ **Azure Pipeline**: スキップキーワード: `***NO_CI***`、`[skip ci]`、`[ci skip]`、[その他](https://github.com/Microsoft/azure-pipelines-agent/issues/858#issuecomment-475768046)
+- ⚠️ **Jenkins**: [SCM Skipプラグイン](https://plugins.jenkins.io/scmskip/)が必要。デフォルトパターン: `.*\[ci skip\].*`(フリースタイルとパイプラインジョブの両方をサポート、カスタマイズ可能な正規表現)
 
-### Store Build Artifacts
+### ビルド成果物の保存
 
-- ✔️ **GitHub Actions**: [actions/upload-artifact](https://github.com/actions/upload-artifact) / [download-artifact](https://github.com/actions/download-artifact). Configurable retention period.
-- ⚠️ **CircleCI**: [`store_artifacts`](https://circleci.com/docs/artifacts/) step. Download requires API call. No retention period.
-- ✔️ **Azure Pipeline**: [`PublishPipelineArtifact`](https://learn.microsoft.com/en-us/azure/devops/pipelines/artifacts/pipeline-artifacts?view=azure-devops&tabs=yaml) / `DownloadPipelineArtifact` tasks. No retention period.
-- ⚠️ **Jenkins**: [`archiveArtifacts`](https://www.jenkins.io/doc/pipeline/steps/core/#archiveartifacts-archive-the-artifacts) step with [`buildDiscarder`](https://www.jenkins.io/doc/book/pipeline/syntax/#options) for retention policy. Download via Jenkins UI or API.
+- ✔️ **GitHub Actions**: [actions/upload-artifact](https://github.com/actions/upload-artifact) / [download-artifact](https://github.com/actions/download-artifact)。設定可能な保持期間。
+- ⚠️ **CircleCI**: [`store_artifacts`](https://circleci.com/docs/artifacts/)ステップ。ダウンロードにはAPI呼び出しが必要。保持期間なし。
+- ✔️ **Azure Pipeline**: [`PublishPipelineArtifact`](https://learn.microsoft.com/en-us/azure/devops/pipelines/artifacts/pipeline-artifacts?view=azure-devops&tabs=yaml) / `DownloadPipelineArtifact`タスク。保持期間なし。
+- ⚠️ **Jenkins**: 保持ポリシーのための[`buildDiscarder`](https://www.jenkins.io/doc/book/pipeline/syntax/#options)を使用した[`archiveArtifacts`](https://www.jenkins.io/doc/pipeline/steps/core/#archiveartifacts-archive-the-artifacts)ステップ。Jenkins UIまたはAPI経由でダウンロード。
 
 ---
 
-## Security & Access Control
+## セキュリティとアクセス制御
 
-### Fork handling
+### フォーク処理
 
-- ✔️ **GitHub Actions**: Supports fork PR triggers with [workflow approval system](https://docs.github.com/en/actions/managing-workflow-runs/approving-workflow-runs-from-public-forks). Offers [practical security patterns](https://securitylab.github.com/research/github-actions-preventing-pwn-requests/) for secret access.
-- ⚠️ **CircleCI**: Supports fork PRs but [limited by branch naming rules](https://circleci.com/docs/oss/#build-pull-requests-from-forked-repositories) like `/pull\/[0-9]+/`. No easy way to handle secret access securely.
-- ✔️ **Azure Pipeline**: [Supports fork PR triggers](https://learn.microsoft.com/en-us/azure/devops/pipelines/repos/github?view=azure-devops&tabs=yaml#contributions-from-forks) with secret access, but lacks built-in security patterns.
-- ❌ **Jenkins**: Not recommended for public CI; fork PR handling not a priority.
+- ✔️ **GitHub Actions**: [ワークフロー承認システム](https://docs.github.com/en/actions/managing-workflow-runs/approving-workflow-runs-from-public-forks)でフォークPRトリガーをサポート。シークレットアクセスのための[実用的なセキュリティパターン](https://securitylab.github.com/research/github-actions-preventing-pwn-requests/)を提供。
+- ⚠️ **CircleCI**: フォークPRをサポートするが、`/pull\/[0-9]+/`のような[ブランチ命名規則による制限](https://circleci.com/docs/oss/#build-pull-requests-from-forked-repositories)がある。シークレットアクセスを安全に処理する簡単な方法がない。
+- ✔️ **Azure Pipeline**: シークレットアクセスで[フォークPRトリガーをサポート](https://learn.microsoft.com/en-us/azure/devops/pipelines/repos/github?view=azure-devops&tabs=yaml#contributions-from-forks)するが、組み込みのセキュリティパターンが不足。
+- ❌ **Jenkins**: パブリックCIには推奨されない。フォークPR処理は優先事項ではない。
 
-### Job Approval
+### ジョブ承認
 
-- ⚠️ **GitHub Actions**: Supports approval via Environment protection rules. Limitation: Not available in `GitHub Team` plan for private repos, requires `GitHub Enterprise` plan.
-- ✔️ **CircleCI**: Full approval support.
-- ✔️ **Azure Pipeline**: Full approval support.
-- ✔️ **Jenkins**: Full approval support.
+- ⚠️ **GitHub Actions**: Environment保護ルール経由で承認をサポート。制限: プライベートリポジトリの`GitHub Team`プランでは利用不可、`GitHub Enterprise`プランが必要。
+- ✔️ **CircleCI**: 完全な承認サポート。
+- ✔️ **Azure Pipeline**: 完全な承認サポート。
+- ✔️ **Jenkins**: 完全な承認サポート。
 
-### Set Secrets for Job
+### ジョブのシークレット設定
 
-- ✔️ **GitHub Actions**: Organization/Repository/Environment Secrets with automatic log masking
-- ✔️ **CircleCI**: Environment Variables and Context
-- ✔️ **Azure Pipeline**: Environment Variables and Parameters
+- ✔️ **GitHub Actions**: 自動ログマスキング付きのOrganization/Repository/Environment Secrets
+- ✔️ **CircleCI**: 環境変数とContext
+- ✔️ **Azure Pipeline**: 環境変数とパラメータ
 - ✔️ **Jenkins**: Credential Provider
 
-<details><summary>Click to show GitHub Actions secret details</summary>
+<details><summary>GitHub Actionsのシークレット詳細を表示するにはクリック</summary>
 
-GitHub Actions supports three secret scopes:
+GitHub Actionsは3つのシークレットスコープをサポート:
 
-- **Organization Secrets**: `Organization > Settings > Secrets` (can filter by repository)
+- **Organization Secrets**: `Organization > Settings > Secrets`(リポジトリでフィルタリング可能)
 - **Repository Secrets**: `Repository > Settings > Secrets`
 - **Environment Secrets**: `Repository > Environment > Secrets`
 
-**Priority**: `Environment Secrets` > `Repository Secrets` > `Organization Secrets`
+**優先順位**: `Environment Secrets` > `Repository Secrets` > `Organization Secrets`
 
-**Personal accounts**: Set secrets per repository or use [google/secrets-sync-action](https://github.com/google/secrets-sync-action).
+**個人アカウント**: リポジトリごとにシークレットを設定するか、[google/secrets-sync-action](https://github.com/google/secrets-sync-action)を使用。
 
-Secrets are automatically [masked in logs](https://docs.github.com/en/actions/using-workflows/workflow-commands-for-github-actions#masking-a-value-in-a-log).
+シークレットは自動的に[ログでマスク](https://docs.github.com/en/actions/using-workflows/workflow-commands-for-github-actions#masking-a-value-in-a-log)されます。
 
 </details>
 
 ---
 
-## Infrastructure & Performance
+## インフラストラクチャとパフォーマンス
 
 ### Git Checkout
 
-- ✔️ **GitHub Actions**: [actions/checkout](https://github.com/actions/checkout) supports all features: `ssh/https`, `submodule`, `shallow-clone` (default depth 1), `sparse checkout`, `lfs`.
-- ✔️ **CircleCI**: [checkout](https://circleci.com/docs/configuration-reference/#checkout) supports `ssh/https`, `submodule`, `blobless clone` (default since 2024), `lfs`. Missing: `sparse-checkout`. Can select `method: blobless` or `method: full`.
-- ✔️ **Azure Pipeline**: [checkout](https://learn.microsoft.com/en-us/azure/devops/pipelines/yaml-schema/steps-checkout?view=azure-pipelines) supports `ssh/https`, `submodule`, `shallow-clone` (default depth 1 since Sept 2022), `lfs`. Missing: `sparse-checkout`.
-- ✔️ **Jenkins**: [GitSCM](https://www.jenkins.io/doc/pipeline/steps/params/gitscm/) supports all features: `ssh/https`, `submodule`, `shallow-clone`, `sparse checkout`, `lfs`. Default: full clone.
+- ✔️ **GitHub Actions**: [actions/checkout](https://github.com/actions/checkout)はすべての機能をサポート: `ssh/https`、`submodule`、`shallow-clone`(デフォルト深度1)、`sparse checkout`、`lfs`。
+- ✔️ **CircleCI**: [checkout](https://circleci.com/docs/configuration-reference/#checkout)は`ssh/https`、`submodule`、`blobless clone`(2024年以降デフォルト)、`lfs`をサポート。欠落: `sparse-checkout`。`method: blobless`または`method: full`を選択可能。
+- ✔️ **Azure Pipeline**: [checkout](https://learn.microsoft.com/en-us/azure/devops/pipelines/yaml-schema/steps-checkout?view=azure-pipelines)は`ssh/https`、`submodule`、`shallow-clone`(2022年9月以降デフォルト深度1)、`lfs`をサポート。欠落: `sparse-checkout`。
+- ✔️ **Jenkins**: [GitSCM](https://www.jenkins.io/doc/pipeline/steps/params/gitscm/)はすべての機能をサポート: `ssh/https`、`submodule`、`shallow-clone`、`sparse checkout`、`lfs`。デフォルト: フルクローン。
 
-### Hosted Runner sizing
+### ホストランナーのサイジング
 
-- ✔️ **GitHub Actions**: Offers [Single-CPU runners](https://docs.github.com/en/actions/reference/runners/github-hosted-runners#single-cpu-runners) and [Larger runners](https://docs.github.com/en/actions/using-github-hosted-runners/about-larger-runners/about-larger-runners) with configurable sizing and static IP addresses.
-- ✔️ **CircleCI**: Offers [resource classes](https://circleci.com/docs/resource-class-overview/) for different runner sizes.
-- ⚠️ **Azure Pipeline**: Fixed size for Microsoft-hosted agents: [Standard_DS2_v2](https://learn.microsoft.com/en-us/azure/devops/pipelines/agents/hosted#hardware) (2 vCPU, 7GB RAM, 14GB SSD). For flexible sizing, use [Managed DevOps Pools](https://learn.microsoft.com/en-us/azure/devops/managed-devops-pools/overview) or self-hosted agents.
-- ❌ **Jenkins**: Self-hosted solution; hosted runner concept not applicable.
-
----
-
-## Development Experience
-
-### Meta values and JobId
-
-All CIs provide access to job metadata and unique identifiers:
-
-- ✔️ **GitHub Actions**: [Context](https://help.github.com/en/actions/reference/context-and-expression-syntax-for-github-actions#github-context) `github.run_id` or [env var](https://help.github.com/en/actions/configuring-and-managing-workflows/using-environment-variables#default-environment-variables) `GITHUB_RUN_ID`
-- ✔️ **CircleCI**: [Env vars](https://circleci.com/docs/2.0/env-vars/#built-in-environment-variables) `CIRCLE_BUILD_NUM`, `CIRCLE_WORKFLOW_ID`
-- ✔️ **Azure Pipeline**: [Env var](https://docs.microsoft.com/ja-jp/azure/devops/pipelines/process/run-number?view=azure-devops&tabs=yaml#tokens) `BuildID`
-- ✔️ **Jenkins**: [Env var](https://wiki.jenkins.io/display/JENKINS/Building+a+software+project) `BUILD_NUMBER`
-
-### Set Environment variables
-
-- ✔️ **GitHub Actions**: Redirect to [`$GITHUB_ENV`](https://help.github.com/en/actions/reference/workflow-commands-for-github-actions#setting-an-environment-variable): `echo "NAME=value" >> $GITHUB_ENV`
-- ✔️ **CircleCI**: Redirect to `$BASH_ENV`: `echo "export NAME=value" >> $BASH_ENV`
-- ✔️ **Azure Pipeline**: Use task.setvariable: `echo "##vso[task.setvariable variable=NAME]VALUE"`
-- ✔️ **Jenkins**: Use `Env.` object
-
-### Set Output
-
-Pass values between steps and jobs with dedicated output parameters:
-
-- ✔️ **GitHub Actions**: Redirect to [`$GITHUB_OUTPUT`](https://docs.github.com/en/actions/using-workflows/workflow-commands-for-github-actions#setting-an-output-parameter): `echo "name=value" >> "$GITHUB_OUTPUT"`. Supports job-to-job passing.
-- ⚠️ **CircleCI**: No dedicated output; use environment variables
-- ✔️ **Azure Pipeline**: Use task.setvariable with `isoutput=true`: `echo "##vso[task.setvariable variable=NAME;isoutput=true]VALUE"`
-- ⚠️ **Jenkins**: No dedicated output; use environment variables
-
-### Set PATH Environment variables
-
-- ✔️ **GitHub Actions**: Redirect to `$GITHUB_PATH`: `echo "/path/to/dir" >> "$GITHUB_PATH"`
-- ✔️ **CircleCI**: Redirect to `$BASH_ENV`: `echo "export PATH=$GOPATH/bin:$PATH" >> $BASH_ENV`
-- ✔️ **Azure Pipeline**: Use task.setvariable: `echo '##vso[task.setvariable variable=path]$(PATH):/dir/to/whatever'`
-- ✔️ **Jenkins**: Use `Env.` object
+- ✔️ **GitHub Actions**: 設定可能なサイジングと静的IPアドレスを備えた[Single-CPUランナー](https://docs.github.com/en/actions/reference/runners/github-hosted-runners#single-cpu-runners)と[より大きなランナー](https://docs.github.com/en/actions/using-github-hosted-runners/about-larger-runners/about-larger-runners)を提供。
+- ✔️ **CircleCI**: 異なるランナーサイズのための[リソースクラス](https://circleci.com/docs/resource-class-overview/)を提供。
+- ⚠️ **Azure Pipeline**: Microsoftホストエージェントの固定サイズ: [Standard_DS2_v2](https://learn.microsoft.com/en-us/azure/devops/pipelines/agents/hosted#hardware)(2 vCPU、7GB RAM、14GB SSD)。柔軟なサイジングには、[Managed DevOps Pools](https://learn.microsoft.com/en-us/azure/devops/managed-devops-pools/overview)またはセルフホストエージェントを使用。
+- ❌ **Jenkins**: セルフホストソリューション。ホストランナーの概念は適用されない。
 
 ---
 
-# Basic - Onboarding
+## 開発体験
 
-## run step
+### メタ値とJobId
 
-You can use `run:` to execute shell command in steps. Here are some tips for `run` statement.
+すべてのCIはジョブメタデータと一意の識別子へのアクセスを提供:
 
-- Add `name:` to describe step name.
-- Use `run: |` to write `run` statement in multiline.
-- Use `env:` to set environment variables for step.
+- ✔️ **GitHub Actions**: [Context](https://help.github.com/en/actions/reference/context-and-expression-syntax-for-github-actions#github-context)`github.run_id`または[環境変数](https://help.github.com/en/actions/configuring-and-managing-workflows/using-environment-variables#default-environment-variables)`GITHUB_RUN_ID`
+- ✔️ **CircleCI**: [環境変数](https://circleci.com/docs/2.0/env-vars/#built-in-environment-variables)`CIRCLE_BUILD_NUM`、`CIRCLE_WORKFLOW_ID`
+- ✔️ **Azure Pipeline**: [環境変数](https://docs.microsoft.com/ja-jp/azure/devops/pipelines/process/run-number?view=azure-devops&tabs=yaml#tokens)`BuildID`
+- ✔️ **Jenkins**: [環境変数](https://wiki.jenkins.io/display/JENKINS/Building+a+software+project)`BUILD_NUMBER`
+
+### 環境変数の設定
+
+- ✔️ **GitHub Actions**: [`$GITHUB_ENV`](https://help.github.com/en/actions/reference/workflow-commands-for-github-actions#setting-an-environment-variable)にリダイレクト: `echo "NAME=value" >> $GITHUB_ENV`
+- ✔️ **CircleCI**: `$BASH_ENV`にリダイレクト: `echo "export NAME=value" >> $BASH_ENV`
+- ✔️ **Azure Pipeline**: task.setvariableを使用: `echo "##vso[task.setvariable variable=NAME]VALUE"`
+- ✔️ **Jenkins**: `Env.`オブジェクトを使用
+
+### 出力の設定
+
+専用の出力パラメータでステップ間とジョブ間で値を渡す:
+
+- ✔️ **GitHub Actions**: [`$GITHUB_OUTPUT`](https://docs.github.com/en/actions/using-workflows/workflow-commands-for-github-actions#setting-an-output-parameter)にリダイレクト: `echo "name=value" >> "$GITHUB_OUTPUT"`。ジョブ間の受け渡しをサポート。
+- ⚠️ **CircleCI**: 専用出力なし。環境変数を使用
+- ✔️ **Azure Pipeline**: `isoutput=true`でtask.setvariableを使用: `echo "##vso[task.setvariable variable=NAME;isoutput=true]VALUE"`
+- ⚠️ **Jenkins**: 専用出力なし。環境変数を使用
+
+### PATH環境変数の設定
+
+- ✔️ **GitHub Actions**: `$GITHUB_PATH`にリダイレクト: `echo "/path/to/dir" >> "$GITHUB_PATH"`
+- ✔️ **CircleCI**: `$BASH_ENV`にリダイレクト: `echo "export PATH=$GOPATH/bin:$PATH" >> $BASH_ENV`
+- ✔️ **Azure Pipeline**: task.setvariableを使用: `echo '##vso[task.setvariable variable=path]$(PATH):/dir/to/whatever'`
+- ✔️ **Jenkins**: `Env.`オブジェクトを使用
+
+---
+
+# 基本 - オンボーディング
+
+## runステップ
+
+ステップ内でシェルコマンドを実行するために`run:`を使用できます。`run`ステートメントのヒント:
+
+- ステップ名を説明するために`name:`を追加。
+- 複数行で`run`ステートメントを書くために`run: |`を使用。
+- ステップの環境変数を設定するために`env:`を使用。
 
 ```yaml
 # .github/workflows/run-basic.yaml
@@ -456,11 +456,11 @@ jobs:
 
 ```
 
-## if section
+## ifセクション
 
-You can use `if:` condition to control whether `job`/`step` run or not. `if` statement can use [expression](https://docs.github.com/ja/actions/reference/workflows-and-actions/expressions) syntax like `success()`, `failure()`, `contains()`, `startsWith()` and so on.
+`if:`条件を使用して、`job`/`step`を実行するかどうかを制御できます。`if`ステートメントは`success()`、`failure()`、`contains()`、`startsWith()`などの[式](https://docs.github.com/ja/actions/reference/workflows-and-actions/expressions)構文を使用できます。
 
-Following example shows how to use `if` condition for job level and step level.
+次の例は、ジョブレベルとステップレベルで`if`条件を使用する方法を示しています。
 
 ```yaml
 # .github/workflows/if-basic.yaml
@@ -503,14 +503,14 @@ jobs:
 
 ```
 
-## Runner sizing
+## ランナーのサイズ設定
 
-There are 3 types of GitHub hosted runners: Standard runners, Larger runners, and Single-CPU runners.
+GitHubホストランナーには3つのタイプがあります: 標準ランナー、より大きなランナー、シングルCPUランナー。
 
-- Standard runners are default runners for GitHub Actions. It's suitable for most jobs.
-- Single-CPU runners are suitable for lightweight jobs that do not require multiple CPUs. It can save minutes cost.
-- Larger runners are suitable for resource-intensive jobs that require more CPU and RAM. (It's out of scope of this document.)
-- Self-hosted runners are runners that you set up and manage on your own infrastructure. You can customize the hardware and software configuration of self-hosted runners to meet your specific needs. (It's out of scope of this document.)
+- 標準ランナーはGitHub Actionsのデフォルトランナーです。ほとんどのジョブに適しています。
+- シングルCPUランナーは、複数のCPUを必要としない軽量なジョブに適しています。分単位のコストを節約できます。
+- より大きなランナーは、より多くのCPUとRAMを必要とするリソース集約的なジョブに適しています。(このドキュメントの範囲外です。)
+- セルフホストランナーは、独自のインフラストラクチャに設定および管理するランナーです。セルフホストランナーのハードウェアおよびソフトウェア構成をカスタマイズして、特定のニーズを満たすことができます。(このドキュメントの範囲外です。)
 
 ```yaml
 # .github/workflows/runner-sizing.yaml
