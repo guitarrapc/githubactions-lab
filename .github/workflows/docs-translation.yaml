@@ -9,10 +9,15 @@ jobs:
     if: ${{ github.event_name == 'workflow_dispatch' }}
     permissions:
       contents: read
-      issues: write
     runs-on: ubuntu-24.04
     timeout-minutes: 5
     steps:
+      - uses: actions/create-github-app-token@29824e69f54612133e76f7eaac726eef6c875baf # v2.2.1
+        id: app-token
+        with:
+          app-id: ${{ secrets.SYNCED_ACTIONS_BOT_APPID }}
+          private-key: ${{ secrets.SYNCED_ACTIONS_BOT_PRIVATE_KEY }}
+          permission-issues: write # grant write access to issues
       - name: Create Issue body
         run: |
           cat << 'EOF' > body.txt
@@ -33,7 +38,7 @@ jobs:
             --label "documentation"
         env:
           GH_REPO: ${{ github.repository }}
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_TOKEN: ${{ steps.app-token.outputs.token }} # require trigger workflow
 
   # Split assign job
   # When issue creation and assignment are performed within the same job, the Copilot agent task does not trigger. This is unexpected behavior.
@@ -42,7 +47,6 @@ jobs:
     if: ${{ github.event_name == 'issues' && contains(github.event.issue.labels.*.name, 'documentation') && startsWith(github.event.issue.title, '[Automate]') }}
     permissions:
       contents: read
-      issues: write
     runs-on: ubuntu-24.04
     timeout-minutes: 5
     steps:
