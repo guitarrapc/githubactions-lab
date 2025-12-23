@@ -1,122 +1,139 @@
 name: (R) reusable dump context
 on:
-    workflow_call:
-        inputs:
-            output-path:
-                description: Path to output context
-                required: true
-                type: string
+  workflow_call:
+    inputs:
+      output-path:
+        description: Path to output context
+        required: true
+        type: string
 
 jobs:
-    dump-context:
-        name: ${{ github.event_name }} ${{ github.event.action }} # `dump-context` in github.job
-        strategy:
-            fail-fast: false
-            matrix:
-                runs-on: [ubuntu-24.04]
-        permissions:
-            contents: write
-            pull-requests: write
-        runs-on: ${{ matrix.runs-on }}
-        timeout-minutes: 5
-        steps:
-            # pull_request and pull_request_target event may begin concurrently and conflict git operation. So, let's wait random time.
-            - name: Random wait (30-60s)
-              if: ${{ github.event_name == 'pull_request_target' }}
-              run: sleep $((30 + RANDOM % 31))
-            # PR should checkout HEAD ref instead of merge commit.                        -> github.head.ref
-            # PR close delete branch, so it should checkout BASE ref instead of HEAD ref. -> github.base_ref
-            # Tag ref is tag version, let's checkout default branch instead of ref.       -> github.event.repository.default_branch
-            # Other event use ref, which is default branch.                               -> github.ref_name
-            - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
-              with:
-                  persist-credentials: false
-                  ref: ${{ (startsWith(github.event_name, 'pull_request') && github.event.action != 'closed') && github.head_ref || (startsWith(github.event_name, 'pull_request') && github.event.action == 'closed') && github.base_ref || github.ref_type == 'tag' && github.event.repository.default_branch || github.ref_name }}
-            - name: file names
-              id: file
-              run: |
-                  ACTION_PART=""
-                  if [ -n "$EVENT_ACTION" ]; then
-                    ACTION_PART="_${EVENT_ACTION}"
-                  fi
+  dump-context:
+    name: ${{ github.event_name }} ${{ github.event.action }} # `dump-context` in github.job
+    strategy:
+      fail-fast: false
+      matrix:
+        runs-on: [ubuntu-24.04]
+    permissions:
+      contents: write
+      pull-requests: write
+    runs-on: ${{ matrix.runs-on }}
+    timeout-minutes: 5
+    steps:
+      # pull_request and pull_request_target event may begin concurrently and conflict git operation. So, let's wait random time.
+      - name: Random wait (30-60s)
+        if: ${{ github.event_name == 'pull_request_target' }}
+        run: sleep $((30 + RANDOM % 31))
+      # PR should checkout HEAD ref instead of merge commit.                        -> github.head.ref
+      # PR close delete branch, so it should checkout BASE ref instead of HEAD ref. -> github.base_ref
+      # Tag ref is tag version, let's checkout default branch instead of ref.       -> github.event.repository.default_branch
+      # Other event use ref, which is default branch.                               -> github.ref_name
+      - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
+        with:
+          persist-credentials: false
+          ref: ${{ (startsWith(github.event_name, 'pull_request') && github.event.action != 'closed') && github.head_ref || (startsWith(github.event_name, 'pull_request') && github.event.action == 'closed') && github.base_ref || github.ref_type == 'tag' && github.event.repository.default_branch || github.ref_name }}
+      - name: file names
+        id: file
+        run: |
+          ACTION_PART=""
+          if [ -n "$EVENT_ACTION" ]; then
+            ACTION_PART="_${EVENT_ACTION}"
+          fi
 
-                  REF_PART=""
-                  if [ "$EVENT_NAME" = "push" ]; then
-                    REF_PART="_${REF_TYPE}"
-                  fi
+          REF_PART=""
+          if [ "$EVENT_NAME" = "push" ]; then
+            REF_PART="_${REF_TYPE}"
+          fi
 
-                  FILENAME="${EVENT_NAME}${ACTION_PART}${REF_PART}"
-                  echo "name=$FILENAME" | tee -a "$GITHUB_OUTPUT"
-              env:
-                  EVENT_NAME: ${{ github.event_name }}
-                  EVENT_ACTION: ${{ github.event.action }}
-                  REF_TYPE: ${{ github.ref_type }}
-            - name: Dump environment
-              shell: bash
-              run: |
-                  mkdir -p "${{ env.OUTPUT_PATH }}"
-                  env | tee "${{ env.OUTPUT_PATH }}/${{ steps.file.outputs.name }}.sh"
-              env:
-                  CONTEXT: ${{ toJson(env) }}
-                  OUTPUT_PATH: ${{ inputs.output-path }}/env
-            - name: Dump GITHUB_EVENT_PATH json
-              shell: bash
-              run: |
-                  mkdir -p "${{ env.OUTPUT_PATH }}"
-                  tee "${{ env.OUTPUT_PATH }}/${{ steps.file.outputs.name }}.json" < "$GITHUB_EVENT_PATH"
-              env:
-                  OUTPUT_PATH: ${{ inputs.output-path }}/github_event_path
-            - name: Dump GitHub context
-              shell: bash
-              run: |
-                  mkdir -p "${{ env.OUTPUT_PATH }}"
-                  echo "$CONTEXT" | jq '.token="<reducted>"' | tee "${{ env.OUTPUT_PATH }}/${{ steps.file.outputs.name }}.json"
-              env:
-                  CONTEXT: ${{ toJson(github) }}
-                  OUTPUT_PATH: ${{ inputs.output-path }}/github
-            - name: Dump job context
-              shell: bash
-              run: |
-                  mkdir -p "${{ env.OUTPUT_PATH }}"
-                  echo "$CONTEXT" | tee "${{ env.OUTPUT_PATH }}/${{ steps.file.outputs.name }}.json"
-              env:
-                  CONTEXT: ${{ toJson(job) }}
-                  OUTPUT_PATH: ${{ inputs.output-path }}/job
-            - name: Dump steps context
-              shell: bash
-              run: |
-                  mkdir -p "${{ env.OUTPUT_PATH }}"
-                  echo "$CONTEXT" | tee "${{ env.OUTPUT_PATH }}/${{ steps.file.outputs.name }}.json"
-              env:
-                  CONTEXT: ${{ toJson(steps) }}
-                  OUTPUT_PATH: ${{ inputs.output-path }}/step
-            - name: Dump runner context
-              shell: bash
-              run: |
-                  mkdir -p "${{ env.OUTPUT_PATH }}"
-                  echo "$CONTEXT" | tee "${{ env.OUTPUT_PATH }}/${{ steps.file.outputs.name }}.json"
-              env:
-                  CONTEXT: ${{ toJson(runner) }}
-                  OUTPUT_PATH: ${{ inputs.output-path }}/runner
-            - name: Dump strategy context
-              shell: bash
-              run: |
-                  mkdir -p "${{ env.OUTPUT_PATH }}"
-                  echo "$CONTEXT" | tee "${{ env.OUTPUT_PATH }}/${{ steps.file.outputs.name }}.json"
-              env:
-                  CONTEXT: ${{ toJson(strategy) }}
-                  OUTPUT_PATH: ${{ inputs.output-path }}/strategy
-            - name: Dump matrix context
-              shell: bash
-              run: |
-                  mkdir -p "${{ env.OUTPUT_PATH }}"
-                  echo "$CONTEXT" | tee "${{ env.OUTPUT_PATH }}/${{ steps.file.outputs.name }}.json"
-              env:
-                  CONTEXT: ${{ toJson(matrix) }}
-                  OUTPUT_PATH: ${{ inputs.output-path }}/matrix
-            - name: Update current git to latest & Push changes
-              uses: ./.github/actions/git-push
-              with:
-                  commit-message: "[auto commit] update context (workflow=${{ github.workflow }}, event=${{ github.event_name }}, action=${{ github.event.action }})"
-                  ref: ${{ (startsWith(github.event_name, 'pull_request') && github.event.action != 'closed') && github.head_ref || (startsWith(github.event_name, 'pull_request') && github.event.action == 'closed') && github.base_ref || github.ref_type == 'tag' && github.event.repository.default_branch || github.ref_name }}
-                  github-token: ${{ secrets.GITHUB_TOKEN }}
+          FILENAME="${EVENT_NAME}${ACTION_PART}${REF_PART}"
+          echo "name=$FILENAME" | tee -a "$GITHUB_OUTPUT"
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+          EVENT_ACTION: ${{ github.event.action }}
+          REF_TYPE: ${{ github.ref_type }}
+      - name: Dump environment
+        shell: bash
+        run: |
+          mkdir -p "${{ env.OUTPUT_PATH }}"
+          env | tee "${{ env.OUTPUT_PATH }}/${{ steps.file.outputs.name }}.sh"
+        env:
+          CONTEXT: ${{ toJson(env) }}
+          OUTPUT_PATH: ${{ inputs.output-path }}/env
+      - name: Dump GITHUB_EVENT_PATH json
+        shell: bash
+        run: |
+          mkdir -p "${{ env.OUTPUT_PATH }}"
+          tee "${{ env.OUTPUT_PATH }}/${{ steps.file.outputs.name }}.json" < "$GITHUB_EVENT_PATH"
+        env:
+          OUTPUT_PATH: ${{ inputs.output-path }}/github_event_path
+      - name: Dump GitHub context
+        shell: bash
+        run: |
+          mkdir -p "${{ env.OUTPUT_PATH }}"
+          echo "$CONTEXT" | jq '.token="<reducted>"' | tee "${{ env.OUTPUT_PATH }}/${{ steps.file.outputs.name }}.json"
+        env:
+          CONTEXT: ${{ toJson(github) }}
+          OUTPUT_PATH: ${{ inputs.output-path }}/github
+      - name: Dump job context
+        shell: bash
+        run: |
+          mkdir -p "${{ env.OUTPUT_PATH }}"
+          echo "$CONTEXT" | tee "${{ env.OUTPUT_PATH }}/${{ steps.file.outputs.name }}.json"
+        env:
+          CONTEXT: ${{ toJson(job) }}
+          OUTPUT_PATH: ${{ inputs.output-path }}/job
+      - name: Dump steps context
+        shell: bash
+        run: |
+          mkdir -p "${{ env.OUTPUT_PATH }}"
+          echo "$CONTEXT" | tee "${{ env.OUTPUT_PATH }}/${{ steps.file.outputs.name }}.json"
+        env:
+          CONTEXT: ${{ toJson(steps) }}
+          OUTPUT_PATH: ${{ inputs.output-path }}/step
+      - name: Dump runner context
+        shell: bash
+        run: |
+          mkdir -p "${{ env.OUTPUT_PATH }}"
+          echo "$CONTEXT" | tee "${{ env.OUTPUT_PATH }}/${{ steps.file.outputs.name }}.json"
+        env:
+          CONTEXT: ${{ toJson(runner) }}
+          OUTPUT_PATH: ${{ inputs.output-path }}/runner
+      - name: Dump strategy context
+        shell: bash
+        run: |
+          mkdir -p "${{ env.OUTPUT_PATH }}"
+          echo "$CONTEXT" | tee "${{ env.OUTPUT_PATH }}/${{ steps.file.outputs.name }}.json"
+        env:
+          CONTEXT: ${{ toJson(strategy) }}
+          OUTPUT_PATH: ${{ inputs.output-path }}/strategy
+      - name: Dump matrix context
+        shell: bash
+        run: |
+          mkdir -p "${{ env.OUTPUT_PATH }}"
+          echo "$CONTEXT" | tee "${{ env.OUTPUT_PATH }}/${{ steps.file.outputs.name }}.json"
+        env:
+          CONTEXT: ${{ toJson(matrix) }}
+          OUTPUT_PATH: ${{ inputs.output-path }}/matrix
+      - name: set ref
+        id: ref
+        run: |
+          if [[ "${{ github.event_name }}" == "pull_request" && "${{ github.event.action }}" != "closed" ]]; then
+            echo "value=${HEAD_REF}" | tee -a "$GITHUB_OUTPUT"
+          elif [[ "${{ github.event_name }}" == "pull_request" && "${{ github.event.action }}" == "closed" ]]; then
+            echo "value=${BASE_REF}" | tee -a "$GITHUB_OUTPUT"
+          elif [[ "${{ github.ref_type }}" == "tag" ]]; then
+            echo "value=${DEFAULT_BRANCH}" | tee -a "$GITHUB_OUTPUT"
+          else
+            echo "value=${REF_NAME}" | tee -a "$GITHUB_OUTPUT"
+          fi
+        env:
+          BASE_REF: ${{ github.base_ref }}
+          DEFAULT_BRANCH: ${{ github.event.repository.default_branch }}
+          HEAD_REF: ${{ github.head_ref }}
+          REF_NAME: ${{ github.ref_name }}
+      - name: Update current git to latest & Push changes
+        uses: ./.github/actions/git-push
+        with:
+          commit-message: "[auto commit] update context (workflow=${{ github.workflow }}, event=${{ github.event_name }}, action=${{ github.event.action }})"
+          ref: ${{ steps.ref.outputs.value }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
