@@ -10,22 +10,22 @@ GitHub Actionsの研究とテストラボです。
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-# 目次
+# Table of Contents
 
-- [Not yet support](#not-yet-support)
-  - [View](#view)
-  - [Functionality](#functionality)
-  - [Plan limitation](#plan-limitation)
-- [Migrating CI to GitHub Actions](#migrating-ci-to-github-actions)
-- [GitHub Actions vs Other CI Platforms](#github-actions-vs-other-ci-platforms)
-  - [Core Workflow Features](#core-workflow-features)
-  - [Security & Access Control](#security--access-control)
-  - [Infrastructure & Performance](#infrastructure--performance)
-  - [Development Experience](#development-experience)
-- [Basic - Onboarding](#basic---onboarding)
-  - [run step](#run-step)
-  - [if section](#if-section)
-  - [Runner sizing](#runner-sizing)
+- [まだサポートされていない機能](#%E3%81%BE%E3%81%A0%E3%82%B5%E3%83%9D%E3%83%BC%E3%83%88%E3%81%95%E3%82%8C%E3%81%A6%E3%81%84%E3%81%AA%E3%81%84%E6%A9%9F%E8%83%BD)
+  - [ビュー](#%E3%83%93%E3%83%A5%E3%83%BC)
+  - [機能](#%E6%A9%9F%E8%83%BD)
+  - [プラン制限](#%E3%83%97%E3%83%A9%E3%83%B3%E5%88%B6%E9%99%90)
+- [GitHub ActionsへのCIの移行](#github-actions%E3%81%B8%E3%81%AEci%E3%81%AE%E7%A7%BB%E8%A1%8C)
+- [GitHub Actions vs 他のCIプラットフォーム](#github-actions-vs-%E4%BB%96%E3%81%AEci%E3%83%97%E3%83%A9%E3%83%83%E3%83%88%E3%83%95%E3%82%A9%E3%83%BC%E3%83%A0)
+  - [コアワークフロー機能](#%E3%82%B3%E3%82%A2%E3%83%AF%E3%83%BC%E3%82%AF%E3%83%95%E3%83%AD%E3%83%BC%E6%A9%9F%E8%83%BD)
+  - [セキュリティとアクセス制御](#%E3%82%BB%E3%82%AD%E3%83%A5%E3%83%AA%E3%83%86%E3%82%A3%E3%81%A8%E3%82%A2%E3%82%AF%E3%82%BB%E3%82%B9%E5%88%B6%E5%BE%A1)
+  - [インフラストラクチャとパフォーマンス](#%E3%82%A4%E3%83%B3%E3%83%95%E3%83%A9%E3%82%B9%E3%83%88%E3%83%A9%E3%82%AF%E3%83%81%E3%83%A3%E3%81%A8%E3%83%91%E3%83%95%E3%82%A9%E3%83%BC%E3%83%9E%E3%83%B3%E3%82%B9)
+  - [開発体験](#%E9%96%8B%E7%99%BA%E4%BD%93%E9%A8%93)
+- [基本 - オンボーディング](#%E5%9F%BA%E6%9C%AC---%E3%82%AA%E3%83%B3%E3%83%9C%E3%83%BC%E3%83%87%E3%82%A3%E3%83%B3%E3%82%B0)
+  - [runステップ](#run%E3%82%B9%E3%83%86%E3%83%83%E3%83%97)
+  - [ifセクション](#if%E3%82%BB%E3%82%AF%E3%82%B7%E3%83%A7%E3%83%B3)
+  - [ランナーのサイズ設定](#%E3%83%A9%E3%83%B3%E3%83%8A%E3%83%BC%E3%81%AE%E3%82%B5%E3%82%A4%E3%82%BA%E8%A8%AD%E5%AE%9A)
   - [Timeout](#timeout)
 - [Basic - Fundamentables](#basic---fundamentables)
   - [Default shell](#default-shell)
