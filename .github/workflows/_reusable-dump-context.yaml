@@ -28,10 +28,30 @@ jobs:
       # PR close delete branch, so it should checkout BASE ref instead of HEAD ref. -> github.base_ref
       # Tag ref is tag version, let's checkout default branch instead of ref.       -> github.event.repository.default_branch
       # Other event use ref, which is default branch.                               -> github.ref_name
+      - name: set ref
+        id: ref
+        run: |
+          if [[ "${EVENT_NAME}" == "pull_request" && "${EVENT_ACTION}" != "closed" ]]; then
+            echo "value=${HEAD_REF}" | tee -a "$GITHUB_OUTPUT"
+          elif [[ "${EVENT_NAME}" == "pull_request" && "${EVENT_ACTION}" == "closed" ]]; then
+            echo "value=${BASE_REF}" | tee -a "$GITHUB_OUTPUT"
+          elif [[ "${REF_TYPE}" == "tag" ]]; then
+            echo "value=${DEFAULT_BRANCH}" | tee -a "$GITHUB_OUTPUT"
+          else
+            echo "value=${REF_NAME}" | tee -a "$GITHUB_OUTPUT"
+          fi
+        env:
+          BASE_REF: ${{ github.base_ref }}
+          DEFAULT_BRANCH: ${{ github.event.repository.default_branch }}
+          EVENT_ACTION: ${{ github.event.action }}
+          EVENT_NAME: ${{ github.event_name }}
+          HEAD_REF: ${{ github.head_ref }}
+          REF_NAME: ${{ github.ref_name }}
+          REF_TYPE: ${{ github.ref_type }}
       - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
         with:
           persist-credentials: false
-          ref: ${{ (startsWith(github.event_name, 'pull_request') && github.event.action != 'closed') && github.head_ref || (startsWith(github.event_name, 'pull_request') && github.event.action == 'closed') && github.base_ref || github.ref_type == 'tag' && github.event.repository.default_branch || github.ref_name }}
+          ref: ${{ steps.ref.outputs.value }}
       - name: file names
         id: file
         run: |
@@ -114,26 +134,6 @@ jobs:
         env:
           CONTEXT: ${{ toJson(matrix) }}
           OUTPUT_PATH: ${{ inputs.output-path }}/matrix
-      - name: set ref
-        id: ref
-        run: |
-          if [[ "${EVENT_NAME}" == "pull_request" && "${EVENT_ACTION}" != "closed" ]]; then
-            echo "value=${HEAD_REF}" | tee -a "$GITHUB_OUTPUT"
-          elif [[ "${EVENT_NAME}" == "pull_request" && "${EVENT_ACTION}" == "closed" ]]; then
-            echo "value=${BASE_REF}" | tee -a "$GITHUB_OUTPUT"
-          elif [[ "${REF_TYPE}" == "tag" ]]; then
-            echo "value=${DEFAULT_BRANCH}" | tee -a "$GITHUB_OUTPUT"
-          else
-            echo "value=${REF_NAME}" | tee -a "$GITHUB_OUTPUT"
-          fi
-        env:
-          BASE_REF: ${{ github.base_ref }}
-          DEFAULT_BRANCH: ${{ github.event.repository.default_branch }}
-          EVENT_ACTION: ${{ github.event.action }}
-          EVENT_NAME: ${{ github.event_name }}
-          HEAD_REF: ${{ github.head_ref }}
-          REF_NAME: ${{ github.ref_name }}
-          REF_TYPE: ${{ github.ref_type }}
       - name: Update current git to latest & Push changes
         uses: ./.github/actions/git-push
         with:
