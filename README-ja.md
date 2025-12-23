@@ -546,52 +546,52 @@ jobs:
 
 ```
 
-<details><summary>Click to show runner sizing example</summary>
+<details><summary>ランナーサイズの例を表示するにはクリック</summary>
 
-### Standard runners
+### 標準ランナー
 
-Most GitHub Actions jobs run on GitHub hosted runners. These are virtual machines (VMs) that GitHub manages and maintains for you. Each time a job is triggered, a new VM is created, the job runs on it, and then the VM is destroyed.
+ほとんどのGitHub Actionsジョブは、GitHubホストランナーで実行されます。これらはGitHubが管理・維持する仮想マシン(VM)です。ジョブがトリガーされるたびに新しいVMが作成され、ジョブが実行され、その後VMは破棄されます。
 
-You can select `ubuntu-latest`, `windows-latest`, `macos-latest` or specific version like `ubuntu-24.04`, `windows-2025`, `macos-26` as runner type. [Runner specification](https://docs.github.com/en/actions/reference/runners/github-hosted-runners#supported-runners-and-hardware-resources) is different by OS type and Public/Private repository.
+ランナータイプとして`ubuntu-latest`、`windows-latest`、`macos-latest`、または`ubuntu-24.04`、`windows-2025`、`macos-26`などの特定バージョンを選択できます。[ランナーの仕様](https://docs.github.com/en/actions/reference/runners/github-hosted-runners#supported-runners-and-hardware-resources)はOSタイプやPublic/Privateリポジトリによって異なります。
 
-Also you can specify architecture like `x64` and `arm64`, see list on [docs](https://docs.github.com/en/actions/reference/runners/github-hosted-runners). For example...
+また、`x64`や`arm64`などのアーキテクチャを指定することもできます。詳細は[ドキュメント](https://docs.github.com/en/actions/reference/runners/github-hosted-runners)を参照してください。例:
 
-- Linux x86_64 is `ubuntu-24.04`
-- Linux ARM64 is `ubuntu-24.04-arm` (available for Public repository only)
-- Windows x86_64 is `windows-2025`
-- Windows ARM64 is `windows-11-arm` (available for Public repository only)
-- macOS x86_64 is `macos-15-intel`
-- macOS ARM64 is `macos-26`.
+- Linux x86_64は`ubuntu-24.04`
+- Linux ARM64は`ubuntu-24.04-arm`(Publicリポジトリのみ利用可能)
+- Windows x86_64は`windows-2025`
+- Windows ARM64は`windows-11-arm`(Publicリポジトリのみ利用可能)
+- macOS x86_64は`macos-15-intel`
+- macOS ARM64は`macos-26`
 
-### Single-CPU runners
+### シングルCPUランナー
 
-You can use [Single-CPU runners](https://docs.github.com/en/actions/reference/runners/github-hosted-runners#single-cpu-runners) to save minutes cost for jobs that do not require multiple CPUs. Single-CPU runners are available on `ubuntu-slim` and it's timeout is 15 minutes. `ubuntu-slim` runner is not a VM but a container-based runner with 1 vCPU and 5 GB RAM. It is suitable for lightweight jobs such as documentation generation, code linting, and static analysis.
+複数のCPUを必要としないジョブの分単位コストを節約するために、[シングルCPUランナー](https://docs.github.com/en/actions/reference/runners/github-hosted-runners#single-cpu-runners)を使用できます。シングルCPUランナーは`ubuntu-slim`で利用可能で、タイムアウトは15分です。`ubuntu-slim`ランナーはVMではなく、1 vCPUと5 GB RAMを備えたコンテナベースのランナーです。ドキュメント生成、コードリンティング、静的解析などの軽量なジョブに適しています。
 
-### Larger runners
+### より大きなランナー
 
-For organization users, [Larger runners](https://docs.github.com/en/actions/how-tos/manage-runners/larger-runners) are available for resource-intensive jobs that allowing you to run build and test jobs that require higher performance. You can select Ubuntu, Windows for x86_64 and ARM architecture.
+組織ユーザー向けに、[より大きなランナー](https://docs.github.com/en/actions/how-tos/manage-runners/larger-runners)がリソース集約的なジョブに利用可能で、より高いパフォーマンスを必要とするビルドとテストジョブを実行できます。x86_64およびARMアーキテクチャ用のUbuntu、Windowsを選択できます。
 
-You can configure larger runner registration in `Organization > Settings > Actions > Runners > Larger runners` page.
+`Organization > Settings > Actions > Runners > Larger runners`ページでより大きなランナーの登録を設定できます。
 
 ![](./images/settings-runners.png)
 
-Following screenshot shows default larger runner types and their specifications.
+次のスクリーンショットは、デフォルトのより大きなランナータイプとその仕様を示しています。
 
 ![](./images/larger-hosted-runners-list.png)
 
-If you want other specifications, you can create custom larger runner type. Following screenshot shows ubuntu arm64 larger runner creation example.
+他の仕様が必要な場合は、カスタムのより大きなランナータイプを作成できます。次のスクリーンショットは、ubuntu arm64のより大きなランナー作成例を示しています。
 
 ![](./images/larger-hosted-runners-spec.png)
 
-You can use larger runners in workflow by specifying `runs-on:` with larger name you specified.
+指定した名前で`runs-on:`を指定することで、ワークフロー内でより大きなランナーを使用できます。
 
 </details>
 
 ## Timeout
 
-You can set [job timeout](https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-syntax#jobsjob_idtimeout-minutes) with `jobs.<job_id>.timeout-minutes`, and [step timeout](https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-syntax#jobsjob_idstepstimeout-minutes) with `steps.timeout-minutes`. The default timeout is 360 minutes (6 hours). You can set a value from 1 to 4320 minutes (30 days). I recommend setting a reasonable timeout for every job to avoid wasting build time.
+`jobs.<job_id>.timeout-minutes`で[ジョブタイムアウト](https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-syntax#jobsjob_idtimeout-minutes)を、`steps.timeout-minutes`で[ステップタイムアウト](https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-syntax#jobsjob_idstepstimeout-minutes)を設定できます。デフォルトのタイムアウトは360分(6時間)です。1から4320分(30日)までの値を設定できます。ビルド時間の無駄を避けるために、すべてのジョブに適切なタイムアウトを設定することをお勧めします。
 
-Following example shows how to set timeout for job and step.
+次の例は、ジョブとステップにタイムアウトを設定する方法を示しています。
 
 ```yaml
 # .github/workflows/timeout.yaml
@@ -616,17 +616,17 @@ jobs:
 
 ```
 
-# Basic - Fundamentables
+# 基本 - 基礎
 
-## Default shell
+## デフォルトシェル
 
-You can select the shell type for a `run` step with `shell:`. You can also set the default shell type for `run` steps with `defaults.run.shell:`.
+`shell:`で`run`ステップのシェルタイプを選択できます。また、`defaults.run.shell:`で`run`ステップのデフォルトシェルタイプを設定することもできます。
 
-There are several shell types available in [default](https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-syntax#defaultsrunshell). Following example shows how to set `bash`, `pwsh` and `cmd`.
+[デフォルト](https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-syntax#defaultsrunshell)でいくつかのシェルタイプが利用可能です。次の例は、`bash`、`pwsh`、`cmd`の設定方法を示しています。
 
-**Personal recommendation:**
+**個人的な推奨:**
 
-Considering the current boom in AI, it's best to use `bash` as the default shell across all operating systems. If you need to use PowerShell on Windows, I recommend using `pwsh` whenever possible to avoid encoding issues.
+現在のAIブームを考慮すると、すべてのオペレーティングシステムでデフォルトシェルとして`bash`を使用するのが最善です。WindowsでPowerShellを使用する必要がある場合は、エンコーディングの問題を避けるため、可能な限り`pwsh`を使用することをお勧めします。
 
 ```yaml
 # .github/workflows/default-shell.yaml
@@ -703,16 +703,16 @@ jobs:
 
 ```
 
-## Dump context metadata
+## コンテキストメタデータのダンプ
 
-Use Context to retrieve job id, name and other system information.
-Note that you cannot refer to the `github` context directly in scripts.
+コンテキストを使用して、ジョブID、名前、その他のシステム情報を取得します。
+スクリプト内で`github`コンテキストを直接参照できないことに注意してください。
 
-> see: [Context and expression syntax for GitHub Actions \- GitHub Help](https://help.github.com/en/actions/reference/context-and-expression-syntax-for-github-actions#github-context)
+> 参照: [Context and expression syntax for GitHub Actions \- GitHub Help](https://help.github.com/en/actions/reference/context-and-expression-syntax-for-github-actions#github-context)
 
-**Accessing Context value**
+**コンテキスト値へのアクセス**
 
-You can get context value with `${{ CONTEXT_NAME.FIELD }}`, something like `${{ github.repository }}`.
+`${{ CONTEXT_NAME.FIELD }}`でコンテキスト値を取得できます。例: `${{ github.repository }}`
 
 ```yaml
 # .github/workflows/context-github.yaml
@@ -775,9 +775,9 @@ jobs:
 
 ```
 
-**Context as JSON**
+**JSONとしてのコンテキスト**
 
-Use `toJson(<CONTEXT>)` To show context values in json.
+コンテキスト値をJSONで表示するには、`toJson(<CONTEXT>)`を使用します。
 
 ```yaml
 # .github/workflows/dump-context.yaml
@@ -844,14 +844,14 @@ jobs:
 
 ```
 
-**Environment Variables**
+**環境変数**
 
-You can obtain GitHub Event Context from Environment Variables `GITHUB_EVENT_PATH`.
+環境変数`GITHUB_EVENT_PATH`からGitHub Eventコンテキストを取得できます。
 
-## Environment variables in script
+## スクリプト内の環境変数
 
-[set environment variables for next step](#set-environment-variables-for-next-step) explains how to set environment variables for next step.
-This syntax can be write in the script, let's see `.github/scripts/setenv.sh`.
+[次のステップの環境変数を設定](#次のステップの環境変数を設定)では、次のステップの環境変数を設定する方法を説明しています。
+この構文はスクリプト内に記述できます。`.github/scripts/setenv.sh`を見てみましょう。
 
 ```bash
 # .github/scripts/setenv.sh
@@ -871,7 +871,7 @@ echo branch=${GITHUB_REF} | tee -a "$GITHUB_OUTPUT"
 
 ```
 
-Call this script from workflow.
+このスクリプトをワークフローから呼び出します。
 
 ```yaml
 # .github/workflows/setenv-script.yaml
@@ -936,28 +936,28 @@ jobs:
 
 ```
 
-## Execution order
+## 実行順序
 
-GitHub Actions workflow execution order is `Workflow` -> `Job` -> `Step`.
+GitHub Actionsワークフローの実行順序は`ワークフロー` -> `ジョブ` -> `ステップ`です。
 
-- Workflows run in parallel by default, but you can control workflow execution order with the [workflow_call](https://docs.github.com/en/actions/reference/workflows-and-actions/events-that-trigger-workflows#workflow_call) event defined in `on.workflow_call`.
-- Jobs run in parallel by default, but you can control job execution order with [needs](https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#jobsjob_idneeds) defined in `jobs.<job_id>.needs`.
-- Steps run in sequential order within each job.
+- ワークフローはデフォルトで並列実行されますが、`on.workflow_call`で定義された[workflow_call](https://docs.github.com/en/actions/reference/workflows-and-actions/events-that-trigger-workflows#workflow_call)イベントでワークフロー実行順序を制御できます。
+- ジョブはデフォルトで並列実行されますが、`jobs.<job_id>.needs`で定義された[needs](https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#jobsjob_idneeds)でジョブ実行順序を制御できます。
+- ステップは各ジョブ内で順次実行されます。
 
-### Workflow execution order control with workflow_call
+### workflow_callでワークフロー実行順序を制御
 
-If a workflow has no `on.workflow_call` section, it runs in parallel with other workflows. When you add an `on.workflow_call` section, the workflow can be called from another workflow. As a result, workflows run sequentially in the order: caller workflow -> callee workflow.
+ワークフローに`on.workflow_call`セクションがない場合、他のワークフローと並列実行されます。`on.workflow_call`セクションを追加すると、そのワークフローは他のワークフローから呼び出すことができます。その結果、ワークフローは呼び出し元ワークフロー -> 呼び出し先ワークフローの順序で順次実行されます。
 
-See [workflow_call](#reusable-workflow) section for actual sample.
+実際のサンプルは[workflow_call](#再利用可能なワークフロー)セクションを参照してください。
 
 > [!WARNING]
-> Concider avoid using the `workflow_run` event to control workflow execution order. As the [official documentation](https://docs.github.com/en/actions/reference/workflows-and-actions/events-that-trigger-workflows#workflow_run) mentions, running untrusted code on the `workflow_run` trigger may lead to security vulnerabilities. These vulnerabilities include cache poisoning and granting unintended access to write privileges or secrets.
+> `workflow_run`イベントを使用してワークフロー実行順序を制御することは避けることを検討してください。[公式ドキュメント](https://docs.github.com/en/actions/reference/workflows-and-actions/events-that-trigger-workflows#workflow_run)に記載されているように、`workflow_run`トリガーで信頼できないコードを実行すると、セキュリティ脆弱性につながる可能性があります。これらの脆弱性には、キャッシュポイズニングや書き込み特権またはシークレットへの意図しないアクセスの付与が含まれます。
 
-### Job execution order control with needs
+### needsでジョブ実行順序を制御
 
-If a job has no `needs` section, it runs in parallel with other jobs. When you set a `needs` section, the job runs after the previous job(s) defined in the `needs` section. By default, a job with `needs` requires the previous job to succeed.
+ジョブに`needs`セクションがない場合、他のジョブと並列実行されます。`needs`セクションを設定すると、そのジョブは`needs`セクションで定義された前のジョブの後に実行されます。デフォルトでは、`needs`を持つジョブは前のジョブが成功することを必要とします。
 
-The following example flow shows that `job2` will run after `job1` succeeds, and `job3` will run after both `job1` and `job2` succeed. This means `job2` & `job3` will never run when `job1` fails, and `job3` will never run when `job2` fails. As a result, jobs run sequentially in the order: `job1` -> `job2` -> `job3`.
+次の例のフローでは、`job2`は`job1`が成功した後に実行され、`job3`は`job1`と`job2`の両方が成功した後に実行されます。これは、`job1`が失敗した場合は`job2`と`job3`が実行されず、`job2`が失敗した場合は`job3`が実行されないことを意味します。その結果、ジョブは`job1` -> `job2` -> `job3`の順序で順次実行されます。
 
 ```yaml
 jobs:
@@ -968,7 +968,7 @@ jobs:
     needs: [job1, job2]
 ```
 
-See actual sample.
+\u5b9f\u969b\u306e\u30b5\u30f3\u30d7\u30eb\u3092\u53c2\u7167\u3057\u3066\u304f\u3060\u3055\u3044\u3002
 
 ```yaml
 # .github/workflows/job-needs-basic.yaml
@@ -1012,9 +1012,9 @@ jobs:
 
 ```
 
-### Job needs dependency without success result requirement
+### 成功結果要件なしのジョブneeds依存関係
 
-The following example flow shows that job `job2` will run after `job1` succeeds, but `job3` uses the `always()` conditional expression. Therefore, `job3` will run regardless of whether `job1` and `job2` succeed or fail. Due to the `needs` section, jobs run sequentially in the order: `job1` -> `job2` -> `job3`.
+次の例のフローでは、ジョブ`job2`は`job1`が成功した後に実行されますが、`job3`は`always()`条件式を使用しています。そのため、`job3`は`job1`と`job2`が成功または失敗にかかわらず実行されます。`needs`セクションにより、ジョブは`job1` -> `job2` -> `job3`の順序で順次実行されます。
 
 ```yaml
 jobs:
@@ -1071,9 +1071,7 @@ jobs:
 
 ```
 
-### Job needs and skip handling
-
-The following example shows how to handle job skipping with the `needs` section. Job `needs` can be used for skip handling. However, skipping a dependent job causes problems for the next job. The following workflow is expected to run `D` when `C` is invoked. However, skipping `A` and `B` causes `D` to be skipped as well.
+### \u30b8\u30e7\u30d6needs\u3068\u30b9\u30ad\u30c3\u30d7\u51e6\u7406\n\n\u6b21\u306e\u4f8b\u306f\u3001`needs`\u30bb\u30af\u30b7\u30e7\u30f3\u3067\u30b8\u30e7\u30d6\u30b9\u30ad\u30c3\u30d7\u3092\u51e6\u7406\u3059\u308b\u65b9\u6cd5\u3092\u793a\u3057\u3066\u3044\u307e\u3059\u3002\u30b8\u30e7\u30d6`needs`\u306f\u30b9\u30ad\u30c3\u30d7\u51e6\u7406\u306b\u4f7f\u7528\u3067\u304d\u307e\u3059\u3002\u3057\u304b\u3057\u3001\u4f9d\u5b58\u30b8\u30e7\u30d6\u3092\u30b9\u30ad\u30c3\u30d7\u3059\u308b\u3068\u3001\u6b21\u306e\u30b8\u30e7\u30d6\u306b\u554f\u984c\u304c\u767a\u751f\u3057\u307e\u3059\u3002\u6b21\u306e\u30ef\u30fc\u30af\u30d5\u30ed\u30fc\u306f\u3001`C`\u304c\u547c\u3073\u51fa\u3055\u308c\u305f\u3068\u304d\u306b`D`\u3092\u5b9f\u884c\u3059\u308b\u3053\u3068\u304c\u671f\u5f85\u3055\u308c\u3066\u3044\u307e\u3059\u3002\u3057\u304b\u3057\u3001`A`\u3068`B`\u3092\u30b9\u30ad\u30c3\u30d7\u3059\u308b\u3068`D`\u3082\u30b9\u30ad\u30c3\u30d7\u3055\u308c\u307e\u3059\u3002
 
 ```yaml
 # .github/workflows/job-needs-skip-handling-bad.yaml
@@ -1125,7 +1123,7 @@ jobs:
 
 ```
 
-To correct the above example and ensure `D` runs when `C` is invoked, you need to add an `if` condition to `D`. This should also handle the case when there is no conditional invocation: when `A`, `B` and `C` succeed, then `D` must run.
+\u4e0a\u8a18\u306e\u4f8b\u3092\u4fee\u6b63\u3057\u3001`C`\u304c\u547c\u3073\u51fa\u3055\u308c\u305f\u3068\u304d\u306b`D`\u304c\u5b9f\u884c\u3055\u308c\u308b\u3088\u3046\u306b\u3059\u308b\u306b\u306f\u3001`D`\u306b`if`\u6761\u4ef6\u3092\u8ffd\u52a0\u3059\u308b\u5fc5\u8981\u304c\u3042\u308a\u307e\u3059\u3002\u3053\u308c\u306f\u3001\u6761\u4ef6\u4ed8\u304d\u547c\u3073\u51fa\u3057\u304c\u306a\u3044\u5834\u5408\u3082\u51e6\u7406\u3059\u308b\u5fc5\u8981\u304c\u3042\u308a\u307e\u3059: `A`\u3001`B`\u3001`C`\u304c\u6210\u529f\u3057\u305f\u5834\u5408\u3001`D`\u3092\u5b9f\u884c\u3059\u308b\u5fc5\u8981\u304c\u3042\u308a\u307e\u3059\u3002
 
 ```yaml
 # .github/workflows/job-needs-skip-handling-ok.yaml
@@ -1184,13 +1182,13 @@ jobs:
 
 ```
 
-## Job output
+## ジョブ出力
 
-If you want to pass values between jobs, you can use [job output](https://docs.github.com/en/actions/how-tos/write-workflows/choose-what-workflows-do/pass-job-outputs) and [job needs](https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-syntax#jobsjob_idneeds). Use `jobs.<job_id>.outputs` to set job output, and other jobs can refer to it via `needs.<job_id>.outputs.<output_name>`.
+ジョブ間で値を渡したい場合は、[ジョブ出力](https://docs.github.com/en/actions/how-tos/write-workflows/choose-what-workflows-do/pass-job-outputs)と[ジョブneeds](https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-syntax#jobsjob_idneeds)を使用できます。`jobs.<job_id>.outputs`でジョブ出力を設定し、他のジョブは`needs.<job_id>.outputs.<output_name>`でそれを参照できます。
 
-If you want to pass values between steps in the same job, you can use [step output](https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-commands#setting-an-output-parameter). Use `steps.<step_id>.outputs` to set step output, and other steps can refer to it via `steps.<step_id>.outputs.<output_name>`.
+同じジョブ内のステップ間で値を渡したい場合は、[ステップ出力](https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-commands#setting-an-output-parameter)を使用できます。`steps.<step_id>.outputs`でステップ出力を設定し、他のステップは`steps.<step_id>.outputs.<output_name>`でそれを参照できます。
 
-The following example shows how to set job output in the `a` job and refer to it in the `b` job.
+次の例は、`a`ジョブでジョブ出力を設定し、`b`ジョブでそれを参照する方法を示しています。
 
 ```yaml
 # .github/workflows/job-outputs.yaml
@@ -1228,18 +1226,18 @@ jobs:
 
 ```
 
-## Redundant Control
+## 冗長制御
 
 > [!WARNING]
-> Consider using Workflow Concurrency control instead of redundant control.
+> 冗長制御の代わりにワークフロー並行制御の使用を検討してください。
 
-Creating a PR emits two events: `push` and `pull_request/synchronize`. This means duplicate builds begin and waste build time.
-Redundant builds may cause issues when you are running a Private Repository because there are build time limits. In other words, you don't need to worry about build time consumption when the repo is Public.
+PRを作成すると、`push`と`pull_request/synchronize`の2つのイベントが発生します。これは、重複するビルドが開始され、ビルド時間を無駄にすることを意味します。
+プライベートリポジトリを実行している場合、ビルド時間制限があるため、冗長ビルドは問題を引き起こす可能性があります。言い換えれば、リポジトリがPublicの場合はビルド時間の消費を心配する必要はありません。
 
-### Avoid push on pull_request trigger on same repo
+### 同じリポジトリでpull_requestトリガー時のpushを回避
 
-In this example, `push` will trigger only on `main`, the default branch. This means push will not run when the `pull_request` synchronize event is emitted.
-This is simple enough for most use cases.
+この例では、`push`はデフォルトブランチの`main`でのみトリガーされます。これは、`pull_request` synchronizeイベントが発生したときにpushが実行されないことを意味します。
+これはほとんどのユースケースに十分簡単です。
 
 ```yaml
 # .github/workflows/push-and-pr-avoid-redundant.yaml
@@ -1263,9 +1261,9 @@ jobs:
 
 ```
 
-### redundant build cancel
+### 冗長ビルドのキャンセル
 
-Cancel duplicate workflow and mark CI failure.
+重複するワークフローをキャンセルし、CIを失敗としてマークします。
 
 ```yaml
 # .github/workflows/cancel-redundantbuild.yaml
@@ -1293,11 +1291,11 @@ jobs:
 
 ```
 
-## Run when previous job is success
+## 前のジョブが成功したときに実行
 
-To accomplish sequential job execution within a workflow, use `needs:` to specify which job the current job depends on.
+ワークフロー内で順次ジョブ実行を実現するには、`needs:`を使用して現在のジョブが依存するジョブを指定します。
 
-This enforces the job to run only when the previous job is **successful**.
+これにより、ジョブは前のジョブが**成功**した場合にのみ実行されます。
 
 ```yaml
 # .github/workflows/sequential-run.yaml
@@ -1332,11 +1330,11 @@ jobs:
 
 ```
 
-## Run when previous step status is specific
+## 前のステップステータスが特定の場合に実行
 
 > [job-status-check-functions /- Context and expression syntax for GitHub Actions /- GitHub Help](https://help.github.com/en/actions/reference/context-and-expression-syntax-for-github-actions#job-status-check-functions)
 
-Use `if:` when you want to set a step to run based on a particular status.
+特定のステータスに基づいてステップを実行するように設定する場合は、`if:`を使用します。
 
 ```yaml
 # .github/workflows/status-step.yaml
@@ -1373,11 +1371,11 @@ jobs:
 
 ## Matrix
 
-Matrix is useful when you want to run the same job with different parameters like OS, version, and so on. A matrix is defined with `jobs.<job_id>.strategy.matrix`. The following example shows how to use a matrix.
+Matrixは、OS、バージョンなど、異なるパラメータで同じジョブを実行したい場合に便利です。Matrixは`jobs.<job_id>.strategy.matrix`で定義します。次の例は、matrixの使用方法を示しています。
 
-- To control how job failures are handled, use `fail-fast: false` to continue other matrix jobs when one matrix job fails.
-- Matrix runs jobs in parallel by default. However, you can set parallelism with `max-parallel` to limit the number of parallel jobs.
-- A matrix can define multiple axes like OS and version. The following example will run 6 jobs in parallel (3 versions x 2 OS).
+- ジョブ失敗の処理方法を制御するには、`fail-fast: false`を使用して1つのmatrixジョブが失敗しても他のmatrixジョブを続行します。
+- Matrixはデフォルトでジョブを並列実行します。ただし、`max-parallel`で並列ジョブ数を制限することができます。
+- MatrixはOSやバージョンなどの複数の軸を定義できます。次の例では、6個のジョブが並列実行されます(3バージョン x 2 OS)。
 
 ```yaml
 # .github/workflows/matrix.yaml
@@ -1428,9 +1426,9 @@ jobs:
 
 ```
 
-You can expand or adding matrix combinations with `jobs.<job_id>.strategy.matrix.include`. The value of include is a list of objects. See details [link](https://docs.github.com/en/actions/how-tos/write-workflows/choose-what-workflows-do/run-job-variations#expanding-or-adding-matrix-configurations).
+`jobs.<job_id>.strategy.matrix.include`でmatrixの組み合わせを拡張または追加できます。includeの値はオブジェクトのリストです。詳細は[リンク](https://docs.github.com/en/actions/how-tos/write-workflows/choose-what-workflows-do/run-job-variations#expanding-or-adding-matrix-configurations)を参照してください。
 
-Let's create following workflow.
+次のワークフローを作成しましょう。
 
 ```yaml
 # .github/workflows/matrix-include.yaml
@@ -1511,9 +1509,9 @@ Following matrix will run 6 jobs in total.
 }
 ```
 
-You can exclude specific matrix combinations with `jobs.<job_id>.strategy.matrix.exclude`. See details [link](https://docs.github.com/en/actions/how-tos/write-workflows/choose-what-workflows-do/run-job-variations#excluding-matrix-configurations).
+`jobs.<job_id>.strategy.matrix.exclude`で特定のmatrixの組み合わせを除外できます。詳細は[リンク](https://docs.github.com/en/actions/how-tos/write-workflows/choose-what-workflows-do/run-job-variations#excluding-matrix-configurations)を参照してください。
 
-Let's create following workflow.
+次のワークフローを作成しましょう。
 
 ```yaml
 # .github/workflows/matrix-exclude.yaml
@@ -1546,7 +1544,7 @@ jobs:
 
 ```
 
-Following matrix will run 3 jobs in total, because `manzana` and `gato` combination is excluded.
+次のmatrixは合計3個のジョブを実行します。`manzana`と`gato`の組み合わせが除外されているためです。
 
 ```json
 // manzana, gato
@@ -1566,11 +1564,11 @@ Following matrix will run 3 jobs in total, because `manzana` and `gato` combinat
 }
 ```
 
-### Secret dereference in matrix
+### matrix内のシークレット参照
 
-You cannot reference `secret` context inside `strategy.matrix` section, so pass secret key in matrix then dereference secret with `secrets[matrix.SECRET_KEY]`.
+`strategy.matrix`セクション内で`secret`コンテキストを参照できないため、matrixでシークレットキーを渡し、`secrets[matrix.SECRET_KEY]`でシークレットを参照します。
 
-Let's set secrets in settings, then run following workflow.
+設定でシークレットを設定してから、次のワークフローを実行しましょう。
 
 ![GitHub Secrets sample](./images/secrets.png)
 
@@ -1615,9 +1613,9 @@ jobs:
 
 ```
 
-### Matrix reference in env
+### env内のMatrix参照
 
-You can refer matrix in job's `env:` section before steps.
+stepsの前にジョブの`env:`セクションでmatrixを参照できます。
 
 ```yaml
 # .github/workflows/matrix-envvar.yaml
@@ -1650,31 +1648,31 @@ jobs:
 
 ```
 
-## Workflow dispatch to invoke manually
+## 手動実行のためのWorkflow dispatch
 
-When you want to run workflow manually, use `workflow_dispatch` event trigger.
+ワークフローを手動で実行したい場合は、`workflow_dispatch`イベントトリガーを使用します。
 
-- Web UI offers `Run workflow` button on Actions tab.
-- `gh` CLI can trigger workflow dispatch.
-- You can use GitHub API to trigger workflow dispatch.
+- Web UIはActionsタブに`Run workflow`ボタンを提供します。
+- `gh` CLIでworkflow dispatchをトリガーできます。
+- GitHub APIを使用してworkflow dispatchをトリガーできます。
 
-### Workflow dispatch and passing value
+### Workflow dispatchと値の渡し方
 
-You can specify [action inputs](https://docs.github.com/en/actions/creating-actions/metadata-syntax-for-github-actions#inputs) to pass value when you invoke workflow dispatch.
+workflow dispatchを呼び出すときに値を渡すために[アクション入力](https://docs.github.com/en/actions/creating-actions/metadata-syntax-for-github-actions#inputs)を指定できます。
 
-inputs are defined in `on.workflow_dispatch.inputs` section. Following example shows how to define inputs and refer them in job steps.
+入力は`on.workflow_dispatch.inputs`セクションで定義されます。次の例は、入力の定義とジョブステップでの参照方法を示しています。
 
-- `on.workflow_dispatch.inputs`: Define input parameters to pass when invoking workflow dispatch.
-  - input parameters have `description`, `required`, `default` and `type` properties. You can specify `type` as `string`, `boolean`, `choice` and `environment`.
-- In job steps, you can refer input values with `${{ inputs.<input_name> }}` syntax.
+- `on.workflow_dispatch.inputs`: workflow dispatchを呼び出すときに渡す入力パラメータを定義します。
+  - 入力パラメータは`description`、`required`、`default`、`type`プロパティを持ちます。`type`として`string`、`boolean`、`choice`、`environment`を指定できます。
+- ジョブステップでは、`${{ inputs.<input_name> }}`構文で入力値を参照できます。
 
-Input types supported are:
+サポートされている入力タイプ:
 
-- `string`: default type, Web UI offers text box.
-- `number`: numeric value, Web UI offers text box.
-- `boolean`: `true` or `false` and Web UI offers checkbox.
-- `choice`: enum options and Web UI offers selection box. You need to define `options` property.
-- `environment`: enum GitHub Environments and Web UI offers selection box.
+- `string`: デフォルトタイプ、Web UIはテキストボックスを提供します。
+- `number`: 数値、Web UIはテキストボックスを提供します。
+- `boolean`: `true`または`false`、Web UIはチェックボックスを提供します。
+- `choice`: 列挙オプション、Web UIは選択ボックスを提供します。`options`プロパティを定義する必要があります。
+- `environment`: GitHub Environmentsの列挙、Web UIは選択ボックスを提供します。
 
 ```yaml
 # .github/workflows/workflowdispatch-inputs.yaml
@@ -1746,11 +1744,11 @@ jobs:
 
 # Basic - Commit, Branch and Tag handling
 
-## Create release
+## リリースを作成する
 
-You can create a GitHub Release with the `gh` CLI tool. There are some actions, but I recommend using the `gh` CLI tool directly because release creation is simple enough.
+`gh` CLIツールを使用してGitHubリリースを作成できます。いくつかのアクションがありますが、リリース作成は十分にシンプルなので、`gh` CLIツールを直接使用することをお勧めします。
 
-The key commands are `gh release create` and `gh release upload`. I recommend creating a draft release first, then uploading files to the release. Change the draft release to published when everything is ready.
+主要なコマンドは`gh release create`と`gh release upload`です。最初にドラフトリリースを作成し、その後リリースにファイルをアップロードすることをお勧めします。すべての準備が整ったら、ドラフトリリースを公開済みに変更します。
 
 ```sh
 # create draft release with auto generated notes
@@ -1760,7 +1758,7 @@ gh release create <TAG> --draft --verify-tag --title "Ver.<TAG>" --generate-note
 gh release upload <TAG> file-1.txt file-2.txt
 ```
 
-The following example triggers when you push a tag like `v1.0.0`. The workflow creates a draft release with auto-generated notes and uploads files.
+次の例は、`v1.0.0`のようなタグをプッシュしたときにトリガーされます。ワークフローは自動生成されたノートでドラフトリリースを作成し、ファイルをアップロードします。
 
 ```yaml
 # .github/workflows/create-release-simple.yaml
@@ -1802,83 +1800,11 @@ jobs:
 
 ```
 
-## Detect file changed
+## ファイル変更を検出する
 
-You can detect which files were changed with push or pull_request events in GitHub Actions. This is useful when you want to use `path-filter` but require further file handling. The following actions are available and can be used in the same way.
+GitHub Actionsのpushまたはpull_requestイベントで、どのファイルが変更されたかを検出できます。これは、`path-filter`を使用したいが、さらにファイル処理が必要な場合に便利です。次のアクションが利用可能で、同じように使用できます。
 
-`dorny/paths-filter` is still actively developed. However, its output is quite dynamic and hard to handle with static linters like actionlint.
-
-```yaml
-# .github/workflows/file-change-detect-dorny.yaml
-
-name: file change detect dorny
-on:
-    pull_request:
-        branches: ["main"]
-    push:
-        branches: ["main"]
-
-jobs:
-    changed-files:
-        permissions:
-            contents: read
-        runs-on: ubuntu-24.04
-        timeout-minutes: 3
-        steps:
-            - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
-              with:
-                  persist-credentials: false
-            # see: https://github.com/dorny/paths-filter/blob/master/README.md
-            - id: changed-files
-              uses: dorny/paths-filter@de90cc6fb38fc0963ad72b210f1f284cd68cea36 # v3.0.2
-              with:
-                  base: ${{ github.event_name == 'push' && github.ref || '' }}
-                  list-files: csv # default 'none'. Disables listing of matching files.
-                  filters: |
-                      foo:
-                        - '**'
-            - name: Is any change happen on some filters?
-              run: echo "${{ steps.changed-files.outputs.changes }}"
-            - name: Is change happen on foo filter?
-              run: echo "${{ steps.changed-files.outputs.foo }}"
-            - name: Changed file list for foo filter
-              run: echo "${{ steps.changed-files.outputs.foo_files }}"
-            - name: Is foo filter changed files include .github/workflows?
-              run: echo "${{ contains(steps.changed-files.outputs.foo_files, '.github/workflows')}}"
-            - name: Is foo filter changed files include .github/dummy?
-              run: echo "${{ contains(steps.changed-files.outputs.foo_files, '.github/dummy')}}"
-            # space separated
-            - id: changed-files2
-              uses: dorny/paths-filter@de90cc6fb38fc0963ad72b210f1f284cd68cea36 # v3.0.2
-              if: ${{ github.event.pull_request.changed_files < 100 }} # when changed files less than 100
-              with:
-                  base: ${{ github.event_name == 'push' && github.ref || '' }}
-                  list-files: shell
-                  filters: |
-                      foo:
-                        - '**'
-            - name: List all changed files
-              env:
-                  CHANGED_FILES: ${{ steps.changed-files2.outputs.foo_files }}
-              run: |
-                  for file in ${CHANGED_FILES}; do
-                    echo "$file was changed"
-                  done
-            # json separated
-            - id: changed-files3
-              uses: dorny/paths-filter@de90cc6fb38fc0963ad72b210f1f284cd68cea36 # v3.0.2
-              with:
-                  base: ${{ github.event_name == 'push' && github.ref || '' }}
-                  list-files: json
-                  filters: |
-                      foo:
-                        - '**'
-            - name: Changed file list for foo filter
-              run: echo "${{ steps.changed-files3.outputs.foo_files }}"
-
-```
-
-`trilom/file-changes-action` has stopped development, so I have stopped using it.
+`dorny/paths-filter`は現在も活発に開発されています。ただし、その出力は非常に動的で、actionlintのような静的リンターでは扱いにくいです。
 
 ```yaml
 # .github/workflows/file-change-detect-dorny.yaml
@@ -1950,19 +1876,91 @@ jobs:
 
 ```
 
-## Schedule job on non-default branch
+`trilom/file-changes-action`は開発が停止したため、使用を中止しました。
 
-Scheduled jobs will use the `Last commit on default branch`.
+```yaml
+# .github/workflows/file-change-detect-dorny.yaml
 
-> ref: [Events that trigger workflows /- GitHub Help](https://help.github.com/en/actions/reference/events-that-trigger-workflows#scheduled-events-schedule)
+name: file change detect dorny
+on:
+    pull_request:
+        branches: ["main"]
+    push:
+        branches: ["main"]
 
-A scheduled workflow must be merged to the default branch to apply workflow changes.
+jobs:
+    changed-files:
+        permissions:
+            contents: read
+        runs-on: ubuntu-24.04
+        timeout-minutes: 3
+        steps:
+            - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
+              with:
+                  persist-credentials: false
+            # see: https://github.com/dorny/paths-filter/blob/master/README.md
+            - id: changed-files
+              uses: dorny/paths-filter@de90cc6fb38fc0963ad72b210f1f284cd68cea36 # v3.0.2
+              with:
+                  base: ${{ github.event_name == 'push' && github.ref || '' }}
+                  list-files: csv # default 'none'. Disables listing of matching files.
+                  filters: |
+                      foo:
+                        - '**'
+            - name: Is any change happen on some filters?
+              run: echo "${{ steps.changed-files.outputs.changes }}"
+            - name: Is change happen on foo filter?
+              run: echo "${{ steps.changed-files.outputs.foo }}"
+            - name: Changed file list for foo filter
+              run: echo "${{ steps.changed-files.outputs.foo_files }}"
+            - name: Is foo filter changed files include .github/workflows?
+              run: echo "${{ contains(steps.changed-files.outputs.foo_files, '.github/workflows')}}"
+            - name: Is foo filter changed files include .github/dummy?
+              run: echo "${{ contains(steps.changed-files.outputs.foo_files, '.github/dummy')}}"
+            # space separated
+            - id: changed-files2
+              uses: dorny/paths-filter@de90cc6fb38fc0963ad72b210f1f284cd68cea36 # v3.0.2
+              if: ${{ github.event.pull_request.changed_files < 100 }} # when changed files less than 100
+              with:
+                  base: ${{ github.event_name == 'push' && github.ref || '' }}
+                  list-files: shell
+                  filters: |
+                      foo:
+                        - '**'
+            - name: List all changed files
+              env:
+                  CHANGED_FILES: ${{ steps.changed-files2.outputs.foo_files }}
+              run: |
+                  for file in ${CHANGED_FILES}; do
+                    echo "$file was changed"
+                  done
+            # json separated
+            - id: changed-files3
+              uses: dorny/paths-filter@de90cc6fb38fc0963ad72b210f1f284cd68cea36 # v3.0.2
+              with:
+                  base: ${{ github.event_name == 'push' && github.ref || '' }}
+                  list-files: json
+                  filters: |
+                      foo:
+                        - '**'
+            - name: Changed file list for foo filter
+              run: echo "${{ steps.changed-files3.outputs.foo_files }}"
 
-Pass branch info when you want to run checkout on a non-default branch.
-Don't forget to prepend `refs/heads/` to your branch.
+```
 
-- Good: refs/heads/some-branch
-- Bad: some-branch
+## 非デフォルトブランチでのスケジュールジョブ
+
+スケジュールされたジョブは`デフォルトブランチの最後のコミット`を使用します。
+
+> 参照: [Events that trigger workflows /- GitHub Help](https://help.github.com/en/actions/reference/events-that-trigger-workflows#scheduled-events-schedule)
+
+スケジュールされたワークフローは、ワークフロー変更を適用するためにデフォルトブランチにマージされている必要があります。
+
+非デフォルトブランチでcheckoutを実行したい場合は、ブランチ情報を渡します。
+ブランチに`refs/heads/`を前置することを忘れないでください。
+
+- 良い: refs/heads/some-branch
+- 悪い: some-branch
 
 ```yaml
 # .github/workflows/schedule-job.yaml
@@ -1990,8 +1988,8 @@ jobs:
 
 ```
 
-You can create releases and upload assets through GitHub Actions.
-Multiple asset uploads are supported by running `actions/upload-release-asset` for each asset.
+GitHub Actionsを通じてリリースを作成し、アセットをアップロードできます。
+複数のアセットアップロードは、各アセットに対して`actions/upload-release-asset`を実行することでサポートされます。
 
 ```yaml
 # .github/workflows/create-release.yaml
@@ -2079,9 +2077,9 @@ jobs:
 
 ```
 
-## Trigger branch push only but skip on tag push
+## ブランチプッシュのみをトリガーし、タグプッシュではスキップ
 
-If you want to run a job only when pushing to a branch, and not for tag pushes. Just remove `tags` section from `on.push` or set negation pattern `!*`.
+ブランチへのプッシュ時のみジョブを実行し、タグプッシュでは実行したくない場合。`on.push`から`tags`セクションを削除するか、否定パターン`!*`を設定します。
 
 ```yaml
 # .github/workflows/branch-push-only.yaml
@@ -2104,7 +2102,7 @@ jobs:
 
 ```
 
-## Trigger commit message
+## コミットメッセージでトリガーする
 
 ```yaml
 # .github/workflows/trigger-ci.yaml
@@ -2128,9 +2126,9 @@ jobs:
 
 ```
 
-## Trigger tag push only but skip on branch push
+## タグプッシュのみをトリガーし、ブランチプッシュではスキップ
 
-If you want to run a job only when pushing to a tag, and not for branch pushes.
+タグへのプッシュ時のみジョブを実行し、ブランチプッシュでは実行したくない場合。
 
 ```yaml
 # .github/workflows/tag-push-only.yaml
@@ -2152,16 +2150,16 @@ jobs:
 
 ```
 
-## Trigger for specific tag pattern
+## 特定のタグパターンでトリガーする
 
-You can use pattern on `on.push.tags`, but you can't on `step.if`.
-This pattern will match following.
+`on.push.tags`でパターンを使用できますが、`step.if`では使用できません。
+このパターンは次のものにマッチします。
 
 - 0.0.1
 - 1.0.0+preview
 - 0.0.3-20200421-preview+abcd123408534
 
-not for below.
+次のものにはマッチしません。
 
 - v0.0.1
 - release
@@ -2188,10 +2186,10 @@ jobs:
 
 # Basic - Issue and Pull Request handling
 
-## Detect labels on pull request
+## プルリクエストのラベルを検出する
 
-The `pull_request` event contains labels and you can use them to filter step execution.
-`${{ contains(github.event.pull_request.labels.*.name, 'hoge') }}` will return `true` if the label contains `hoge`.
+`pull_request`イベントにはラベルが含まれており、それらを使用してステップの実行をフィルターできます。
+`${{ contains(github.event.pull_request.labels.*.name, 'hoge') }}`は、ラベルに`hoge`が含まれていれば`true`を返します。
 
 ```yaml
 # .github/workflows/pr-label-get.yaml
@@ -2224,9 +2222,9 @@ jobs:
 
 ```
 
-## Skip ci on pull request title
+## プルリクエストのタイトルでCIをスキップする
 
-The default `pull_request` event will trigger when the activity type is `opened`, `synchronize`, or `reopened`.
+デフォルトの`pull_request`イベントは、アクティビティタイプが`opened`、`synchronize`、または`reopened`のときにトリガーされます。
 
 > [Events that trigger workflows /- GitHub Help](https://help.github.com/en/actions/reference/events-that-trigger-workflows#pull-request-event-pull_request)
 
@@ -2262,10 +2260,10 @@ jobs:
 
 ```
 
-## Skip pr from fork repo
+## フォークリポジトリからのPRをスキップ
 
-By default, the `pull_request` event triggers even from fork repositories. However, fork PRs cannot read `secrets` and may fail PR checks.
-To skip jobs from forks but run them on your own PRs or pushes, use `if` conditions.
+デフォルトでは、`pull_request`イベントはフォークリポジトリからもトリガーされます。しかし、フォークPRは`secrets`を読み取ることができず、PRチェックが失敗する可能性があります。
+フォークからのジョブをスキップし、自分のPRまたはpushでのみ実行するには、`if`条件を使用します。
 
 ```yaml
 # .github/workflows/skip-pr-from-fork.yaml
@@ -2294,10 +2292,10 @@ jobs:
 
 ```
 
-## Skip job when Draft PR
+## ドラフトPR時にジョブをスキップ
 
-You can skip jobs and steps if the Pull Request is a draft.
-Unfortunately, the GitHub Webhook v3 event does not provide a draft PR type, but `event.pull_request.draft` returns `true` when the PR is a draft.
+プルリクエストがドラフトの場合、ジョブとステップをスキップできます。
+残念ながら、GitHub Webhook v3イベントはドラフトPRタイプを提供しませんが、PRがドラフトの場合、`event.pull_request.draft`が`true`を返します。
 
 ```yaml
 # .github/workflows/skip-draft-pr.yaml
@@ -2322,7 +2320,7 @@ jobs:
 
 ```
 
-You can control behaviour with PR label.
+PRラベルで動作を制御できます。
 
 ```yaml
 # .github/workflows/skip-draft-but-label-pr.yaml
@@ -2355,20 +2353,20 @@ jobs:
 
 ---
 
-# Advanced
+# 高度な機能
 
-Advanced tips.
+高度なテクニック。
 
-## Automatic Actions version update via Dependabot
+## Dependabotによる自動Actionsバージョン更新
 
-You can use [Dependabot](https://docs.github.com/en/code-security/dependabot/working-with-dependabot/automating-dependabot-with-github-actions) to update GitHub Actions versions automatically. Dependabot creates pull requests to keep your actions up to date, and you can merge them manually or automatically.
+[Dependabot](https://docs.github.com/en/code-security/dependabot/working-with-dependabot/automating-dependabot-with-github-actions)を使用してGitHub Actionsのバージョンを自動的に更新できます。Dependabotはアクションを最新の状態に保つためのプルリクエストを作成し、手動または自動でマージできます。
 
-To enable Dependabot for GitHub Actions update, add `.github/dependabot.yml` to your repository.
+GitHub Actions更新のためにDependabotを有効にするには、リポジトリに`.github/dependabot.yml`を追加します。
 
-The following is an example dependabot.yaml file.
+次はサンプルdependabot.yamlファイルです。
 
-- Update GitHub Actions/NuGet weekly, but ignore patch version updates.
-- Also set a cooldown period of 14 days, which means Dependabot will not create a new PR for the same dependency within 14 days after the previous update PR was created. This is useful for reducing security risks from transient dependency vulnerabilities.
+- GitHub Actions/NuGetを毎週更新しますが、パッチバージョン更新は無視します。
+- また、14日間のクールダウン期間を設定しています。これは、前回の更新PRが作成されてから14日以内に同じ依存関係に対してDependabotが新しいPRを作成しないことを意味します。これは、一時的な依存関係の脆弱性によるセキュリティリスクを軽減するのに役立ちます。
 
 ```yaml
 # .github/dependabot.yaml
@@ -2401,21 +2399,21 @@ updates:
 
 ```
 
-**Customize dependabot.yaml**
+**dependabot.yamlのカスタマイズ**
 
-There are several [configuration options for the dependabot.yaml file](https://docs.github.com/en/code-security/dependabot/dependabot-version-updates/configuration-options-for-the-dependabot.yml-file).
+[dependabot.yamlファイルの設定オプション](https://docs.github.com/en/code-security/dependabot/dependabot-version-updates/configuration-options-for-the-dependabot.yml-file)がいくつかあります。
 
-**Accessing secrets on dependabot action**
+**dependabotアクションでシークレットにアクセスする**
 
-When a Dependabot event triggers a workflow, the only secrets available to the workflow are Dependabot secrets. GitHub Actions secrets are not available.
+Dependabotイベントがワークフローをトリガーすると、ワークフローで利用できるシークレットはDependabotシークレットのみです。GitHub Actionsシークレットは利用できません。
 
 > ref: https://docs.github.com/en/code-security/dependabot/working-with-dependabot/automating-dependabot-with-github-actions#accessing-secrets
 
-Therefore, I recommend not using secrets for Dependabot-triggered workflows. If you need secrets, add the same secret name to Dependabot secrets.
+そのため、Dependabotトリガーのワークフローではシークレットを使用しないことをお勧めします。シークレットが必要な場合は、Dependabotシークレットに同じシークレット名を追加してください。
 
 ## Build Artifacts
 
-GitHub Actions [actions/upload-artifact](https://github.com/actions/upload-artifact) and [actions/download-artifact](https://github.com/actions/download-artifact) offer artifact handling between jobs. You can upload and download artifacts to/from GitHub Actions.
+GitHub Actionsの[actions/upload-artifact](https://github.com/actions/upload-artifact)と[actions/download-artifact](https://github.com/actions/download-artifact)は、ジョブ間での成果物の処理を提供します。GitHub Actionsで成果物をアップロードおよびダウンロードできます。
 
 **file**
 
@@ -2578,16 +2576,16 @@ jobs:
 ```
 
 
-## Concurrency Control
+## 並行制御
 
-GitHub Actions has concurrency control to prevent you from running Workflows or Jobs at the same time.
-This helps you achieve a serial build pipeline.
+GitHub Actionsには、ワークフローまたはジョブを同時に実行しないようにする並行制御機能があります。
+これにより、順次ビルドパイプラインを実現できます。
 
-### Workflow level concurrency
+### ワークフローレベルの並行制御
 
-Workflow concurrency control is useful when you want to prevent workflows from running at the same time. Imagine you have a long-running workflow and you want to run it only once at a time.
+ワークフロー並行制御は、ワークフローを同時に実行しないようにしたい場合に便利です。長時間実行されるワークフローがあり、一度に1回だけ実行したい場合を想像してください。
 
-You can use build context like `github.head_ref` or others. This means you can control concurrency based on commit, branch, workflow, or any other context.
+`github.head_ref`などのビルドコンテキストを使用できます。これは、コミット、ブランチ、ワークフロー、またはその他のコンテキストに基づいて並行制御できることを意味します。
 
 ```yaml
 # .github/workflows/concurrency-workflow.yaml
@@ -2608,7 +2606,7 @@ jobs:
 
 ```
 
-Specifying `cancel-in-progress: true` will cancel parallel build.
+`cancel-in-progress: true`を指定すると、並列ビルドがキャンセルされます。
 
 ```yaml
 # .github/workflows/concurrency-workflow-cancel-in-progress.yaml
@@ -2631,9 +2629,9 @@ jobs:
 
 ```
 
-### Job level concurrency
+### ジョブレベルの並行制御
 
-Job concurrency control is useful when you want to prevent jobs from running at the same time. Imagine you have a deployment job and you want to run it only once at a time.
+ジョブ並行制御は、ジョブを同時に実行しないようにしたい場合に便利です。デプロイメントジョブがあり、一度に1回だけ実行したい場合を想像してください。
 
 ```yaml
 # .github/workflows/concurrency-job.yaml
@@ -2658,7 +2656,7 @@ jobs:
 
 ```
 
-Specifying `cancel-in-progress: true` will cancel parallel build.
+`cancel-in-progress: true`を指定すると、並列ビルドがキャンセルされます。
 
 ```yaml
 # .github/workflows/concurrency-job-cancel-in-progress.yaml
@@ -2684,13 +2682,13 @@ jobs:
 
 ```
 
-## Container job
+## コンテナジョブ
 
-GitHub Actions has 2 types of container support. One is Job container, another is Service container.
+GitHub Actionsには2種類のコンテナサポートがあります。1つはJob container、もう1つはService containerです。
 
-**Job conatiner**
+**Job container**
 
-GitHub Actions is running on selected OS runner, such as `ubuntu-latest`, `windows-latest`, or `macos-latest`. However, sometimes you may want to run job on specific container image. GitHub Actions supports running job on container with `jobs.<job_id>.container` option. Following example shows how to run job on `golang:1.25` container, and run Go program.
+GitHub Actionsは`ubuntu-latest`、`windows-latest`、`macos-latest`などの選択されたOSランナー上で実行されます。しかし、特定のコンテナイメージでジョブを実行したい場合があります。GitHub Actionsは`jobs.<job_id>.container`オプションでコンテナ上でのジョブ実行をサポートしています。次の例は、`golang:1.25`コンテナでジョブを実行し、Goプログラムを実行する方法を示しています。
 
 ```yaml
 # .github/workflows/container-job.yaml
@@ -2766,16 +2764,16 @@ jobs:
 
 ## Custom actions
 
-There are 2 types of custom actions. Composite actions and JavaScript actions. Both are useful to create reusable action logic. If you want to reusse workflow logic, you can also use [Reusable workflows](#reusable-workflow) feature.
+カスタムアクションには2種類あります。Composite actionsとJavaScript actionsです。どちらも再利用可能なアクションロジックを作成するのに便利です。ワークフローロジックを再利用したい場合は、[Reusable workflow](#reusable-workflow)機能も使用できます。
 
-- If you just want to run shell commands, then Composite actions is easiest way.
-- If you want to write complex logic in Node.js, then JavaScript actions is way to go.
+- シェルコマンドを実行したいだけなら、Composite actionsが最も簡単な方法です。
+- Node.jsで複雑なロジックを書きたい場合は、JavaScript actionsが適しています。
 
 ### Composite Actions
 
-[Composite action](https://docs.github.com/en/actions/tutorials/create-actions/create-a-composite-action) is kind of meta action which runs multiple steps in single action. You can write shell script steps in Composite actions. To create Composite actions, follow steps below.
+[Composite action](https://docs.github.com/en/actions/tutorials/create-actions/create-a-composite-action)は、複数のステップを1つのアクションで実行する一種のメタアクションです。Composite actionsではシェルスクリプトのステップを書くことができます。Composite actionsを作成するには、次の手順に従います。
 
-Place your actions yaml under `.github/actions/<ACTION_NAME>/action.yaml`.
+アクションのyamlを`.github/actions/<ACTION_NAME>/action.yaml`に配置します。
 
 ```sh
 $ mkdir -p .github/actions/composite-actions
@@ -2783,11 +2781,11 @@ $ cd .github/actions/composite-actions
 $ touch action.yaml
 ```
 
-Write your Composite actions in action.yaml.
+action.yamlにComposite actionsを書きます。
 
-- `inputs`: Define input parameters to Composite actions. You cannot use `type:` field, all inputs are string type. Even if you specify action inputs, input value will not store as ENV var `INPUT_{INPUTS_ID}` as usual.
-- `outputs`: Define output parameters from Composite actions.
-- `runs.using: "composite"`: This is key point to define Composite action.
+- `inputs`: Composite actionsへの入力パラメーターを定義します。`type:`フィールドは使用できず、すべての入力は文字列型です。アクション入力を指定しても、入力値は通常のように環境変数`INPUT_{INPUTS_ID}`として格納されません。
+- `outputs`: Composite actionsからの出力パラメーターを定義します。
+- `runs.using: "composite"`: これがComposite actionを定義するためのキーポイントです。
 
 ```yaml
 # .github/actions/composite-actions/action.yaml
@@ -2861,12 +2859,12 @@ jobs:
 
 ## Custom actions - JavaScript Actions
 
-[JavaScript action](https://docs.github.com/en/actions/tutorials/create-actions/create-a-javascript-action) is custom action written in Node.js. You can write complex logic in JavaScript action. To create JavaScript actions, follow steps below.
+[JavaScript action](https://docs.github.com/en/actions/tutorials/create-actions/create-a-javascript-action)はNode.jsで書かれたカスタムアクションです。JavaScript actionで複雑なロジックを書くことができます。JavaScript actionsを作成するには、次の手順に従います。
 
 > [!Note]
-> Most cases, JavaScript actions are written in TypeScript, then  compile into JavaScript, place compiled JavaScript file under `dist/` folder. Following example just use plain JavaScript for simplicity.
+> ほとんどの場合、JavaScript actionsはTypeScriptで書かれ、その後JavaScriptにコンパイルされ、コンパイルされたJavaScriptファイルを`dist/`フォルダーに配置します。次の例では、簡略化のためにプレーンなJavaScriptを使用します。
 
-Place your actions yaml under `.github/actions/<ACTION_NAME>/action.yaml`, and main JavaScript file `dist/index.js` in same folder.
+アクションyamlを`.github/actions/<ACTION_NAME>/action.yaml`に、メインJavaScriptファイル`dist/index.js`を同じフォルダーに配置します。
 
 ```sh
 $ mkdir -p .github/actions/javascript-actions
@@ -2875,11 +2873,11 @@ $ touch action.yaml
 $ touch dist/index.js
 ```
 
-Write your JavaScript actions definition in action.yaml.
+action.yamlにJavaScript actionsの定義を書きます。
 
-- `inputs`: Define input parameters to JavaScript actions.
-- `outputs`: Define output parameters from JavaScript actions.
-- `runs.using: "node20"`: This is key point to define JavaScript action.
+- `inputs`: JavaScript actionsへの入力パラメーターを定義します。
+- `outputs`: JavaScript actionsからの出力パラメーターを定義します。
+- `runs.using: "node20"`: これがJavaScript actionを定義するためのキーポイントです。
 
 ```yaml
 # .github/actions/javascript-actions/action.yaml
@@ -2960,30 +2958,30 @@ jobs:
 
 ## Data passing
 
-### Data passing between steps
+### ステップ間のデータ受け渡し
 
-There are several ways to pass data between steps in the same job.
+同じジョブ内のステップ間でデータを渡す方法はいくつかあります。
 
 - step outputs
 - environment variables
 - files
 
-### Data passing between jobs
+### ジョブ間のデータ受け渡し
 
-There are several ways to pass data between jobs.
+ジョブ間でデータを渡す方法はいくつかあります。
 
 - job outputs and needs
 - artifacts (files)
 
 
-## Dispatch other repo workflow
+## 他のリポジトリのワークフローをディスパッチする
 
-You can dispatch this repository to other repository via calling GitHub `workflow_dispatch` event API.
-You don't need use `repository_dispatch` event API anymore.
+GitHubの`workflow_dispatch`イベントAPIを呼び出すことで、このリポジトリを他のリポジトリにディスパッチできます。
+もはや`repository_dispatch`イベントAPIを使用する必要はありません。
 
-**Target repository workflow**
+**ターゲットリポジトリのワークフロー**
 
-Here's target repo `testtest` workflow `test.yaml`.
+ターゲットリポジトリ`testtest`のワークフロー`test.yaml`です。
 
 ```yaml
 name: test
@@ -2998,9 +2996,9 @@ jobs:
       - uses: actions/checkout@v4
 ```
 
-**Dispatcher workflow**
+**ディスパッチャーワークフロー**
 
-This repo will dispatch event with [Workflow Dispatch Action](https://github.com/marketplace/actions/workflow-dispatch) actions.
+このリポジトリは[Workflow Dispatch Action](https://github.com/marketplace/actions/workflow-dispatch)アクションでイベントをディスパッチします。
 
 ```yaml
 # .github/workflows/dispatch-changes-actions.yaml
@@ -3033,14 +3031,14 @@ jobs:
 
 ```
 
-## Fork user workflow change prevention
+## フォークユーザーのワークフロー変更防止
 
-One of GitHub's vulnerable point is Workflow. Editting Workflow shoulbe be requirement when using `secrets` and authenticate some service on workflow.
+GitHubの脆弱性の1つはワークフローです。`secrets`を使用してワークフローでサービスを認証する場合、ワークフローの編集は要件とする必要があります。
 
-Easiest and simple way is use `pull_request` target and path filter, then detect PR is fork or not. There might be many ways to prevent file change. `xalvarez/prevent-file-change-action` can guard change in the step. Using `dorny/paths-filter`, or others will be flexible way to detect change and do what you want.
+最も簡単な方法は、`pull_request`ターゲットとパスフィルタを使用し、PRがフォークかどうかを検出することです。ファイル変更を防ぐ方法はいくつかあるかもしれません。`xalvarez/prevent-file-change-action`はステップ内で変更をガードできます。`dorny/paths-filter`またはその他を使用すると、変更を検出して希望する操作を実行する柔軟な方法となります。
 
 > [!Warning]
-> Stop using `tj-actions/changed-files` as of reaction to the [security vulnerbility](https://www.stepsecurity.io/blog/harden-runner-detection-tj-actions-changed-files-action-is-compromised)
+> [セキュリティ脆弱性](https://www.stepsecurity.io/blog/harden-runner-detection-tj-actions-changed-files-action-is-compromised)への対応として`tj-actions/changed-files`の使用を中止してください
 
 ```yaml
 # .github/workflows/prevent-file-change1.yaml
@@ -3143,43 +3141,43 @@ jobs:
 
 ```
 
-## git checkout faster
+## git checkoutの高速化
 
-[actions/checkout](https://github.com/actions) supports both [shallow-clone](https://git-scm.com/docs/shallow) and [sparse checkout](https://git-scm.com/docs/git-sparse-checkout) which is quite useful for monorepository. Typically, monorepository contains huge number of files and folders, so normal git clone/checkout may take long time and huge disk space. If you want to speed up git checkout, enable both `shallow-clone` and `sparse checkout`.
+[actions/checkout](https://github.com/actions)は[shallow-clone](https://git-scm.com/docs/shallow)と[sparse checkout](https://git-scm.com/docs/git-sparse-checkout)の両方をサポートしており、モノレポジトリに非常に便利です。通常、モノレポジトリには大量のファイルとフォルダが含まれているため、通常のgit clone/checkoutは長時間と大きなディスク容量を必要とする可能性があります。git checkoutを高速化したい場合は、`shallow-clone`と`sparse checkout`の両方を有効にしてください。
 
-- `shallow-clone` (Enable by default): Offers faster clone by limiting commit history depth.
-- `sparse checkout` (Added 2023/June -): Offers faster checkout by limiting checked out files and folders.
+- `shallow-clone` (デフォルトで有効): コミット履歴の深さを制限することで、より高速なクローンを提供します。
+- `sparse checkout` (2023年6月以降追加): チェックアウトするファイルとフォルダを制限することで、より高速なチェックアウトを提供します。
 
 <details><summary>Click to show explanation of shallow clone and sparse checkout</summary>
 
-**What's Shallow clone**
+**Shallow cloneとは**
 
-Shallow clones use the `--depth=<N>` parameter in `git clone` to truncate the commit history. Typically, --depth=1 signifies that we only care about the most recent commits. This drastically reduces the amount of data that needs to be fetched, leading to faster clones and less storage of shallow history.
+Shallow cloneは`git clone`で`--depth=<N>`パラメーターを使用してコミット履歴を切り詰めます。通常、--depth=1は最新のコミットのみを気にすることを意味します。これにより、取得する必要があるデータの量が大幅に減少し、クローンが高速化され、shallow履歴のストレージが少なくなります。
 
 ![Shallow clone](./images/shallow-clone.png)
 
 > ref: https://github.blog/2020-12-21-get-up-to-speed-with-partial-clone-and-shallow-clone/
 
-**What's Sparse checkout**
+**Sparse checkoutとは**
 
-Sparse checkout use the `git sparse-checkout set <PATH>` before `git clone` to truncate the checkout files and folders. This amazingly reduces the amount of data that needs to be fetched, leading to faster checkout and less storage of limited paths.
+Sparse checkoutは`git clone`の前に`git sparse-checkout set <PATH>`を使用して、チェックアウトするファイルとフォルダーを制限します。これにより、取得する必要があるデータの量が大幅に減少し、チェックアウトが高速化され、制限されたパスのストレージが少なくなります。
 
 ![Sparse checkout](./images/sparse-checkout.png)
 
 > ref: https://github.blog/2020-01-17-bring-your-monorepo-down-to-size-with-sparse-checkout/
 
-Sparce checkout has 2 modes, `git sparse-checkout` and `git sparse-checkout --cone`. You can specify `cone` or not with `sparse-checkout-cone-mode` option. So what the difference between `cone` and not `cone`? Normally `sparse-checkout-cone-mode: true` is faster than `sparse-checkout-cone-mode: false`. But `cone` mode has some limitation, you cannot exclude specific folder. So you need to choose which mode is better for you.
+Sparse checkoutには2つのモードがあります。`git sparse-checkout`と`git sparse-checkout --cone`です。`sparse-checkout-cone-mode`オプションで`cone`を指定するかしないかを選択できます。では、`cone`と`cone`ではない場合の違いは何でしょうか? 通常、`sparse-checkout-cone-mode: true`は`sparse-checkout-cone-mode: false`よりも高速です。しかし、`cone`モードにはいくつかの制限があり、特定のフォルダーを除外することができません。そのため、どちらのモードが良いか選択する必要があります。
 
-- `sparse checkout: src` & `sparse-checkout-cone-mode: true`, checkout `src` folder and root files.
-- `sparse checkout: src/*` & `sparse-checkout-cone-mode: false`, checkout `src` folder only.
-- `sparse checkout: !src` & `sparse-checkout-cone-mode: true`, you can not use `sparse-checkout-cone-mode: true` with exclude folder.
-- `sparse checkout: !src/*` & `sparse-checkout-cone-mode: false`, you can exlude `src` folder from checkout, but you need specify which folder you want to checkout.
+- `sparse checkout: src` & `sparse-checkout-cone-mode: true`、`src`フォルダーとルートファイルをチェックアウト。
+- `sparse checkout: src/*` & `sparse-checkout-cone-mode: false`、`src`フォルダーのみをチェックアウト。
+- `sparse checkout: !src` & `sparse-checkout-cone-mode: true`、フォルダー除外では`sparse-checkout-cone-mode: true`を使用できません。
+- `sparse checkout: !src/*` & `sparse-checkout-cone-mode: false`、`src`フォルダーをチェックアウトから除外できますが、チェックアウトしたいフォルダーを指定する必要があります。
 
 </details>
 
 ### Sparse checkout
 
-To use sparse checkout, just specify `sparse-checkout` option to `actions/checkout` action. Following example checkout only `src/` folder and root files.
+Sparse checkoutを使用するには、`actions/checkout`アクションに`sparse-checkout`オプションを指定するだけです。次の例は`src/`フォルダーとルートファイルのみをチェックアウトします。
 
 ```yaml
 # .github/workflows/git-sparse-checkout.yaml
@@ -3240,9 +3238,9 @@ drwxr-xr-x 2 runner docker 4096 Jun 14 10:23 txt
 .... others
 ```
 
-### Sparse checkout and specify which file to checkout
+### Sparse checkoutでチェックアウトするファイルを指定する
 
-To use sparse checkout and specify which file/folder to checkout, just specify `sparse-checkout` option to `actions/checkout` action. Following example checkout only `src/*` folder. Disable cone mode by `sparse-checkout-cone-mode: false` to use `!` exclude pattern.
+Sparse checkoutを使用して、チェックアウトするファイル/フォルダーを指定するには、`actions/checkout`アクションに`sparse-checkout`オプションを指定するだけです。次の例は`src/*`フォルダーのみをチェックアウトします。`!`除外パターンを使用するために`sparse-checkout-cone-mode: false`でconeモードを無効化します。
 
 ```yaml
 # .github/workflows/git-sparse-checkout-disable-cone.yaml
@@ -3274,7 +3272,7 @@ jobs:
 
 ```
 
-Result is selected `src` folder and root files will checkout.
+結果、選択された`src`フォルダーとルートファイルがチェックアウトされます。
 
 ```sh
 $ ls -la
@@ -3299,9 +3297,9 @@ drwxr-xr-x 2 runner docker 4096 Jun 14 10:23 txt
 .... others
 ```
 
-### Sparse checkout exclude path
+### Sparse checkoutでパスを除外する
 
-To use sparse checkout and exclude specific file/folder from checkout, just specify `sparse-checkout` option to `actions/checkout` action. Following example exclude `src/*` folder. Disable cone mode by `sparse-checkout-cone-mode: false` to use `!` exclude pattern.
+Sparse checkoutを使用して、チェックアウトから特定のファイル/フォルダーを除外するには、`actions/checkout`アクションに`sparse-checkout`オプションを指定するだけです。次の例は`src/*`フォルダーを除外します。`!`除外パターンを使用するために`sparse-checkout-cone-mode: false`でconeモードを無効化します。
 
 ```yaml
 # .github/workflows/git-sparse-checkout-exclude.yaml
@@ -3334,7 +3332,7 @@ jobs:
 
 ```
 
-Result is exclude `src` folder and all other files are checkout.
+結果、`src`フォルダーが除外され、それ以外のすべてのファイルがチェックアウトされます。
 
 ```sh
 $ ls -la
@@ -3366,7 +3364,7 @@ drwxr-xr-x  3 runner docker 4096 Jun 14 10:23 workflows
 
 ## GitHub Step Summary
 
-If you want to add a job summary, use [GITHUB_STEP_SUMMARY](https://docs.github.com/en/actions/using-workflows/workflow-commands-for-github-actions#adding-a-job-summary). Job summaries are useful for displaying important information after a job finishes. You can see the Job Summary at the bottom of the job page.
+ジョブサマリーを追加したい場合は、[GITHUB_STEP_SUMMARY](https://docs.github.com/en/actions/using-workflows/workflow-commands-for-github-actions#adding-a-job-summary)を使用します。ジョブサマリーは、ジョブが終了した後に重要な情報を表示するのに便利です。ジョブページの下部でJob Summaryを見ることができます。
 
 ```yaml
 # .github/workflows/github-step-summary.yaml
@@ -3431,12 +3429,12 @@ jobs:
 
 ## PR info from Merge Commit
 
-You have two choices:
+2つの選択肢があります:
 
-1. Use Git CLI to retrieve the 1st and 3rd lines of the merge commit.
-2. Use an action to retrieve PR info from the merge commit.
+1. Git CLIを使用して、マージコミットの1行目と3行目を取得する。
+2. アクションを使用してマージコミットからPR情報を取得する。
 
-Below use [jwalton/gh-find-current-pr](https://github.com/jwalton/gh-find-current-pr) to retrieve PR info from merge commit.
+以下は[jwalton/gh-find-current-pr](https://github.com/jwalton/gh-find-current-pr)を使用してマージコミットからPR情報を取得します。
 
 ```yaml
 # .github/workflows/pr-from-merge-commit.yaml
@@ -3472,14 +3470,14 @@ jobs:
 
 ## Reusable workflow
 
-GitHub Actions allows you to create [Reusable workflows](https://docs.github.com/en/actions/how-tos/reuse-automations/reuse-workflows) to share common workflow logic across multiple workflows and repositories. You can call a local workflow from the same repository, a public repository's workflow, or a private repository's workflow from the same Organization. To create a reusable workflow, follow the steps below.
+GitHub Actionsでは、複数のワークフローやリポジトリ間で共通のワークフローロジックを共有するために[Reusable workflows](https://docs.github.com/en/actions/how-tos/reuse-automations/reuse-workflows)を作成できます。同じリポジトリからのローカルワークフロー、パブリックリポジトリのワークフロー、または同じOrganizationからのプライベートリポジトリのワークフローを呼び出すことができます。Reusable workflowを作成するには、次の手順に従います。
 
-### Limitations
+### 制限事項
 
-There are some limitations when calling reusable workflows:
+Reusable workflowsを呼び出す場合、いくつかの制限があります:
 
-1. A private repo can call the same repo's reusable workflow, but cannot call other private repos' workflows.
-2. Caller cannot use ${{ env.FOO }} for `with` inputs.
+1. プライベートリポジトリは同じリポジトリのReusable workflowを呼び出せますが、他のプライベートリポジトリのワークフローは呼び出せません。
+2. 呼び出し元は`with`入力に${{ env.FOO }}を使用できません。
 
    ```yaml
    jobs:
@@ -3492,13 +3490,13 @@ There are some limitations when calling reusable workflows:
          secrets: inherit
    ```
 
-3. The callee workflow must be placed under `.github/workflows/`. Otherwise, the caller is treated as calling a public workflow.
+3. 呼び出されるワークフローは`.github/workflows/`に配置する必要があります。そうでない場合、呼び出し元はパブリックワークフローを呼び出していると見なされます。
 
    ```bash
    $ ls -l ./.github/workflows/
    ```
 
-4. Callee cannot refer Caller's Environment Variable.
+4. 呼び出される側は呼び出し元の環境変数を参照できません。
 
    ```yaml
    env:
@@ -3510,9 +3508,9 @@ There are some limitations when calling reusable workflows:
          uses: ./.github/workflows/dummy.yaml
    ```
 
-### Reusable workflow basic
+### Reusable workflowの基本
 
-Place Reusable workflow yaml file under `.github/workflows/<WORKFLOW_NAME>.yaml`.
+Reusable workflowのyamlファイルを`.github/workflows/<WORKFLOW_NAME>.yaml`に配置します。
 
 ```sh
 $ mkdir -p .github/workflows
@@ -3603,13 +3601,13 @@ jobs:
 
 ```
 
-### Call Reusable workflow in same repository
+### 同じリポジトリで再利用可能なワークフローを呼び出す
 
-To call Reusable workflow in same repository, use `uses: ./.github/workflows/xxxx.yaml`.
+同じリポジトリで再利用可能なワークフローを呼び出すには、`uses: ./.github/workflows/xxxx.yaml`を使用します。
 
 > [!TIP]
-> If you want pass `boolean` type of input from workflow_dispatch to workflow_call, use `fromJson(inputs.YOUR_BOOLEAN_PARAMETER)`.
-See [Type converter with fromJson](#type-converter-with-fromJson) for the detail.
+> workflow_dispatchからworkflow_callに`boolean`タイプの入力を渡したい場合は、`fromJson(inputs.YOUR_BOOLEAN_PARAMETER)`を使用します。
+詳細は[fromJsonによる型変換](#fromJsonによる型変換)を参照してください。
 
 ```yaml
 # .github/workflows/reusable-workflow-caller-internal.yaml
@@ -3649,9 +3647,9 @@ jobs:
 
 ```
 
-### Call Reusable workflow in public repository
+### パブリックリポジトリで再利用可能なワークフローを呼び出す
 
-To call Reusable workflow in public repository, use `uses: GITHUB_OWNER/REPOSITORY/.github/workflows/xxxx.yaml@<ref>`.
+パブリックリポジトリで再利用可能なワークフローを呼び出すには、`uses: GITHUB_OWNER/REPOSITORY/.github/workflows/xxxx.yaml@<ref>`を使用します。
 
 ```yaml
 # .github/workflows/reusable-workflow-public-caller.yaml
@@ -3686,9 +3684,9 @@ jobs:
 
 ```
 
-### Nested reusable workflow
+### ネストされた再利用可能なワークフロー
 
-Reusalbe workflow support nested call. Callee workflow can call another reusable workflow.
+再利用可能なワークフローはネスト呼び出しをサポートします。呼び出されたワークフローは別の再利用可能なワークフローを呼び出すことができます。
 
 ```yaml
 # .github/workflows/_reusable-workflow-nest.yaml
@@ -3720,17 +3718,17 @@ jobs:
 
 ```
 
-## Workflow command
+## ワークフローコマンド
 
-GitHub Actions support [Workflow commands](https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-commands) to interact with workflow runner. You can use workflow commands to set output parameters, add debug messages to the output logs, and other tasks.
+GitHub Actionsはワークフローランナーと対話するための[ワークフローコマンド](https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-commands)をサポートしています。ワークフローコマンドを使用して、出力パラメータを設定したり、出力ログにデバッグメッセージを追加したり、その他のタスクを実行できます。
 
-Most workflow commands use the echo command in a specific format, while others are invoked by writing to a file.
+ほとんどのワークフローコマンドは特定の形式でechoコマンドを使用し、その他はファイルに書き込むことで呼び出されます。
 
 ```sh
 echo "::workflow-command parameter1={data},parameter2={data}::{command value}"
 ```
 
-If you are using JavaScript or TypeScript to create GitHub Actions, you can use the [@actions/core](https://github.com/actions/toolkit).
+GitHub Actionsを作成するためにJavaScriptまたはTypeScriptを使用している場合は、[@actions/core](https://github.com/actions/toolkit)を使用できます。
 
 ```js
 core.error('Missing semicolon', {file: 'app.js', startLine: 1})
@@ -3773,12 +3771,12 @@ jobs:
 
 ```
 
-## YAML anchor
+## YAMLアンカー
 
 > [!WARNING]
-> I don't recommend using complex anchor structure, because it may make yaml hard to read. Instead, use Reusable Workflow, Composite Actions, JavaScript Actions to share common logic.
+> 複雑なアンカー構造の使用はお勧めしません。yamlが読みにくくなる可能性があるためです。代わりに、再利用可能なワークフロー、Composite Actions、JavaScript Actionsを使用して共通ロジックを共有してください。
 
-You can use [YAML anchor](https://docs.github.com/ja/actions/reference/workflows-and-actions/reusing-workflow-configurations#yaml-anchors-and-aliases) to reduce duplication in GitHub Actions workflow yaml. Define anchor with `&anchor_name` and refer anchor with `*anchor_name`. Be aware that YAML Merge Keys `<<: *anchor_name` is not supported, yet.
+GitHub Actionsワークフローyamlで重複を減らすために[YAMLアンカー](https://docs.github.com/ja/actions/reference/workflows-and-actions/reusing-workflow-configurations#yaml-anchors-and-aliases)を使用できます。`&anchor_name`でアンカーを定義し、`*anchor_name`でアンカーを参照します。YAMLマージキー`<<: *anchor_name`はまだサポートされていないことに注意してください。
 
 ```yaml
 # .github/workflows/yaml-anchor-basic.yaml
@@ -3843,7 +3841,7 @@ jobs:
 
 ## Checkout without persist-credentials
 
-When you use `actions/checkout`, by default it keep git remote url with token authentication after checkout. This should be not needed for normal case, and it may cause security issue. So that you should set `persist-credentials: false` to disable it.
+`actions/checkout`を使用すると、デフォルトではチェックアウト後にgitリモートURLをトークン認証付きで保持します。これは通常の場合には必要なく、セキュリティ上の問題を引き起こす可能性があります。そのため、`persist-credentials: false`を設定して無効化する必要があります。
 
 ```yaml
 # .github/workflows/checkout-without-persistcredentials.yaml
@@ -3904,16 +3902,16 @@ jobs:
 
 ```
 
-## GitHub App Token instead of Personal Access Token
+## Personal Access Tokenの代わりにGitHub App Token
 
-GitHub Actions provide a built-in token, `GITHUB_TOKEN`, most of actions can use it instead of Personal Access Token (PAT). However some actions may require PAT to access specific resources. In such cases, consider using a GitHub App Token instead of PAT for better security. Here are situations where GitHub App Token is needed instead of built-in `GITHUB_TOKEN`.
+GitHub Actionsは組み込みトークン`GITHUB_TOKEN`を提供しており、ほとんどのアクションはPersonal Access Token (PAT)の代わりにこれを使用できます。しかし、特定のリソースにアクセスするためにPATが必要なアクションもあります。そのような場合、より優れたセキュリティのためにPATの代わりにGitHub App Tokenの使用を検討してください。組み込みの`GITHUB_TOKEN`の代わりにGitHub App Tokenが必要な状況は次のとおりです。
 
-- Trigger Workflow when creating a Pull Request. (Built-in token created PR never trigger workflow)
-- Access another private repository even if it is same organization/ownner.
+- プルリクエスト作成時にワークフローをトリガーする。(組み込みトークンで作成されたPRはワークフローをトリガーしない)
+- 同じorganization/ownerであっても別のプライベートリポジトリにアクセスする。
 
-See [official instruction](https://docs.github.com/en/enterprise-cloud@latest/apps/creating-github-apps/authenticating-with-a-github-app/making-authenticated-api-requests-with-a-github-app-in-a-github-actions-workflow) for how to create GitHub App, and authenticate with GitHub App.
+GitHub Appの作成方法とGitHub Appでの認証方法については[公式手順](https://docs.github.com/en/enterprise-cloud@latest/apps/creating-github-apps/authenticating-with-a-github-app/making-authenticated-api-requests-with-a-github-app-in-a-github-actions-workflow)を参照してください。
 
-Following example use GitHub App Token via [actions/create-github-app-token](https://github.com/actions/create-github-app-token) action.
+次の例は、[actions/create-github-app-token](https://github.com/actions/create-github-app-token)アクションを介してGitHub App Tokenを使用しています。
 
 ```yaml
 # .github/workflows/github-app-token.yaml
@@ -3951,13 +3949,13 @@ jobs:
 
 ```
 
-## Injection attack via context
+## コンテキスト経由のインジェクション攻撃
 
-GitHub Actions context may be vulnerable to injection attacks if untrusted data is used. For example, if you use `${{ github.event.head_commit.message }}` directly in a shell command, an attacker could craft a commit message that includes shell commands, leading to arbitrary code execution.
+信頼できないデータが使用される場合、GitHub Actionsコンテキストはインジェクション攻撃に脆弱になる可能性があります。たとえば、シェルコマンドで`${{ github.event.head_commit.message }}`を直接使用する場合、攻撃者はシェルコマンドを含むコミットメッセージを作成し、任意のコード実行につながる可能性があります。
 
-To mitigate this risk, avoid directly embedding untrusted data into shell commands or scripts. Instead, [use an intermediate environment variable](https://docs.github.com/en/actions/reference/security/secure-use#use-an-action-instead-of-an-inline-script).
+このリスクを軽減するために、信頼できないデータをシェルコマンドまたはスクリプトに直接埋め込まないようにしてください。代わりに、[中間環境変数を使用](https://docs.github.com/en/actions/reference/security/secure-use#use-an-action-instead-of-an-inline-script)してください。
 
-You can detect potential injection attacks via context with [ghalint](https://github.com/suzuki-shunsuke/ghalint), [zizmor](https://github.com/woodruffw/zizmor), and others. See detail in [Lint GitHub Actions workflow](#lint-github-actions-workflow).
+[ghalint](https://github.com/suzuki-shunsuke/ghalint)、[zizmor](https://github.com/woodruffw/zizmor)などでコンテキスト経由の潜在的なインジェクション攻撃を検出できます。詳細は[GitHub Actionsワークフローのリント](#github-actionsワークフローのリント)を参照してください。
 
 ```yaml
 # .github/workflows/injection-attack-via-context.yaml
@@ -4000,26 +3998,26 @@ jobs:
 
 ```
 
-## Keep update the actions in your workflow
+## ワークフロー内のアクションを最新に保つ
 
-[Dependabot](https://docs.github.com/en/actions/reference/security/secure-use#using-dependabot-version-updates-to-keep-actions-up-to-date), or Renovate, can automatically check for updates to the GitHub Actions used in your workflows. To enable Dependabot for GitHub Actions, create a `.github/dependabot.yaml` file.
+[Dependabot](https://docs.github.com/en/actions/reference/security/secure-use#using-dependabot-version-updates-to-keep-actions-up-to-date)またはRenovateは、ワークフローで使用されているGitHub Actionsの更新を自動的にチェックできます。GitHub ActionsのDependabotを有効にするには、`.github/dependabot.yaml`ファイルを作成します。
 
-Here's some tips for configuring Dependabot for GitHub Actions.
+GitHub ActionsのDependabotを設定するためのティップス:
 
-- Use cooldown period like `cooldown.default-days: 14` to avoid updating right after a new version is released. This gives time to monitor for any issues with the new version.
-- Use `ignore.dependency-name[].update-types` to control which types of updates to apply (e.g., `version-update:semver-patch` if you want to avoid patch version updates).
+- `cooldown.default-days: 14`のようなクールダウン期間を使用して、新バージョンがリリースされた直後の更新を避けます。これにより、新バージョンの問題を監視する時間が得られます。
+- `ignore.dependency-name[].update-types`を使用して、適用する更新の種類を制御します(例: パッチバージョン更新を避けたい場合は`version-update:semver-patch`)。
 
-## Lint GitHub Actions workflow
+## GitHub Actionsワークフローのリント
 
-You can lint GitHub Actions yaml via [actionlint](https://github.com/rhysd/actionlint), [ghalint](https://github.com/suzuki-shunsuke/ghalint) and [zizmor](https://github.com/woodruffw/zizmor). If you don't need automated PR review, run any of these linter on schedule may be fine.
+[actionlint](https://github.com/rhysd/actionlint)、[ghalint](https://github.com/suzuki-shunsuke/ghalint)、[zizmor](https://github.com/woodruffw/zizmor)を使用してGitHub Actions yamlをリントできます。自動PRレビューが必要ない場合は、スケジュールでこれらのリンターを実行すれば十分かもしれません。
 
-Linter will check follows.
+リンターは以下をチェックします。
 
-* actionlint: Check syntax and structure of GitHub Actions workflow yaml.
-* ghalint: Check actions/checkout should set `persist-credentials: false`, Reusable workflow's `secrets: inherit`.
-* zizmor: Check GitHub Action's security vulnerability.
+* actionlint: GitHub Actionsワークフローyamlの構文と構造をチェック。
+* ghalint: actions/checkoutが`persist-credentials: false`を設定しているか、再利用可能なワークフローの`secrets: inherit`をチェック。
+* zizmor: GitHub Actionのセキュリティ脆弱性をチェック。
 
-> TIPS: See [Tool management in GitHub Actions with Aqua](#tool-management-in-github-actions-with-aqua) for Aqua usage.
+> ティップス: Aquaの使用方法については[AquaでのGitHub Actionsツール管理](#aquaでのgithub-actionsツール管理)を参照してください。
 
 ```yaml
 # .github/workflows/actionlint.yaml
@@ -4061,13 +4059,13 @@ jobs:
 
 ```
 
-## OIDC Connect to access external providers
+## 外部プロバイダーへのアクセスのためのOIDC接続
 
-Since 2024 and later, many cloud providers and Programing language's package registries support OIDC (OpenID Connect) to authenticate GitHub Actions workflows. OIDC allows your workflow to securely access external resources without needing to store long-lived credentials like API keys or tokens in your repository secrets.
+2024年以降、多くのクラウドプロバイダーやプログラミング言語のパッケージレジストリはGitHub Actionsワークフローを認証するためにOIDC (OpenID Connect)をサポートしています。OIDCを使用すると、APIキーやトークンなどの長期間有効な資格情報をリポジトリシークレットに保存することなく、ワークフローが外部リソースに安全にアクセスできます。
 
-To use OIDC in your GitHub Actions workflow, `permissions` must include `id-token: write`. Each resistry or cloud provider may have different actions to request OIDC token and different `audience` value. Please refer to the documentation of the respective provider for details. GitHub also provides [OIDC documentation](https://docs.github.com/en/actions/concepts/security/openid-connect) for more information.
+GitHub ActionsワークフローでOIDCを使用するには、`permissions`に`id-token: write`を含める必要があります。各レジストリまたはクラウドプロバイダーは、OIDCトークンをリクエストするための異なるアクションと異なる`audience`値を持つ場合があります。詳細については、各プロバイダーのドキュメントを参照してください。GitHubは[OIDCドキュメント](https://docs.github.com/en/actions/concepts/security/openid-connect)も提供しています。
 
-Following is an example of using OIDC to access AWS resources.
+以下はAWSリソースにアクセスするためにOIDCを使用する例です。
 
 ```yaml
 # .github/workflows/aws-oidc-credential.yaml
@@ -4105,13 +4103,13 @@ jobs:
 
 ## Permissions
 
-Newly created repository's GitHub Actions token `github.token` permissions are set to `readonly` by default in 2025. However if you have an older repository, your actions token may still have `write` permissions. To enhance security, it is recommended to explicitly set the minimum required permissions for each workflow. You can confirm your repository's default permissions in the repository settings under "Actions" > "General" > "Workflow permissions".
+2025年に新しく作成されたリポジトリのGitHub Actionsトークン`github.token`の権限は、デフォルトで`readonly`に設定されています。ただし、古いリポジトリを所有している場合、アクショントークンはまだ`write`権限を持っている可能性があります。セキュリティを強化するため、各ワークフローに必要な最小限の権限を明示的に設定することをお勧めします。リポジトリのデフォルト権限は、リポジトリ設定の「Actions」>「General」>「Workflow permissions」で確認できます。
 
 ![](./images/workflow-permissions.png)
 
-GitHub Actions supports specify permissions for each job or workflow. You can set `permissions:` at workflow level or job level. Job level permission override workflow level permission and can set `job.<job_name>.permissions`. You can turn all permission off with `permissions: {}`.
+GitHub Actionsは、各ジョブまたはワークフローの権限を指定することをサポートしています。ワークフローレベルまたはジョブレベルで`permissions:`を設定できます。ジョブレベルの権限はワークフローレベルの権限を上書きし、`job.<job_name>.permissions`で設定できます。`permissions: {}`ですべての権限をオフにすることができます。
 
-In general, it is a good practice to set `contents: read` permission for workflows that do not require write access. This minimizes the potential impact of any security vulnerabilities in your workflows. If you just checkout and build code, you probably only need `contents: read` permission.
+一般的に、書き込みアクセスを必要としないワークフローには`contents: read`権限を設定することが良い習慣です。これにより、ワークフローのセキュリティ脆弱性の潜在的な影響が最小限に抑えられます。コードをチェックアウトしてビルドするだけであれば、おそらく`contents: read`権限のみが必要です。
 
 ```yaml
 # .github/workflows/permissions-minimum.yaml
@@ -4145,7 +4143,7 @@ jobs:
 
 ```
 
-Avoiding workflow level permissions like below is also recommended. Instead, set job level permissions as needed.
+次のようなワークフローレベルの権限を回避することもお勧めします。代わりに、必要に応じてジョブレベルの権限を設定します。
 
 ```yaml
 # Avoid this
@@ -4174,26 +4172,26 @@ jobs:
 
 ## Pin Third-Party Actions to Commit SHA
 
-Several vulnerabilities in GitHub Actions have been identified due to the use of tags or version numbers. To mitigate these risks, [always pin your actions to a specific commit SHA](https://docs.github.com/en/actions/reference/security/secure-use#using-third-party-actions).
+タグまたはバージョン番号の使用によりGitHub Actionsにいくつかの脆弱性が特定されています。これらのリスクを軽減するため、[常にアクションを特定のコミットSHAにピン留め](https://docs.github.com/en/actions/reference/security/secure-use#using-third-party-actions)してください。
 
-- There are several ways to find the commit SHA for a specific version of an action, I recommend using the [suzuki-shunsuke/pinact](https://github.com/suzuki-shunsuke/pinact).
-- Both Dependabot and Renovate can help you keep your actions up to date even pinned to a specific commit SHA.
+- 特定のバージョンのアクションのコミットSHAを見つける方法はいくつかありますが、[suzuki-shunsuke/pinact](https://github.com/suzuki-shunsuke/pinact)の使用をお勧めします。
+- DependabotとRenovateの両方とも、特定のコミットSHAにピン留めされていてもアクションを最新の状態に保つのに役立ちます。
 
-<details><summary>How to use pinact</summary>
+<details><summary>pinactの使い方</summary>
 
-For example, instead of using action version like below:
+たとえば、次のようなアクションバージョンを使用する代わりに:
 
 ```
 uses: actions/checkout@v5
 ```
 
-Run pinact to get the commit SHA.
+pinactを実行してコミットSHAを取得します。
 
 ```sh
 $ pinact run
 ```
 
-Then action will be pinned to specific commit SHA like below:
+すると、アクションは次のように特定のコミットSHAにピン留めされます:
 
 ```
 uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
@@ -4246,9 +4244,9 @@ Action folder naming also follows this rule.
 - ✔️: `.github/actions/setup-foo`
 - ❌: `.github/actions/setup_foo`
 
-## Actions runner info
+## Actionsランナー情報
 
-When you want to see hosted runner information, here is a sample.
+ホストされたランナー情報を見たい場合は、以下のサンプルを参照してください。
 
 ```yaml
 # .github/workflows/action-runner-info.yaml
@@ -4294,11 +4292,11 @@ jobs:
 
 ```
 
-## Detect PullRequest (PR) is Fork or not
+## プルリクエスト(PR)がフォークかどうかを検出する
 
-There are several ways to achieve this. The simplest and easiest to understand is the `fork` boolean.
+これを実現する方法はいくつかあります。最もシンプルで理解しやすいのは`fork`ブール値です。
 
-1. Check `fork` boolean.
+1. `fork`ブール値を確認する。
 
 ```
 # Fork
@@ -4308,7 +4306,7 @@ if: ${{ github.event.pull_request.head.repo.fork }}
 if: ${{ ! github.event.pull_request.head.repo.fork }}
 ```
 
-2. Check `full_name` is match to repo.
+2. `full_name`がリポジトリと一致するかを確認する。
 
 ```
 # Fork
@@ -4318,7 +4316,7 @@ if: ${{ github.event.pull_request.head.repo.full_name != 'org/repo' }}
 if: ${{ github.event.pull_request.head.repo.full_name == 'org/repo' }}
 ```
 
-3. Check if the label matches the owner. An org member's commit label matches the owner.
+3. ラベルがオーナーと一致するかを確認する。組織メンバーのコミットラベルはオーナーと一致します。
 
 ```
 # Fork
@@ -4328,9 +4326,9 @@ if: ${{ ! startsWith(github.event.pull_request.head.label, format('{0}:', github
 if: ${{ startsWith(github.event.pull_request.head.label, format('{0}:', github.repository_owner)) }}
 ```
 
-## Debug downloaded remote action
+## ダウンロードされたリモートアクションをデバッグする
 
-A specified remote action is downloaded to the `/home/runner/work/_actions/{Owner}/{Repository}/{Ref}/{RepositoryStructures}` folder. You can check the downloaded action contents by listing the folder. This is useful when you want to see how a remote action works under the hood.
+指定されたリモートアクションは`/home/runner/work/_actions/{Owner}/{Repository}/{Ref}/{RepositoryStructures}`フォルダーにダウンロードされます。フォルダーを一覧表示することで、ダウンロードされたアクションの内容を確認できます。これは、リモートアクションが内部でどのように動作するかを確認したい場合に便利です。
 
 ```yaml
 # .github/workflows/debug-downloaded-remote-action.yaml
@@ -4357,9 +4355,9 @@ jobs:
 
 ```
 
-## Expression string concat
+## 式での文字列連結
 
-You may be confused about how to concatenate strings and use them in an `if` condition. The following example shows how to use `format()` to concatenate strings and use them in an `if` condition.
+文字列を連結して`if`条件で使用する方法に戸惑うかもしれません。次の例は、`format()`を使用して文字列を連結し、`if`条件で使用する方法を示しています。
 
 ```yaml
 # .github/workflows/expression-string-concat.yaml
@@ -4392,12 +4390,12 @@ jobs:
 ```
 
 
-## Get Branch
+## ブランチを取得する
 
-`github.ref` context will return branch name, however it is unsafe to directly reference in ref. It is recommended to use through env.
+`github.ref`コンテキストはブランチ名を返しますが、refで直接参照するのは安全ではありません。envを通じて使用することをお勧めします。
 
 - pull_request: `${{ github.event.pull_request.head.ref }}`
-- push and others: `${{ github.ref }}`
+- push その他: `${{ github.ref }}`
 
 ```yaml
 # .github/workflows/_reusable-dump-context.yaml#L20-L22
@@ -4407,9 +4405,9 @@ timeout-minutes: 5
 steps:
 ```
 
-## Get Tag
+## タグを取得する
 
-When triggering a push with a tag, you have 2 choices:
+タグでプッシュをトリガーする場合、2つの選択肢があります:
 
 1. `echo "${{ github.ref_name }}"`
 2. `echo "${GITHUB_REF##*/}"`
@@ -4448,39 +4446,39 @@ jobs:
 
 ```
 
-## Get Workflow Name
+## ワークフロー名を取得する
 
 ```yaml
 ${{ github.workflow }}
 ```
 
-## Get Workflow Url
+## ワークフローURLを取得する
 
 ```yaml
 ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
 ```
 
-## Get Job Url
+## ジョブURLを取得する
 
 ```yaml
 ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}/job/${{ job.check_run_id }}
 ```
 
 
-## GitHub Actions commit icon
+## GitHub Actionsのコミットアイコン
 
-Use following Git config to commit as GitHub Actions icon.
+GitHub Actionsアイコンとしてコミットするには、次のGit設定を使用します。
 
 ```bash
 git config user.name github-actions[bot]
 git config user.email 41898282+github-actions[bot]@users.noreply.github.com
 ```
 
-## Path for Downloaded Remote Actions
+## ダウンロードされたリモートアクションのパス
 
-If a job uses remote actions or remote workflows, they will be downloaded to the `/home/runner/work/_actions/{OWNER}/{REPOSITORY}/{REF}` folder. For example, `actions/checkout@v4` will be downloaded to `/home/runner/work/_actions/actions/checkout/v4`.
+ジョブでリモートアクションまたはリモートワークフローを使用する場合、それらは`/home/runner/work/_actions/{OWNER}/{REPOSITORY}/{REF}`フォルダーにダウンロードされます。たとえば、`actions/checkout@v4`は`/home/runner/work/_actions/actions/checkout/v4`にダウンロードされます。
 
-This path is useful when you want to access files or use them beyond the action.
+このパスは、アクションを超えてファイルにアクセスしたり使用したりする場合に便利です。
 
 ```yaml
 # .github/workflows/remote-actions-download-path.yaml
@@ -4512,9 +4510,9 @@ jobs:
 
 ```
 
-## Stale Issue and PR close automation
+## 古いIssueとPRの自動クローズ
 
-You can automatically close stale issues and PRs with [actions/stale](https://github.com/actions/stale). This action will mark issues and PRs as stale after a certain period of inactivity, then close them after another period of inactivity. If an update/comment occurs on stale issues or pull requests, the stale label will be removed and the timer will restart.
+[actions/stale](https://github.com/actions/stale)を使用して、古いIssueとPRを自動的にクローズできます。このアクションは、一定期間活動がなかったIssueとPRを古いものとしてマークし、その後さらに一定期間が経過するとクローズします。古いIssueまたはPRに更新/コメントがあると、古いラベルが削除され、タイマーがリセットされます。
 
 ```yaml
 # .github/workflows/stale.yaml
@@ -4551,12 +4549,12 @@ jobs:
 
 ```
 
-## Telemetry for GitHub Workflow execution
+## GitHubワークフロー実行のテレメトリー
 
-GitHub Actions [runforesight/workflow-telemetry-action](https://github.com/runforesight/workflow-telemetry-action) offers workflow telemetry. Telemetry indicate which step consume much Execution Time, CPU, Memory and Network I/O. Default settings post telemetry result to PR comment and JOB Summary.
+GitHub Actionsの[runforesight/workflow-telemetry-action](https://github.com/runforesight/workflow-telemetry-action)はワークフローのテレメトリーを提供します。テレメトリーは、どのステップが実行時間、CPU、メモリ、ネットワークI/Oを多く消費しているかを示します。デフォルト設定では、テレメトリー結果をPRコメントとJOB Summaryに投稿します。
 
 
-To enable telemetry, set `runforesight/workflow-telemetry-action@v1` on the first step of your job, then action collect telemetry for later steps.
+テレメトリーを有効にするには、ジョブの最初のステップに`runforesight/workflow-telemetry-action@v1`を設定します。すると、アクションはそれ以降のステップのテレメトリーを収集します。
 
 ```yaml
 # .github/workflows/actions-telemetry.yaml
@@ -4596,17 +4594,17 @@ jobs:
 
 ```
 
-Telemetry is posted to [Job Summary](https://github.com/guitarrapc/githubactions-lab/actions/runs/6266182534).
+テレメトリーは[Job Summary](https://github.com/guitarrapc/githubactions-lab/actions/runs/6266182534)に投稿されます。
 
 ![GitHub Workflow Telemetry in GitHub Step Summary](./images/workflow-telemetry-action-githubstepsummary.png)
 
-Also if workflow ran with `pull_request` trigger, then you can enable [PR comment](https://github.com/guitarrapc/githubactions-lab/pull/109) by default or set `comment_on_pr: true`.
+また、ワークフローが`pull_request`トリガーで実行された場合、デフォルトまたは`comment_on_pr: true`を設定することで[PRコメント](https://github.com/guitarrapc/githubactions-lab/pull/109)を有効にできます。
 
 ![GitHub Workflow Telemetry PR Comment](./images/workflow-telemetry-action-prcomment.png)
 
-## Tool management in GitHub Actions with Aqua
+## AquaでGitHub Actionsのツール管理
 
-[Aqua](https://aquaproj.github.io/) is a tool manager and useful for GitHub Actions. Aqua can install and manage multiple tools in your GitHub Actions workflow. Aqua uses `aqua.yaml` file to define which tools and versions to install. Just calling `aqua install` command will install all tools defined in `aqua.yaml`, you don't need to install each tool one by one.
+[Aqua](https://aquaproj.github.io/)はツールマネージャーで、GitHub Actionsに便利です。AquaはGitHub Actionsワークフローで複数のツールをインストールおよび管理できます。Aquaは`aqua.yaml`ファイルを使用して、インストールするツールとバージョンを定義します。`aqua install`コマンドを呼び出すだけで、`aqua.yaml`に定義されたすべてのツールがインストールされるため、各ツールを1つずつインストールする必要がありません。
 
 ```yaml
 # .github/workflows/actionlint.yaml
@@ -4648,20 +4646,20 @@ jobs:
 
 ```
 
-## Type converter with fromJson
+## fromJsonを使用した型変換
 
-There are some cases where you want to convert a string to another type.
-Consider a case where you want to use a boolean input `is-valid` with workflow_dispatch, then pass it to workflow_call as a boolean.
+文字列を別の型に変換したい場合があります。
+workflow_dispatchでブール入力`is-valid`を使用し、それをworkflow_callにブール値として渡したい場合を考えてみましょう。
 
-The `github.event.inputs` context treats all values as `string`, so `github.event.inputs.is-valid` is no longer a boolean.
-The `fromJson` expression is the trick to convert types from string to boolean.
+`github.event.inputs`コンテキストはすべての値を`string`として扱うため、`github.event.inputs.is-valid`はもはやブール値ではありません。
+`fromJson`式は、文字列からブール値に型を変換するためのトリックです。
 
 ```yaml
 ${{ github.event.inputs.foobar == "true" }} # true. type is string
 ${{ fromJson(github.event.inputs.foobar) == true }} # true. string convert to boolean
 ```
 
-Another way is to use the `inputs.foobar` context. `inputs` has type information and passes it exactly as-is to other workflow calls.
+別の方法は、`inputs.foobar`コンテキストを使用することです。`inputs`は型情報を持ち、それをそのまま他のワークフロー呼び出しに渡します。
 
 ```yaml
 ${{ inputs.foobar == 'true' }} # false. type is not string
@@ -4669,9 +4667,9 @@ ${{ inputs.foobar == true }} # true. type is boolean
 ```
 
 
-## Want to get a list of GitHub Actions scheduled workflows
+## GitHub Actionsのスケジュールワークフロー一覧を取得したい
 
-You can get a list of scheduled workflows with the following script. Make sure you have [gh](https://github.com/cli/cli#installation), [jq](https://github.com/jqlang/jq) and [yq](https://github.com/mikefarah/yq) installed.
+次のスクリプトでスケジュールされたワークフローの一覧を取得できます。[gh](https://github.com/cli/cli#installation)、[jq](https://github.com/jqlang/jq)、[yq](https://github.com/mikefarah/yq)がインストールされていることを確認してください。
 
 ```
 echo "| Workflow | File Name | Schedule (UTC) | Last Commit by |"
@@ -4690,13 +4688,13 @@ done
 ```
 
 > [!TIP]
-> Please avoid using `on: [array]`, it will show error message `jq: error (at <stdin>:87): Cannot index array with string "schedule"`. Instead, use `on: object` like below.
+> `on: [array]`の使用は避けてください。エラーメッセージ`jq: error (at <stdin>:87): Cannot index array with string "schedule"`が表示されます。代わりに、以下のように`on: object`を使用してください。
 > ```
 > on:
 >   pull_request:
 > ```
 
-Following is the result of the script.
+以下はスクリプトの実行結果です。
 
 | Workflow | File Name | Schedule (UTC) | Last Commit by |
 | ---- | ---- | ---- | ---- |
