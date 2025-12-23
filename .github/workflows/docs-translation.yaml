@@ -54,4 +54,4 @@ jobs:
         run: gh issue edit ${{ github.event.issue.number }} --add-assignee @copilot
         env:
           GH_REPO: ${{ github.repository }}
-          GH_TOKEN: ${{ secrets.SYNC_GITHUB_TOKEN }}
+          GH_TOKEN: ${{ secrets.SYNCED_GITHUB_TOKEN_REPO }}
