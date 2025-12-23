@@ -1,4 +1,11 @@
 {
+  "ref": {
+    "outputs": {
+      "value": "main"
+    },
+    "outcome": "success",
+    "conclusion": "success"
+  },
   "file": {
     "outputs": {
       "name": "pull_request_closed"
