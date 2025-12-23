@@ -1,8 +1,62 @@
 {
-  "after": "3c47282c7fb1c834463d83de69f798186d47c0a8",
+  "after": "cf1b6d68bfed6e8bb1c107dce3c4b151092c8ecf",
   "base_ref": null,
-  "before": "1ba79c90fd19168790c679f4e89efb66c09f4833",
+  "before": "27f85c9400894d5c39152d7b17728698fb49e354",
   "commits": [
+    {
+      "author": {
+        "email": "198982749+Copilot@users.noreply.github.com",
+        "name": "copilot-swe-agent[bot]",
+        "username": "Copilot"
+      },
+      "committer": {
+        "email": "198982749+Copilot@users.noreply.github.com",
+        "name": "copilot-swe-agent[bot]",
+        "username": "Copilot"
+      },
+      "distinct": false,
+      "id": "4f6816c57c4170212d8437b9b8ea894b6ba0c946",
+      "message": "Initial plan",
+      "timestamp": "2025-12-23T09:22:49Z",
+      "tree_id": "c54f14ce24c0d738d0d8b25e59f60c8e5419d996",
+      "url": "https://github.com/guitarrapc/githubactions-lab/commit/4f6816c57c4170212d8437b9b8ea894b6ba0c946"
+    },
+    {
+      "author": {
+        "email": "198982749+Copilot@users.noreply.github.com",
+        "name": "copilot-swe-agent[bot]",
+        "username": "Copilot"
+      },
+      "committer": {
+        "email": "198982749+Copilot@users.noreply.github.com",
+        "name": "copilot-swe-agent[bot]",
+        "username": "Copilot"
+      },
+      "distinct": false,
+      "id": "48d650e77e89d4e26a0fe2d4fff37242d2073836",
+      "message": "Update plan for comprehensive Japanese translation\n\nCo-authored-by: guitarrapc <3856350+guitarrapc@users.noreply.github.com>",
+      "timestamp": "2025-12-23T09:31:26Z",
+      "tree_id": "6c9869f043f00951adb98d04b8784785466ded84",
+      "url": "https://github.com/guitarrapc/githubactions-lab/commit/48d650e77e89d4e26a0fe2d4fff37242d2073836"
+    },
+    {
+      "author": {
+        "email": "198982749+Copilot@users.noreply.github.com",
+        "name": "copilot-swe-agent[bot]",
+        "username": "Copilot"
+      },
+      "committer": {
+        "email": "198982749+Copilot@users.noreply.github.com",
+        "name": "copilot-swe-agent[bot]",
+        "username": "Copilot"
+      },
+      "distinct": false,
+      "id": "2ef64ab7b1f8fce50209720a9c33c82ba25c6101",
+      "message": "Add Japanese README with overview and reference to English docs\n\nCo-authored-by: guitarrapc <3856350+guitarrapc@users.noreply.github.com>",
+      "timestamp": "2025-12-23T09:32:53Z",
+      "tree_id": "9b4231821ca336d0710d9e51a65d52c9e30e1af6",
+      "url": "https://github.com/guitarrapc/githubactions-lab/commit/2ef64ab7b1f8fce50209720a9c33c82ba25c6101"
+    },
     {
       "author": {
         "email": "3856350+guitarrapc@users.noreply.github.com",
@@ -10,19 +64,19 @@
         "username": "guitarrapc"
       },
       "committer": {
-        "email": "3856350+guitarrapc@users.noreply.github.com",
-        "name": "Ikiru Yoshizaki",
-        "username": "guitarrapc"
+        "email": "noreply@github.com",
+        "name": "GitHub",
+        "username": "web-flow"
       },
       "distinct": true,
-      "id": "3c47282c7fb1c834463d83de69f798186d47c0a8",
-      "message": "chore: name",
-      "timestamp": "2025-12-23T18:19:09+09:00",
-      "tree_id": "68b83aafa7b0d9aac04b6fc3f6a670d293cfafd0",
-      "url": "https://github.com/guitarrapc/githubactions-lab/commit/3c47282c7fb1c834463d83de69f798186d47c0a8"
+      "id": "cf1b6d68bfed6e8bb1c107dce3c4b151092c8ecf",
+      "message": "Merge pull request #280 from guitarrapc/copilot/apply-fixes-to-docs\n\nInitialize Japanese README with overview and English reference",
+      "timestamp": "2025-12-24T01:16:22+09:00",
+      "tree_id": "9b4231821ca336d0710d9e51a65d52c9e30e1af6",
+      "url": "https://github.com/guitarrapc/githubactions-lab/commit/cf1b6d68bfed6e8bb1c107dce3c4b151092c8ecf"
     }
   ],
-  "compare": "https://github.com/guitarrapc/githubactions-lab/compare/1ba79c90fd19...3c47282c7fb1",
+  "compare": "https://github.com/guitarrapc/githubactions-lab/compare/27f85c940089...cf1b6d68bfed",
   "created": false,
   "deleted": false,
   "forced": false,
@@ -33,16 +87,16 @@
       "username": "guitarrapc"
     },
     "committer": {
-      "email": "3856350+guitarrapc@users.noreply.github.com",
-      "name": "Ikiru Yoshizaki",
-      "username": "guitarrapc"
+      "email": "noreply@github.com",
+      "name": "GitHub",
+      "username": "web-flow"
     },
     "distinct": true,
-    "id": "3c47282c7fb1c834463d83de69f798186d47c0a8",
-    "message": "chore: name",
-    "timestamp": "2025-12-23T18:19:09+09:00",
-    "tree_id": "68b83aafa7b0d9aac04b6fc3f6a670d293cfafd0",
-    "url": "https://github.com/guitarrapc/githubactions-lab/commit/3c47282c7fb1c834463d83de69f798186d47c0a8"
+    "id": "cf1b6d68bfed6e8bb1c107dce3c4b151092c8ecf",
+    "message": "Merge pull request #280 from guitarrapc/copilot/apply-fixes-to-docs\n\nInitialize Japanese README with overview and English reference",
+    "timestamp": "2025-12-24T01:16:22+09:00",
+    "tree_id": "9b4231821ca336d0710d9e51a65d52c9e30e1af6",
+    "url": "https://github.com/guitarrapc/githubactions-lab/commit/cf1b6d68bfed6e8bb1c107dce3c4b151092c8ecf"
   },
   "pusher": {
     "email": "3856350+guitarrapc@users.noreply.github.com",
@@ -111,8 +165,8 @@
     "name": "githubactions-lab",
     "node_id": "MDEwOlJlcG9zaXRvcnkyNTc0NjU0Njg=",
     "notifications_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/notifications{?since,all,participating}",
-    "open_issues": 3,
-    "open_issues_count": 3,
+    "open_issues": 2,
+    "open_issues_count": 2,
     "owner": {
       "avatar_url": "https://avatars.githubusercontent.com/u/3856350?v=4",
       "email": "3856350+guitarrapc@users.noreply.github.com",
@@ -138,9 +192,9 @@
     },
     "private": false,
     "pulls_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls{/number}",
-    "pushed_at": 1766481553,
+    "pushed_at": 1766506583,
     "releases_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/releases{/id}",
-    "size": 4576,
+    "size": 4648,
     "ssh_url": "git@github.com:guitarrapc/githubactions-lab.git",
     "stargazers": 55,
     "stargazers_count": 55,
@@ -155,7 +209,7 @@
       "github-actions"
     ],
     "trees_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/git/trees{/sha}",
-    "updated_at": "2025-12-23T09:16:28Z",
+    "updated_at": "2025-12-23T09:21:35Z",
     "url": "https://api.github.com/repos/guitarrapc/githubactions-lab",
     "visibility": "public",
     "watchers": 55,
