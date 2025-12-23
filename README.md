@@ -2,6 +2,8 @@
 [![auto dump context](https://github.com/guitarrapc/githubactions-lab/actions/workflows/auto-dump-context.yaml/badge.svg)](https://github.com/guitarrapc/githubactions-lab/actions/workflows/auto-dump-context.yaml)
 [![actionlint](https://github.com/guitarrapc/githubactions-lab/actions/workflows/actionlint.yaml/badge.svg)](https://github.com/guitarrapc/githubactions-lab/actions/workflows/actionlint.yaml)
 
+English | [日本語](./README.ja.md)
+
 # githubactions-lab
 
 GitHub Actions research and test laboratory.
