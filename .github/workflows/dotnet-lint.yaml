@@ -88,9 +88,9 @@ jobs:
       - name: Create PullRequest
         if: ${{ steps.git-check.outputs.modified == 'true' }}
         run: |
-          pr_exists=$(gh pr list --head "auto-pr/dotnet-format" --base "${{ github.event.repository.default_branch}}")
+          pr_exists=$(gh pr list --head "auto-pr/dotnet-format" --base "${DEFAULT_BRANCH}")
           if [ -n "$pr_exists" ]; then
-            echo "PR already exists for auto-pr/dotnet-format -> ${{ github.event.repository.default_branch}}. Skipping creation."
+            echo "PR already exists for auto-pr/dotnet-format -> ${DEFAULT_BRANCH}. Skipping creation."
             exit 0
           fi
 
@@ -126,12 +126,14 @@ jobs:
 
           ---
 
-          This PR was created automatically via [${{ github.workflow }}]($GITHUB_ACTIONS_RUN_URL), job [link]($GITHUB_ACTIONS_JOB_URL)._
+          This PR was created automatically via [${{ env.WORKFLOW_NAME }}](${{ env.GITHUB_ACTIONS_RUN_URL }}), job [link](${{ env.GITHUB_ACTIONS_JOB_URL }}).
           EOF
 
           gh pr create --title "$title" --body-file "./pr_body.txt" --label "automated pr"
         env:
+          DEFAULT_BRANCH: ${{ github.event.repository.default_branch }}
           GH_TOKEN: ${{ steps.app-token.outputs.token }}
           GITHUB_DEFAULT_BRANCH: ${{ github.event.repository.default_branch }}
           GITHUB_ACTIONS_RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
           GITHUB_ACTIONS_JOB_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}/job/${{ job.check_run_id }}
+          WORKFLOW_NAME: ${{ github.workflow }}
