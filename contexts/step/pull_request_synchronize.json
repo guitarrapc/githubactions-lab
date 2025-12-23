@@ -1,4 +1,11 @@
 {
+  "ref": {
+    "outputs": {
+      "value": "fix"
+    },
+    "outcome": "success",
+    "conclusion": "success"
+  },
   "file": {
     "outputs": {
       "name": "pull_request_synchronize"
