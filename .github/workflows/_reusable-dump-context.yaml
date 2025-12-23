@@ -117,11 +117,11 @@ jobs:
       - name: set ref
         id: ref
         run: |
-          if [[ "${{ github.event_name }}" == "pull_request" && "${{ github.event.action }}" != "closed" ]]; then
+          if [[ "${EVENT_NAME}" == "pull_request" && "${EVENT_ACTION}" != "closed" ]]; then
             echo "value=${HEAD_REF}" | tee -a "$GITHUB_OUTPUT"
-          elif [[ "${{ github.event_name }}" == "pull_request" && "${{ github.event.action }}" == "closed" ]]; then
+          elif [[ "${EVENT_NAME}" == "pull_request" && "${EVENT_ACTION}" == "closed" ]]; then
             echo "value=${BASE_REF}" | tee -a "$GITHUB_OUTPUT"
-          elif [[ "${{ github.ref_type }}" == "tag" ]]; then
+          elif [[ "${REF_TYPE}" == "tag" ]]; then
             echo "value=${DEFAULT_BRANCH}" | tee -a "$GITHUB_OUTPUT"
           else
             echo "value=${REF_NAME}" | tee -a "$GITHUB_OUTPUT"
@@ -129,8 +129,11 @@ jobs:
         env:
           BASE_REF: ${{ github.base_ref }}
           DEFAULT_BRANCH: ${{ github.event.repository.default_branch }}
+          EVENT_ACTION: ${{ github.event.action }}
+          EVENT_NAME: ${{ github.event_name }}
           HEAD_REF: ${{ github.head_ref }}
           REF_NAME: ${{ github.ref_name }}
+          REF_TYPE: ${{ github.ref_type }}
       - name: Update current git to latest & Push changes
         uses: ./.github/actions/git-push
         with:
