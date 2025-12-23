@@ -30,7 +30,7 @@ jobs:
           gh issue create \
             --title "[Automate] Apply the fixes from pull requests to the doc for each language." \
             --body-file body.txt \
-            --label "translation"
+            --label "documentation"
         env:
           GH_REPO: ${{ github.repository }}
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -39,7 +39,7 @@ jobs:
   # When issue creation and assignment are performed within the same job, the Copilot agent task does not trigger. This is unexpected behavior.
   # As a workaround, splitting the GitHub Actions job into separate jobs for issue creation and assignment.
   assign:
-    if: ${{ github.event_name == 'issues' && contains(github.event.issue.labels.*.name, 'translation') && startsWith(github.event.issue.title, '[Automate]') }}
+    if: ${{ github.event_name == 'issues' && contains(github.event.issue.labels.*.name, 'documentation') && startsWith(github.event.issue.title, '[Automate]') }}
     permissions:
       contents: read
       issues: write
