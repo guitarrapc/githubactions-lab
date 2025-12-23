@@ -68,14 +68,14 @@
       }
     ],
     "author_association": "NONE",
-    "body": "Apply the pull request fixes that have been applied to recently updated documents to each language's documentation.\n\n- README.md: English (en-us)\n- README-ja.md: Japanese (ja-jp)\n\n---\n\nIssue created by GitHub Actions: https://github.com/guitarrapc/githubactions-lab/actions/runs/20456691641\n",
-    "closed_at": "2025-12-23T16:16:24Z",
+    "body": "Apply the pull request fixes that have been applied to recently updated documents to each language's documentation.\n\n- README.md: English (en-us)\n- README-ja.md: Japanese (ja-jp)\n\n---\n\nIssue created by GitHub Actions: https://github.com/guitarrapc/githubactions-lab/actions/runs/20466742682\n",
+    "closed_at": "2025-12-23T17:05:00Z",
     "comments": 0,
-    "comments_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/issues/279/comments",
-    "created_at": "2025-12-23T09:19:40Z",
-    "events_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/issues/279/events",
-    "html_url": "https://github.com/guitarrapc/githubactions-lab/issues/279",
-    "id": 3756692846,
+    "comments_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/issues/282/comments",
+    "created_at": "2025-12-23T16:59:18Z",
+    "events_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/issues/282/events",
+    "html_url": "https://github.com/guitarrapc/githubactions-lab/issues/282",
+    "id": 3757980800,
     "issue_dependencies_summary": {
       "blocked_by": 0,
       "blocking": 0,
@@ -93,11 +93,11 @@
         "url": "https://api.github.com/repos/guitarrapc/githubactions-lab/labels/documentation"
       }
     ],
-    "labels_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/issues/279/labels{/name}",
+    "labels_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/issues/282/labels{/name}",
     "locked": false,
     "milestone": null,
-    "node_id": "I_kwDOD1icfM7f6pVu",
-    "number": 279,
+    "node_id": "I_kwDOD1icfM7f_jyA",
+    "number": 282,
     "performed_via_github_app": null,
     "reactions": {
       "+1": 0,
@@ -109,7 +109,7 @@
       "laugh": 0,
       "rocket": 0,
       "total_count": 1,
-      "url": "https://api.github.com/repos/guitarrapc/githubactions-lab/issues/279/reactions"
+      "url": "https://api.github.com/repos/guitarrapc/githubactions-lab/issues/282/reactions"
     },
     "repository_url": "https://api.github.com/repos/guitarrapc/githubactions-lab",
     "state": "closed",
@@ -119,10 +119,10 @@
       "percent_completed": 0,
       "total": 0
     },
-    "timeline_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/issues/279/timeline",
+    "timeline_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/issues/282/timeline",
     "title": "[Automate] Apply the fixes from pull requests to the doc for each language.",
-    "updated_at": "2025-12-23T16:16:24Z",
-    "url": "https://api.github.com/repos/guitarrapc/githubactions-lab/issues/279",
+    "updated_at": "2025-12-23T17:05:00Z",
+    "url": "https://api.github.com/repos/guitarrapc/githubactions-lab/issues/282",
     "user": {
       "avatar_url": "https://avatars.githubusercontent.com/u/3856350?v=4",
       "events_url": "https://api.github.com/users/guitarrapc-github-actions-bot%5Bbot%5D/events{/privacy}",
@@ -231,7 +231,7 @@
     },
     "private": false,
     "pulls_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls{/number}",
-    "pushed_at": "2025-12-23T16:16:23Z",
+    "pushed_at": "2025-12-23T17:04:59Z",
     "releases_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/releases{/id}",
     "size": 4648,
     "ssh_url": "git@github.com:guitarrapc/githubactions-lab.git",
@@ -247,7 +247,7 @@
       "github-actions"
     ],
     "trees_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/git/trees{/sha}",
-    "updated_at": "2025-12-23T09:21:35Z",
+    "updated_at": "2025-12-23T16:59:32Z",
     "url": "https://api.github.com/repos/guitarrapc/githubactions-lab",
     "visibility": "public",
     "watchers": 55,
