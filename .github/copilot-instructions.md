@@ -25,8 +25,9 @@ When reviewing changes to documentation, focus on the following points:
 - Documentation Style
   - The writing style must be consistent with existing documentation.
   - Documentation is not a personal blog post. The subject is the project itself, and the project provides content to the reader.
-- Sample Code
-  - Verify that the code works correctly and maintains quality.
-  - Ensure the code follows general .NET coding guidelines (e.g., naming conventions).
+- Language Consistency
+  - Each language-specific document (e.g., README-ja.md for Japanese) must be written entirely in that language.
+  - Only technical elements should remain in English: URLs, code snippets, command examples, PR/issue numbers, and technical tool names.
+  - All descriptive text, instructions, and explanations must be translated to the document's target language.
 
 If any part deviates from these points, propose a correction.
