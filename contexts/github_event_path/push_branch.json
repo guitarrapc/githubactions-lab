@@ -1,7 +1,7 @@
 {
-  "after": "44247015922f85fbb6df5d9e62c6ac473b17ad15",
+  "after": "b784bada2b213423f0d601856a5e3de86a97ac9c",
   "base_ref": null,
-  "before": "403f3d250b58332914261c69e98a3c69a0cc3c23",
+  "before": "7fbf11aeb2bdb837ba266866556c53756799f7d8",
   "commits": [
     {
       "author": {
@@ -10,19 +10,19 @@
         "username": "guitarrapc"
       },
       "committer": {
-        "email": "3856350+guitarrapc@users.noreply.github.com",
-        "name": "Ikiru Yoshizaki",
-        "username": "guitarrapc"
+        "email": "noreply@github.com",
+        "name": "GitHub",
+        "username": "web-flow"
       },
       "distinct": true,
-      "id": "44247015922f85fbb6df5d9e62c6ac473b17ad15",
-      "message": "chore: update",
-      "timestamp": "2025-12-24T17:21:04+09:00",
-      "tree_id": "2808110fc8811ef955a9d8b7025963419f453476",
-      "url": "https://github.com/guitarrapc/githubactions-lab/commit/44247015922f85fbb6df5d9e62c6ac473b17ad15"
+      "id": "b784bada2b213423f0d601856a5e3de86a97ac9c",
+      "message": "Add CODEOWNERS file for repository ownership",
+      "timestamp": "2025-12-28T17:11:07+09:00",
+      "tree_id": "b918f5b2c3738f48cf144548a764cfd9c22a1c0d",
+      "url": "https://github.com/guitarrapc/githubactions-lab/commit/b784bada2b213423f0d601856a5e3de86a97ac9c"
     }
   ],
-  "compare": "https://github.com/guitarrapc/githubactions-lab/compare/403f3d250b58...44247015922f",
+  "compare": "https://github.com/guitarrapc/githubactions-lab/compare/7fbf11aeb2bd...b784bada2b21",
   "created": false,
   "deleted": false,
   "forced": false,
@@ -33,16 +33,16 @@
       "username": "guitarrapc"
     },
     "committer": {
-      "email": "3856350+guitarrapc@users.noreply.github.com",
-      "name": "Ikiru Yoshizaki",
-      "username": "guitarrapc"
+      "email": "noreply@github.com",
+      "name": "GitHub",
+      "username": "web-flow"
     },
     "distinct": true,
-    "id": "44247015922f85fbb6df5d9e62c6ac473b17ad15",
-    "message": "chore: update",
-    "timestamp": "2025-12-24T17:21:04+09:00",
-    "tree_id": "2808110fc8811ef955a9d8b7025963419f453476",
-    "url": "https://github.com/guitarrapc/githubactions-lab/commit/44247015922f85fbb6df5d9e62c6ac473b17ad15"
+    "id": "b784bada2b213423f0d601856a5e3de86a97ac9c",
+    "message": "Add CODEOWNERS file for repository ownership",
+    "timestamp": "2025-12-28T17:11:07+09:00",
+    "tree_id": "b918f5b2c3738f48cf144548a764cfd9c22a1c0d",
+    "url": "https://github.com/guitarrapc/githubactions-lab/commit/b784bada2b213423f0d601856a5e3de86a97ac9c"
   },
   "pusher": {
     "email": "3856350+guitarrapc@users.noreply.github.com",
@@ -138,9 +138,9 @@
     },
     "private": false,
     "pulls_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls{/number}",
-    "pushed_at": 1766564468,
+    "pushed_at": 1766909468,
     "releases_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/releases{/id}",
-    "size": 4857,
+    "size": 4875,
     "ssh_url": "git@github.com:guitarrapc/githubactions-lab.git",
     "stargazers": 55,
     "stargazers_count": 55,
@@ -155,7 +155,7 @@
       "github-actions"
     ],
     "trees_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/git/trees{/sha}",
-    "updated_at": "2025-12-23T18:39:48Z",
+    "updated_at": "2025-12-28T00:11:02Z",
     "url": "https://api.github.com/repos/guitarrapc/githubactions-lab",
     "visibility": "public",
     "watchers": 55,
