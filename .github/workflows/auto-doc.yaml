@@ -1,45 +1,45 @@
 name: auto doc
 on:
-    workflow_dispatch:
-    pull_request:
-        branches: ["main"]
-    push:
-        branches: ["main"]
+  workflow_dispatch:
+  pull_request:
+    branches: ["main"]
+  push:
+    branches: ["main"]
 
 jobs:
-    embed-code:
-        if: ${{ github.actor != 'dependabot[bot]' }}
-        permissions:
-            contents: write
-            pull-requests: write
-        runs-on: ubuntu-24.04
-        timeout-minutes: 3
-        steps:
-            - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
-              with:
-                  ref: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.ref || '' }} # checkout PR HEAD commit instead of merge commit
-                  persist-credentials: false
-            - name: Embedding Code into README
-              run: |
-                  npm install -g embedme
-                  embedme README.md
-            - name: Update current git to latest & Push changes
-              uses: ./.github/actions/git-push
-              with:
-                  commit-message: "[auto commit] Embedded code (workflow=${{ github.workflow }})"
-                  ref: ${{ startsWith(github.event_name, 'pull_request') && github.event.pull_request.head.ref || github.ref_name }}
-                  github-token: ${{ secrets.GITHUB_TOKEN }}
-            - name: Set Git Remote
-              run: git remote set-url origin "https://github-actions:${GITHUB_TOKEN}@github.com/${{ github.repository }}"
-              env:
-                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-            - name: Generate TOC into README
-              uses: technote-space/toc-generator@9e238e7974de5fcf7b17b7acc54c896160dda0a3 # v4.3.1
-              with:
-                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-                  COMMIT_NAME: github-actions[bot]
-                  COMMIT_EMAIL: 41898282+github-actions[bot]@users.noreply.github.com
-                  COMMIT_MESSAGE: "[auto commit] Update TOC (workflow=${{ github.workflow }})"
-                  TOC_TITLE: "# Table of Contents"
-                  MAX_HEADER_LEVEL: "2"
-                  FOLDING: false
+  embed-code:
+    if: ${{ github.actor != 'dependabot[bot]' }}
+    permissions:
+      contents: write
+      pull-requests: write
+    runs-on: ubuntu-24.04
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
+        with:
+          ref: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.ref || '' }} # checkout PR HEAD commit instead of merge commit
+          persist-credentials: false
+      - name: Embedding Code into README
+        run: |
+          npm install -g embedme
+          embedme README.md README-ja.md
+      - name: Update current git to latest & Push changes
+        uses: ./.github/actions/git-push
+        with:
+          commit-message: "[auto commit] Embedded code (workflow=${{ github.workflow }})"
+          ref: ${{ startsWith(github.event_name, 'pull_request') && github.event.pull_request.head.ref || github.ref_name }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Set Git Remote
+        run: git remote set-url origin "https://github-actions:${GITHUB_TOKEN}@github.com/${{ github.repository }}"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Generate TOC into README
+        uses: technote-space/toc-generator@9e238e7974de5fcf7b17b7acc54c896160dda0a3 # v4.3.1
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          COMMIT_NAME: github-actions[bot]
+          COMMIT_EMAIL: 41898282+github-actions[bot]@users.noreply.github.com
+          COMMIT_MESSAGE: "[auto commit] Update TOC (workflow=${{ github.workflow }})"
+          TOC_TITLE: "# Table of Contents"
+          MAX_HEADER_LEVEL: "2"
+          FOLDING: false
