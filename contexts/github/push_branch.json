@@ -2,13 +2,13 @@
   "token": "<reducted>",
   "job": "dump-context",
   "ref": "refs/heads/main",
-  "sha": "b784bada2b213423f0d601856a5e3de86a97ac9c",
+  "sha": "9bb32bd06d74524a1dcf6a8334b87722944c61c8",
   "repository": "guitarrapc/githubactions-lab",
   "repository_owner": "guitarrapc",
   "repository_owner_id": "3856350",
   "repositoryUrl": "git://github.com/guitarrapc/githubactions-lab.git",
-  "run_id": "20551045891",
-  "run_number": "1316",
+  "run_id": "20576349950",
+  "run_number": "1359",
   "retention_days": "90",
   "run_attempt": "1",
   "artifact_cache_size_limit": "10",
@@ -27,10 +27,28 @@
   "ref_type": "branch",
   "secret_source": "Actions",
   "event": {
-    "after": "b784bada2b213423f0d601856a5e3de86a97ac9c",
+    "after": "9bb32bd06d74524a1dcf6a8334b87722944c61c8",
     "base_ref": null,
-    "before": "7fbf11aeb2bdb837ba266866556c53756799f7d8",
+    "before": "00d45d9742e853cad7a7a4c1f7461251221cdf8a",
     "commits": [
+      {
+        "author": {
+          "email": "49699333+dependabot[bot]@users.noreply.github.com",
+          "name": "dependabot[bot]",
+          "username": "dependabot[bot]"
+        },
+        "committer": {
+          "email": "noreply@github.com",
+          "name": "GitHub",
+          "username": "web-flow"
+        },
+        "distinct": false,
+        "id": "483d597ba0303bd2ab7c4f84984d7e5b65ad1f31",
+        "message": "chore(deps): bump actions/download-artifact from 6.0.0 to 7.0.0\n\nBumps [actions/download-artifact](https://github.com/actions/download-artifact) from 6.0.0 to 7.0.0.\n- [Release notes](https://github.com/actions/download-artifact/releases)\n- [Commits](https://github.com/actions/download-artifact/compare/018cc2cf5baa6db3ef3c5f8a56943fffe632ef53...37930b1c2abaa49bbe596cd826c3c89aef350131)\n\n---\nupdated-dependencies:\n- dependency-name: actions/download-artifact\n  dependency-version: 7.0.0\n  dependency-type: direct:production\n  update-type: version-update:semver-major\n...\n\nSigned-off-by: dependabot[bot] <support@github.com>",
+        "timestamp": "2025-12-29T15:05:28Z",
+        "tree_id": "b5936fe0d03c54ae7d0e8fe93a1f16835fcaf79a",
+        "url": "https://github.com/guitarrapc/githubactions-lab/commit/483d597ba0303bd2ab7c4f84984d7e5b65ad1f31"
+      },
       {
         "author": {
           "email": "3856350+guitarrapc@users.noreply.github.com",
@@ -43,14 +61,14 @@
           "username": "web-flow"
         },
         "distinct": true,
-        "id": "b784bada2b213423f0d601856a5e3de86a97ac9c",
-        "message": "Add CODEOWNERS file for repository ownership",
-        "timestamp": "2025-12-28T17:11:07+09:00",
-        "tree_id": "b918f5b2c3738f48cf144548a764cfd9c22a1c0d",
-        "url": "https://github.com/guitarrapc/githubactions-lab/commit/b784bada2b213423f0d601856a5e3de86a97ac9c"
+        "id": "9bb32bd06d74524a1dcf6a8334b87722944c61c8",
+        "message": "Merge pull request #286 from guitarrapc/dependabot/github_actions/actions/download-artifact-7.0.0\n\nchore(deps): bump actions/download-artifact from 6.0.0 to 7.0.0",
+        "timestamp": "2025-12-30T00:23:48+09:00",
+        "tree_id": "b5936fe0d03c54ae7d0e8fe93a1f16835fcaf79a",
+        "url": "https://github.com/guitarrapc/githubactions-lab/commit/9bb32bd06d74524a1dcf6a8334b87722944c61c8"
       }
     ],
-    "compare": "https://github.com/guitarrapc/githubactions-lab/compare/7fbf11aeb2bd...b784bada2b21",
+    "compare": "https://github.com/guitarrapc/githubactions-lab/compare/00d45d9742e8...9bb32bd06d74",
     "created": false,
     "deleted": false,
     "forced": false,
@@ -66,11 +84,11 @@
         "username": "web-flow"
       },
       "distinct": true,
-      "id": "b784bada2b213423f0d601856a5e3de86a97ac9c",
-      "message": "Add CODEOWNERS file for repository ownership",
-      "timestamp": "2025-12-28T17:11:07+09:00",
-      "tree_id": "b918f5b2c3738f48cf144548a764cfd9c22a1c0d",
-      "url": "https://github.com/guitarrapc/githubactions-lab/commit/b784bada2b213423f0d601856a5e3de86a97ac9c"
+      "id": "9bb32bd06d74524a1dcf6a8334b87722944c61c8",
+      "message": "Merge pull request #286 from guitarrapc/dependabot/github_actions/actions/download-artifact-7.0.0\n\nchore(deps): bump actions/download-artifact from 6.0.0 to 7.0.0",
+      "timestamp": "2025-12-30T00:23:48+09:00",
+      "tree_id": "b5936fe0d03c54ae7d0e8fe93a1f16835fcaf79a",
+      "url": "https://github.com/guitarrapc/githubactions-lab/commit/9bb32bd06d74524a1dcf6a8334b87722944c61c8"
     },
     "pusher": {
       "email": "3856350+guitarrapc@users.noreply.github.com",
@@ -139,8 +157,8 @@
       "name": "githubactions-lab",
       "node_id": "MDEwOlJlcG9zaXRvcnkyNTc0NjU0Njg=",
       "notifications_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/notifications{?since,all,participating}",
-      "open_issues": 2,
-      "open_issues_count": 2,
+      "open_issues": 5,
+      "open_issues_count": 5,
       "owner": {
         "avatar_url": "https://avatars.githubusercontent.com/u/3856350?v=4",
         "email": "3856350+guitarrapc@users.noreply.github.com",
@@ -166,9 +184,9 @@
       },
       "private": false,
       "pulls_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls{/number}",
-      "pushed_at": 1766909468,
+      "pushed_at": 1767021828,
       "releases_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/releases{/id}",
-      "size": 4875,
+      "size": 4880,
       "ssh_url": "git@github.com:guitarrapc/githubactions-lab.git",
       "stargazers": 55,
       "stargazers_count": 55,
@@ -183,7 +201,7 @@
         "github-actions"
       ],
       "trees_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/git/trees{/sha}",
-      "updated_at": "2025-12-28T00:11:02Z",
+      "updated_at": "2025-12-28T08:11:39Z",
       "url": "https://api.github.com/repos/guitarrapc/githubactions-lab",
       "visibility": "public",
       "watchers": 55,
@@ -213,7 +231,7 @@
     }
   },
   "workflow_ref": "guitarrapc/githubactions-lab/.github/workflows/auto-dump-context.yaml@refs/heads/main",
-  "workflow_sha": "b784bada2b213423f0d601856a5e3de86a97ac9c",
+  "workflow_sha": "9bb32bd06d74524a1dcf6a8334b87722944c61c8",
   "repository_id": "257465468",
   "triggering_actor": "guitarrapc",
   "workspace": "/home/runner/work/githubactions-lab/githubactions-lab",
@@ -221,9 +239,9 @@
   "event_path": "/home/runner/work/_temp/_github_workflow/event.json",
   "action_repository": "",
   "action_ref": "",
-  "path": "/home/runner/work/_temp/_runner_file_commands/add_path_e13a12d1-d4c8-414e-a944-d3e6e0cd0466",
-  "env": "/home/runner/work/_temp/_runner_file_commands/set_env_e13a12d1-d4c8-414e-a944-d3e6e0cd0466",
-  "step_summary": "/home/runner/work/_temp/_runner_file_commands/step_summary_e13a12d1-d4c8-414e-a944-d3e6e0cd0466",
-  "state": "/home/runner/work/_temp/_runner_file_commands/save_state_e13a12d1-d4c8-414e-a944-d3e6e0cd0466",
-  "output": "/home/runner/work/_temp/_runner_file_commands/set_output_e13a12d1-d4c8-414e-a944-d3e6e0cd0466"
+  "path": "/home/runner/work/_temp/_runner_file_commands/add_path_49e05f48-4451-4202-926c-da1ad678ad99",
+  "env": "/home/runner/work/_temp/_runner_file_commands/set_env_49e05f48-4451-4202-926c-da1ad678ad99",
+  "step_summary": "/home/runner/work/_temp/_runner_file_commands/step_summary_49e05f48-4451-4202-926c-da1ad678ad99",
+  "state": "/home/runner/work/_temp/_runner_file_commands/save_state_49e05f48-4451-4202-926c-da1ad678ad99",
+  "output": "/home/runner/work/_temp/_runner_file_commands/set_output_49e05f48-4451-4202-926c-da1ad678ad99"
 }
