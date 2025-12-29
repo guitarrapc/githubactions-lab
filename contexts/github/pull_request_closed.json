@@ -2,21 +2,21 @@
   "token": "<reducted>",
   "job": "dump-context",
   "ref": "refs/heads/main",
-  "sha": "9bb32bd06d74524a1dcf6a8334b87722944c61c8",
+  "sha": "b6694e6d504d9bff1a6b85d77a5faca4e94efa5f",
   "repository": "guitarrapc/githubactions-lab",
   "repository_owner": "guitarrapc",
   "repository_owner_id": "3856350",
   "repositoryUrl": "git://github.com/guitarrapc/githubactions-lab.git",
-  "run_id": "20576349809",
-  "run_number": "1358",
+  "run_id": "20576374436",
+  "run_number": "1367",
   "retention_days": "90",
-  "run_attempt": "1",
+  "run_attempt": "2",
   "artifact_cache_size_limit": "10",
   "repository_visibility": "public",
   "actor_id": "3856350",
   "actor": "guitarrapc",
   "workflow": "auto dump context",
-  "head_ref": "dependabot/github_actions/actions/download-artifact-7.0.0",
+  "head_ref": "dependabot/github_actions/actions/upload-artifact-6.0.0",
   "base_ref": "main",
   "event_name": "pull_request",
   "server_url": "https://github.com",
@@ -28,36 +28,36 @@
   "secret_source": "Actions",
   "event": {
     "action": "closed",
-    "number": 286,
+    "number": 287,
     "pull_request": {
       "_links": {
         "comments": {
-          "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/issues/286/comments"
+          "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/issues/287/comments"
         },
         "commits": {
-          "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/286/commits"
+          "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/287/commits"
         },
         "html": {
-          "href": "https://github.com/guitarrapc/githubactions-lab/pull/286"
+          "href": "https://github.com/guitarrapc/githubactions-lab/pull/287"
         },
         "issue": {
-          "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/issues/286"
+          "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/issues/287"
         },
         "review_comment": {
           "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/comments{/number}"
         },
         "review_comments": {
-          "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/286/comments"
+          "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/287/comments"
         },
         "self": {
-          "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/286"
+          "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/287"
         },
         "statuses": {
-          "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/statuses/483d597ba0303bd2ab7c4f84984d7e5b65ad1f31"
+          "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/statuses/7abc40b8ec6d7c55e2e9ac07c6f18c47ce4ee51f"
         }
       },
       "active_lock_reason": null,
-      "additions": 5,
+      "additions": 7,
       "assignee": null,
       "assignees": [],
       "author_association": "CONTRIBUTOR",
@@ -134,8 +134,8 @@
           "name": "githubactions-lab",
           "node_id": "MDEwOlJlcG9zaXRvcnkyNTc0NjU0Njg=",
           "notifications_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/notifications{?since,all,participating}",
-          "open_issues": 5,
-          "open_issues_count": 5,
+          "open_issues": 2,
+          "open_issues_count": 2,
           "owner": {
             "avatar_url": "https://avatars.githubusercontent.com/u/3856350?v=4",
             "events_url": "https://api.github.com/users/guitarrapc/events{/privacy}",
@@ -159,7 +159,7 @@
           },
           "private": false,
           "pulls_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls{/number}",
-          "pushed_at": "2025-12-29T15:06:49Z",
+          "pushed_at": "2025-12-29T15:24:45Z",
           "releases_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/releases{/id}",
           "size": 4880,
           "squash_merge_commit_message": "COMMIT_MESSAGES",
@@ -177,7 +177,7 @@
             "github-actions"
           ],
           "trees_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/git/trees{/sha}",
-          "updated_at": "2025-12-28T08:11:39Z",
+          "updated_at": "2025-12-29T15:24:47Z",
           "url": "https://api.github.com/repos/guitarrapc/githubactions-lab",
           "use_squash_pr_title_as_default": false,
           "visibility": "public",
@@ -208,20 +208,20 @@
           "user_view_type": "public"
         }
       },
-      "body": "Bumps [actions/download-artifact](https://github.com/actions/download-artifact) from 6.0.0 to 7.0.0.\n<details>\n<summary>Release notes</summary>\n<p><em>Sourced from <a href=\"https://github.com/actions/download-artifact/releases\">actions/download-artifact's releases</a>.</em></p>\n<blockquote>\n<h2>v7.0.0</h2>\n<h2>v7 - What's new</h2>\n<blockquote>\n<p>[!IMPORTANT]\nactions/download-artifact@v7 now runs on Node.js 24 (<code>runs.using: node24</code>) and requires a minimum Actions Runner version of 2.327.1. If you are using self-hosted runners, ensure they are updated before upgrading.</p>\n</blockquote>\n<h3>Node.js 24</h3>\n<p>This release updates the runtime to Node.js 24. v6 had preliminary support for Node 24, however this action was by default still running on Node.js 20. Now this action by default will run on Node.js 24.</p>\n<h2>What's Changed</h2>\n<ul>\n<li>Update GHES guidance to include reference to Node 20 version by <a href=\"https://github.com/patrikpolyak\"><code>@​patrikpolyak</code></a> in <a href=\"https://redirect.github.com/actions/download-artifact/pull/440\">actions/download-artifact#440</a></li>\n<li>Download Artifact Node24 support by <a href=\"https://github.com/salmanmkc\"><code>@​salmanmkc</code></a> in <a href=\"https://redirect.github.com/actions/download-artifact/pull/415\">actions/download-artifact#415</a></li>\n<li>fix: update <code>@​actions/artifact</code> to fix Node.js 24 punycode deprecation by <a href=\"https://github.com/salmanmkc\"><code>@​salmanmkc</code></a> in <a href=\"https://redirect.github.com/actions/download-artifact/pull/451\">actions/download-artifact#451</a></li>\n<li>prepare release v7.0.0 for Node.js 24 support by <a href=\"https://github.com/salmanmkc\"><code>@​salmanmkc</code></a> in <a href=\"https://redirect.github.com/actions/download-artifact/pull/452\">actions/download-artifact#452</a></li>\n</ul>\n<h2>New Contributors</h2>\n<ul>\n<li><a href=\"https://github.com/patrikpolyak\"><code>@​patrikpolyak</code></a> made their first contribution in <a href=\"https://redirect.github.com/actions/download-artifact/pull/440\">actions/download-artifact#440</a></li>\n<li><a href=\"https://github.com/salmanmkc\"><code>@​salmanmkc</code></a> made their first contribution in <a href=\"https://redirect.github.com/actions/download-artifact/pull/415\">actions/download-artifact#415</a></li>\n</ul>\n<p><strong>Full Changelog</strong>: <a href=\"https://github.com/actions/download-artifact/compare/v6.0.0...v7.0.0\">https://github.com/actions/download-artifact/compare/v6.0.0...v7.0.0</a></p>\n</blockquote>\n</details>\n<details>\n<summary>Commits</summary>\n<ul>\n<li><a href=\"https://github.com/actions/download-artifact/commit/37930b1c2abaa49bbe596cd826c3c89aef350131\"><code>37930b1</code></a> Merge pull request <a href=\"https://redirect.github.com/actions/download-artifact/issues/452\">#452</a> from actions/download-artifact-v7-release</li>\n<li><a href=\"https://github.com/actions/download-artifact/commit/72582b9e0acd370909e83fa4a1fd0fca3ad452d8\"><code>72582b9</code></a> doc: update readme</li>\n<li><a href=\"https://github.com/actions/download-artifact/commit/0d2ec9d4cbcefe257d822f108de2a1f15f8da9f6\"><code>0d2ec9d</code></a> chore: release v7.0.0 for Node.js 24 support</li>\n<li><a href=\"https://github.com/actions/download-artifact/commit/fd7ae8fda6dc16277a9ffbc91cdb0eedf156e912\"><code>fd7ae8f</code></a> Merge pull request <a href=\"https://redirect.github.com/actions/download-artifact/issues/451\">#451</a> from actions/fix-storage-blob</li>\n<li><a href=\"https://github.com/actions/download-artifact/commit/d484700543354b15886d6a52910cf61b7f1d2b27\"><code>d484700</code></a> chore: restore minimatch.dep.yml license file</li>\n<li><a href=\"https://github.com/actions/download-artifact/commit/03a808050efe42bb6ad85281890afd4e4546672c\"><code>03a8080</code></a> chore: remove obsolete dependency license files</li>\n<li><a href=\"https://github.com/actions/download-artifact/commit/56fe6d904b0968950f8b68ea17774c54973ed5e2\"><code>56fe6d9</code></a> chore: update <code>@​actions/artifact</code> license file to 5.0.1</li>\n<li><a href=\"https://github.com/actions/download-artifact/commit/8e3ebc4ab4d2e095e5eb44ba1a4a53b6b03976ad\"><code>8e3ebc4</code></a> chore: update package-lock.json with <code>@​actions/artifact</code><a href=\"https://github.com/5\"><code>@​5</code></a>.0.1</li>\n<li><a href=\"https://github.com/actions/download-artifact/commit/1e3c4b4d4906c98ab57453c24efefdf16c078044\"><code>1e3c4b4</code></a> fix: update <code>@​actions/artifact</code> to ^5.0.0 for Node.js 24 punycode fix</li>\n<li><a href=\"https://github.com/actions/download-artifact/commit/458627d354794c71bc386c8d5839d20b5885fe2a\"><code>458627d</code></a> chore: use local <code>@​actions/artifact</code> package for Node.js 24 testing</li>\n<li>Additional commits viewable in <a href=\"https://github.com/actions/download-artifact/compare/018cc2cf5baa6db3ef3c5f8a56943fffe632ef53...37930b1c2abaa49bbe596cd826c3c89aef350131\">compare view</a></li>\n</ul>\n</details>\n<br />\n\n\n[![Dependabot compatibility score](https://dependabot-badges.githubapp.com/badges/compatibility_score?dependency-name=actions/download-artifact&package-manager=github_actions&previous-version=6.0.0&new-version=7.0.0)](https://docs.github.com/en/github/managing-security-vulnerabilities/about-dependabot-security-updates#about-compatibility-scores)\n\nDependabot will resolve any conflicts with this PR as long as you don't alter it yourself. You can also trigger a rebase manually by commenting `@dependabot rebase`.\n\n[//]: # (dependabot-automerge-start)\n[//]: # (dependabot-automerge-end)\n\n---\n\n<details>\n<summary>Dependabot commands and options</summary>\n<br />\n\nYou can trigger Dependabot actions by commenting on this PR:\n- `@dependabot rebase` will rebase this PR\n- `@dependabot recreate` will recreate this PR, overwriting any edits that have been made to it\n- `@dependabot merge` will merge this PR after your CI passes on it\n- `@dependabot squash and merge` will squash and merge this PR after your CI passes on it\n- `@dependabot cancel merge` will cancel a previously requested merge and block automerging\n- `@dependabot reopen` will reopen this PR if it is closed\n- `@dependabot close` will close this PR and stop Dependabot recreating it. You can achieve the same result by closing it manually\n- `@dependabot show <dependency name> ignore conditions` will show all of the ignore conditions of the specified dependency\n- `@dependabot ignore this major version` will close this PR and stop Dependabot creating any more for this major version (unless you reopen the PR or upgrade to it yourself)\n- `@dependabot ignore this minor version` will close this PR and stop Dependabot creating any more for this minor version (unless you reopen the PR or upgrade to it yourself)\n- `@dependabot ignore this dependency` will close this PR and stop Dependabot creating any more for this dependency (unless you reopen the PR or upgrade to it yourself)\n\n\n</details>",
+      "body": "Bumps [actions/upload-artifact](https://github.com/actions/upload-artifact) from 5.0.0 to 6.0.0.\n<details>\n<summary>Release notes</summary>\n<p><em>Sourced from <a href=\"https://github.com/actions/upload-artifact/releases\">actions/upload-artifact's releases</a>.</em></p>\n<blockquote>\n<h2>v6.0.0</h2>\n<h2>v6 - What's new</h2>\n<blockquote>\n<p>[!IMPORTANT]\nactions/upload-artifact@v6 now runs on Node.js 24 (<code>runs.using: node24</code>) and requires a minimum Actions Runner version of 2.327.1. If you are using self-hosted runners, ensure they are updated before upgrading.</p>\n</blockquote>\n<h3>Node.js 24</h3>\n<p>This release updates the runtime to Node.js 24. v5 had preliminary support for Node.js 24, however this action was by default still running on Node.js 20. Now this action by default will run on Node.js 24.</p>\n<h2>What's Changed</h2>\n<ul>\n<li>Upload Artifact Node 24 support by <a href=\"https://github.com/salmanmkc\"><code>@​salmanmkc</code></a> in <a href=\"https://redirect.github.com/actions/upload-artifact/pull/719\">actions/upload-artifact#719</a></li>\n<li>fix: update <code>@​actions/artifact</code> for Node.js 24 punycode deprecation by <a href=\"https://github.com/salmanmkc\"><code>@​salmanmkc</code></a> in <a href=\"https://redirect.github.com/actions/upload-artifact/pull/744\">actions/upload-artifact#744</a></li>\n<li>prepare release v6.0.0 for Node.js 24 support by <a href=\"https://github.com/salmanmkc\"><code>@​salmanmkc</code></a> in <a href=\"https://redirect.github.com/actions/upload-artifact/pull/745\">actions/upload-artifact#745</a></li>\n</ul>\n<p><strong>Full Changelog</strong>: <a href=\"https://github.com/actions/upload-artifact/compare/v5.0.0...v6.0.0\">https://github.com/actions/upload-artifact/compare/v5.0.0...v6.0.0</a></p>\n</blockquote>\n</details>\n<details>\n<summary>Commits</summary>\n<ul>\n<li><a href=\"https://github.com/actions/upload-artifact/commit/b7c566a772e6b6bfb58ed0dc250532a479d7789f\"><code>b7c566a</code></a> Merge pull request <a href=\"https://redirect.github.com/actions/upload-artifact/issues/745\">#745</a> from actions/upload-artifact-v6-release</li>\n<li><a href=\"https://github.com/actions/upload-artifact/commit/e516bc8500aaf3d07d591fcd4ae6ab5f9c391d5b\"><code>e516bc8</code></a> docs: correct description of Node.js 24 support in README</li>\n<li><a href=\"https://github.com/actions/upload-artifact/commit/ddc45ed9bca9b38dbd643978d88e3981cdc91415\"><code>ddc45ed</code></a> docs: update README to correct action name for Node.js 24 support</li>\n<li><a href=\"https://github.com/actions/upload-artifact/commit/615b319bd27bb32c3d64dca6b6ed6974d5fbe653\"><code>615b319</code></a> chore: release v6.0.0 for Node.js 24 support</li>\n<li><a href=\"https://github.com/actions/upload-artifact/commit/017748b48f8610ca8e6af1222f4a618e84a9c703\"><code>017748b</code></a> Merge pull request <a href=\"https://redirect.github.com/actions/upload-artifact/issues/744\">#744</a> from actions/fix-storage-blob</li>\n<li><a href=\"https://github.com/actions/upload-artifact/commit/38d4c7997f5510fcc41fc4aae2a6b97becdbe7fc\"><code>38d4c79</code></a> chore: rebuild dist</li>\n<li><a href=\"https://github.com/actions/upload-artifact/commit/7d27270e0cfd253e666c44abac0711308d2d042f\"><code>7d27270</code></a> chore: add missing license cache files for <code>@​actions/core</code>, <code>@​actions/io</code>, and mi...</li>\n<li><a href=\"https://github.com/actions/upload-artifact/commit/5f643d3c9475505ccaf26d686ffbfb71a8387261\"><code>5f643d3</code></a> chore: update license files for <code>@​actions/artifact</code><a href=\"https://github.com/5\"><code>@​5</code></a>.0.1 dependencies</li>\n<li><a href=\"https://github.com/actions/upload-artifact/commit/1df1684032c88614064493e1a0478fcb3583e1d0\"><code>1df1684</code></a> chore: update package-lock.json with <code>@​actions/artifact</code><a href=\"https://github.com/5\"><code>@​5</code></a>.0.1</li>\n<li><a href=\"https://github.com/actions/upload-artifact/commit/b5b1a918401ee270935b6b1d857ae66c85f3be6f\"><code>b5b1a91</code></a> fix: update <code>@​actions/artifact</code> to ^5.0.0 for Node.js 24 punycode fix</li>\n<li>Additional commits viewable in <a href=\"https://github.com/actions/upload-artifact/compare/330a01c490aca151604b8cf639adc76d48f6c5d4...b7c566a772e6b6bfb58ed0dc250532a479d7789f\">compare view</a></li>\n</ul>\n</details>\n<br />\n\n\n[![Dependabot compatibility score](https://dependabot-badges.githubapp.com/badges/compatibility_score?dependency-name=actions/upload-artifact&package-manager=github_actions&previous-version=5.0.0&new-version=6.0.0)](https://docs.github.com/en/github/managing-security-vulnerabilities/about-dependabot-security-updates#about-compatibility-scores)\n\nDependabot will resolve any conflicts with this PR as long as you don't alter it yourself. You can also trigger a rebase manually by commenting `@dependabot rebase`.\n\n[//]: # (dependabot-automerge-start)\n[//]: # (dependabot-automerge-end)\n\n---\n\n<details>\n<summary>Dependabot commands and options</summary>\n<br />\n\nYou can trigger Dependabot actions by commenting on this PR:\n- `@dependabot rebase` will rebase this PR\n- `@dependabot recreate` will recreate this PR, overwriting any edits that have been made to it\n- `@dependabot merge` will merge this PR after your CI passes on it\n- `@dependabot squash and merge` will squash and merge this PR after your CI passes on it\n- `@dependabot cancel merge` will cancel a previously requested merge and block automerging\n- `@dependabot reopen` will reopen this PR if it is closed\n- `@dependabot close` will close this PR and stop Dependabot recreating it. You can achieve the same result by closing it manually\n- `@dependabot show <dependency name> ignore conditions` will show all of the ignore conditions of the specified dependency\n- `@dependabot ignore this major version` will close this PR and stop Dependabot creating any more for this major version (unless you reopen the PR or upgrade to it yourself)\n- `@dependabot ignore this minor version` will close this PR and stop Dependabot creating any more for this minor version (unless you reopen the PR or upgrade to it yourself)\n- `@dependabot ignore this dependency` will close this PR and stop Dependabot creating any more for this dependency (unless you reopen the PR or upgrade to it yourself)\n\n\n</details>",
       "changed_files": 5,
-      "closed_at": "2025-12-29T15:23:48Z",
+      "closed_at": "2025-12-29T15:24:59Z",
       "comments": 0,
-      "comments_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/issues/286/comments",
+      "comments_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/issues/287/comments",
       "commits": 1,
-      "commits_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/286/commits",
-      "created_at": "2025-12-29T15:05:29Z",
-      "deletions": 5,
-      "diff_url": "https://github.com/guitarrapc/githubactions-lab/pull/286.diff",
+      "commits_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/287/commits",
+      "created_at": "2025-12-29T15:05:45Z",
+      "deletions": 7,
+      "diff_url": "https://github.com/guitarrapc/githubactions-lab/pull/287.diff",
       "draft": false,
       "head": {
-        "label": "guitarrapc:dependabot/github_actions/actions/download-artifact-7.0.0",
-        "ref": "dependabot/github_actions/actions/download-artifact-7.0.0",
+        "label": "guitarrapc:dependabot/github_actions/actions/upload-artifact-6.0.0",
+        "ref": "dependabot/github_actions/actions/upload-artifact-6.0.0",
         "repo": {
           "allow_auto_merge": true,
           "allow_forking": true,
@@ -291,8 +291,8 @@
           "name": "githubactions-lab",
           "node_id": "MDEwOlJlcG9zaXRvcnkyNTc0NjU0Njg=",
           "notifications_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/notifications{?since,all,participating}",
-          "open_issues": 5,
-          "open_issues_count": 5,
+          "open_issues": 2,
+          "open_issues_count": 2,
           "owner": {
             "avatar_url": "https://avatars.githubusercontent.com/u/3856350?v=4",
             "events_url": "https://api.github.com/users/guitarrapc/events{/privacy}",
@@ -316,7 +316,7 @@
           },
           "private": false,
           "pulls_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls{/number}",
-          "pushed_at": "2025-12-29T15:06:49Z",
+          "pushed_at": "2025-12-29T15:24:45Z",
           "releases_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/releases{/id}",
           "size": 4880,
           "squash_merge_commit_message": "COMMIT_MESSAGES",
@@ -334,7 +334,7 @@
             "github-actions"
           ],
           "trees_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/git/trees{/sha}",
-          "updated_at": "2025-12-28T08:11:39Z",
+          "updated_at": "2025-12-29T15:24:47Z",
           "url": "https://api.github.com/repos/guitarrapc/githubactions-lab",
           "use_squash_pr_title_as_default": false,
           "visibility": "public",
@@ -342,7 +342,7 @@
           "watchers_count": 55,
           "web_commit_signoff_required": false
         },
-        "sha": "483d597ba0303bd2ab7c4f84984d7e5b65ad1f31",
+        "sha": "7abc40b8ec6d7c55e2e9ac07c6f18c47ce4ee51f",
         "user": {
           "avatar_url": "https://avatars.githubusercontent.com/u/3856350?v=4",
           "events_url": "https://api.github.com/users/guitarrapc/events{/privacy}",
@@ -365,9 +365,9 @@
           "user_view_type": "public"
         }
       },
-      "html_url": "https://github.com/guitarrapc/githubactions-lab/pull/286",
-      "id": 3134612308,
-      "issue_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/issues/286",
+      "html_url": "https://github.com/guitarrapc/githubactions-lab/pull/287",
+      "id": 3134612889,
+      "issue_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/issues/287",
       "labels": [
         {
           "color": "0366d6",
@@ -390,11 +390,11 @@
       ],
       "locked": false,
       "maintainer_can_modify": false,
-      "merge_commit_sha": "9bb32bd06d74524a1dcf6a8334b87722944c61c8",
+      "merge_commit_sha": "b6694e6d504d9bff1a6b85d77a5faca4e94efa5f",
       "mergeable": null,
       "mergeable_state": "unknown",
       "merged": true,
-      "merged_at": "2025-12-29T15:23:48Z",
+      "merged_at": "2025-12-29T15:24:59Z",
       "merged_by": {
         "avatar_url": "https://avatars.githubusercontent.com/u/3856350?v=4",
         "events_url": "https://api.github.com/users/guitarrapc/events{/privacy}",
@@ -417,9 +417,9 @@
         "user_view_type": "public"
       },
       "milestone": null,
-      "node_id": "PR_kwDOD1icfM661mNU",
-      "number": 286,
-      "patch_url": "https://github.com/guitarrapc/githubactions-lab/pull/286.patch",
+      "node_id": "PR_kwDOD1icfM661mWZ",
+      "number": 287,
+      "patch_url": "https://github.com/guitarrapc/githubactions-lab/pull/287.patch",
       "rebaseable": null,
       "requested_reviewers": [
         {
@@ -447,12 +447,12 @@
       "requested_teams": [],
       "review_comment_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/comments{/number}",
       "review_comments": 0,
-      "review_comments_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/286/comments",
+      "review_comments_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/287/comments",
       "state": "closed",
-      "statuses_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/statuses/483d597ba0303bd2ab7c4f84984d7e5b65ad1f31",
-      "title": "chore(deps): bump actions/download-artifact from 6.0.0 to 7.0.0",
-      "updated_at": "2025-12-29T15:23:48Z",
-      "url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/286",
+      "statuses_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/statuses/7abc40b8ec6d7c55e2e9ac07c6f18c47ce4ee51f",
+      "title": "chore(deps): bump actions/upload-artifact from 5.0.0 to 6.0.0",
+      "updated_at": "2025-12-29T15:24:59Z",
+      "url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/287",
       "user": {
         "avatar_url": "https://avatars.githubusercontent.com/in/29110?v=4",
         "events_url": "https://api.github.com/users/dependabot%5Bbot%5D/events{/privacy}",
@@ -536,8 +536,8 @@
       "name": "githubactions-lab",
       "node_id": "MDEwOlJlcG9zaXRvcnkyNTc0NjU0Njg=",
       "notifications_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/notifications{?since,all,participating}",
-      "open_issues": 5,
-      "open_issues_count": 5,
+      "open_issues": 2,
+      "open_issues_count": 2,
       "owner": {
         "avatar_url": "https://avatars.githubusercontent.com/u/3856350?v=4",
         "events_url": "https://api.github.com/users/guitarrapc/events{/privacy}",
@@ -561,7 +561,7 @@
       },
       "private": false,
       "pulls_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls{/number}",
-      "pushed_at": "2025-12-29T15:06:49Z",
+      "pushed_at": "2025-12-29T15:24:45Z",
       "releases_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/releases{/id}",
       "size": 4880,
       "ssh_url": "git@github.com:guitarrapc/githubactions-lab.git",
@@ -577,7 +577,7 @@
         "github-actions"
       ],
       "trees_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/git/trees{/sha}",
-      "updated_at": "2025-12-28T08:11:39Z",
+      "updated_at": "2025-12-29T15:24:47Z",
       "url": "https://api.github.com/repos/guitarrapc/githubactions-lab",
       "visibility": "public",
       "watchers": 55,
@@ -607,7 +607,7 @@
     }
   },
   "workflow_ref": "guitarrapc/githubactions-lab/.github/workflows/auto-dump-context.yaml@refs/heads/main",
-  "workflow_sha": "9bb32bd06d74524a1dcf6a8334b87722944c61c8",
+  "workflow_sha": "b6694e6d504d9bff1a6b85d77a5faca4e94efa5f",
   "repository_id": "257465468",
   "triggering_actor": "guitarrapc",
   "workspace": "/home/runner/work/githubactions-lab/githubactions-lab",
@@ -615,9 +615,9 @@
   "event_path": "/home/runner/work/_temp/_github_workflow/event.json",
   "action_repository": "",
   "action_ref": "",
-  "path": "/home/runner/work/_temp/_runner_file_commands/add_path_07fda76c-49fb-4686-97aa-0d496ab71bc2",
-  "env": "/home/runner/work/_temp/_runner_file_commands/set_env_07fda76c-49fb-4686-97aa-0d496ab71bc2",
-  "step_summary": "/home/runner/work/_temp/_runner_file_commands/step_summary_07fda76c-49fb-4686-97aa-0d496ab71bc2",
-  "state": "/home/runner/work/_temp/_runner_file_commands/save_state_07fda76c-49fb-4686-97aa-0d496ab71bc2",
-  "output": "/home/runner/work/_temp/_runner_file_commands/set_output_07fda76c-49fb-4686-97aa-0d496ab71bc2"
+  "path": "/home/runner/work/_temp/_runner_file_commands/add_path_04632c06-8873-4308-86ad-474956ac547d",
+  "env": "/home/runner/work/_temp/_runner_file_commands/set_env_04632c06-8873-4308-86ad-474956ac547d",
+  "step_summary": "/home/runner/work/_temp/_runner_file_commands/step_summary_04632c06-8873-4308-86ad-474956ac547d",
+  "state": "/home/runner/work/_temp/_runner_file_commands/save_state_04632c06-8873-4308-86ad-474956ac547d",
+  "output": "/home/runner/work/_temp/_runner_file_commands/set_output_04632c06-8873-4308-86ad-474956ac547d"
 }
