@@ -2441,7 +2441,7 @@ jobs:
       - name: output
         run: |
           echo "hoge" > ./hoge.txt
-      - uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4 # v5.0.0
+      - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6.0.0
         with:
           name: hoge.txt
           path: ./hoge.txt
@@ -2454,7 +2454,7 @@ jobs:
     runs-on: ubuntu-24.04
     timeout-minutes: 3
     steps:
-      - uses: actions/download-artifact@018cc2cf5baa6db3ef3c5f8a56943fffe632ef53 # v6.0.0
+      - uses: actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131 # v7.0.0
         with:
           name: hoge.txt
           path: .
@@ -2493,7 +2493,7 @@ jobs:
           echo "fuga" > ./directory/fuga.txt
           echo "foo" > ./directory/bin/foo.txt
           echo "bar" > ./directory/bin/bar.txt
-      - uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4 # v5.0.0
+      - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6.0.0
         with:
           name: directory
           path: ./directory/
@@ -2506,7 +2506,7 @@ jobs:
     runs-on: ubuntu-24.04
     timeout-minutes: 3
     steps:
-      - uses: actions/download-artifact@018cc2cf5baa6db3ef3c5f8a56943fffe632ef53 # v6.0.0
+      - uses: actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131 # v7.0.0
         with:
           name: directory
           path: ./directory
@@ -2546,7 +2546,7 @@ jobs:
           echo "foo" > ./output/bin/foo.txt
           echo "bar" > ./output/bin/bar.txt
           tar -zcvf output.tar.gz ./output/
-      - uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4 # v5.0.0
+      - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6.0.0
         with:
           name: output.tar.gz
           path: ./output.tar.gz
@@ -2560,7 +2560,7 @@ jobs:
     timeout-minutes: 3
     steps:
       # specify path: . to download tar.gz to current directory
-      - uses: actions/download-artifact@018cc2cf5baa6db3ef3c5f8a56943fffe632ef53 # v6.0.0
+      - uses: actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131 # v7.0.0
         with:
           name: output.tar.gz
           path: .
