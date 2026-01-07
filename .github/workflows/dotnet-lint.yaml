@@ -72,6 +72,7 @@ jobs:
 
       # Commit if change happen, then craete PR. force push when branch/pr already exists.
       - name: commit
+        if: ${{ steps.git-check.outputs.modified == 'true' }}
         run: |
           git remote set-url origin "https://github-actions:${GITHUB_TOKEN}@github.com/${{ github.repository }}"
           git config user.name github-actions[bot]
