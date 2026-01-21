@@ -2577,6 +2577,15 @@ jobs:
 
 ```
 
+**Other workflow or Repository**
+
+You can share artifacts between workflows in the same repository or different repositories by using `actions/upload-artifact` and `actions/download-artifact`. If you want download from same repository, specify `run-id` & `github-token` to `actions/download-artifact`, you can use `${{ github.token }}` for `github-token`.
+
+If you want download from different repository, specify `repository` & `run-id` & `github-token` to `actions/download-artifact`. You must use PAT or GitHub App token for `github-token` which has `actions: read` scope.
+
+```yaml
+# .github/workflows/artifacts-other-workflow.yaml
+```
 
 ## Concurrency Control
 
