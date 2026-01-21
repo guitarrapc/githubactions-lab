@@ -14,7 +14,6 @@ on:
 jobs:
   download-directory:
     permissions:
-      actions: read # required to download from other workflows or repos
       contents: read
     runs-on: ubuntu-24.04
     timeout-minutes: 3
