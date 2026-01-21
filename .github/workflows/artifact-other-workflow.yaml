@@ -25,16 +25,21 @@ jobs:
           GH_TOKEN: ${{ github.token }}
       - name: Get latest Run Id of specified workflow
         if: ${{ inputs.run-id == '' }}
-        id: get_run_id
+        id: get-run-id
         run: |
           run_id=$(gh run list -w ${{ inputs.workflow-name }} --status completed --limit 1 --json databaseId --jq ".[].databaseId")
           echo "run_id=$run_id" | tee -a "$GITHUB_OUTPUT"
         env:
           GH_REPO: ${{ github.repository }}
           GH_TOKEN: ${{ github.token }}
+      - name: Get run details
+        run: |
+          gh run view ${{ inputs.run-id || steps.get-run-id.outputs.run_id }}
+        env:
+          GH_REPO: ${{ github.repository }}
+          GH_TOKEN: ${{ github.token }}
       - uses: actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131 # v7.0.0
         with:
-          name: output.tar.gz
-          run-id: ${{ inputs.run-id || steps.get_run_id.outputs.run_id }}
+          run-id: ${{ inputs.run-id || steps.get-run-id.outputs.run_id }}
       - name: ls
         run: ls -lR
