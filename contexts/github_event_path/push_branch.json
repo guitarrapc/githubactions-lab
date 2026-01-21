@@ -1,7 +1,7 @@
 {
-  "after": "ede4b9de4a18e024adf9f15a9d36fb465147d341",
+  "after": "a0c6cb162535fb8443658d06273aeed1009e981f",
   "base_ref": null,
-  "before": "343d6f3b45821fb38dff71bead50ef67e139b4af",
+  "before": "a1fb9f9d7ea08e3e9f3b5473e32068588768de2e",
   "commits": [
     {
       "author": {
@@ -15,14 +15,14 @@
         "username": "guitarrapc"
       },
       "distinct": true,
-      "id": "ede4b9de4a18e024adf9f15a9d36fb465147d341",
-      "message": "chore: commit",
-      "timestamp": "2026-01-07T19:17:49+09:00",
-      "tree_id": "929b8005d2eb25232fc4577da84ace6625e789c1",
-      "url": "https://github.com/guitarrapc/githubactions-lab/commit/ede4b9de4a18e024adf9f15a9d36fb465147d341"
+      "id": "a0c6cb162535fb8443658d06273aeed1009e981f",
+      "message": "ci: download artifacts from other workflow",
+      "timestamp": "2026-01-21T16:51:18+09:00",
+      "tree_id": "17915f9afb624649c0e83e111d5745af3343c322",
+      "url": "https://github.com/guitarrapc/githubactions-lab/commit/a0c6cb162535fb8443658d06273aeed1009e981f"
     }
   ],
-  "compare": "https://github.com/guitarrapc/githubactions-lab/compare/343d6f3b4582...ede4b9de4a18",
+  "compare": "https://github.com/guitarrapc/githubactions-lab/compare/a1fb9f9d7ea0...a0c6cb162535",
   "created": false,
   "deleted": false,
   "forced": false,
@@ -38,11 +38,11 @@
       "username": "guitarrapc"
     },
     "distinct": true,
-    "id": "ede4b9de4a18e024adf9f15a9d36fb465147d341",
-    "message": "chore: commit",
-    "timestamp": "2026-01-07T19:17:49+09:00",
-    "tree_id": "929b8005d2eb25232fc4577da84ace6625e789c1",
-    "url": "https://github.com/guitarrapc/githubactions-lab/commit/ede4b9de4a18e024adf9f15a9d36fb465147d341"
+    "id": "a0c6cb162535fb8443658d06273aeed1009e981f",
+    "message": "ci: download artifacts from other workflow",
+    "timestamp": "2026-01-21T16:51:18+09:00",
+    "tree_id": "17915f9afb624649c0e83e111d5745af3343c322",
+    "url": "https://github.com/guitarrapc/githubactions-lab/commit/a0c6cb162535fb8443658d06273aeed1009e981f"
   },
   "pusher": {
     "email": "3856350+guitarrapc@users.noreply.github.com",
@@ -138,9 +138,9 @@
     },
     "private": false,
     "pulls_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls{/number}",
-    "pushed_at": 1767781090,
+    "pushed_at": 1768981882,
     "releases_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/releases{/id}",
-    "size": 4889,
+    "size": 4912,
     "ssh_url": "git@github.com:guitarrapc/githubactions-lab.git",
     "stargazers": 55,
     "stargazers_count": 55,
@@ -155,7 +155,7 @@
       "github-actions"
     ],
     "trees_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/git/trees{/sha}",
-    "updated_at": "2026-01-04T00:10:56Z",
+    "updated_at": "2026-01-18T00:10:42Z",
     "url": "https://api.github.com/repos/guitarrapc/githubactions-lab",
     "visibility": "public",
     "watchers": 55,
