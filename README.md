@@ -2577,6 +2577,63 @@ jobs:
 
 ```
 
+**Other workflow or Repository**
+
+You can share artifacts between workflows in the same repository or different repositories by using `actions/upload-artifact` and `actions/download-artifact`. If you want download from same repository, specify `run-id` & `github-token` to `actions/download-artifact`, you can use `${{ github.token }}` for `github-token`.
+
+If you want download from different repository, specify `repository` & `run-id` & `github-token` to `actions/download-artifact`. You must use PAT or GitHub App token for `github-token` which has `actions: read` scope.
+
+```yaml
+# .github/workflows/artifacts-other-workflow.yaml
+
+name: artifacts (other workflow)
+on:
+  workflow_dispatch:
+    inputs:
+      workflow-name:
+        description: "Workflow name to download artifacts from"
+        required: true
+        default: "artifacts-targz.yaml"
+      run-id:
+        description: "Run ID to download artifacts from (optional)"
+        required: false
+        default: ""
+
+jobs:
+  download-directory:
+    permissions:
+      contents: read
+    runs-on: ubuntu-24.04
+    timeout-minutes: 3
+    steps:
+      - name: List Run Ids of specified workflow
+        run: gh run list -w ${{ inputs.workflow-name }} --status completed --limit 5
+        env:
+          GH_REPO: ${{ github.repository }}
+          GH_TOKEN: ${{ github.token }}
+      - name: Get latest Run Id of specified workflow
+        if: ${{ inputs.run-id == '' }}
+        id: get-run-id
+        run: |
+          run_id=$(gh run list -w ${{ inputs.workflow-name }} --status completed --limit 1 --json databaseId --jq ".[].databaseId")
+          echo "run_id=$run_id" | tee -a "$GITHUB_OUTPUT"
+        env:
+          GH_REPO: ${{ github.repository }}
+          GH_TOKEN: ${{ github.token }}
+      - name: Get run details
+        run: |
+          gh run view ${{ inputs.run-id || steps.get-run-id.outputs.run_id }}
+        env:
+          GH_REPO: ${{ github.repository }}
+          GH_TOKEN: ${{ github.token }}
+      - uses: actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131 # v7.0.0
+        with:
+          run-id: ${{ inputs.run-id || steps.get-run-id.outputs.run_id }}
+          github-token: ${{ github.token }}
+      - name: ls
+        run: ls -lR
+
+```
 
 ## Concurrency Control
 
