@@ -2575,6 +2575,64 @@ jobs:
 
 ```
 
+**他のワークフローまたはリポジトリ**
+
+`actions/upload-artifact`と`actions/download-artifact`を使用することで、同じリポジトリ内または異なるリポジトリ間でアーティファクトを共有できます。同じリポジトリからダウンロードする場合は、`actions/download-artifact`に`run-id`と`github-token`を指定します。`github-token`には`${{ github.token }}`を使用できます。
+
+異なるリポジトリからダウンロードする場合は、`actions/download-artifact`に`repository`、`run-id`、`github-token`を指定します。`github-token`には、`actions: read`スコープを持つPATまたはGitHub Appトークンを使用する必要があります。
+
+```yaml
+# .github/workflows/artifacts-other-workflow.yaml
+
+name: artifacts (other workflow)
+on:
+  workflow_dispatch:
+    inputs:
+      workflow-name:
+        description: "Workflow name to download artifacts from"
+        required: true
+        default: "artifacts-targz.yaml"
+      run-id:
+        description: "Run ID to download artifacts from (optional)"
+        required: false
+        default: ""
+
+jobs:
+  download-directory:
+    permissions:
+      contents: read
+    runs-on: ubuntu-24.04
+    timeout-minutes: 3
+    steps:
+      - name: List Run Ids of specified workflow
+        run: gh run list -w ${{ inputs.workflow-name }} --status completed --limit 5
+        env:
+          GH_REPO: ${{ github.repository }}
+          GH_TOKEN: ${{ github.token }}
+      - name: Get latest Run Id of specified workflow
+        if: ${{ inputs.run-id == '' }}
+        id: get-run-id
+        run: |
+          run_id=$(gh run list -w ${{ inputs.workflow-name }} --status completed --limit 1 --json databaseId --jq ".[].databaseId")
+          echo "run_id=$run_id" | tee -a "$GITHUB_OUTPUT"
+        env:
+          GH_REPO: ${{ github.repository }}
+          GH_TOKEN: ${{ github.token }}
+      - name: Get run details
+        run: |
+          gh run view ${{ inputs.run-id || steps.get-run-id.outputs.run_id }}
+        env:
+          GH_REPO: ${{ github.repository }}
+          GH_TOKEN: ${{ github.token }}
+      - uses: actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131 # v7.0.0
+        with:
+          run-id: ${{ inputs.run-id || steps.get-run-id.outputs.run_id }}
+          github-token: ${{ github.token }}
+      - name: ls
+        run: ls -lR
+
+```
+
 
 ## 並行制御
 
