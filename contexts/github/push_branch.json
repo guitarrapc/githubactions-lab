@@ -2,13 +2,13 @@
   "token": "<reducted>",
   "job": "dump-context",
   "ref": "refs/heads/main",
-  "sha": "5296f17100018eee83b7f27934a2ab5665bab0e7",
+  "sha": "935af14f685487be250a18630b19c84a5c0abc4a",
   "repository": "guitarrapc/githubactions-lab",
   "repository_owner": "guitarrapc",
   "repository_owner_id": "3856350",
   "repositoryUrl": "git://github.com/guitarrapc/githubactions-lab.git",
-  "run_id": "21205093330",
-  "run_number": "1389",
+  "run_id": "21235666411",
+  "run_number": "1403",
   "retention_days": "90",
   "run_attempt": "1",
   "artifact_cache_size_limit": "10",
@@ -27,9 +27,9 @@
   "ref_type": "branch",
   "secret_source": "Actions",
   "event": {
-    "after": "5296f17100018eee83b7f27934a2ab5665bab0e7",
+    "after": "935af14f685487be250a18630b19c84a5c0abc4a",
     "base_ref": null,
-    "before": "5f5bf608d8e571d8fa66566363d7d02720b535be",
+    "before": "7b753fc914455b682161776aeea9516e8e91ce20",
     "commits": [
       {
         "author": {
@@ -43,11 +43,11 @@
           "username": "guitarrapc"
         },
         "distinct": false,
-        "id": "a4996bd3766039f2edefb2546cd32a1b609d1666",
-        "message": "docs: add other workflows artifact",
-        "timestamp": "2026-01-21T18:52:46+09:00",
-        "tree_id": "da1111eace42ed2bddab845ce80acbaab88a5058",
-        "url": "https://github.com/guitarrapc/githubactions-lab/commit/a4996bd3766039f2edefb2546cd32a1b609d1666"
+        "id": "893942e9ee09f64bca6b854bb14b34a4ba911cb7",
+        "message": "fix: zizmor check",
+        "timestamp": "2026-01-22T12:42:29+09:00",
+        "tree_id": "a2c978f410ce42c3e2a34b6076dc436394113f20",
+        "url": "https://github.com/guitarrapc/githubactions-lab/commit/893942e9ee09f64bca6b854bb14b34a4ba911cb7"
       },
       {
         "author": {
@@ -61,11 +61,11 @@
           "username": "github-actions[bot]"
         },
         "distinct": false,
-        "id": "a729d08ea7c62db32614470c0fbd7f76dc776ebf",
+        "id": "0b90f9ea5fe3cc9791b2ff3d4be8d603c23ecf6d",
         "message": "[auto commit] Embedded code (workflow=auto doc)",
-        "timestamp": "2026-01-21T09:53:23Z",
-        "tree_id": "672b0fea3181ed7e59956b6929d9c731ee3c14d3",
-        "url": "https://github.com/guitarrapc/githubactions-lab/commit/a729d08ea7c62db32614470c0fbd7f76dc776ebf"
+        "timestamp": "2026-01-22T03:43:21Z",
+        "tree_id": "4661aff72c56c23d3a406af8089d6605308c7ec8",
+        "url": "https://github.com/guitarrapc/githubactions-lab/commit/0b90f9ea5fe3cc9791b2ff3d4be8d603c23ecf6d"
       },
       {
         "author": {
@@ -79,11 +79,11 @@
           "username": "github-actions[bot]"
         },
         "distinct": false,
-        "id": "54bcf150f1cd2b3ea2dd485cd60069c5c2da0a3c",
+        "id": "ccd15cef50a0b17e0c2962c1df2d09dd39e32b7b",
         "message": "[auto commit] update context (workflow=auto dump context, event=pull_request, action=opened)",
-        "timestamp": "2026-01-21T09:53:32Z",
-        "tree_id": "ec68723a726b345a817309938ed602835fcd38b5",
-        "url": "https://github.com/guitarrapc/githubactions-lab/commit/54bcf150f1cd2b3ea2dd485cd60069c5c2da0a3c"
+        "timestamp": "2026-01-22T03:43:33Z",
+        "tree_id": "e254277176dc04334e07c4d7f692e296039f5ed6",
+        "url": "https://github.com/guitarrapc/githubactions-lab/commit/ccd15cef50a0b17e0c2962c1df2d09dd39e32b7b"
       },
       {
         "author": {
@@ -97,14 +97,14 @@
           "username": "web-flow"
         },
         "distinct": true,
-        "id": "5296f17100018eee83b7f27934a2ab5665bab0e7",
-        "message": "Merge pull request #290 from guitarrapc/docs\n\ndocs: add other workflows artifact",
-        "timestamp": "2026-01-21T18:57:09+09:00",
-        "tree_id": "06b8a21a86b483f83ee0f5b653cc34a43cfb9457",
-        "url": "https://github.com/guitarrapc/githubactions-lab/commit/5296f17100018eee83b7f27934a2ab5665bab0e7"
+        "id": "935af14f685487be250a18630b19c84a5c0abc4a",
+        "message": "Merge pull request #293 from guitarrapc/vul\n\nfix: zizmor check",
+        "timestamp": "2026-01-22T13:07:23+09:00",
+        "tree_id": "044116f8aaf187e76f4dc50ee99dc5d32a944f93",
+        "url": "https://github.com/guitarrapc/githubactions-lab/commit/935af14f685487be250a18630b19c84a5c0abc4a"
       }
     ],
-    "compare": "https://github.com/guitarrapc/githubactions-lab/compare/5f5bf608d8e5...5296f1710001",
+    "compare": "https://github.com/guitarrapc/githubactions-lab/compare/7b753fc91445...935af14f6854",
     "created": false,
     "deleted": false,
     "forced": false,
@@ -120,11 +120,11 @@
         "username": "web-flow"
       },
       "distinct": true,
-      "id": "5296f17100018eee83b7f27934a2ab5665bab0e7",
-      "message": "Merge pull request #290 from guitarrapc/docs\n\ndocs: add other workflows artifact",
-      "timestamp": "2026-01-21T18:57:09+09:00",
-      "tree_id": "06b8a21a86b483f83ee0f5b653cc34a43cfb9457",
-      "url": "https://github.com/guitarrapc/githubactions-lab/commit/5296f17100018eee83b7f27934a2ab5665bab0e7"
+      "id": "935af14f685487be250a18630b19c84a5c0abc4a",
+      "message": "Merge pull request #293 from guitarrapc/vul\n\nfix: zizmor check",
+      "timestamp": "2026-01-22T13:07:23+09:00",
+      "tree_id": "044116f8aaf187e76f4dc50ee99dc5d32a944f93",
+      "url": "https://github.com/guitarrapc/githubactions-lab/commit/935af14f685487be250a18630b19c84a5c0abc4a"
     },
     "pusher": {
       "email": "3856350+guitarrapc@users.noreply.github.com",
@@ -220,12 +220,12 @@
       },
       "private": false,
       "pulls_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls{/number}",
-      "pushed_at": 1768989429,
+      "pushed_at": 1769054843,
       "releases_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/releases{/id}",
-      "size": 4872,
+      "size": 4917,
       "ssh_url": "git@github.com:guitarrapc/githubactions-lab.git",
-      "stargazers": 55,
-      "stargazers_count": 55,
+      "stargazers": 54,
+      "stargazers_count": 54,
       "stargazers_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/stargazers",
       "statuses_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/statuses/{sha}",
       "subscribers_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/subscribers",
@@ -237,11 +237,11 @@
         "github-actions"
       ],
       "trees_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/git/trees{/sha}",
-      "updated_at": "2026-01-21T09:54:03Z",
+      "updated_at": "2026-01-22T03:44:02Z",
       "url": "https://api.github.com/repos/guitarrapc/githubactions-lab",
       "visibility": "public",
-      "watchers": 55,
-      "watchers_count": 55,
+      "watchers": 54,
+      "watchers_count": 54,
       "web_commit_signoff_required": false
     },
     "sender": {
@@ -267,7 +267,7 @@
     }
   },
   "workflow_ref": "guitarrapc/githubactions-lab/.github/workflows/auto-dump-context.yaml@refs/heads/main",
-  "workflow_sha": "5296f17100018eee83b7f27934a2ab5665bab0e7",
+  "workflow_sha": "935af14f685487be250a18630b19c84a5c0abc4a",
   "repository_id": "257465468",
   "triggering_actor": "guitarrapc",
   "workspace": "/home/runner/work/githubactions-lab/githubactions-lab",
@@ -275,9 +275,9 @@
   "event_path": "/home/runner/work/_temp/_github_workflow/event.json",
   "action_repository": "",
   "action_ref": "",
-  "path": "/home/runner/work/_temp/_runner_file_commands/add_path_445ebd7d-52fb-491f-a462-ad82142b3c79",
-  "env": "/home/runner/work/_temp/_runner_file_commands/set_env_445ebd7d-52fb-491f-a462-ad82142b3c79",
-  "step_summary": "/home/runner/work/_temp/_runner_file_commands/step_summary_445ebd7d-52fb-491f-a462-ad82142b3c79",
-  "state": "/home/runner/work/_temp/_runner_file_commands/save_state_445ebd7d-52fb-491f-a462-ad82142b3c79",
-  "output": "/home/runner/work/_temp/_runner_file_commands/set_output_445ebd7d-52fb-491f-a462-ad82142b3c79"
+  "path": "/home/runner/work/_temp/_runner_file_commands/add_path_8eb44701-2b5e-4656-adac-992f3661ebb1",
+  "env": "/home/runner/work/_temp/_runner_file_commands/set_env_8eb44701-2b5e-4656-adac-992f3661ebb1",
+  "step_summary": "/home/runner/work/_temp/_runner_file_commands/step_summary_8eb44701-2b5e-4656-adac-992f3661ebb1",
+  "state": "/home/runner/work/_temp/_runner_file_commands/save_state_8eb44701-2b5e-4656-adac-992f3661ebb1",
+  "output": "/home/runner/work/_temp/_runner_file_commands/set_output_8eb44701-2b5e-4656-adac-992f3661ebb1"
 }
