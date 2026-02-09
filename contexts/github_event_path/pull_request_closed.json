@@ -1,38 +1,38 @@
 {
   "action": "closed",
-  "number": 293,
+  "number": 296,
   "pull_request": {
     "_links": {
       "comments": {
-        "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/issues/293/comments"
+        "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/issues/296/comments"
       },
       "commits": {
-        "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/293/commits"
+        "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/296/commits"
       },
       "html": {
-        "href": "https://github.com/guitarrapc/githubactions-lab/pull/293"
+        "href": "https://github.com/guitarrapc/githubactions-lab/pull/296"
       },
       "issue": {
-        "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/issues/293"
+        "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/issues/296"
       },
       "review_comment": {
         "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/comments{/number}"
       },
       "review_comments": {
-        "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/293/comments"
+        "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/296/comments"
       },
       "self": {
-        "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/293"
+        "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/296"
       },
       "statuses": {
-        "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/statuses/ccd15cef50a0b17e0c2962c1df2d09dd39e32b7b"
+        "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/statuses/d8202dd8f0917c7b5f9be04b72e651596d3b9496"
       }
     },
     "active_lock_reason": null,
-    "additions": 149,
+    "additions": 1,
     "assignee": null,
     "assignees": [],
-    "author_association": "OWNER",
+    "author_association": "CONTRIBUTOR",
     "auto_merge": null,
     "base": {
       "label": "guitarrapc:main",
@@ -131,9 +131,9 @@
         },
         "private": false,
         "pulls_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls{/number}",
-        "pushed_at": "2026-01-22T04:07:23Z",
+        "pushed_at": "2026-02-09T18:04:39Z",
         "releases_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/releases{/id}",
-        "size": 4917,
+        "size": 5054,
         "squash_merge_commit_message": "COMMIT_MESSAGES",
         "squash_merge_commit_title": "COMMIT_OR_PR_TITLE",
         "ssh_url": "git@github.com:guitarrapc/githubactions-lab.git",
@@ -149,7 +149,7 @@
           "github-actions"
         ],
         "trees_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/git/trees{/sha}",
-        "updated_at": "2026-01-22T03:44:02Z",
+        "updated_at": "2026-02-08T00:17:45Z",
         "url": "https://api.github.com/repos/guitarrapc/githubactions-lab",
         "use_squash_pr_title_as_default": false,
         "visibility": "public",
@@ -157,7 +157,7 @@
         "watchers_count": 54,
         "web_commit_signoff_required": false
       },
-      "sha": "a272221185db3a3c7b31583649299008adee7503",
+      "sha": "73921794d32ba629365d35ad3e12f2a4381fcf8c",
       "user": {
         "avatar_url": "https://avatars.githubusercontent.com/u/3856350?v=4",
         "events_url": "https://api.github.com/users/guitarrapc/events{/privacy}",
@@ -180,20 +180,20 @@
         "user_view_type": "public"
       }
     },
-    "body": "## Summary\n\nzizmor point out 2 security weakness.\n\n- template-injection: .github/workflows/artifacts-other-workflow.yaml#L37\nartifacts-other-workflow.yaml:37: code injection via template expansion: may expand into attacker-controllable code\n- template-injection: .github/workflows/artifacts-other-workflow.yaml#L30\nartifacts-other-workflow.yaml:30: code injection via template expansion: may expand into attacker-controllable code\n\nhttps://github.com/guitarrapc/githubactions-lab/actions/runs/21231076467",
-    "changed_files": 9,
-    "closed_at": "2026-01-22T04:07:23Z",
+    "body": "Bumps [peter-evans/create-pull-request](https://github.com/peter-evans/create-pull-request) from 8.0.0 to 8.1.0.\n<details>\n<summary>Release notes</summary>\n<p><em>Sourced from <a href=\"https://github.com/peter-evans/create-pull-request/releases\">peter-evans/create-pull-request's releases</a>.</em></p>\n<blockquote>\n<h2>Create Pull Request v8.1.0</h2>\n<h2>What's Changed</h2>\n<ul>\n<li>README.md: bump given GitHub actions to their latest versions by <a href=\"https://github.com/deining\"><code>@​deining</code></a> in <a href=\"https://redirect.github.com/peter-evans/create-pull-request/pull/4265\">peter-evans/create-pull-request#4265</a></li>\n<li>build(deps): bump the github-actions group with 2 updates by <a href=\"https://github.com/dependabot\"><code>@​dependabot</code></a>[bot] in <a href=\"https://redirect.github.com/peter-evans/create-pull-request/pull/4273\">peter-evans/create-pull-request#4273</a></li>\n<li>build(deps-dev): bump the npm group with 2 updates by <a href=\"https://github.com/dependabot\"><code>@​dependabot</code></a>[bot] in <a href=\"https://redirect.github.com/peter-evans/create-pull-request/pull/4274\">peter-evans/create-pull-request#4274</a></li>\n<li>build(deps-dev): bump undici from 6.22.0 to 6.23.0 by <a href=\"https://github.com/dependabot\"><code>@​dependabot</code></a>[bot] in <a href=\"https://redirect.github.com/peter-evans/create-pull-request/pull/4284\">peter-evans/create-pull-request#4284</a></li>\n<li>Update distribution by <a href=\"https://github.com/actions-bot\"><code>@​actions-bot</code></a> in <a href=\"https://redirect.github.com/peter-evans/create-pull-request/pull/4289\">peter-evans/create-pull-request#4289</a></li>\n<li>fix: Handle remote prune failures gracefully on self-hosted runners by <a href=\"https://github.com/peter-evans\"><code>@​peter-evans</code></a> in <a href=\"https://redirect.github.com/peter-evans/create-pull-request/pull/4295\">peter-evans/create-pull-request#4295</a></li>\n<li>feat: add <code>@​octokit/plugin-retry</code> to handle retriable server errors by <a href=\"https://github.com/peter-evans\"><code>@​peter-evans</code></a> in <a href=\"https://redirect.github.com/peter-evans/create-pull-request/pull/4298\">peter-evans/create-pull-request#4298</a></li>\n</ul>\n<h2>New Contributors</h2>\n<ul>\n<li><a href=\"https://github.com/deining\"><code>@​deining</code></a> made their first contribution in <a href=\"https://redirect.github.com/peter-evans/create-pull-request/pull/4265\">peter-evans/create-pull-request#4265</a></li>\n</ul>\n<p><strong>Full Changelog</strong>: <a href=\"https://github.com/peter-evans/create-pull-request/compare/v8.0.0...v8.1.0\">https://github.com/peter-evans/create-pull-request/compare/v8.0.0...v8.1.0</a></p>\n</blockquote>\n</details>\n<details>\n<summary>Commits</summary>\n<ul>\n<li><a href=\"https://github.com/peter-evans/create-pull-request/commit/c0f553fe549906ede9cf27b5156039d195d2ece0\"><code>c0f553f</code></a> feat: add <code>@​octokit/plugin-retry</code> to handle retriable server errors (<a href=\"https://redirect.github.com/peter-evans/create-pull-request/issues/4298\">#4298</a>)</li>\n<li><a href=\"https://github.com/peter-evans/create-pull-request/commit/70001242bfa9ec7844891e620fdda69a2a2a06c7\"><code>7000124</code></a> fix: Handle remote prune failures gracefully (<a href=\"https://redirect.github.com/peter-evans/create-pull-request/issues/4295\">#4295</a>)</li>\n<li><a href=\"https://github.com/peter-evans/create-pull-request/commit/34aa40e9cf0bb8b5be745a552003fdeb25e4dd3a\"><code>34aa40e</code></a> build: update distribution (<a href=\"https://redirect.github.com/peter-evans/create-pull-request/issues/4289\">#4289</a>)</li>\n<li><a href=\"https://github.com/peter-evans/create-pull-request/commit/641099ddca097df58c3369dd5e1f33322b223029\"><code>641099d</code></a> build(deps-dev): bump undici from 6.22.0 to 6.23.0 (<a href=\"https://redirect.github.com/peter-evans/create-pull-request/issues/4284\">#4284</a>)</li>\n<li><a href=\"https://github.com/peter-evans/create-pull-request/commit/2271f1ddcf09437ed8f019733eb5cfba58ac76f0\"><code>2271f1d</code></a> build(deps-dev): bump the npm group with 2 updates (<a href=\"https://redirect.github.com/peter-evans/create-pull-request/issues/4274\">#4274</a>)</li>\n<li><a href=\"https://github.com/peter-evans/create-pull-request/commit/437c31a11dd02128dd37633ad8d3832853477e7a\"><code>437c31a</code></a> build(deps): bump the github-actions group with 2 updates (<a href=\"https://redirect.github.com/peter-evans/create-pull-request/issues/4273\">#4273</a>)</li>\n<li><a href=\"https://github.com/peter-evans/create-pull-request/commit/0979079bc20c05bbbb590a56c21c4e2b1d1f1bbe\"><code>0979079</code></a> docs: update readme</li>\n<li><a href=\"https://github.com/peter-evans/create-pull-request/commit/5b751cdf403b4f0314c656b2618939e4c8bdf824\"><code>5b751cd</code></a> README.md: bump given GitHub actions to their latest versions (<a href=\"https://redirect.github.com/peter-evans/create-pull-request/issues/4265\">#4265</a>)</li>\n<li>See full diff in <a href=\"https://github.com/peter-evans/create-pull-request/compare/98357b18bf14b5342f975ff684046ec3b2a07725...c0f553fe549906ede9cf27b5156039d195d2ece0\">compare view</a></li>\n</ul>\n</details>\n<br />\n\n\n[![Dependabot compatibility score](https://dependabot-badges.githubapp.com/badges/compatibility_score?dependency-name=peter-evans/create-pull-request&package-manager=github_actions&previous-version=8.0.0&new-version=8.1.0)](https://docs.github.com/en/github/managing-security-vulnerabilities/about-dependabot-security-updates#about-compatibility-scores)\n\nDependabot will resolve any conflicts with this PR as long as you don't alter it yourself. You can also trigger a rebase manually by commenting `@dependabot rebase`.\n\n[//]: # (dependabot-automerge-start)\n[//]: # (dependabot-automerge-end)\n\n---\n\n<details>\n<summary>Dependabot commands and options</summary>\n<br />\n\nYou can trigger Dependabot actions by commenting on this PR:\n- `@dependabot rebase` will rebase this PR\n- `@dependabot recreate` will recreate this PR, overwriting any edits that have been made to it\n- `@dependabot show <dependency name> ignore conditions` will show all of the ignore conditions of the specified dependency\n- `@dependabot ignore this major version` will close this PR and stop Dependabot creating any more for this major version (unless you reopen the PR or upgrade to it yourself)\n- `@dependabot ignore this minor version` will close this PR and stop Dependabot creating any more for this minor version (unless you reopen the PR or upgrade to it yourself)\n- `@dependabot ignore this dependency` will close this PR and stop Dependabot creating any more for this dependency (unless you reopen the PR or upgrade to it yourself)\n\n\n</details>",
+    "changed_files": 1,
+    "closed_at": "2026-02-09T18:04:39Z",
     "comments": 0,
-    "comments_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/issues/293/comments",
-    "commits": 3,
-    "commits_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/293/commits",
-    "created_at": "2026-01-22T03:43:08Z",
-    "deletions": 143,
-    "diff_url": "https://github.com/guitarrapc/githubactions-lab/pull/293.diff",
+    "comments_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/issues/296/comments",
+    "commits": 1,
+    "commits_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/296/commits",
+    "created_at": "2026-02-09T17:50:40Z",
+    "deletions": 1,
+    "diff_url": "https://github.com/guitarrapc/githubactions-lab/pull/296.diff",
     "draft": false,
     "head": {
-      "label": "guitarrapc:vul",
-      "ref": "vul",
+      "label": "guitarrapc:dependabot/github_actions/peter-evans/create-pull-request-8.1.0",
+      "ref": "dependabot/github_actions/peter-evans/create-pull-request-8.1.0",
       "repo": {
         "allow_auto_merge": true,
         "allow_forking": true,
@@ -288,9 +288,9 @@
         },
         "private": false,
         "pulls_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls{/number}",
-        "pushed_at": "2026-01-22T04:07:23Z",
+        "pushed_at": "2026-02-09T18:04:39Z",
         "releases_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/releases{/id}",
-        "size": 4917,
+        "size": 5054,
         "squash_merge_commit_message": "COMMIT_MESSAGES",
         "squash_merge_commit_title": "COMMIT_OR_PR_TITLE",
         "ssh_url": "git@github.com:guitarrapc/githubactions-lab.git",
@@ -306,7 +306,7 @@
           "github-actions"
         ],
         "trees_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/git/trees{/sha}",
-        "updated_at": "2026-01-22T03:44:02Z",
+        "updated_at": "2026-02-08T00:17:45Z",
         "url": "https://api.github.com/repos/guitarrapc/githubactions-lab",
         "use_squash_pr_title_as_default": false,
         "visibility": "public",
@@ -314,7 +314,7 @@
         "watchers_count": 54,
         "web_commit_signoff_required": false
       },
-      "sha": "ccd15cef50a0b17e0c2962c1df2d09dd39e32b7b",
+      "sha": "d8202dd8f0917c7b5f9be04b72e651596d3b9496",
       "user": {
         "avatar_url": "https://avatars.githubusercontent.com/u/3856350?v=4",
         "events_url": "https://api.github.com/users/guitarrapc/events{/privacy}",
@@ -337,17 +337,36 @@
         "user_view_type": "public"
       }
     },
-    "html_url": "https://github.com/guitarrapc/githubactions-lab/pull/293",
-    "id": 3197774143,
-    "issue_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/issues/293",
-    "labels": [],
+    "html_url": "https://github.com/guitarrapc/githubactions-lab/pull/296",
+    "id": 3263812674,
+    "issue_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/issues/296",
+    "labels": [
+      {
+        "color": "0366d6",
+        "default": false,
+        "description": "Pull requests that update a dependency file",
+        "id": 5238199298,
+        "name": "dependencies",
+        "node_id": "LA_kwDOD1icfM8AAAABODiUAg",
+        "url": "https://api.github.com/repos/guitarrapc/githubactions-lab/labels/dependencies"
+      },
+      {
+        "color": "000000",
+        "default": false,
+        "description": "Pull requests that update GitHub Actions code",
+        "id": 8308588862,
+        "name": "github_actions",
+        "node_id": "LA_kwDOD1icfM8AAAAB7zsBPg",
+        "url": "https://api.github.com/repos/guitarrapc/githubactions-lab/labels/github_actions"
+      }
+    ],
     "locked": false,
     "maintainer_can_modify": false,
-    "merge_commit_sha": "935af14f685487be250a18630b19c84a5c0abc4a",
+    "merge_commit_sha": "6c2cbaf99fbef38584ed34f4576f6712319f210d",
     "mergeable": null,
     "mergeable_state": "unknown",
     "merged": true,
-    "merged_at": "2026-01-22T04:07:23Z",
+    "merged_at": "2026-02-09T18:04:39Z",
     "merged_by": {
       "avatar_url": "https://avatars.githubusercontent.com/u/3856350?v=4",
       "events_url": "https://api.github.com/users/guitarrapc/events{/privacy}",
@@ -370,39 +389,61 @@
       "user_view_type": "public"
     },
     "milestone": null,
-    "node_id": "PR_kwDOD1icfM6-mik_",
-    "number": 293,
-    "patch_url": "https://github.com/guitarrapc/githubactions-lab/pull/293.patch",
+    "node_id": "PR_kwDOD1icfM7CidRC",
+    "number": 296,
+    "patch_url": "https://github.com/guitarrapc/githubactions-lab/pull/296.patch",
     "rebaseable": null,
-    "requested_reviewers": [],
+    "requested_reviewers": [
+      {
+        "avatar_url": "https://avatars.githubusercontent.com/u/3856350?v=4",
+        "events_url": "https://api.github.com/users/guitarrapc/events{/privacy}",
+        "followers_url": "https://api.github.com/users/guitarrapc/followers",
+        "following_url": "https://api.github.com/users/guitarrapc/following{/other_user}",
+        "gists_url": "https://api.github.com/users/guitarrapc/gists{/gist_id}",
+        "gravatar_id": "",
+        "html_url": "https://github.com/guitarrapc",
+        "id": 3856350,
+        "login": "guitarrapc",
+        "node_id": "MDQ6VXNlcjM4NTYzNTA=",
+        "organizations_url": "https://api.github.com/users/guitarrapc/orgs",
+        "received_events_url": "https://api.github.com/users/guitarrapc/received_events",
+        "repos_url": "https://api.github.com/users/guitarrapc/repos",
+        "site_admin": false,
+        "starred_url": "https://api.github.com/users/guitarrapc/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/guitarrapc/subscriptions",
+        "type": "User",
+        "url": "https://api.github.com/users/guitarrapc",
+        "user_view_type": "public"
+      }
+    ],
     "requested_teams": [],
     "review_comment_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/comments{/number}",
     "review_comments": 0,
-    "review_comments_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/293/comments",
+    "review_comments_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/296/comments",
     "state": "closed",
-    "statuses_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/statuses/ccd15cef50a0b17e0c2962c1df2d09dd39e32b7b",
-    "title": "fix: zizmor check",
-    "updated_at": "2026-01-22T04:07:23Z",
-    "url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/293",
+    "statuses_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/statuses/d8202dd8f0917c7b5f9be04b72e651596d3b9496",
+    "title": "chore(deps): bump peter-evans/create-pull-request from 8.0.0 to 8.1.0",
+    "updated_at": "2026-02-09T18:04:39Z",
+    "url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/296",
     "user": {
-      "avatar_url": "https://avatars.githubusercontent.com/u/3856350?v=4",
-      "events_url": "https://api.github.com/users/guitarrapc/events{/privacy}",
-      "followers_url": "https://api.github.com/users/guitarrapc/followers",
-      "following_url": "https://api.github.com/users/guitarrapc/following{/other_user}",
-      "gists_url": "https://api.github.com/users/guitarrapc/gists{/gist_id}",
+      "avatar_url": "https://avatars.githubusercontent.com/in/29110?v=4",
+      "events_url": "https://api.github.com/users/dependabot%5Bbot%5D/events{/privacy}",
+      "followers_url": "https://api.github.com/users/dependabot%5Bbot%5D/followers",
+      "following_url": "https://api.github.com/users/dependabot%5Bbot%5D/following{/other_user}",
+      "gists_url": "https://api.github.com/users/dependabot%5Bbot%5D/gists{/gist_id}",
       "gravatar_id": "",
-      "html_url": "https://github.com/guitarrapc",
-      "id": 3856350,
-      "login": "guitarrapc",
-      "node_id": "MDQ6VXNlcjM4NTYzNTA=",
-      "organizations_url": "https://api.github.com/users/guitarrapc/orgs",
-      "received_events_url": "https://api.github.com/users/guitarrapc/received_events",
-      "repos_url": "https://api.github.com/users/guitarrapc/repos",
+      "html_url": "https://github.com/apps/dependabot",
+      "id": 49699333,
+      "login": "dependabot[bot]",
+      "node_id": "MDM6Qm90NDk2OTkzMzM=",
+      "organizations_url": "https://api.github.com/users/dependabot%5Bbot%5D/orgs",
+      "received_events_url": "https://api.github.com/users/dependabot%5Bbot%5D/received_events",
+      "repos_url": "https://api.github.com/users/dependabot%5Bbot%5D/repos",
       "site_admin": false,
-      "starred_url": "https://api.github.com/users/guitarrapc/starred{/owner}{/repo}",
-      "subscriptions_url": "https://api.github.com/users/guitarrapc/subscriptions",
-      "type": "User",
-      "url": "https://api.github.com/users/guitarrapc",
+      "starred_url": "https://api.github.com/users/dependabot%5Bbot%5D/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/dependabot%5Bbot%5D/subscriptions",
+      "type": "Bot",
+      "url": "https://api.github.com/users/dependabot%5Bbot%5D",
       "user_view_type": "public"
     }
   },
@@ -492,9 +533,9 @@
     },
     "private": false,
     "pulls_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls{/number}",
-    "pushed_at": "2026-01-22T04:07:23Z",
+    "pushed_at": "2026-02-09T18:04:39Z",
     "releases_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/releases{/id}",
-    "size": 4917,
+    "size": 5054,
     "ssh_url": "git@github.com:guitarrapc/githubactions-lab.git",
     "stargazers_count": 54,
     "stargazers_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/stargazers",
@@ -508,7 +549,7 @@
       "github-actions"
     ],
     "trees_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/git/trees{/sha}",
-    "updated_at": "2026-01-22T03:44:02Z",
+    "updated_at": "2026-02-08T00:17:45Z",
     "url": "https://api.github.com/repos/guitarrapc/githubactions-lab",
     "visibility": "public",
     "watchers": 54,
