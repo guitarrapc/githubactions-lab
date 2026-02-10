@@ -72,7 +72,7 @@ runs:
           # If we haven't exceeded max retries, try to rebase and retry
           if [ $retry_count -lt $max_retries ]; then
             echo "Failed to push, try 'git pull --rebase' to resolve ..."
-            if ! git pull origin "$GIT_REF" --rebase; then
+            if ! git pull origin "$GIT_REF" --rebase --strategy=recursive -X theirs; then
               echo "'git pull --rebase' has problem, you need resolve conflict ..."
               exit 1
             fi
