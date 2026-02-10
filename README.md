@@ -784,63 +784,63 @@ Use `toJson(<CONTEXT>)` To show context values in json.
 
 name: dump context
 on:
-    issues:
-        types: [opened, transferred, closed]
-    issue_comment:
-        types: [created]
-    push:
-        branches: ["main"]
-        tags: ["*"]
-    pull_request:
-        branches: ["main"]
-        types: [opened, synchronize, reopened, closed]
-    pull_request_target: # zizmor: ignore[dangerous-triggers]
-        branches: ["main"]
-        types: [opened, synchronize, reopened, closed]
-    release:
-        types: [created, published]
-    schedule:
-        - cron: "0 0 * * 1"
-    workflow_dispatch:
+  issues:
+    types: [opened, transferred, closed]
+  issue_comment:
+    types: [created]
+  push:
+    branches: ["main"]
+    tags: ["*"]
+  pull_request:
+    branches: ["main"]
+    types: [opened, synchronize, reopened, closed]
+  pull_request_target: # zizmor: ignore[dangerous-triggers]
+    branches: ["main"]
+    types: [opened, synchronize, reopened, closed]
+  release:
+    types: [created, published]
+  schedule:
+    - cron: "0 0 * * 1"
+  workflow_dispatch:
 
 jobs:
-    dump:
-        permissions:
-            contents: read
-        runs-on: ubuntu-24.04
-        timeout-minutes: 3
-        steps:
-            - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
-              with:
-                  persist-credentials: false
-            - name: Dump environment
-              run: env
-            - name: Dump GITHUB_EVENT_PATH json
-              run: cat "$GITHUB_EVENT_PATH"
-            - name: Dump GitHub context
-              run: echo "$CONTEXT"
-              env:
-                  CONTEXT: ${{ toJson(github) }}
-            - name: Dump job context
-              run: echo "$CONTEXT"
-              env:
-                  CONTEXT: ${{ toJson(job) }}
-            - name: Dump steps context
-              run: echo "$CONTEXT"
-              env:
-                  CONTEXT: ${{ toJson(steps) }}
-            - name: Dump runner context
-              run: echo "$CONTEXT"
-              env:
-                  CONTEXT: ${{ toJson(runner) }}
-            - name: Dump strategy context
-              run: echo "$CONTEXT"
-              env:
-                  CONTEXT: ${{ toJson(strategy) }}
-            - name: Dump matrix context
-              run: echo "$CONTEXT"
-              env:
-                  CONTEXT: ${{ toJson(matrix) }}
+  dump:
+    permissions:
+      contents: read
+    runs-on: ubuntu-24.04
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
+        with:
+          persist-credentials: false
+      - name: Dump environment
+        run: env
+      - name: Dump GITHUB_EVENT_PATH json
+        run: cat "$GITHUB_EVENT_PATH"
+      - name: Dump GitHub context
+        run: echo "$CONTEXT"
+        env:
+          CONTEXT: ${{ toJson(github) }}
+      - name: Dump job context
+        run: echo "$CONTEXT"
+        env:
+          CONTEXT: ${{ toJson(job) }}
+      - name: Dump steps context
+        run: echo "$CONTEXT"
+        env:
+          CONTEXT: ${{ toJson(steps) }}
+      - name: Dump runner context
+        run: echo "$CONTEXT"
+        env:
+          CONTEXT: ${{ toJson(runner) }}
+      - name: Dump strategy context
+        run: echo "$CONTEXT"
+        env:
+          CONTEXT: ${{ toJson(strategy) }}
+      - name: Dump matrix context
+        run: echo "$CONTEXT"
+        env:
+          CONTEXT: ${{ toJson(matrix) }}
 
 ```
 
@@ -878,61 +878,61 @@ Call this script from workflow.
 
 name: set env with script
 on:
-    workflow_dispatch:
-    push:
-        branches: ["main"]
-    pull_request:
-        branches: ["main"]
+  workflow_dispatch:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
 
 env:
-    BRANCH_NAME: ${{ startsWith(github.event_name, 'pull_request') && github.head_ref || github.ref_name }}
+  BRANCH_NAME: ${{ startsWith(github.event_name, 'pull_request') && github.head_ref || github.ref_name }}
 
 jobs:
-    bash:
-        strategy:
-            matrix:
-                runs-on: [ubuntu-24.04, windows-2025]
-        permissions:
-            contents: read
-        runs-on: ${{ matrix.runs-on }}
-        timeout-minutes: 3
-        defaults:
-            run:
-                shell: bash
-        steps:
-            - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
-              with:
-                  persist-credentials: false
-            - name: Add ENV and OUTPUT by Script
-              id: script
-              run: bash ./.github/scripts/setenv.sh --ref "${{ env.BRANCH_NAME }}"
-            - name: Show Script  ENV and OUTPUT
-              run: |
-                  echo ${{ env.BRANCH_SCRIPT }}
-                  echo ${{ steps.script.outputs.branch }}
+  bash:
+    strategy:
+      matrix:
+        runs-on: [ubuntu-24.04, windows-2025]
+    permissions:
+      contents: read
+    runs-on: ${{ matrix.runs-on }}
+    timeout-minutes: 3
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
+        with:
+          persist-credentials: false
+      - name: Add ENV and OUTPUT by Script
+        id: script
+        run: bash ./.github/scripts/setenv.sh --ref "${{ env.BRANCH_NAME }}"
+      - name: Show Script  ENV and OUTPUT
+        run: |
+          echo ${{ env.BRANCH_SCRIPT }}
+          echo ${{ steps.script.outputs.branch }}
 
-    pwsh:
-        strategy:
-            matrix:
-                runs-on: [ubuntu-24.04, windows-2025]
-        permissions:
-            contents: read
-        runs-on: ${{ matrix.runs-on }}
-        timeout-minutes: 3
-        defaults:
-            run:
-                shell: pwsh
-        steps:
-            - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
-              with:
-                  persist-credentials: false
-            - name: Add ENV and OUTPUT by Script
-              id: script
-              run: ./.github/scripts/setenv.ps1 -Ref "${{ env.BRANCH_NAME }}"
-            - name: Show Script ENV and OUTPUT
-              run: |
-                  echo "${{ env.BRANCH_SCRIPT }}"
-                  echo "${{ steps.script.outputs.branch }}"
+  pwsh:
+    strategy:
+      matrix:
+        runs-on: [ubuntu-24.04, windows-2025]
+    permissions:
+      contents: read
+    runs-on: ${{ matrix.runs-on }}
+    timeout-minutes: 3
+    defaults:
+      run:
+        shell: pwsh
+    steps:
+      - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
+        with:
+          persist-credentials: false
+      - name: Add ENV and OUTPUT by Script
+        id: script
+        run: ./.github/scripts/setenv.ps1 -Ref "${{ env.BRANCH_NAME }}"
+      - name: Show Script ENV and OUTPUT
+        run: |
+          echo "${{ env.BRANCH_SCRIPT }}"
+          echo "${{ steps.script.outputs.branch }}"
 
 ```
 
@@ -1681,66 +1681,66 @@ Input types supported are:
 
 name: workflowdispatch inputs
 on:
-    workflow_dispatch:
-        inputs:
-            branch:
-                description: "branch name to clone"
-                required: true
-                default: "main"
-                type: string
-            logLevel:
-                description: "Log level"
-                required: true
-                default: "warning"
-                type: choice
-                options:
-                    - debug
-                    - info
-                    - warning
-                    - error
-            dry-run:
-                description: "Enable dry-run mode"
-                required: false
-                type: boolean
-            number:
-                description: "An optional number"
-                required: false
-                default: 0
-                type: number
-            tags:
-                description: "Test scenario tags"
-                required: false
+  workflow_dispatch:
+    inputs:
+      branch:
+        description: "branch name to clone"
+        required: true
+        default: "main"
+        type: string
+      logLevel:
+        description: "Log level"
+        required: true
+        default: "warning"
+        type: choice
+        options:
+          - debug
+          - info
+          - warning
+          - error
+      dry-run:
+        description: "Enable dry-run mode"
+        required: false
+        type: boolean
+      number:
+        description: "An optional number"
+        required: false
+        default: 0
+        type: number
+      tags:
+        description: "Test scenario tags"
+        required: false
 
 jobs:
-    printInputs:
-        permissions:
-            contents: read
-        runs-on: ubuntu-24.04
-        timeout-minutes: 3
+  printInputs:
+    permissions:
+      contents: read
+    runs-on: ubuntu-24.04
+    timeout-minutes: 3
+    env:
+      BRANCH: ${{ inputs.branch }}
+      LOGLEVEL: ${{ inputs.logLevel }}
+      TAGS: ${{ inputs.tags }}
+      DRY_RUN: ${{ inputs.dry-run }}
+    steps:
+      - name: Show Environment Variables
+        run: env
+      - run: echo "BRANCH=${{ env.BRANCH }}, LOGLEVEL=${{ env.LOGLEVEL }}, TAGS=${{ env.TAGS }}, DRY_RUN=${{ env.DRY_RUN }}"
+      - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
+        with:
+          ref: ${{ inputs.branch }}
+          persist-credentials: false
+      - name: Show Input value
+        run: |
+          echo "Log level: ${LOG_LEVEL}"
+          echo "Number: ${NUMBER}"
         env:
-            BRANCH: ${{ inputs.branch }}
-            LOGLEVEL: ${{ inputs.logLevel }}
-            TAGS: ${{ inputs.tags }}
-            DRY_RUN: ${{ inputs.dry-run }}
-        steps:
-            - name: Show Environment Variables
-              run: env
-            - run: echo "BRANCH=${{ env.BRANCH }}, LOGLEVEL=${{ env.LOGLEVEL }}, TAGS=${{ env.TAGS }}, DRY_RUN=${{ env.DRY_RUN }}"
-            - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
-              with:
-                  ref: ${{ inputs.branch }}
-                  persist-credentials: false
-            - name: Show Input value
-              run: |
-                  echo "Log level: ${LOG_LEVEL}"
-                  echo "Number: ${NUMBER}"
-              env:
-                  LOG_LEVEL: ${{ inputs.logLevel }}
-                  NUMBER: ${{ inputs.number }}
-            - name: INPUT_ is not generated automatcally
-              run: |
-                  echo "INPUT_BRANCH: ${INPUT_BRANCH}"
-                  echo "TEST_number: ${TEST_numer}"
+          LOG_LEVEL: ${{ inputs.logLevel }}
+          NUMBER: ${{ inputs.number }}
+      - name: INPUT_ is not generated automatcally
+        run: |
+          echo "INPUT_BRANCH: ${INPUT_BRANCH}"
+          echo "TEST_number: ${TEST_numer}"
 
 ```
 
@@ -1813,68 +1813,68 @@ You can detect which files were changed with push or pull_request events in GitH
 
 name: file change detect dorny
 on:
-    pull_request:
-        branches: ["main"]
-    push:
-        branches: ["main"]
+  pull_request:
+    branches: ["main"]
+  push:
+    branches: ["main"]
 
 jobs:
-    changed-files:
-        permissions:
-            contents: read
-        runs-on: ubuntu-24.04
-        timeout-minutes: 3
-        steps:
-            - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
-              with:
-                  persist-credentials: false
-            # see: https://github.com/dorny/paths-filter/blob/master/README.md
-            - id: changed-files
-              uses: dorny/paths-filter@de90cc6fb38fc0963ad72b210f1f284cd68cea36 # v3.0.2
-              with:
-                  base: ${{ github.event_name == 'push' && github.ref || '' }}
-                  list-files: csv # default 'none'. Disables listing of matching files.
-                  filters: |
-                      foo:
-                        - '**'
-            - name: Is any change happen on some filters?
-              run: echo "${{ steps.changed-files.outputs.changes }}"
-            - name: Is change happen on foo filter?
-              run: echo "${{ steps.changed-files.outputs.foo }}"
-            - name: Changed file list for foo filter
-              run: echo "${{ steps.changed-files.outputs.foo_files }}"
-            - name: Is foo filter changed files include .github/workflows?
-              run: echo "${{ contains(steps.changed-files.outputs.foo_files, '.github/workflows')}}"
-            - name: Is foo filter changed files include .github/dummy?
-              run: echo "${{ contains(steps.changed-files.outputs.foo_files, '.github/dummy')}}"
-            # space separated
-            - id: changed-files2
-              uses: dorny/paths-filter@de90cc6fb38fc0963ad72b210f1f284cd68cea36 # v3.0.2
-              if: ${{ github.event.pull_request.changed_files < 100 }} # when changed files less than 100
-              with:
-                  base: ${{ github.event_name == 'push' && github.ref || '' }}
-                  list-files: shell
-                  filters: |
-                      foo:
-                        - '**'
-            - name: List all changed files
-              env:
-                  CHANGED_FILES: ${{ steps.changed-files2.outputs.foo_files }}
-              run: |
-                  for file in ${CHANGED_FILES}; do
-                    echo "$file was changed"
-                  done
-            # json separated
-            - id: changed-files3
-              uses: dorny/paths-filter@de90cc6fb38fc0963ad72b210f1f284cd68cea36 # v3.0.2
-              with:
-                  base: ${{ github.event_name == 'push' && github.ref || '' }}
-                  list-files: json
-                  filters: |
-                      foo:
-                        - '**'
-            - name: Changed file list for foo filter
-              run: echo "${{ steps.changed-files3.outputs.foo_files }}"
+  changed-files:
+    permissions:
+      contents: read
+    runs-on: ubuntu-24.04
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
+        with:
+          persist-credentials: false
+      # see: https://github.com/dorny/paths-filter/blob/master/README.md
+      - id: changed-files
+        uses: dorny/paths-filter@de90cc6fb38fc0963ad72b210f1f284cd68cea36 # v3.0.2
+        with:
+          base: ${{ github.event_name == 'push' && github.ref || '' }}
+          list-files: csv # default 'none'. Disables listing of matching files.
+          filters: |
+            foo:
+              - '**'
+      - name: Is any change happen on some filters?
+        run: echo "${{ steps.changed-files.outputs.changes }}"
+      - name: Is change happen on foo filter?
+        run: echo "${{ steps.changed-files.outputs.foo }}"
+      - name: Changed file list for foo filter
+        run: echo "${{ steps.changed-files.outputs.foo_files }}"
+      - name: Is foo filter changed files include .github/workflows?
+        run: echo "${{ contains(steps.changed-files.outputs.foo_files, '.github/workflows')}}"
+      - name: Is foo filter changed files include .github/dummy?
+        run: echo "${{ contains(steps.changed-files.outputs.foo_files, '.github/dummy')}}"
+      # space separated
+      - id: changed-files2
+        uses: dorny/paths-filter@de90cc6fb38fc0963ad72b210f1f284cd68cea36 # v3.0.2
+        if: ${{ github.event.pull_request.changed_files < 100 }} # when changed files less than 100
+        with:
+          base: ${{ github.event_name == 'push' && github.ref || '' }}
+          list-files: shell
+          filters: |
+            foo:
+              - '**'
+      - name: List all changed files
+        env:
+          CHANGED_FILES: ${{ steps.changed-files2.outputs.foo_files }}
+        run: |
+          for file in ${CHANGED_FILES}; do
+            echo "$file was changed"
+          done
+      # json separated
+      - id: changed-files3
+        uses: dorny/paths-filter@de90cc6fb38fc0963ad72b210f1f284cd68cea36 # v3.0.2
+        with:
+          base: ${{ github.event_name == 'push' && github.ref || '' }}
+          list-files: json
+          filters: |
+            foo:
+              - '**'
+      - name: Changed file list for foo filter
+        run: echo "${{ steps.changed-files3.outputs.foo_files }}"
 
 ```
 
@@ -1885,68 +1885,68 @@ jobs:
 
 name: file change detect dorny
 on:
-    pull_request:
-        branches: ["main"]
-    push:
-        branches: ["main"]
+  pull_request:
+    branches: ["main"]
+  push:
+    branches: ["main"]
 
 jobs:
-    changed-files:
-        permissions:
-            contents: read
-        runs-on: ubuntu-24.04
-        timeout-minutes: 3
-        steps:
-            - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
-              with:
-                  persist-credentials: false
-            # see: https://github.com/dorny/paths-filter/blob/master/README.md
-            - id: changed-files
-              uses: dorny/paths-filter@de90cc6fb38fc0963ad72b210f1f284cd68cea36 # v3.0.2
-              with:
-                  base: ${{ github.event_name == 'push' && github.ref || '' }}
-                  list-files: csv # default 'none'. Disables listing of matching files.
-                  filters: |
-                      foo:
-                        - '**'
-            - name: Is any change happen on some filters?
-              run: echo "${{ steps.changed-files.outputs.changes }}"
-            - name: Is change happen on foo filter?
-              run: echo "${{ steps.changed-files.outputs.foo }}"
-            - name: Changed file list for foo filter
-              run: echo "${{ steps.changed-files.outputs.foo_files }}"
-            - name: Is foo filter changed files include .github/workflows?
-              run: echo "${{ contains(steps.changed-files.outputs.foo_files, '.github/workflows')}}"
-            - name: Is foo filter changed files include .github/dummy?
-              run: echo "${{ contains(steps.changed-files.outputs.foo_files, '.github/dummy')}}"
-            # space separated
-            - id: changed-files2
-              uses: dorny/paths-filter@de90cc6fb38fc0963ad72b210f1f284cd68cea36 # v3.0.2
-              if: ${{ github.event.pull_request.changed_files < 100 }} # when changed files less than 100
-              with:
-                  base: ${{ github.event_name == 'push' && github.ref || '' }}
-                  list-files: shell
-                  filters: |
-                      foo:
-                        - '**'
-            - name: List all changed files
-              env:
-                  CHANGED_FILES: ${{ steps.changed-files2.outputs.foo_files }}
-              run: |
-                  for file in ${CHANGED_FILES}; do
-                    echo "$file was changed"
-                  done
-            # json separated
-            - id: changed-files3
-              uses: dorny/paths-filter@de90cc6fb38fc0963ad72b210f1f284cd68cea36 # v3.0.2
-              with:
-                  base: ${{ github.event_name == 'push' && github.ref || '' }}
-                  list-files: json
-                  filters: |
-                      foo:
-                        - '**'
-            - name: Changed file list for foo filter
-              run: echo "${{ steps.changed-files3.outputs.foo_files }}"
+  changed-files:
+    permissions:
+      contents: read
+    runs-on: ubuntu-24.04
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
+        with:
+          persist-credentials: false
+      # see: https://github.com/dorny/paths-filter/blob/master/README.md
+      - id: changed-files
+        uses: dorny/paths-filter@de90cc6fb38fc0963ad72b210f1f284cd68cea36 # v3.0.2
+        with:
+          base: ${{ github.event_name == 'push' && github.ref || '' }}
+          list-files: csv # default 'none'. Disables listing of matching files.
+          filters: |
+            foo:
+              - '**'
+      - name: Is any change happen on some filters?
+        run: echo "${{ steps.changed-files.outputs.changes }}"
+      - name: Is change happen on foo filter?
+        run: echo "${{ steps.changed-files.outputs.foo }}"
+      - name: Changed file list for foo filter
+        run: echo "${{ steps.changed-files.outputs.foo_files }}"
+      - name: Is foo filter changed files include .github/workflows?
+        run: echo "${{ contains(steps.changed-files.outputs.foo_files, '.github/workflows')}}"
+      - name: Is foo filter changed files include .github/dummy?
+        run: echo "${{ contains(steps.changed-files.outputs.foo_files, '.github/dummy')}}"
+      # space separated
+      - id: changed-files2
+        uses: dorny/paths-filter@de90cc6fb38fc0963ad72b210f1f284cd68cea36 # v3.0.2
+        if: ${{ github.event.pull_request.changed_files < 100 }} # when changed files less than 100
+        with:
+          base: ${{ github.event_name == 'push' && github.ref || '' }}
+          list-files: shell
+          filters: |
+            foo:
+              - '**'
+      - name: List all changed files
+        env:
+          CHANGED_FILES: ${{ steps.changed-files2.outputs.foo_files }}
+        run: |
+          for file in ${CHANGED_FILES}; do
+            echo "$file was changed"
+          done
+      # json separated
+      - id: changed-files3
+        uses: dorny/paths-filter@de90cc6fb38fc0963ad72b210f1f284cd68cea36 # v3.0.2
+        with:
+          base: ${{ github.event_name == 'push' && github.ref || '' }}
+          list-files: json
+          filters: |
+            foo:
+              - '**'
+      - name: Changed file list for foo filter
+        run: echo "${{ steps.changed-files3.outputs.foo_files }}"
 
 ```
 
@@ -1969,24 +1969,24 @@ Don't forget to prepend `refs/heads/` to your branch.
 
 name: schedule job
 on:
-    schedule:
-        - cron: "0 0 * * 1"
+  schedule:
+    - cron: "0 0 * * 1"
 
 jobs:
-    job:
-        permissions:
-            contents: read
-        runs-on: ubuntu-24.04
-        timeout-minutes: 3
-        steps:
-            - name: Dump GitHub context
-              run: echo "$CONTEXT"
-              env:
-                  CONTEXT: ${{ toJson(github) }}
-            - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
-              with:
-                  ref: refs/heads/some-branch
-                  persist-credentials: false
+  job:
+    permissions:
+      contents: read
+    runs-on: ubuntu-24.04
+    timeout-minutes: 3
+    steps:
+      - name: Dump GitHub context
+        run: echo "$CONTEXT"
+        env:
+          CONTEXT: ${{ toJson(github) }}
+      - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
+        with:
+          ref: refs/heads/some-branch
+          persist-credentials: false
 
 ```
 
@@ -1999,83 +1999,83 @@ Multiple asset uploads are supported by running `actions/upload-release-asset` f
 name: create release
 concurrency: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
 on:
-    # auto clean up
-    push:
-        tags:
-            - "[0-9]+.[0-9]+.[0-9]+*"
-    # auto clean up
-    pull_request:
-        branches: ["main"]
-    workflow_dispatch:
-        inputs:
-            tag:
-                description: "tag: git tag you want create. (1.0.0)"
-                required: true
-            delete-release:
-                description: "delete-release: delete release after creation. (true/false)"
-                required: false
-                default: false
-                type: boolean
+  # auto clean up
+  push:
+    tags:
+      - "[0-9]+.[0-9]+.[0-9]+*"
+  # auto clean up
+  pull_request:
+    branches: ["main"]
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: "tag: git tag you want create. (1.0.0)"
+        required: true
+      delete-release:
+        description: "delete-release: delete release after creation. (true/false)"
+        required: false
+        default: false
+        type: boolean
 
 env:
-    GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-    GH_REPO: ${{ github.repository }}
+  GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  GH_REPO: ${{ github.repository }}
 
 jobs:
-    create-release:
-        if: ${{ github.actor != 'dependabot[bot]' }}
-        permissions:
-            contents: write
-        runs-on: ubuntu-24.04
-        timeout-minutes: 10
-        steps:
-            - name: Setup tag
-              id: tag
-              run: echo "value=${{ env.TAG_VALUE || (github.event_name == 'pull_request' && '0.1.0-test' || env.GITHUB_REF_NAME) }}" | tee -a "$GITHUB_OUTPUT"
-              env:
-                  TAG_VALUE: ${{ inputs.tag }}
-                  GITHUB_REF_NAME: ${{ github.ref_name }}
-            # Create Tag
-            - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
-              with:
-                  persist-credentials: false
-            # Use the appropriate tag output from the condition steps
-            - name: set git remote
-              env:
-                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-              run: |
-                  git remote set-url origin "https://github-actions:${GITHUB_TOKEN}@github.com/${{ github.repository }}"
-                  git config user.name  "github-actions[bot]"
-                  git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-            - name: Create Tag and push if not exists
-              env:
-                  TAG_VALUE: ${{ steps.tag.outputs.value  }}
-              run: |
-                  if ! git ls-remote --tags | grep "$TAG_VALUE"; then
-                    git tag "$TAG_VALUE"
-                    git push origin "$TAG_VALUE"
-                    git ls-remote --tags
-                  fi
-            # set release tag(*.*.*) to version string
-            - run: echo "foo" > "foo.${{ steps.tag.outputs.value }}.txt"
-            - run: echo "hoge" > "hoge.${{ steps.tag.outputs.value }}.txt"
-            - run: echo "fuga" > "fuga.${{ steps.tag.outputs.value }}.txt"
-            - run: ls -l
-            # Create Releases
-            - name: Create Release
-              run: gh release create ${{ steps.tag.outputs.value }} --draft --verify-tag --title "Ver.${{ steps.tag.outputs.value }}" --generate-notes
-            - name: Upload file to release
-              run: gh release upload ${{ steps.tag.outputs.value }} hoge.${{ steps.tag.outputs.value }}.txt fuga.${{ steps.tag.outputs.value }}.txt
-            - name: Upload additional file to release
-              run: gh release upload ${{ steps.tag.outputs.value }} foo.${{ steps.tag.outputs.value }}.txt
-            # Clean up
-            - name: Clean up (Wait 60s and delete Release)
-              run: |
-                  if gh release list | grep Draft | grep ${{ steps.tag.outputs.value }}; then
-                    sleep 60
-                    gh release delete ${{ steps.tag.outputs.value }} --yes --cleanup-tag
-                  fi
-              if: ${{ failure() || inputs.delete-release || (github.event_name == 'pull_request' || github.event_name == 'push') }}
+  create-release:
+    if: ${{ github.actor != 'dependabot[bot]' }}
+    permissions:
+      contents: write
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - name: Setup tag
+        id: tag
+        run: echo "value=${{ env.TAG_VALUE || (github.event_name == 'pull_request' && '0.1.0-test' || env.GITHUB_REF_NAME) }}" | tee -a "$GITHUB_OUTPUT"
+        env:
+          TAG_VALUE: ${{ inputs.tag }}
+          GITHUB_REF_NAME: ${{ github.ref_name }}
+      # Create Tag
+      - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
+        with:
+          persist-credentials: false
+      # Use the appropriate tag output from the condition steps
+      - name: set git remote
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git remote set-url origin "https://github-actions:${GITHUB_TOKEN}@github.com/${{ github.repository }}"
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+      - name: Create Tag and push if not exists
+        env:
+          TAG_VALUE: ${{ steps.tag.outputs.value  }}
+        run: |
+          if ! git ls-remote --tags | grep "$TAG_VALUE"; then
+            git tag "$TAG_VALUE"
+            git push origin "$TAG_VALUE"
+            git ls-remote --tags
+          fi
+      # set release tag(*.*.*) to version string
+      - run: echo "foo" > "foo.${{ steps.tag.outputs.value }}.txt"
+      - run: echo "hoge" > "hoge.${{ steps.tag.outputs.value }}.txt"
+      - run: echo "fuga" > "fuga.${{ steps.tag.outputs.value }}.txt"
+      - run: ls -l
+      # Create Releases
+      - name: Create Release
+        run: gh release create ${{ steps.tag.outputs.value }} --draft --verify-tag --title "Ver.${{ steps.tag.outputs.value }}" --generate-notes
+      - name: Upload file to release
+        run: gh release upload ${{ steps.tag.outputs.value }} hoge.${{ steps.tag.outputs.value }}.txt fuga.${{ steps.tag.outputs.value }}.txt
+      - name: Upload additional file to release
+        run: gh release upload ${{ steps.tag.outputs.value }} foo.${{ steps.tag.outputs.value }}.txt
+      # Clean up
+      - name: Clean up (Wait 60s and delete Release)
+        run: |
+          if gh release list | grep Draft | grep ${{ steps.tag.outputs.value }}; then
+            sleep 60
+            gh release delete ${{ steps.tag.outputs.value }} --yes --cleanup-tag
+          fi
+        if: ${{ failure() || inputs.delete-release || (github.event_name == 'pull_request' || github.event_name == 'push') }}
 
 ```
 
@@ -2304,21 +2304,21 @@ Unfortunately, the GitHub Webhook v3 event does not provide a draft PR type, but
 
 name: skip draft pr
 on:
-    pull_request: null
-    push:
-        branches: ["main"]
+  pull_request: null
+  push:
+    branches: ["main"]
 
 jobs:
-    job:
-        if: ${{ ! github.event.pull_request.draft }}
-        permissions:
-            contents: read
-        runs-on: ubuntu-24.04
-        timeout-minutes: 3
-        steps:
-            - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
-              with:
-                  persist-credentials: false
+  job:
+    if: ${{ ! github.event.pull_request.draft }}
+    permissions:
+      contents: read
+    runs-on: ubuntu-24.04
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
+        with:
+          persist-credentials: false
 
 ```
 
@@ -2329,27 +2329,27 @@ You can control behaviour with PR label.
 
 name: skip draft pr but label
 on:
-    pull_request:
-        types:
-            - synchronize
-            - opened
-            - reopened
-            - ready_for_review
+  pull_request:
+    types:
+      - synchronize
+      - opened
+      - reopened
+      - ready_for_review
 
 jobs:
-    build:
-        # RUN WHEN
-        # 1. PR has label 'draft_but_ci'
-        # 2. Not draft, `push` and `non-draft pr`.
-        if: ${{ (contains(github.event.pull_request.labels.*.name, 'draft_but_ci')) || !(github.event.pull_request.draft) }}
-        permissions:
-            contents: read
-        runs-on: ubuntu-24.04
-        timeout-minutes: 3
-        steps:
-            - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
-              with:
-                  persist-credentials: false
+  build:
+    # RUN WHEN
+    # 1. PR has label 'draft_but_ci'
+    # 2. Not draft, `push` and `non-draft pr`.
+    if: ${{ (contains(github.event.pull_request.labels.*.name, 'draft_but_ci')) || !(github.event.pull_request.draft) }}
+    permissions:
+      contents: read
+    runs-on: ubuntu-24.04
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
+        with:
+          persist-credentials: false
 
 ```
 
@@ -2756,29 +2756,29 @@ GitHub Actions is running on selected OS runner, such as `ubuntu-latest`, `windo
 
 name: container job
 on:
-    workflow_dispatch:
-    push:
-        branches: ["main"]
-    pull_request:
-        branches: ["main"]
+  workflow_dispatch:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
 
 jobs:
+  container:
+    permissions:
+      contents: read
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
     container:
-        permissions:
-            contents: read
-        runs-on: ubuntu-24.04
-        timeout-minutes: 10
-        container:
-            image: golang:1.25
-        steps:
-            - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
-              with:
-                  persist-credentials: false
-            - name: Show Go version
-              run: go version
-            - name: Run Go program
-              run: go run main.go
-              working-directory: ./src/go
+      image: golang:1.25
+    steps:
+      - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
+        with:
+          persist-credentials: false
+      - name: Show Go version
+        run: go version
+      - name: Run Go program
+        run: go run main.go
+        working-directory: ./src/go
 
 ```
 
@@ -2791,35 +2791,35 @@ Service container is used to run container alongside your job. Typical usecase i
 
 name: container service
 on:
-    workflow_dispatch:
-    push:
-        branches: ["main"]
-    pull_request:
-        branches: ["main"]
+  workflow_dispatch:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
 
 jobs:
-    container:
-        permissions:
-            contents: read
-        runs-on: ubuntu-24.04
-        timeout-minutes: 10
-        services:
-            redis:
-                image: redis:8
-                ports:
-                    - 6379:6379
-        steps:
-            - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
-              with:
-                  persist-credentials: false
-            - uses: actions/setup-go@7a3fe6cf4cb3a834922a1244abfce67bcef6a0c5 # v6.2.0
-              with:
-                  go-version: "1.25"
-            - name: Show Go version
-              run: go version
-            - name: Run Go program
-              run: go run main.go
-              working-directory: ./src/go-db
+  container:
+    permissions:
+      contents: read
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    services:
+      redis:
+        image: redis:8
+        ports:
+          - 6379:6379
+    steps:
+      - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-go@7a3fe6cf4cb3a834922a1244abfce67bcef6a0c5 # v6.2.0
+        with:
+          go-version: "1.25"
+      - name: Show Go version
+        run: go version
+      - name: Run Go program
+        run: go run main.go
+        working-directory: ./src/go-db
 
 ```
 
@@ -2890,31 +2890,31 @@ To use a Composite action within the same repository, refer action path with `us
 
 name: composite actions
 on:
-    workflow_dispatch:
-    push:
-        branches: ["main"]
-    pull_request:
-        branches: ["main"]
+  workflow_dispatch:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
 
 jobs:
-    job:
-        permissions:
-            contents: read
-        runs-on: ubuntu-24.04
-        timeout-minutes: 3
-        steps:
-            # require checkout to use local action
-            - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
-              with:
-                  persist-credentials: false
-            # specify local action path with `uses: ./PATH/TO/ACTION`
-            - name: Use Composite action
-              id: action
-              uses: ./.github/actions/composite-actions
-              with:
-                  foo: BAR
-            - name: show output
-              run: echo "output number is ${{ steps.action.outputs.number }}"
+  job:
+    permissions:
+      contents: read
+    runs-on: ubuntu-24.04
+    timeout-minutes: 3
+    steps:
+      # require checkout to use local action
+      - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
+        with:
+          persist-credentials: false
+      # specify local action path with `uses: ./PATH/TO/ACTION`
+      - name: Use Composite action
+        id: action
+        uses: ./.github/actions/composite-actions
+        with:
+          foo: BAR
+      - name: show output
+        run: echo "output number is ${{ steps.action.outputs.number }}"
 
 ```
 
@@ -2990,30 +2990,30 @@ To use a JavaScript action within the same repository, refer action path with `u
 
 name: javascript actions
 on:
-    workflow_dispatch:
-    push:
-        branches: ["main"]
-    pull_request:
-        branches: ["main"]
+  workflow_dispatch:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
 
 jobs:
-    job:
-        permissions:
-            contents: read
-        runs-on: ubuntu-24.04
-        timeout-minutes: 3
-        steps:
-            - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
-              with:
-                  persist-credentials: false
-            # specify local action path with `uses: ./PATH/TO/ACTION`
-            - name: Use JavaScript action
-              id: action
-              uses: ./.github/actions/javascript-actions
-              with:
-                  name: John
-            - name: show output
-              run: echo "greeting is ${{ steps.action.outputs.greeting }}"
+  job:
+    permissions:
+      contents: read
+    runs-on: ubuntu-24.04
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
+        with:
+          persist-credentials: false
+      # specify local action path with `uses: ./PATH/TO/ACTION`
+      - name: Use JavaScript action
+        id: action
+        uses: ./.github/actions/javascript-actions
+        with:
+          name: John
+      - name: show output
+        run: echo "greeting is ${{ steps.action.outputs.greeting }}"
 
 ```
 
@@ -3245,27 +3245,27 @@ To use sparse checkout, just specify `sparse-checkout` option to `actions/checko
 
 name: git sparse checkout
 on:
-    push:
-        branches: ["main"]
-    pull_request:
-        branches: ["main"]
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
 
 jobs:
-    sparse-checkout:
-        permissions:
-            contents: read
-        runs-on: ubuntu-24.04
-        timeout-minutes: 5
-        steps:
-            - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
-              with:
-                  sparse-checkout: |
-                      src
-                  persist-credentials: false
-            - name: list root folders
-              run: ls -la
-            - name: list src folders
-              run: ls -laR ./src
+  sparse-checkout:
+    permissions:
+      contents: read
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
+        with:
+          sparse-checkout: |
+            src
+          persist-credentials: false
+      - name: list root folders
+        run: ls -la
+      - name: list src folders
+        run: ls -laR ./src
 
 ```
 
@@ -3308,28 +3308,28 @@ To use sparse checkout and specify which file/folder to checkout, just specify `
 
 name: git sparse checkout (disable cone)
 on:
-    push:
-        branches: ["main"]
-    pull_request:
-        branches: ["main"]
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
 
 jobs:
-    sparse-checkout:
-        permissions:
-            contents: read
-        runs-on: ubuntu-24.04
-        timeout-minutes: 5
-        steps:
-            - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
-              with:
-                  sparse-checkout: |
-                      src/*
-                  sparse-checkout-cone-mode: false # required for ! entry to work
-                  persist-credentials: false
-            - name: list root folders
-              run: ls -la
-            - name: list src folders
-              run: ls -laR ./src
+  sparse-checkout:
+    permissions:
+      contents: read
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
+        with:
+          sparse-checkout: |
+            src/*
+          sparse-checkout-cone-mode: false # required for ! entry to work
+          persist-credentials: false
+      - name: list root folders
+        run: ls -la
+      - name: list src folders
+        run: ls -laR ./src
 
 ```
 
@@ -3367,29 +3367,29 @@ To use sparse checkout and exclude specific file/folder from checkout, just spec
 
 name: git sparse checkout exclude
 on:
-    push:
-        branches: ["main"]
-    pull_request:
-        branches: ["main"]
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
 
 jobs:
-    sparse-checkout:
-        permissions:
-            contents: read
-        runs-on: ubuntu-24.04
-        timeout-minutes: 5
-        steps:
-            - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
-              with:
-                  sparse-checkout: |
-                      !src/*
-                      /*
-                  sparse-checkout-cone-mode: false # required for ! entry to work
-                  persist-credentials: false
-            - name: list root folders
-              run: ls -la
-            - name: list .github folders
-              run: ls -laR ./.github
+  sparse-checkout:
+    permissions:
+      contents: read
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
+        with:
+          sparse-checkout: |
+            !src/*
+            /*
+          sparse-checkout-cone-mode: false # required for ! entry to work
+          persist-credentials: false
+      - name: list root folders
+        run: ls -la
+      - name: list .github folders
+        run: ls -laR ./.github
 
 ```
 
@@ -3502,30 +3502,30 @@ Below use [jwalton/gh-find-current-pr](https://github.com/jwalton/gh-find-curren
 
 name: pr from merge commit
 on:
-    push:
-        branches: ["main"]
+  push:
+    branches: ["main"]
 
 jobs:
-    get:
-        permissions:
-            contents: read
-        runs-on: ubuntu-24.04
-        timeout-minutes: 3
-        steps:
-            - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
-              with:
-                  persist-credentials: false
-            - uses: jwalton/gh-find-current-pr@89ee5799558265a1e0e31fab792ebb4ee91c016b # v1.3.3
-              id: pr
-              with:
-                  state: closed
-            - if: ${{ success() && steps.pr.outputs.number }}
-              run: |
-                  echo "PR #${PR_NUMBER}"
-                  echo "PR Title: ${PR_TITLE}"
-              env:
-                  PR_NUMBER: ${{ steps.pr.outputs.number }}
-                  PR_TITLE: ${{ steps.pr.outputs.title }}
+  get:
+    permissions:
+      contents: read
+    runs-on: ubuntu-24.04
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
+        with:
+          persist-credentials: false
+      - uses: jwalton/gh-find-current-pr@89ee5799558265a1e0e31fab792ebb4ee91c016b # v1.3.3
+        id: pr
+        with:
+          state: closed
+      - if: ${{ success() && steps.pr.outputs.number }}
+        run: |
+          echo "PR #${PR_NUMBER}"
+          echo "PR Title: ${PR_TITLE}"
+        env:
+          PR_NUMBER: ${{ steps.pr.outputs.number }}
+          PR_TITLE: ${{ steps.pr.outputs.title }}
 
 ```
 
@@ -3592,73 +3592,73 @@ Write your Reusable workflow in `_reusable-workflow-called.yaml`. You can pass v
 
 name: (R) reusable workflow called
 on:
-    workflow_call:
-        inputs:
-            username:
-                required: true
-                description: username to show
-                type: string
-            is-valid:
-                required: true
-                description: username to show
-                type: boolean
-            number:
-                required: false
-                description: an optional number
-                type: number
-                default: 0
-        secrets:
-            APPLES:
-                required: true
-        outputs:
-            firstword:
-                description: "The first output string"
-                value: ${{ jobs.reusable_workflow_job.outputs.output1 }}
-            secondword:
-                description: "The second output string"
-                value: ${{ jobs.reusable_workflow_job.outputs.output2 }}
+  workflow_call:
+    inputs:
+      username:
+        required: true
+        description: username to show
+        type: string
+      is-valid:
+        required: true
+        description: username to show
+        type: boolean
+      number:
+        required: false
+        description: an optional number
+        type: number
+        default: 0
+    secrets:
+      APPLES:
+        required: true
+    outputs:
+      firstword:
+        description: "The first output string"
+        value: ${{ jobs.reusable_workflow_job.outputs.output1 }}
+      secondword:
+        description: "The second output string"
+        value: ${{ jobs.reusable_workflow_job.outputs.output2 }}
 
 env:
-    FOO: foo
+  FOO: foo
 
 jobs:
-    reusable_workflow_job:
-        timeout-minutes: 5
-        permissions:
-            contents: read
-        runs-on: ubuntu-24.04
-        outputs:
-            output1: ${{ steps.step1.outputs.firstword }}
-            output2: ${{ steps.step2.outputs.secondword }}
-        steps:
-            - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
-              with:
-                  ref: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.ref || '' }} # checkout PR HEAD commit instead of merge commit
-                  persist-credentials: false
-            - name: (Limitation) Callee can not refer caller environment variable.
-              run: echo "caller environment. ${CALLER_VALUE}"
-            - name: called username
-              run: echo "called username. $USERNAME"
-              env:
-                  USERNAME: ${{ inputs.username }}
-            - name: called is-valid
-              run: echo "called is-valid. $IS_VALID_INPUT"
-              env:
-                  IS_VALID_INPUT: ${{ inputs.is-valid }}
-            - name: called number
-              run: echo "called number. $NUMBER_INPUT"
-              env:
-                  NUMBER_INPUT: ${{ inputs.number }}
-            - name: called secret
-              run: echo "called secret. ${{ secrets.APPLES }}"
-            - name: called env (global)
-              run: echo "called global env. ${{ env.FOO }}"
-            - name: output step1
-              id: step1
-              run: echo "firstword=hello" >> "$GITHUB_OUTPUT"
-            - name: output step2
-              id: step2
-              run: echo "secondword=world" >> "$GITHUB_OUTPUT"
+  reusable_workflow_job:
+    timeout-minutes: 5
+    permissions:
+      contents: read
+    runs-on: ubuntu-24.04
+    outputs:
+      output1: ${{ steps.step1.outputs.firstword }}
+      output2: ${{ steps.step2.outputs.secondword }}
+    steps:
+      - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
+        with:
+          ref: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.ref || '' }} # checkout PR HEAD commit instead of merge commit
+          persist-credentials: false
+      - name: (Limitation) Callee can not refer caller environment variable.
+        run: echo "caller environment. ${CALLER_VALUE}"
+      - name: called username
+        run: echo "called username. $USERNAME"
+        env:
+          USERNAME: ${{ inputs.username }}
+      - name: called is-valid
+        run: echo "called is-valid. $IS_VALID_INPUT"
+        env:
+          IS_VALID_INPUT: ${{ inputs.is-valid }}
+      - name: called number
+        run: echo "called number. $NUMBER_INPUT"
+        env:
+          NUMBER_INPUT: ${{ inputs.number }}
+      - name: called secret
+        run: echo "called secret. ${{ secrets.APPLES }}"
+      - name: called env (global)
+        run: echo "called global env. ${{ env.FOO }}"
+      - name: output step1
+        id: step1
+        run: echo "firstword=hello" >> "$GITHUB_OUTPUT"
+      - name: output step2
+        id: step2
+        run: echo "secondword=world" >> "$GITHUB_OUTPUT"
 
 ```
 
@@ -3680,7 +3680,6 @@ on:
   pull_request:
     branches: ["main"]
   workflow_dispatch:
-
 
 # (Limitation) Callee can not refer caller environment variable.
 env:
@@ -3909,57 +3908,57 @@ When you use `actions/checkout`, by default it keep git remote url with token au
 
 name: checkout without persist-credentials
 on:
-    pull_request:
-        branches: ["main"]
+  pull_request:
+    branches: ["main"]
 
 jobs:
-    checkout:
-        permissions:
-            contents: write
-        runs-on: ubuntu-24.04
-        timeout-minutes: 10
-        steps:
-            - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
-              with:
-                  # default is true. Set to false to avoid persisting the token in git config.
-                  persist-credentials: false
+  checkout:
+    permissions:
+      contents: write
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
+        with:
+          # default is true. Set to false to avoid persisting the token in git config.
+          persist-credentials: false
 
-            - name: tag setup
-              run: git tag test-auth-checkout
+      - name: tag setup
+        run: git tag test-auth-checkout
 
-            - name: verify credentials are not persisted
-              run: |
-                  if ! git push origin test-auth-checkout; then
-                    echo "✔️ push tag failed as expected due to missing credentials"
-                  else
-                    echo "❌ push tag succeeded unexpectedly, credentials were persisted"
-                    git push --delete origin test-auth-checkout
-                    exit 1
-                  fi
+      - name: verify credentials are not persisted
+        run: |
+          if ! git push origin test-auth-checkout; then
+            echo "✔️ push tag failed as expected due to missing credentials"
+          else
+            echo "❌ push tag succeeded unexpectedly, credentials were persisted"
+            git push --delete origin test-auth-checkout
+            exit 1
+          fi
 
-            # If you need to do git operations, you need to set git remote again
-            - name: set git remote
-              env:
-                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-              run: |
-                  git remote set-url origin "https://github-actions:${GITHUB_TOKEN}@github.com/${{ github.repository }}"
-                  git config user.name  "github-actions[bot]"
-                  git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+      # If you need to do git operations, you need to set git remote again
+      - name: set git remote
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git remote set-url origin "https://github-actions:${GITHUB_TOKEN}@github.com/${{ github.repository }}"
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
-            - name: Push and delete test tag to confirm auth
-              run: |
-                  git push origin test-auth-checkout
-                  git push --delete origin test-auth-checkout
-              env:
-                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Push and delete test tag to confirm auth
+        run: |
+          git push origin test-auth-checkout
+          git push --delete origin test-auth-checkout
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-            # Delete git config to avoid affecting other steps
-            - name: Remove git config
-              if: always()
-              run: |
-                  git remote rm origin
-                  git config --unset user.email
-                  git config --unset user.name
+      # Delete git config to avoid affecting other steps
+      - name: Remove git config
+        if: always()
+        run: |
+          git remote rm origin
+          git config --unset user.email
+          git config --unset user.name
 
 ```
 
@@ -3979,34 +3978,34 @@ Following example use GitHub App Token via [actions/create-github-app-token](htt
 
 name: github app token
 on:
-    pull_request:
-        branches: [main]
-    push:
-        branches: [main]
-    workflow_dispatch:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+  workflow_dispatch:
 
 jobs:
-    app-token:
-        if: ${{ github.actor == github.repository_owner }} # because referencing secrets, restrict to owner.
-        permissions:
-            contents: read # no pull request permission
-        runs-on: ubuntu-24.04
-        timeout-minutes: 3
-        steps:
-            - uses: actions/create-github-app-token@29824e69f54612133e76f7eaac726eef6c875baf # v2.2.1
-              id: app-token
-              with:
-                  app-id: ${{ secrets.SYNCED_ACTIONS_BOT_APPID }}
-                  private-key: ${{ secrets.SYNCED_ACTIONS_BOT_PRIVATE_KEY }}
-                  permission-pull-requests: read # grant read access to pull requests
-            - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
-              with:
-                  persist-credentials: false
-            - name: List open PRs
-              run: gh pr list --state open --limit 5
-              env:
-                  GH_TOKEN: ${{ steps.app-token.outputs.token }} # GitHub App token permission to read pull requests
-                  GH_REPO: ${{ github.repository }}
+  app-token:
+    if: ${{ github.actor == github.repository_owner }} # because referencing secrets, restrict to owner.
+    permissions:
+      contents: read # no pull request permission
+    runs-on: ubuntu-24.04
+    timeout-minutes: 3
+    steps:
+      - uses: actions/create-github-app-token@29824e69f54612133e76f7eaac726eef6c875baf # v2.2.1
+        id: app-token
+        with:
+          app-id: ${{ secrets.SYNCED_ACTIONS_BOT_APPID }}
+          private-key: ${{ secrets.SYNCED_ACTIONS_BOT_PRIVATE_KEY }}
+          permission-pull-requests: read # grant read access to pull requests
+      - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
+        with:
+          persist-credentials: false
+      - name: List open PRs
+        run: gh pr list --state open --limit 5
+        env:
+          GH_TOKEN: ${{ steps.app-token.outputs.token }} # GitHub App token permission to read pull requests
+          GH_REPO: ${{ github.repository }}
 
 ```
 
@@ -4085,38 +4084,38 @@ Linter will check follows.
 
 name: actionlint
 on:
-    workflow_dispatch:
-    pull_request:
-        branches: ["main"]
-        paths:
-            - ".github/workflows/**"
-    schedule:
-        - cron: "0 0 * * *"
+  workflow_dispatch:
+  pull_request:
+    branches: ["main"]
+    paths:
+      - ".github/workflows/**"
+  schedule:
+    - cron: "0 0 * * *"
 
 jobs:
-    lint:
-        permissions:
-            contents: read
-        runs-on: ubuntu-24.04
-        timeout-minutes: 5
-        steps:
-            - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
-              with:
-                  persist-credentials: false
-            - uses: aquaproj/aqua-installer@9ebf656952a20c45a5d66606f083ff34f58b8ce0 # v4.0.0
-              with:
-                  aqua_version: v2.43.1
-            # github workflows/action's Static Checker
-            - name: Run actionlint
-              run: actionlint -color -oneline
-            # checkout's persist-credentials: false checker
-            - name: Run ghalint
-              run: ghalint run
-            # A static analysis tool for GitHub Actions
-            - name: Run zizmor
-              run: docker run -t --env "GH_TOKEN=${GH_TOKEN}" -v .:/github ghcr.io/zizmorcore/zizmor:1.18.0 /github --min-severity medium --format github
-              env:
-                  GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  lint:
+    permissions:
+      contents: read
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
+        with:
+          persist-credentials: false
+      - uses: aquaproj/aqua-installer@9ebf656952a20c45a5d66606f083ff34f58b8ce0 # v4.0.0
+        with:
+          aqua_version: v2.43.1
+      # github workflows/action's Static Checker
+      - name: Run actionlint
+        run: actionlint -color -oneline
+      # checkout's persist-credentials: false checker
+      - name: Run ghalint
+        run: ghalint run
+      # A static analysis tool for GitHub Actions
+      - name: Run zizmor
+        run: docker run -t --env "GH_TOKEN=${GH_TOKEN}" -v .:/github ghcr.io/zizmorcore/zizmor:1.18.0 /github --min-severity medium --format github
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 ```
 
@@ -4133,32 +4132,32 @@ Following is an example of using OIDC to access AWS resources.
 
 name: aws oidc credential
 on:
-    workflow_dispatch:
-    push:
-        branches: ["main"]
+  workflow_dispatch:
+  push:
+    branches: ["main"]
 
 jobs:
-    aws:
-        strategy:
-            fail-fast: true
-            matrix:
-                multi: [a, b, c, d, e, f, g, h, i, j]
-        permissions:
-            id-token: write
-            contents: read
-        runs-on: ubuntu-24.04
-        timeout-minutes: 5
-        steps:
-            - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
-              with:
-                  persist-credentials: false
-            - name: Configure AWS Credentials
-              uses: aws-actions/configure-aws-credentials@00943011d9042930efac3dcd3a170e4273319bc8 # v5.1.0
-              with:
-                  aws-region: ap-northeast-1
-                  role-to-assume: ${{ secrets.AWS_ROLE_TO_ASSUME }}
-                  role-session-name: GitHubActions-${{ github.run_id }}
-                  role-duration-seconds: 900 # minimum: 900sec, maximum: iam role session duration
+  aws:
+    strategy:
+      fail-fast: true
+      matrix:
+        multi: [a, b, c, d, e, f, g, h, i, j]
+    permissions:
+      id-token: write
+      contents: read
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
+        with:
+          persist-credentials: false
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@00943011d9042930efac3dcd3a170e4273319bc8 # v5.1.0
+        with:
+          aws-region: ap-northeast-1
+          role-to-assume: ${{ secrets.AWS_ROLE_TO_ASSUME }}
+          role-session-name: GitHubActions-${{ github.run_id }}
+          role-duration-seconds: 900 # minimum: 900sec, maximum: iam role session duration
 
 ```
 
@@ -4177,30 +4176,30 @@ In general, it is a good practice to set `contents: read` permission for workflo
 
 name: permissions minimum
 on:
-    pull_request:
-        branches: ["main"]
+  pull_request:
+    branches: ["main"]
 
 # avoid workflow level permission, set job level permission as needed
 # permissions:
 #   contents: write
 
 jobs:
-    build:
-        # specify minimum permissions as possible
-        permissions:
-            contents: read
-        runs-on: ubuntu-24.04
-        timeout-minutes: 3
-        steps:
-            - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
-              with:
-                  persist-credentials: false
-            - uses: actions/setup-go@7a3fe6cf4cb3a834922a1244abfce67bcef6a0c5 # v6.2.0
-              with:
-                  go-version: "1.25"
-            - name: Build
-              run: go build
-              working-directory: ./src/go
+  build:
+    # specify minimum permissions as possible
+    permissions:
+      contents: read
+    runs-on: ubuntu-24.04
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-go@7a3fe6cf4cb3a834922a1244abfce67bcef6a0c5 # v6.2.0
+        with:
+          go-version: "1.25"
+      - name: Build
+        run: go build
+        working-directory: ./src/go
 
 ```
 
@@ -4267,22 +4266,22 @@ Following is an example of using pinned sha in your workflow.
 
 name: pin sha
 on:
-    push:
-        branches: ["main"]
-    pull_request:
-        branches: ["main"]
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
 
 jobs:
-    pin-sha:
-        permissions:
-            contents: read
-        runs-on: ubuntu-24.04
-        timeout-minutes: 5
-        steps:
-            # Don't use a tag or branch, but specify the full sha instead
-            - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
-              with:
-                  persist-credentials: false
+  pin-sha:
+    permissions:
+      contents: read
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      # Don't use a tag or branch, but specify the full sha instead
+      - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
+        with:
+          persist-credentials: false
 
 ```
 
@@ -4396,23 +4395,23 @@ A specified remote action is downloaded to the `/home/runner/work/_actions/{Owne
 
 name: debug downloaded remote action
 on:
-    workflow_dispatch:
+  workflow_dispatch:
 
 jobs:
-    remote:
-        permissions:
-            contents: read
-        runs-on: ubuntu-24.04
-        timeout-minutes: 3
-        steps:
-            - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
-              with:
-                  persist-credentials: false
-            # wow, remote action will be download under `/home/runner/work/_actions/{Owner}/{Repository}/{Ref}/{RepositoryStructures}`
-            - name: debug
-              run: ls -R /home/runner/work/_actions/actions/checkout/v4
-            - name: debug by workspace
-              run: ls -R ${{ github.workspace }}/../../_actions/actions/checkout/v4
+  remote:
+    permissions:
+      contents: read
+    runs-on: ubuntu-24.04
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
+        with:
+          persist-credentials: false
+      # wow, remote action will be download under `/home/runner/work/_actions/{Owner}/{Repository}/{Ref}/{RepositoryStructures}`
+      - name: debug
+        run: ls -R /home/runner/work/_actions/actions/checkout/v4
+      - name: debug by workspace
+        run: ls -R ${{ github.workspace }}/../../_actions/actions/checkout/v4
 
 ```
 
@@ -4546,28 +4545,28 @@ This path is useful when you want to access files or use them beyond the action.
 
 name: remote actions download path
 on:
-    workflow_dispatch:
-    pull_request:
-        branches: ["main"]
+  workflow_dispatch:
+  pull_request:
+    branches: ["main"]
 
 jobs:
-    action:
-        permissions:
-            contents: read
-        runs-on: ubuntu-24.04
-        timeout-minutes: 3
-        steps:
-            - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
-              with:
-                  persist-credentials: false
-            - name: Downloaded actions from the marketplace
-              run: ls -l /home/runner/work/_actions
-            - name: See actions download path
-              run: ls -l /home/runner/work/_actions/actions/checkout/
-            - name: See actions download contents
-              run: ls -lR /home/runner/work/_actions/actions/checkout/8e8c483db84b4bee98b60c0593521ed34d9990e8
-            - name: Cat action's src/main.ts
-              run: cat /home/runner/work/_actions/actions/checkout/8e8c483db84b4bee98b60c0593521ed34d9990e8/src/main.ts
+  action:
+    permissions:
+      contents: read
+    runs-on: ubuntu-24.04
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
+        with:
+          persist-credentials: false
+      - name: Downloaded actions from the marketplace
+        run: ls -l /home/runner/work/_actions
+      - name: See actions download path
+        run: ls -l /home/runner/work/_actions/actions/checkout/
+      - name: See actions download contents
+        run: ls -lR /home/runner/work/_actions/actions/checkout/8e8c483db84b4bee98b60c0593521ed34d9990e8
+      - name: Cat action's src/main.ts
+        run: cat /home/runner/work/_actions/actions/checkout/8e8c483db84b4bee98b60c0593521ed34d9990e8/src/main.ts
 
 ```
 
@@ -4622,36 +4621,36 @@ To enable telemetry, set `runforesight/workflow-telemetry-action@v1` on the firs
 
 name: actions telemetry
 on:
-    workflow_dispatch:
-    push:
-        branches: ["main"]
-    pull_request:
-        branches: ["main"]
+  workflow_dispatch:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
 
 jobs:
-    dotnet:
-        permissions:
-            contents: read
-        runs-on: ubuntu-24.04
-        timeout-minutes: 3
-        steps:
-            - name: Collect actions workflow telemetry
-              uses: runforesight/workflow-telemetry-action@94c3c3d9567a0205de6da68a76c428ce4e769af1 # v2.0.0
-              with:
-                  theme: dark # or light. dark generate charts compatible with Github dark mode.
-                  comment_on_pr: false # post telemetry to PR comment. It won't override existing comment, therefore too noisy for PR.
-            - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
-              with:
-                  persist-credentials: false
-            - uses: actions/setup-dotnet@baa11fbfe1d6520db94683bd5c7a3818018e4309 # v5.1.0
-              with:
-                  dotnet-version: 10.0.x
-            - name: dotnet build
-              run: dotnet build ./src/dotnet -c Debug
-            - name: dotnet test
-              run: dotnet test ./src/dotnet -c Debug --logger GitHubActions --logger "console;verbosity=normal"
-            - name: dotnet publish
-              run: dotnet publish ./src/dotnet/ -c Debug
+  dotnet:
+    permissions:
+      contents: read
+    runs-on: ubuntu-24.04
+    timeout-minutes: 3
+    steps:
+      - name: Collect actions workflow telemetry
+        uses: runforesight/workflow-telemetry-action@94c3c3d9567a0205de6da68a76c428ce4e769af1 # v2.0.0
+        with:
+          theme: dark # or light. dark generate charts compatible with Github dark mode.
+          comment_on_pr: false # post telemetry to PR comment. It won't override existing comment, therefore too noisy for PR.
+      - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-dotnet@baa11fbfe1d6520db94683bd5c7a3818018e4309 # v5.1.0
+        with:
+          dotnet-version: 10.0.x
+      - name: dotnet build
+        run: dotnet build ./src/dotnet -c Debug
+      - name: dotnet test
+        run: dotnet test ./src/dotnet -c Debug --logger GitHubActions --logger "console;verbosity=normal"
+      - name: dotnet publish
+        run: dotnet publish ./src/dotnet/ -c Debug
 
 ```
 
@@ -4672,38 +4671,38 @@ Also if workflow ran with `pull_request` trigger, then you can enable [PR commen
 
 name: actionlint
 on:
-    workflow_dispatch:
-    pull_request:
-        branches: ["main"]
-        paths:
-            - ".github/workflows/**"
-    schedule:
-        - cron: "0 0 * * *"
+  workflow_dispatch:
+  pull_request:
+    branches: ["main"]
+    paths:
+      - ".github/workflows/**"
+  schedule:
+    - cron: "0 0 * * *"
 
 jobs:
-    lint:
-        permissions:
-            contents: read
-        runs-on: ubuntu-24.04
-        timeout-minutes: 5
-        steps:
-            - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
-              with:
-                  persist-credentials: false
-            - uses: aquaproj/aqua-installer@9ebf656952a20c45a5d66606f083ff34f58b8ce0 # v4.0.0
-              with:
-                  aqua_version: v2.43.1
-            # github workflows/action's Static Checker
-            - name: Run actionlint
-              run: actionlint -color -oneline
-            # checkout's persist-credentials: false checker
-            - name: Run ghalint
-              run: ghalint run
-            # A static analysis tool for GitHub Actions
-            - name: Run zizmor
-              run: docker run -t --env "GH_TOKEN=${GH_TOKEN}" -v .:/github ghcr.io/zizmorcore/zizmor:1.18.0 /github --min-severity medium --format github
-              env:
-                  GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  lint:
+    permissions:
+      contents: read
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
+        with:
+          persist-credentials: false
+      - uses: aquaproj/aqua-installer@9ebf656952a20c45a5d66606f083ff34f58b8ce0 # v4.0.0
+        with:
+          aqua_version: v2.43.1
+      # github workflows/action's Static Checker
+      - name: Run actionlint
+        run: actionlint -color -oneline
+      # checkout's persist-credentials: false checker
+      - name: Run ghalint
+        run: ghalint run
+      # A static analysis tool for GitHub Actions
+      - name: Run zizmor
+        run: docker run -t --env "GH_TOKEN=${GH_TOKEN}" -v .:/github ghcr.io/zizmorcore/zizmor:1.18.0 /github --min-severity medium --format github
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 ```
 
