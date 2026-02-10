@@ -64,10 +64,13 @@ runs:
           if git push origin "$GIT_REF"; then
             echo "Push succeeded."
             exit 0
+          else
+            echo "Push failed with exit code: $?"
           fi
 
           # Push failed, increment retry count
           ((retry_count++))
+          echo "Current retry count: $retry_count"
 
           # If we haven't exceeded max retries, try to rebase and retry
           if [ $retry_count -lt $max_retries ]; then
