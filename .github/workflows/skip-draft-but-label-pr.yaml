@@ -1,23 +1,23 @@
 name: skip draft pr but label
 on:
-    pull_request:
-        types:
-            - synchronize
-            - opened
-            - reopened
-            - ready_for_review
+  pull_request:
+    types:
+      - synchronize
+      - opened
+      - reopened
+      - ready_for_review
 
 jobs:
-    build:
-        # RUN WHEN
-        # 1. PR has label 'draft_but_ci'
-        # 2. Not draft, `push` and `non-draft pr`.
-        if: ${{ (contains(github.event.pull_request.labels.*.name, 'draft_but_ci')) || !(github.event.pull_request.draft) }}
-        permissions:
-            contents: read
-        runs-on: ubuntu-24.04
-        timeout-minutes: 3
-        steps:
-            - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
-              with:
-                  persist-credentials: false
+  build:
+    # RUN WHEN
+    # 1. PR has label 'draft_but_ci'
+    # 2. Not draft, `push` and `non-draft pr`.
+    if: ${{ (contains(github.event.pull_request.labels.*.name, 'draft_but_ci')) || !(github.event.pull_request.draft) }}
+    permissions:
+      contents: read
+    runs-on: ubuntu-24.04
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
+        with:
+          persist-credentials: false

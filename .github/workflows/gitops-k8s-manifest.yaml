@@ -1,64 +1,64 @@
 name: gitops k8s manifest
 on:
-    pull_request:
-        branches: [main]
-    push:
-        branches: [main]
-    workflow_dispatch:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+  workflow_dispatch:
 
 jobs:
-    push_manifest:
-        if: ${{ github.actor == github.repository_owner }} # because referencing secrets, restrict to owner.
+  push_manifest:
+    if: ${{ github.actor == github.repository_owner }} # because referencing secrets, restrict to owner.
+    env:
+      MANIFEST_DIR: dev/${{ github.event.repository.name }}/${{ github.event_name == 'pull_request' && github.head_ref || github.ref_name }}
+      MANIFEST_REPO: kubernetes-manifest-lab
+      NAMESPACE_PREFIX: githubactions-sample-
+    permissions:
+      contents: read
+    runs-on: ubuntu-24.04
+    timeout-minutes: 3
+    steps:
+      - uses: actions/create-github-app-token@29824e69f54612133e76f7eaac726eef6c875baf # v2.2.1
+        id: app-token
+        with:
+          app-id: ${{ secrets.SYNCED_ACTIONS_BOT_APPID }}
+          private-key: ${{ secrets.SYNCED_ACTIONS_BOT_PRIVATE_KEY }}
+          owner: ${{ github.repository_owner }}
+          repositories: |
+            ${{ env.MANIFEST_REPO }}
+          permission-contents: write
+      - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
+        with:
+          repository: ${{ github.repository_owner }}/${{ env.MANIFEST_REPO }}
+          path: ${{ env.MANIFEST_REPO }}
+          token: ${{ steps.app-token.outputs.token }}
+          ref: ${{ github.event.repository.default_branch }}
+          persist-credentials: false
+      - name: generate manifest
+        run: |
+          mkdir -p "./${{ env.MANIFEST_REPO }}/${{ env.MANIFEST_DIR }}"
+          kubectl kustomize ./src/k8s/app/overlays/development \
+            | sed -e "s|<namespace>|${NAMESPACE_PREFIX}${{ env.MANIFEST_DIR }}|g" \
+            | sed -e "s|<git-sha>|${{ github.sha }}|g" \
+            | sed -e "s|<git-branch>|${BRANCH}|g" \
+            | sed -e "s|<git-link>|${GITHUB_PR_URL}|g" \
+            | sed -e "s|<build-id>|${{ github.run_id }}|g" \
+            | tee "${{ env.MANIFEST_REPO }}/${{ env.MANIFEST_DIR }}/all.yaml"
         env:
-            MANIFEST_DIR: dev/${{ github.event.repository.name }}/${{ github.event_name == 'pull_request' && github.head_ref || github.ref_name }}
-            MANIFEST_REPO: kubernetes-manifest-lab
-            NAMESPACE_PREFIX: githubactions-sample-
-        permissions:
-            contents: read
-        runs-on: ubuntu-24.04
-        timeout-minutes: 3
-        steps:
-            - uses: actions/create-github-app-token@29824e69f54612133e76f7eaac726eef6c875baf # v2.2.1
-              id: app-token
-              with:
-                  app-id: ${{ secrets.SYNCED_ACTIONS_BOT_APPID }}
-                  private-key: ${{ secrets.SYNCED_ACTIONS_BOT_PRIVATE_KEY }}
-                  owner: ${{ github.repository_owner }}
-                  repositories: |
-                      ${{ env.MANIFEST_REPO }}
-                  permission-contents: write
-            - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
-              with:
-                  persist-credentials: false
-            - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
-              with:
-                  repository: ${{ github.repository_owner }}/${{ env.MANIFEST_REPO }}
-                  path: ${{ env.MANIFEST_REPO }}
-                  token: ${{ steps.app-token.outputs.token }}
-                  ref: ${{ github.event.repository.default_branch }}
-                  persist-credentials: false
-            - name: generate manifest
-              run: |
-                  mkdir -p "./${{ env.MANIFEST_REPO }}/${{ env.MANIFEST_DIR }}"
-                  kubectl kustomize ./src/k8s/app/overlays/development \
-                    | sed -e "s|<namespace>|${NAMESPACE_PREFIX}${{ env.MANIFEST_DIR }}|g" \
-                    | sed -e "s|<git-sha>|${{ github.sha }}|g" \
-                    | sed -e "s|<git-branch>|${BRANCH}|g" \
-                    | sed -e "s|<git-link>|${GITHUB_PR_URL}|g" \
-                    | sed -e "s|<build-id>|${{ github.run_id }}|g" \
-                    | tee "${{ env.MANIFEST_REPO }}/${{ env.MANIFEST_DIR }}/all.yaml"
-              env:
-                  BRANCH: ${{ github.event_name == 'pull_request' && github.head_ref || github.ref_name }}
-                  GITHUB_PR_URL: ${{ github.event.pull_request.html_url }}
-            - name: git push
-              uses: ./.github/actions/git-push
-              with:
-                  commit-message: |
-                      [automate] update manifests. origin: ${{ github.repository }}, trigger: ${{ github.event_name }}
+          BRANCH: ${{ github.event_name == 'pull_request' && github.head_ref || github.ref_name }}
+          GITHUB_PR_URL: ${{ github.event.pull_request.html_url }}
+      - name: git push
+        uses: ./.github/actions/git-push
+        with:
+          commit-message: |
+            [automate] update manifests. origin: ${{ github.repository }}, trigger: ${{ github.event_name }}
 
-                      Compare: ${{ github.event_name == 'pull_request' && github.event.pull_request.html_url || format('https://github.com/{0}/commit/{1}', github.repository, github.event.after) }}
-                      Update by: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}/job/${{ job.check_run_id }}
-                  ref: ${{ github.event.repository.default_branch }} # update default branch ref
-                  repository: ${{ github.repository_owner }}/${{ env.MANIFEST_REPO }}
-                  github-token: ${{ steps.app-token.outputs.token }}
-                  working-directory: ${{ env.MANIFEST_REPO }}
+            Compare: ${{ github.event_name == 'pull_request' && github.event.pull_request.html_url || format('https://github.com/{0}/commit/{1}', github.repository, github.event.after) }}
+            Update by: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}/job/${{ job.check_run_id }}
+          ref: ${{ github.event.repository.default_branch }} # update default branch ref
+          repository: ${{ github.repository_owner }}/${{ env.MANIFEST_REPO }}
+          github-token: ${{ steps.app-token.outputs.token }}
+          working-directory: ${{ env.MANIFEST_REPO }}

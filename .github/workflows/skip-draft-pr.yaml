@@ -1,17 +1,17 @@
 name: skip draft pr
 on:
-    pull_request: null
-    push:
-        branches: ["main"]
+  pull_request: null
+  push:
+    branches: ["main"]
 
 jobs:
-    job:
-        if: ${{ ! github.event.pull_request.draft }}
-        permissions:
-            contents: read
-        runs-on: ubuntu-24.04
-        timeout-minutes: 3
-        steps:
-            - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
-              with:
-                  persist-credentials: false
+  job:
+    if: ${{ ! github.event.pull_request.draft }}
+    permissions:
+      contents: read
+    runs-on: ubuntu-24.04
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
+        with:
+          persist-credentials: false

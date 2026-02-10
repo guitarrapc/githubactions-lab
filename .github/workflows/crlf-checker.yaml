@@ -1,79 +1,79 @@
 # Description: Detect if PUSH or PR includes End of Line `CRLF` files.
 name: crlf checker
 on:
-    workflow_dispatch:
-    pull_request:
-        branches: ["main"]
-    push:
-        branches: ["main"]
+  workflow_dispatch:
+  pull_request:
+    branches: ["main"]
+  push:
+    branches: ["main"]
 
 jobs:
-    check:
-        permissions:
-            contents: read
-        runs-on: ubuntu-24.04
-        timeout-minutes: 5
-        steps:
-            - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
-              with:
-                  fetch-depth: 2 # detect on push
-                  persist-credentials: false
-            # you can specify which file to detect.
-            - id: changed-files
-              uses: dorny/paths-filter@de90cc6fb38fc0963ad72b210f1f284cd68cea36 # v3.0.2
-              with:
-                  list-files: csv # default 'none'. Disables listing of matching files.
-                  filters: |
-                      foo:
-                        - my-file.txt
-                        - test.txt
-                        - new.txt
-                        - test_directory
-                        - \.foo$
-                        - \.sh$
-                        - .(png|jpeg)$
-                        - .(cs|csproj)$
-                        - ^(mynewfile|custom)
-                        - .yaml$
-            # do not use space in file name.
-            #   OK: foo.bar
-            #   NG: foo 1.bar
-            - name: Detect CRLF
-              run: |
-                  err=false
-                  for file in $(echo "${{ steps.changed-files.outputs.foo_files }}" | sed -e "s/,/ /g"); do
-                    if file "${file}" | grep CRLF > /dev/null; then
-                      err=true
-                      echo "'${file}' detected as CRLF."
-                      if [[ "${crlf_files}" != "" ]]; then crlf_files="${crlf_files}$IFS"; fi
-                      crlf_files="${crlf_files} ${file}"
-                    fi
-                  done
+  check:
+    permissions:
+      contents: read
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
+        with:
+          fetch-depth: 2 # detect on push
+          persist-credentials: false
+      # you can specify which file to detect.
+      - id: changed-files
+        uses: dorny/paths-filter@de90cc6fb38fc0963ad72b210f1f284cd68cea36 # v3.0.2
+        with:
+          list-files: csv # default 'none'. Disables listing of matching files.
+          filters: |
+            foo:
+              - my-file.txt
+              - test.txt
+              - new.txt
+              - test_directory
+              - \.foo$
+              - \.sh$
+              - .(png|jpeg)$
+              - .(cs|csproj)$
+              - ^(mynewfile|custom)
+              - .yaml$
+      # do not use space in file name.
+      #   OK: foo.bar
+      #   NG: foo 1.bar
+      - name: Detect CRLF
+        run: |
+          err=false
+          for file in $(echo "${{ steps.changed-files.outputs.foo_files }}" | sed -e "s/,/ /g"); do
+            if file "${file}" | grep CRLF > /dev/null; then
+              err=true
+              echo "'${file}' detected as CRLF."
+              if [[ "${crlf_files}" != "" ]]; then crlf_files="${crlf_files}$IFS"; fi
+              crlf_files="${crlf_files} ${file}"
+            fi
+          done
 
-                  if [[ "${err}" == "true" ]]; then
-                    {
-                      echo "CRLF_FILES<<EOF"
-                      echo "${crlf_files}"
-                      echo "EOF"
-                    } >> "$GITHUB_ENV"
-                  fi
-            # comment to PR for CRLF files.
-            - if: ${{ github.event_name == 'pull_request' && env.CRLF_FILES != '' }}
-              name: Comment PR
-              run: |
-                  cat << 'EOF' > pr_comment.md
-                    Workflow [${{ env.GITHUB_ACTIONS_RUN_URL }}) found CRLF files as follows.
+          if [[ "${err}" == "true" ]]; then
+            {
+              echo "CRLF_FILES<<EOF"
+              echo "${crlf_files}"
+              echo "EOF"
+            } >> "$GITHUB_ENV"
+          fi
+      # comment to PR for CRLF files.
+      - if: ${{ github.event_name == 'pull_request' && env.CRLF_FILES != '' }}
+        name: Comment PR
+        run: |
+          cat << 'EOF' > pr_comment.md
+            Workflow [${{ env.GITHUB_ACTIONS_RUN_URL }}) found CRLF files as follows.
 
-                    ```
-                    ${{ env.CRLF_FILES }}
-                    ```
+            ```
+            ${{ env.CRLF_FILES }}
+            ```
 
-                  EOF
-              env:
-                  GITHUB_ACTIONS_RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
-                  GH_REPO: ${{ github.repository }}
-                  GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-            # Fail action if CRLF file found.
-            - if: ${{ env.CRLF_FILES != '' }}
-              name: Exit action if detected
-              run: exit 1
+          EOF
+        env:
+          GITHUB_ACTIONS_RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+          GH_REPO: ${{ github.repository }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      # Fail action if CRLF file found.
+      - if: ${{ env.CRLF_FILES != '' }}
+        name: Exit action if detected
+        run: exit 1

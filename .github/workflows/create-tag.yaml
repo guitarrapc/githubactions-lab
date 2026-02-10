@@ -1,29 +1,29 @@
 name: create tag
 on:
-    workflow_dispatch:
-        inputs:
-            tag:
-                description: "tag: git tag you want create."
-                required: true
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: "tag: git tag you want create."
+        required: true
 
 env:
-    TAG: ${{ inputs.tag }}
+  TAG: ${{ inputs.tag }}
 
 jobs:
-    tag:
-        permissions:
-            contents: read
-        runs-on: ubuntu-24.04
-        timeout-minutes: 3
-        steps:
-            - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
-              with:
-                  persist-credentials: false
-            - name: tag
-              run: git tag ${{ env.TAG }}
-            - name: Push changes
-              uses: ad-m/github-push-action@77c5b412c50b723d2a4fbc6d71fb5723bcd439aa # v1.0.0
-              with:
-                  github_token: ${{ secrets.GITHUB_TOKEN }}
-                  branch: ${{ github.ref }}
-                  tags: true
+  tag:
+    permissions:
+      contents: read
+    runs-on: ubuntu-24.04
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
+        with:
+          persist-credentials: false
+      - name: tag
+        run: git tag ${{ env.TAG }}
+      - name: Push changes
+        uses: ad-m/github-push-action@77c5b412c50b723d2a4fbc6d71fb5723bcd439aa # v1.0.0
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: ${{ github.ref }}
+          tags: true

@@ -1,69 +1,69 @@
 name: (R) reusable workflow called
 on:
-    workflow_call:
-        inputs:
-            username:
-                required: true
-                description: username to show
-                type: string
-            is-valid:
-                required: true
-                description: username to show
-                type: boolean
-            number:
-                required: false
-                description: an optional number
-                type: number
-                default: 0
-        secrets:
-            APPLES:
-                required: true
-        outputs:
-            firstword:
-                description: "The first output string"
-                value: ${{ jobs.reusable_workflow_job.outputs.output1 }}
-            secondword:
-                description: "The second output string"
-                value: ${{ jobs.reusable_workflow_job.outputs.output2 }}
+  workflow_call:
+    inputs:
+      username:
+        required: true
+        description: username to show
+        type: string
+      is-valid:
+        required: true
+        description: username to show
+        type: boolean
+      number:
+        required: false
+        description: an optional number
+        type: number
+        default: 0
+    secrets:
+      APPLES:
+        required: true
+    outputs:
+      firstword:
+        description: "The first output string"
+        value: ${{ jobs.reusable_workflow_job.outputs.output1 }}
+      secondword:
+        description: "The second output string"
+        value: ${{ jobs.reusable_workflow_job.outputs.output2 }}
 
 env:
-    FOO: foo
+  FOO: foo
 
 jobs:
-    reusable_workflow_job:
-        timeout-minutes: 5
-        permissions:
-            contents: read
-        runs-on: ubuntu-24.04
-        outputs:
-            output1: ${{ steps.step1.outputs.firstword }}
-            output2: ${{ steps.step2.outputs.secondword }}
-        steps:
-            - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
-              with:
-                  ref: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.ref || '' }} # checkout PR HEAD commit instead of merge commit
-                  persist-credentials: false
-            - name: (Limitation) Callee can not refer caller environment variable.
-              run: echo "caller environment. ${CALLER_VALUE}"
-            - name: called username
-              run: echo "called username. $USERNAME"
-              env:
-                  USERNAME: ${{ inputs.username }}
-            - name: called is-valid
-              run: echo "called is-valid. $IS_VALID_INPUT"
-              env:
-                  IS_VALID_INPUT: ${{ inputs.is-valid }}
-            - name: called number
-              run: echo "called number. $NUMBER_INPUT"
-              env:
-                  NUMBER_INPUT: ${{ inputs.number }}
-            - name: called secret
-              run: echo "called secret. ${{ secrets.APPLES }}"
-            - name: called env (global)
-              run: echo "called global env. ${{ env.FOO }}"
-            - name: output step1
-              id: step1
-              run: echo "firstword=hello" >> "$GITHUB_OUTPUT"
-            - name: output step2
-              id: step2
-              run: echo "secondword=world" >> "$GITHUB_OUTPUT"
+  reusable_workflow_job:
+    timeout-minutes: 5
+    permissions:
+      contents: read
+    runs-on: ubuntu-24.04
+    outputs:
+      output1: ${{ steps.step1.outputs.firstword }}
+      output2: ${{ steps.step2.outputs.secondword }}
+    steps:
+      - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
+        with:
+          ref: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.ref || '' }} # checkout PR HEAD commit instead of merge commit
+          persist-credentials: false
+      - name: (Limitation) Callee can not refer caller environment variable.
+        run: echo "caller environment. ${CALLER_VALUE}"
+      - name: called username
+        run: echo "called username. $USERNAME"
+        env:
+          USERNAME: ${{ inputs.username }}
+      - name: called is-valid
+        run: echo "called is-valid. $IS_VALID_INPUT"
+        env:
+          IS_VALID_INPUT: ${{ inputs.is-valid }}
+      - name: called number
+        run: echo "called number. $NUMBER_INPUT"
+        env:
+          NUMBER_INPUT: ${{ inputs.number }}
+      - name: called secret
+        run: echo "called secret. ${{ secrets.APPLES }}"
+      - name: called env (global)
+        run: echo "called global env. ${{ env.FOO }}"
+      - name: output step1
+        id: step1
+        run: echo "firstword=hello" >> "$GITHUB_OUTPUT"
+      - name: output step2
+        id: step2
+        run: echo "secondword=world" >> "$GITHUB_OUTPUT"

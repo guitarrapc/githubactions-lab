@@ -1,41 +1,41 @@
 name: merge branch
 on:
-    workflow_dispatch:
-        inputs:
-            upstream:
-                description: "merge from"
-                required: true
-                default: "main"
-            branch:
-                description: "merge to"
-                required: true
-                default: "staging"
+  workflow_dispatch:
+    inputs:
+      upstream:
+        description: "merge from"
+        required: true
+        default: "main"
+      branch:
+        description: "merge to"
+        required: true
+        default: "staging"
 
 jobs:
-    merge:
-        env:
-            upstream: ${{ inputs.upstream }}
-            branch: ${{ inputs.branch }}
-        permissions:
-            contents: read
-        runs-on: ubuntu-24.04
-        timeout-minutes: 10
-        steps:
-            - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
-              with:
-                  persist-credentials: false
-            # merge main to staging
-            - uses: repo-sync/pull-request@7e79a9f5dc3ad0ce53138f01df2fad14a04831c5 # v2.12.1
-              name: pull-request
-              with:
-                  source_branch: ${{ env.upstream }}
-                  destination_branch: ${{ env.branch }}
-                  pr_title: "[Automate] Merge ${{ env.upstream }} to ${{ env.branch }}"
-                  pr_body: |
-                      :crown: *An automated PR*
+  merge:
+    env:
+      upstream: ${{ inputs.upstream }}
+      branch: ${{ inputs.branch }}
+    permissions:
+      contents: read
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
+        with:
+          persist-credentials: false
+      # merge main to staging
+      - uses: repo-sync/pull-request@7e79a9f5dc3ad0ce53138f01df2fad14a04831c5 # v2.12.1
+        name: pull-request
+        with:
+          source_branch: ${{ env.upstream }}
+          destination_branch: ${{ env.branch }}
+          pr_title: "[Automate] Merge ${{ env.upstream }} to ${{ env.branch }}"
+          pr_body: |
+            :crown: *An automated PR*
 
-                      _Created by [repo-sync/pull-request](https://github.com/repo-sync/pull-request)_
-                  pr_draft: false
-                  pr_label: "auto-pr"
-                  pr_allow_empty: true # Creates pull request even if there are no changes
-                  github_token: ${{ secrets.SYNCED_GITHUB_TOKEN_REPO }} # enable github actions workflow chain. require pull_request read/write (fine grained), repo (legacy)
+            _Created by [repo-sync/pull-request](https://github.com/repo-sync/pull-request)_
+          pr_draft: false
+          pr_label: "auto-pr"
+          pr_allow_empty: true # Creates pull request even if there are no changes
+          github_token: ${{ secrets.SYNCED_GITHUB_TOKEN_REPO }} # enable github actions workflow chain. require pull_request read/write (fine grained), repo (legacy)

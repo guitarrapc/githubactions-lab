@@ -1,66 +1,66 @@
 name: "update package.json"
 on:
-    workflow_dispatch:
-        inputs:
-            version:
-                description: "version: Unity Package Version you want update to."
-                required: true
-            create_pr:
-                description: "create_pr: true to create pr, false to direct push."
-                required: true
-                default: "false"
-            dry_run:
-                description: "dry_run: true will never create commit/pr."
-                required: true
-                default: "false"
+  workflow_dispatch:
+    inputs:
+      version:
+        description: "version: Unity Package Version you want update to."
+        required: true
+      create_pr:
+        description: "create_pr: true to create pr, false to direct push."
+        required: true
+        default: "false"
+      dry_run:
+        description: "dry_run: true will never create commit/pr."
+        required: true
+        default: "false"
 
 jobs:
-    update:
-        permissions:
-            contents: read
-        runs-on: ubuntu-24.04
-        timeout-minutes: 5
-        env:
-            VERSION: ${{ inputs.version }}
-            TARGET_FILE: ./src/json/package.json
-            CREATE_PR: ${{ inputs.create_pr }}
-            DRY_RUN: ${{ inputs.dry_run }}
-        steps:
-            - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
-              with:
-                  persist-credentials: false
-            - name: before
-              run: cat ${{ env.TARGET_FILE}}
-            - name: update package.json to version ${{ env.VERSION }}
-              run: sed -i -e "s/\(\"version\":\) \"\(.*\)\",/\1 \"${{ env.VERSION }}\",/" ${{ env.TARGET_FILE }}
-            - name: after
-              run: cat ${{ env.TARGET_FILE}}
-            - name: Create Pull Request
-              id: cpr
-              uses: peter-evans/create-pull-request@c0f553fe549906ede9cf27b5156039d195d2ece0 # v8.1.0
-              with:
-                  commit-message: "feat: Update package.json to ${{ env.VERSION }}"
-                  branch: feat/bump_package_json_${{ env.VERSION }}
-                  title: "Auto-genetaed: Update package.json to ${{ env.VERSION }}"
-                  body: |
-                      ${{ env.TARGET_FILE }} is updated to new verison ${{ env.VERSION }} :rocket:
-                  labels: automated pr
-                  draft: false
-              if: ${{ env.DRY_RUN == 'false' && env.CREATE_PR == 'true' }}
-            - name: Check outputs
-              run: |
-                  echo "Pull Request Number - ${{ steps.cpr.outputs.pull-request-number }}"
-                  echo "Pull Request URL - ${{ steps.cpr.outputs.pull-request-url }}"
-              if: ${{ env.DRY_RUN == 'false' && env.CREATE_PR == 'true' }}
-            - name: Commit files
-              run: |
-                  git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
-                  git config --local user.name "github-actions[bot]"
-                  git commit -m "feat: Update package.json to ${{ env.VERSION }}" -a
-              if: ${{ env.DRY_RUN == 'false' && env.CREATE_PR != 'true' }}
-            - name: Push changes
-              uses: ad-m/github-push-action@77c5b412c50b723d2a4fbc6d71fb5723bcd439aa # v1.0.0
-              with:
-                  github_token: ${{ secrets.GITHUB_TOKEN }}
-                  branch: ${{ github.ref }}
-              if: ${{ env.DRY_RUN == 'false' && env.CREATE_PR != 'true' }}
+  update:
+    permissions:
+      contents: read
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    env:
+      VERSION: ${{ inputs.version }}
+      TARGET_FILE: ./src/json/package.json
+      CREATE_PR: ${{ inputs.create_pr }}
+      DRY_RUN: ${{ inputs.dry_run }}
+    steps:
+      - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
+        with:
+          persist-credentials: false
+      - name: before
+        run: cat ${{ env.TARGET_FILE}}
+      - name: update package.json to version ${{ env.VERSION }}
+        run: sed -i -e "s/\(\"version\":\) \"\(.*\)\",/\1 \"${{ env.VERSION }}\",/" ${{ env.TARGET_FILE }}
+      - name: after
+        run: cat ${{ env.TARGET_FILE}}
+      - name: Create Pull Request
+        id: cpr
+        uses: peter-evans/create-pull-request@c0f553fe549906ede9cf27b5156039d195d2ece0 # v8.1.0
+        with:
+          commit-message: "feat: Update package.json to ${{ env.VERSION }}"
+          branch: feat/bump_package_json_${{ env.VERSION }}
+          title: "Auto-genetaed: Update package.json to ${{ env.VERSION }}"
+          body: |
+            ${{ env.TARGET_FILE }} is updated to new verison ${{ env.VERSION }} :rocket:
+          labels: automated pr
+          draft: false
+        if: ${{ env.DRY_RUN == 'false' && env.CREATE_PR == 'true' }}
+      - name: Check outputs
+        run: |
+          echo "Pull Request Number - ${{ steps.cpr.outputs.pull-request-number }}"
+          echo "Pull Request URL - ${{ steps.cpr.outputs.pull-request-url }}"
+        if: ${{ env.DRY_RUN == 'false' && env.CREATE_PR == 'true' }}
+      - name: Commit files
+        run: |
+          git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git commit -m "feat: Update package.json to ${{ env.VERSION }}" -a
+        if: ${{ env.DRY_RUN == 'false' && env.CREATE_PR != 'true' }}
+      - name: Push changes
+        uses: ad-m/github-push-action@77c5b412c50b723d2a4fbc6d71fb5723bcd439aa # v1.0.0
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: ${{ github.ref }}
+        if: ${{ env.DRY_RUN == 'false' && env.CREATE_PR != 'true' }}

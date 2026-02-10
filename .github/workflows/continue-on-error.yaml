@@ -1,24 +1,24 @@
 name: "continue on error"
 on:
-    workflow_dispatch:
-    push:
-        branches: ["main"]
+  workflow_dispatch:
+  push:
+    branches: ["main"]
 
 jobs:
-    continue-on-error:
-        permissions:
-            contents: read
-        runs-on: ubuntu-24.04
-        timeout-minutes: 3
-        steps:
-            - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
-              with:
-                  persist-credentials: false
-            - run: exit 1
-              continue-on-error: true
-            - run: exit 1
-              continue-on-error: true
-            - run: echo success
-            # never call failure(), as continue-on-error treat step error as success.
-            - if: ${{ failure() }}
-              run: echo error happen
+  continue-on-error:
+    permissions:
+      contents: read
+    runs-on: ubuntu-24.04
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
+        with:
+          persist-credentials: false
+      - run: exit 1
+        continue-on-error: true
+      - run: exit 1
+        continue-on-error: true
+      - run: echo success
+      # never call failure(), as continue-on-error treat step error as success.
+      - if: ${{ failure() }}
+        run: echo error happen

@@ -1,47 +1,47 @@
 name: file change detect trilom
 on:
-    pull_request:
-        branches: ["main"]
-    push:
-        branches: ["main"]
+  pull_request:
+    branches: ["main"]
+  push:
+    branches: ["main"]
 
 jobs:
-    changed-files:
-        permissions:
-            contents: read
-        runs-on: ubuntu-24.04
-        timeout-minutes: 3
-        steps:
-            - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
-              with:
-                  fetch-depth: 2
-                  persist-credentials: false
-            - id: changed-files
-              uses: trilom/file-changes-action@a6ca26c14274c33b15e6499323aac178af06ad4b # v1.2.4
-              with:
-                  output: "," # default 'json'
-            - name: Changed file list
-              run: echo "${{ steps.changed-files.outputs.files }}"
-            - name: Is changed files include .github/workflows?
-              run: echo "${{ contains(steps.changed-files.outputs.files, '.github/workflows')}}"
-            - name: Is changed files include .github/dummy?
-              run: echo "${{ contains(steps.changed-files.outputs.files, '.github/dummy')}}"
-            - id: changed-files2
-              uses: trilom/file-changes-action@a6ca26c14274c33b15e6499323aac178af06ad4b # v1.2.4
-              if: ${{ github.event.pull_request.changed_files < 100 }} # when changed files less than 100
-              with:
-                  output: " "
-            - name: List all changed files
-              env:
-                  CHANGED_FILES: ${{ steps.changed-files2.outputs.files }}
-              run: |
-                  for file in ${CHANGED_FILES}; do
-                    echo "$file was changed"
-                  done
-            - id: changed-files3
-              uses: trilom/file-changes-action@a6ca26c14274c33b15e6499323aac178af06ad4b # v1.2.4
-              if: ${{ github.event.pull_request.changed_files < 100 }} # when changed files less than 100
-              with:
-                  output: "json"
-            - name: Changed file list
-              run: echo "${{ steps.changed-files3.outputs.files }}"
+  changed-files:
+    permissions:
+      contents: read
+    runs-on: ubuntu-24.04
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
+        with:
+          fetch-depth: 2
+          persist-credentials: false
+      - id: changed-files
+        uses: trilom/file-changes-action@a6ca26c14274c33b15e6499323aac178af06ad4b # v1.2.4
+        with:
+          output: "," # default 'json'
+      - name: Changed file list
+        run: echo "${{ steps.changed-files.outputs.files }}"
+      - name: Is changed files include .github/workflows?
+        run: echo "${{ contains(steps.changed-files.outputs.files, '.github/workflows')}}"
+      - name: Is changed files include .github/dummy?
+        run: echo "${{ contains(steps.changed-files.outputs.files, '.github/dummy')}}"
+      - id: changed-files2
+        uses: trilom/file-changes-action@a6ca26c14274c33b15e6499323aac178af06ad4b # v1.2.4
+        if: ${{ github.event.pull_request.changed_files < 100 }} # when changed files less than 100
+        with:
+          output: " "
+      - name: List all changed files
+        env:
+          CHANGED_FILES: ${{ steps.changed-files2.outputs.files }}
+        run: |
+          for file in ${CHANGED_FILES}; do
+            echo "$file was changed"
+          done
+      - id: changed-files3
+        uses: trilom/file-changes-action@a6ca26c14274c33b15e6499323aac178af06ad4b # v1.2.4
+        if: ${{ github.event.pull_request.changed_files < 100 }} # when changed files less than 100
+        with:
+          output: "json"
+      - name: Changed file list
+        run: echo "${{ steps.changed-files3.outputs.files }}"
