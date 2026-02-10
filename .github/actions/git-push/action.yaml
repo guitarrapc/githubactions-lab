@@ -69,6 +69,7 @@ runs:
           fi
 
           # Push failed, increment retry count
+          echo "Incrementing retry count from $retry_count to $((retry_count + 1))"
           ((retry_count++))
           echo "Current retry count: $retry_count"
 
