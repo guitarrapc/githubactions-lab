@@ -20,6 +20,7 @@ inputs:
     description: "working directory to run git commands."
     required: false
     default: "."
+
 runs:
   using: "composite"
   steps:
