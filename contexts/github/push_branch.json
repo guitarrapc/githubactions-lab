@@ -2,13 +2,13 @@
   "token": "<reducted>",
   "job": "dump-context",
   "ref": "refs/heads/main",
-  "sha": "bd769ea3213f5eaaf5b19c25fc6e9b7d59b43216",
+  "sha": "9f23321eb1b2351d92538a69d3ea729d14abbce7",
   "repository": "guitarrapc/githubactions-lab",
   "repository_owner": "guitarrapc",
   "repository_owner_id": "3856350",
   "repositoryUrl": "git://github.com/guitarrapc/githubactions-lab.git",
-  "run_id": "21850787689",
-  "run_number": "1451",
+  "run_id": "22101221320",
+  "run_number": "1465",
   "retention_days": "90",
   "run_attempt": "1",
   "artifact_cache_size_limit": "10",
@@ -27,10 +27,28 @@
   "ref_type": "branch",
   "secret_source": "Actions",
   "event": {
-    "after": "bd769ea3213f5eaaf5b19c25fc6e9b7d59b43216",
+    "after": "9f23321eb1b2351d92538a69d3ea729d14abbce7",
     "base_ref": null,
-    "before": "0957e59d1d7b8bbcbd0336d84358b5f8ba9dd12c",
+    "before": "27f240441bd29c4b1b76277c68b8279f949c0ec2",
     "commits": [
+      {
+        "author": {
+          "email": "49699333+dependabot[bot]@users.noreply.github.com",
+          "name": "dependabot[bot]",
+          "username": "dependabot[bot]"
+        },
+        "committer": {
+          "email": "noreply@github.com",
+          "name": "GitHub",
+          "username": "web-flow"
+        },
+        "distinct": false,
+        "id": "2cd010ea9c1988824094f688e0c0a4afa7a76e80",
+        "message": "chore(deps): bump Kesin11/actions-timeline from 2.2.3 to 3.0.0\n\nBumps [Kesin11/actions-timeline](https://github.com/kesin11/actions-timeline) from 2.2.3 to 3.0.0.\n- [Release notes](https://github.com/kesin11/actions-timeline/releases)\n- [Commits](https://github.com/kesin11/actions-timeline/compare/427ee2cf860166e404d0d69b4f2b24012bb7af4f...e018cfefea60b4f44266998551211a35a58b8097)\n\n---\nupdated-dependencies:\n- dependency-name: Kesin11/actions-timeline\n  dependency-version: 3.0.0\n  dependency-type: direct:production\n  update-type: version-update:semver-major\n...\n\nSigned-off-by: dependabot[bot] <support@github.com>",
+        "timestamp": "2026-02-16T16:44:34Z",
+        "tree_id": "c5288cdc99689a8767ebfeae1cb9e7ee30a02bc1",
+        "url": "https://github.com/guitarrapc/githubactions-lab/commit/2cd010ea9c1988824094f688e0c0a4afa7a76e80"
+      },
       {
         "author": {
           "email": "3856350+guitarrapc@users.noreply.github.com",
@@ -38,19 +56,19 @@
           "username": "guitarrapc"
         },
         "committer": {
-          "email": "3856350+guitarrapc@users.noreply.github.com",
-          "name": "Ikiru Yoshizaki",
-          "username": "guitarrapc"
+          "email": "noreply@github.com",
+          "name": "GitHub",
+          "username": "web-flow"
         },
         "distinct": true,
-        "id": "bd769ea3213f5eaaf5b19c25fc6e9b7d59b43216",
-        "message": "chore: dummy",
-        "timestamp": "2026-02-10T12:41:39+09:00",
-        "tree_id": "b1b524dfec49b9d5c4474360de5915379ec7348d",
-        "url": "https://github.com/guitarrapc/githubactions-lab/commit/bd769ea3213f5eaaf5b19c25fc6e9b7d59b43216"
+        "id": "9f23321eb1b2351d92538a69d3ea729d14abbce7",
+        "message": "Merge pull request #297 from guitarrapc/dependabot/github_actions/Kesin11/actions-timeline-3.0.0\n\nchore(deps): bump Kesin11/actions-timeline from 2.2.3 to 3.0.0",
+        "timestamp": "2026-02-17T22:55:41+09:00",
+        "tree_id": "c5288cdc99689a8767ebfeae1cb9e7ee30a02bc1",
+        "url": "https://github.com/guitarrapc/githubactions-lab/commit/9f23321eb1b2351d92538a69d3ea729d14abbce7"
       }
     ],
-    "compare": "https://github.com/guitarrapc/githubactions-lab/compare/0957e59d1d7b...bd769ea3213f",
+    "compare": "https://github.com/guitarrapc/githubactions-lab/compare/27f240441bd2...9f23321eb1b2",
     "created": false,
     "deleted": false,
     "forced": false,
@@ -61,16 +79,16 @@
         "username": "guitarrapc"
       },
       "committer": {
-        "email": "3856350+guitarrapc@users.noreply.github.com",
-        "name": "Ikiru Yoshizaki",
-        "username": "guitarrapc"
+        "email": "noreply@github.com",
+        "name": "GitHub",
+        "username": "web-flow"
       },
       "distinct": true,
-      "id": "bd769ea3213f5eaaf5b19c25fc6e9b7d59b43216",
-      "message": "chore: dummy",
-      "timestamp": "2026-02-10T12:41:39+09:00",
-      "tree_id": "b1b524dfec49b9d5c4474360de5915379ec7348d",
-      "url": "https://github.com/guitarrapc/githubactions-lab/commit/bd769ea3213f5eaaf5b19c25fc6e9b7d59b43216"
+      "id": "9f23321eb1b2351d92538a69d3ea729d14abbce7",
+      "message": "Merge pull request #297 from guitarrapc/dependabot/github_actions/Kesin11/actions-timeline-3.0.0\n\nchore(deps): bump Kesin11/actions-timeline from 2.2.3 to 3.0.0",
+      "timestamp": "2026-02-17T22:55:41+09:00",
+      "tree_id": "c5288cdc99689a8767ebfeae1cb9e7ee30a02bc1",
+      "url": "https://github.com/guitarrapc/githubactions-lab/commit/9f23321eb1b2351d92538a69d3ea729d14abbce7"
     },
     "pusher": {
       "email": "3856350+guitarrapc@users.noreply.github.com",
@@ -112,6 +130,7 @@
       "has_issues": true,
       "has_pages": false,
       "has_projects": false,
+      "has_pull_requests": true,
       "has_wiki": false,
       "homepage": "",
       "hooks_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/hooks",
@@ -165,10 +184,11 @@
         "user_view_type": "public"
       },
       "private": false,
+      "pull_request_creation_policy": "all",
       "pulls_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls{/number}",
-      "pushed_at": 1770694903,
+      "pushed_at": 1771336542,
       "releases_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/releases{/id}",
-      "size": 4970,
+      "size": 5065,
       "ssh_url": "git@github.com:guitarrapc/githubactions-lab.git",
       "stargazers": 54,
       "stargazers_count": 54,
@@ -183,7 +203,7 @@
         "github-actions"
       ],
       "trees_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/git/trees{/sha}",
-      "updated_at": "2026-02-10T03:39:52Z",
+      "updated_at": "2026-02-15T00:13:16Z",
       "url": "https://api.github.com/repos/guitarrapc/githubactions-lab",
       "visibility": "public",
       "watchers": 54,
@@ -213,7 +233,7 @@
     }
   },
   "workflow_ref": "guitarrapc/githubactions-lab/.github/workflows/auto-dump-context.yaml@refs/heads/main",
-  "workflow_sha": "bd769ea3213f5eaaf5b19c25fc6e9b7d59b43216",
+  "workflow_sha": "9f23321eb1b2351d92538a69d3ea729d14abbce7",
   "repository_id": "257465468",
   "triggering_actor": "guitarrapc",
   "workspace": "/home/runner/work/githubactions-lab/githubactions-lab",
@@ -221,9 +241,9 @@
   "event_path": "/home/runner/work/_temp/_github_workflow/event.json",
   "action_repository": "",
   "action_ref": "",
-  "path": "/home/runner/work/_temp/_runner_file_commands/add_path_59a5125b-6b1b-4095-aa06-2436ad86e7e7",
-  "env": "/home/runner/work/_temp/_runner_file_commands/set_env_59a5125b-6b1b-4095-aa06-2436ad86e7e7",
-  "step_summary": "/home/runner/work/_temp/_runner_file_commands/step_summary_59a5125b-6b1b-4095-aa06-2436ad86e7e7",
-  "state": "/home/runner/work/_temp/_runner_file_commands/save_state_59a5125b-6b1b-4095-aa06-2436ad86e7e7",
-  "output": "/home/runner/work/_temp/_runner_file_commands/set_output_59a5125b-6b1b-4095-aa06-2436ad86e7e7"
+  "path": "/home/runner/work/_temp/_runner_file_commands/add_path_ba3827a6-9fbe-45e7-a6c7-cb94391d5902",
+  "env": "/home/runner/work/_temp/_runner_file_commands/set_env_ba3827a6-9fbe-45e7-a6c7-cb94391d5902",
+  "step_summary": "/home/runner/work/_temp/_runner_file_commands/step_summary_ba3827a6-9fbe-45e7-a6c7-cb94391d5902",
+  "state": "/home/runner/work/_temp/_runner_file_commands/save_state_ba3827a6-9fbe-45e7-a6c7-cb94391d5902",
+  "output": "/home/runner/work/_temp/_runner_file_commands/set_output_ba3827a6-9fbe-45e7-a6c7-cb94391d5902"
 }
