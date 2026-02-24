@@ -71,7 +71,7 @@ jobs:
           } | tee -a "$GITHUB_ENV"
 
       # Commit if change happen, then craete PR. force push when branch/pr already exists.
-      - name: commit
+      - name: git auth
         if: ${{ steps.git-check.outputs.modified == 'true' }}
         run: |
           git remote set-url origin "https://github-actions:${GITHUB_TOKEN}@github.com/${{ github.repository }}"
@@ -79,12 +79,15 @@ jobs:
           git config user.email 41898282+github-actions[bot]@users.noreply.github.com
 
           git checkout -b "auto-pr/dotnet-format"
-          git add .
-          git commit -m "[automated] dotnet format by $GITHUB_WORKFLOW" || true
-          git push -u origin "auto-pr/dotnet-format" --force
         env:
           GITHUB_TOKEN: ${{ steps.app-token.outputs.token }}
-          GITHUB_WORKFLOW: ${{ github.workflow }}
+
+      - name: commit
+        uses: ./.github/actions/git-push
+        with:
+          commit-message: "[automated] dotnet format by ${{ github.workflow }}"
+          ref: "auto-pr/dotnet-format"
+          github-token: ${{ steps.app-token.outputs.token }}
 
       - name: Create PullRequest
         if: ${{ steps.git-check.outputs.modified == 'true' }}
