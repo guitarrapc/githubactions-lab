@@ -105,7 +105,9 @@ runs:
         # Create blobs for changed files
         echo "Creating blobs for changed files..."
         declare -a TREE_ITEMS=()
+        declare -a FILES_TO_PROCESS=()
 
+        # First, expand directories to individual files
         while IFS= read -r line; do
           # Extract status and filename from porcelain output
           # Format: XY filename (X=index, Y=worktree, 2 chars + space + filename)
@@ -122,18 +124,30 @@ runs:
             FILE="${FILE##* -> }"
           fi
 
+          # If it's a directory (ends with /), expand to individual files
+          if [[ "$FILE" == */ ]]; then
+            echo "Expanding directory: $FILE"
+            while IFS= read -r subfile; do
+              if [ -f "$subfile" ]; then
+                FILES_TO_PROCESS+=("$STATUS:$subfile")
+              fi
+            done < <(find "$FILE" -type f 2>/dev/null || true)
+          else
+            FILES_TO_PROCESS+=("$STATUS:$FILE")
+          fi
+        done <<< "$STATUS_OUTPUT"
+
+        # Process each file
+        for entry in "${FILES_TO_PROCESS[@]}"; do
+          STATUS="${entry%%:*}"
+          FILE="${entry#*:}"
+
           echo "Processing file: $FILE (status: $STATUS)"
 
           # Check if file is deleted (D in status)
           if [[ "$STATUS" =~ D ]]; then
             echo "File deleted: $FILE"
             TREE_ITEMS+=("$(jq -n --arg path "$FILE" '{path: $path, mode: "100644", type: "blob", sha: null}')")
-            continue
-          fi
-
-          # Skip if directory
-          if [ -d "$FILE" ]; then
-            echo "Skipping directory: $FILE"
             continue
           fi
 
@@ -168,7 +182,7 @@ runs:
 
           echo "Created blob for $FILE: $BLOB_SHA (mode: $MODE)"
           TREE_ITEMS+=("$(jq -n --arg path "$FILE" --arg mode "$MODE" --arg sha "$BLOB_SHA" '{path: $path, mode: $mode, type: "blob", sha: $sha}')")
-        done <<< "$STATUS_OUTPUT"
+        done
 
         # Check if there are any tree items to commit
         if [ ${#TREE_ITEMS[@]} -eq 0 ]; then
