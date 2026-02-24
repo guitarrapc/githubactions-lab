@@ -16,6 +16,10 @@ inputs:
   github-token:
     description: "github token"
     required: true
+  sign-commits:
+    description: "whether to sign commits."
+    required: false
+    default: "false"
   working-directory:
     description: "working directory to run git commands."
     required: false
@@ -39,8 +43,166 @@ runs:
       continue-on-error: true
       working-directory: ${{ inputs.working-directory }}
 
+    - name: git commit via GitHub API (sign commits)
+      if: ${{ steps.diff.outputs.changed == '1' && inputs.sign-commits == 'true' }}
+      run: |
+        set -e
+
+        # Parse repository owner and name
+        OWNER="${REPOSITORY%/*}"
+        REPO="${REPOSITORY#*/}"
+        API_BASE="https://api.github.com"
+
+        # Get current commit SHA
+        echo "Getting current commit SHA for ref: $GIT_REF"
+        CURRENT_SHA=$(curl -s -H "Authorization: token ${GITHUB_TOKEN}" \
+          -H "Accept: application/vnd.github.v3+json" \
+          "${API_BASE}/repos/${REPOSITORY}/git/ref/heads/${GIT_REF}" | jq -r '.object.sha')
+
+        if [ "$CURRENT_SHA" = "null" ] || [ -z "$CURRENT_SHA" ]; then
+          echo "Failed to get current commit SHA"
+          exit 1
+        fi
+        echo "Current commit SHA: $CURRENT_SHA"
+
+        # Get changed files
+        echo "Getting changed files..."
+        git add -N .
+        CHANGED_FILES=$(git diff --name-only HEAD 2>/dev/null || git ls-files --others --exclude-standard)
+
+        if [ -z "$CHANGED_FILES" ]; then
+          echo "No changed files detected"
+          exit 0
+        fi
+
+        # Create blobs for changed files
+        echo "Creating blobs for changed files..."
+        declare -a TREE_ITEMS=()
+
+        while IFS= read -r file; do
+          if [ ! -f "$file" ]; then
+            echo "Skipping non-existent file: $file"
+            continue
+          fi
+
+          echo "Processing file: $file"
+
+          # Detect file mode
+          if [ -x "$file" ]; then
+            MODE="100755"
+          else
+            MODE="100644"
+          fi
+
+          # Create blob
+          CONTENT=$(base64 -w 0 "$file" 2>/dev/null || base64 "$file" | tr -d '\n')
+          BLOB_RESPONSE=$(curl -s -X POST -H "Authorization: token ${GITHUB_TOKEN}" \
+            -H "Accept: application/vnd.github.v3+json" \
+            "${API_BASE}/repos/${REPOSITORY}/git/blobs" \
+            -d "{\"content\":\"${CONTENT}\",\"encoding\":\"base64\"}")
+
+          BLOB_SHA=$(echo "$BLOB_RESPONSE" | jq -r '.sha')
+
+          if [ "$BLOB_SHA" = "null" ] || [ -z "$BLOB_SHA" ]; then
+            echo "Failed to create blob for $file"
+            echo "Response: $BLOB_RESPONSE"
+            exit 1
+          fi
+
+          echo "Created blob for $file: $BLOB_SHA (mode: $MODE)"
+          TREE_ITEMS+=("{\"path\":\"$file\",\"mode\":\"$MODE\",\"type\":\"blob\",\"sha\":\"$BLOB_SHA\"}")
+        done <<< "$CHANGED_FILES"
+
+        # Create tree
+        echo "Creating tree..."
+        TREE_JSON=$(printf '%s\n' "${TREE_ITEMS[@]}" | jq -s '.')
+        TREE_RESPONSE=$(curl -s -X POST -H "Authorization: token ${GITHUB_TOKEN}" \
+          -H "Accept: application/vnd.github.v3+json" \
+          "${API_BASE}/repos/${REPOSITORY}/git/trees" \
+          -d "{\"base_tree\":\"${CURRENT_SHA}\",\"tree\":${TREE_JSON}}")
+
+        TREE_SHA=$(echo "$TREE_RESPONSE" | jq -r '.sha')
+
+        if [ "$TREE_SHA" = "null" ] || [ -z "$TREE_SHA" ]; then
+          echo "Failed to create tree"
+          echo "Response: $TREE_RESPONSE"
+          exit 1
+        fi
+        echo "Created tree: $TREE_SHA"
+
+        # Create commit
+        echo "Creating commit..."
+        COMMIT_RESPONSE=$(curl -s -X POST -H "Authorization: token ${GITHUB_TOKEN}" \
+          -H "Accept: application/vnd.github.v3+json" \
+          "${API_BASE}/repos/${REPOSITORY}/git/commits" \
+          -d "{\"message\":\"${COMMIT_MESSAGE}\",\"tree\":\"${TREE_SHA}\",\"parents\":[\"${CURRENT_SHA}\"]}")
+
+        NEW_COMMIT_SHA=$(echo "$COMMIT_RESPONSE" | jq -r '.sha')
+
+        if [ "$NEW_COMMIT_SHA" = "null" ] || [ -z "$NEW_COMMIT_SHA" ]; then
+          echo "Failed to create commit"
+          echo "Response: $COMMIT_RESPONSE"
+          exit 1
+        fi
+        echo "Created commit: $NEW_COMMIT_SHA"
+
+        # Update reference with retry logic
+        echo "Updating reference..."
+        max_retries=3
+        retry_count=0
+
+        while [ $retry_count -lt $max_retries ]; do
+          echo "Attempting to update ref ($((retry_count + 1))/${max_retries})..."
+
+          UPDATE_RESPONSE=$(curl -s -X PATCH -H "Authorization: token ${GITHUB_TOKEN}" \
+            -H "Accept: application/vnd.github.v3+json" \
+            "${API_BASE}/repos/${REPOSITORY}/git/refs/heads/${GIT_REF}" \
+            -d "{\"sha\":\"${NEW_COMMIT_SHA}\",\"force\":false}")
+
+          UPDATE_SHA=$(echo "$UPDATE_RESPONSE" | jq -r '.object.sha')
+
+          if [ "$UPDATE_SHA" = "$NEW_COMMIT_SHA" ]; then
+            echo "Successfully updated reference to: $NEW_COMMIT_SHA"
+            exit 0
+          fi
+
+          echo "Failed to update reference"
+          echo "Response: $UPDATE_RESPONSE"
+
+          ((retry_count++))
+
+          if [ $retry_count -lt $max_retries ]; then
+            echo "Fetching latest changes and retrying..."
+            git fetch origin "$GIT_REF"
+
+            # Get new base commit
+            CURRENT_SHA=$(curl -s -H "Authorization: token ${GITHUB_TOKEN}" \
+              -H "Accept: application/vnd.github.v3+json" \
+              "${API_BASE}/repos/${REPOSITORY}/git/ref/heads/${GIT_REF}" | jq -r '.object.sha')
+
+            # Recreate commit with new parent
+            COMMIT_RESPONSE=$(curl -s -X POST -H "Authorization: token ${GITHUB_TOKEN}" \
+              -H "Accept: application/vnd.github.v3+json" \
+              "${API_BASE}/repos/${REPOSITORY}/git/commits" \
+              -d "{\"message\":\"${COMMIT_MESSAGE}\",\"tree\":\"${TREE_SHA}\",\"parents\":[\"${CURRENT_SHA}\"]}")
+
+            NEW_COMMIT_SHA=$(echo "$COMMIT_RESPONSE" | jq -r '.sha')
+            echo "Created new commit with updated parent: $NEW_COMMIT_SHA"
+          fi
+        done
+
+        echo "Maximum retries reached, failed to update reference"
+        exit 1
+      shell: bash
+      working-directory: ${{ inputs.working-directory }}
+      env:
+        COMMIT_MESSAGE: ${{ inputs.commit-message }}
+        GITHUB_TOKEN: ${{ inputs.github-token }}
+        REPOSITORY: ${{ inputs.repository }}
+        GIT_REF: ${{ inputs.ref }}
+
     - name: git commit
-      if: ${{ steps.diff.outputs.changed == '1' }}
+      if: ${{ steps.diff.outputs.changed == '1' && inputs.sign-commits == 'false' }}
       run: |
         git remote set-url origin "https://github-actions:${GITHUB_TOKEN}@github.com/${REPOSITORY}"
         git config user.name  "github-actions[bot]"
@@ -53,9 +215,8 @@ runs:
         COMMIT_MESSAGE: ${{ inputs.commit-message }}
         GITHUB_TOKEN: ${{ inputs.github-token }}
         REPOSITORY: ${{ inputs.repository }}
-
     - name: git push
-      if: ${{ steps.diff.outputs.changed == '1' }}
+      if: ${{ steps.diff.outputs.changed == '1' && inputs.sign-commits == 'false' }}
       run: |
         max_retries=3
         retry_count=0
