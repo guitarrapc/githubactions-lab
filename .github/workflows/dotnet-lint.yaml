@@ -43,54 +43,31 @@ jobs:
       - name: Dotnet Format
         run: dotnet format --verbosity diagnostic --exclude "Sandbox.Fail.Tests"
         working-directory: ${{ env.SLN_ROOT }}
-      # is change happen?
-      - name: Check for modified files
-        id: git-check
-        run: echo "modified=$(if git diff-index --quiet HEAD --; then echo "false"; else echo "true"; fi)" >> "$GITHUB_OUTPUT"
 
-      # get directory stats
-      - name: List modified directories
-        if: ${{ steps.git-check.outputs.modified == 'true' }}
-        run: |
-          dirs=$(git diff --dirstat=files)
-          {
-            echo "CHANGED_DIRS<<EOF"
-            echo "${dirs}"
-            echo "EOF"
-          } | tee -a "$GITHUB_ENV"
-
-      # get files stats
-      - name: List modified files
-        if: ${{ steps.git-check.outputs.modified == 'true' }}
-        run: |
-          files=$(git diff --name-only)
-          {
-            echo "CHANGED_FILES<<EOF"
-            echo "${files}"
-            echo "EOF"
-          } | tee -a "$GITHUB_ENV"
-
-      # Commit if change happen, then craete PR. force push when branch/pr already exists.
-      - name: git auth
-        if: ${{ steps.git-check.outputs.modified == 'true' }}
-        run: |
-          git remote set-url origin "https://github-actions:${GITHUB_TOKEN}@github.com/${{ github.repository }}"
-          git config user.name github-actions[bot]
-          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
-
-          git checkout -b "auto-pr/dotnet-format"
-        env:
-          GITHUB_TOKEN: ${{ steps.app-token.outputs.token }}
-
+      # Commit if change happen
       - name: commit
+        id: git-check
         uses: ./.github/actions/git-push
         with:
           commit-message: "[automated] dotnet format by ${{ github.workflow }}"
           ref: "auto-pr/dotnet-format"
           github-token: ${{ steps.app-token.outputs.token }}
 
+      # get directory stats from action outputs
+      - name: Set changed files and directories
+        if: ${{ steps.git-check.outputs.changed == '1' }}
+        run: |
+          {
+            echo "CHANGED_DIRS<<EOF"
+            echo "${{ steps.git-check.outputs.changed-dirs }}"
+            echo "EOF"
+            echo "CHANGED_FILES<<EOF"
+            echo "${{ steps.git-check.outputs.changed-files }}"
+            echo "EOF"
+          } | tee -a "$GITHUB_ENV"
+
       - name: Create PullRequest
-        if: ${{ steps.git-check.outputs.modified == 'true' }}
+        if: ${{ steps.git-check.outputs.changed == '1' }}
         run: |
           pr_exists=$(gh pr list --head "auto-pr/dotnet-format" --base "${DEFAULT_BRANCH}")
           if [ -n "$pr_exists" ]; then
