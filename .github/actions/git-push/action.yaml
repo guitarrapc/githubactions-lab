@@ -19,7 +19,7 @@ inputs:
   sign-commits:
     description: "whether to sign commits."
     required: false
-    default: "false"
+    default: "true"
   working-directory:
     description: "working directory to run git commands."
     required: false
