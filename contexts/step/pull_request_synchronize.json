@@ -1,7 +1,7 @@
 {
   "ref": {
     "outputs": {
-      "value": "copilot/apply-fixes-to-docs"
+      "value": "feature/commit"
     },
     "outcome": "success",
     "conclusion": "success"
