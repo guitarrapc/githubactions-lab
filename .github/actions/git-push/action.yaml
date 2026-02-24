@@ -24,20 +24,48 @@ inputs:
     description: "working directory to run git commands."
     required: false
     default: "."
+outputs:
+  changed:
+    description: "whether there is any change to commit."
+    value: ${{ steps.diff.outputs.changed }}
+  changed-files:
+    description: "list of changed files (one per line)"
+    value: ${{ steps.diff.outputs.changed-files }}
+  changed-dirs:
+    description: "changed directories with stats"
+    value: ${{ steps.diff.outputs.changed-dirs }}
 
 runs:
   using: "composite"
   steps:
+    # o: `git status --porcelain=v1` could get both modified and newly added.
+    # x: `git diff-index --quiet HEAD --` could get modified but not for newly
     - name: Diff
       id: diff
       run: |
-        git add -N .
-        if git diff --name-only --exit-code; then
+        STATUS_OUTPUT=$(git status --porcelain=v1)
+        if [ -z "$STATUS_OUTPUT" ]; then
           echo "No changes."
           echo "changed=0" | tee -a "${GITHUB_OUTPUT}"
         else
           echo "Changes detected."
           echo "changed=1" | tee -a "${GITHUB_OUTPUT}"
+
+          # Extract file names from status output
+          FILES=$(echo "$STATUS_OUTPUT" | awk '{print $2}')
+          {
+            echo "changed-files<<EOF"
+            echo "$FILES"
+            echo "EOF"
+          } | tee -a "${GITHUB_OUTPUT}"
+
+          # Get directory stats
+          DIRS=$(git diff --dirstat=files HEAD 2>/dev/null || echo "")
+          {
+            echo "changed-dirs<<EOF"
+            echo "$DIRS"
+            echo "EOF"
+          } | tee -a "${GITHUB_OUTPUT}"
         fi
       shell: bash
       continue-on-error: true
@@ -67,10 +95,9 @@ runs:
 
         # Get changed files
         echo "Getting changed files..."
-        git add -N .
-        CHANGED_FILES=$(git diff --name-only HEAD 2>/dev/null || git ls-files --others --exclude-standard)
+        STATUS_OUTPUT=$(git status --porcelain=v1)
 
-        if [ -z "$CHANGED_FILES" ]; then
+        if [ -z "$STATUS_OUTPUT" ]; then
           echo "No changed files detected"
           exit 0
         fi
@@ -78,40 +105,90 @@ runs:
         # Create blobs for changed files
         echo "Creating blobs for changed files..."
         declare -a TREE_ITEMS=()
+        declare -a FILES_TO_PROCESS=()
 
-        while IFS= read -r file; do
-          if [ ! -f "$file" ]; then
-            echo "Skipping non-existent file: $file"
+        # First, expand directories to individual files
+        while IFS= read -r line; do
+          # Extract status and filename from porcelain output
+          # Format: XY filename (X=index, Y=worktree, 2 chars + space + filename)
+          STATUS="${line:0:2}"
+          FILE="${line:3}"
+
+          if [ -z "$FILE" ]; then
             continue
           fi
 
-          echo "Processing file: $file"
+          # Handle renamed files (format: "R  old -> new" or "RM old -> new")
+          if [[ "$STATUS" =~ R ]]; then
+            # Extract new filename after " -> "
+            FILE="${FILE##* -> }"
+          fi
+
+          # If it's a directory (ends with /), expand to individual files
+          if [[ "$FILE" == */ ]]; then
+            echo "Expanding directory: $FILE"
+            while IFS= read -r subfile; do
+              if [ -f "$subfile" ]; then
+                FILES_TO_PROCESS+=("$STATUS:$subfile")
+              fi
+            done < <(find "$FILE" -type f 2>/dev/null || true)
+          else
+            FILES_TO_PROCESS+=("$STATUS:$FILE")
+          fi
+        done <<< "$STATUS_OUTPUT"
+
+        # Process each file
+        for entry in "${FILES_TO_PROCESS[@]}"; do
+          STATUS="${entry%%:*}"
+          FILE="${entry#*:}"
+
+          echo "Processing file: $FILE (status: $STATUS)"
+
+          # Check if file is deleted (D in status)
+          if [[ "$STATUS" =~ D ]]; then
+            echo "File deleted: $FILE"
+            TREE_ITEMS+=("$(jq -n --arg path "$FILE" '{path: $path, mode: "100644", type: "blob", sha: null}')")
+            continue
+          fi
+
+          # File must exist and be a regular file
+          if [ ! -f "$FILE" ]; then
+            echo "Warning: File not found or not a regular file: $FILE"
+            continue
+          fi
 
           # Detect file mode
-          if [ -x "$file" ]; then
+          if [ -x "$FILE" ]; then
             MODE="100755"
           else
             MODE="100644"
           fi
 
           # Create blob
-          CONTENT=$(base64 -w 0 "$file" 2>/dev/null || base64 "$file" | tr -d '\n')
+          CONTENT=$(base64 -w 0 "$FILE" 2>/dev/null || base64 "$FILE" | tr -d '\n')
+          BLOB_JSON=$(jq -n --arg content "$CONTENT" '{content: $content, encoding: "base64"}')
           BLOB_RESPONSE=$(curl -s -X POST -H "Authorization: token ${GITHUB_TOKEN}" \
             -H "Accept: application/vnd.github.v3+json" \
             "${API_BASE}/repos/${REPOSITORY}/git/blobs" \
-            -d "{\"content\":\"${CONTENT}\",\"encoding\":\"base64\"}")
+            -d "$BLOB_JSON")
 
           BLOB_SHA=$(echo "$BLOB_RESPONSE" | jq -r '.sha')
 
           if [ "$BLOB_SHA" = "null" ] || [ -z "$BLOB_SHA" ]; then
-            echo "Failed to create blob for $file"
+            echo "Failed to create blob for $FILE"
             echo "Response: $BLOB_RESPONSE"
             exit 1
           fi
 
-          echo "Created blob for $file: $BLOB_SHA (mode: $MODE)"
-          TREE_ITEMS+=("{\"path\":\"$file\",\"mode\":\"$MODE\",\"type\":\"blob\",\"sha\":\"$BLOB_SHA\"}")
-        done <<< "$CHANGED_FILES"
+          echo "Created blob for $FILE: $BLOB_SHA (mode: $MODE)"
+          TREE_ITEMS+=("$(jq -n --arg path "$FILE" --arg mode "$MODE" --arg sha "$BLOB_SHA" '{path: $path, mode: $mode, type: "blob", sha: $sha}')")
+        done
+
+        # Check if there are any tree items to commit
+        if [ ${#TREE_ITEMS[@]} -eq 0 ]; then
+          echo "No valid files to commit after filtering"
+          exit 0
+        fi
 
         # Create tree
         echo "Creating tree..."
@@ -212,6 +289,8 @@ runs:
         git remote set-url origin "https://github-actions:${GITHUB_TOKEN}@github.com/${REPOSITORY}"
         git config user.name  "github-actions[bot]"
         git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+        git checkout -b "${GIT_REF}"
+
         git add .
         git commit -m "$COMMIT_MESSAGE"
       shell: bash
@@ -219,7 +298,9 @@ runs:
       env:
         COMMIT_MESSAGE: ${{ inputs.commit-message }}
         GITHUB_TOKEN: ${{ inputs.github-token }}
+        GIT_REF: ${{ inputs.ref }}
         REPOSITORY: ${{ inputs.repository }}
+
     - name: git push
       if: ${{ steps.diff.outputs.changed == '1' && inputs.sign-commits == 'false' }}
       run: |

@@ -16,29 +16,19 @@ jobs:
       # make change
       - name: make changes
         run: date +%s > src/txt/report.txt
-      # detect changes
-      # o: `git status --porcelain=v1` could get both modified and newly added.
-      # x: `git diff-index --quiet HEAD --` could get modified but not for newly added.
-      - name: Check for modified files
-        id: git-check
-        run: echo "modified=$(if [[ "$(git status --porcelain=v1 2>/dev/null | wc -l)" == "0" ]]; then echo "false"; else echo "true"; fi)" | tee -a "$GITHUB_OUTPUT"
+
       # commit
       - name: commit
-        run: |
-          git remote set-url origin "https://github-actions:${GITHUB_TOKEN}@github.com/${{ github.repository }}"
-          git config user.name github-actions[bot]
-          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+        id: git-check
+        uses: ./.github/actions/git-push
+        with:
+          commit-message: "[automated] PR by ${{ github.workflow }}"
+          ref: "auto/create_pr"
+          github-token: ${{ secrets.GITHUB_TOKEN }}
 
-          git switch -c "auto/create_pr" || git switch "auto/create_pr"
-          git add .
-          git commit -m "[automated] PR by $GITHUB_WORKFLOW" || true
-          git push -u origin "auto/create_pr" --force
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          GITHUB_WORKFLOW: ${{ github.workflow }}
       # pr if change happen (force push when branch/pr already exists)
       - name: Create PullRequest
-        if: ${{ steps.git-check.outputs.modified == 'true' }}
+        if: ${{ steps.git-check.outputs.changed == '1' }}
         run: |
           pr_exists=$(gh pr list --head "auto/create_pr" --base "${GITHUB_DEFAULT_BRANCH}")
           if [ -n "$pr_exists" ]; then
