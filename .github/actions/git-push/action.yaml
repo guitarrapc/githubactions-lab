@@ -132,10 +132,12 @@ runs:
 
         # Create commit
         echo "Creating commit..."
+        COMMIT_JSON=$(jq -n --arg msg "$COMMIT_MESSAGE" --arg tree "$TREE_SHA" --arg parent "$CURRENT_SHA" \
+          '{message: $msg, tree: $tree, parents: [$parent]}')
         COMMIT_RESPONSE=$(curl -s -X POST -H "Authorization: token ${GITHUB_TOKEN}" \
           -H "Accept: application/vnd.github.v3+json" \
           "${API_BASE}/repos/${REPOSITORY}/git/commits" \
-          -d "{\"message\":\"${COMMIT_MESSAGE}\",\"tree\":\"${TREE_SHA}\",\"parents\":[\"${CURRENT_SHA}\"]}")
+          -d "$COMMIT_JSON")
 
         NEW_COMMIT_SHA=$(echo "$COMMIT_RESPONSE" | jq -r '.sha')
 
@@ -154,10 +156,11 @@ runs:
         while [ $retry_count -lt $max_retries ]; do
           echo "Attempting to update ref ($((retry_count + 1))/${max_retries})..."
 
+          UPDATE_JSON=$(jq -n --arg sha "$NEW_COMMIT_SHA" '{sha: $sha, force: false}')
           UPDATE_RESPONSE=$(curl -s -X PATCH -H "Authorization: token ${GITHUB_TOKEN}" \
             -H "Accept: application/vnd.github.v3+json" \
             "${API_BASE}/repos/${REPOSITORY}/git/refs/heads/${GIT_REF}" \
-            -d "{\"sha\":\"${NEW_COMMIT_SHA}\",\"force\":false}")
+            -d "$UPDATE_JSON")
 
           UPDATE_SHA=$(echo "$UPDATE_RESPONSE" | jq -r '.object.sha')
 
@@ -181,10 +184,12 @@ runs:
               "${API_BASE}/repos/${REPOSITORY}/git/ref/heads/${GIT_REF}" | jq -r '.object.sha')
 
             # Recreate commit with new parent
+            COMMIT_JSON=$(jq -n --arg msg "$COMMIT_MESSAGE" --arg tree "$TREE_SHA" --arg parent "$CURRENT_SHA" \
+              '{message: $msg, tree: $tree, parents: [$parent]}')
             COMMIT_RESPONSE=$(curl -s -X POST -H "Authorization: token ${GITHUB_TOKEN}" \
               -H "Accept: application/vnd.github.v3+json" \
               "${API_BASE}/repos/${REPOSITORY}/git/commits" \
-              -d "{\"message\":\"${COMMIT_MESSAGE}\",\"tree\":\"${TREE_SHA}\",\"parents\":[\"${CURRENT_SHA}\"]}")
+              -d "$COMMIT_JSON")
 
             NEW_COMMIT_SHA=$(echo "$COMMIT_RESPONSE" | jq -r '.sha')
             echo "Created new commit with updated parent: $NEW_COMMIT_SHA"
