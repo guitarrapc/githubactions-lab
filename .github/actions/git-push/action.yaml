@@ -116,6 +116,12 @@ runs:
             continue
           fi
 
+          # Handle renamed files (format: "R  old -> new" or "RM old -> new")
+          if [[ "$STATUS" =~ R ]]; then
+            # Extract new filename after " -> "
+            FILE="${FILE##* -> }"
+          fi
+
           echo "Processing file: $FILE (status: $STATUS)"
 
           # Check if file is deleted (D in status)
@@ -125,9 +131,15 @@ runs:
             continue
           fi
 
-          # File exists, create blob
+          # Skip if directory
+          if [ -d "$FILE" ]; then
+            echo "Skipping directory: $FILE"
+            continue
+          fi
+
+          # File must exist and be a regular file
           if [ ! -f "$FILE" ]; then
-            echo "Warning: File not found: $FILE"
+            echo "Warning: File not found or not a regular file: $FILE"
             continue
           fi
 
@@ -157,6 +169,12 @@ runs:
           echo "Created blob for $FILE: $BLOB_SHA (mode: $MODE)"
           TREE_ITEMS+=("$(jq -n --arg path "$FILE" --arg mode "$MODE" --arg sha "$BLOB_SHA" '{path: $path, mode: $mode, type: "blob", sha: $sha}')")
         done <<< "$STATUS_OUTPUT"
+
+        # Check if there are any tree items to commit
+        if [ ${#TREE_ITEMS[@]} -eq 0 ]; then
+          echo "No valid files to commit after filtering"
+          exit 0
+        fi
 
         # Create tree
         echo "Creating tree..."
