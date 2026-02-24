@@ -2,13 +2,13 @@
   "token": "<reducted>",
   "job": "dump-context",
   "ref": "refs/heads/main",
-  "sha": "713064169693ad8ef47f27114f001ffde809ffaf",
+  "sha": "55dfa1bb482ed967378b9f01996bbb7eac4b17a6",
   "repository": "guitarrapc/githubactions-lab",
   "repository_owner": "guitarrapc",
   "repository_owner_id": "3856350",
   "repositoryUrl": "git://github.com/guitarrapc/githubactions-lab.git",
-  "run_id": "22318890141",
-  "run_number": "1478",
+  "run_id": "22342225630",
+  "run_number": "1481",
   "retention_days": "90",
   "run_attempt": "1",
   "artifact_cache_size_limit": "10",
@@ -27,68 +27,31 @@
   "ref_type": "branch",
   "secret_source": "Actions",
   "event": {
-    "after": "713064169693ad8ef47f27114f001ffde809ffaf",
+    "after": "55dfa1bb482ed967378b9f01996bbb7eac4b17a6",
     "base_ref": null,
-    "before": "6ee8947800a9773b6ed2fa6449566a0e5fcc0bc4",
-    "commits": [
-      {
-        "author": {
-          "email": "49699333+dependabot[bot]@users.noreply.github.com",
-          "name": "dependabot[bot]",
-          "username": "dependabot[bot]"
-        },
-        "committer": {
-          "email": "noreply@github.com",
-          "name": "GitHub",
-          "username": "web-flow"
-        },
-        "distinct": false,
-        "id": "503e242f0f0ff884a1f8433e99891758c02ca278",
-        "message": "chore(deps): bump aws-actions/configure-aws-credentials\n\nBumps [aws-actions/configure-aws-credentials](https://github.com/aws-actions/configure-aws-credentials) from 5.1.0 to 6.0.0.\n- [Release notes](https://github.com/aws-actions/configure-aws-credentials/releases)\n- [Changelog](https://github.com/aws-actions/configure-aws-credentials/blob/main/CHANGELOG.md)\n- [Commits](https://github.com/aws-actions/configure-aws-credentials/compare/00943011d9042930efac3dcd3a170e4273319bc8...8df5847569e6427dd6c4fb1cf565c83acfa8afa7)\n\n---\nupdated-dependencies:\n- dependency-name: aws-actions/configure-aws-credentials\n  dependency-version: 6.0.0\n  dependency-type: direct:production\n  update-type: version-update:semver-major\n...\n\nSigned-off-by: dependabot[bot] <support@github.com>",
-        "timestamp": "2026-02-23T17:13:28Z",
-        "tree_id": "77372be76a3b1072477d5a78ef33e912609123aa",
-        "url": "https://github.com/guitarrapc/githubactions-lab/commit/503e242f0f0ff884a1f8433e99891758c02ca278"
-      },
-      {
-        "author": {
-          "email": "3856350+guitarrapc@users.noreply.github.com",
-          "name": "Ikiru Yoshizaki",
-          "username": "guitarrapc"
-        },
-        "committer": {
-          "email": "noreply@github.com",
-          "name": "GitHub",
-          "username": "web-flow"
-        },
-        "distinct": true,
-        "id": "713064169693ad8ef47f27114f001ffde809ffaf",
-        "message": "Merge pull request #298 from guitarrapc/dependabot/github_actions/aws-actions/configure-aws-credentials-6.0.0\n\nchore(deps): bump aws-actions/configure-aws-credentials from 5.1.0 to 6.0.0",
-        "timestamp": "2026-02-24T03:13:23+09:00",
-        "tree_id": "77372be76a3b1072477d5a78ef33e912609123aa",
-        "url": "https://github.com/guitarrapc/githubactions-lab/commit/713064169693ad8ef47f27114f001ffde809ffaf"
-      }
-    ],
-    "compare": "https://github.com/guitarrapc/githubactions-lab/compare/6ee8947800a9...713064169693",
+    "before": "79de222eb7b1014f6f29a26cadc2070965290e49",
+    "commits": [],
+    "compare": "https://github.com/guitarrapc/githubactions-lab/compare/79de222eb7b1...55dfa1bb482e",
     "created": false,
     "deleted": false,
-    "forced": false,
+    "forced": true,
     "head_commit": {
       "author": {
-        "email": "3856350+guitarrapc@users.noreply.github.com",
-        "name": "Ikiru Yoshizaki",
-        "username": "guitarrapc"
+        "email": "41898282+github-actions[bot]@users.noreply.github.com",
+        "name": "github-actions[bot]",
+        "username": "github-actions[bot]"
       },
       "committer": {
-        "email": "noreply@github.com",
-        "name": "GitHub",
-        "username": "web-flow"
+        "email": "41898282+github-actions[bot]@users.noreply.github.com",
+        "name": "github-actions[bot]",
+        "username": "github-actions[bot]"
       },
       "distinct": true,
-      "id": "713064169693ad8ef47f27114f001ffde809ffaf",
-      "message": "Merge pull request #298 from guitarrapc/dependabot/github_actions/aws-actions/configure-aws-credentials-6.0.0\n\nchore(deps): bump aws-actions/configure-aws-credentials from 5.1.0 to 6.0.0",
-      "timestamp": "2026-02-24T03:13:23+09:00",
-      "tree_id": "77372be76a3b1072477d5a78ef33e912609123aa",
-      "url": "https://github.com/guitarrapc/githubactions-lab/commit/713064169693ad8ef47f27114f001ffde809ffaf"
+      "id": "55dfa1bb482ed967378b9f01996bbb7eac4b17a6",
+      "message": "[auto commit] update context (workflow=auto dump context, event=pull_request_target, action=closed)",
+      "timestamp": "2026-02-23T18:14:37Z",
+      "tree_id": "c59fd104473860e5d88c8c9ee021f2dc93c8c3dd",
+      "url": "https://github.com/guitarrapc/githubactions-lab/commit/55dfa1bb482ed967378b9f01996bbb7eac4b17a6"
     },
     "pusher": {
       "email": "3856350+guitarrapc@users.noreply.github.com",
@@ -186,9 +149,9 @@
       "private": false,
       "pull_request_creation_policy": "all",
       "pulls_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls{/number}",
-      "pushed_at": 1771870403,
+      "pushed_at": 1771920800,
       "releases_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/releases{/id}",
-      "size": 5086,
+      "size": 5115,
       "ssh_url": "git@github.com:guitarrapc/githubactions-lab.git",
       "stargazers": 54,
       "stargazers_count": 54,
@@ -203,7 +166,7 @@
         "github-actions"
       ],
       "trees_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/git/trees{/sha}",
-      "updated_at": "2026-02-22T00:12:12Z",
+      "updated_at": "2026-02-24T08:12:51Z",
       "url": "https://api.github.com/repos/guitarrapc/githubactions-lab",
       "visibility": "public",
       "watchers": 54,
@@ -233,7 +196,7 @@
     }
   },
   "workflow_ref": "guitarrapc/githubactions-lab/.github/workflows/auto-dump-context.yaml@refs/heads/main",
-  "workflow_sha": "713064169693ad8ef47f27114f001ffde809ffaf",
+  "workflow_sha": "55dfa1bb482ed967378b9f01996bbb7eac4b17a6",
   "repository_id": "257465468",
   "triggering_actor": "guitarrapc",
   "workspace": "/home/runner/work/githubactions-lab/githubactions-lab",
@@ -241,9 +204,9 @@
   "event_path": "/home/runner/work/_temp/_github_workflow/event.json",
   "action_repository": "",
   "action_ref": "",
-  "path": "/home/runner/work/_temp/_runner_file_commands/add_path_1d699dce-eae4-4b0a-9ae9-1a3a96d4c20c",
-  "env": "/home/runner/work/_temp/_runner_file_commands/set_env_1d699dce-eae4-4b0a-9ae9-1a3a96d4c20c",
-  "step_summary": "/home/runner/work/_temp/_runner_file_commands/step_summary_1d699dce-eae4-4b0a-9ae9-1a3a96d4c20c",
-  "state": "/home/runner/work/_temp/_runner_file_commands/save_state_1d699dce-eae4-4b0a-9ae9-1a3a96d4c20c",
-  "output": "/home/runner/work/_temp/_runner_file_commands/set_output_1d699dce-eae4-4b0a-9ae9-1a3a96d4c20c"
+  "path": "/home/runner/work/_temp/_runner_file_commands/add_path_399f052d-538e-4c59-b3c9-62632dbe8fc9",
+  "env": "/home/runner/work/_temp/_runner_file_commands/set_env_399f052d-538e-4c59-b3c9-62632dbe8fc9",
+  "step_summary": "/home/runner/work/_temp/_runner_file_commands/step_summary_399f052d-538e-4c59-b3c9-62632dbe8fc9",
+  "state": "/home/runner/work/_temp/_runner_file_commands/save_state_399f052d-538e-4c59-b3c9-62632dbe8fc9",
+  "output": "/home/runner/work/_temp/_runner_file_commands/set_output_399f052d-538e-4c59-b3c9-62632dbe8fc9"
 }
