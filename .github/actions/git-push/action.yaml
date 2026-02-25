@@ -81,11 +81,17 @@ runs:
         REPO="${REPOSITORY#*/}"
         API_BASE="https://api.github.com"
 
+        # Normalize ref: remove refs/heads/ or heads/ prefix if present
+        REF_NAME="$GIT_REF"
+        REF_NAME="${REF_NAME#refs/heads/}"  # Remove refs/heads/ prefix
+        REF_NAME="${REF_NAME#heads/}"       # Remove heads/ prefix
+        echo "Normalized ref: $REF_NAME"
+
         # Get current commit SHA
-        echo "Getting current commit SHA for ref: $GIT_REF"
+        echo "Getting current commit SHA for ref: $REF_NAME"
         CURRENT_SHA=$(curl -s -H "Authorization: token ${GITHUB_TOKEN}" \
           -H "Accept: application/vnd.github.v3+json" \
-          "${API_BASE}/repos/${REPOSITORY}/git/ref/heads/${GIT_REF}" | jq -r '.object.sha')
+          "${API_BASE}/repos/${REPOSITORY}/git/ref/heads/${REF_NAME}" | jq -r '.object.sha')
 
         if [ "$CURRENT_SHA" = "null" ] || [ -z "$CURRENT_SHA" ]; then
           echo "Failed to get current commit SHA"
@@ -164,9 +170,8 @@ runs:
             MODE="100644"
           fi
 
-          # Create blob
-          CONTENT=$(base64 -w 0 "$FILE" 2>/dev/null || base64 "$FILE" | tr -d '\n')
-          BLOB_JSON=$(jq -n --arg content "$CONTENT" '{content: $content, encoding: "base64"}')
+          # Create blob using stdin to avoid "Argument list too long" with large files
+          BLOB_JSON=$(base64 -w 0 "$FILE" 2>/dev/null || base64 "$FILE" | tr -d '\n' | jq -Rs '{content: ., encoding: "base64"}')
           BLOB_RESPONSE=$(curl -s -X POST -H "Authorization: token ${GITHUB_TOKEN}" \
             -H "Accept: application/vnd.github.v3+json" \
             "${API_BASE}/repos/${REPOSITORY}/git/blobs" \
@@ -236,7 +241,7 @@ runs:
           UPDATE_JSON=$(jq -n --arg sha "$NEW_COMMIT_SHA" '{sha: $sha, force: false}')
           UPDATE_RESPONSE=$(curl -s -X PATCH -H "Authorization: token ${GITHUB_TOKEN}" \
             -H "Accept: application/vnd.github.v3+json" \
-            "${API_BASE}/repos/${REPOSITORY}/git/refs/heads/${GIT_REF}" \
+            "${API_BASE}/repos/${REPOSITORY}/git/refs/heads/${REF_NAME}" \
             -d "$UPDATE_JSON")
 
           UPDATE_SHA=$(echo "$UPDATE_RESPONSE" | jq -r '.object.sha')
@@ -253,12 +258,12 @@ runs:
 
           if [ $retry_count -lt $max_retries ]; then
             echo "Fetching latest changes and retrying..."
-            git fetch origin "$GIT_REF"
+            git fetch origin "$REF_NAME"
 
             # Get new base commit
             CURRENT_SHA=$(curl -s -H "Authorization: token ${GITHUB_TOKEN}" \
               -H "Accept: application/vnd.github.v3+json" \
-              "${API_BASE}/repos/${REPOSITORY}/git/ref/heads/${GIT_REF}" | jq -r '.object.sha')
+              "${API_BASE}/repos/${REPOSITORY}/git/ref/heads/${REF_NAME}" | jq -r '.object.sha')
 
             # Recreate commit with new parent
             COMMIT_JSON=$(jq -n --arg msg "$COMMIT_MESSAGE" --arg tree "$TREE_SHA" --arg parent "$CURRENT_SHA" \
