@@ -1,0 +1,22 @@
+{
+  "name": "signed-commit-action",
+  "version": "1.0.0",
+  "description": "Create signed commits via GitHub API",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"No tests yet\" && exit 0"
+  },
+  "dependencies": {
+    "@actions/core": "^1.11.1",
+    "@actions/exec": "^1.1.1",
+    "@actions/github": "^6.0.0",
+    "@octokit/rest": "^21.0.2"
+  },
+  "devDependencies": {},
+  "keywords": [
+    "github-actions",
+    "signed-commit"
+  ],
+  "author": "",
+  "license": "MIT"
+}

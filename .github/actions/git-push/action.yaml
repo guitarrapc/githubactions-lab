@@ -71,235 +71,30 @@ runs:
       continue-on-error: true
       working-directory: ${{ inputs.working-directory }}
 
-    - name: git commit via GitHub API (sign commits)
+    - name: Install signed-commit dependencies
       if: ${{ steps.diff.outputs.changed == '1' && inputs.sign-commits == 'true' }}
       run: |
-        set -e
-
-        # Parse repository owner and name
-        OWNER="${REPOSITORY%/*}"
-        REPO="${REPOSITORY#*/}"
-        API_BASE="https://api.github.com"
-
-        # Normalize ref: remove refs/heads/ or heads/ prefix if present
-        REF_NAME="$GIT_REF"
-        REF_NAME="${REF_NAME#refs/heads/}"  # Remove refs/heads/ prefix
-        REF_NAME="${REF_NAME#heads/}"       # Remove heads/ prefix
-        echo "Normalized ref: $REF_NAME"
-
-        # Get current commit SHA
-        echo "Getting current commit SHA for ref: $REF_NAME"
-        CURRENT_SHA=$(curl -s -H "Authorization: token ${GITHUB_TOKEN}" \
-          -H "Accept: application/vnd.github.v3+json" \
-          "${API_BASE}/repos/${REPOSITORY}/git/ref/heads/${REF_NAME}" | jq -r '.object.sha')
-
-        if [ "$CURRENT_SHA" = "null" ] || [ -z "$CURRENT_SHA" ]; then
-          echo "Failed to get current commit SHA"
-          exit 1
+        if [ ! -d "node_modules" ]; then
+          echo "Installing dependencies..."
+          npm install --production --no-save
+        else
+          echo "Dependencies already installed"
         fi
-        echo "Current commit SHA: $CURRENT_SHA"
-
-        # Get changed files
-        echo "Getting changed files..."
-        STATUS_OUTPUT=$(git status --porcelain=v1)
-
-        if [ -z "$STATUS_OUTPUT" ]; then
-          echo "No changed files detected"
-          exit 0
-        fi
-
-        # Create blobs for changed files
-        echo "Creating blobs for changed files..."
-        declare -a TREE_ITEMS=()
-        declare -a FILES_TO_PROCESS=()
-
-        # First, expand directories to individual files
-        while IFS= read -r line; do
-          # Extract status and filename from porcelain output
-          # Format: XY filename (X=index, Y=worktree, 2 chars + space + filename)
-          STATUS="${line:0:2}"
-          FILE="${line:3}"
-
-          if [ -z "$FILE" ]; then
-            continue
-          fi
-
-          # Handle renamed files (format: "R  old -> new" or "RM old -> new")
-          if [[ "$STATUS" =~ R ]]; then
-            # Extract new filename after " -> "
-            FILE="${FILE##* -> }"
-          fi
-
-          # If it's a directory (ends with /), expand to individual files
-          if [[ "$FILE" == */ ]]; then
-            echo "Expanding directory: $FILE"
-            while IFS= read -r subfile; do
-              if [ -f "$subfile" ]; then
-                FILES_TO_PROCESS+=("$STATUS:$subfile")
-              fi
-            done < <(find "$FILE" -type f 2>/dev/null || true)
-          else
-            FILES_TO_PROCESS+=("$STATUS:$FILE")
-          fi
-        done <<< "$STATUS_OUTPUT"
-
-        # Process each file
-        for entry in "${FILES_TO_PROCESS[@]}"; do
-          STATUS="${entry%%:*}"
-          FILE="${entry#*:}"
-
-          echo "Processing file: $FILE (status: $STATUS)"
-
-          # Check if file is deleted (D in status)
-          if [[ "$STATUS" =~ D ]]; then
-            echo "File deleted: $FILE"
-            TREE_ITEMS+=("$(jq -n --arg path "$FILE" '{path: $path, mode: "100644", type: "blob", sha: null}')")
-            continue
-          fi
-
-          # File must exist and be a regular file
-          if [ ! -f "$FILE" ]; then
-            echo "Warning: File not found or not a regular file: $FILE"
-            continue
-          fi
-
-          # Detect file mode
-          if [ -x "$FILE" ]; then
-            MODE="100755"
-          else
-            MODE="100644"
-          fi
-
-          # Create blob using temporary file to avoid "Argument list too long" with large files
-          TMP_B64=$(mktemp)
-          if base64 -w 0 "$FILE" > "$TMP_B64" 2>/dev/null; then
-            :  # Linux base64 with -w option
-          else
-            base64 "$FILE" | tr -d '\n' > "$TMP_B64"  # macOS base64
-          fi
-
-          # Pipe JSON directly to curl to avoid argument list limit
-          BLOB_RESPONSE=$(jq -n --rawfile b64 "$TMP_B64" '{content: $b64, encoding: "base64"}' | \
-            curl -s -X POST -H "Authorization: token ${GITHUB_TOKEN}" \
-              -H "Accept: application/vnd.github.v3+json" \
-              -H "Content-Type: application/json" \
-              "${API_BASE}/repos/${REPOSITORY}/git/blobs" \
-              -d @-)
-
-          rm -f "$TMP_B64"
-
-          BLOB_SHA=$(echo "$BLOB_RESPONSE" | jq -r '.sha')
-
-          if [ "$BLOB_SHA" = "null" ] || [ -z "$BLOB_SHA" ]; then
-            echo "Failed to create blob for $FILE"
-            echo "Response: $BLOB_RESPONSE"
-            exit 1
-          fi
-
-          echo "Created blob for $FILE: $BLOB_SHA (mode: $MODE)"
-          TREE_ITEMS+=("$(jq -n --arg path "$FILE" --arg mode "$MODE" --arg sha "$BLOB_SHA" '{path: $path, mode: $mode, type: "blob", sha: $sha}')")
-        done
-
-        # Check if there are any tree items to commit
-        if [ ${#TREE_ITEMS[@]} -eq 0 ]; then
-          echo "No valid files to commit after filtering"
-          exit 0
-        fi
-
-        # Create tree
-        echo "Creating tree..."
-        TREE_JSON=$(printf '%s\n' "${TREE_ITEMS[@]}" | jq -s '.')
-        TREE_RESPONSE=$(curl -s -X POST -H "Authorization: token ${GITHUB_TOKEN}" \
-          -H "Accept: application/vnd.github.v3+json" \
-          "${API_BASE}/repos/${REPOSITORY}/git/trees" \
-          -d "{\"base_tree\":\"${CURRENT_SHA}\",\"tree\":${TREE_JSON}}")
-
-        TREE_SHA=$(echo "$TREE_RESPONSE" | jq -r '.sha')
-
-        if [ "$TREE_SHA" = "null" ] || [ -z "$TREE_SHA" ]; then
-          echo "Failed to create tree"
-          echo "Response: $TREE_RESPONSE"
-          exit 1
-        fi
-        echo "Created tree: $TREE_SHA"
-
-        # Create commit
-        echo "Creating commit..."
-        COMMIT_JSON=$(jq -n --arg msg "$COMMIT_MESSAGE" --arg tree "$TREE_SHA" --arg parent "$CURRENT_SHA" \
-          '{message: $msg, tree: $tree, parents: [$parent]}')
-        COMMIT_RESPONSE=$(curl -s -X POST -H "Authorization: token ${GITHUB_TOKEN}" \
-          -H "Accept: application/vnd.github.v3+json" \
-          "${API_BASE}/repos/${REPOSITORY}/git/commits" \
-          -d "$COMMIT_JSON")
-
-        NEW_COMMIT_SHA=$(echo "$COMMIT_RESPONSE" | jq -r '.sha')
-
-        if [ "$NEW_COMMIT_SHA" = "null" ] || [ -z "$NEW_COMMIT_SHA" ]; then
-          echo "Failed to create commit"
-          echo "Response: $COMMIT_RESPONSE"
-          exit 1
-        fi
-        echo "Created commit: $NEW_COMMIT_SHA"
-
-        # Update reference with retry logic
-        echo "Updating reference..."
-        max_retries=3
-        retry_count=0
-
-        while [ $retry_count -lt $max_retries ]; do
-          echo "Attempting to update ref ($((retry_count + 1))/${max_retries})..."
-
-          UPDATE_JSON=$(jq -n --arg sha "$NEW_COMMIT_SHA" '{sha: $sha, force: false}')
-          UPDATE_RESPONSE=$(curl -s -X PATCH -H "Authorization: token ${GITHUB_TOKEN}" \
-            -H "Accept: application/vnd.github.v3+json" \
-            "${API_BASE}/repos/${REPOSITORY}/git/refs/heads/${REF_NAME}" \
-            -d "$UPDATE_JSON")
-
-          UPDATE_SHA=$(echo "$UPDATE_RESPONSE" | jq -r '.object.sha')
-
-          if [ "$UPDATE_SHA" = "$NEW_COMMIT_SHA" ]; then
-            echo "Successfully updated reference to: $NEW_COMMIT_SHA"
-            exit 0
-          fi
-
-          echo "Failed to update reference"
-          echo "Response: $UPDATE_RESPONSE"
-
-          ((retry_count++))
-
-          if [ $retry_count -lt $max_retries ]; then
-            echo "Fetching latest changes and retrying..."
-            git fetch origin "$REF_NAME"
-
-            # Get new base commit
-            CURRENT_SHA=$(curl -s -H "Authorization: token ${GITHUB_TOKEN}" \
-              -H "Accept: application/vnd.github.v3+json" \
-              "${API_BASE}/repos/${REPOSITORY}/git/ref/heads/${REF_NAME}" | jq -r '.object.sha')
-
-            # Recreate commit with new parent
-            COMMIT_JSON=$(jq -n --arg msg "$COMMIT_MESSAGE" --arg tree "$TREE_SHA" --arg parent "$CURRENT_SHA" \
-              '{message: $msg, tree: $tree, parents: [$parent]}')
-            COMMIT_RESPONSE=$(curl -s -X POST -H "Authorization: token ${GITHUB_TOKEN}" \
-              -H "Accept: application/vnd.github.v3+json" \
-              "${API_BASE}/repos/${REPOSITORY}/git/commits" \
-              -d "$COMMIT_JSON")
-
-            NEW_COMMIT_SHA=$(echo "$COMMIT_RESPONSE" | jq -r '.sha')
-            echo "Created new commit with updated parent: $NEW_COMMIT_SHA"
-          fi
-        done
-
-        echo "Maximum retries reached, failed to update reference"
-        exit 1
       shell: bash
-      working-directory: ${{ inputs.working-directory }}
-      env:
-        COMMIT_MESSAGE: ${{ inputs.commit-message }}
-        GITHUB_TOKEN: ${{ inputs.github-token }}
-        REPOSITORY: ${{ inputs.repository }}
-        GIT_REF: ${{ inputs.ref }}
+      working-directory: .github/actions/signed-commit
 
-    - name: git commit
+    - name: Create signed commit via GitHub API
+      id: signed-commit
+      if: ${{ steps.diff.outputs.changed == '1' && inputs.sign-commits == 'true' }}
+      uses: ./.github/actions/signed-commit
+      with:
+        commit-message: ${{ inputs.commit-message }}
+        repository: ${{ inputs.repository }}
+        ref: ${{ inputs.ref }}
+        github-token: ${{ inputs.github-token }}
+        working-directory: ${{ inputs.working-directory }}
+
+    - name: git commit (legacy, no signature)
       if: ${{ steps.diff.outputs.changed == '1' && inputs.sign-commits == 'false' }}
       run: |
         git remote set-url origin "https://github-actions:${GITHUB_TOKEN}@github.com/${REPOSITORY}"

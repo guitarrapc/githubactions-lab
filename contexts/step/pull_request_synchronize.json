@@ -1,7 +1,7 @@
 {
   "ref": {
     "outputs": {
-      "value": "blob"
+      "value": "refactor/js_action"
     },
     "outcome": "success",
     "conclusion": "success"
