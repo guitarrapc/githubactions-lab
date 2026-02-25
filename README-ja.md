@@ -2378,6 +2378,10 @@ updates:
     directory: "/"
     schedule:
       interval: "weekly" # Check for updates to GitHub Actions every week
+    groups:
+      dependencies:
+        patterns:
+          - "*"
     cooldown:
       default-days: 14
     ignore:
@@ -2389,6 +2393,10 @@ updates:
     directory: "/"
     schedule:
       interval: "weekly"
+    groups:
+      dependencies:
+        patterns:
+          - "*"
     cooldown:
       default-days: 14
     ignore:
@@ -4591,7 +4599,7 @@ jobs:
     runs-on: ubuntu-24.04
     timeout-minutes: 3
     steps:
-      - uses: actions/stale@5f858e3efba33a5ca4407a664cc011ad407f2008 # v10.1.0
+      - uses: actions/stale@b5d41d4e1d5dceea10e7104786b73624c18a190f # v10.2.0
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
           # enable issue
