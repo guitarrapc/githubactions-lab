@@ -1,0 +1,34 @@
+name: "Signed Commit via GitHub API"
+description: |
+  Create a signed commit using GitHub API.
+  Commits are automatically signed when created via API.
+
+inputs:
+  commit-message:
+    description: "Commit message"
+    required: true
+  repository:
+    description: "Target repository (owner/repo)"
+    required: true
+  ref:
+    description: "Branch name to commit to"
+    required: true
+  github-token:
+    description: "GitHub token with repo permissions"
+    required: true
+  working-directory:
+    description: "Working directory to scan for changes"
+    required: false
+    default: "."
+
+outputs:
+  commit-sha:
+    description: "SHA of the created commit"
+  tree-sha:
+    description: "SHA of the created tree"
+  changed-files:
+    description: "List of changed files"
+
+runs:
+  using: "node20"
+  main: "index.js"
