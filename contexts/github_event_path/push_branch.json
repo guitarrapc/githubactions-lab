@@ -1,26 +1,8 @@
 {
-  "after": "b29dd940743874342099ef8f759ba15952355203",
+  "after": "f254290d38796e9a041424d7d44c084805b7ed00",
   "base_ref": null,
-  "before": "4e12750cbd497e66458492a562b3023379934519",
+  "before": "43f068e98def4ec94e53d5af074da54f914d6083",
   "commits": [
-    {
-      "author": {
-        "email": "49699333+dependabot[bot]@users.noreply.github.com",
-        "name": "dependabot[bot]",
-        "username": "dependabot[bot]"
-      },
-      "committer": {
-        "email": "noreply@github.com",
-        "name": "GitHub",
-        "username": "web-flow"
-      },
-      "distinct": false,
-      "id": "a564a7794c02a46070e5a6e9192c57b45befb818",
-      "message": "chore(deps): bump actions/stale in the dependencies group\n\nBumps the dependencies group with 1 update: [actions/stale](https://github.com/actions/stale).\n\n\nUpdates `actions/stale` from 10.1.0 to 10.2.0\n- [Release notes](https://github.com/actions/stale/releases)\n- [Changelog](https://github.com/actions/stale/blob/main/CHANGELOG.md)\n- [Commits](https://github.com/actions/stale/compare/5f858e3efba33a5ca4407a664cc011ad407f2008...b5d41d4e1d5dceea10e7104786b73624c18a190f)\n\n---\nupdated-dependencies:\n- dependency-name: actions/stale\n  dependency-version: 10.2.0\n  dependency-type: direct:production\n  update-type: version-update:semver-minor\n  dependency-group: dependencies\n...\n\nSigned-off-by: dependabot[bot] <support@github.com>",
-      "timestamp": "2026-02-25T08:03:23Z",
-      "tree_id": "2e4cee43a96d7c12fac2a61fe51366b7e1004fe5",
-      "url": "https://github.com/guitarrapc/githubactions-lab/commit/a564a7794c02a46070e5a6e9192c57b45befb818"
-    },
     {
       "author": {
         "email": "3856350+guitarrapc@users.noreply.github.com",
@@ -28,19 +10,19 @@
         "username": "guitarrapc"
       },
       "committer": {
-        "email": "noreply@github.com",
-        "name": "GitHub",
-        "username": "web-flow"
+        "email": "3856350+guitarrapc@users.noreply.github.com",
+        "name": "Ikiru Yoshizaki",
+        "username": "guitarrapc"
       },
       "distinct": true,
-      "id": "b29dd940743874342099ef8f759ba15952355203",
-      "message": "Merge pull request #301 from guitarrapc/dependabot/github_actions/dependencies-6825898e13\n\nchore(deps): bump actions/stale from 10.1.0 to 10.2.0 in the dependencies group",
-      "timestamp": "2026-02-25T17:20:29+09:00",
-      "tree_id": "83f29bafc5bf8b34775a4c153932815a1b717293",
-      "url": "https://github.com/guitarrapc/githubactions-lab/commit/b29dd940743874342099ef8f759ba15952355203"
+      "id": "f254290d38796e9a041424d7d44c084805b7ed00",
+      "message": "fix: commit",
+      "timestamp": "2026-02-25T18:12:30+09:00",
+      "tree_id": "bd660983393ed3060c4e2f282429160741fe4f69",
+      "url": "https://github.com/guitarrapc/githubactions-lab/commit/f254290d38796e9a041424d7d44c084805b7ed00"
     }
   ],
-  "compare": "https://github.com/guitarrapc/githubactions-lab/compare/4e12750cbd49...b29dd9407438",
+  "compare": "https://github.com/guitarrapc/githubactions-lab/compare/43f068e98def...f254290d3879",
   "created": false,
   "deleted": false,
   "forced": false,
@@ -51,16 +33,16 @@
       "username": "guitarrapc"
     },
     "committer": {
-      "email": "noreply@github.com",
-      "name": "GitHub",
-      "username": "web-flow"
+      "email": "3856350+guitarrapc@users.noreply.github.com",
+      "name": "Ikiru Yoshizaki",
+      "username": "guitarrapc"
     },
     "distinct": true,
-    "id": "b29dd940743874342099ef8f759ba15952355203",
-    "message": "Merge pull request #301 from guitarrapc/dependabot/github_actions/dependencies-6825898e13\n\nchore(deps): bump actions/stale from 10.1.0 to 10.2.0 in the dependencies group",
-    "timestamp": "2026-02-25T17:20:29+09:00",
-    "tree_id": "83f29bafc5bf8b34775a4c153932815a1b717293",
-    "url": "https://github.com/guitarrapc/githubactions-lab/commit/b29dd940743874342099ef8f759ba15952355203"
+    "id": "f254290d38796e9a041424d7d44c084805b7ed00",
+    "message": "fix: commit",
+    "timestamp": "2026-02-25T18:12:30+09:00",
+    "tree_id": "bd660983393ed3060c4e2f282429160741fe4f69",
+    "url": "https://github.com/guitarrapc/githubactions-lab/commit/f254290d38796e9a041424d7d44c084805b7ed00"
   },
   "pusher": {
     "email": "3856350+guitarrapc@users.noreply.github.com",
@@ -158,9 +140,9 @@
     "private": false,
     "pull_request_creation_policy": "all",
     "pulls_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls{/number}",
-    "pushed_at": 1772007629,
+    "pushed_at": 1772010755,
     "releases_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/releases{/id}",
-    "size": 5198,
+    "size": 5223,
     "ssh_url": "git@github.com:guitarrapc/githubactions-lab.git",
     "stargazers": 55,
     "stargazers_count": 55,
@@ -175,7 +157,7 @@
       "github-actions"
     ],
     "trees_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/git/trees{/sha}",
-    "updated_at": "2026-02-25T07:58:02Z",
+    "updated_at": "2026-02-25T09:09:58Z",
     "url": "https://api.github.com/repos/guitarrapc/githubactions-lab",
     "visibility": "public",
     "watchers": 55,
