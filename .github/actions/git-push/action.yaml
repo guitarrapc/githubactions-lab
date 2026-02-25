@@ -178,13 +178,15 @@ runs:
             base64 "$FILE" | tr -d '\n' > "$TMP_B64"  # macOS base64
           fi
 
-          BLOB_JSON=$(jq -n --rawfile b64 "$TMP_B64" '{content: $b64, encoding: "base64"}')
-          rm -f "$TMP_B64"
+          # Pipe JSON directly to curl to avoid argument list limit
+          BLOB_RESPONSE=$(jq -n --rawfile b64 "$TMP_B64" '{content: $b64, encoding: "base64"}' | \
+            curl -s -X POST -H "Authorization: token ${GITHUB_TOKEN}" \
+              -H "Accept: application/vnd.github.v3+json" \
+              -H "Content-Type: application/json" \
+              "${API_BASE}/repos/${REPOSITORY}/git/blobs" \
+              -d @-)
 
-          BLOB_RESPONSE=$(curl -s -X POST -H "Authorization: token ${GITHUB_TOKEN}" \
-            -H "Accept: application/vnd.github.v3+json" \
-            "${API_BASE}/repos/${REPOSITORY}/git/blobs" \
-            -d "$BLOB_JSON")
+          rm -f "$TMP_B64"
 
           BLOB_SHA=$(echo "$BLOB_RESPONSE" | jq -r '.sha')
 
