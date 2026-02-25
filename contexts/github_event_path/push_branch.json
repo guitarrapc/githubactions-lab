@@ -1,7 +1,7 @@
 {
-  "after": "cca94bf0f3435a6f8e35cf5ecf7554398330c7e9",
+  "after": "d786c134c3b9a0b98a02e27671d2f2a869c58ca4",
   "base_ref": null,
-  "before": "091b98fbd93d21e49cce713d5b93c367ed0c7bbc",
+  "before": "12c1605e2540e850865eaa225dc2671ac3a61c8b",
   "commits": [
     {
       "author": {
@@ -14,87 +14,15 @@
         "name": "Ikiru Yoshizaki",
         "username": "guitarrapc"
       },
-      "distinct": false,
-      "id": "fc89ad06341084790ea26260cba518d302b062ec",
-      "message": "feat: switch to git-push",
-      "timestamp": "2026-02-24T19:54:39+09:00",
-      "tree_id": "e222212802094c6f075881a9cda9f3d072b510bc",
-      "url": "https://github.com/guitarrapc/githubactions-lab/commit/fc89ad06341084790ea26260cba518d302b062ec"
-    },
-    {
-      "author": {
-        "email": "3856350+guitarrapc@users.noreply.github.com",
-        "name": "Ikiru Yoshizaki",
-        "username": "guitarrapc"
-      },
-      "committer": {
-        "email": "3856350+guitarrapc@users.noreply.github.com",
-        "name": "Ikiru Yoshizaki",
-        "username": "guitarrapc"
-      },
-      "distinct": false,
-      "id": "c403eb879ee5c9aa2d17406f44460f58ec19e187",
-      "message": "fix: git push failed due to directory",
-      "timestamp": "2026-02-24T20:18:51+09:00",
-      "tree_id": "5dde54888431c604b2c822af5a5719ca1d440ddb",
-      "url": "https://github.com/guitarrapc/githubactions-lab/commit/c403eb879ee5c9aa2d17406f44460f58ec19e187"
-    },
-    {
-      "author": {
-        "email": "3856350+guitarrapc@users.noreply.github.com",
-        "name": "Ikiru Yoshizaki",
-        "username": "guitarrapc"
-      },
-      "committer": {
-        "email": "3856350+guitarrapc@users.noreply.github.com",
-        "name": "Ikiru Yoshizaki",
-        "username": "guitarrapc"
-      },
-      "distinct": false,
-      "id": "9b36aa5196e08087d4c25c4087987c9a76129d16",
-      "message": "fix: commit to other repo",
-      "timestamp": "2026-02-24T20:25:06+09:00",
-      "tree_id": "fe07164d73645303e3ccc9e05a28cd0dd925b213",
-      "url": "https://github.com/guitarrapc/githubactions-lab/commit/9b36aa5196e08087d4c25c4087987c9a76129d16"
-    },
-    {
-      "author": {
-        "email": "41898282+github-actions[bot]@users.noreply.github.com",
-        "name": "github-actions[bot]",
-        "username": "github-actions[bot]"
-      },
-      "committer": {
-        "email": "noreply@github.com",
-        "name": "GitHub",
-        "username": "web-flow"
-      },
-      "distinct": false,
-      "id": "f2ebf8e365d2ec4b78d937bac1eea36f9ee0f39b",
-      "message": "[auto commit] update context (workflow=auto dump context, event=pull_request, action=synchronize)",
-      "timestamp": "2026-02-24T11:25:47Z",
-      "tree_id": "387daece7279bfd6ca13b36de28e92d00180ec19",
-      "url": "https://github.com/guitarrapc/githubactions-lab/commit/f2ebf8e365d2ec4b78d937bac1eea36f9ee0f39b"
-    },
-    {
-      "author": {
-        "email": "3856350+guitarrapc@users.noreply.github.com",
-        "name": "Ikiru Yoshizaki",
-        "username": "guitarrapc"
-      },
-      "committer": {
-        "email": "noreply@github.com",
-        "name": "GitHub",
-        "username": "web-flow"
-      },
       "distinct": true,
-      "id": "cca94bf0f3435a6f8e35cf5ecf7554398330c7e9",
-      "message": "Merge pull request #300 from guitarrapc/blob\n\nfeat: switch to git-push",
-      "timestamp": "2026-02-24T20:26:33+09:00",
-      "tree_id": "5016c91b923c8b499587135f72230c411d503b14",
-      "url": "https://github.com/guitarrapc/githubactions-lab/commit/cca94bf0f3435a6f8e35cf5ecf7554398330c7e9"
+      "id": "d786c134c3b9a0b98a02e27671d2f2a869c58ca4",
+      "message": "chore: add groups for dependabot",
+      "timestamp": "2026-02-25T16:57:12+09:00",
+      "tree_id": "fa2efe187ac28f07fbdf38ef6f57bb77f41af1ad",
+      "url": "https://github.com/guitarrapc/githubactions-lab/commit/d786c134c3b9a0b98a02e27671d2f2a869c58ca4"
     }
   ],
-  "compare": "https://github.com/guitarrapc/githubactions-lab/compare/091b98fbd93d...cca94bf0f343",
+  "compare": "https://github.com/guitarrapc/githubactions-lab/compare/12c1605e2540...d786c134c3b9",
   "created": false,
   "deleted": false,
   "forced": false,
@@ -105,16 +33,16 @@
       "username": "guitarrapc"
     },
     "committer": {
-      "email": "noreply@github.com",
-      "name": "GitHub",
-      "username": "web-flow"
+      "email": "3856350+guitarrapc@users.noreply.github.com",
+      "name": "Ikiru Yoshizaki",
+      "username": "guitarrapc"
     },
     "distinct": true,
-    "id": "cca94bf0f3435a6f8e35cf5ecf7554398330c7e9",
-    "message": "Merge pull request #300 from guitarrapc/blob\n\nfeat: switch to git-push",
-    "timestamp": "2026-02-24T20:26:33+09:00",
-    "tree_id": "5016c91b923c8b499587135f72230c411d503b14",
-    "url": "https://github.com/guitarrapc/githubactions-lab/commit/cca94bf0f3435a6f8e35cf5ecf7554398330c7e9"
+    "id": "d786c134c3b9a0b98a02e27671d2f2a869c58ca4",
+    "message": "chore: add groups for dependabot",
+    "timestamp": "2026-02-25T16:57:12+09:00",
+    "tree_id": "fa2efe187ac28f07fbdf38ef6f57bb77f41af1ad",
+    "url": "https://github.com/guitarrapc/githubactions-lab/commit/d786c134c3b9a0b98a02e27671d2f2a869c58ca4"
   },
   "pusher": {
     "email": "3856350+guitarrapc@users.noreply.github.com",
@@ -212,12 +140,12 @@
     "private": false,
     "pull_request_creation_policy": "all",
     "pulls_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls{/number}",
-    "pushed_at": 1771932393,
+    "pushed_at": 1772006236,
     "releases_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/releases{/id}",
-    "size": 5121,
+    "size": 5198,
     "ssh_url": "git@github.com:guitarrapc/githubactions-lab.git",
-    "stargazers": 54,
-    "stargazers_count": 54,
+    "stargazers": 55,
+    "stargazers_count": 55,
     "stargazers_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/stargazers",
     "statuses_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/statuses/{sha}",
     "subscribers_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/subscribers",
@@ -229,11 +157,11 @@
       "github-actions"
     ],
     "trees_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/git/trees{/sha}",
-    "updated_at": "2026-02-24T11:26:18Z",
+    "updated_at": "2026-02-24T17:21:33Z",
     "url": "https://api.github.com/repos/guitarrapc/githubactions-lab",
     "visibility": "public",
-    "watchers": 54,
-    "watchers_count": 54,
+    "watchers": 55,
+    "watchers_count": 55,
     "web_commit_signoff_required": false
   },
   "sender": {
