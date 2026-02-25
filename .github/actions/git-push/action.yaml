@@ -170,8 +170,17 @@ runs:
             MODE="100644"
           fi
 
-          # Create blob using stdin to avoid "Argument list too long" with large files
-          BLOB_JSON=$(base64 -w 0 "$FILE" 2>/dev/null || base64 "$FILE" | tr -d '\n' | jq -Rs '{content: ., encoding: "base64"}')
+          # Create blob using temporary file to avoid "Argument list too long" with large files
+          TMP_B64=$(mktemp)
+          if base64 -w 0 "$FILE" > "$TMP_B64" 2>/dev/null; then
+            :  # Linux base64 with -w option
+          else
+            base64 "$FILE" | tr -d '\n' > "$TMP_B64"  # macOS base64
+          fi
+
+          BLOB_JSON=$(jq -n --rawfile b64 "$TMP_B64" '{content: $b64, encoding: "base64"}')
+          rm -f "$TMP_B64"
+
           BLOB_RESPONSE=$(curl -s -X POST -H "Authorization: token ${GITHUB_TOKEN}" \
             -H "Accept: application/vnd.github.v3+json" \
             "${API_BASE}/repos/${REPOSITORY}/git/blobs" \
