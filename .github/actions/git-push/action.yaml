@@ -71,6 +71,18 @@ runs:
       continue-on-error: true
       working-directory: ${{ inputs.working-directory }}
 
+    - name: Install signed-commit dependencies
+      if: ${{ steps.diff.outputs.changed == '1' && inputs.sign-commits == 'true' }}
+      run: |
+        if [ ! -d "node_modules" ]; then
+          echo "Installing dependencies..."
+          npm install --production --no-save
+        else
+          echo "Dependencies already installed"
+        fi
+      shell: bash
+      working-directory: .github/actions/signed-commit
+
     - name: Create signed commit via GitHub API
       id: signed-commit
       if: ${{ steps.diff.outputs.changed == '1' && inputs.sign-commits == 'true' }}
