@@ -81,7 +81,7 @@ jobs:
     timeout-minutes: 10
     steps:
       # dispatch build if cache is not match with previous
-      - uses: benc-uk/workflow-dispatch@e2e5e9a103e331dad343f381a29e654aea3cf8fc # v1.2.4
+      - uses: benc-uk/workflow-dispatch@7a027648b88c2413826b6ddd6c76114894dc5ec4 # v1.3.1
         with:
           repo: ${{ env.DISPATCH_REPO }}
           ref: ${{ env.DISPATCH_BRANCH }}
