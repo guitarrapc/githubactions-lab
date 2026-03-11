@@ -2462,7 +2462,7 @@ jobs:
     runs-on: ubuntu-24.04
     timeout-minutes: 3
     steps:
-      - uses: actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131 # v7.0.0
+      - uses: actions/download-artifact@70fc10c6e5e1ce46ad2ea6f2b72d43f7d47b13c3 # v8.0.0
         with:
           name: hoge.txt
           path: .
@@ -2514,7 +2514,7 @@ jobs:
     runs-on: ubuntu-24.04
     timeout-minutes: 3
     steps:
-      - uses: actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131 # v7.0.0
+      - uses: actions/download-artifact@70fc10c6e5e1ce46ad2ea6f2b72d43f7d47b13c3 # v8.0.0
         with:
           name: directory
           path: ./directory
@@ -2568,7 +2568,7 @@ jobs:
     timeout-minutes: 3
     steps:
       # specify path: . to download tar.gz to current directory
-      - uses: actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131 # v7.0.0
+      - uses: actions/download-artifact@70fc10c6e5e1ce46ad2ea6f2b72d43f7d47b13c3 # v8.0.0
         with:
           name: output.tar.gz
           path: .
@@ -2636,7 +2636,7 @@ jobs:
           RUN_ID: ${{ inputs.run-id || steps.get-run-id.outputs.run_id }}
           GH_REPO: ${{ github.repository }}
           GH_TOKEN: ${{ github.token }}
-      - uses: actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131 # v7.0.0
+      - uses: actions/download-artifact@70fc10c6e5e1ce46ad2ea6f2b72d43f7d47b13c3 # v8.0.0
         with:
           run-id: ${{ inputs.run-id || steps.get-run-id.outputs.run_id }}
           github-token: ${{ github.token }}
@@ -3091,7 +3091,7 @@ jobs:
             workflow: test
     steps:
       - name: dispatch ${{ matrix.repo }}
-        uses: benc-uk/workflow-dispatch@e2e5e9a103e331dad343f381a29e654aea3cf8fc # v1.2.4
+        uses: benc-uk/workflow-dispatch@7a027648b88c2413826b6ddd6c76114894dc5ec4 # v1.3.1
         with:
           repo: ${{ matrix.repo }}
           ref: ${{ matrix.ref }}
