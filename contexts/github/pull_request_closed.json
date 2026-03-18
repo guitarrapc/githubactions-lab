@@ -2,13 +2,13 @@
   "token": "<reducted>",
   "job": "dump-context",
   "ref": "refs/heads/main",
-  "sha": "8c48b4f4f36325137eebe3802cc3c34251a55359",
+  "sha": "0703e7c10ebc561f1360ac81530463efb4e0a161",
   "repository": "guitarrapc/githubactions-lab",
   "repository_owner": "guitarrapc",
   "repository_owner_id": "3856350",
   "repositoryUrl": "git://github.com/guitarrapc/githubactions-lab.git",
-  "run_id": "22933625210",
-  "run_number": "1540",
+  "run_id": "23230938136",
+  "run_number": "1554",
   "retention_days": "90",
   "run_attempt": "1",
   "artifact_cache_size_limit": "10",
@@ -16,7 +16,7 @@
   "actor_id": "3856350",
   "actor": "guitarrapc",
   "workflow": "auto dump context",
-  "head_ref": "dependabot/github_actions/dependencies-e6588c3a06",
+  "head_ref": "dependabot/github_actions/dependencies-93371b5fa1",
   "base_ref": "main",
   "event_name": "pull_request",
   "server_url": "https://github.com",
@@ -28,36 +28,36 @@
   "secret_source": "Actions",
   "event": {
     "action": "closed",
-    "number": 303,
+    "number": 304,
     "pull_request": {
       "_links": {
         "comments": {
-          "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/issues/303/comments"
+          "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/issues/304/comments"
         },
         "commits": {
-          "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/303/commits"
+          "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/304/commits"
         },
         "html": {
-          "href": "https://github.com/guitarrapc/githubactions-lab/pull/303"
+          "href": "https://github.com/guitarrapc/githubactions-lab/pull/304"
         },
         "issue": {
-          "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/issues/303"
+          "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/issues/304"
         },
         "review_comment": {
           "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/comments{/number}"
         },
         "review_comments": {
-          "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/303/comments"
+          "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/304/comments"
         },
         "self": {
-          "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/303"
+          "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/304"
         },
         "statuses": {
-          "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/statuses/07e63c4d36e1ea64a33e59fd8e9d9bbbd1ced385"
+          "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/statuses/5b733201f857e3e41ac181b926ebe4bd56cfd384"
         }
       },
       "active_lock_reason": null,
-      "additions": 8,
+      "additions": 18,
       "assignee": null,
       "assignees": [],
       "author_association": "CONTRIBUTOR",
@@ -161,9 +161,9 @@
           "private": false,
           "pull_request_creation_policy": "all",
           "pulls_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls{/number}",
-          "pushed_at": "2026-03-10T15:40:24Z",
+          "pushed_at": "2026-03-17T15:39:57Z",
           "releases_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/releases{/id}",
-          "size": 5245,
+          "size": 5303,
           "squash_merge_commit_message": "COMMIT_MESSAGES",
           "squash_merge_commit_title": "COMMIT_OR_PR_TITLE",
           "ssh_url": "git@github.com:guitarrapc/githubactions-lab.git",
@@ -179,7 +179,7 @@
             "github-actions"
           ],
           "trees_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/git/trees{/sha}",
-          "updated_at": "2026-03-08T00:12:18Z",
+          "updated_at": "2026-03-15T00:15:05Z",
           "url": "https://api.github.com/repos/guitarrapc/githubactions-lab",
           "use_squash_pr_title_as_default": false,
           "visibility": "public",
@@ -187,7 +187,7 @@
           "watchers_count": 55,
           "web_commit_signoff_required": false
         },
-        "sha": "4be629472011c46faa124ae196d1629550a25856",
+        "sha": "4ad0e64a96db82602db3f6b8ace7d62a45dc2783",
         "user": {
           "avatar_url": "https://avatars.githubusercontent.com/u/3856350?v=4",
           "events_url": "https://api.github.com/users/guitarrapc/events{/privacy}",
@@ -210,20 +210,20 @@
           "user_view_type": "public"
         }
       },
-      "body": "Bumps the dependencies group with 2 updates: [actions/download-artifact](https://github.com/actions/download-artifact) and [benc-uk/workflow-dispatch](https://github.com/benc-uk/workflow-dispatch).\n\nUpdates `actions/download-artifact` from 7.0.0 to 8.0.0\n<details>\n<summary>Release notes</summary>\n<p><em>Sourced from <a href=\"https://github.com/actions/download-artifact/releases\">actions/download-artifact's releases</a>.</em></p>\n<blockquote>\n<h2>v8.0.0</h2>\n<h2>v8 - What's new</h2>\n<h3>Direct downloads</h3>\n<p>To support direct uploads in <code>actions/upload-artifact</code>, the action will no longer attempt to unzip all downloaded files. Instead, the action checks the <code>Content-Type</code> header ahead of unzipping and skips non-zipped files. Callers wishing to download a zipped file as-is can also set the new <code>skip-decompress</code> parameter to <code>false</code>.</p>\n<h3>Enforced checks (breaking)</h3>\n<p>A previous release introduced digest checks on the download. If a download hash didn't match the expected hash from the server, the action would log a warning. Callers can now configure the behavior on mismatch with the <code>digest-mismatch</code> parameter. To be secure by default, we are now defaulting the behavior to <code>error</code> which will fail the workflow run.</p>\n<h3>ESM</h3>\n<p>To support new versions of the @actions/* packages, we've upgraded the package to ESM.</p>\n<h2>What's Changed</h2>\n<ul>\n<li>Don't attempt to un-zip non-zipped downloads by <a href=\"https://github.com/danwkennedy\"><code>@​danwkennedy</code></a> in <a href=\"https://redirect.github.com/actions/download-artifact/pull/460\">actions/download-artifact#460</a></li>\n<li>Add a setting to specify what to do on hash mismatch and default it to <code>error</code> by <a href=\"https://github.com/danwkennedy\"><code>@​danwkennedy</code></a> in <a href=\"https://redirect.github.com/actions/download-artifact/pull/461\">actions/download-artifact#461</a></li>\n</ul>\n<p><strong>Full Changelog</strong>: <a href=\"https://github.com/actions/download-artifact/compare/v7...v8.0.0\">https://github.com/actions/download-artifact/compare/v7...v8.0.0</a></p>\n</blockquote>\n</details>\n<details>\n<summary>Commits</summary>\n<ul>\n<li><a href=\"https://github.com/actions/download-artifact/commit/70fc10c6e5e1ce46ad2ea6f2b72d43f7d47b13c3\"><code>70fc10c</code></a> Merge pull request <a href=\"https://redirect.github.com/actions/download-artifact/issues/461\">#461</a> from actions/danwkennedy/digest-mismatch-behavior</li>\n<li><a href=\"https://github.com/actions/download-artifact/commit/f258da9a506b755b84a09a531814700b86ccfc62\"><code>f258da9</code></a> Add change docs</li>\n<li><a href=\"https://github.com/actions/download-artifact/commit/ccc058e5fbb0bb2352213eaec3491e117cbc4a5c\"><code>ccc058e</code></a> Fix linting issues</li>\n<li><a href=\"https://github.com/actions/download-artifact/commit/bd7976ba57ecea96e6f3df575eb922d11a12a9fd\"><code>bd7976b</code></a> Add a setting to specify what to do on hash mismatch and default it to <code>error</code></li>\n<li><a href=\"https://github.com/actions/download-artifact/commit/ac21fcf45e0aaee541c0f7030558bdad38d77d6c\"><code>ac21fcf</code></a> Merge pull request <a href=\"https://redirect.github.com/actions/download-artifact/issues/460\">#460</a> from actions/danwkennedy/download-no-unzip</li>\n<li><a href=\"https://github.com/actions/download-artifact/commit/15999bff51058bc7c19b50ebbba518eaef7c26c0\"><code>15999bf</code></a> Add note about package bumps</li>\n<li><a href=\"https://github.com/actions/download-artifact/commit/974686ed5098c7f9c9289ec946b9058e496a2561\"><code>974686e</code></a> Bump the version to <code>v8</code> and add release notes</li>\n<li><a href=\"https://github.com/actions/download-artifact/commit/fbe48b1d2756394be4cd4358ed3bc1343b330e75\"><code>fbe48b1</code></a> Update test names to make it clearer what they do</li>\n<li><a href=\"https://github.com/actions/download-artifact/commit/96bf374a614d4360e225874c3efd6893a3f285e7\"><code>96bf374</code></a> One more test fix</li>\n<li><a href=\"https://github.com/actions/download-artifact/commit/b8c4819ef592cbe04fd93534534b38f853864332\"><code>b8c4819</code></a> Fix skip decompress test</li>\n<li>Additional commits viewable in <a href=\"https://github.com/actions/download-artifact/compare/37930b1c2abaa49bbe596cd826c3c89aef350131...70fc10c6e5e1ce46ad2ea6f2b72d43f7d47b13c3\">compare view</a></li>\n</ul>\n</details>\n<br />\n\nUpdates `benc-uk/workflow-dispatch` from 1.2.4 to 1.3.1\n<details>\n<summary>Release notes</summary>\n<p><em>Sourced from <a href=\"https://github.com/benc-uk/workflow-dispatch/releases\">benc-uk/workflow-dispatch's releases</a>.</em></p>\n<blockquote>\n<h2>v1.3.1</h2>\n<h2>Features</h2>\n<ul>\n<li><strong>New <code>sync-status</code> input</strong> — when used with <code>wait-for-completion</code>, mirrors the triggered workflow's conclusion (failure/cancelled) back to this action's status (<a href=\"https://redirect.github.com/benc-uk/workflow-dispatch/issues/84\">#84</a>)</li>\n<li><strong>Alternate <code>ref</code> default for PRs</strong> — automatically uses <code>github.head_ref</code> when running in a pull request context, avoiding <code>refs/pull/.../merge</code> errors (<a href=\"https://redirect.github.com/benc-uk/workflow-dispatch/issues/79\">#79</a>)</li>\n</ul>\n<h2>Bug Fixes</h2>\n<ul>\n<li><strong>Safer JSON input parsing</strong> — invalid <code>inputs</code> JSON now logs an error instead of throwing an unhandled exception (<a href=\"https://redirect.github.com/benc-uk/workflow-dispatch/issues/84\">#84</a>)</li>\n<li><strong>Improved timeout handling</strong> — timeout now sets a distinct <code>timed_out</code> status and emits a warning instead of silently breaking (<a href=\"https://redirect.github.com/benc-uk/workflow-dispatch/issues/84\">#84</a>)</li>\n<li><strong>Improved warning message formatting</strong> for workflow run timeout</li>\n</ul>\n<h2>Internal Changes &amp; Chores</h2>\n<ul>\n<li>Replaced <code>console.log</code> calls with <code>core.info</code> for proper Actions log integration (<a href=\"https://redirect.github.com/benc-uk/workflow-dispatch/issues/84\">#84</a>)</li>\n<li>Removed stale <code>ref</code>/<code>inputs</code> parameters from the workflow list API call (<a href=\"https://redirect.github.com/benc-uk/workflow-dispatch/issues/84\">#84</a>)</li>\n<li>Expanded CI test matrix from 3 sequential steps to 9 parallel test jobs covering workflow lookup, output assertions, wait-for-completion, sync-status, and error handling (<a href=\"https://redirect.github.com/benc-uk/workflow-dispatch/issues/84\">#84</a>)</li>\n<li>Added CI path filters to skip docs-only changes (<a href=\"https://redirect.github.com/benc-uk/workflow-dispatch/issues/84\">#84</a>)</li>\n<li>Changed echo-3 test fixture from <code>workflow_call</code> to <code>workflow_dispatch</code> with deterministic failure (<a href=\"https://redirect.github.com/benc-uk/workflow-dispatch/issues/84\">#84</a>)</li>\n<li>Removed unused <code>.vscode/settings.json</code> (<a href=\"https://redirect.github.com/benc-uk/workflow-dispatch/issues/84\">#84</a>)</li>\n<li>Added <code>.github/copilot-instructions.md</code> (<a href=\"https://redirect.github.com/benc-uk/workflow-dispatch/issues/84\">#84</a>)</li>\n<li>General project chores</li>\n</ul>\n<h2>Documentation Updates</h2>\n<ul>\n<li>No documentation updates in this release</li>\n</ul>\n</blockquote>\n</details>\n<details>\n<summary>Commits</summary>\n<ul>\n<li><a href=\"https://github.com/benc-uk/workflow-dispatch/commit/7a027648b88c2413826b6ddd6c76114894dc5ec4\"><code>7a02764</code></a> Improvements: sync-status, error handling, CI test coverage &amp; path filters (<a href=\"https://redirect.github.com/benc-uk/workflow-dispatch/issues/84\">#84</a>)</li>\n<li><a href=\"https://github.com/benc-uk/workflow-dispatch/commit/3162154e5e0697f47fb76f12ed5508c5f3c066d7\"><code>3162154</code></a> Use alternate <code>ref</code> default for PRs (<a href=\"https://redirect.github.com/benc-uk/workflow-dispatch/issues/79\">#79</a>)</li>\n<li><a href=\"https://github.com/benc-uk/workflow-dispatch/commit/4085c9787530f7d3f497838f77fce7b96a554397\"><code>4085c97</code></a> project chores</li>\n<li><a href=\"https://github.com/benc-uk/workflow-dispatch/commit/6fd6de2826a993af5b50dfb55da903d4f1ca05ee\"><code>6fd6de2</code></a> Improve warning message formatting for workflow run timeout</li>\n<li><a href=\"https://github.com/benc-uk/workflow-dispatch/commit/a54f9d194fed472732282ed1597dc4909e4b4080\"><code>a54f9d1</code></a> 2026 refresh (<a href=\"https://redirect.github.com/benc-uk/workflow-dispatch/issues/83\">#83</a>)</li>\n<li>See full diff in <a href=\"https://github.com/benc-uk/workflow-dispatch/compare/e2e5e9a103e331dad343f381a29e654aea3cf8fc...7a027648b88c2413826b6ddd6c76114894dc5ec4\">compare view</a></li>\n</ul>\n</details>\n<br />\n\n\nDependabot will resolve any conflicts with this PR as long as you don't alter it yourself. You can also trigger a rebase manually by commenting `@dependabot rebase`.\n\n[//]: # (dependabot-automerge-start)\n[//]: # (dependabot-automerge-end)\n\n---\n\n<details>\n<summary>Dependabot commands and options</summary>\n<br />\n\nYou can trigger Dependabot actions by commenting on this PR:\n- `@dependabot rebase` will rebase this PR\n- `@dependabot recreate` will recreate this PR, overwriting any edits that have been made to it\n- `@dependabot show <dependency name> ignore conditions` will show all of the ignore conditions of the specified dependency\n- `@dependabot ignore <dependency name> major version` will close this group update PR and stop Dependabot creating any more for the specific dependency's major version (unless you unignore this specific dependency's major version or upgrade to it yourself)\n- `@dependabot ignore <dependency name> minor version` will close this group update PR and stop Dependabot creating any more for the specific dependency's minor version (unless you unignore this specific dependency's minor version or upgrade to it yourself)\n- `@dependabot ignore <dependency name>` will close this group update PR and stop Dependabot creating any more for the specific dependency (unless you unignore this specific dependency or upgrade to it yourself)\n- `@dependabot unignore <dependency name>` will remove all of the ignore conditions of the specified dependency\n- `@dependabot unignore <dependency name> <ignore condition>` will remove the ignore condition of the specified dependency and ignore conditions\n\n\n</details>",
-      "changed_files": 8,
-      "closed_at": "2026-03-11T02:20:49Z",
+      "body": "Bumps the dependencies group with 3 updates: [actions/setup-dotnet](https://github.com/actions/setup-dotnet), [actions/upload-artifact](https://github.com/actions/upload-artifact) and [actions/setup-go](https://github.com/actions/setup-go).\n\nUpdates `actions/setup-dotnet` from 5.1.0 to 5.2.0\n<details>\n<summary>Release notes</summary>\n<p><em>Sourced from <a href=\"https://github.com/actions/setup-dotnet/releases\">actions/setup-dotnet's releases</a>.</em></p>\n<blockquote>\n<h2>v5.2.0</h2>\n<h2>What's changed</h2>\n<h3>Enhancements</h3>\n<ul>\n<li>Add support for workloads input by <a href=\"https://github.com/gowridurgad\"><code>@​gowridurgad</code></a> in <a href=\"https://redirect.github.com/actions/setup-dotnet/pull/693\">actions/setup-dotnet#693</a></li>\n<li>Add support for optional architecture input for cross-architecture .NET installs by <a href=\"https://github.com/priya-kinthali\"><code>@​priya-kinthali</code></a> in <a href=\"https://redirect.github.com/actions/setup-dotnet/pull/700\">actions/setup-dotnet#700</a></li>\n</ul>\n<h3>Dependency Updates</h3>\n<ul>\n<li>Upgrade fast-xml-parser from 4.4.1 to 5.3.6 by <a href=\"https://github.com/dependabot\"><code>@​dependabot</code></a> in <a href=\"https://redirect.github.com/actions/setup-dotnet/pull/671\">actions/setup-dotnet#671</a></li>\n<li>Upgrade minimatch from 3.1.2 to 3.1.5 by <a href=\"https://github.com/dependabot\"><code>@​dependabot</code></a> in <a href=\"https://redirect.github.com/actions/setup-dotnet/pull/705\">actions/setup-dotnet#705</a></li>\n</ul>\n<p><strong>Full Changelog</strong>: <a href=\"https://github.com/actions/setup-dotnet/compare/v5...v5.2.0\">https://github.com/actions/setup-dotnet/compare/v5...v5.2.0</a></p>\n</blockquote>\n</details>\n<details>\n<summary>Commits</summary>\n<ul>\n<li><a href=\"https://github.com/actions/setup-dotnet/commit/c2fa09f4bde5ebb9d1777cf28262a3eb3db3ced7\"><code>c2fa09f</code></a> Bump minimatch from 3.1.2 to 3.1.5 (<a href=\"https://redirect.github.com/actions/setup-dotnet/issues/705\">#705</a>)</li>\n<li><a href=\"https://github.com/actions/setup-dotnet/commit/02574b18e2dc57a218ee4e11ba1e1603c67236e8\"><code>02574b1</code></a> Add support for optional architecture input for cross-architecture .NET insta...</li>\n<li><a href=\"https://github.com/actions/setup-dotnet/commit/16c7b3c2fa55a0e394467d22512b84fda46adf63\"><code>16c7b3c</code></a> Bump fast-xml-parser from 4.4.1 to 5.3.6 (<a href=\"https://redirect.github.com/actions/setup-dotnet/issues/671\">#671</a>)</li>\n<li><a href=\"https://github.com/actions/setup-dotnet/commit/131b410979e0b49e2162c0718030257b22d6dc2c\"><code>131b410</code></a> Add support for workloads input (<a href=\"https://redirect.github.com/actions/setup-dotnet/issues/693\">#693</a>)</li>\n<li>See full diff in <a href=\"https://github.com/actions/setup-dotnet/compare/baa11fbfe1d6520db94683bd5c7a3818018e4309...c2fa09f4bde5ebb9d1777cf28262a3eb3db3ced7\">compare view</a></li>\n</ul>\n</details>\n<br />\n\nUpdates `actions/upload-artifact` from 6.0.0 to 7.0.0\n<details>\n<summary>Release notes</summary>\n<p><em>Sourced from <a href=\"https://github.com/actions/upload-artifact/releases\">actions/upload-artifact's releases</a>.</em></p>\n<blockquote>\n<h2>v7.0.0</h2>\n<h2>v7 What's new</h2>\n<h3>Direct Uploads</h3>\n<p>Adds support for uploading single files directly (unzipped). Callers can set the new <code>archive</code> parameter to <code>false</code> to skip zipping the file during upload. Right now, we only support single files. The action will fail if the glob passed resolves to multiple files. The <code>name</code> parameter is also ignored with this setting. Instead, the name of the artifact will be the name of the uploaded file.</p>\n<h3>ESM</h3>\n<p>To support new versions of the <code>@actions/*</code> packages, we've upgraded the package to ESM.</p>\n<h2>What's Changed</h2>\n<ul>\n<li>Add proxy integration test by <a href=\"https://github.com/Link\"><code>@​Link</code></a>- in <a href=\"https://redirect.github.com/actions/upload-artifact/pull/754\">actions/upload-artifact#754</a></li>\n<li>Upgrade the module to ESM and bump dependencies by <a href=\"https://github.com/danwkennedy\"><code>@​danwkennedy</code></a> in <a href=\"https://redirect.github.com/actions/upload-artifact/pull/762\">actions/upload-artifact#762</a></li>\n<li>Support direct file uploads by <a href=\"https://github.com/danwkennedy\"><code>@​danwkennedy</code></a> in <a href=\"https://redirect.github.com/actions/upload-artifact/pull/764\">actions/upload-artifact#764</a></li>\n</ul>\n<h2>New Contributors</h2>\n<ul>\n<li><a href=\"https://github.com/Link\"><code>@​Link</code></a>- made their first contribution in <a href=\"https://redirect.github.com/actions/upload-artifact/pull/754\">actions/upload-artifact#754</a></li>\n</ul>\n<p><strong>Full Changelog</strong>: <a href=\"https://github.com/actions/upload-artifact/compare/v6...v7.0.0\">https://github.com/actions/upload-artifact/compare/v6...v7.0.0</a></p>\n</blockquote>\n</details>\n<details>\n<summary>Commits</summary>\n<ul>\n<li><a href=\"https://github.com/actions/upload-artifact/commit/bbbca2ddaa5d8feaa63e36b76fdaad77386f024f\"><code>bbbca2d</code></a> Support direct file uploads (<a href=\"https://redirect.github.com/actions/upload-artifact/issues/764\">#764</a>)</li>\n<li><a href=\"https://github.com/actions/upload-artifact/commit/589182c5a4cec8920b8c1bce3e2fab1c97a02296\"><code>589182c</code></a> Upgrade the module to ESM and bump dependencies (<a href=\"https://redirect.github.com/actions/upload-artifact/issues/762\">#762</a>)</li>\n<li><a href=\"https://github.com/actions/upload-artifact/commit/47309c993abb98030a35d55ef7ff34b7fa1074b5\"><code>47309c9</code></a> Merge pull request <a href=\"https://redirect.github.com/actions/upload-artifact/issues/754\">#754</a> from actions/Link-/add-proxy-integration-tests</li>\n<li><a href=\"https://github.com/actions/upload-artifact/commit/02a8460834e70dab0ce194c64360c59dc1475ef0\"><code>02a8460</code></a> Add proxy integration test</li>\n<li>See full diff in <a href=\"https://github.com/actions/upload-artifact/compare/b7c566a772e6b6bfb58ed0dc250532a479d7789f...bbbca2ddaa5d8feaa63e36b76fdaad77386f024f\">compare view</a></li>\n</ul>\n</details>\n<br />\n\nUpdates `actions/setup-go` from 6.2.0 to 6.3.0\n<details>\n<summary>Release notes</summary>\n<p><em>Sourced from <a href=\"https://github.com/actions/setup-go/releases\">actions/setup-go's releases</a>.</em></p>\n<blockquote>\n<h2>v6.3.0</h2>\n<h2>What's Changed</h2>\n<ul>\n<li>Update default Go module caching to use go.mod by <a href=\"https://github.com/priyagupta108\"><code>@​priyagupta108</code></a> in <a href=\"https://redirect.github.com/actions/setup-go/pull/705\">actions/setup-go#705</a></li>\n<li>Fix golang download url to go.dev by <a href=\"https://github.com/178inaba\"><code>@​178inaba</code></a> in <a href=\"https://redirect.github.com/actions/setup-go/pull/469\">actions/setup-go#469</a></li>\n</ul>\n<p><strong>Full Changelog</strong>: <a href=\"https://github.com/actions/setup-go/compare/v6...v6.3.0\">https://github.com/actions/setup-go/compare/v6...v6.3.0</a></p>\n</blockquote>\n</details>\n<details>\n<summary>Commits</summary>\n<ul>\n<li><a href=\"https://github.com/actions/setup-go/commit/4b73464bb391d4059bd26b0524d20df3927bd417\"><code>4b73464</code></a> Fix golang download url to go.dev (<a href=\"https://redirect.github.com/actions/setup-go/issues/469\">#469</a>)</li>\n<li><a href=\"https://github.com/actions/setup-go/commit/a5f9b05d2d216f63e13859e0d847461041025775\"><code>a5f9b05</code></a> Update default Go module caching to use go.mod (<a href=\"https://redirect.github.com/actions/setup-go/issues/705\">#705</a>)</li>\n<li>See full diff in <a href=\"https://github.com/actions/setup-go/compare/7a3fe6cf4cb3a834922a1244abfce67bcef6a0c5...4b73464bb391d4059bd26b0524d20df3927bd417\">compare view</a></li>\n</ul>\n</details>\n<br />\n\n\nDependabot will resolve any conflicts with this PR as long as you don't alter it yourself. You can also trigger a rebase manually by commenting `@dependabot rebase`.\n\n[//]: # (dependabot-automerge-start)\n[//]: # (dependabot-automerge-end)\n\n---\n\n<details>\n<summary>Dependabot commands and options</summary>\n<br />\n\nYou can trigger Dependabot actions by commenting on this PR:\n- `@dependabot rebase` will rebase this PR\n- `@dependabot recreate` will recreate this PR, overwriting any edits that have been made to it\n- `@dependabot show <dependency name> ignore conditions` will show all of the ignore conditions of the specified dependency\n- `@dependabot ignore <dependency name> major version` will close this group update PR and stop Dependabot creating any more for the specific dependency's major version (unless you unignore this specific dependency's major version or upgrade to it yourself)\n- `@dependabot ignore <dependency name> minor version` will close this group update PR and stop Dependabot creating any more for the specific dependency's minor version (unless you unignore this specific dependency's minor version or upgrade to it yourself)\n- `@dependabot ignore <dependency name>` will close this group update PR and stop Dependabot creating any more for the specific dependency (unless you unignore this specific dependency or upgrade to it yourself)\n- `@dependabot unignore <dependency name>` will remove all of the ignore conditions of the specified dependency\n- `@dependabot unignore <dependency name> <ignore condition>` will remove the ignore condition of the specified dependency and ignore conditions\n\n\n</details>",
+      "changed_files": 12,
+      "closed_at": "2026-03-18T05:43:30Z",
       "comments": 0,
-      "comments_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/issues/303/comments",
+      "comments_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/issues/304/comments",
       "commits": 1,
-      "commits_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/303/commits",
-      "created_at": "2026-03-10T15:39:58Z",
-      "deletions": 8,
-      "diff_url": "https://github.com/guitarrapc/githubactions-lab/pull/303.diff",
+      "commits_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/304/commits",
+      "created_at": "2026-03-17T15:39:39Z",
+      "deletions": 18,
+      "diff_url": "https://github.com/guitarrapc/githubactions-lab/pull/304.diff",
       "draft": false,
       "head": {
-        "label": "guitarrapc:dependabot/github_actions/dependencies-e6588c3a06",
-        "ref": "dependabot/github_actions/dependencies-e6588c3a06",
+        "label": "guitarrapc:dependabot/github_actions/dependencies-93371b5fa1",
+        "ref": "dependabot/github_actions/dependencies-93371b5fa1",
         "repo": {
           "allow_auto_merge": true,
           "allow_forking": true,
@@ -320,9 +320,9 @@
           "private": false,
           "pull_request_creation_policy": "all",
           "pulls_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls{/number}",
-          "pushed_at": "2026-03-10T15:40:24Z",
+          "pushed_at": "2026-03-17T15:39:57Z",
           "releases_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/releases{/id}",
-          "size": 5245,
+          "size": 5303,
           "squash_merge_commit_message": "COMMIT_MESSAGES",
           "squash_merge_commit_title": "COMMIT_OR_PR_TITLE",
           "ssh_url": "git@github.com:guitarrapc/githubactions-lab.git",
@@ -338,7 +338,7 @@
             "github-actions"
           ],
           "trees_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/git/trees{/sha}",
-          "updated_at": "2026-03-08T00:12:18Z",
+          "updated_at": "2026-03-15T00:15:05Z",
           "url": "https://api.github.com/repos/guitarrapc/githubactions-lab",
           "use_squash_pr_title_as_default": false,
           "visibility": "public",
@@ -346,7 +346,7 @@
           "watchers_count": 55,
           "web_commit_signoff_required": false
         },
-        "sha": "07e63c4d36e1ea64a33e59fd8e9d9bbbd1ced385",
+        "sha": "5b733201f857e3e41ac181b926ebe4bd56cfd384",
         "user": {
           "avatar_url": "https://avatars.githubusercontent.com/u/3856350?v=4",
           "events_url": "https://api.github.com/users/guitarrapc/events{/privacy}",
@@ -369,9 +369,9 @@
           "user_view_type": "public"
         }
       },
-      "html_url": "https://github.com/guitarrapc/githubactions-lab/pull/303",
-      "id": 3379359230,
-      "issue_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/issues/303",
+      "html_url": "https://github.com/guitarrapc/githubactions-lab/pull/304",
+      "id": 3410278165,
+      "issue_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/issues/304",
       "labels": [
         {
           "color": "0366d6",
@@ -394,11 +394,11 @@
       ],
       "locked": false,
       "maintainer_can_modify": false,
-      "merge_commit_sha": "8c48b4f4f36325137eebe3802cc3c34251a55359",
+      "merge_commit_sha": "0703e7c10ebc561f1360ac81530463efb4e0a161",
       "mergeable": null,
       "mergeable_state": "unknown",
       "merged": true,
-      "merged_at": "2026-03-11T02:20:49Z",
+      "merged_at": "2026-03-18T05:43:30Z",
       "merged_by": {
         "avatar_url": "https://avatars.githubusercontent.com/u/3856350?v=4",
         "events_url": "https://api.github.com/users/guitarrapc/events{/privacy}",
@@ -421,9 +421,9 @@
         "user_view_type": "public"
       },
       "milestone": null,
-      "node_id": "PR_kwDOD1icfM7JbO3-",
-      "number": 303,
-      "patch_url": "https://github.com/guitarrapc/githubactions-lab/pull/303.patch",
+      "node_id": "PR_kwDOD1icfM7LRLcV",
+      "number": 304,
+      "patch_url": "https://github.com/guitarrapc/githubactions-lab/pull/304.patch",
       "rebaseable": null,
       "requested_reviewers": [
         {
@@ -451,12 +451,12 @@
       "requested_teams": [],
       "review_comment_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/comments{/number}",
       "review_comments": 0,
-      "review_comments_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/303/comments",
+      "review_comments_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/304/comments",
       "state": "closed",
-      "statuses_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/statuses/07e63c4d36e1ea64a33e59fd8e9d9bbbd1ced385",
-      "title": "chore(deps): bump the dependencies group with 2 updates",
-      "updated_at": "2026-03-11T02:20:49Z",
-      "url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/303",
+      "statuses_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/statuses/5b733201f857e3e41ac181b926ebe4bd56cfd384",
+      "title": "chore(deps): bump the dependencies group with 3 updates",
+      "updated_at": "2026-03-18T05:43:30Z",
+      "url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/304",
       "user": {
         "avatar_url": "https://avatars.githubusercontent.com/in/29110?v=4",
         "events_url": "https://api.github.com/users/dependabot%5Bbot%5D/events{/privacy}",
@@ -567,9 +567,9 @@
       "private": false,
       "pull_request_creation_policy": "all",
       "pulls_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls{/number}",
-      "pushed_at": "2026-03-10T15:40:24Z",
+      "pushed_at": "2026-03-17T15:39:57Z",
       "releases_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/releases{/id}",
-      "size": 5245,
+      "size": 5303,
       "ssh_url": "git@github.com:guitarrapc/githubactions-lab.git",
       "stargazers_count": 55,
       "stargazers_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/stargazers",
@@ -583,7 +583,7 @@
         "github-actions"
       ],
       "trees_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/git/trees{/sha}",
-      "updated_at": "2026-03-08T00:12:18Z",
+      "updated_at": "2026-03-15T00:15:05Z",
       "url": "https://api.github.com/repos/guitarrapc/githubactions-lab",
       "visibility": "public",
       "watchers": 55,
@@ -613,7 +613,7 @@
     }
   },
   "workflow_ref": "guitarrapc/githubactions-lab/.github/workflows/auto-dump-context.yaml@refs/heads/main",
-  "workflow_sha": "8c48b4f4f36325137eebe3802cc3c34251a55359",
+  "workflow_sha": "0703e7c10ebc561f1360ac81530463efb4e0a161",
   "repository_id": "257465468",
   "triggering_actor": "guitarrapc",
   "workspace": "/home/runner/work/githubactions-lab/githubactions-lab",
@@ -621,9 +621,9 @@
   "event_path": "/home/runner/work/_temp/_github_workflow/event.json",
   "action_repository": "",
   "action_ref": "",
-  "path": "/home/runner/work/_temp/_runner_file_commands/add_path_24edbab3-a42c-4fc9-b870-8f90929fc131",
-  "env": "/home/runner/work/_temp/_runner_file_commands/set_env_24edbab3-a42c-4fc9-b870-8f90929fc131",
-  "step_summary": "/home/runner/work/_temp/_runner_file_commands/step_summary_24edbab3-a42c-4fc9-b870-8f90929fc131",
-  "state": "/home/runner/work/_temp/_runner_file_commands/save_state_24edbab3-a42c-4fc9-b870-8f90929fc131",
-  "output": "/home/runner/work/_temp/_runner_file_commands/set_output_24edbab3-a42c-4fc9-b870-8f90929fc131"
+  "path": "/home/runner/work/_temp/_runner_file_commands/add_path_3b03b1d6-94f3-4baf-b784-6ad0fd42ccd7",
+  "env": "/home/runner/work/_temp/_runner_file_commands/set_env_3b03b1d6-94f3-4baf-b784-6ad0fd42ccd7",
+  "step_summary": "/home/runner/work/_temp/_runner_file_commands/step_summary_3b03b1d6-94f3-4baf-b784-6ad0fd42ccd7",
+  "state": "/home/runner/work/_temp/_runner_file_commands/save_state_3b03b1d6-94f3-4baf-b784-6ad0fd42ccd7",
+  "output": "/home/runner/work/_temp/_runner_file_commands/set_output_3b03b1d6-94f3-4baf-b784-6ad0fd42ccd7"
 }
