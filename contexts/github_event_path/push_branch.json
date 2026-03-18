@@ -1,7 +1,7 @@
 {
-  "after": "8c48b4f4f36325137eebe3802cc3c34251a55359",
+  "after": "0703e7c10ebc561f1360ac81530463efb4e0a161",
   "base_ref": null,
-  "before": "4be629472011c46faa124ae196d1629550a25856",
+  "before": "4ad0e64a96db82602db3f6b8ace7d62a45dc2783",
   "commits": [
     {
       "author": {
@@ -15,11 +15,11 @@
         "username": "web-flow"
       },
       "distinct": false,
-      "id": "07e63c4d36e1ea64a33e59fd8e9d9bbbd1ced385",
-      "message": "chore(deps): bump the dependencies group with 2 updates\n\nBumps the dependencies group with 2 updates: [actions/download-artifact](https://github.com/actions/download-artifact) and [benc-uk/workflow-dispatch](https://github.com/benc-uk/workflow-dispatch).\n\n\nUpdates `actions/download-artifact` from 7.0.0 to 8.0.0\n- [Release notes](https://github.com/actions/download-artifact/releases)\n- [Commits](https://github.com/actions/download-artifact/compare/37930b1c2abaa49bbe596cd826c3c89aef350131...70fc10c6e5e1ce46ad2ea6f2b72d43f7d47b13c3)\n\nUpdates `benc-uk/workflow-dispatch` from 1.2.4 to 1.3.1\n- [Release notes](https://github.com/benc-uk/workflow-dispatch/releases)\n- [Commits](https://github.com/benc-uk/workflow-dispatch/compare/e2e5e9a103e331dad343f381a29e654aea3cf8fc...7a027648b88c2413826b6ddd6c76114894dc5ec4)\n\n---\nupdated-dependencies:\n- dependency-name: actions/download-artifact\n  dependency-version: 8.0.0\n  dependency-type: direct:production\n  update-type: version-update:semver-major\n  dependency-group: dependencies\n- dependency-name: benc-uk/workflow-dispatch\n  dependency-version: 1.3.1\n  dependency-type: direct:production\n  update-type: version-update:semver-minor\n  dependency-group: dependencies\n...\n\nSigned-off-by: dependabot[bot] <support@github.com>",
-      "timestamp": "2026-03-10T15:39:57Z",
-      "tree_id": "28a21e0c5203c2682e4206867d796ba8f38d0841",
-      "url": "https://github.com/guitarrapc/githubactions-lab/commit/07e63c4d36e1ea64a33e59fd8e9d9bbbd1ced385"
+      "id": "5b733201f857e3e41ac181b926ebe4bd56cfd384",
+      "message": "chore(deps): bump the dependencies group with 3 updates\n\nBumps the dependencies group with 3 updates: [actions/setup-dotnet](https://github.com/actions/setup-dotnet), [actions/upload-artifact](https://github.com/actions/upload-artifact) and [actions/setup-go](https://github.com/actions/setup-go).\n\n\nUpdates `actions/setup-dotnet` from 5.1.0 to 5.2.0\n- [Release notes](https://github.com/actions/setup-dotnet/releases)\n- [Commits](https://github.com/actions/setup-dotnet/compare/baa11fbfe1d6520db94683bd5c7a3818018e4309...c2fa09f4bde5ebb9d1777cf28262a3eb3db3ced7)\n\nUpdates `actions/upload-artifact` from 6.0.0 to 7.0.0\n- [Release notes](https://github.com/actions/upload-artifact/releases)\n- [Commits](https://github.com/actions/upload-artifact/compare/b7c566a772e6b6bfb58ed0dc250532a479d7789f...bbbca2ddaa5d8feaa63e36b76fdaad77386f024f)\n\nUpdates `actions/setup-go` from 6.2.0 to 6.3.0\n- [Release notes](https://github.com/actions/setup-go/releases)\n- [Commits](https://github.com/actions/setup-go/compare/7a3fe6cf4cb3a834922a1244abfce67bcef6a0c5...4b73464bb391d4059bd26b0524d20df3927bd417)\n\n---\nupdated-dependencies:\n- dependency-name: actions/setup-dotnet\n  dependency-version: 5.2.0\n  dependency-type: direct:production\n  update-type: version-update:semver-minor\n  dependency-group: dependencies\n- dependency-name: actions/upload-artifact\n  dependency-version: 7.0.0\n  dependency-type: direct:production\n  update-type: version-update:semver-major\n  dependency-group: dependencies\n- dependency-name: actions/setup-go\n  dependency-version: 6.3.0\n  dependency-type: direct:production\n  update-type: version-update:semver-minor\n  dependency-group: dependencies\n...\n\nSigned-off-by: dependabot[bot] <support@github.com>",
+      "timestamp": "2026-03-17T15:39:38Z",
+      "tree_id": "8abc776ffb9fbb403c50a2a8fe9e4211606ef54d",
+      "url": "https://github.com/guitarrapc/githubactions-lab/commit/5b733201f857e3e41ac181b926ebe4bd56cfd384"
     },
     {
       "author": {
@@ -33,14 +33,14 @@
         "username": "web-flow"
       },
       "distinct": true,
-      "id": "8c48b4f4f36325137eebe3802cc3c34251a55359",
-      "message": "Merge pull request #303 from guitarrapc/dependabot/github_actions/dependencies-e6588c3a06\n\nchore(deps): bump the dependencies group with 2 updates",
-      "timestamp": "2026-03-11T11:20:49+09:00",
-      "tree_id": "28a21e0c5203c2682e4206867d796ba8f38d0841",
-      "url": "https://github.com/guitarrapc/githubactions-lab/commit/8c48b4f4f36325137eebe3802cc3c34251a55359"
+      "id": "0703e7c10ebc561f1360ac81530463efb4e0a161",
+      "message": "Merge pull request #304 from guitarrapc/dependabot/github_actions/dependencies-93371b5fa1\n\nchore(deps): bump the dependencies group with 3 updates",
+      "timestamp": "2026-03-18T14:43:29+09:00",
+      "tree_id": "8abc776ffb9fbb403c50a2a8fe9e4211606ef54d",
+      "url": "https://github.com/guitarrapc/githubactions-lab/commit/0703e7c10ebc561f1360ac81530463efb4e0a161"
     }
   ],
-  "compare": "https://github.com/guitarrapc/githubactions-lab/compare/4be629472011...8c48b4f4f363",
+  "compare": "https://github.com/guitarrapc/githubactions-lab/compare/4ad0e64a96db...0703e7c10ebc",
   "created": false,
   "deleted": false,
   "forced": false,
@@ -56,11 +56,11 @@
       "username": "web-flow"
     },
     "distinct": true,
-    "id": "8c48b4f4f36325137eebe3802cc3c34251a55359",
-    "message": "Merge pull request #303 from guitarrapc/dependabot/github_actions/dependencies-e6588c3a06\n\nchore(deps): bump the dependencies group with 2 updates",
-    "timestamp": "2026-03-11T11:20:49+09:00",
-    "tree_id": "28a21e0c5203c2682e4206867d796ba8f38d0841",
-    "url": "https://github.com/guitarrapc/githubactions-lab/commit/8c48b4f4f36325137eebe3802cc3c34251a55359"
+    "id": "0703e7c10ebc561f1360ac81530463efb4e0a161",
+    "message": "Merge pull request #304 from guitarrapc/dependabot/github_actions/dependencies-93371b5fa1\n\nchore(deps): bump the dependencies group with 3 updates",
+    "timestamp": "2026-03-18T14:43:29+09:00",
+    "tree_id": "8abc776ffb9fbb403c50a2a8fe9e4211606ef54d",
+    "url": "https://github.com/guitarrapc/githubactions-lab/commit/0703e7c10ebc561f1360ac81530463efb4e0a161"
   },
   "pusher": {
     "email": "3856350+guitarrapc@users.noreply.github.com",
@@ -158,9 +158,9 @@
     "private": false,
     "pull_request_creation_policy": "all",
     "pulls_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls{/number}",
-    "pushed_at": 1773195649,
+    "pushed_at": 1773812609,
     "releases_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/releases{/id}",
-    "size": 5245,
+    "size": 5303,
     "ssh_url": "git@github.com:guitarrapc/githubactions-lab.git",
     "stargazers": 55,
     "stargazers_count": 55,
@@ -175,7 +175,7 @@
       "github-actions"
     ],
     "trees_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/git/trees{/sha}",
-    "updated_at": "2026-03-08T00:12:18Z",
+    "updated_at": "2026-03-15T00:15:05Z",
     "url": "https://api.github.com/repos/guitarrapc/githubactions-lab",
     "visibility": "public",
     "watchers": 55,
