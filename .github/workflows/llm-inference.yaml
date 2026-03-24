@@ -1,0 +1,25 @@
+name: LLM Inference
+
+on:
+  push:
+    branches: [llm]
+  workflow_dispatch:
+
+jobs:
+  run:
+    permissions:
+      contents: read
+      models: read
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - name: Test Local Action
+        id: inference
+        uses: actions/ai-inference@e09e65981758de8b2fdab13c2bfb7c7d5493b0b6 # v2.0.7
+        with:
+          prompt: "Analyze recent workflow runs and check security alerts"
+          enable-github-mcp: false
+          model: openai/gpt-4.1-mini
+      - name: Print Output
+        id: output
+        run: echo "${{ steps.inference.outputs.response }}"
