@@ -1,8 +1,6 @@
 name: LLM Inference
 
 on:
-  push:
-    branches: [llm]
   workflow_dispatch:
 
 jobs:
