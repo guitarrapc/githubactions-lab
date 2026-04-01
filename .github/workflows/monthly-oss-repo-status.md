@@ -15,6 +15,9 @@ safe-outputs:
   create-issue:
     title-prefix: "[oss status] "
     labels: [report]
+    assignees: [guitarrapc, copilot]
+    expires: 7
+    close-older-issues: true
 
 tools:
   github:
