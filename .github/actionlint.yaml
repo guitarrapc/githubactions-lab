@@ -2,3 +2,7 @@ paths:
   .github/workflows/yaml-anchor-basic.yaml:
     ignore:
       - '"paths" section must be sequence node but got alias node with "" tag'
+
+  .github/workflows/job-needs-skip-handling-bad.yaml:
+    ignore:
+      - 'constant expression "false" in condition. remove the if: section'
