@@ -4,6 +4,8 @@ on:
     - cron: "52 9 1 * *"
       timezone: "Asia/Tokyo"
 
+timeout-minutes: 60 # job timeout
+
 permissions:
   contents: read
   issues: read
