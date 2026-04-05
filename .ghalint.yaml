@@ -11,6 +11,3 @@ excludes:
   - policy_name: job_timeout_minutes_is_required
     workflow_file_path: .github/workflows/agentics-maintenance.yml
     job_name: close-expired-entities
-  - policy_name: job_timeout_minutes_is_required
-    workflow_file_path: .github/workflows/monthly-oss-repo-status.lock.yml
-    job_name: close-expired-entities
