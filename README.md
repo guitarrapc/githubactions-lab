@@ -1830,7 +1830,7 @@ jobs:
           persist-credentials: false
       # see: https://github.com/dorny/paths-filter/blob/master/README.md
       - id: changed-files
-        uses: dorny/paths-filter@de90cc6fb38fc0963ad72b210f1f284cd68cea36 # v3.0.2
+        uses: dorny/paths-filter@fbd0ab8f3e69293af611ebaee6363fc25e6d187d # v4.0.1
         with:
           base: ${{ github.event_name == 'push' && github.ref || '' }}
           list-files: csv # default 'none'. Disables listing of matching files.
@@ -1849,7 +1849,7 @@ jobs:
         run: echo "${{ contains(steps.changed-files.outputs.foo_files, '.github/dummy')}}"
       # space separated
       - id: changed-files2
-        uses: dorny/paths-filter@de90cc6fb38fc0963ad72b210f1f284cd68cea36 # v3.0.2
+        uses: dorny/paths-filter@fbd0ab8f3e69293af611ebaee6363fc25e6d187d # v4.0.1
         if: ${{ github.event.pull_request.changed_files < 100 }} # when changed files less than 100
         with:
           base: ${{ github.event_name == 'push' && github.ref || '' }}
@@ -1866,7 +1866,7 @@ jobs:
           done
       # json separated
       - id: changed-files3
-        uses: dorny/paths-filter@de90cc6fb38fc0963ad72b210f1f284cd68cea36 # v3.0.2
+        uses: dorny/paths-filter@fbd0ab8f3e69293af611ebaee6363fc25e6d187d # v4.0.1
         with:
           base: ${{ github.event_name == 'push' && github.ref || '' }}
           list-files: json
@@ -1902,7 +1902,7 @@ jobs:
           persist-credentials: false
       # see: https://github.com/dorny/paths-filter/blob/master/README.md
       - id: changed-files
-        uses: dorny/paths-filter@de90cc6fb38fc0963ad72b210f1f284cd68cea36 # v3.0.2
+        uses: dorny/paths-filter@fbd0ab8f3e69293af611ebaee6363fc25e6d187d # v4.0.1
         with:
           base: ${{ github.event_name == 'push' && github.ref || '' }}
           list-files: csv # default 'none'. Disables listing of matching files.
@@ -1921,7 +1921,7 @@ jobs:
         run: echo "${{ contains(steps.changed-files.outputs.foo_files, '.github/dummy')}}"
       # space separated
       - id: changed-files2
-        uses: dorny/paths-filter@de90cc6fb38fc0963ad72b210f1f284cd68cea36 # v3.0.2
+        uses: dorny/paths-filter@fbd0ab8f3e69293af611ebaee6363fc25e6d187d # v4.0.1
         if: ${{ github.event.pull_request.changed_files < 100 }} # when changed files less than 100
         with:
           base: ${{ github.event_name == 'push' && github.ref || '' }}
@@ -1938,7 +1938,7 @@ jobs:
           done
       # json separated
       - id: changed-files3
-        uses: dorny/paths-filter@de90cc6fb38fc0963ad72b210f1f284cd68cea36 # v3.0.2
+        uses: dorny/paths-filter@fbd0ab8f3e69293af611ebaee6363fc25e6d187d # v4.0.1
         with:
           base: ${{ github.event_name == 'push' && github.ref || '' }}
           list-files: json
@@ -4000,7 +4000,7 @@ jobs:
     runs-on: ubuntu-24.04
     timeout-minutes: 3
     steps:
-      - uses: actions/create-github-app-token@29824e69f54612133e76f7eaac726eef6c875baf # v2.2.1
+      - uses: actions/create-github-app-token@f8d387b68d61c58ab83c6c016672934102569859 # v3.0.0
         id: app-token
         with:
           app-id: ${{ secrets.SYNCED_ACTIONS_BOT_APPID }}
