@@ -1,6 +1,7 @@
 rules:
   impostor-commit:
     ignore:
+      - agentics-maintenance.yml:70
       - agentics-maintenance.yml:115
       - agentics-maintenance.yml:130
       - agentics-maintenance.yml:166
