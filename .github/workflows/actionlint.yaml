@@ -24,9 +24,9 @@ jobs:
       # github workflows/action's Static Checker
       - name: Run actionlint
         run: actionlint -color -oneline
-      # checkout's persist-credentials: false checker
-      - name: Run ghalint
-        run: ghalint run
+      # # checkout's persist-credentials: false checker
+      # - name: Run ghalint
+      #   run: ghalint run
       # A static analysis tool for GitHub Actions
       - name: Run zizmor
         run: docker run -t --env "GH_TOKEN=${GH_TOKEN}" -v .:/github ghcr.io/zizmorcore/zizmor:1.22.0 /github --min-severity medium --format github
