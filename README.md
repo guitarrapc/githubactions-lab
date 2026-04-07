@@ -3736,7 +3736,7 @@ jobs:
   call-workflow-passing-data:
     permissions:
       contents: read
-    uses: guitarrapc/githubactions-lab/.github/workflows/_reusable-workflow-called.yaml@main
+    uses: guitarrapc/githubactions-lab/.github/workflows/_reusable-workflow-called.yaml@04f8f49217595fca87eb93a58280bed22d313ee0 # 2025.12.14
     with:
       username: foo
       is-valid: true
@@ -4125,7 +4125,7 @@ jobs:
       #   run: ghalint run
       # A static analysis tool for GitHub Actions
       - name: Run zizmor
-        run: docker run -t --env "GH_TOKEN=${GH_TOKEN}" -v .:/github ghcr.io/zizmorcore/zizmor:1.22.0 /github --min-severity medium --format github
+        run: docker run -t --env "GH_TOKEN=${GH_TOKEN}" -v .:/github ghcr.io/zizmorcore/zizmor:1.22.0 /github --config /github/.zizmor.yaml --min-severity medium --format github
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
@@ -4714,7 +4714,7 @@ jobs:
       #   run: ghalint run
       # A static analysis tool for GitHub Actions
       - name: Run zizmor
-        run: docker run -t --env "GH_TOKEN=${GH_TOKEN}" -v .:/github ghcr.io/zizmorcore/zizmor:1.22.0 /github --min-severity medium --format github
+        run: docker run -t --env "GH_TOKEN=${GH_TOKEN}" -v .:/github ghcr.io/zizmorcore/zizmor:1.22.0 /github --config /github/.zizmor.yaml --min-severity medium --format github
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
