@@ -2,13 +2,13 @@
   "token": "<reducted>",
   "job": "dump-context",
   "ref": "refs/heads/main",
-  "sha": "c294ace57ea29dd339a5b8d1d8f0969112e7ea9d",
+  "sha": "59e1e1f18f3b36301a74a96190f222b19f8c39e1",
   "repository": "guitarrapc/githubactions-lab",
   "repository_owner": "guitarrapc",
   "repository_owner_id": "3856350",
   "repositoryUrl": "git://github.com/guitarrapc/githubactions-lab.git",
-  "run_id": "24066611213",
-  "run_number": "1594",
+  "run_id": "24065986232",
+  "run_number": "1593",
   "retention_days": "90",
   "run_attempt": "1",
   "artifact_cache_size_limit": "10",
@@ -27,9 +27,9 @@
   "ref_type": "branch",
   "secret_source": "Actions",
   "event": {
-    "after": "c294ace57ea29dd339a5b8d1d8f0969112e7ea9d",
+    "after": "59e1e1f18f3b36301a74a96190f222b19f8c39e1",
     "base_ref": null,
-    "before": "8c56b3195b4df1014175960ae7bb0a746010c589",
+    "before": "8587eeff94a59b8c4f4c5801cca4ae5530623f8a",
     "commits": [
       {
         "author": {
@@ -43,14 +43,32 @@
           "username": "guitarrapc"
         },
         "distinct": true,
-        "id": "c294ace57ea29dd339a5b8d1d8f0969112e7ea9d",
-        "message": "chore: disable ghalint",
-        "timestamp": "2026-04-07T14:52:17+09:00",
-        "tree_id": "d936a44b45a880cb182ea5c27f89b591eefbdc1b",
-        "url": "https://github.com/guitarrapc/githubactions-lab/commit/c294ace57ea29dd339a5b8d1d8f0969112e7ea9d"
+        "id": "9f4be95c4740b30c8797f48bdc83e60d8f343893",
+        "message": "ci: update lint tools",
+        "timestamp": "2026-04-07T12:47:28+09:00",
+        "tree_id": "c4fb90208234b3c7effd48acebdc9b47e0a0cca3",
+        "url": "https://github.com/guitarrapc/githubactions-lab/commit/9f4be95c4740b30c8797f48bdc83e60d8f343893"
+      },
+      {
+        "author": {
+          "email": "3856350+guitarrapc@users.noreply.github.com",
+          "name": "Ikiru Yoshizaki",
+          "username": "guitarrapc"
+        },
+        "committer": {
+          "email": "3856350+guitarrapc@users.noreply.github.com",
+          "name": "Ikiru Yoshizaki",
+          "username": "guitarrapc"
+        },
+        "distinct": true,
+        "id": "59e1e1f18f3b36301a74a96190f222b19f8c39e1",
+        "message": "fix: zizmor warnings on 1.23.0... and beyond.",
+        "timestamp": "2026-04-07T14:29:46+09:00",
+        "tree_id": "6966b23895f29b7fea2450e3e6ab24fb139af473",
+        "url": "https://github.com/guitarrapc/githubactions-lab/commit/59e1e1f18f3b36301a74a96190f222b19f8c39e1"
       }
     ],
-    "compare": "https://github.com/guitarrapc/githubactions-lab/compare/8c56b3195b4d...c294ace57ea2",
+    "compare": "https://github.com/guitarrapc/githubactions-lab/compare/8587eeff94a5...59e1e1f18f3b",
     "created": false,
     "deleted": false,
     "forced": false,
@@ -66,11 +84,11 @@
         "username": "guitarrapc"
       },
       "distinct": true,
-      "id": "c294ace57ea29dd339a5b8d1d8f0969112e7ea9d",
-      "message": "chore: disable ghalint",
-      "timestamp": "2026-04-07T14:52:17+09:00",
-      "tree_id": "d936a44b45a880cb182ea5c27f89b591eefbdc1b",
-      "url": "https://github.com/guitarrapc/githubactions-lab/commit/c294ace57ea29dd339a5b8d1d8f0969112e7ea9d"
+      "id": "59e1e1f18f3b36301a74a96190f222b19f8c39e1",
+      "message": "fix: zizmor warnings on 1.23.0... and beyond.",
+      "timestamp": "2026-04-07T14:29:46+09:00",
+      "tree_id": "6966b23895f29b7fea2450e3e6ab24fb139af473",
+      "url": "https://github.com/guitarrapc/githubactions-lab/commit/59e1e1f18f3b36301a74a96190f222b19f8c39e1"
     },
     "pusher": {
       "email": "3856350+guitarrapc@users.noreply.github.com",
@@ -168,7 +186,7 @@
       "private": false,
       "pull_request_creation_policy": "all",
       "pulls_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls{/number}",
-      "pushed_at": 1775541140,
+      "pushed_at": 1775539813,
       "releases_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/releases{/id}",
       "size": 5631,
       "ssh_url": "git@github.com:guitarrapc/githubactions-lab.git",
@@ -185,7 +203,7 @@
         "github-actions"
       ],
       "trees_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/git/trees{/sha}",
-      "updated_at": "2026-04-07T05:30:43Z",
+      "updated_at": "2026-04-07T03:27:29Z",
       "url": "https://api.github.com/repos/guitarrapc/githubactions-lab",
       "visibility": "public",
       "watchers": 55,
@@ -215,7 +233,7 @@
     }
   },
   "workflow_ref": "guitarrapc/githubactions-lab/.github/workflows/auto-dump-context.yaml@refs/heads/main",
-  "workflow_sha": "c294ace57ea29dd339a5b8d1d8f0969112e7ea9d",
+  "workflow_sha": "59e1e1f18f3b36301a74a96190f222b19f8c39e1",
   "repository_id": "257465468",
   "triggering_actor": "guitarrapc",
   "workspace": "/home/runner/work/githubactions-lab/githubactions-lab",
@@ -223,9 +241,9 @@
   "event_path": "/home/runner/work/_temp/_github_workflow/event.json",
   "action_repository": "",
   "action_ref": "",
-  "path": "/home/runner/work/_temp/_runner_file_commands/add_path_b505a39e-d72a-4550-a887-46e635de1776",
-  "env": "/home/runner/work/_temp/_runner_file_commands/set_env_b505a39e-d72a-4550-a887-46e635de1776",
-  "step_summary": "/home/runner/work/_temp/_runner_file_commands/step_summary_b505a39e-d72a-4550-a887-46e635de1776",
-  "state": "/home/runner/work/_temp/_runner_file_commands/save_state_b505a39e-d72a-4550-a887-46e635de1776",
-  "output": "/home/runner/work/_temp/_runner_file_commands/set_output_b505a39e-d72a-4550-a887-46e635de1776"
+  "path": "/home/runner/work/_temp/_runner_file_commands/add_path_ee32c8fc-cb52-4a3f-ab13-e0df387a9433",
+  "env": "/home/runner/work/_temp/_runner_file_commands/set_env_ee32c8fc-cb52-4a3f-ab13-e0df387a9433",
+  "step_summary": "/home/runner/work/_temp/_runner_file_commands/step_summary_ee32c8fc-cb52-4a3f-ab13-e0df387a9433",
+  "state": "/home/runner/work/_temp/_runner_file_commands/save_state_ee32c8fc-cb52-4a3f-ab13-e0df387a9433",
+  "output": "/home/runner/work/_temp/_runner_file_commands/set_output_ee32c8fc-cb52-4a3f-ab13-e0df387a9433"
 }
