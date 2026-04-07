@@ -17,7 +17,7 @@ jobs:
           persist-credentials: false
       # see: https://github.com/dorny/paths-filter/blob/master/README.md
       - id: changed-files
-        uses: dorny/paths-filter@de90cc6fb38fc0963ad72b210f1f284cd68cea36 # v3.0.2
+        uses: dorny/paths-filter@fbd0ab8f3e69293af611ebaee6363fc25e6d187d # v4.0.1
         with:
           base: ${{ github.event_name == 'push' && github.ref || '' }}
           list-files: csv # default 'none'. Disables listing of matching files.
@@ -36,7 +36,7 @@ jobs:
         run: echo "${{ contains(steps.changed-files.outputs.foo_files, '.github/dummy')}}"
       # space separated
       - id: changed-files2
-        uses: dorny/paths-filter@de90cc6fb38fc0963ad72b210f1f284cd68cea36 # v3.0.2
+        uses: dorny/paths-filter@fbd0ab8f3e69293af611ebaee6363fc25e6d187d # v4.0.1
         if: ${{ github.event.pull_request.changed_files < 100 }} # when changed files less than 100
         with:
           base: ${{ github.event_name == 'push' && github.ref || '' }}
@@ -53,7 +53,7 @@ jobs:
           done
       # json separated
       - id: changed-files3
-        uses: dorny/paths-filter@de90cc6fb38fc0963ad72b210f1f284cd68cea36 # v3.0.2
+        uses: dorny/paths-filter@fbd0ab8f3e69293af611ebaee6363fc25e6d187d # v4.0.1
         with:
           base: ${{ github.event_name == 'push' && github.ref || '' }}
           list-files: json
