@@ -30,32 +30,17 @@ jobs:
         run: |
           PR_TITLE="[Automate] Merge ${UPSTREAM} to ${BRANCH}"
           PR_BODY=$':crown: *An automated PR*\n\n_Created by gh cli_'
-
-          PR_NUMBER="$(gh pr list \
-            --base "${BRANCH}" \
-            --head "${UPSTREAM}" \
-            --state open \
-            --json number \
-            --jq '.[0].number // ""')"
+          PR_NUMBER="$(gh pr list --base "${BRANCH}" --head "${UPSTREAM}" --state open --json number --jq '.[0].number // ""')"
 
           if [ -n "$PR_NUMBER" ]; then
             CURRENT_TITLE="$(gh pr view "$PR_NUMBER" --json title --jq '.title')"
             CURRENT_BODY="$(gh pr view "$PR_NUMBER" --json body --jq '.body')"
 
             if [ "$CURRENT_TITLE" != "$PR_TITLE" ] || [ "$CURRENT_BODY" != "$PR_BODY" ]; then
-              gh pr edit "$PR_NUMBER" \
-                --title "$PR_TITLE" \
-                --body "$PR_BODY" \
-                --add-label "auto-pr"
+              gh pr edit "$PR_NUMBER" --title "$PR_TITLE" --body "$PR_BODY" --add-label "auto-pr"
             else
               echo "PR already exists and is up-to-date"
             fi
           else
-            gh pr create \
-              --base "${BRANCH}" \
-              --head "${UPSTREAM}" \
-              --title "$PR_TITLE" \
-              --body "$PR_BODY" \
-              --label "auto-pr" \
-            || echo "No changes to merge"
+            gh pr create --base "${BRANCH}" --head "${UPSTREAM}" --title "$PR_TITLE" --body "$PR_BODY" --label "auto-pr" || echo "No changes to merge"
           fi
