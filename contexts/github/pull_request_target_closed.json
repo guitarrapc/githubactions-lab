@@ -2,13 +2,13 @@
   "token": "<reducted>",
   "job": "dump-context",
   "ref": "refs/heads/main",
-  "sha": "8647b50e1a4cbb9cebcfd5efdeb47bd346b388dc",
+  "sha": "57d5c34e46a8d2ba67972268548618ab34e4fad5",
   "repository": "guitarrapc/githubactions-lab",
   "repository_owner": "guitarrapc",
   "repository_owner_id": "3856350",
   "repositoryUrl": "git://github.com/guitarrapc/githubactions-lab.git",
-  "run_id": "23831177830",
-  "run_number": "1571",
+  "run_id": "24062769113",
+  "run_number": "1590",
   "retention_days": "90",
   "run_attempt": "1",
   "artifact_cache_size_limit": "10",
@@ -16,7 +16,7 @@
   "actor_id": "3856350",
   "actor": "guitarrapc",
   "workflow": "auto dump context",
-  "head_ref": "llm",
+  "head_ref": "dependabot/github_actions/dependencies-8c8e5b29cc",
   "base_ref": "main",
   "event_name": "pull_request_target",
   "server_url": "https://github.com",
@@ -28,39 +28,39 @@
   "secret_source": "Actions",
   "event": {
     "action": "closed",
-    "number": 306,
+    "number": 305,
     "pull_request": {
       "_links": {
         "comments": {
-          "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/issues/306/comments"
+          "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/issues/305/comments"
         },
         "commits": {
-          "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/306/commits"
+          "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/305/commits"
         },
         "html": {
-          "href": "https://github.com/guitarrapc/githubactions-lab/pull/306"
+          "href": "https://github.com/guitarrapc/githubactions-lab/pull/305"
         },
         "issue": {
-          "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/issues/306"
+          "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/issues/305"
         },
         "review_comment": {
           "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/comments{/number}"
         },
         "review_comments": {
-          "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/306/comments"
+          "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/305/comments"
         },
         "self": {
-          "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/306"
+          "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/305"
         },
         "statuses": {
-          "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/statuses/ad6342ba0cd55db9b5d9ef46f5190c4fccc2c0b6"
+          "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/statuses/6e8b434a7b8dce670ed20f2ce5fab39f52d34097"
         }
       },
       "active_lock_reason": null,
-      "additions": 169,
+      "additions": 9,
       "assignee": null,
       "assignees": [],
-      "author_association": "OWNER",
+      "author_association": "CONTRIBUTOR",
       "auto_merge": null,
       "base": {
         "label": "guitarrapc:main",
@@ -135,8 +135,8 @@
           "name": "githubactions-lab",
           "node_id": "MDEwOlJlcG9zaXRvcnkyNTc0NjU0Njg=",
           "notifications_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/notifications{?since,all,participating}",
-          "open_issues": 3,
-          "open_issues_count": 3,
+          "open_issues": 2,
+          "open_issues_count": 2,
           "owner": {
             "avatar_url": "https://avatars.githubusercontent.com/u/3856350?v=4",
             "events_url": "https://api.github.com/users/guitarrapc/events{/privacy}",
@@ -161,9 +161,9 @@
           "private": false,
           "pull_request_creation_policy": "all",
           "pulls_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls{/number}",
-          "pushed_at": "2026-04-01T03:50:55Z",
+          "pushed_at": "2026-04-07T03:26:15Z",
           "releases_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/releases{/id}",
-          "size": 5369,
+          "size": 5520,
           "squash_merge_commit_message": "COMMIT_MESSAGES",
           "squash_merge_commit_title": "COMMIT_OR_PR_TITLE",
           "ssh_url": "git@github.com:guitarrapc/githubactions-lab.git",
@@ -179,7 +179,7 @@
             "github-actions"
           ],
           "trees_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/git/trees{/sha}",
-          "updated_at": "2026-04-01T03:50:35Z",
+          "updated_at": "2026-04-07T03:26:19Z",
           "url": "https://api.github.com/repos/guitarrapc/githubactions-lab",
           "use_squash_pr_title_as_default": false,
           "visibility": "public",
@@ -187,7 +187,7 @@
           "watchers_count": 55,
           "web_commit_signoff_required": false
         },
-        "sha": "a133e1bfb8f8a19c2bdb9bf989749b137cd4b5a4",
+        "sha": "61591297f55eb1c00515c56a960cfdb06ba856c6",
         "user": {
           "avatar_url": "https://avatars.githubusercontent.com/u/3856350?v=4",
           "events_url": "https://api.github.com/users/guitarrapc/events{/privacy}",
@@ -210,20 +210,20 @@
           "user_view_type": "public"
         }
       },
-      "body": null,
-      "changed_files": 6,
-      "closed_at": "2026-04-01T03:57:01Z",
+      "body": "Bumps the dependencies group with 2 updates: [dorny/paths-filter](https://github.com/dorny/paths-filter) and [actions/create-github-app-token](https://github.com/actions/create-github-app-token).\n\nUpdates `dorny/paths-filter` from 3.0.2 to 4.0.1\n<details>\n<summary>Release notes</summary>\n<p><em>Sourced from <a href=\"https://github.com/dorny/paths-filter/releases\">dorny/paths-filter's releases</a>.</em></p>\n<blockquote>\n<h2>v4.0.1</h2>\n<h2>What's Changed</h2>\n<ul>\n<li>Support merge queue by <a href=\"https://github.com/masaru-iritani\"><code>@​masaru-iritani</code></a> in <a href=\"https://redirect.github.com/dorny/paths-filter/pull/255\">dorny/paths-filter#255</a></li>\n</ul>\n<h2>New Contributors</h2>\n<ul>\n<li><a href=\"https://github.com/masaru-iritani\"><code>@​masaru-iritani</code></a> made their first contribution in <a href=\"https://redirect.github.com/dorny/paths-filter/pull/255\">dorny/paths-filter#255</a></li>\n</ul>\n<p><strong>Full Changelog</strong>: <a href=\"https://github.com/dorny/paths-filter/compare/v4.0.0...v4.0.1\">https://github.com/dorny/paths-filter/compare/v4.0.0...v4.0.1</a></p>\n<h2>v4.0.0</h2>\n<h2>What's Changed</h2>\n<ul>\n<li>feat: update action runtime to node24 by <a href=\"https://github.com/saschabratton\"><code>@​saschabratton</code></a> in <a href=\"https://redirect.github.com/dorny/paths-filter/pull/294\">dorny/paths-filter#294</a></li>\n</ul>\n<h2>New Contributors</h2>\n<ul>\n<li><a href=\"https://github.com/saschabratton\"><code>@​saschabratton</code></a> made their first contribution in <a href=\"https://redirect.github.com/dorny/paths-filter/pull/294\">dorny/paths-filter#294</a></li>\n</ul>\n<p><strong>Full Changelog</strong>: <a href=\"https://github.com/dorny/paths-filter/compare/v3.0.3...v4.0.0\">https://github.com/dorny/paths-filter/compare/v3.0.3...v4.0.0</a></p>\n<h2>v3.0.3</h2>\n<h2>What's Changed</h2>\n<ul>\n<li>Add missing predicate-quantifier by <a href=\"https://github.com/wardpeet\"><code>@​wardpeet</code></a> in <a href=\"https://redirect.github.com/dorny/paths-filter/pull/279\">dorny/paths-filter#279</a></li>\n</ul>\n<h2>New Contributors</h2>\n<ul>\n<li><a href=\"https://github.com/wardpeet\"><code>@​wardpeet</code></a> made their first contribution in <a href=\"https://redirect.github.com/dorny/paths-filter/pull/279\">dorny/paths-filter#279</a></li>\n</ul>\n<p><strong>Full Changelog</strong>: <a href=\"https://github.com/dorny/paths-filter/compare/v3...v3.0.3\">https://github.com/dorny/paths-filter/compare/v3...v3.0.3</a></p>\n</blockquote>\n</details>\n<details>\n<summary>Changelog</summary>\n<p><em>Sourced from <a href=\"https://github.com/dorny/paths-filter/blob/master/CHANGELOG.md\">dorny/paths-filter's changelog</a>.</em></p>\n<blockquote>\n<h1>Changelog</h1>\n<h2>v4.0.0</h2>\n<ul>\n<li><a href=\"https://redirect.github.com/dorny/paths-filter/pull/294\">Update action runtime to node24</a></li>\n</ul>\n<h2>v3.0.3</h2>\n<ul>\n<li><a href=\"https://redirect.github.com/dorny/paths-filter/pull/279\">Add missing predicate-quantifier</a></li>\n</ul>\n<h2>v3.0.2</h2>\n<ul>\n<li><a href=\"https://redirect.github.com/dorny/paths-filter/pull/224\">Add config parameter for predicate quantifier</a></li>\n</ul>\n<h2>v3.0.1</h2>\n<ul>\n<li><a href=\"https://redirect.github.com/dorny/paths-filter/pull/133\">Compare base and ref when token is empty</a></li>\n</ul>\n<h2>v3.0.0</h2>\n<ul>\n<li><a href=\"https://redirect.github.com/dorny/paths-filter/pull/210\">Update to Node.js 20</a></li>\n<li><a href=\"https://redirect.github.com/dorny/paths-filter/pull/215\">Update all dependencies</a></li>\n</ul>\n<h2>v2.11.1</h2>\n<ul>\n<li><a href=\"https://redirect.github.com/dorny/paths-filter/pull/167\">Update <code>@​actions/core</code> to v1.10.0 - Fixes warning about deprecated set-output</a></li>\n<li><a href=\"https://redirect.github.com/dorny/paths-filter/pull/168\">Document need for pull-requests: read permission</a></li>\n<li><a href=\"https://redirect.github.com/dorny/paths-filter/pull/164\">Updating to actions/checkout@v3</a></li>\n</ul>\n<h2>v2.11.0</h2>\n<ul>\n<li><a href=\"https://redirect.github.com/dorny/paths-filter/pull/157\">Set list-files input parameter as not required</a></li>\n<li><a href=\"https://redirect.github.com/dorny/paths-filter/pull/161\">Update Node.js</a></li>\n<li><a href=\"https://redirect.github.com/dorny/paths-filter/pull/162\">Fix incorrect handling of Unicode characters in exec()</a></li>\n<li><a href=\"https://redirect.github.com/dorny/paths-filter/pull/163\">Use Octokit pagination</a></li>\n<li><a href=\"https://redirect.github.com/dorny/paths-filter/pull/160\">Updates real world links</a></li>\n</ul>\n<h2>v2.10.2</h2>\n<ul>\n<li><a href=\"https://redirect.github.com/dorny/paths-filter/pull/91\">Fix getLocalRef() returns wrong ref</a></li>\n</ul>\n<h2>v2.10.1</h2>\n<ul>\n<li><a href=\"https://redirect.github.com/dorny/paths-filter/pull/85\">Improve robustness of change detection</a></li>\n</ul>\n<h2>v2.10.0</h2>\n<ul>\n<li><a href=\"https://redirect.github.com/dorny/paths-filter/pull/82\">Add ref input parameter</a></li>\n<li><a href=\"https://redirect.github.com/dorny/paths-filter/pull/83\">Fix change detection in PR when pullRequest.changed_files is incorrect</a></li>\n</ul>\n<h2>v2.9.3</h2>\n<ul>\n<li><a href=\"https://redirect.github.com/dorny/paths-filter/pull/78\">Fix change detection when base is a tag</a></li>\n</ul>\n<h2>v2.9.2</h2>\n<ul>\n<li><a href=\"https://redirect.github.com/dorny/paths-filter/pull/75\">Fix fetching git history</a></li>\n</ul>\n<h2>v2.9.1</h2>\n<ul>\n<li><a href=\"https://redirect.github.com/dorny/paths-filter/pull/74\">Fix fetching git history + fallback to unshallow repo</a></li>\n</ul>\n<h2>v2.9.0</h2>\n<!-- raw HTML omitted -->\n</blockquote>\n<p>... (truncated)</p>\n</details>\n<details>\n<summary>Commits</summary>\n<ul>\n<li><a href=\"https://github.com/dorny/paths-filter/commit/fbd0ab8f3e69293af611ebaee6363fc25e6d187d\"><code>fbd0ab8</code></a> feat: add merge_group event support</li>\n<li><a href=\"https://github.com/dorny/paths-filter/commit/efb1da7ce8d89bbc261191e5a2dc1453c3837339\"><code>efb1da7</code></a> feat: add dist/ freshness check to PR workflow</li>\n<li><a href=\"https://github.com/dorny/paths-filter/commit/d8f7b061b24c30a325ff314b76c37adb05b041ce\"><code>d8f7b06</code></a> Merge pull request <a href=\"https://redirect.github.com/dorny/paths-filter/issues/302\">#302</a> from dorny/issue-299</li>\n<li><a href=\"https://github.com/dorny/paths-filter/commit/addbc147a95845176e1bc013a012fbf1d366389a\"><code>addbc14</code></a> Update README for v4</li>\n<li><a href=\"https://github.com/dorny/paths-filter/commit/9d7afb8d214ad99e78fbd4247752c4caed2b6e4c\"><code>9d7afb8</code></a> Update CHANGELOG for v4.0.0</li>\n<li><a href=\"https://github.com/dorny/paths-filter/commit/782470c5d953cae2693d643172b14e01bacb71f3\"><code>782470c</code></a> Merge branch 'releases/v3'</li>\n<li><a href=\"https://github.com/dorny/paths-filter/commit/d1c1ffe0248fe513906c8e24db8ea791d46f8590\"><code>d1c1ffe</code></a> Update CHANGELOG for v3.0.3</li>\n<li><a href=\"https://github.com/dorny/paths-filter/commit/ce10459c8b92cd8901166c0a222fbb033ef39365\"><code>ce10459</code></a> Merge pull request <a href=\"https://redirect.github.com/dorny/paths-filter/issues/294\">#294</a> from saschabratton/master</li>\n<li><a href=\"https://github.com/dorny/paths-filter/commit/5f40380c5482e806c81cec080f5192e7234d8fe9\"><code>5f40380</code></a> feat: update action runtime to node24</li>\n<li><a href=\"https://github.com/dorny/paths-filter/commit/668c092af3649c4b664c54e4b704aa46782f6f7c\"><code>668c092</code></a> Merge pull request <a href=\"https://redirect.github.com/dorny/paths-filter/issues/279\">#279</a> from wardpeet/patch-1</li>\n<li>Additional commits viewable in <a href=\"https://github.com/dorny/paths-filter/compare/de90cc6fb38fc0963ad72b210f1f284cd68cea36...fbd0ab8f3e69293af611ebaee6363fc25e6d187d\">compare view</a></li>\n</ul>\n</details>\n<br />\n\nUpdates `actions/create-github-app-token` from 2.2.1 to 3.0.0\n<details>\n<summary>Release notes</summary>\n<p><em>Sourced from <a href=\"https://github.com/actions/create-github-app-token/releases\">actions/create-github-app-token's releases</a>.</em></p>\n<blockquote>\n<h2>v3.0.0</h2>\n<h1><a href=\"https://github.com/actions/create-github-app-token/compare/v2.2.2...v3.0.0\">3.0.0</a> (2026-03-14)</h1>\n<ul>\n<li>feat!: node 24 support (<a href=\"https://redirect.github.com/actions/create-github-app-token/issues/275\">#275</a>) (<a href=\"https://github.com/actions/create-github-app-token/commit/2e564a0bb8e7cc2b907b2401a2afe177882d4325\">2e564a0</a>)</li>\n<li>fix!: require <code>NODE_USE_ENV_PROXY</code> for proxy support (<a href=\"https://redirect.github.com/actions/create-github-app-token/issues/342\">#342</a>) (<a href=\"https://github.com/actions/create-github-app-token/commit/4451bcbc139f8124b0bf04f968ea2586b17df458\">4451bcb</a>)</li>\n</ul>\n<h3>Bug Fixes</h3>\n<ul>\n<li>remove custom proxy handling (<a href=\"https://redirect.github.com/actions/create-github-app-token/issues/143\">#143</a>) (<a href=\"https://github.com/actions/create-github-app-token/commit/dce0ab05f36f30b22fd14289fd36655c618e4e8e\">dce0ab0</a>)</li>\n</ul>\n<h3>BREAKING CHANGES</h3>\n<ul>\n<li>Custom proxy handling has been removed. If you use HTTP_PROXY or HTTPS_PROXY, you must now also set NODE_USE_ENV_PROXY=1 on the action step.</li>\n<li>Requires <a href=\"https://github.com/actions/runner/releases/tag/v2.327.1\">Actions Runner v2.327.1</a> or later if you are using a self-hosted runner.</li>\n</ul>\n<h2>v3.0.0-beta.6</h2>\n<h1><a href=\"https://github.com/actions/create-github-app-token/compare/v3.0.0-beta.5...v3.0.0-beta.6\">3.0.0-beta.6</a> (2026-03-13)</h1>\n<h3>Bug Fixes</h3>\n<ul>\n<li><strong>deps:</strong> bump <code>@​actions/core</code> from 1.11.1 to 3.0.0 (<a href=\"https://redirect.github.com/actions/create-github-app-token/issues/337\">#337</a>) (<a href=\"https://github.com/actions/create-github-app-token/commit/b04413352d4644ac2131b9a90c074f5e93ca18a1\">b044133</a>)</li>\n<li><strong>deps:</strong> bump minimatch from 9.0.5 to 9.0.9 (<a href=\"https://redirect.github.com/actions/create-github-app-token/issues/335\">#335</a>) (<a href=\"https://github.com/actions/create-github-app-token/commit/5cbc65624c9ddc4589492bda7c8b146223e8c3e4\">5cbc656</a>)</li>\n<li><strong>deps:</strong> bump the production-dependencies group with 4 updates (<a href=\"https://redirect.github.com/actions/create-github-app-token/issues/336\">#336</a>) (<a href=\"https://github.com/actions/create-github-app-token/commit/6bda5bc1410576b9a0879ce6076d53345485bba9\">6bda5bc</a>)</li>\n<li><strong>deps:</strong> bump undici from 7.16.0 to 7.18.2 (<a href=\"https://redirect.github.com/actions/create-github-app-token/issues/323\">#323</a>) (<a href=\"https://github.com/actions/create-github-app-token/commit/b4f638f48ee0dcdbb0bc646c48e4cb2a2de847fe\">b4f638f</a>)</li>\n</ul>\n<h2>v3.0.0-beta.5</h2>\n<h1><a href=\"https://github.com/actions/create-github-app-token/compare/v3.0.0-beta.4...v3.0.0-beta.5\">3.0.0-beta.5</a> (2026-03-13)</h1>\n<ul>\n<li>fix!: require <code>NODE_USE_ENV_PROXY</code> for proxy support (<a href=\"https://redirect.github.com/actions/create-github-app-token/issues/342\">#342</a>) (<a href=\"https://github.com/actions/create-github-app-token/commit/d53a1cdfde844c958786293adcaf739ecb8b5eb9\">d53a1cd</a>)</li>\n</ul>\n<h3>BREAKING CHANGES</h3>\n<ul>\n<li>Custom proxy handling has been removed. If you use HTTP_PROXY or HTTPS_PROXY, you must now also set NODE_USE_ENV_PROXY=1 on the action step.</li>\n</ul>\n<h2>v3.0.0-beta.4</h2>\n<h1><a href=\"https://github.com/actions/create-github-app-token/compare/v3.0.0-beta.3...v3.0.0-beta.4\">3.0.0-beta.4</a> (2026-03-13)</h1>\n<h3>Bug Fixes</h3>\n<ul>\n<li><strong>deps:</strong> bump <code>@​octokit/auth-app</code> from 7.2.1 to 8.0.1 (<a href=\"https://redirect.github.com/actions/create-github-app-token/issues/257\">#257</a>) (<a href=\"https://github.com/actions/create-github-app-token/commit/bef1eaf1c0ac2b148ee2a0a74c65fbe6db0631f1\">bef1eaf</a>)</li>\n<li><strong>deps:</strong> bump <code>@​octokit/request</code> from 9.2.3 to 10.0.2 (<a href=\"https://redirect.github.com/actions/create-github-app-token/issues/256\">#256</a>) (<a href=\"https://github.com/actions/create-github-app-token/commit/5d7307be63501c0070c634b0ae8fec74e8208130\">5d7307b</a>)</li>\n<li><strong>deps:</strong> bump glob from 10.4.5 to 10.5.0 (<a href=\"https://redirect.github.com/actions/create-github-app-token/issues/305\">#305</a>) (<a href=\"https://github.com/actions/create-github-app-token/commit/5480f4325a18c025ee16d7e081413854624e9edc\">5480f43</a>)</li>\n<li><strong>deps:</strong> bump p-retry from 6.2.1 to 7.1.0 (<a href=\"https://redirect.github.com/actions/create-github-app-token/issues/294\">#294</a>) (<a href=\"https://github.com/actions/create-github-app-token/commit/dce3be8b284f45e65caed11a610e2bef738d15b4\">dce3be8</a>)</li>\n</ul>\n<!-- raw HTML omitted -->\n</blockquote>\n<p>... (truncated)</p>\n</details>\n<details>\n<summary>Commits</summary>\n<ul>\n<li><a href=\"https://github.com/actions/create-github-app-token/commit/f8d387b68d61c58ab83c6c016672934102569859\"><code>f8d387b</code></a> build(release): 3.0.0 [skip ci]</li>\n<li><a href=\"https://github.com/actions/create-github-app-token/commit/d2129bd463d4feb8723edeea9437baa7db58e41e\"><code>d2129bd</code></a> style: remove extra blank line in release workflow</li>\n<li><a href=\"https://github.com/actions/create-github-app-token/commit/77b94efc3e5f99a45abdd163fe04a4ebb95e98d6\"><code>77b94ef</code></a> build: refresh generated artifacts</li>\n<li><a href=\"https://github.com/actions/create-github-app-token/commit/3ab4c6689898955f913a485593b36b197c6dbbdc\"><code>3ab4c66</code></a> chore: move undici to devDependencies</li>\n<li><a href=\"https://github.com/actions/create-github-app-token/commit/739cf66feb937a443e4b6b7626bedd98f9fef6df\"><code>739cf66</code></a> docs: update README action versions</li>\n<li><a href=\"https://github.com/actions/create-github-app-token/commit/db40289976a36527816d4f6f45765fdee71f134b\"><code>db40289</code></a> build(deps): bump actions versions in test.yml</li>\n<li><a href=\"https://github.com/actions/create-github-app-token/commit/496a7ac4eb472eeac44d67818d1ce7f5e9e5fc97\"><code>496a7ac</code></a> test: migrate from AVA to Node.js native test runner (<a href=\"https://redirect.github.com/actions/create-github-app-token/issues/346\">#346</a>)</li>\n<li><a href=\"https://github.com/actions/create-github-app-token/commit/3870dc3051e3f1fc3a2faa17bcbb00f31fe1dd6c\"><code>3870dc3</code></a> Rename end-to-end proxy job in test workflow</li>\n<li><a href=\"https://github.com/actions/create-github-app-token/commit/4451bcbc139f8124b0bf04f968ea2586b17df458\"><code>4451bcb</code></a> fix!: require <code>NODE_USE_ENV_PROXY</code> for proxy support (<a href=\"https://redirect.github.com/actions/create-github-app-token/issues/342\">#342</a>)</li>\n<li><a href=\"https://github.com/actions/create-github-app-token/commit/dce0ab05f36f30b22fd14289fd36655c618e4e8e\"><code>dce0ab0</code></a> fix: remove custom proxy handling (<a href=\"https://redirect.github.com/actions/create-github-app-token/issues/143\">#143</a>)</li>\n<li>Additional commits viewable in <a href=\"https://github.com/actions/create-github-app-token/compare/29824e69f54612133e76f7eaac726eef6c875baf...f8d387b68d61c58ab83c6c016672934102569859\">compare view</a></li>\n</ul>\n</details>\n<br />\n\n\nDependabot will resolve any conflicts with this PR as long as you don't alter it yourself. You can also trigger a rebase manually by commenting `@dependabot rebase`.\n\n[//]: # (dependabot-automerge-start)\n[//]: # (dependabot-automerge-end)\n\n---\n\n<details>\n<summary>Dependabot commands and options</summary>\n<br />\n\nYou can trigger Dependabot actions by commenting on this PR:\n- `@dependabot rebase` will rebase this PR\n- `@dependabot recreate` will recreate this PR, overwriting any edits that have been made to it\n- `@dependabot show <dependency name> ignore conditions` will show all of the ignore conditions of the specified dependency\n- `@dependabot ignore <dependency name> major version` will close this group update PR and stop Dependabot creating any more for the specific dependency's major version (unless you unignore this specific dependency's major version or upgrade to it yourself)\n- `@dependabot ignore <dependency name> minor version` will close this group update PR and stop Dependabot creating any more for the specific dependency's minor version (unless you unignore this specific dependency's minor version or upgrade to it yourself)\n- `@dependabot ignore <dependency name>` will close this group update PR and stop Dependabot creating any more for the specific dependency (unless you unignore this specific dependency or upgrade to it yourself)\n- `@dependabot unignore <dependency name>` will remove all of the ignore conditions of the specified dependency\n- `@dependabot unignore <dependency name> <ignore condition>` will remove the ignore condition of the specified dependency and ignore conditions\n\n\n</details>",
+      "changed_files": 7,
+      "closed_at": "2026-04-07T03:26:43Z",
       "comments": 0,
-      "comments_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/issues/306/comments",
-      "commits": 2,
-      "commits_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/306/commits",
-      "created_at": "2026-04-01T03:49:22Z",
-      "deletions": 132,
-      "diff_url": "https://github.com/guitarrapc/githubactions-lab/pull/306.diff",
+      "comments_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/issues/305/comments",
+      "commits": 1,
+      "commits_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/305/commits",
+      "created_at": "2026-03-31T15:39:13Z",
+      "deletions": 9,
+      "diff_url": "https://github.com/guitarrapc/githubactions-lab/pull/305.diff",
       "draft": false,
       "head": {
-        "label": "guitarrapc:llm",
-        "ref": "llm",
+        "label": "guitarrapc:dependabot/github_actions/dependencies-8c8e5b29cc",
+        "ref": "dependabot/github_actions/dependencies-8c8e5b29cc",
         "repo": {
           "allow_auto_merge": true,
           "allow_forking": true,
@@ -294,8 +294,8 @@
           "name": "githubactions-lab",
           "node_id": "MDEwOlJlcG9zaXRvcnkyNTc0NjU0Njg=",
           "notifications_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/notifications{?since,all,participating}",
-          "open_issues": 3,
-          "open_issues_count": 3,
+          "open_issues": 2,
+          "open_issues_count": 2,
           "owner": {
             "avatar_url": "https://avatars.githubusercontent.com/u/3856350?v=4",
             "events_url": "https://api.github.com/users/guitarrapc/events{/privacy}",
@@ -320,9 +320,9 @@
           "private": false,
           "pull_request_creation_policy": "all",
           "pulls_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls{/number}",
-          "pushed_at": "2026-04-01T03:50:55Z",
+          "pushed_at": "2026-04-07T03:26:15Z",
           "releases_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/releases{/id}",
-          "size": 5369,
+          "size": 5520,
           "squash_merge_commit_message": "COMMIT_MESSAGES",
           "squash_merge_commit_title": "COMMIT_OR_PR_TITLE",
           "ssh_url": "git@github.com:guitarrapc/githubactions-lab.git",
@@ -338,7 +338,7 @@
             "github-actions"
           ],
           "trees_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/git/trees{/sha}",
-          "updated_at": "2026-04-01T03:50:35Z",
+          "updated_at": "2026-04-07T03:26:19Z",
           "url": "https://api.github.com/repos/guitarrapc/githubactions-lab",
           "use_squash_pr_title_as_default": false,
           "visibility": "public",
@@ -346,7 +346,7 @@
           "watchers_count": 55,
           "web_commit_signoff_required": false
         },
-        "sha": "ad6342ba0cd55db9b5d9ef46f5190c4fccc2c0b6",
+        "sha": "6e8b434a7b8dce670ed20f2ce5fab39f52d34097",
         "user": {
           "avatar_url": "https://avatars.githubusercontent.com/u/3856350?v=4",
           "events_url": "https://api.github.com/users/guitarrapc/events{/privacy}",
@@ -369,17 +369,36 @@
           "user_view_type": "public"
         }
       },
-      "html_url": "https://github.com/guitarrapc/githubactions-lab/pull/306",
-      "id": 3475086037,
-      "issue_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/issues/306",
-      "labels": [],
+      "html_url": "https://github.com/guitarrapc/githubactions-lab/pull/305",
+      "id": 3472740788,
+      "issue_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/issues/305",
+      "labels": [
+        {
+          "color": "0366d6",
+          "default": false,
+          "description": "Pull requests that update a dependency file",
+          "id": 5238199298,
+          "name": "dependencies",
+          "node_id": "LA_kwDOD1icfM8AAAABODiUAg",
+          "url": "https://api.github.com/repos/guitarrapc/githubactions-lab/labels/dependencies"
+        },
+        {
+          "color": "000000",
+          "default": false,
+          "description": "Pull requests that update GitHub Actions code",
+          "id": 8308588862,
+          "name": "github_actions",
+          "node_id": "LA_kwDOD1icfM8AAAAB7zsBPg",
+          "url": "https://api.github.com/repos/guitarrapc/githubactions-lab/labels/github_actions"
+        }
+      ],
       "locked": false,
       "maintainer_can_modify": false,
-      "merge_commit_sha": "8647b50e1a4cbb9cebcfd5efdeb47bd346b388dc",
+      "merge_commit_sha": "57d5c34e46a8d2ba67972268548618ab34e4fad5",
       "mergeable": null,
       "mergeable_state": "unknown",
       "merged": true,
-      "merged_at": "2026-04-01T03:57:01Z",
+      "merged_at": "2026-04-07T03:26:43Z",
       "merged_by": {
         "avatar_url": "https://avatars.githubusercontent.com/u/3856350?v=4",
         "events_url": "https://api.github.com/users/guitarrapc/events{/privacy}",
@@ -402,39 +421,61 @@
         "user_view_type": "public"
       },
       "milestone": null,
-      "node_id": "PR_kwDOD1icfM7PIZrV",
-      "number": 306,
-      "patch_url": "https://github.com/guitarrapc/githubactions-lab/pull/306.patch",
+      "node_id": "PR_kwDOD1icfM7O_dG0",
+      "number": 305,
+      "patch_url": "https://github.com/guitarrapc/githubactions-lab/pull/305.patch",
       "rebaseable": null,
-      "requested_reviewers": [],
+      "requested_reviewers": [
+        {
+          "avatar_url": "https://avatars.githubusercontent.com/u/3856350?v=4",
+          "events_url": "https://api.github.com/users/guitarrapc/events{/privacy}",
+          "followers_url": "https://api.github.com/users/guitarrapc/followers",
+          "following_url": "https://api.github.com/users/guitarrapc/following{/other_user}",
+          "gists_url": "https://api.github.com/users/guitarrapc/gists{/gist_id}",
+          "gravatar_id": "",
+          "html_url": "https://github.com/guitarrapc",
+          "id": 3856350,
+          "login": "guitarrapc",
+          "node_id": "MDQ6VXNlcjM4NTYzNTA=",
+          "organizations_url": "https://api.github.com/users/guitarrapc/orgs",
+          "received_events_url": "https://api.github.com/users/guitarrapc/received_events",
+          "repos_url": "https://api.github.com/users/guitarrapc/repos",
+          "site_admin": false,
+          "starred_url": "https://api.github.com/users/guitarrapc/starred{/owner}{/repo}",
+          "subscriptions_url": "https://api.github.com/users/guitarrapc/subscriptions",
+          "type": "User",
+          "url": "https://api.github.com/users/guitarrapc",
+          "user_view_type": "public"
+        }
+      ],
       "requested_teams": [],
       "review_comment_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/comments{/number}",
       "review_comments": 0,
-      "review_comments_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/306/comments",
+      "review_comments_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/305/comments",
       "state": "closed",
-      "statuses_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/statuses/ad6342ba0cd55db9b5d9ef46f5190c4fccc2c0b6",
-      "title": "ci: llm",
-      "updated_at": "2026-04-01T03:57:01Z",
-      "url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/306",
+      "statuses_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/statuses/6e8b434a7b8dce670ed20f2ce5fab39f52d34097",
+      "title": "chore(deps): bump the dependencies group with 2 updates",
+      "updated_at": "2026-04-07T03:26:43Z",
+      "url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/305",
       "user": {
-        "avatar_url": "https://avatars.githubusercontent.com/u/3856350?v=4",
-        "events_url": "https://api.github.com/users/guitarrapc/events{/privacy}",
-        "followers_url": "https://api.github.com/users/guitarrapc/followers",
-        "following_url": "https://api.github.com/users/guitarrapc/following{/other_user}",
-        "gists_url": "https://api.github.com/users/guitarrapc/gists{/gist_id}",
+        "avatar_url": "https://avatars.githubusercontent.com/in/29110?v=4",
+        "events_url": "https://api.github.com/users/dependabot%5Bbot%5D/events{/privacy}",
+        "followers_url": "https://api.github.com/users/dependabot%5Bbot%5D/followers",
+        "following_url": "https://api.github.com/users/dependabot%5Bbot%5D/following{/other_user}",
+        "gists_url": "https://api.github.com/users/dependabot%5Bbot%5D/gists{/gist_id}",
         "gravatar_id": "",
-        "html_url": "https://github.com/guitarrapc",
-        "id": 3856350,
-        "login": "guitarrapc",
-        "node_id": "MDQ6VXNlcjM4NTYzNTA=",
-        "organizations_url": "https://api.github.com/users/guitarrapc/orgs",
-        "received_events_url": "https://api.github.com/users/guitarrapc/received_events",
-        "repos_url": "https://api.github.com/users/guitarrapc/repos",
+        "html_url": "https://github.com/apps/dependabot",
+        "id": 49699333,
+        "login": "dependabot[bot]",
+        "node_id": "MDM6Qm90NDk2OTkzMzM=",
+        "organizations_url": "https://api.github.com/users/dependabot%5Bbot%5D/orgs",
+        "received_events_url": "https://api.github.com/users/dependabot%5Bbot%5D/received_events",
+        "repos_url": "https://api.github.com/users/dependabot%5Bbot%5D/repos",
         "site_admin": false,
-        "starred_url": "https://api.github.com/users/guitarrapc/starred{/owner}{/repo}",
-        "subscriptions_url": "https://api.github.com/users/guitarrapc/subscriptions",
-        "type": "User",
-        "url": "https://api.github.com/users/guitarrapc",
+        "starred_url": "https://api.github.com/users/dependabot%5Bbot%5D/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/dependabot%5Bbot%5D/subscriptions",
+        "type": "Bot",
+        "url": "https://api.github.com/users/dependabot%5Bbot%5D",
         "user_view_type": "public"
       }
     },
@@ -500,8 +541,8 @@
       "name": "githubactions-lab",
       "node_id": "MDEwOlJlcG9zaXRvcnkyNTc0NjU0Njg=",
       "notifications_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/notifications{?since,all,participating}",
-      "open_issues": 3,
-      "open_issues_count": 3,
+      "open_issues": 2,
+      "open_issues_count": 2,
       "owner": {
         "avatar_url": "https://avatars.githubusercontent.com/u/3856350?v=4",
         "events_url": "https://api.github.com/users/guitarrapc/events{/privacy}",
@@ -526,9 +567,9 @@
       "private": false,
       "pull_request_creation_policy": "all",
       "pulls_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls{/number}",
-      "pushed_at": "2026-04-01T03:50:55Z",
+      "pushed_at": "2026-04-07T03:26:15Z",
       "releases_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/releases{/id}",
-      "size": 5369,
+      "size": 5520,
       "ssh_url": "git@github.com:guitarrapc/githubactions-lab.git",
       "stargazers_count": 55,
       "stargazers_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/stargazers",
@@ -542,7 +583,7 @@
         "github-actions"
       ],
       "trees_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/git/trees{/sha}",
-      "updated_at": "2026-04-01T03:50:35Z",
+      "updated_at": "2026-04-07T03:26:19Z",
       "url": "https://api.github.com/repos/guitarrapc/githubactions-lab",
       "visibility": "public",
       "watchers": 55,
@@ -572,7 +613,7 @@
     }
   },
   "workflow_ref": "guitarrapc/githubactions-lab/.github/workflows/auto-dump-context.yaml@refs/heads/main",
-  "workflow_sha": "8647b50e1a4cbb9cebcfd5efdeb47bd346b388dc",
+  "workflow_sha": "57d5c34e46a8d2ba67972268548618ab34e4fad5",
   "repository_id": "257465468",
   "triggering_actor": "guitarrapc",
   "workspace": "/home/runner/work/githubactions-lab/githubactions-lab",
@@ -580,9 +621,9 @@
   "event_path": "/home/runner/work/_temp/_github_workflow/event.json",
   "action_repository": "",
   "action_ref": "",
-  "path": "/home/runner/work/_temp/_runner_file_commands/add_path_fef8cad9-4dbf-4256-9b1b-3f499023886c",
-  "env": "/home/runner/work/_temp/_runner_file_commands/set_env_fef8cad9-4dbf-4256-9b1b-3f499023886c",
-  "step_summary": "/home/runner/work/_temp/_runner_file_commands/step_summary_fef8cad9-4dbf-4256-9b1b-3f499023886c",
-  "state": "/home/runner/work/_temp/_runner_file_commands/save_state_fef8cad9-4dbf-4256-9b1b-3f499023886c",
-  "output": "/home/runner/work/_temp/_runner_file_commands/set_output_fef8cad9-4dbf-4256-9b1b-3f499023886c"
+  "path": "/home/runner/work/_temp/_runner_file_commands/add_path_dd5536f6-6d5e-4b84-9965-09b0c66b2f2b",
+  "env": "/home/runner/work/_temp/_runner_file_commands/set_env_dd5536f6-6d5e-4b84-9965-09b0c66b2f2b",
+  "step_summary": "/home/runner/work/_temp/_runner_file_commands/step_summary_dd5536f6-6d5e-4b84-9965-09b0c66b2f2b",
+  "state": "/home/runner/work/_temp/_runner_file_commands/save_state_dd5536f6-6d5e-4b84-9965-09b0c66b2f2b",
+  "output": "/home/runner/work/_temp/_runner_file_commands/set_output_dd5536f6-6d5e-4b84-9965-09b0c66b2f2b"
 }
