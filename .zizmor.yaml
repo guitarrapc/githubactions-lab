@@ -21,6 +21,3 @@ rules:
       - monthly-oss-repo-status.lock.yml:768
       - monthly-oss-repo-status.lock.yml:868
       - monthly-oss-repo-status.lock.yml:1023
-  unpinned-uses:
-    ignore:
-      - reusable-workflow-public-caller.yaml:13
