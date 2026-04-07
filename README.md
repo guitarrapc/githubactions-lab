@@ -4118,6 +4118,8 @@ jobs:
       # github workflows/action's Static Checker
       - name: Run actionlint
         run: actionlint -color -oneline
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       # # checkout's persist-credentials: false checker
       # - name: Run ghalint
       #   run: ghalint run
@@ -4705,6 +4707,8 @@ jobs:
       # github workflows/action's Static Checker
       - name: Run actionlint
         run: actionlint -color -oneline
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       # # checkout's persist-credentials: false checker
       # - name: Run ghalint
       #   run: ghalint run
