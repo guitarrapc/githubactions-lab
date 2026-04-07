@@ -3658,7 +3658,9 @@ jobs:
         env:
           NUMBER_INPUT: ${{ inputs.number }}
       - name: called secret
-        run: echo "called secret. ${{ secrets.APPLES }}"
+        run: echo "called secret. ${APPLES}"
+        env:
+          APPLES: ${{ secrets.APPLES }}
       - name: called env (global)
         run: echo "called global env. ${{ env.FOO }}"
       - name: output step1
@@ -4121,7 +4123,7 @@ jobs:
         run: ghalint run
       # A static analysis tool for GitHub Actions
       - name: Run zizmor
-        run: docker run -t --env "GH_TOKEN=${GH_TOKEN}" -v .:/github ghcr.io/zizmorcore/zizmor:1.18.0 /github --min-severity medium --format github
+        run: docker run -t --env "GH_TOKEN=${GH_TOKEN}" -v .:/github ghcr.io/zizmorcore/zizmor:1.22.0 /github --min-severity medium --format github
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
@@ -4708,7 +4710,7 @@ jobs:
         run: ghalint run
       # A static analysis tool for GitHub Actions
       - name: Run zizmor
-        run: docker run -t --env "GH_TOKEN=${GH_TOKEN}" -v .:/github ghcr.io/zizmorcore/zizmor:1.18.0 /github --min-severity medium --format github
+        run: docker run -t --env "GH_TOKEN=${GH_TOKEN}" -v .:/github ghcr.io/zizmorcore/zizmor:1.22.0 /github --min-severity medium --format github
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
