@@ -13,9 +13,6 @@ on:
 
 jobs:
   merge:
-    env:
-      upstream: ${{ inputs.upstream }}
-      branch: ${{ inputs.branch }}
     permissions:
       contents: read
     runs-on: ubuntu-24.04
@@ -25,17 +22,40 @@ jobs:
         with:
           persist-credentials: false
       # merge main to staging
-      - uses: repo-sync/pull-request@7e79a9f5dc3ad0ce53138f01df2fad14a04831c5 # v2.12.1
-        name: pull-request
-        with:
-          source_branch: ${{ env.upstream }}
-          destination_branch: ${{ env.branch }}
-          pr_title: "[Automate] Merge ${{ env.upstream }} to ${{ env.branch }}"
-          pr_body: |
-            :crown: *An automated PR*
+      - name: Create Pull Request
+        env:
+          UPSTREAM: ${{ inputs.upstream }}
+          BRANCH: ${{ inputs.branch }}
+          GH_TOKEN: ${{ secrets.SYNCED_GITHUB_TOKEN_REPO }} # enable github actions workflow chain. require pull_request read/write (fine grained), repo (legacy)
+        run: |
+          PR_TITLE="[Automate] Merge ${UPSTREAM} to ${BRANCH}"
+          PR_BODY=$':crown: *An automated PR*\n\n_Created by gh cli_'
 
-            _Created by [repo-sync/pull-request](https://github.com/repo-sync/pull-request)_
-          pr_draft: false
-          pr_label: "auto-pr"
-          pr_allow_empty: true # Creates pull request even if there are no changes
-          github_token: ${{ secrets.SYNCED_GITHUB_TOKEN_REPO }} # enable github actions workflow chain. require pull_request read/write (fine grained), repo (legacy)
+          PR_NUMBER="$(gh pr list \
+            --base "${BRANCH}" \
+            --head "${UPSTREAM}" \
+            --state open \
+            --json number \
+            --jq '.[0].number // ""')"
+
+          if [ -n "$PR_NUMBER" ]; then
+            CURRENT_TITLE="$(gh pr view "$PR_NUMBER" --json title --jq '.title')"
+            CURRENT_BODY="$(gh pr view "$PR_NUMBER" --json body --jq '.body')"
+
+            if [ "$CURRENT_TITLE" != "$PR_TITLE" ] || [ "$CURRENT_BODY" != "$PR_BODY" ]; then
+              gh pr edit "$PR_NUMBER" \
+                --title "$PR_TITLE" \
+                --body "$PR_BODY" \
+                --add-label "auto-pr"
+            else
+              echo "PR already exists and is up-to-date"
+            fi
+          else
+            gh pr create \
+              --base "${BRANCH}" \
+              --head "${UPSTREAM}" \
+              --title "$PR_TITLE" \
+              --body "$PR_BODY" \
+              --label "auto-pr" \
+            || echo "No changes to merge"
+          fi

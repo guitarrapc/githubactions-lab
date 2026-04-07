@@ -10,7 +10,7 @@ jobs:
   call-workflow-passing-data:
     permissions:
       contents: read
-    uses: guitarrapc/githubactions-lab/.github/workflows/_reusable-workflow-called.yaml@main
+    uses: guitarrapc/githubactions-lab/.github/workflows/_reusable-workflow-called.yaml@04f8f49217595fca87eb93a58280bed22d313ee0 # 2025.12.14
     with:
       username: foo
       is-valid: true
