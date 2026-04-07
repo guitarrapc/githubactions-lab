@@ -58,7 +58,9 @@ jobs:
         env:
           NUMBER_INPUT: ${{ inputs.number }}
       - name: called secret
-        run: echo "called secret. ${{ secrets.APPLES }}"
+        run: echo "called secret. ${APPLES}"
+        env:
+          APPLES: ${{ secrets.APPLES }}
       - name: called env (global)
         run: echo "called global env. ${{ env.FOO }}"
       - name: output step1

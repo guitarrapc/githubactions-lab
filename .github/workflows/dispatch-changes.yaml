@@ -19,8 +19,10 @@ jobs:
       - name: dispatch ${{ matrix.repo }}
         run: |
           curl -f -X POST \
-               -H "authorization: Bearer ${{ secrets.SYNCED_GITHUB_TOKEN_REPO }}" \
+               -H "authorization: Bearer ${GITHUB_TOKEN_REPO}" \
                -H "Accept: application/vnd.github.everest-preview+json" \
                -H "Content-Type: application/json" \
                -d '{"ref": "${{ matrix.ref }}"}' \
                https://api.github.com/repos/guitarrapc/${{ matrix.repo }}/actions/workflows/${{ matrix.workflow }}/dispatches
+        env:
+          GITHUB_TOKEN_REPO: ${{ secrets.SYNCED_GITHUB_TOKEN_REPO }}
