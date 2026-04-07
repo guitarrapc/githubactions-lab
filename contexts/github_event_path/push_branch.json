@@ -1,7 +1,7 @@
 {
-  "after": "59e1e1f18f3b36301a74a96190f222b19f8c39e1",
+  "after": "64c081abd62563b8c553587ab29ee2d5c56a32b8",
   "base_ref": null,
-  "before": "8587eeff94a59b8c4f4c5801cca4ae5530623f8a",
+  "before": "f8bc8843e744fed21cba605eb2ffc776c84075bb",
   "commits": [
     {
       "author": {
@@ -15,32 +15,14 @@
         "username": "guitarrapc"
       },
       "distinct": true,
-      "id": "9f4be95c4740b30c8797f48bdc83e60d8f343893",
-      "message": "ci: update lint tools",
-      "timestamp": "2026-04-07T12:47:28+09:00",
-      "tree_id": "c4fb90208234b3c7effd48acebdc9b47e0a0cca3",
-      "url": "https://github.com/guitarrapc/githubactions-lab/commit/9f4be95c4740b30c8797f48bdc83e60d8f343893"
-    },
-    {
-      "author": {
-        "email": "3856350+guitarrapc@users.noreply.github.com",
-        "name": "Ikiru Yoshizaki",
-        "username": "guitarrapc"
-      },
-      "committer": {
-        "email": "3856350+guitarrapc@users.noreply.github.com",
-        "name": "Ikiru Yoshizaki",
-        "username": "guitarrapc"
-      },
-      "distinct": true,
-      "id": "59e1e1f18f3b36301a74a96190f222b19f8c39e1",
-      "message": "fix: zizmor warnings on 1.23.0... and beyond.",
-      "timestamp": "2026-04-07T14:29:46+09:00",
-      "tree_id": "6966b23895f29b7fea2450e3e6ab24fb139af473",
-      "url": "https://github.com/guitarrapc/githubactions-lab/commit/59e1e1f18f3b36301a74a96190f222b19f8c39e1"
+      "id": "64c081abd62563b8c553587ab29ee2d5c56a32b8",
+      "message": "chore: token",
+      "timestamp": "2026-04-07T14:59:38+09:00",
+      "tree_id": "99bc5acc7cafcf252130ca1f44526ec57e94e70d",
+      "url": "https://github.com/guitarrapc/githubactions-lab/commit/64c081abd62563b8c553587ab29ee2d5c56a32b8"
     }
   ],
-  "compare": "https://github.com/guitarrapc/githubactions-lab/compare/8587eeff94a5...59e1e1f18f3b",
+  "compare": "https://github.com/guitarrapc/githubactions-lab/compare/f8bc8843e744...64c081abd625",
   "created": false,
   "deleted": false,
   "forced": false,
@@ -56,11 +38,11 @@
       "username": "guitarrapc"
     },
     "distinct": true,
-    "id": "59e1e1f18f3b36301a74a96190f222b19f8c39e1",
-    "message": "fix: zizmor warnings on 1.23.0... and beyond.",
-    "timestamp": "2026-04-07T14:29:46+09:00",
-    "tree_id": "6966b23895f29b7fea2450e3e6ab24fb139af473",
-    "url": "https://github.com/guitarrapc/githubactions-lab/commit/59e1e1f18f3b36301a74a96190f222b19f8c39e1"
+    "id": "64c081abd62563b8c553587ab29ee2d5c56a32b8",
+    "message": "chore: token",
+    "timestamp": "2026-04-07T14:59:38+09:00",
+    "tree_id": "99bc5acc7cafcf252130ca1f44526ec57e94e70d",
+    "url": "https://github.com/guitarrapc/githubactions-lab/commit/64c081abd62563b8c553587ab29ee2d5c56a32b8"
   },
   "pusher": {
     "email": "3856350+guitarrapc@users.noreply.github.com",
@@ -158,7 +140,7 @@
     "private": false,
     "pull_request_creation_policy": "all",
     "pulls_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls{/number}",
-    "pushed_at": 1775539813,
+    "pushed_at": 1775541583,
     "releases_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/releases{/id}",
     "size": 5631,
     "ssh_url": "git@github.com:guitarrapc/githubactions-lab.git",
@@ -175,7 +157,7 @@
       "github-actions"
     ],
     "trees_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/git/trees{/sha}",
-    "updated_at": "2026-04-07T03:27:29Z",
+    "updated_at": "2026-04-07T05:52:53Z",
     "url": "https://api.github.com/repos/guitarrapc/githubactions-lab",
     "visibility": "public",
     "watchers": 55,
