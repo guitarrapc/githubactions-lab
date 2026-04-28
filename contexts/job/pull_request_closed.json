@@ -1,8 +1,4 @@
 {
-  "check_run_id": 73409903031,
-  "workflow_ref": "guitarrapc/githubactions-lab/.github/workflows/_reusable-dump-context.yaml@refs/heads/main",
-  "workflow_sha": "dd2ffea031cb512a459ec9feb14685a25eb1163b",
-  "workflow_repository": "guitarrapc/githubactions-lab",
-  "workflow_file_path": ".github/workflows/_reusable-dump-context.yaml",
+  "check_run_id": 70182335238,
   "status": "success"
 }
