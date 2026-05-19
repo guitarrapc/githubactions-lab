@@ -1,26 +1,8 @@
 {
-  "after": "dd2ffea031cb512a459ec9feb14685a25eb1163b",
+  "after": "da8958057e8a8bac8ff9501da9b72f8cdc63c2a2",
   "base_ref": null,
-  "before": "6a27bd155b06d0a59026784fb2bab51f29d2f245",
+  "before": "f190e5762965ce023acca3cc0cd79fedd11b9ca1",
   "commits": [
-    {
-      "author": {
-        "email": "49699333+dependabot[bot]@users.noreply.github.com",
-        "name": "dependabot[bot]",
-        "username": "dependabot[bot]"
-      },
-      "committer": {
-        "email": "noreply@github.com",
-        "name": "GitHub",
-        "username": "web-flow"
-      },
-      "distinct": false,
-      "id": "6c922495e73c67222d2c6399e845f2d4bd0902ae",
-      "message": "chore(deps): bump the dependencies group across 1 directory with 5 updates\n\nBumps the dependencies group with 5 updates in the / directory:\n\n| Package | From | To |\n| --- | --- | --- |\n| [github/gh-aw-actions](https://github.com/github/gh-aw-actions) | `9398bbf0cbb2f974bd98b8ae29f94a7ae920486d` | `b5ca5364ba36e64b34a20b8e273d2c5d0e1220ec` |\n| [aws-actions/configure-aws-credentials](https://github.com/aws-actions/configure-aws-credentials) | `6.0.0` | `6.1.0` |\n| [actions/setup-go](https://github.com/actions/setup-go) | `6.3.0` | `6.4.0` |\n| [ad-m/github-push-action](https://github.com/ad-m/github-push-action) | `1.0.0` | `1.1.0` |\n| [azure/setup-kubectl](https://github.com/azure/setup-kubectl) | `4.0.0` | `5.0.0` |\n\n\n\nUpdates `github/gh-aw-actions` from 9398bbf0cbb2f974bd98b8ae29f94a7ae920486d to b5ca5364ba36e64b34a20b8e273d2c5d0e1220ec\n- [Release notes](https://github.com/github/gh-aw-actions/releases)\n- [Changelog](https://github.com/github/gh-aw-actions/blob/main/CHANGELOG.md)\n- [Commits](https://github.com/github/gh-aw-actions/compare/9398bbf0cbb2f974bd98b8ae29f94a7ae920486d...9398bbf0cbb2f974bd98b8ae29f94a7ae920486d)\n\nUpdates `aws-actions/configure-aws-credentials` from 6.0.0 to 6.1.0\n- [Release notes](https://github.com/aws-actions/configure-aws-credentials/releases)\n- [Changelog](https://github.com/aws-actions/configure-aws-credentials/blob/main/CHANGELOG.md)\n- [Commits](https://github.com/aws-actions/configure-aws-credentials/compare/8df5847569e6427dd6c4fb1cf565c83acfa8afa7...ec61189d14ec14c8efccab744f656cffd0e33f37)\n\nUpdates `actions/setup-go` from 6.3.0 to 6.4.0\n- [Release notes](https://github.com/actions/setup-go/releases)\n- [Commits](https://github.com/actions/setup-go/compare/4b73464bb391d4059bd26b0524d20df3927bd417...4a3601121dd01d1626a1e23e37211e3254c1c06c)\n\nUpdates `ad-m/github-push-action` from 1.0.0 to 1.1.0\n- [Release notes](https://github.com/ad-m/github-push-action/releases)\n- [Commits](https://github.com/ad-m/github-push-action/compare/77c5b412c50b723d2a4fbc6d71fb5723bcd439aa...4cc74773234f74829a8c21bc4d69dd4be9cfa599)\n\nUpdates `azure/setup-kubectl` from 4.0.0 to 5.0.0\n- [Release notes](https://github.com/azure/setup-kubectl/releases)\n- [Changelog](https://github.com/Azure/setup-kubectl/blob/main/CHANGELOG.md)\n- [Commits](https://github.com/azure/setup-kubectl/compare/3e0aec4d80787158d308d7b364cb1b702e7feb7f...15650b3ad78fff148532a140b8a4c821796b2d7b)\n\n---\nupdated-dependencies:\n- dependency-name: github/gh-aw-actions\n  dependency-version: 9398bbf0cbb2f974bd98b8ae29f94a7ae920486d\n  dependency-type: direct:production\n  dependency-group: dependencies\n- dependency-name: aws-actions/configure-aws-credentials\n  dependency-version: 6.1.0\n  dependency-type: direct:production\n  update-type: version-update:semver-minor\n  dependency-group: dependencies\n- dependency-name: actions/setup-go\n  dependency-version: 6.4.0\n  dependency-type: direct:production\n  update-type: version-update:semver-minor\n  dependency-group: dependencies\n- dependency-name: ad-m/github-push-action\n  dependency-version: 1.1.0\n  dependency-type: direct:production\n  update-type: version-update:semver-minor\n  dependency-group: dependencies\n- dependency-name: azure/setup-kubectl\n  dependency-version: 5.0.0\n  dependency-type: direct:production\n  update-type: version-update:semver-major\n  dependency-group: dependencies\n...\n\nSigned-off-by: dependabot[bot] <support@github.com>",
-      "timestamp": "2026-04-21T15:39:52Z",
-      "tree_id": "e64ea91fa63a98e2c1044263dedcf683e204d98a",
-      "url": "https://github.com/guitarrapc/githubactions-lab/commit/6c922495e73c67222d2c6399e845f2d4bd0902ae"
-    },
     {
       "author": {
         "email": "3856350+guitarrapc@users.noreply.github.com",
@@ -28,19 +10,19 @@
         "username": "guitarrapc"
       },
       "committer": {
-        "email": "noreply@github.com",
-        "name": "GitHub",
-        "username": "web-flow"
+        "email": "3856350+guitarrapc@users.noreply.github.com",
+        "name": "Ikiru Yoshizaki",
+        "username": "guitarrapc"
       },
       "distinct": true,
-      "id": "dd2ffea031cb512a459ec9feb14685a25eb1163b",
-      "message": "Merge pull request #313 from guitarrapc/dependabot/github_actions/dependencies-8a13946aba\n\nchore(deps): bump the dependencies group across 1 directory with 5 updates",
-      "timestamp": "2026-04-28T23:43:44+09:00",
-      "tree_id": "6219767ef3e1e966ba22a99780e88ac235b5ee26",
-      "url": "https://github.com/guitarrapc/githubactions-lab/commit/dd2ffea031cb512a459ec9feb14685a25eb1163b"
+      "id": "da8958057e8a8bac8ff9501da9b72f8cdc63c2a2",
+      "message": "ci: update gh aw compile version",
+      "timestamp": "2026-05-19T16:24:06+09:00",
+      "tree_id": "af1afa2835c85c26c1bbe7c5e4754377ca8af5db",
+      "url": "https://github.com/guitarrapc/githubactions-lab/commit/da8958057e8a8bac8ff9501da9b72f8cdc63c2a2"
     }
   ],
-  "compare": "https://github.com/guitarrapc/githubactions-lab/compare/6a27bd155b06...dd2ffea031cb",
+  "compare": "https://github.com/guitarrapc/githubactions-lab/compare/f190e5762965...da8958057e8a",
   "created": false,
   "deleted": false,
   "forced": false,
@@ -51,16 +33,16 @@
       "username": "guitarrapc"
     },
     "committer": {
-      "email": "noreply@github.com",
-      "name": "GitHub",
-      "username": "web-flow"
+      "email": "3856350+guitarrapc@users.noreply.github.com",
+      "name": "Ikiru Yoshizaki",
+      "username": "guitarrapc"
     },
     "distinct": true,
-    "id": "dd2ffea031cb512a459ec9feb14685a25eb1163b",
-    "message": "Merge pull request #313 from guitarrapc/dependabot/github_actions/dependencies-8a13946aba\n\nchore(deps): bump the dependencies group across 1 directory with 5 updates",
-    "timestamp": "2026-04-28T23:43:44+09:00",
-    "tree_id": "6219767ef3e1e966ba22a99780e88ac235b5ee26",
-    "url": "https://github.com/guitarrapc/githubactions-lab/commit/dd2ffea031cb512a459ec9feb14685a25eb1163b"
+    "id": "da8958057e8a8bac8ff9501da9b72f8cdc63c2a2",
+    "message": "ci: update gh aw compile version",
+    "timestamp": "2026-05-19T16:24:06+09:00",
+    "tree_id": "af1afa2835c85c26c1bbe7c5e4754377ca8af5db",
+    "url": "https://github.com/guitarrapc/githubactions-lab/commit/da8958057e8a8bac8ff9501da9b72f8cdc63c2a2"
   },
   "pusher": {
     "email": "3856350+guitarrapc@users.noreply.github.com",
@@ -130,8 +112,8 @@
     "name": "githubactions-lab",
     "node_id": "MDEwOlJlcG9zaXRvcnkyNTc0NjU0Njg=",
     "notifications_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/notifications{?since,all,participating}",
-    "open_issues": 2,
-    "open_issues_count": 2,
+    "open_issues": 3,
+    "open_issues_count": 3,
     "owner": {
       "avatar_url": "https://avatars.githubusercontent.com/u/3856350?v=4",
       "email": "3856350+guitarrapc@users.noreply.github.com",
@@ -158,9 +140,9 @@
     "private": false,
     "pull_request_creation_policy": "all",
     "pulls_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls{/number}",
-    "pushed_at": 1777387425,
+    "pushed_at": 1779175450,
     "releases_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/releases{/id}",
-    "size": 5508,
+    "size": 5600,
     "ssh_url": "git@github.com:guitarrapc/githubactions-lab.git",
     "stargazers": 55,
     "stargazers_count": 55,
@@ -175,7 +157,7 @@
       "github-actions"
     ],
     "trees_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/git/trees{/sha}",
-    "updated_at": "2026-04-26T00:20:57Z",
+    "updated_at": "2026-05-17T00:27:10Z",
     "url": "https://api.github.com/repos/guitarrapc/githubactions-lab",
     "visibility": "public",
     "watchers": 55,
