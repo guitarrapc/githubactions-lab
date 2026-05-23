@@ -3456,7 +3456,7 @@ jobs:
     timeout-minutes: 5
     steps:
       - name: add summary
-        uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd # v8.0.0
+        uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
         with:
           script: |
             await core.summary.addHeading("Hello world! 🚀").write()
@@ -4002,7 +4002,7 @@ jobs:
     runs-on: ubuntu-24.04
     timeout-minutes: 3
     steps:
-      - uses: actions/create-github-app-token@f8d387b68d61c58ab83c6c016672934102569859 # v3.0.0
+      - uses: actions/create-github-app-token@1b10c78c7865c340bc4f6099eb2f838309f1e8c3 # v3.1.1
         id: app-token
         with:
           app-id: ${{ secrets.SYNCED_ACTIONS_BOT_APPID }}
