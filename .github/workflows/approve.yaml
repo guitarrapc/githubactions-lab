@@ -8,6 +8,7 @@ permissions: {}
 jobs:
   pre:
     permissions: {}
+    timeout-minutes: 2
     runs-on: ubuntu-24.04
     steps:
       - run: echo "this is pre step"
@@ -15,13 +16,16 @@ jobs:
   require-reviewer-approval:
     needs: [pre]
     permissions: {}
+    timeout-minutes: 2
     runs-on: ubuntu-24.04
+    environment: approve
     steps:
       - run: echo "this is require reviewer approval step"
 
   post:
     needs: [require-reviewer-approval]
     permissions: {}
+    timeout-minutes: 2
     runs-on: ubuntu-24.04
     steps:
       - run: echo "this is post step"
