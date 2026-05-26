@@ -1,0 +1,27 @@
+name: require reviewer approval
+
+on:
+  workflow_dispatch:
+
+permissions: {}
+
+jobs:
+  pre:
+    permissions: {}
+    runs-on: ubuntu-24.04
+    steps:
+      - run: echo "this is pre step"
+
+  require-reviewer-approval:
+    needs: [pre]
+    permissions: {}
+    runs-on: ubuntu-24.04
+    steps:
+      - run: echo "this is require reviewer approval step"
+
+  post:
+    needs: [require-reviewer-approval]
+    permissions: {}
+    runs-on: ubuntu-24.04
+    steps:
+      - run: echo "this is post step"
