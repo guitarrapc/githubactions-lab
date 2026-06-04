@@ -2,13 +2,13 @@
   "token": "<reducted>",
   "job": "dump-context",
   "ref": "refs/heads/main",
-  "sha": "c014409788a8c8b925f78c8a5d2396757370eb77",
+  "sha": "edffdc9e27cb711f05f2c4de5c267e9aa88d7166",
   "repository": "guitarrapc/githubactions-lab",
   "repository_owner": "guitarrapc",
   "repository_owner_id": "3856350",
   "repositoryUrl": "git://github.com/guitarrapc/githubactions-lab.git",
-  "run_id": "26509700952",
-  "run_number": "1700",
+  "run_id": "26971880239",
+  "run_number": "1716",
   "retention_days": "90",
   "run_attempt": "1",
   "artifact_cache_size_limit": "10",
@@ -16,7 +16,7 @@
   "actor_id": "3856350",
   "actor": "guitarrapc",
   "workflow": "auto dump context",
-  "head_ref": "dependabot/github_actions/dependencies-9f1c31c749",
+  "head_ref": "dependabot/github_actions/dependencies-bd263a6b2c",
   "base_ref": "main",
   "event_name": "pull_request_target",
   "server_url": "https://github.com",
@@ -28,36 +28,36 @@
   "secret_source": "Actions",
   "event": {
     "action": "closed",
-    "number": 318,
+    "number": 320,
     "pull_request": {
       "_links": {
         "comments": {
-          "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/issues/318/comments"
+          "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/issues/320/comments"
         },
         "commits": {
-          "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/318/commits"
+          "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/320/commits"
         },
         "html": {
-          "href": "https://github.com/guitarrapc/githubactions-lab/pull/318"
+          "href": "https://github.com/guitarrapc/githubactions-lab/pull/320"
         },
         "issue": {
-          "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/issues/318"
+          "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/issues/320"
         },
         "review_comment": {
           "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/comments{/number}"
         },
         "review_comments": {
-          "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/318/comments"
+          "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/320/comments"
         },
         "self": {
-          "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/318"
+          "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/320"
         },
         "statuses": {
-          "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/statuses/a1f1c602e3597577a734beb6686302f611c206d0"
+          "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/statuses/ffd23d0292040fff9fb38721d8628dd876535166"
         }
       },
       "active_lock_reason": null,
-      "additions": 4,
+      "additions": 2,
       "assignee": null,
       "assignees": [],
       "author_association": "CONTRIBUTOR",
@@ -161,9 +161,9 @@
           "private": false,
           "pull_request_creation_policy": "all",
           "pulls_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls{/number}",
-          "pushed_at": "2026-05-27T11:58:15Z",
+          "pushed_at": "2026-06-04T00:38:50Z",
           "releases_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/releases{/id}",
-          "size": 5698,
+          "size": 5775,
           "squash_merge_commit_message": "COMMIT_MESSAGES",
           "squash_merge_commit_title": "COMMIT_OR_PR_TITLE",
           "ssh_url": "git@github.com:guitarrapc/githubactions-lab.git",
@@ -179,7 +179,7 @@
             "github-actions"
           ],
           "trees_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/git/trees{/sha}",
-          "updated_at": "2026-05-26T06:30:15Z",
+          "updated_at": "2026-06-02T06:19:52Z",
           "url": "https://api.github.com/repos/guitarrapc/githubactions-lab",
           "use_squash_pr_title_as_default": false,
           "visibility": "public",
@@ -187,7 +187,7 @@
           "watchers_count": 55,
           "web_commit_signoff_required": false
         },
-        "sha": "3cdce5846c01feed76528aa6f9e471ae9532a7aa",
+        "sha": "40f7d106e518c1efd48d7d428bb63203300543fd",
         "user": {
           "avatar_url": "https://avatars.githubusercontent.com/u/3856350?v=4",
           "events_url": "https://api.github.com/users/guitarrapc/events{/privacy}",
@@ -210,20 +210,20 @@
           "user_view_type": "public"
         }
       },
-      "body": "Bumps the dependencies group with 1 update: [actions/create-github-app-token](https://github.com/actions/create-github-app-token).\n\nUpdates `actions/create-github-app-token` from 3.1.1 to 3.2.0\n<details>\n<summary>Release notes</summary>\n<p><em>Sourced from <a href=\"https://github.com/actions/create-github-app-token/releases\">actions/create-github-app-token's releases</a>.</em></p>\n<blockquote>\n<h2>v3.2.0</h2>\n<h2><a href=\"https://github.com/actions/create-github-app-token/compare/v3.1.1...v3.2.0\">3.2.0</a> (2026-05-12)</h2>\n<h3>Features</h3>\n<ul>\n<li>add support for enterprise-level GitHub Apps (<a href=\"https://redirect.github.com/actions/create-github-app-token/issues/263\">#263</a>) (<a href=\"https://github.com/actions/create-github-app-token/commit/952a2a7073df6bfa5f49bc469ec895b6ec1acea4\">952a2a7</a>)</li>\n<li>support full repository names in <code>repositories</code> input (<a href=\"https://redirect.github.com/actions/create-github-app-token/issues/372\">#372</a>) (<a href=\"https://github.com/actions/create-github-app-token/commit/85eb8dd41472213aed25d1a126460e0069138ab6\">85eb8dd</a>)</li>\n</ul>\n<h3>Bug Fixes</h3>\n<ul>\n<li><strong>deps:</strong> bump <code>@​actions/core</code> from 3.0.0 to 3.0.1 in the production-dependencies group (<a href=\"https://redirect.github.com/actions/create-github-app-token/issues/364\">#364</a>) (<a href=\"https://github.com/actions/create-github-app-token/commit/43e5c345bfd4d4f3ecea019ad0042001a09dd857\">43e5c34</a>)</li>\n<li>validate private-key input (<a href=\"https://redirect.github.com/actions/create-github-app-token/issues/376\">#376</a>) (<a href=\"https://github.com/actions/create-github-app-token/commit/f24bbd89643991c0de27ae823c01791b2c6bafdd\">f24bbd8</a>)</li>\n</ul>\n</blockquote>\n</details>\n<details>\n<summary>Changelog</summary>\n<p><em>Sourced from <a href=\"https://github.com/actions/create-github-app-token/blob/main/CHANGELOG.md\">actions/create-github-app-token's changelog</a>.</em></p>\n<blockquote>\n<h1>Changelog</h1>\n<h2><a href=\"https://github.com/actions/create-github-app-token/compare/v3.1.1...v3.2.0\">3.2.0</a> (2026-05-12)</h2>\n<h3>Features</h3>\n<ul>\n<li>add support for enterprise-level GitHub Apps (<a href=\"https://redirect.github.com/actions/create-github-app-token/issues/263\">#263</a>) (<a href=\"https://github.com/actions/create-github-app-token/commit/952a2a7073df6bfa5f49bc469ec895b6ec1acea4\">952a2a7</a>)</li>\n<li>support full repository names in <code>repositories</code> input (<a href=\"https://redirect.github.com/actions/create-github-app-token/issues/372\">#372</a>) (<a href=\"https://github.com/actions/create-github-app-token/commit/85eb8dd41472213aed25d1a126460e0069138ab6\">85eb8dd</a>)</li>\n</ul>\n<h3>Bug Fixes</h3>\n<ul>\n<li><strong>deps:</strong> bump <code>@​actions/core</code> from 3.0.0 to 3.0.1 in the production-dependencies group (<a href=\"https://redirect.github.com/actions/create-github-app-token/issues/364\">#364</a>) (<a href=\"https://github.com/actions/create-github-app-token/commit/43e5c345bfd4d4f3ecea019ad0042001a09dd857\">43e5c34</a>)</li>\n<li>validate private-key input (<a href=\"https://redirect.github.com/actions/create-github-app-token/issues/376\">#376</a>) (<a href=\"https://github.com/actions/create-github-app-token/commit/f24bbd89643991c0de27ae823c01791b2c6bafdd\">f24bbd8</a>)</li>\n</ul>\n</blockquote>\n</details>\n<details>\n<summary>Commits</summary>\n<ul>\n<li><a href=\"https://github.com/actions/create-github-app-token/commit/bcd2ba49218906704ab6c1aa796996da409d3eb1\"><code>bcd2ba4</code></a> chore(main): release 3.2.0 (<a href=\"https://redirect.github.com/actions/create-github-app-token/issues/370\">#370</a>)</li>\n<li><a href=\"https://github.com/actions/create-github-app-token/commit/f24bbd89643991c0de27ae823c01791b2c6bafdd\"><code>f24bbd8</code></a> fix: validate private-key input (<a href=\"https://redirect.github.com/actions/create-github-app-token/issues/376\">#376</a>)</li>\n<li><a href=\"https://github.com/actions/create-github-app-token/commit/363531b6d972a60a00b3f1e6bb139e5e6c764cd9\"><code>363531b</code></a> docs: capitalize Git as a proper noun in README (<a href=\"https://redirect.github.com/actions/create-github-app-token/issues/374\">#374</a>)</li>\n<li><a href=\"https://github.com/actions/create-github-app-token/commit/fd2801133e469d2950f2c5af5e591d6b2ad833c8\"><code>fd28011</code></a> docs: update procedure to configure Git (<a href=\"https://redirect.github.com/actions/create-github-app-token/issues/287\">#287</a>)</li>\n<li><a href=\"https://github.com/actions/create-github-app-token/commit/85eb8dd41472213aed25d1a126460e0069138ab6\"><code>85eb8dd</code></a> feat: support full repository names in <code>repositories</code> input (<a href=\"https://redirect.github.com/actions/create-github-app-token/issues/372\">#372</a>)</li>\n<li><a href=\"https://github.com/actions/create-github-app-token/commit/c9aabb83728c3bd519212fa657ebc07e1f2a5dec\"><code>c9aabb8</code></a> build(deps-dev): bump yaml from 2.8.3 to 2.8.4 in the development-dependencie...</li>\n<li><a href=\"https://github.com/actions/create-github-app-token/commit/e02e816e5591415258a53bf735aff57977dcd5e2\"><code>e02e816</code></a> build(deps-dev): bump undici from 7.24.6 to 8.2.0 (<a href=\"https://redirect.github.com/actions/create-github-app-token/issues/366\">#366</a>)</li>\n<li><a href=\"https://github.com/actions/create-github-app-token/commit/8d835bfd37aa48fcb8e709925115857568d98bc4\"><code>8d835bf</code></a> build(deps-dev): bump esbuild from 0.27.4 to 0.28.0 in the development-depend...</li>\n<li><a href=\"https://github.com/actions/create-github-app-token/commit/952a2a7073df6bfa5f49bc469ec895b6ec1acea4\"><code>952a2a7</code></a> feat: add support for enterprise-level GitHub Apps (<a href=\"https://redirect.github.com/actions/create-github-app-token/issues/263\">#263</a>)</li>\n<li><a href=\"https://github.com/actions/create-github-app-token/commit/43e5c345bfd4d4f3ecea019ad0042001a09dd857\"><code>43e5c34</code></a> fix(deps): bump <code>@​actions/core</code> from 3.0.0 to 3.0.1 in the production-dependenc...</li>\n<li>Additional commits viewable in <a href=\"https://github.com/actions/create-github-app-token/compare/1b10c78c7865c340bc4f6099eb2f838309f1e8c3...bcd2ba49218906704ab6c1aa796996da409d3eb1\">compare view</a></li>\n</ul>\n</details>\n<br />\n\n\n[![Dependabot compatibility score](https://dependabot-badges.githubapp.com/badges/compatibility_score?dependency-name=actions/create-github-app-token&package-manager=github_actions&previous-version=3.1.1&new-version=3.2.0)](https://docs.github.com/en/github/managing-security-vulnerabilities/about-dependabot-security-updates#about-compatibility-scores)\n\nDependabot will resolve any conflicts with this PR as long as you don't alter it yourself. You can also trigger a rebase manually by commenting `@dependabot rebase`.\n\n[//]: # (dependabot-automerge-start)\n[//]: # (dependabot-automerge-end)\n\n---\n\n<details>\n<summary>Dependabot commands and options</summary>\n<br />\n\nYou can trigger Dependabot actions by commenting on this PR:\n- `@dependabot rebase` will rebase this PR\n- `@dependabot recreate` will recreate this PR, overwriting any edits that have been made to it\n- `@dependabot show <dependency name> ignore conditions` will show all of the ignore conditions of the specified dependency\n- `@dependabot ignore <dependency name> major version` will close this group update PR and stop Dependabot creating any more for the specific dependency's major version (unless you unignore this specific dependency's major version or upgrade to it yourself)\n- `@dependabot ignore <dependency name> minor version` will close this group update PR and stop Dependabot creating any more for the specific dependency's minor version (unless you unignore this specific dependency's minor version or upgrade to it yourself)\n- `@dependabot ignore <dependency name>` will close this group update PR and stop Dependabot creating any more for the specific dependency (unless you unignore this specific dependency or upgrade to it yourself)\n- `@dependabot unignore <dependency name>` will remove all of the ignore conditions of the specified dependency\n- `@dependabot unignore <dependency name> <ignore condition>` will remove the ignore condition of the specified dependency and ignore conditions\n\n\n</details>",
-      "changed_files": 4,
-      "closed_at": "2026-05-27T11:58:15Z",
+      "body": "Bumps the dependencies group with 2 updates: [actions/ai-inference](https://github.com/actions/ai-inference) and [actions/stale](https://github.com/actions/stale).\n\nUpdates `actions/ai-inference` from 2.0.7 to 2.1.0\n<details>\n<summary>Release notes</summary>\n<p><em>Sourced from <a href=\"https://github.com/actions/ai-inference/releases\">actions/ai-inference's releases</a>.</em></p>\n<blockquote>\n<h2>v2.1.0</h2>\n<h2>What's Changed</h2>\n<ul>\n<li>Add <code>provider: copilot</code> to route inference through GitHub Copilot CLI by <a href=\"https://github.com/sgoedecke\"><code>@​sgoedecke</code></a> in <a href=\"https://redirect.github.com/actions/ai-inference/pull/221\">actions/ai-inference#221</a></li>\n</ul>\n<p><strong>Full Changelog</strong>: <a href=\"https://github.com/actions/ai-inference/compare/v2.0.8...v2.1.0\">https://github.com/actions/ai-inference/compare/v2.0.8...v2.1.0</a></p>\n<h2>v2.0.8</h2>\n<h2>What's Changed</h2>\n<ul>\n<li>chore(deps-dev): bump fast-xml-parser from 5.2.3 to 5.4.2 by <a href=\"https://github.com/dependabot\"><code>@​dependabot</code></a>[bot] in <a href=\"https://redirect.github.com/actions/ai-inference/pull/182\">actions/ai-inference#182</a></li>\n<li>Fix CI error: Check Transpiled JavaScript / Check dist by <a href=\"https://github.com/johan-j\"><code>@​johan-j</code></a> in <a href=\"https://redirect.github.com/actions/ai-inference/pull/190\">actions/ai-inference#190</a></li>\n<li>Security fix mcp token exposure 9299248942858101367 by <a href=\"https://github.com/Pet3cy\"><code>@​Pet3cy</code></a> in <a href=\"https://redirect.github.com/actions/ai-inference/pull/186\">actions/ai-inference#186</a></li>\n<li>chore(deps): bump hono from 4.11.3 to 4.12.7 by <a href=\"https://github.com/dependabot\"><code>@​dependabot</code></a>[bot] in <a href=\"https://redirect.github.com/actions/ai-inference/pull/189\">actions/ai-inference#189</a></li>\n<li>chore(deps): bump openai from 5.11.0 to 6.7.0 by <a href=\"https://github.com/dependabot\"><code>@​dependabot</code></a>[bot] in <a href=\"https://redirect.github.com/actions/ai-inference/pull/140\">actions/ai-inference#140</a></li>\n<li>chore(deps): bump <code>@​actions/core</code> from 1.11.1 to 2.0.2 by <a href=\"https://github.com/dependabot\"><code>@​dependabot</code></a>[bot] in <a href=\"https://redirect.github.com/actions/ai-inference/pull/161\">actions/ai-inference#161</a></li>\n<li>chore(deps-dev): bump ajv from 6.12.6 to 6.14.0 by <a href=\"https://github.com/dependabot\"><code>@​dependabot</code></a>[bot] in <a href=\"https://redirect.github.com/actions/ai-inference/pull/181\">actions/ai-inference#181</a></li>\n<li>chore(deps-dev): bump rollup from 4.43.0 to 4.59.0 by <a href=\"https://github.com/dependabot\"><code>@​dependabot</code></a>[bot] in <a href=\"https://redirect.github.com/actions/ai-inference/pull/179\">actions/ai-inference#179</a></li>\n<li>chore(deps): bump qs from 6.14.1 to 6.14.2 by <a href=\"https://github.com/dependabot\"><code>@​dependabot</code></a>[bot] in <a href=\"https://redirect.github.com/actions/ai-inference/pull/174\">actions/ai-inference#174</a></li>\n<li>chore(deps): bump <code>@​modelcontextprotocol/sdk</code> from 1.25.2 to 1.26.0 by <a href=\"https://github.com/dependabot\"><code>@​dependabot</code></a>[bot] in <a href=\"https://redirect.github.com/actions/ai-inference/pull/169\">actions/ai-inference#169</a></li>\n<li>chore(deps-dev): bump the npm-development group across 1 directory with 11 updates by <a href=\"https://github.com/dependabot\"><code>@​dependabot</code></a>[bot] in <a href=\"https://redirect.github.com/actions/ai-inference/pull/191\">actions/ai-inference#191</a></li>\n<li>chore(deps): bump the actions-minor group across 1 directory with 3 updates by <a href=\"https://github.com/dependabot\"><code>@​dependabot</code></a>[bot] in <a href=\"https://redirect.github.com/actions/ai-inference/pull/154\">actions/ai-inference#154</a></li>\n</ul>\n<h2>New Contributors</h2>\n<ul>\n<li><a href=\"https://github.com/johan-j\"><code>@​johan-j</code></a> made their first contribution in <a href=\"https://redirect.github.com/actions/ai-inference/pull/190\">actions/ai-inference#190</a></li>\n<li><a href=\"https://github.com/Pet3cy\"><code>@​Pet3cy</code></a> made their first contribution in <a href=\"https://redirect.github.com/actions/ai-inference/pull/186\">actions/ai-inference#186</a></li>\n</ul>\n<p><strong>Full Changelog</strong>: <a href=\"https://github.com/actions/ai-inference/compare/v2...v2.0.8\">https://github.com/actions/ai-inference/compare/v2...v2.0.8</a></p>\n</blockquote>\n</details>\n<details>\n<summary>Commits</summary>\n<ul>\n<li><a href=\"https://github.com/actions/ai-inference/commit/17ff458cb182449bbb2e43701fcd98f6af8f6570\"><code>17ff458</code></a> Merge pull request <a href=\"https://redirect.github.com/actions/ai-inference/issues/221\">#221</a> from actions/sgoedecke/add-copilot-provider</li>\n<li><a href=\"https://github.com/actions/ai-inference/commit/3f876c00ff872d15efdc26745d481d478165f2fa\"><code>3f876c0</code></a> Don't include Copilot CLI stderr in error messages; mask token</li>\n<li><a href=\"https://github.com/actions/ai-inference/commit/8a3ac878b1b4e537a700580ac99dbde9db6cfc08\"><code>8a3ac87</code></a> Bump README example to actions/setup-node@v6 to match repo workflows</li>\n<li><a href=\"https://github.com/actions/ai-inference/commit/02820f798a9faf984d12f215c551ffa62478cdab\"><code>02820f7</code></a> Pass -s to Copilot CLI and document deny-by-default permissions</li>\n<li><a href=\"https://github.com/actions/ai-inference/commit/479b2eff40080ffecf25db8d744de69de963fbfd\"><code>479b2ef</code></a> Add 'copilot' provider that shells out to GitHub Copilot CLI</li>\n<li><a href=\"https://github.com/actions/ai-inference/commit/af6ad2c4ac4edf01884054fc3a6caa6d2567c13a\"><code>af6ad2c</code></a> Merge pull request <a href=\"https://redirect.github.com/actions/ai-inference/issues/154\">#154</a> from actions/dependabot/github_actions/actions-minor-...</li>\n<li><a href=\"https://github.com/actions/ai-inference/commit/9446d602a44c71c6953a1b5531ec75c2fdc4ed4a\"><code>9446d60</code></a> chore(deps): bump the actions-minor group across 1 directory with 3 updates</li>\n<li><a href=\"https://github.com/actions/ai-inference/commit/9739430845269315e5efb9c76c0357702d24d983\"><code>9739430</code></a> Merge pull request <a href=\"https://redirect.github.com/actions/ai-inference/issues/191\">#191</a> from actions/dependabot/npm_and_yarn/npm-development-...</li>\n<li><a href=\"https://github.com/actions/ai-inference/commit/e105a5ce4154fababdaae1f458dbb93f3b6e755a\"><code>e105a5c</code></a> make it work with new eslint</li>\n<li><a href=\"https://github.com/actions/ai-inference/commit/65a8d298fcb77bd0648ceecd7b8768f9dab664e2\"><code>65a8d29</code></a> chore(deps-dev): bump the npm-development group across 1 directory with 11 up...</li>\n<li>Additional commits viewable in <a href=\"https://github.com/actions/ai-inference/compare/e09e65981758de8b2fdab13c2bfb7c7d5493b0b6...17ff458cb182449bbb2e43701fcd98f6af8f6570\">compare view</a></li>\n</ul>\n</details>\n<br />\n\nUpdates `actions/stale` from 10.2.0 to 10.3.0\n<details>\n<summary>Release notes</summary>\n<p><em>Sourced from <a href=\"https://github.com/actions/stale/releases\">actions/stale's releases</a>.</em></p>\n<blockquote>\n<h2>v10.3.0</h2>\n<h2>What's Changed</h2>\n<h3>Bug Fix</h3>\n<ul>\n<li>Enhancement: ignore stale labeling events by <a href=\"https://github.com/shamoon\"><code>@​shamoon</code></a> in <a href=\"https://redirect.github.com/actions/stale/pull/1311\">actions/stale#1311</a></li>\n</ul>\n<h3>Dependency Updates</h3>\n<ul>\n<li>Upgrade dependencies (<code>@​actions/core</code>, <code>@​octokit/plugin-retry</code>, <a href=\"https://github.com/typescript-eslint\"><code>@​typescript-eslint</code></a>) by <a href=\"https://github.com/Copilot\"><code>@​Copilot</code></a> in <a href=\"https://redirect.github.com/actions/stale/pull/1335\">actions/stale#1335</a></li>\n</ul>\n<h2>New Contributors</h2>\n<ul>\n<li><a href=\"https://github.com/shamoon\"><code>@​shamoon</code></a> made their first contribution in <a href=\"https://redirect.github.com/actions/stale/pull/1311\">actions/stale#1311</a></li>\n</ul>\n<p><strong>Full Changelog</strong>: <a href=\"https://github.com/actions/stale/compare/v10...v10.3.0\">https://github.com/actions/stale/compare/v10...v10.3.0</a></p>\n</blockquote>\n</details>\n<details>\n<summary>Commits</summary>\n<ul>\n<li><a href=\"https://github.com/actions/stale/commit/eb5cf3af3ac0a1aa4c9c45633dd1ae542a27a899\"><code>eb5cf3a</code></a> chore: upgrade dependencies and bump version to 10.3.0 (<a href=\"https://redirect.github.com/actions/stale/issues/1335\">#1335</a>)</li>\n<li><a href=\"https://github.com/actions/stale/commit/db5d06a4c82d5e94513c09c406638111df61f63e\"><code>db5d06a</code></a> Enhancement: ignore stale labeling events (<a href=\"https://redirect.github.com/actions/stale/issues/1311\">#1311</a>)</li>\n<li>See full diff in <a href=\"https://github.com/actions/stale/compare/b5d41d4e1d5dceea10e7104786b73624c18a190f...eb5cf3af3ac0a1aa4c9c45633dd1ae542a27a899\">compare view</a></li>\n</ul>\n</details>\n<br />\n\n\nDependabot will resolve any conflicts with this PR as long as you don't alter it yourself. You can also trigger a rebase manually by commenting `@dependabot rebase`.\n\n[//]: # (dependabot-automerge-start)\n[//]: # (dependabot-automerge-end)\n\n---\n\n<details>\n<summary>Dependabot commands and options</summary>\n<br />\n\nYou can trigger Dependabot actions by commenting on this PR:\n- `@dependabot rebase` will rebase this PR\n- `@dependabot recreate` will recreate this PR, overwriting any edits that have been made to it\n- `@dependabot show <dependency name> ignore conditions` will show all of the ignore conditions of the specified dependency\n- `@dependabot ignore <dependency name> major version` will close this group update PR and stop Dependabot creating any more for the specific dependency's major version (unless you unignore this specific dependency's major version or upgrade to it yourself)\n- `@dependabot ignore <dependency name> minor version` will close this group update PR and stop Dependabot creating any more for the specific dependency's minor version (unless you unignore this specific dependency's minor version or upgrade to it yourself)\n- `@dependabot ignore <dependency name>` will close this group update PR and stop Dependabot creating any more for the specific dependency (unless you unignore this specific dependency or upgrade to it yourself)\n- `@dependabot unignore <dependency name>` will remove all of the ignore conditions of the specified dependency\n- `@dependabot unignore <dependency name> <ignore condition>` will remove the ignore condition of the specified dependency and ignore conditions\n\n\n</details>",
+      "changed_files": 2,
+      "closed_at": "2026-06-04T18:36:32Z",
       "comments": 0,
-      "comments_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/issues/318/comments",
+      "comments_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/issues/320/comments",
       "commits": 1,
-      "commits_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/318/commits",
-      "created_at": "2026-05-26T22:14:43Z",
-      "deletions": 4,
-      "diff_url": "https://github.com/guitarrapc/githubactions-lab/pull/318.diff",
+      "commits_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/320/commits",
+      "created_at": "2026-06-04T00:38:41Z",
+      "deletions": 2,
+      "diff_url": "https://github.com/guitarrapc/githubactions-lab/pull/320.diff",
       "draft": false,
       "head": {
-        "label": "guitarrapc:dependabot/github_actions/dependencies-9f1c31c749",
-        "ref": "dependabot/github_actions/dependencies-9f1c31c749",
+        "label": "guitarrapc:dependabot/github_actions/dependencies-bd263a6b2c",
+        "ref": "dependabot/github_actions/dependencies-bd263a6b2c",
         "repo": {
           "allow_auto_merge": true,
           "allow_forking": true,
@@ -320,9 +320,9 @@
           "private": false,
           "pull_request_creation_policy": "all",
           "pulls_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls{/number}",
-          "pushed_at": "2026-05-27T11:58:15Z",
+          "pushed_at": "2026-06-04T00:38:50Z",
           "releases_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/releases{/id}",
-          "size": 5698,
+          "size": 5775,
           "squash_merge_commit_message": "COMMIT_MESSAGES",
           "squash_merge_commit_title": "COMMIT_OR_PR_TITLE",
           "ssh_url": "git@github.com:guitarrapc/githubactions-lab.git",
@@ -338,7 +338,7 @@
             "github-actions"
           ],
           "trees_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/git/trees{/sha}",
-          "updated_at": "2026-05-26T06:30:15Z",
+          "updated_at": "2026-06-02T06:19:52Z",
           "url": "https://api.github.com/repos/guitarrapc/githubactions-lab",
           "use_squash_pr_title_as_default": false,
           "visibility": "public",
@@ -346,7 +346,7 @@
           "watchers_count": 55,
           "web_commit_signoff_required": false
         },
-        "sha": "a1f1c602e3597577a734beb6686302f611c206d0",
+        "sha": "ffd23d0292040fff9fb38721d8628dd876535166",
         "user": {
           "avatar_url": "https://avatars.githubusercontent.com/u/3856350?v=4",
           "events_url": "https://api.github.com/users/guitarrapc/events{/privacy}",
@@ -369,9 +369,9 @@
           "user_view_type": "public"
         }
       },
-      "html_url": "https://github.com/guitarrapc/githubactions-lab/pull/318",
-      "id": 3751284862,
-      "issue_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/issues/318",
+      "html_url": "https://github.com/guitarrapc/githubactions-lab/pull/320",
+      "id": 3799569743,
+      "issue_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/issues/320",
       "labels": [
         {
           "color": "0366d6",
@@ -394,11 +394,11 @@
       ],
       "locked": false,
       "maintainer_can_modify": false,
-      "merge_commit_sha": "c014409788a8c8b925f78c8a5d2396757370eb77",
+      "merge_commit_sha": "edffdc9e27cb711f05f2c4de5c267e9aa88d7166",
       "mergeable": null,
       "mergeable_state": "unknown",
       "merged": true,
-      "merged_at": "2026-05-27T11:58:15Z",
+      "merged_at": "2026-06-04T18:36:32Z",
       "merged_by": {
         "avatar_url": "https://avatars.githubusercontent.com/u/3856350?v=4",
         "events_url": "https://api.github.com/users/guitarrapc/events{/privacy}",
@@ -421,9 +421,9 @@
         "user_view_type": "public"
       },
       "milestone": null,
-      "node_id": "PR_kwDOD1icfM7fmBB-",
-      "number": 318,
-      "patch_url": "https://github.com/guitarrapc/githubactions-lab/pull/318.patch",
+      "node_id": "PR_kwDOD1icfM7ieNVP",
+      "number": 320,
+      "patch_url": "https://github.com/guitarrapc/githubactions-lab/pull/320.patch",
       "rebaseable": null,
       "requested_reviewers": [
         {
@@ -451,12 +451,12 @@
       "requested_teams": [],
       "review_comment_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/comments{/number}",
       "review_comments": 0,
-      "review_comments_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/318/comments",
+      "review_comments_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/320/comments",
       "state": "closed",
-      "statuses_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/statuses/a1f1c602e3597577a734beb6686302f611c206d0",
-      "title": "chore(deps): bump actions/create-github-app-token from 3.1.1 to 3.2.0 in the dependencies group",
-      "updated_at": "2026-05-27T11:58:15Z",
-      "url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/318",
+      "statuses_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/statuses/ffd23d0292040fff9fb38721d8628dd876535166",
+      "title": "chore(deps): bump the dependencies group with 2 updates",
+      "updated_at": "2026-06-04T18:36:33Z",
+      "url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/320",
       "user": {
         "avatar_url": "https://avatars.githubusercontent.com/in/29110?v=4",
         "events_url": "https://api.github.com/users/dependabot%5Bbot%5D/events{/privacy}",
@@ -567,9 +567,9 @@
       "private": false,
       "pull_request_creation_policy": "all",
       "pulls_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls{/number}",
-      "pushed_at": "2026-05-27T11:58:15Z",
+      "pushed_at": "2026-06-04T00:38:50Z",
       "releases_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/releases{/id}",
-      "size": 5698,
+      "size": 5775,
       "ssh_url": "git@github.com:guitarrapc/githubactions-lab.git",
       "stargazers_count": 55,
       "stargazers_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/stargazers",
@@ -583,7 +583,7 @@
         "github-actions"
       ],
       "trees_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/git/trees{/sha}",
-      "updated_at": "2026-05-26T06:30:15Z",
+      "updated_at": "2026-06-02T06:19:52Z",
       "url": "https://api.github.com/repos/guitarrapc/githubactions-lab",
       "visibility": "public",
       "watchers": 55,
@@ -613,7 +613,7 @@
     }
   },
   "workflow_ref": "guitarrapc/githubactions-lab/.github/workflows/auto-dump-context.yaml@refs/heads/main",
-  "workflow_sha": "c014409788a8c8b925f78c8a5d2396757370eb77",
+  "workflow_sha": "edffdc9e27cb711f05f2c4de5c267e9aa88d7166",
   "repository_id": "257465468",
   "triggering_actor": "guitarrapc",
   "workspace": "/home/runner/work/githubactions-lab/githubactions-lab",
@@ -621,9 +621,9 @@
   "event_path": "/home/runner/work/_temp/_github_workflow/event.json",
   "action_repository": "",
   "action_ref": "",
-  "path": "/home/runner/work/_temp/_runner_file_commands/add_path_5d9a1f35-55c1-485b-947d-efb3ed50f34f",
-  "env": "/home/runner/work/_temp/_runner_file_commands/set_env_5d9a1f35-55c1-485b-947d-efb3ed50f34f",
-  "step_summary": "/home/runner/work/_temp/_runner_file_commands/step_summary_5d9a1f35-55c1-485b-947d-efb3ed50f34f",
-  "state": "/home/runner/work/_temp/_runner_file_commands/save_state_5d9a1f35-55c1-485b-947d-efb3ed50f34f",
-  "output": "/home/runner/work/_temp/_runner_file_commands/set_output_5d9a1f35-55c1-485b-947d-efb3ed50f34f"
+  "path": "/home/runner/work/_temp/_runner_file_commands/add_path_516e0c90-8f2e-4764-b1db-00d72f4b6c4c",
+  "env": "/home/runner/work/_temp/_runner_file_commands/set_env_516e0c90-8f2e-4764-b1db-00d72f4b6c4c",
+  "step_summary": "/home/runner/work/_temp/_runner_file_commands/step_summary_516e0c90-8f2e-4764-b1db-00d72f4b6c4c",
+  "state": "/home/runner/work/_temp/_runner_file_commands/save_state_516e0c90-8f2e-4764-b1db-00d72f4b6c4c",
+  "output": "/home/runner/work/_temp/_runner_file_commands/set_output_516e0c90-8f2e-4764-b1db-00d72f4b6c4c"
 }
