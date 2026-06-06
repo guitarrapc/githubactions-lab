@@ -1,13 +1,13 @@
 {
-  "after": "5e9c8c64634b659ab895212b4484d0cfbc6b8709",
+  "after": "fbb4789212a3f313623fb7519921b77dc2f7056f",
   "base_ref": null,
-  "before": "634f44231a90ddd2bec5cd3ba8e5d821c7bd2bae",
+  "before": "f8b5b9d08ac68999b75414cbc76a62104543d760",
   "commits": [
     {
       "author": {
-        "email": "3856350+guitarrapc@users.noreply.github.com",
-        "name": "Ikiru Yoshizaki",
-        "username": "guitarrapc"
+        "email": "249895052+guitarrapc-github-actions-bot[bot]@users.noreply.github.com",
+        "name": "guitarrapc-github-actions-bot[bot]",
+        "username": "guitarrapc-github-actions-bot[bot]"
       },
       "committer": {
         "email": "noreply@github.com",
@@ -15,22 +15,22 @@
         "username": "web-flow"
       },
       "distinct": true,
-      "id": "5e9c8c64634b659ab895212b4484d0cfbc6b8709",
-      "message": "feat: use client-id instead of app-id (#322)\n\n* feat: use client-id instead of app-id\n\n* [auto commit] Embedded code (workflow=auto doc)\n\n* [auto commit] update context (workflow=auto dump context, event=pull_request, action=opened)\n\n* [auto commit] update context (workflow=auto dump context, event=pull_request, action=synchronize)\n\n* chore: prevent trigger loop on Pull_Request\n\nuse auto token instead of app token on pull_request\n\n* ci: write\n\n* [auto commit] update context (workflow=auto dump context, event=pull_request, action=synchronize)\n\n---------\n\nCo-authored-by: github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>\nCo-authored-by: guitarrapc-github-actions-bot[bot] <249895052+guitarrapc-github-actions-bot[bot]@users.noreply.github.com>",
-      "timestamp": "2026-06-07T00:58:12+09:00",
-      "tree_id": "f7e4ea629f27a45cc7491471a8abb8cb71f28655",
-      "url": "https://github.com/guitarrapc/githubactions-lab/commit/5e9c8c64634b659ab895212b4484d0cfbc6b8709"
+      "id": "fbb4789212a3f313623fb7519921b77dc2f7056f",
+      "message": "[auto commit] update context (workflow=auto dump context, event=pull_request_target, action=closed)",
+      "timestamp": "2026-06-06T15:59:07Z",
+      "tree_id": "a025bb6be063dc40323c7bc55929ae5031b1fd96",
+      "url": "https://github.com/guitarrapc/githubactions-lab/commit/fbb4789212a3f313623fb7519921b77dc2f7056f"
     }
   ],
-  "compare": "https://github.com/guitarrapc/githubactions-lab/compare/634f44231a90...5e9c8c64634b",
+  "compare": "https://github.com/guitarrapc/githubactions-lab/compare/f8b5b9d08ac6...fbb4789212a3",
   "created": false,
   "deleted": false,
   "forced": false,
   "head_commit": {
     "author": {
-      "email": "3856350+guitarrapc@users.noreply.github.com",
-      "name": "Ikiru Yoshizaki",
-      "username": "guitarrapc"
+      "email": "249895052+guitarrapc-github-actions-bot[bot]@users.noreply.github.com",
+      "name": "guitarrapc-github-actions-bot[bot]",
+      "username": "guitarrapc-github-actions-bot[bot]"
     },
     "committer": {
       "email": "noreply@github.com",
@@ -38,15 +38,15 @@
       "username": "web-flow"
     },
     "distinct": true,
-    "id": "5e9c8c64634b659ab895212b4484d0cfbc6b8709",
-    "message": "feat: use client-id instead of app-id (#322)\n\n* feat: use client-id instead of app-id\n\n* [auto commit] Embedded code (workflow=auto doc)\n\n* [auto commit] update context (workflow=auto dump context, event=pull_request, action=opened)\n\n* [auto commit] update context (workflow=auto dump context, event=pull_request, action=synchronize)\n\n* chore: prevent trigger loop on Pull_Request\n\nuse auto token instead of app token on pull_request\n\n* ci: write\n\n* [auto commit] update context (workflow=auto dump context, event=pull_request, action=synchronize)\n\n---------\n\nCo-authored-by: github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>\nCo-authored-by: guitarrapc-github-actions-bot[bot] <249895052+guitarrapc-github-actions-bot[bot]@users.noreply.github.com>",
-    "timestamp": "2026-06-07T00:58:12+09:00",
-    "tree_id": "f7e4ea629f27a45cc7491471a8abb8cb71f28655",
-    "url": "https://github.com/guitarrapc/githubactions-lab/commit/5e9c8c64634b659ab895212b4484d0cfbc6b8709"
+    "id": "fbb4789212a3f313623fb7519921b77dc2f7056f",
+    "message": "[auto commit] update context (workflow=auto dump context, event=pull_request_target, action=closed)",
+    "timestamp": "2026-06-06T15:59:07Z",
+    "tree_id": "a025bb6be063dc40323c7bc55929ae5031b1fd96",
+    "url": "https://github.com/guitarrapc/githubactions-lab/commit/fbb4789212a3f313623fb7519921b77dc2f7056f"
   },
   "pusher": {
-    "email": "3856350+guitarrapc@users.noreply.github.com",
-    "name": "guitarrapc"
+    "email": null,
+    "name": "guitarrapc-github-actions-bot[bot]"
   },
   "ref": "refs/heads/main",
   "repository": {
@@ -140,7 +140,7 @@
     "private": false,
     "pull_request_creation_policy": "all",
     "pulls_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls{/number}",
-    "pushed_at": 1780761492,
+    "pushed_at": 1780761548,
     "releases_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/releases{/id}",
     "size": 5646,
     "ssh_url": "git@github.com:guitarrapc/githubactions-lab.git",
@@ -157,7 +157,7 @@
       "github-actions"
     ],
     "trees_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/git/trees{/sha}",
-    "updated_at": "2026-06-06T08:29:40Z",
+    "updated_at": "2026-06-06T15:58:49Z",
     "url": "https://api.github.com/repos/guitarrapc/githubactions-lab",
     "visibility": "public",
     "watchers": 55,
@@ -166,23 +166,23 @@
   },
   "sender": {
     "avatar_url": "https://avatars.githubusercontent.com/u/3856350?v=4",
-    "events_url": "https://api.github.com/users/guitarrapc/events{/privacy}",
-    "followers_url": "https://api.github.com/users/guitarrapc/followers",
-    "following_url": "https://api.github.com/users/guitarrapc/following{/other_user}",
-    "gists_url": "https://api.github.com/users/guitarrapc/gists{/gist_id}",
+    "events_url": "https://api.github.com/users/guitarrapc-github-actions-bot%5Bbot%5D/events{/privacy}",
+    "followers_url": "https://api.github.com/users/guitarrapc-github-actions-bot%5Bbot%5D/followers",
+    "following_url": "https://api.github.com/users/guitarrapc-github-actions-bot%5Bbot%5D/following{/other_user}",
+    "gists_url": "https://api.github.com/users/guitarrapc-github-actions-bot%5Bbot%5D/gists{/gist_id}",
     "gravatar_id": "",
-    "html_url": "https://github.com/guitarrapc",
-    "id": 3856350,
-    "login": "guitarrapc",
-    "node_id": "MDQ6VXNlcjM4NTYzNTA=",
-    "organizations_url": "https://api.github.com/users/guitarrapc/orgs",
-    "received_events_url": "https://api.github.com/users/guitarrapc/received_events",
-    "repos_url": "https://api.github.com/users/guitarrapc/repos",
+    "html_url": "https://github.com/apps/guitarrapc-github-actions-bot",
+    "id": 249895052,
+    "login": "guitarrapc-github-actions-bot[bot]",
+    "node_id": "BOT_kgDODuUYjA",
+    "organizations_url": "https://api.github.com/users/guitarrapc-github-actions-bot%5Bbot%5D/orgs",
+    "received_events_url": "https://api.github.com/users/guitarrapc-github-actions-bot%5Bbot%5D/received_events",
+    "repos_url": "https://api.github.com/users/guitarrapc-github-actions-bot%5Bbot%5D/repos",
     "site_admin": false,
-    "starred_url": "https://api.github.com/users/guitarrapc/starred{/owner}{/repo}",
-    "subscriptions_url": "https://api.github.com/users/guitarrapc/subscriptions",
-    "type": "User",
-    "url": "https://api.github.com/users/guitarrapc",
+    "starred_url": "https://api.github.com/users/guitarrapc-github-actions-bot%5Bbot%5D/starred{/owner}{/repo}",
+    "subscriptions_url": "https://api.github.com/users/guitarrapc-github-actions-bot%5Bbot%5D/subscriptions",
+    "type": "Bot",
+    "url": "https://api.github.com/users/guitarrapc-github-actions-bot%5Bbot%5D",
     "user_view_type": "public"
   }
 }
