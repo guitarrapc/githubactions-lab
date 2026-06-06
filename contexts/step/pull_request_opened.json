@@ -1,7 +1,7 @@
 {
   "ref": {
     "outputs": {
-      "value": "llm"
+      "value": "fork_dependabot"
     },
     "outcome": "success",
     "conclusion": "success"

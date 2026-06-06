@@ -3103,111 +3103,20 @@ jobs:
 
 ## フォークユーザーのワークフロー変更防止
 
-GitHubの脆弱性の1つはワークフローです。`secrets`を使用してワークフローでサービスを認証する場合、ワークフローの編集は要件とする必要があります。
+GitHub Actionsで特に注意すべき変更の1つが、workflowやaction定義の更新です。ワークフローで`secrets`や権限の強いトークンを使うなら、`.github/**`の更新は保護対象として扱うべきです。
 
-最も簡単な方法は、`pull_request`ターゲットとパスフィルタを使用し、PRがフォークかどうかを検出することです。ファイル変更を防ぐ方法はいくつかあるかもしれません。`xalvarez/prevent-file-change-action`はステップ内で変更をガードできます。`dorny/paths-filter`またはその他を使用すると、変更を検出して希望する操作を実行する柔軟な方法となります。
+実運用では、ポリシーを次の2つに分けると扱いやすいです。
+
+- `dependabot[bot]`: `.github/workflows/` 配下の更新だけを許可する
+- 外部PR: workflow、custom action、Dependabot設定、`CODEOWNERS` などの保護対象ファイルの変更を禁止する
+
+外部PRを判定したい場合は、`pull_request` で `head.repo.full_name` と `base.repo.full_name` を比較するのが素直です。`github.event.pull_request.head.repo.fork` は head repository 自体が fork repository かどうかを見る値であり、外部PR判定とは一致しません。
 
 > [!Warning]
 > [セキュリティ脆弱性](https://www.stepsecurity.io/blog/harden-runner-detection-tj-actions-changed-files-action-is-compromised)への対応として`tj-actions/changed-files`の使用を中止してください
 
 ```yaml
-# .github/workflows/prevent-file-change1.yaml
-
-name: prevent file change 1
-on:
-  pull_request:
-    branches: ["main"]
-    paths:
-      - .github/**/*.yaml
-
-jobs:
-  detect:
-    if: ${{ github.event.pull_request.head.repo.fork }} # is Fork
-    permissions:
-      contents: read
-    runs-on: ubuntu-24.04
-    timeout-minutes: 3
-    steps:
-      - name: "Prevent file change"
-        run: exit 1
-
-```
-
-```yaml
-# .github/workflows/prevent-file-change2.yaml
-
-name: prevent file change 2
-
-on:
-  pull_request_target: # zizmor: ignore[dangerous-triggers]
-    branches: ["main"]
-    paths:
-      - .github/**/*.yaml
-
-jobs:
-  detect:
-    if: ${{ github.actor != 'dependabot[bot]' }}
-    permissions:
-      contents: read
-      pull-requests: read
-    runs-on: ubuntu-24.04
-    timeout-minutes: 3
-    steps:
-      - name: Prevent file change for github YAML files.
-        uses: xalvarez/prevent-file-change-action@8ba6c9f0f3c6c73caea35ae4b13988047f9cd104 # v3.0.0
-        with:
-          githubToken: ${{ secrets.GITHUB_TOKEN }}
-          pattern: ^\.github\/.*.y[a]?ml$ # -> .github/**/*.yaml
-          trustedAuthors: ${{ github.repository_owner }} # , separated. allow repository owner to change
-
-```
-
-```yaml
-# .github/workflows/prevent-file-change3.yaml
-
-name: prevent file change 3
-on:
-  pull_request:
-    branches: ["main"]
-    paths:
-      - .github/**/*.yaml
-      - .github/**/*.yml
-
-jobs:
-  detect:
-    if: ${{ github.event.pull_request.head.repo.fork }} # is Fork
-    permissions:
-      contents: read
-    runs-on: ubuntu-24.04
-    timeout-minutes: 3
-    steps:
-      - name: Run step if any file(s) in the .github folder change
-        run: exit 1
-
-```
-
-```yaml
-# .github/workflows/prevent-file-change4.yaml
-
-name: prevent file change 4
-on:
-  pull_request:
-    branches: ["main"]
-    paths:
-      - .github/**/*.yaml
-
-jobs:
-  detect:
-    if: ${{ github.event.pull_request.head.repo.fork }} # is Fork
-    permissions:
-      contents: read
-    runs-on: ubuntu-24.04
-    timeout-minutes: 3
-    steps:
-      - name: Run step if any file(s) in the .github folder change
-        run: |
-          echo "One or more files has changed."
-          exit 1
+# .github/workflows/prevent-file-change.yaml
 
 ```
 
@@ -4363,19 +4272,19 @@ jobs:
 
 ## プルリクエスト(PR)がフォークかどうかを検出する
 
-これを実現する方法はいくつかあります。最もシンプルで理解しやすいのは`fork`ブール値です。
+これを実現する方法はいくつかあります。外部PRかどうかを見たいなら、head repository と base repository を比較するのが適切です。
 
-1. `fork`ブール値を確認する。
+1. head repository と base repository が異なるか確認する。
 
 ```
-# Fork
-if: ${{ github.event.pull_request.head.repo.fork }}
+# External PR
+if: ${{ github.event.pull_request.head.repo.full_name != github.event.pull_request.base.repo.full_name }}
 
-# Not Fork
-if: ${{ ! github.event.pull_request.head.repo.fork }}
+# Same repository PR
+if: ${{ github.event.pull_request.head.repo.full_name == github.event.pull_request.base.repo.full_name }}
 ```
 
-2. `full_name`がリポジトリと一致するかを確認する。
+2. `github-script` でも同じ比較を使う。
 
 ```
 # Fork
