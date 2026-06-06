@@ -133,7 +133,9 @@ jobs:
         env:
           CONTEXT: ${{ toJson(matrix) }}
           OUTPUT_PATH: ${{ inputs.output-path }}/matrix
+      # need direct push permission.
       - uses: actions/create-github-app-token@bcd2ba49218906704ab6c1aa796996da409d3eb1 # v3.2.0
+        if: ${{ github.event_name != 'pull_request' }}
         id: app-token
         with:
           client-id: ${{ secrets.SYNCED_ACTIONS_BOT_CLIENTID }}
@@ -144,4 +146,4 @@ jobs:
         with:
           commit-message: "[auto commit] update context (workflow=${{ github.workflow }}, event=${{ github.event_name }}, action=${{ github.event.action }})"
           ref: ${{ steps.ref.outputs.value }}
-          github-token: ${{ steps.app-token.outputs.token }}
+          github-token: ${{ case(github.event_name == 'pull_request', secrets.GITHUB_TOKEN, steps.app-token.outputs.token) }}
