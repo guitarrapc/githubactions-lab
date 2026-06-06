@@ -4497,9 +4497,9 @@ jobs:
 ```yaml
 # .github/workflows/_reusable-dump-context.yaml#L20-L22
 
-runs-on: ${{ matrix.runs-on }}
 timeout-minutes: 5
 steps:
+  # pull_request and pull_request_target event may begin concurrently and conflict git operation. So, let's wait random time.
 ```
 
 ## Get Tag
