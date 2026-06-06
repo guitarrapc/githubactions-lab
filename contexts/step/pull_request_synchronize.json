@@ -1,7 +1,7 @@
 {
   "ref": {
     "outputs": {
-      "value": "refactor/js_action"
+      "value": "clientid"
     },
     "outcome": "success",
     "conclusion": "success"
