@@ -1,4 +1,8 @@
 {
-  "check_run_id": 69464335548,
+  "check_run_id": 79863842334,
+  "workflow_ref": "guitarrapc/githubactions-lab/.github/workflows/_reusable-dump-context.yaml@refs/pull/321/merge",
+  "workflow_sha": "a021f9265ec550d01ef6ea02d2eee25758494831",
+  "workflow_repository": "guitarrapc/githubactions-lab",
+  "workflow_file_path": ".github/workflows/_reusable-dump-context.yaml",
   "status": "success"
 }
