@@ -1,26 +1,8 @@
 {
-  "after": "edffdc9e27cb711f05f2c4de5c267e9aa88d7166",
+  "after": "5e9c8c64634b659ab895212b4484d0cfbc6b8709",
   "base_ref": null,
-  "before": "40f7d106e518c1efd48d7d428bb63203300543fd",
+  "before": "634f44231a90ddd2bec5cd3ba8e5d821c7bd2bae",
   "commits": [
-    {
-      "author": {
-        "email": "49699333+dependabot[bot]@users.noreply.github.com",
-        "name": "dependabot[bot]",
-        "username": "dependabot[bot]"
-      },
-      "committer": {
-        "email": "noreply@github.com",
-        "name": "GitHub",
-        "username": "web-flow"
-      },
-      "distinct": false,
-      "id": "ffd23d0292040fff9fb38721d8628dd876535166",
-      "message": "chore(deps): bump the dependencies group with 2 updates\n\nBumps the dependencies group with 2 updates: [actions/ai-inference](https://github.com/actions/ai-inference) and [actions/stale](https://github.com/actions/stale).\n\n\nUpdates `actions/ai-inference` from 2.0.7 to 2.1.0\n- [Release notes](https://github.com/actions/ai-inference/releases)\n- [Commits](https://github.com/actions/ai-inference/compare/e09e65981758de8b2fdab13c2bfb7c7d5493b0b6...17ff458cb182449bbb2e43701fcd98f6af8f6570)\n\nUpdates `actions/stale` from 10.2.0 to 10.3.0\n- [Release notes](https://github.com/actions/stale/releases)\n- [Changelog](https://github.com/actions/stale/blob/main/CHANGELOG.md)\n- [Commits](https://github.com/actions/stale/compare/b5d41d4e1d5dceea10e7104786b73624c18a190f...eb5cf3af3ac0a1aa4c9c45633dd1ae542a27a899)\n\n---\nupdated-dependencies:\n- dependency-name: actions/ai-inference\n  dependency-version: 2.1.0\n  dependency-type: direct:production\n  update-type: version-update:semver-minor\n  dependency-group: dependencies\n- dependency-name: actions/stale\n  dependency-version: 10.3.0\n  dependency-type: direct:production\n  update-type: version-update:semver-minor\n  dependency-group: dependencies\n...\n\nSigned-off-by: dependabot[bot] <support@github.com>",
-      "timestamp": "2026-06-04T00:38:40Z",
-      "tree_id": "d1ba4d78a8c85cb0d64b0fabf8b2cbdf81d787c6",
-      "url": "https://github.com/guitarrapc/githubactions-lab/commit/ffd23d0292040fff9fb38721d8628dd876535166"
-    },
     {
       "author": {
         "email": "3856350+guitarrapc@users.noreply.github.com",
@@ -33,14 +15,14 @@
         "username": "web-flow"
       },
       "distinct": true,
-      "id": "edffdc9e27cb711f05f2c4de5c267e9aa88d7166",
-      "message": "Merge pull request #320 from guitarrapc/dependabot/github_actions/dependencies-bd263a6b2c\n\nchore(deps): bump the dependencies group with 2 updates",
-      "timestamp": "2026-06-05T03:36:32+09:00",
-      "tree_id": "d1ba4d78a8c85cb0d64b0fabf8b2cbdf81d787c6",
-      "url": "https://github.com/guitarrapc/githubactions-lab/commit/edffdc9e27cb711f05f2c4de5c267e9aa88d7166"
+      "id": "5e9c8c64634b659ab895212b4484d0cfbc6b8709",
+      "message": "feat: use client-id instead of app-id (#322)\n\n* feat: use client-id instead of app-id\n\n* [auto commit] Embedded code (workflow=auto doc)\n\n* [auto commit] update context (workflow=auto dump context, event=pull_request, action=opened)\n\n* [auto commit] update context (workflow=auto dump context, event=pull_request, action=synchronize)\n\n* chore: prevent trigger loop on Pull_Request\n\nuse auto token instead of app token on pull_request\n\n* ci: write\n\n* [auto commit] update context (workflow=auto dump context, event=pull_request, action=synchronize)\n\n---------\n\nCo-authored-by: github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>\nCo-authored-by: guitarrapc-github-actions-bot[bot] <249895052+guitarrapc-github-actions-bot[bot]@users.noreply.github.com>",
+      "timestamp": "2026-06-07T00:58:12+09:00",
+      "tree_id": "f7e4ea629f27a45cc7491471a8abb8cb71f28655",
+      "url": "https://github.com/guitarrapc/githubactions-lab/commit/5e9c8c64634b659ab895212b4484d0cfbc6b8709"
     }
   ],
-  "compare": "https://github.com/guitarrapc/githubactions-lab/compare/40f7d106e518...edffdc9e27cb",
+  "compare": "https://github.com/guitarrapc/githubactions-lab/compare/634f44231a90...5e9c8c64634b",
   "created": false,
   "deleted": false,
   "forced": false,
@@ -56,11 +38,11 @@
       "username": "web-flow"
     },
     "distinct": true,
-    "id": "edffdc9e27cb711f05f2c4de5c267e9aa88d7166",
-    "message": "Merge pull request #320 from guitarrapc/dependabot/github_actions/dependencies-bd263a6b2c\n\nchore(deps): bump the dependencies group with 2 updates",
-    "timestamp": "2026-06-05T03:36:32+09:00",
-    "tree_id": "d1ba4d78a8c85cb0d64b0fabf8b2cbdf81d787c6",
-    "url": "https://github.com/guitarrapc/githubactions-lab/commit/edffdc9e27cb711f05f2c4de5c267e9aa88d7166"
+    "id": "5e9c8c64634b659ab895212b4484d0cfbc6b8709",
+    "message": "feat: use client-id instead of app-id (#322)\n\n* feat: use client-id instead of app-id\n\n* [auto commit] Embedded code (workflow=auto doc)\n\n* [auto commit] update context (workflow=auto dump context, event=pull_request, action=opened)\n\n* [auto commit] update context (workflow=auto dump context, event=pull_request, action=synchronize)\n\n* chore: prevent trigger loop on Pull_Request\n\nuse auto token instead of app token on pull_request\n\n* ci: write\n\n* [auto commit] update context (workflow=auto dump context, event=pull_request, action=synchronize)\n\n---------\n\nCo-authored-by: github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>\nCo-authored-by: guitarrapc-github-actions-bot[bot] <249895052+guitarrapc-github-actions-bot[bot]@users.noreply.github.com>",
+    "timestamp": "2026-06-07T00:58:12+09:00",
+    "tree_id": "f7e4ea629f27a45cc7491471a8abb8cb71f28655",
+    "url": "https://github.com/guitarrapc/githubactions-lab/commit/5e9c8c64634b659ab895212b4484d0cfbc6b8709"
   },
   "pusher": {
     "email": "3856350+guitarrapc@users.noreply.github.com",
@@ -158,9 +140,9 @@
     "private": false,
     "pull_request_creation_policy": "all",
     "pulls_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls{/number}",
-    "pushed_at": 1780598192,
+    "pushed_at": 1780761492,
     "releases_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/releases{/id}",
-    "size": 5775,
+    "size": 5646,
     "ssh_url": "git@github.com:guitarrapc/githubactions-lab.git",
     "stargazers": 55,
     "stargazers_count": 55,
@@ -175,7 +157,7 @@
       "github-actions"
     ],
     "trees_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/git/trees{/sha}",
-    "updated_at": "2026-06-02T06:19:52Z",
+    "updated_at": "2026-06-06T08:29:40Z",
     "url": "https://api.github.com/repos/guitarrapc/githubactions-lab",
     "visibility": "public",
     "watchers": 55,
