@@ -1,52 +1,52 @@
 {
-  "after": "9b46093caf7726b1d2de22d238a344dca793ae87",
+  "after": "4bbbcd39d2b7dca11a6d85ee5a667af01976e2bb",
   "base_ref": null,
-  "before": "fbb4789212a3f313623fb7519921b77dc2f7056f",
+  "before": "9f0406593c23caf35ba0784d4b35fc8a27c4ef57",
   "commits": [
     {
       "author": {
-        "email": "249895052+guitarrapc-github-actions-bot[bot]@users.noreply.github.com",
-        "name": "guitarrapc-github-actions-bot[bot]",
-        "username": "guitarrapc-github-actions-bot[bot]"
+        "email": "3856350+guitarrapc@users.noreply.github.com",
+        "name": "Ikiru Yoshizaki",
+        "username": "guitarrapc"
       },
       "committer": {
-        "email": "noreply@github.com",
-        "name": "GitHub",
-        "username": "web-flow"
+        "email": "3856350+guitarrapc@users.noreply.github.com",
+        "name": "Ikiru Yoshizaki",
+        "username": "guitarrapc"
       },
       "distinct": true,
-      "id": "9b46093caf7726b1d2de22d238a344dca793ae87",
-      "message": "[auto commit] update context (workflow=auto dump context, event=push, action=)",
-      "timestamp": "2026-06-06T15:59:32Z",
-      "tree_id": "009f24e6a0de7172deea9ea87ec0bb944c5a86d4",
-      "url": "https://github.com/guitarrapc/githubactions-lab/commit/9b46093caf7726b1d2de22d238a344dca793ae87"
+      "id": "4bbbcd39d2b7dca11a6d85ee5a667af01976e2bb",
+      "message": "ci: stop circular trigger",
+      "timestamp": "2026-06-07T01:03:21+09:00",
+      "tree_id": "795d0b4d47c441d0d161e3716e1e6dda7b95e5ac",
+      "url": "https://github.com/guitarrapc/githubactions-lab/commit/4bbbcd39d2b7dca11a6d85ee5a667af01976e2bb"
     }
   ],
-  "compare": "https://github.com/guitarrapc/githubactions-lab/compare/fbb4789212a3...9b46093caf77",
+  "compare": "https://github.com/guitarrapc/githubactions-lab/compare/9f0406593c23...4bbbcd39d2b7",
   "created": false,
   "deleted": false,
   "forced": false,
   "head_commit": {
     "author": {
-      "email": "249895052+guitarrapc-github-actions-bot[bot]@users.noreply.github.com",
-      "name": "guitarrapc-github-actions-bot[bot]",
-      "username": "guitarrapc-github-actions-bot[bot]"
+      "email": "3856350+guitarrapc@users.noreply.github.com",
+      "name": "Ikiru Yoshizaki",
+      "username": "guitarrapc"
     },
     "committer": {
-      "email": "noreply@github.com",
-      "name": "GitHub",
-      "username": "web-flow"
+      "email": "3856350+guitarrapc@users.noreply.github.com",
+      "name": "Ikiru Yoshizaki",
+      "username": "guitarrapc"
     },
     "distinct": true,
-    "id": "9b46093caf7726b1d2de22d238a344dca793ae87",
-    "message": "[auto commit] update context (workflow=auto dump context, event=push, action=)",
-    "timestamp": "2026-06-06T15:59:32Z",
-    "tree_id": "009f24e6a0de7172deea9ea87ec0bb944c5a86d4",
-    "url": "https://github.com/guitarrapc/githubactions-lab/commit/9b46093caf7726b1d2de22d238a344dca793ae87"
+    "id": "4bbbcd39d2b7dca11a6d85ee5a667af01976e2bb",
+    "message": "ci: stop circular trigger",
+    "timestamp": "2026-06-07T01:03:21+09:00",
+    "tree_id": "795d0b4d47c441d0d161e3716e1e6dda7b95e5ac",
+    "url": "https://github.com/guitarrapc/githubactions-lab/commit/4bbbcd39d2b7dca11a6d85ee5a667af01976e2bb"
   },
   "pusher": {
-    "email": null,
-    "name": "guitarrapc-github-actions-bot[bot]"
+    "email": "3856350+guitarrapc@users.noreply.github.com",
+    "name": "guitarrapc"
   },
   "ref": "refs/heads/main",
   "repository": {
@@ -140,7 +140,7 @@
     "private": false,
     "pull_request_creation_policy": "all",
     "pulls_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls{/number}",
-    "pushed_at": 1780761573,
+    "pushed_at": 1780761804,
     "releases_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/releases{/id}",
     "size": 5646,
     "ssh_url": "git@github.com:guitarrapc/githubactions-lab.git",
@@ -157,7 +157,7 @@
       "github-actions"
     ],
     "trees_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/git/trees{/sha}",
-    "updated_at": "2026-06-06T15:59:12Z",
+    "updated_at": "2026-06-06T16:00:20Z",
     "url": "https://api.github.com/repos/guitarrapc/githubactions-lab",
     "visibility": "public",
     "watchers": 55,
@@ -166,23 +166,23 @@
   },
   "sender": {
     "avatar_url": "https://avatars.githubusercontent.com/u/3856350?v=4",
-    "events_url": "https://api.github.com/users/guitarrapc-github-actions-bot%5Bbot%5D/events{/privacy}",
-    "followers_url": "https://api.github.com/users/guitarrapc-github-actions-bot%5Bbot%5D/followers",
-    "following_url": "https://api.github.com/users/guitarrapc-github-actions-bot%5Bbot%5D/following{/other_user}",
-    "gists_url": "https://api.github.com/users/guitarrapc-github-actions-bot%5Bbot%5D/gists{/gist_id}",
+    "events_url": "https://api.github.com/users/guitarrapc/events{/privacy}",
+    "followers_url": "https://api.github.com/users/guitarrapc/followers",
+    "following_url": "https://api.github.com/users/guitarrapc/following{/other_user}",
+    "gists_url": "https://api.github.com/users/guitarrapc/gists{/gist_id}",
     "gravatar_id": "",
-    "html_url": "https://github.com/apps/guitarrapc-github-actions-bot",
-    "id": 249895052,
-    "login": "guitarrapc-github-actions-bot[bot]",
-    "node_id": "BOT_kgDODuUYjA",
-    "organizations_url": "https://api.github.com/users/guitarrapc-github-actions-bot%5Bbot%5D/orgs",
-    "received_events_url": "https://api.github.com/users/guitarrapc-github-actions-bot%5Bbot%5D/received_events",
-    "repos_url": "https://api.github.com/users/guitarrapc-github-actions-bot%5Bbot%5D/repos",
+    "html_url": "https://github.com/guitarrapc",
+    "id": 3856350,
+    "login": "guitarrapc",
+    "node_id": "MDQ6VXNlcjM4NTYzNTA=",
+    "organizations_url": "https://api.github.com/users/guitarrapc/orgs",
+    "received_events_url": "https://api.github.com/users/guitarrapc/received_events",
+    "repos_url": "https://api.github.com/users/guitarrapc/repos",
     "site_admin": false,
-    "starred_url": "https://api.github.com/users/guitarrapc-github-actions-bot%5Bbot%5D/starred{/owner}{/repo}",
-    "subscriptions_url": "https://api.github.com/users/guitarrapc-github-actions-bot%5Bbot%5D/subscriptions",
-    "type": "Bot",
-    "url": "https://api.github.com/users/guitarrapc-github-actions-bot%5Bbot%5D",
+    "starred_url": "https://api.github.com/users/guitarrapc/starred{/owner}{/repo}",
+    "subscriptions_url": "https://api.github.com/users/guitarrapc/subscriptions",
+    "type": "User",
+    "url": "https://api.github.com/users/guitarrapc",
     "user_view_type": "public"
   }
 }
