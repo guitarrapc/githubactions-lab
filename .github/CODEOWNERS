@@ -1,1 +1,5 @@
 * @guitarrapc
+.github/workflows/ @guitarrapc
+.github/actions/ @guitarrapc
+.github/dependabot.yml @guitarrapc
+.github/CODEOWNERS @guitarrapc
