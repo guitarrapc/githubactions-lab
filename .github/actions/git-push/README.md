@@ -105,10 +105,10 @@ Uses traditional git commands:
 ### With GitHub App Token
 
 ```yaml
-- uses: actions/create-github-app-token@v2
+- uses: actions/create-github-app-token@v3
   id: app-token
   with:
-    app-id: ${{ secrets.APP_ID }}
+    client-id: ${{ secrets.CLIENT_ID }}
     private-key: ${{ secrets.PRIVATE_KEY }}
 
 - uses: ./.github/actions/git-push

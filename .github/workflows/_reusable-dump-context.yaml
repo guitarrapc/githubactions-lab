@@ -15,8 +15,7 @@ jobs:
       matrix:
         runs-on: [ubuntu-24.04]
     permissions:
-      contents: write
-      pull-requests: write
+      contents: read
     runs-on: ${{ matrix.runs-on }}
     timeout-minutes: 5
     steps:
@@ -134,9 +133,15 @@ jobs:
         env:
           CONTEXT: ${{ toJson(matrix) }}
           OUTPUT_PATH: ${{ inputs.output-path }}/matrix
+      - uses: actions/create-github-app-token@bcd2ba49218906704ab6c1aa796996da409d3eb1 # v3.2.0
+        id: app-token
+        with:
+          client-id: ${{ secrets.SYNCED_ACTIONS_BOT_CLIENTID }}
+          private-key: ${{ secrets.SYNCED_ACTIONS_BOT_PRIVATE_KEY }}
+          permission-contents: write
       - name: Update current git to latest & Push changes
         uses: ./.github/actions/git-push
         with:
           commit-message: "[auto commit] update context (workflow=${{ github.workflow }}, event=${{ github.event_name }}, action=${{ github.event.action }})"
           ref: ${{ steps.ref.outputs.value }}
-          github-token: ${{ secrets.GITHUB_TOKEN }}
+          github-token: ${{ steps.app-token.outputs.token }}

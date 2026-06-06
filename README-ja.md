@@ -3913,7 +3913,7 @@ jobs:
       - uses: actions/create-github-app-token@29824e69f54612133e76f7eaac726eef6c875baf # v2.2.1
         id: app-token
         with:
-          app-id: ${{ secrets.SYNCED_ACTIONS_BOT_APPID }}
+          client-id: ${{ secrets.SYNCED_ACTIONS_BOT_CLIENTID }}
           private-key: ${{ secrets.SYNCED_ACTIONS_BOT_PRIVATE_KEY }}
           permission-pull-requests: read # grant read access to pull requests
       - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1

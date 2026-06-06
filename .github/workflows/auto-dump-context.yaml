@@ -33,3 +33,4 @@ jobs:
     uses: ./.github/workflows/_reusable-dump-context.yaml
     with:
       output-path: contexts
+    secrets: inherit
