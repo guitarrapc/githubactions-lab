@@ -3129,7 +3129,7 @@ jobs:
     outputs:
       result: ${{ steps.check.outputs.result }}
     steps:
-      - uses: actions/github-script@v9
+      - uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
         id: check
         with:
           script: |
@@ -3172,7 +3172,7 @@ jobs:
     outputs:
       result: ${{ steps.check.outputs.result }}
     steps:
-      - uses: actions/github-script@v9
+      - uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
         id: check
         with:
           script: |
