@@ -1,7 +1,7 @@
 {
-  "after": "4bbbcd39d2b7dca11a6d85ee5a667af01976e2bb",
+  "after": "bcd07a32c5d159aecfba794e619b368dfb9ee74c",
   "base_ref": null,
-  "before": "9f0406593c23caf35ba0784d4b35fc8a27c4ef57",
+  "before": "b266ae58740e2115eea0e880ff2c281b36ece546",
   "commits": [
     {
       "author": {
@@ -10,19 +10,19 @@
         "username": "guitarrapc"
       },
       "committer": {
-        "email": "3856350+guitarrapc@users.noreply.github.com",
-        "name": "Ikiru Yoshizaki",
-        "username": "guitarrapc"
+        "email": "noreply@github.com",
+        "name": "GitHub",
+        "username": "web-flow"
       },
       "distinct": true,
-      "id": "4bbbcd39d2b7dca11a6d85ee5a667af01976e2bb",
-      "message": "ci: stop circular trigger",
-      "timestamp": "2026-06-07T01:03:21+09:00",
-      "tree_id": "795d0b4d47c441d0d161e3716e1e6dda7b95e5ac",
-      "url": "https://github.com/guitarrapc/githubactions-lab/commit/4bbbcd39d2b7dca11a6d85ee5a667af01976e2bb"
+      "id": "bcd07a32c5d159aecfba794e619b368dfb9ee74c",
+      "message": "chore: pin (#323)\n\n* chore: pin\n\n* [auto commit] update context (workflow=auto dump context, event=pull_request, action=opened)\n\n* [auto commit] Embedded code (workflow=auto doc)\n\n---------\n\nCo-authored-by: github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>",
+      "timestamp": "2026-06-08T02:18:18+09:00",
+      "tree_id": "581b6612092a5c378ec90d2a9e982ac6b6c83f6b",
+      "url": "https://github.com/guitarrapc/githubactions-lab/commit/bcd07a32c5d159aecfba794e619b368dfb9ee74c"
     }
   ],
-  "compare": "https://github.com/guitarrapc/githubactions-lab/compare/9f0406593c23...4bbbcd39d2b7",
+  "compare": "https://github.com/guitarrapc/githubactions-lab/compare/b266ae58740e...bcd07a32c5d1",
   "created": false,
   "deleted": false,
   "forced": false,
@@ -33,16 +33,16 @@
       "username": "guitarrapc"
     },
     "committer": {
-      "email": "3856350+guitarrapc@users.noreply.github.com",
-      "name": "Ikiru Yoshizaki",
-      "username": "guitarrapc"
+      "email": "noreply@github.com",
+      "name": "GitHub",
+      "username": "web-flow"
     },
     "distinct": true,
-    "id": "4bbbcd39d2b7dca11a6d85ee5a667af01976e2bb",
-    "message": "ci: stop circular trigger",
-    "timestamp": "2026-06-07T01:03:21+09:00",
-    "tree_id": "795d0b4d47c441d0d161e3716e1e6dda7b95e5ac",
-    "url": "https://github.com/guitarrapc/githubactions-lab/commit/4bbbcd39d2b7dca11a6d85ee5a667af01976e2bb"
+    "id": "bcd07a32c5d159aecfba794e619b368dfb9ee74c",
+    "message": "chore: pin (#323)\n\n* chore: pin\n\n* [auto commit] update context (workflow=auto dump context, event=pull_request, action=opened)\n\n* [auto commit] Embedded code (workflow=auto doc)\n\n---------\n\nCo-authored-by: github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>",
+    "timestamp": "2026-06-08T02:18:18+09:00",
+    "tree_id": "581b6612092a5c378ec90d2a9e982ac6b6c83f6b",
+    "url": "https://github.com/guitarrapc/githubactions-lab/commit/bcd07a32c5d159aecfba794e619b368dfb9ee74c"
   },
   "pusher": {
     "email": "3856350+guitarrapc@users.noreply.github.com",
@@ -140,9 +140,9 @@
     "private": false,
     "pull_request_creation_policy": "all",
     "pulls_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls{/number}",
-    "pushed_at": 1780761804,
+    "pushed_at": 1780852698,
     "releases_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/releases{/id}",
-    "size": 5646,
+    "size": 5651,
     "ssh_url": "git@github.com:guitarrapc/githubactions-lab.git",
     "stargazers": 55,
     "stargazers_count": 55,
@@ -157,7 +157,7 @@
       "github-actions"
     ],
     "trees_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/git/trees{/sha}",
-    "updated_at": "2026-06-06T16:00:20Z",
+    "updated_at": "2026-06-07T17:17:58Z",
     "url": "https://api.github.com/repos/guitarrapc/githubactions-lab",
     "visibility": "public",
     "watchers": 55,
