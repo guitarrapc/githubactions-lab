@@ -27,10 +27,10 @@ jobs:
           persist-credentials: false
       - name: Add ENV and OUTPUT by Script
         id: script
-        run: bash ./.github/scripts/setenv.sh --ref "${{ env.BRANCH_NAME }}"
+        run: bash ./.github/scripts/setenv.sh --ref "${BRANCH_NAME}"
       - name: Show Script  ENV and OUTPUT
         run: |
-          echo ${{ env.BRANCH_SCRIPT }}
+          echo ${BRANCH_SCRIPT}
           echo ${{ steps.script.outputs.branch }}
 
   pwsh:
@@ -50,8 +50,8 @@ jobs:
           persist-credentials: false
       - name: Add ENV and OUTPUT by Script
         id: script
-        run: ./.github/scripts/setenv.ps1 -Ref "${{ env.BRANCH_NAME }}"
+        run: ./.github/scripts/setenv.ps1 -Ref "$env:BRANCH_NAME"
       - name: Show Script ENV and OUTPUT
         run: |
-          echo "${{ env.BRANCH_SCRIPT }}"
+          echo "$env:BRANCH_SCRIPT"
           echo "${{ steps.script.outputs.branch }}"

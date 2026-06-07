@@ -14,7 +14,7 @@ jobs:
     timeout-minutes: 10
     services:
       redis:
-        image: redis:8
+        image: redis:8@sha256:aa049e689e141a4358ad1d4562dc49c88a89fbab711fd8fcc33f684c80b26301
         ports:
           - 6379:6379
     steps:

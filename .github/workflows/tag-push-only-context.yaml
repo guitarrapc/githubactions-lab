@@ -19,7 +19,7 @@ jobs:
       - name: Show tag value by GITHUB_REF
         run: |
           echo "${{ steps.CI_TAG.outputs.GIT_TAG }}"
-          echo "${{ env.GIT_TAG }}"
+          echo "${GIT_TAG}"
       - name: Show tag value by github.ref_name
         run: echo "${GITHUB_REF_NAME}"
         env:

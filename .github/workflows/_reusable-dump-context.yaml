@@ -73,63 +73,63 @@ jobs:
       - name: Dump environment
         shell: bash
         run: |
-          mkdir -p "${{ env.OUTPUT_PATH }}"
-          env | tee "${{ env.OUTPUT_PATH }}/${{ steps.file.outputs.name }}.sh"
+          mkdir -p "${OUTPUT_PATH}"
+          env | tee "${OUTPUT_PATH}/${{ steps.file.outputs.name }}.sh"
         env:
           CONTEXT: ${{ toJson(env) }}
           OUTPUT_PATH: ${{ inputs.output-path }}/env
       - name: Dump GITHUB_EVENT_PATH json
         shell: bash
         run: |
-          mkdir -p "${{ env.OUTPUT_PATH }}"
-          tee "${{ env.OUTPUT_PATH }}/${{ steps.file.outputs.name }}.json" < "$GITHUB_EVENT_PATH"
+          mkdir -p "${OUTPUT_PATH}"
+          tee "${OUTPUT_PATH}/${{ steps.file.outputs.name }}.json" < "$GITHUB_EVENT_PATH"
         env:
           OUTPUT_PATH: ${{ inputs.output-path }}/github_event_path
       - name: Dump GitHub context
         shell: bash
         run: |
-          mkdir -p "${{ env.OUTPUT_PATH }}"
-          echo "$CONTEXT" | jq '.token="<reducted>"' | tee "${{ env.OUTPUT_PATH }}/${{ steps.file.outputs.name }}.json"
+          mkdir -p "${OUTPUT_PATH}"
+          echo "$CONTEXT" | jq '.token="<reducted>"' | tee "${OUTPUT_PATH}/${{ steps.file.outputs.name }}.json"
         env:
           CONTEXT: ${{ toJson(github) }}
           OUTPUT_PATH: ${{ inputs.output-path }}/github
       - name: Dump job context
         shell: bash
         run: |
-          mkdir -p "${{ env.OUTPUT_PATH }}"
-          echo "$CONTEXT" | tee "${{ env.OUTPUT_PATH }}/${{ steps.file.outputs.name }}.json"
+          mkdir -p "${OUTPUT_PATH}"
+          echo "$CONTEXT" | tee "${OUTPUT_PATH}/${{ steps.file.outputs.name }}.json"
         env:
           CONTEXT: ${{ toJson(job) }}
           OUTPUT_PATH: ${{ inputs.output-path }}/job
       - name: Dump steps context
         shell: bash
         run: |
-          mkdir -p "${{ env.OUTPUT_PATH }}"
-          echo "$CONTEXT" | tee "${{ env.OUTPUT_PATH }}/${{ steps.file.outputs.name }}.json"
+          mkdir -p "${OUTPUT_PATH}"
+          echo "$CONTEXT" | tee "${OUTPUT_PATH}/${{ steps.file.outputs.name }}.json"
         env:
           CONTEXT: ${{ toJson(steps) }}
           OUTPUT_PATH: ${{ inputs.output-path }}/step
       - name: Dump runner context
         shell: bash
         run: |
-          mkdir -p "${{ env.OUTPUT_PATH }}"
-          echo "$CONTEXT" | tee "${{ env.OUTPUT_PATH }}/${{ steps.file.outputs.name }}.json"
+          mkdir -p "${OUTPUT_PATH}"
+          echo "$CONTEXT" | tee "${OUTPUT_PATH}/${{ steps.file.outputs.name }}.json"
         env:
           CONTEXT: ${{ toJson(runner) }}
           OUTPUT_PATH: ${{ inputs.output-path }}/runner
       - name: Dump strategy context
         shell: bash
         run: |
-          mkdir -p "${{ env.OUTPUT_PATH }}"
-          echo "$CONTEXT" | tee "${{ env.OUTPUT_PATH }}/${{ steps.file.outputs.name }}.json"
+          mkdir -p "${OUTPUT_PATH}"
+          echo "$CONTEXT" | tee "${OUTPUT_PATH}/${{ steps.file.outputs.name }}.json"
         env:
           CONTEXT: ${{ toJson(strategy) }}
           OUTPUT_PATH: ${{ inputs.output-path }}/strategy
       - name: Dump matrix context
         shell: bash
         run: |
-          mkdir -p "${{ env.OUTPUT_PATH }}"
-          echo "$CONTEXT" | tee "${{ env.OUTPUT_PATH }}/${{ steps.file.outputs.name }}.json"
+          mkdir -p "${OUTPUT_PATH}"
+          echo "$CONTEXT" | tee "${OUTPUT_PATH}/${{ steps.file.outputs.name }}.json"
         env:
           CONTEXT: ${{ toJson(matrix) }}
           OUTPUT_PATH: ${{ inputs.output-path }}/matrix

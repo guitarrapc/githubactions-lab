@@ -47,8 +47,8 @@ jobs:
             ls -l "$(command -v dotnet)"
           echo "::endgroup::"
 
-          echo "::group::dotnet files under ${{ env.DOTNET_ROOT }}/sdk"
-            ls -l "${{ env.DOTNET_ROOT }}/sdk"
+          echo "::group::dotnet files under ${DOTNET_ROOT}/sdk"
+            ls -l "${DOTNET_ROOT}/sdk"
           echo "::endgroup::"
 
           echo "::group::dotnet version"
@@ -84,8 +84,8 @@ jobs:
           ls -l "$(command -v dotnet)"
           echo "::endgroup::"
 
-          echo "::group::dotnet files under ${{ env.DOTNET_ROOT }}/sdk"
-          ls -l "${{ env.DOTNET_ROOT }}/sdk"
+          echo "::group::dotnet files under ${DOTNET_ROOT}/sdk"
+          ls -l "${DOTNET_ROOT}/sdk"
           echo "::endgroup::"
 
           echo "::group::dotnet version"

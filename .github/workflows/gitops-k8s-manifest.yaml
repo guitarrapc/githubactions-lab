@@ -39,14 +39,14 @@ jobs:
           persist-credentials: false
       - name: generate manifest
         run: |
-          mkdir -p "./${{ env.MANIFEST_REPO }}/${{ env.MANIFEST_DIR }}"
+          mkdir -p "./${MANIFEST_REPO}/${MANIFEST_DIR}"
           kubectl kustomize ./src/k8s/app/overlays/development \
-            | sed -e "s|<namespace>|${NAMESPACE_PREFIX}${{ env.MANIFEST_DIR }}|g" \
+            | sed -e "s|<namespace>|${NAMESPACE_PREFIX}${MANIFEST_DIR}|g" \
             | sed -e "s|<git-sha>|${{ github.sha }}|g" \
             | sed -e "s|<git-branch>|${BRANCH}|g" \
             | sed -e "s|<git-link>|${GITHUB_PR_URL}|g" \
             | sed -e "s|<build-id>|${{ github.run_id }}|g" \
-            | tee "${{ env.MANIFEST_REPO }}/${{ env.MANIFEST_DIR }}/all.yaml"
+            | tee "${MANIFEST_REPO}/${MANIFEST_DIR}/all.yaml"
         env:
           BRANCH: ${{ github.event_name == 'pull_request' && github.head_ref || github.ref_name }}
           GITHUB_PR_URL: ${{ github.event.pull_request.html_url }}

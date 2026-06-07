@@ -33,7 +33,9 @@ jobs:
     steps:
       - name: Setup tag
         id: tag
-        run: echo "value=${{ inputs.tag || (github.event_name == 'pull_request' && '0.1.0-test' || github.ref_name) }}" | tee -a "$GITHUB_OUTPUT"
+        run: echo "value=${TAG}" | tee -a "$GITHUB_OUTPUT"
+        env:
+          TAG: ${{ inputs.tag || (github.event_name == 'pull_request' && '0.1.0-test' || github.ref_name) }}
       # Create Tag
       - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
         with:
