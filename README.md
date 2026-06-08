@@ -1,6 +1,6 @@
 [![auto doc](https://github.com/guitarrapc/githubactions-lab/actions/workflows/auto-doc.yaml/badge.svg)](https://github.com/guitarrapc/githubactions-lab/actions/workflows/auto-doc.yaml)
 [![auto dump context](https://github.com/guitarrapc/githubactions-lab/actions/workflows/auto-dump-context.yaml/badge.svg)](https://github.com/guitarrapc/githubactions-lab/actions/workflows/auto-dump-context.yaml)
-[![actionlint](https://github.com/guitarrapc/githubactions-lab/actions/workflows/actionlint.yaml/badge.svg)](https://github.com/guitarrapc/githubactions-lab/actions/workflows/actionlint.yaml)
+[![GitHub Actions Lint](https://github.com/guitarrapc/githubactions-lab/actions/workflows/github-actions-lint.yaml/badge.svg)](https://github.com/guitarrapc/githubactions-lab/actions/workflows/github-actions-lint.yaml)
 
 English | [日本語](./README-ja.md)
 
@@ -91,7 +91,6 @@ GitHub Actions research and test laboratory.
   - [Path for Downloaded Remote Actions](#path-for-downloaded-remote-actions)
   - [Stale Issue and PR close automation](#stale-issue-and-pr-close-automation)
   - [Telemetry for GitHub Workflow execution](#telemetry-for-github-workflow-execution)
-  - [Tool management in GitHub Actions with Aqua](#tool-management-in-github-actions-with-aqua)
   - [Type converter with fromJson](#type-converter-with-fromjson)
   - [Want to get a list of GitHub Actions scheduled workflows](#want-to-get-a-list-of-github-actions-scheduled-workflows)
 
@@ -658,11 +657,11 @@ jobs:
       - name: Add ENV and OUTPUT by shell
         id: shell
         run: |
-          echo "BRANCH=${{ env.BRANCH_NAME }}" | tee -a "$GITHUB_ENV"
-          echo "branch=${{ env.BRANCH_NAME }}" | tee -a "$GITHUB_OUTPUT"
+          echo "BRANCH=${BRANCH_NAME}" | tee -a "$GITHUB_ENV"
+          echo "branch=${BRANCH_NAME}" | tee -a "$GITHUB_OUTPUT"
       - name: Show ENV and OUTPUT
         run: |
-          echo ${{ env.BRANCH }}
+          echo ${BRANCH}
           echo ${{ steps.shell.outputs.branch }}
       - name: Add PATH
         run: echo "$HOME/foo/bar" | tee -a "$GITHUB_PATH"
@@ -687,11 +686,11 @@ jobs:
       - name: Add ENV and OUTPUT by shell
         id: shell
         run: |
-          echo "BRANCH=${{ env.BRANCH_NAME }}" | Tee-Object -Append -FilePath "${env:GITHUB_ENV}"
-          echo "branch=${{ env.BRANCH_NAME }}" | Tee-Object -Append -FilePath "${env:GITHUB_OUTPUT}"
+          echo "BRANCH=$env:BRANCH_NAME" | Tee-Object -Append -FilePath "${env:GITHUB_ENV}"
+          echo "branch=$env:BRANCH_NAME" | Tee-Object -Append -FilePath "${env:GITHUB_OUTPUT}"
       - name: Show ENV and OUTPUT
         run: |
-          echo "${{ env.BRANCH }}"
+          echo "$env:BRANCH"
           echo "${{ steps.shell.outputs.branch }}"
       - name: Add PATH
         run: echo "$HOME/foo/bar" | Tee-Object -Append -FilePath "${env:GITHUB_PATH}"
@@ -905,10 +904,10 @@ jobs:
           persist-credentials: false
       - name: Add ENV and OUTPUT by Script
         id: script
-        run: bash ./.github/scripts/setenv.sh --ref "${{ env.BRANCH_NAME }}"
+        run: bash ./.github/scripts/setenv.sh --ref "${BRANCH_NAME}"
       - name: Show Script  ENV and OUTPUT
         run: |
-          echo ${{ env.BRANCH_SCRIPT }}
+          echo ${BRANCH_SCRIPT}
           echo ${{ steps.script.outputs.branch }}
 
   pwsh:
@@ -928,10 +927,10 @@ jobs:
           persist-credentials: false
       - name: Add ENV and OUTPUT by Script
         id: script
-        run: ./.github/scripts/setenv.ps1 -Ref "${{ env.BRANCH_NAME }}"
+        run: ./.github/scripts/setenv.ps1 -Ref "$env:BRANCH_NAME"
       - name: Show Script ENV and OUTPUT
         run: |
-          echo "${{ env.BRANCH_SCRIPT }}"
+          echo "$env:BRANCH_SCRIPT"
           echo "${{ steps.script.outputs.branch }}"
 
 ```
@@ -1586,7 +1585,7 @@ on:
     branches: ["main"]
 
 env:
-  fruit: APPLES
+  FRUIT: APPLES
 
 jobs:
   dereference:
@@ -1609,9 +1608,9 @@ jobs:
       - run: echo "org:${{ matrix.org }} secret:${SECRET}"
         env:
           SECRET: ${{ secrets[matrix.secret] }} # zizmor: ignore[overprovisioned-secrets]
-      - run: echo "env:${{ env.fruit }} secret:${SECRET}"
+      - run: echo "env:${FRUIT} secret:${SECRET}"
         env:
-          SECRET: ${{ secrets[env.fruit] }} # zizmor: ignore[overprovisioned-secrets]
+          SECRET: ${{ secrets.APPLES }} # explicit secret reference avoids overprovisioned secrets
 
 ```
 
@@ -1725,7 +1724,7 @@ jobs:
     steps:
       - name: Show Environment Variables
         run: env
-      - run: echo "BRANCH=${{ env.BRANCH }}, LOGLEVEL=${{ env.LOGLEVEL }}, TAGS=${{ env.TAGS }}, DRY_RUN=${{ env.DRY_RUN }}"
+      - run: echo "BRANCH=${BRANCH}, LOGLEVEL=${LOGLEVEL}, TAGS=${TAGS}, DRY_RUN=${DRY_RUN}"
       - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
         with:
           ref: ${{ inputs.branch }}
@@ -1781,7 +1780,7 @@ jobs:
     steps:
       - name: Setup tag
         id: tag
-        run: echo "value=${{ env.TAG_VALUE }}" | tee -a "$GITHUB_OUTPUT"
+        run: echo "value=${TAG_VALUE}" | tee -a "$GITHUB_OUTPUT"
         env:
           TAG_VALUE: ${{ github.ref_name }}
       # create dummy files
@@ -1806,7 +1805,7 @@ jobs:
 
 You can detect which files were changed with push or pull_request events in GitHub Actions. This is useful when you want to use `path-filter` but require further file handling. The following actions are available and can be used in the same way.
 
-`dorny/paths-filter` is still actively developed. However, its output is quite dynamic and hard to handle with static linters like actionlint.
+`dorny/paths-filter` is still actively developed. However, its output is quite dynamic and hard to handle with static linters.
 
 ```yaml
 # .github/workflows/file-change-detect-dorny.yaml
@@ -2031,7 +2030,9 @@ jobs:
     steps:
       - name: Setup tag
         id: tag
-        run: echo "value=${{ inputs.tag || (github.event_name == 'pull_request' && '0.1.0-test' || github.ref_name) }}" | tee -a "$GITHUB_OUTPUT"
+        run: echo "value=${TAG}" | tee -a "$GITHUB_OUTPUT"
+        env:
+          TAG: ${{ inputs.tag || (github.event_name == 'pull_request' && '0.1.0-test' || github.ref_name) }}
       # Create Tag
       - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
         with:
@@ -2774,7 +2775,7 @@ jobs:
     runs-on: ubuntu-24.04
     timeout-minutes: 10
     container:
-      image: golang:1.25
+      image: golang:1.25@sha256:dd7d32e19b28621cd982082397fc0510d396805b717d5e77466aa2dd692340de
     steps:
       - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
         with:
@@ -2810,7 +2811,7 @@ jobs:
     timeout-minutes: 10
     services:
       redis:
-        image: redis:8
+        image: redis:8@sha256:aa049e689e141a4358ad1d4562dc49c88a89fbab711fd8fcc33f684c80b26301
         ports:
           - 6379:6379
     steps:
@@ -3687,7 +3688,7 @@ jobs:
         env:
           APPLES: ${{ secrets.APPLES }}
       - name: called env (global)
-        run: echo "called global env. ${{ env.FOO }}"
+        run: echo "called global env. ${FOO}"
       - name: output step1
         id: step1
         run: echo "firstword=hello" >> "$GITHUB_OUTPUT"
@@ -4104,10 +4105,11 @@ Here's some tips for configuring Dependabot for GitHub Actions.
 
 ## Lint GitHub Actions workflow
 
-You can lint GitHub Actions yaml via [actionlint](https://github.com/rhysd/actionlint), [ghalint](https://github.com/suzuki-shunsuke/ghalint) and [zizmor](https://github.com/woodruffw/zizmor). If you don't need automated PR review, run any of these linter on schedule may be fine.
+You can lint GitHub Actions yaml via [seiton](https://github.com/guitarrapc/seiton), [actionlint](https://github.com/rhysd/actionlint), [ghalint](https://github.com/suzuki-shunsuke/ghalint) and [zizmor](https://github.com/woodruffw/zizmor). If you don't need automated PR review, run any of these linter on schedule may be fine.
 
 Linter will check follows.
 
+* seiton: Check syntax and security practice issue of GitHub Actions workflow yaml.
 * actionlint: Check syntax and structure of GitHub Actions workflow yaml.
 * ghalint: Check actions/checkout should set `persist-credentials: false`, Reusable workflow's `secrets: inherit`.
 * zizmor: Check GitHub Action's security vulnerability.
@@ -4115,44 +4117,86 @@ Linter will check follows.
 > TIPS: See [Tool management in GitHub Actions with Aqua](#tool-management-in-github-actions-with-aqua) for Aqua usage.
 
 ```yaml
-# .github/workflows/actionlint.yaml
+# .github/workflows/github-actions-lint.yaml
 
-name: actionlint
+name: GitHub Actions Lint
+
 on:
   workflow_dispatch:
-  pull_request:
-    branches: ["main"]
-    paths:
-      - ".github/workflows/**"
   schedule:
     - cron: "0 0 * * *"
+  pull_request:
+    paths:
+      - ".github/workflows/**"
+      - ".github/actions/**"
+      - "action.yml"
+      - "action.yaml"
+
+permissions:
+  contents: read
 
 jobs:
   lint:
+    runs-on: ubuntu-24.04
     permissions:
       contents: read
-    runs-on: ubuntu-24.04
     timeout-minutes: 5
     steps:
-      - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
         with:
           persist-credentials: false
-      - uses: aquaproj/aqua-installer@9ebf656952a20c45a5d66606f083ff34f58b8ce0 # v4.0.0
+
+      # Preferred: setup-seiton installs the native binary and keeps CI lightweight.
+      - uses: guitarrapc/setup-seiton@92f424f8dae8130d8f6299c74716356437d746ba # v1.0.2
         with:
-          aqua_version: v2.43.1
-      # github workflows/action's Static Checker
-      - name: Run actionlint
-        run: actionlint -color -oneline
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      # # checkout's persist-credentials: false checker
-      # - name: Run ghalint
-      #   run: ghalint run
-      # A static analysis tool for GitHub Actions
-      - name: Run zizmor
-        run: docker run -t --env "GH_TOKEN=${GH_TOKEN}" -v .:/github ghcr.io/zizmorcore/zizmor:1.22.0 /github --config /github/.zizmor.yaml --min-severity medium --format github
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          seiton-version: 0.9.27
+      # Default on GitHub Actions: --format github-actions (rich stdout + job summary).
+      # First adoption: fail only on errors until warnings are enforced:
+      # run: seiton --include-actions --min-severity error
+      - name: Run seiton
+        run: seiton --include-actions
+
+      # Alternative (containerized run): Use this instead of setup-seiton if needed.
+      # - name: Run seiton (Docker)
+      #   run: |
+      #     docker run --rm  -v "$PWD:/repo:ro" -e GITHUB_ACTIONS -e GITHUB_STEP_SUMMARY ghcr.io/guitarrapc/seiton:v0.9.27 --include-actions
+
+  # Optional: Docker-based run (if you prefer container execution over setup-seiton)
+  # Optional: GitHub Code Scanning (SARIF). Uncomment this job and add workflow permissions:
+  #   permissions:
+  #     contents: read
+  #     security-events: write
+  #
+  # code-scanning:
+  #   runs-on: ubuntu-24.04
+  #   timeout-minutes: 5
+  #   permissions:
+  #     contents: read
+  #     security-events: write
+  #   steps:
+  #     - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+  #       with:
+  #         persist-credentials: false
+  #
+  #     - uses: guitarrapc/setup-seiton@v1
+  #
+  #     - name: Run seiton (SARIF)
+  #       run: seiton --format sarif --include-actions > results.sarif
+  #
+  #     # Alternative (Docker):
+  #     # - name: Run seiton (SARIF, Docker)
+  #     #   run: |
+  #     #     docker run --rm \
+  #     #       -v "$PWD:/repo:ro" \
+  #     #       ghcr.io/guitarrapc/seiton:v0.9.27 \
+  #     #       --format sarif --include-actions > results.sarif
+  #
+  #     - name: Upload SARIF
+  #       if: always()
+  #       uses: github/codeql-action/upload-sarif@03e4368ac7daa2bd82b3e85262f3bf87ee112f57 # v3.36.0
+  #       with:
+  #         sarif_file: results.sarif
+  #         category: seiton
 
 ```
 
@@ -4535,7 +4579,7 @@ jobs:
       - name: Show tag value by GITHUB_REF
         run: |
           echo "${{ steps.CI_TAG.outputs.GIT_TAG }}"
-          echo "${{ env.GIT_TAG }}"
+          echo "${GIT_TAG}"
       - name: Show tag value by github.ref_name
         run: echo "${GITHUB_REF_NAME}"
         env:
@@ -4699,52 +4743,6 @@ Also if workflow ran with `pull_request` trigger, then you can enable [PR commen
 
 ![GitHub Workflow Telemetry PR Comment](./images/workflow-telemetry-action-prcomment.png)
 
-## Tool management in GitHub Actions with Aqua
-
-[Aqua](https://aquaproj.github.io/) is a tool manager and useful for GitHub Actions. Aqua can install and manage multiple tools in your GitHub Actions workflow. Aqua uses `aqua.yaml` file to define which tools and versions to install. Just calling `aqua install` command will install all tools defined in `aqua.yaml`, you don't need to install each tool one by one.
-
-```yaml
-# .github/workflows/actionlint.yaml
-
-name: actionlint
-on:
-  workflow_dispatch:
-  pull_request:
-    branches: ["main"]
-    paths:
-      - ".github/workflows/**"
-  schedule:
-    - cron: "0 0 * * *"
-
-jobs:
-  lint:
-    permissions:
-      contents: read
-    runs-on: ubuntu-24.04
-    timeout-minutes: 5
-    steps:
-      - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
-        with:
-          persist-credentials: false
-      - uses: aquaproj/aqua-installer@9ebf656952a20c45a5d66606f083ff34f58b8ce0 # v4.0.0
-        with:
-          aqua_version: v2.43.1
-      # github workflows/action's Static Checker
-      - name: Run actionlint
-        run: actionlint -color -oneline
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      # # checkout's persist-credentials: false checker
-      # - name: Run ghalint
-      #   run: ghalint run
-      # A static analysis tool for GitHub Actions
-      - name: Run zizmor
-        run: docker run -t --env "GH_TOKEN=${GH_TOKEN}" -v .:/github ghcr.io/zizmorcore/zizmor:1.22.0 /github --config /github/.zizmor.yaml --min-severity medium --format github
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-```
-
 ## Type converter with fromJson
 
 There are some cases where you want to convert a string to another type.
@@ -4798,7 +4796,7 @@ Following is the result of the script.
 | Workflow | File Name | Schedule (UTC) | Last Commit by |
 | ---- | ---- | ---- | ---- |
 | action runner info | .github/workflows/action-runner-info.yaml | 0 0 * * 0 | guitarrapc |
-| actionlint | .github/workflows/actionlint.yaml | 0 0 * * * | guitarrapc |
+| GitHub Actions Lint | .github/workflows/github-actions-lint.yaml | 0 0 * * * | guitarrapc |
 | auto dump context | .github/workflows/auto-dump-context.yaml | 0 0 * * 0 | guitarrapc |
 | context github | .github/workflows/context-github.yaml | 0 0 * * 1 | guitarrapc |
 | dotnet lint | .github/workflows/dotnet-lint.yaml | 0 1 * * 1 | guitarrapc |

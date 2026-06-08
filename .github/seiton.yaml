@@ -1,0 +1,70 @@
+# Seiton linter configuration. see https://github.com/guitarrapc/seiton/blob/main/docs/configuration.md for details.
+# Preferred location: .github/seiton.yaml
+
+rules:
+  # Map moving labels to pinned replacements for detection/fix.
+  runner-no-latest:
+    fix-mapping:
+      ubuntu-latest: "ubuntu-24.04"
+      windows-latest: "windows-2025"
+      macos-latest: "macos-15"
+
+  # Online rules (default: disabled). Enable individually:
+  known-vulnerable-actions:
+    enabled: true
+  impostor-commit:
+    enabled: true
+  ref-confusion:
+    enabled: true
+  stale-action-refs:
+    enabled: true
+
+exclusions:
+  # Agentic Workflow files (# gh-aw-metadata: header or *.lock.yml):
+  - file: .github/workflows/agentics-maintenance.yml
+  - file: .github/workflows/*.lock.yml
+  - file: .github/workflows/injection-attack-via-context.yaml
+  - file: .github/workflows/auto-dump-context.yaml
+    rules:
+      - dangerous-triggers
+      - deny-inherit-secrets
+  - file: .github/workflows/dump-context.yaml
+    rules:
+      - dangerous-triggers
+  - file: .github/workflows/reusable-workflow-caller-nest.yaml
+    rules:
+      - deny-inherit-secrets
+  # Intentionally bad / demo patterns (filename or content is the lesson):
+  - file: .github/workflows/job-needs-skip-handling-bad.yaml
+    rules:
+      - if-cond
+  - file: .github/workflows/matrix-secret.yaml
+    rules:
+      - unredacted-secrets
+  - file: .github/workflows/secrets-access.yaml
+    rules:
+      - unredacted-secrets
+  - file: .github/workflows/_reusable-workflow-called.yaml
+    rules:
+      - unredacted-secrets
+  - file: .github/workflows/matrix.yaml
+    rules:
+      - runner-no-latest
+
+discovery:
+  skip-agentic-workflows: true
+
+fix:
+  defaults:
+    job-timeout-minutes: 15
+  pinning:
+    enable-network: true
+    min-age-days: 14
+  images:
+    enable-network: true
+
+network:
+  on-error: skip
+
+output:
+  sort-order: location

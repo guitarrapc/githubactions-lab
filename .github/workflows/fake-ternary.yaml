@@ -22,6 +22,6 @@ jobs:
     runs-on: ubuntu-24.04
     timeout-minutes: 3
     steps:
-      - run: echo "GROUP=[${{ env.GROUP }}]"
-      - run: echo "GROUP2=[${{ env.GROUP2 }}]"
-      - run: echo "VALUE=[${{ env.VALUE }}]"
+      - run: echo "GROUP=[${GROUP}]"
+      - run: echo "GROUP2=[${GROUP2}]"
+      - run: echo "VALUE=[${VALUE}]"

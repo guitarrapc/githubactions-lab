@@ -1,6 +1,6 @@
 [![auto doc](https://github.com/guitarrapc/githubactions-lab/actions/workflows/auto-doc.yaml/badge.svg)](https://github.com/guitarrapc/githubactions-lab/actions/workflows/auto-doc.yaml)
 [![auto dump context](https://github.com/guitarrapc/githubactions-lab/actions/workflows/auto-dump-context.yaml/badge.svg)](https://github.com/guitarrapc/githubactions-lab/actions/workflows/auto-dump-context.yaml)
-[![actionlint](https://github.com/guitarrapc/githubactions-lab/actions/workflows/actionlint.yaml/badge.svg)](https://github.com/guitarrapc/githubactions-lab/actions/workflows/actionlint.yaml)
+[![GitHub Actions Lint](https://github.com/guitarrapc/githubactions-lab/actions/workflows/github-actions-lint.yaml/badge.svg)](https://github.com/guitarrapc/githubactions-lab/actions/workflows/github-actions-lint.yaml)
 
 [English](./README.md) | 日本語
 
@@ -91,7 +91,6 @@ GitHub Actionsの研究とテストラボです。
   - [ダウンロードされたリモートアクションのパス](#%E3%83%80%E3%82%A6%E3%83%B3%E3%83%AD%E3%83%BC%E3%83%89%E3%81%95%E3%82%8C%E3%81%9F%E3%83%AA%E3%83%A2%E3%83%BC%E3%83%88%E3%82%A2%E3%82%AF%E3%82%B7%E3%83%A7%E3%83%B3%E3%81%AE%E3%83%91%E3%82%B9)
   - [古いIssueとPRの自動クローズ](#%E5%8F%A4%E3%81%84issue%E3%81%A8pr%E3%81%AE%E8%87%AA%E5%8B%95%E3%82%AF%E3%83%AD%E3%83%BC%E3%82%BA)
   - [GitHubワークフロー実行のテレメトリー](#github%E3%83%AF%E3%83%BC%E3%82%AF%E3%83%95%E3%83%AD%E3%83%BC%E5%AE%9F%E8%A1%8C%E3%81%AE%E3%83%86%E3%83%AC%E3%83%A1%E3%83%88%E3%83%AA%E3%83%BC)
-  - [AquaでGitHub Actionsのツール管理](#aqua%E3%81%A7github-actions%E3%81%AE%E3%83%84%E3%83%BC%E3%83%AB%E7%AE%A1%E7%90%86)
   - [fromJsonを使用した型変換](#fromjson%E3%82%92%E4%BD%BF%E7%94%A8%E3%81%97%E3%81%9F%E5%9E%8B%E5%A4%89%E6%8F%9B)
   - [GitHub Actionsのスケジュールワークフロー一覧を取得したい](#github-actions%E3%81%AE%E3%82%B9%E3%82%B1%E3%82%B8%E3%83%A5%E3%83%BC%E3%83%AB%E3%83%AF%E3%83%BC%E3%82%AF%E3%83%95%E3%83%AD%E3%83%BC%E4%B8%80%E8%A6%A7%E3%82%92%E5%8F%96%E5%BE%97%E3%81%97%E3%81%9F%E3%81%84)
 
@@ -1806,7 +1805,7 @@ jobs:
 
 GitHub Actionsのpushまたはpull_requestイベントで、どのファイルが変更されたかを検出できます。これは、`path-filter`を使用したいが、さらにファイル処理が必要な場合に便利です。次のアクションが利用可能で、同じように使用できます。
 
-`dorny/paths-filter`は現在も活発に開発されています。ただし、その出力は非常に動的で、actionlintのような静的リンターでは扱いにくいです。
+`dorny/paths-filter`は現在も活発に開発されています。ただし、その出力は非常に動的で静的リンターでは扱いにくいです。
 
 ```yaml
 # .github/workflows/file-change-detect-dorny.yaml
@@ -3987,10 +3986,11 @@ GitHub ActionsのDependabotを設定するためのティップス:
 
 ## GitHub Actionsワークフローのリント
 
-[actionlint](https://github.com/rhysd/actionlint)、[ghalint](https://github.com/suzuki-shunsuke/ghalint)、[zizmor](https://github.com/woodruffw/zizmor)を使用してGitHub Actions yamlをリントできます。自動PRレビューが必要ない場合は、スケジュールでこれらのリンターを実行すれば十分かもしれません。
+[seiton](https://github.com/guitarrapc/seiton)、[actionlint](https://github.com/rhysd/actionlint)、[ghalint](https://github.com/suzuki-shunsuke/ghalint)、[zizmor](https://github.com/woodruffw/zizmor)を使用してGitHub Actions yamlをリントできます。自動PRレビューが必要ない場合は、スケジュールでこれらのリンターを実行すれば十分かもしれません。
 
 リンターは以下をチェックします。
 
+* seiton: GitHub Actionsのシンタックスやセキュリティベストプラクティス違反を検出。
 * actionlint: GitHub Actionsワークフローyamlの構文と構造をチェック。
 * ghalint: actions/checkoutが`persist-credentials: false`を設定しているか、再利用可能なワークフローの`secrets: inherit`をチェック。
 * zizmor: GitHub Actionのセキュリティ脆弱性をチェック。
@@ -3998,42 +3998,7 @@ GitHub ActionsのDependabotを設定するためのティップス:
 > ティップス: Aquaの使用方法については[AquaでのGitHub Actionsツール管理](#aquaでのgithub-actionsツール管理)を参照してください。
 
 ```yaml
-# .github/workflows/actionlint.yaml
-
-name: actionlint
-on:
-  workflow_dispatch:
-  pull_request:
-    branches: ["main"]
-    paths:
-      - ".github/workflows/**"
-  schedule:
-    - cron: "0 0 * * *"
-
-jobs:
-  lint:
-    permissions:
-      contents: read
-    runs-on: ubuntu-24.04
-    timeout-minutes: 5
-    steps:
-      - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
-        with:
-          persist-credentials: false
-      - uses: aquaproj/aqua-installer@9ebf656952a20c45a5d66606f083ff34f58b8ce0 # v4.0.0
-        with:
-          aqua_version: v2.43.1
-      # github workflows/action's Static Checker
-      - name: Run actionlint
-        run: actionlint -color -oneline
-      # checkout's persist-credentials: false checker
-      - name: Run ghalint
-        run: ghalint run
-      # A static analysis tool for GitHub Actions
-      - name: Run zizmor
-        run: docker run -t --env "GH_TOKEN=${GH_TOKEN}" -v .:/github ghcr.io/zizmorcore/zizmor:1.18.0 /github --min-severity medium --format github
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+# .github/workflows/github-actions-lint.yaml
 
 ```
 
@@ -4580,50 +4545,6 @@ jobs:
 
 ![GitHub Workflow Telemetry PR Comment](./images/workflow-telemetry-action-prcomment.png)
 
-## AquaでGitHub Actionsのツール管理
-
-[Aqua](https://aquaproj.github.io/)はツールマネージャーで、GitHub Actionsに便利です。AquaはGitHub Actionsワークフローで複数のツールをインストールおよび管理できます。Aquaは`aqua.yaml`ファイルを使用して、インストールするツールとバージョンを定義します。`aqua install`コマンドを呼び出すだけで、`aqua.yaml`に定義されたすべてのツールがインストールされるため、各ツールを1つずつインストールする必要がありません。
-
-```yaml
-# .github/workflows/actionlint.yaml
-
-name: actionlint
-on:
-  workflow_dispatch:
-  pull_request:
-    branches: ["main"]
-    paths:
-      - ".github/workflows/**"
-  schedule:
-    - cron: "0 0 * * *"
-
-jobs:
-  lint:
-    permissions:
-      contents: read
-    runs-on: ubuntu-24.04
-    timeout-minutes: 5
-    steps:
-      - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
-        with:
-          persist-credentials: false
-      - uses: aquaproj/aqua-installer@9ebf656952a20c45a5d66606f083ff34f58b8ce0 # v4.0.0
-        with:
-          aqua_version: v2.43.1
-      # github workflows/action's Static Checker
-      - name: Run actionlint
-        run: actionlint -color -oneline
-      # checkout's persist-credentials: false checker
-      - name: Run ghalint
-        run: ghalint run
-      # A static analysis tool for GitHub Actions
-      - name: Run zizmor
-        run: docker run -t --env "GH_TOKEN=${GH_TOKEN}" -v .:/github ghcr.io/zizmorcore/zizmor:1.18.0 /github --min-severity medium --format github
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-```
-
 ## fromJsonを使用した型変換
 
 文字列を別の型に変換したい場合があります。
@@ -4677,7 +4598,7 @@ done
 | Workflow | File Name | Schedule (UTC) | Last Commit by |
 | ---- | ---- | ---- | ---- |
 | action runner info | .github/workflows/action-runner-info.yaml | 0 0 * * 0 | guitarrapc |
-| actionlint | .github/workflows/actionlint.yaml | 0 0 * * * | guitarrapc |
+| GitHub Actions Lint | .github/workflows/github-actions-lint.yaml | 0 0 * * * | guitarrapc |
 | auto dump context | .github/workflows/auto-dump-context.yaml | 0 0 * * 0 | guitarrapc |
 | context github | .github/workflows/context-github.yaml | 0 0 * * 1 | guitarrapc |
 | dotnet lint | .github/workflows/dotnet-lint.yaml | 0 1 * * 1 | guitarrapc |

@@ -62,7 +62,7 @@ jobs:
         env:
           APPLES: ${{ secrets.APPLES }}
       - name: called env (global)
-        run: echo "called global env. ${{ env.FOO }}"
+        run: echo "called global env. ${FOO}"
       - name: output step1
         id: step1
         run: echo "firstword=hello" >> "$GITHUB_OUTPUT"

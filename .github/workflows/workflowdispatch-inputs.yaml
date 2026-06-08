@@ -44,7 +44,7 @@ jobs:
     steps:
       - name: Show Environment Variables
         run: env
-      - run: echo "BRANCH=${{ env.BRANCH }}, LOGLEVEL=${{ env.LOGLEVEL }}, TAGS=${{ env.TAGS }}, DRY_RUN=${{ env.DRY_RUN }}"
+      - run: echo "BRANCH=${BRANCH}, LOGLEVEL=${LOGLEVEL}, TAGS=${TAGS}, DRY_RUN=${DRY_RUN}"
       - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
         with:
           ref: ${{ inputs.branch }}

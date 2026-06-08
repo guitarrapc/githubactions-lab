@@ -74,7 +74,7 @@ jobs:
 
   dispatch:
     needs: [detect_library_change]
-    if: (github.event_name == 'push' || github.event_name == 'workflow_dispatch') && needs.detect_library_change.outputs.cache-hit != 'true'
+    if: ${{ (github.event_name == 'push' || github.event_name == 'workflow_dispatch') && needs.detect_library_change.outputs.cache-hit != 'true' }}
     permissions:
       contents: read
     runs-on: ubuntu-24.04
