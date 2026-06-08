@@ -4114,7 +4114,7 @@ Linter will check follows.
 * ghalint: Check actions/checkout should set `persist-credentials: false`, Reusable workflow's `secrets: inherit`.
 * zizmor: Check GitHub Action's security vulnerability.
 
-> TIPS: See [Tool management in GitHub Actions with Aqua](#tool-management-in-github-actions-with-aqua) for Aqua usage.
+In the following example, we use `seiton` to lint GitHub Actions workflow yaml. You can replace it with other linters if you want.
 
 ```yaml
 # .github/workflows/github-actions-lint.yaml

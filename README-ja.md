@@ -657,11 +657,11 @@ jobs:
       - name: Add ENV and OUTPUT by shell
         id: shell
         run: |
-          echo "BRANCH=${{ env.BRANCH_NAME }}" | tee -a "$GITHUB_ENV"
-          echo "branch=${{ env.BRANCH_NAME }}" | tee -a "$GITHUB_OUTPUT"
+          echo "BRANCH=${BRANCH_NAME}" | tee -a "$GITHUB_ENV"
+          echo "branch=${BRANCH_NAME}" | tee -a "$GITHUB_OUTPUT"
       - name: Show ENV and OUTPUT
         run: |
-          echo ${{ env.BRANCH }}
+          echo ${BRANCH}
           echo ${{ steps.shell.outputs.branch }}
       - name: Add PATH
         run: echo "$HOME/foo/bar" | tee -a "$GITHUB_PATH"
@@ -686,11 +686,11 @@ jobs:
       - name: Add ENV and OUTPUT by shell
         id: shell
         run: |
-          echo "BRANCH=${{ env.BRANCH_NAME }}" | Tee-Object -Append -FilePath "${env:GITHUB_ENV}"
-          echo "branch=${{ env.BRANCH_NAME }}" | Tee-Object -Append -FilePath "${env:GITHUB_OUTPUT}"
+          echo "BRANCH=$env:BRANCH_NAME" | Tee-Object -Append -FilePath "${env:GITHUB_ENV}"
+          echo "branch=$env:BRANCH_NAME" | Tee-Object -Append -FilePath "${env:GITHUB_OUTPUT}"
       - name: Show ENV and OUTPUT
         run: |
-          echo "${{ env.BRANCH }}"
+          echo "$env:BRANCH"
           echo "${{ steps.shell.outputs.branch }}"
       - name: Add PATH
         run: echo "$HOME/foo/bar" | Tee-Object -Append -FilePath "${env:GITHUB_PATH}"
@@ -904,10 +904,10 @@ jobs:
           persist-credentials: false
       - name: Add ENV and OUTPUT by Script
         id: script
-        run: bash ./.github/scripts/setenv.sh --ref "${{ env.BRANCH_NAME }}"
+        run: bash ./.github/scripts/setenv.sh --ref "${BRANCH_NAME}"
       - name: Show Script  ENV and OUTPUT
         run: |
-          echo ${{ env.BRANCH_SCRIPT }}
+          echo ${BRANCH_SCRIPT}
           echo ${{ steps.script.outputs.branch }}
 
   pwsh:
@@ -927,10 +927,10 @@ jobs:
           persist-credentials: false
       - name: Add ENV and OUTPUT by Script
         id: script
-        run: ./.github/scripts/setenv.ps1 -Ref "${{ env.BRANCH_NAME }}"
+        run: ./.github/scripts/setenv.ps1 -Ref "$env:BRANCH_NAME"
       - name: Show Script ENV and OUTPUT
         run: |
-          echo "${{ env.BRANCH_SCRIPT }}"
+          echo "$env:BRANCH_SCRIPT"
           echo "${{ steps.script.outputs.branch }}"
 
 ```
@@ -1585,7 +1585,7 @@ on:
     branches: ["main"]
 
 env:
-  fruit: APPLES
+  FRUIT: APPLES
 
 jobs:
   dereference:
@@ -1608,9 +1608,9 @@ jobs:
       - run: echo "org:${{ matrix.org }} secret:${SECRET}"
         env:
           SECRET: ${{ secrets[matrix.secret] }} # zizmor: ignore[overprovisioned-secrets]
-      - run: echo "env:${{ env.fruit }} secret:${SECRET}"
+      - run: echo "env:${FRUIT} secret:${SECRET}"
         env:
-          SECRET: ${{ secrets[env.fruit] }} # zizmor: ignore[overprovisioned-secrets]
+          SECRET: ${{ secrets.APPLES }} # explicit secret reference avoids overprovisioned secrets
 
 ```
 
@@ -1724,7 +1724,7 @@ jobs:
     steps:
       - name: Show Environment Variables
         run: env
-      - run: echo "BRANCH=${{ env.BRANCH }}, LOGLEVEL=${{ env.LOGLEVEL }}, TAGS=${{ env.TAGS }}, DRY_RUN=${{ env.DRY_RUN }}"
+      - run: echo "BRANCH=${BRANCH}, LOGLEVEL=${LOGLEVEL}, TAGS=${TAGS}, DRY_RUN=${DRY_RUN}"
       - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
         with:
           ref: ${{ inputs.branch }}
@@ -1780,7 +1780,7 @@ jobs:
     steps:
       - name: Setup tag
         id: tag
-        run: echo "value=${{ env.TAG_VALUE }}" | tee -a "$GITHUB_OUTPUT"
+        run: echo "value=${TAG_VALUE}" | tee -a "$GITHUB_OUTPUT"
         env:
           TAG_VALUE: ${{ github.ref_name }}
       # create dummy files
@@ -1829,7 +1829,7 @@ jobs:
           persist-credentials: false
       # see: https://github.com/dorny/paths-filter/blob/master/README.md
       - id: changed-files
-        uses: dorny/paths-filter@de90cc6fb38fc0963ad72b210f1f284cd68cea36 # v3.0.2
+        uses: dorny/paths-filter@fbd0ab8f3e69293af611ebaee6363fc25e6d187d # v4.0.1
         with:
           base: ${{ github.event_name == 'push' && github.ref || '' }}
           list-files: csv # default 'none'. Disables listing of matching files.
@@ -1848,7 +1848,7 @@ jobs:
         run: echo "${{ contains(steps.changed-files.outputs.foo_files, '.github/dummy')}}"
       # space separated
       - id: changed-files2
-        uses: dorny/paths-filter@de90cc6fb38fc0963ad72b210f1f284cd68cea36 # v3.0.2
+        uses: dorny/paths-filter@fbd0ab8f3e69293af611ebaee6363fc25e6d187d # v4.0.1
         if: ${{ github.event.pull_request.changed_files < 100 }} # when changed files less than 100
         with:
           base: ${{ github.event_name == 'push' && github.ref || '' }}
@@ -1865,7 +1865,7 @@ jobs:
           done
       # json separated
       - id: changed-files3
-        uses: dorny/paths-filter@de90cc6fb38fc0963ad72b210f1f284cd68cea36 # v3.0.2
+        uses: dorny/paths-filter@fbd0ab8f3e69293af611ebaee6363fc25e6d187d # v4.0.1
         with:
           base: ${{ github.event_name == 'push' && github.ref || '' }}
           list-files: json
@@ -1901,7 +1901,7 @@ jobs:
           persist-credentials: false
       # see: https://github.com/dorny/paths-filter/blob/master/README.md
       - id: changed-files
-        uses: dorny/paths-filter@de90cc6fb38fc0963ad72b210f1f284cd68cea36 # v3.0.2
+        uses: dorny/paths-filter@fbd0ab8f3e69293af611ebaee6363fc25e6d187d # v4.0.1
         with:
           base: ${{ github.event_name == 'push' && github.ref || '' }}
           list-files: csv # default 'none'. Disables listing of matching files.
@@ -1920,7 +1920,7 @@ jobs:
         run: echo "${{ contains(steps.changed-files.outputs.foo_files, '.github/dummy')}}"
       # space separated
       - id: changed-files2
-        uses: dorny/paths-filter@de90cc6fb38fc0963ad72b210f1f284cd68cea36 # v3.0.2
+        uses: dorny/paths-filter@fbd0ab8f3e69293af611ebaee6363fc25e6d187d # v4.0.1
         if: ${{ github.event.pull_request.changed_files < 100 }} # when changed files less than 100
         with:
           base: ${{ github.event_name == 'push' && github.ref || '' }}
@@ -1937,7 +1937,7 @@ jobs:
           done
       # json separated
       - id: changed-files3
-        uses: dorny/paths-filter@de90cc6fb38fc0963ad72b210f1f284cd68cea36 # v3.0.2
+        uses: dorny/paths-filter@fbd0ab8f3e69293af611ebaee6363fc25e6d187d # v4.0.1
         with:
           base: ${{ github.event_name == 'push' && github.ref || '' }}
           list-files: json
@@ -2030,10 +2030,9 @@ jobs:
     steps:
       - name: Setup tag
         id: tag
-        run: echo "value=${{ env.TAG_VALUE || (github.event_name == 'pull_request' && '0.1.0-test' || env.GITHUB_REF_NAME) }}" | tee -a "$GITHUB_OUTPUT"
+        run: echo "value=${TAG}" | tee -a "$GITHUB_OUTPUT"
         env:
-          TAG_VALUE: ${{ inputs.tag }}
-          GITHUB_REF_NAME: ${{ github.ref_name }}
+          TAG: ${{ inputs.tag || (github.event_name == 'pull_request' && '0.1.0-test' || github.ref_name) }}
       # Create Tag
       - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
         with:
@@ -2448,7 +2447,7 @@ jobs:
       - name: output
         run: |
           echo "hoge" > ./hoge.txt
-      - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6.0.0
+      - uses: actions/upload-artifact@bbbca2ddaa5d8feaa63e36b76fdaad77386f024f # v7.0.0
         with:
           name: hoge.txt
           path: ./hoge.txt
@@ -2461,7 +2460,7 @@ jobs:
     runs-on: ubuntu-24.04
     timeout-minutes: 3
     steps:
-      - uses: actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131 # v7.0.0
+      - uses: actions/download-artifact@70fc10c6e5e1ce46ad2ea6f2b72d43f7d47b13c3 # v8.0.0
         with:
           name: hoge.txt
           path: .
@@ -2500,7 +2499,7 @@ jobs:
           echo "fuga" > ./directory/fuga.txt
           echo "foo" > ./directory/bin/foo.txt
           echo "bar" > ./directory/bin/bar.txt
-      - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6.0.0
+      - uses: actions/upload-artifact@bbbca2ddaa5d8feaa63e36b76fdaad77386f024f # v7.0.0
         with:
           name: directory
           path: ./directory/
@@ -2513,7 +2512,7 @@ jobs:
     runs-on: ubuntu-24.04
     timeout-minutes: 3
     steps:
-      - uses: actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131 # v7.0.0
+      - uses: actions/download-artifact@70fc10c6e5e1ce46ad2ea6f2b72d43f7d47b13c3 # v8.0.0
         with:
           name: directory
           path: ./directory
@@ -2553,7 +2552,7 @@ jobs:
           echo "foo" > ./output/bin/foo.txt
           echo "bar" > ./output/bin/bar.txt
           tar -zcvf output.tar.gz ./output/
-      - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6.0.0
+      - uses: actions/upload-artifact@bbbca2ddaa5d8feaa63e36b76fdaad77386f024f # v7.0.0
         with:
           name: output.tar.gz
           path: ./output.tar.gz
@@ -2567,7 +2566,7 @@ jobs:
     timeout-minutes: 3
     steps:
       # specify path: . to download tar.gz to current directory
-      - uses: actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131 # v7.0.0
+      - uses: actions/download-artifact@70fc10c6e5e1ce46ad2ea6f2b72d43f7d47b13c3 # v8.0.0
         with:
           name: output.tar.gz
           path: .
@@ -2635,7 +2634,7 @@ jobs:
           RUN_ID: ${{ inputs.run-id || steps.get-run-id.outputs.run_id }}
           GH_REPO: ${{ github.repository }}
           GH_TOKEN: ${{ github.token }}
-      - uses: actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131 # v7.0.0
+      - uses: actions/download-artifact@70fc10c6e5e1ce46ad2ea6f2b72d43f7d47b13c3 # v8.0.0
         with:
           run-id: ${{ inputs.run-id || steps.get-run-id.outputs.run_id }}
           github-token: ${{ github.token }}
@@ -2777,7 +2776,7 @@ jobs:
     runs-on: ubuntu-24.04
     timeout-minutes: 10
     container:
-      image: golang:1.25
+      image: golang:1.25@sha256:dd7d32e19b28621cd982082397fc0510d396805b717d5e77466aa2dd692340de
     steps:
       - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
         with:
@@ -2813,14 +2812,14 @@ jobs:
     timeout-minutes: 10
     services:
       redis:
-        image: redis:8
+        image: redis:8@sha256:aa049e689e141a4358ad1d4562dc49c88a89fbab711fd8fcc33f684c80b26301
         ports:
           - 6379:6379
     steps:
       - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
         with:
           persist-credentials: false
-      - uses: actions/setup-go@7a3fe6cf4cb3a834922a1244abfce67bcef6a0c5 # v6.2.0
+      - uses: actions/setup-go@4a3601121dd01d1626a1e23e37211e3254c1c06c # v6.4.0
         with:
           go-version: "1.25"
       - name: Show Go version
@@ -3091,7 +3090,7 @@ jobs:
             workflow: test
     steps:
       - name: dispatch ${{ matrix.repo }}
-        uses: benc-uk/workflow-dispatch@e2e5e9a103e331dad343f381a29e654aea3cf8fc # v1.2.4
+        uses: benc-uk/workflow-dispatch@7a027648b88c2413826b6ddd6c76114894dc5ec4 # v1.3.1
         with:
           repo: ${{ matrix.repo }}
           ref: ${{ matrix.ref }}
@@ -3116,6 +3115,125 @@ GitHub Actionsで特に注意すべき変更の1つが、workflowやaction定義
 
 ```yaml
 # .github/workflows/prevent-file-change.yaml
+
+name: prevent file change 2
+
+on:
+  pull_request:
+    branches: ["main"]
+
+jobs:
+  dependabot:
+    permissions:
+      pull-requests: read
+    runs-on: ubuntu-24.04
+    timeout-minutes: 3
+    outputs:
+      result: ${{ steps.check.outputs.result }}
+    steps:
+      - uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
+        id: check
+        with:
+          script: |
+            const isDependabot = context.actor === "dependabot[bot]";
+
+            if (!isDependabot) {
+              core.info("Not a Dependabot PR.");
+              core.setOutput("result", "ok");
+              return;
+            }
+
+            const files = await github.paginate(github.rest.pulls.listFiles, {
+              ...context.repo,
+              pull_number: context.payload.pull_request.number,
+              per_page: 100,
+            });
+
+            const blocked = files
+              .map(file => file.filename)
+              .filter(name =>
+                !/^\.github\/workflows\/.*\.ya?ml$/.test(name)
+              );
+
+            if (blocked.length > 0) {
+              core.setOutput("result", "failed");
+              core.setFailed(
+                `Dependabot may only change .github/workflows/*.yml or *.yaml:\n${blocked.join("\n")}`
+              );
+              return;
+            }
+
+            core.info("Dependabot changed only workflow files.");
+            core.setOutput("result", "ok");
+
+  external:
+    permissions:
+      pull-requests: read
+    runs-on: ubuntu-24.04
+    timeout-minutes: 3
+    outputs:
+      result: ${{ steps.check.outputs.result }}
+    steps:
+      - uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
+        id: check
+        with:
+          script: |
+            const pr = context.payload.pull_request;
+            const files = await github.paginate(github.rest.pulls.listFiles, {
+              ...context.repo,
+              pull_number: pr.number,
+              per_page: 100,
+            });
+
+            const isDependabot = context.actor === "dependabot[bot]";
+            const isExternalPr = pr.head.repo.full_name !== pr.base.repo.full_name;
+
+            if (isDependabot || !isExternalPr) {
+              core.info("Not an external contributor PR.");
+              core.setOutput("result", "ok");
+              return;
+            }
+
+            const blocked = files
+              .map(file => file.filename)
+              .filter(name =>
+                /^\.github\/workflows\/.*\.ya?ml$/.test(name) ||
+                /^\.github\/actions\/.*$/.test(name) ||
+                /^\.github\/dependabot\.ya?ml$/.test(name) ||
+                name === ".github/CODEOWNERS"
+              );
+
+            if (blocked.length > 0) {
+              core.setOutput("result", "failed");
+              core.setFailed(
+                `External contributor PR may not change protected files:\n${blocked.join("\n")}`
+              );
+              return;
+            }
+
+            core.info("No protected files changed by external contributor.");
+            core.setOutput("result", "ok");
+
+  protect-github-files:
+    needs: [dependabot, external]
+    permissions: {}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 1
+    if: ${{ always() }}
+    steps:
+      - name: Check results
+        run: |
+          if [[ "${{ needs.dependabot.result }}" != "success" ]]; then
+            echo "::error::dependabot changes check failed"
+            exit 1
+          fi
+
+          if [[ "${{ needs.external.result }}" != "success" ]]; then
+            echo "::error::external contributor changes check failed"
+            exit 1
+          fi
+
+          echo "All protected file checks passed."
 
 ```
 
@@ -3365,7 +3483,7 @@ jobs:
     timeout-minutes: 5
     steps:
       - name: add summary
-        uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd # v8.0.0
+        uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
         with:
           script: |
             await core.summary.addHeading("Hello world! 🚀").write()
@@ -3567,9 +3685,11 @@ jobs:
         env:
           NUMBER_INPUT: ${{ inputs.number }}
       - name: called secret
-        run: echo "called secret. ${{ secrets.APPLES }}"
+        run: echo "called secret. ${APPLES}"
+        env:
+          APPLES: ${{ secrets.APPLES }}
       - name: called env (global)
-        run: echo "called global env. ${{ env.FOO }}"
+        run: echo "called global env. ${FOO}"
       - name: output step1
         id: step1
         run: echo "firstword=hello" >> "$GITHUB_OUTPUT"
@@ -3643,7 +3763,7 @@ jobs:
   call-workflow-passing-data:
     permissions:
       contents: read
-    uses: guitarrapc/githubactions-lab/.github/workflows/_reusable-workflow-called.yaml@main
+    uses: guitarrapc/githubactions-lab/.github/workflows/_reusable-workflow-called.yaml@04f8f49217595fca87eb93a58280bed22d313ee0 # 2025.12.14
     with:
       username: foo
       is-valid: true
@@ -3909,7 +4029,7 @@ jobs:
     runs-on: ubuntu-24.04
     timeout-minutes: 3
     steps:
-      - uses: actions/create-github-app-token@29824e69f54612133e76f7eaac726eef6c875baf # v2.2.1
+      - uses: actions/create-github-app-token@bcd2ba49218906704ab6c1aa796996da409d3eb1 # v3.2.0
         id: app-token
         with:
           client-id: ${{ secrets.SYNCED_ACTIONS_BOT_CLIENTID }}
@@ -3995,10 +4115,89 @@ GitHub ActionsのDependabotを設定するためのティップス:
 * ghalint: actions/checkoutが`persist-credentials: false`を設定しているか、再利用可能なワークフローの`secrets: inherit`をチェック。
 * zizmor: GitHub Actionのセキュリティ脆弱性をチェック。
 
-> ティップス: Aquaの使用方法については[AquaでのGitHub Actionsツール管理](#aquaでのgithub-actionsツール管理)を参照してください。
+以下の例では、seitonを使用してワークフローとアクションの両方をリントしています。好みに応じて、他のリンターを使用することもできます。
 
 ```yaml
 # .github/workflows/github-actions-lint.yaml
+
+name: GitHub Actions Lint
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 0 * * *"
+  pull_request:
+    paths:
+      - ".github/workflows/**"
+      - ".github/actions/**"
+      - "action.yml"
+      - "action.yaml"
+
+permissions:
+  contents: read
+
+jobs:
+  lint:
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: read
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          persist-credentials: false
+
+      # Preferred: setup-seiton installs the native binary and keeps CI lightweight.
+      - uses: guitarrapc/setup-seiton@92f424f8dae8130d8f6299c74716356437d746ba # v1.0.2
+        with:
+          seiton-version: 0.9.27
+      # Default on GitHub Actions: --format github-actions (rich stdout + job summary).
+      # First adoption: fail only on errors until warnings are enforced:
+      # run: seiton --include-actions --min-severity error
+      - name: Run seiton
+        run: seiton --include-actions
+
+      # Alternative (containerized run): Use this instead of setup-seiton if needed.
+      # - name: Run seiton (Docker)
+      #   run: |
+      #     docker run --rm  -v "$PWD:/repo:ro" -e GITHUB_ACTIONS -e GITHUB_STEP_SUMMARY ghcr.io/guitarrapc/seiton:v0.9.27 --include-actions
+
+  # Optional: Docker-based run (if you prefer container execution over setup-seiton)
+  # Optional: GitHub Code Scanning (SARIF). Uncomment this job and add workflow permissions:
+  #   permissions:
+  #     contents: read
+  #     security-events: write
+  #
+  # code-scanning:
+  #   runs-on: ubuntu-24.04
+  #   timeout-minutes: 5
+  #   permissions:
+  #     contents: read
+  #     security-events: write
+  #   steps:
+  #     - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+  #       with:
+  #         persist-credentials: false
+  #
+  #     - uses: guitarrapc/setup-seiton@v1
+  #
+  #     - name: Run seiton (SARIF)
+  #       run: seiton --format sarif --include-actions > results.sarif
+  #
+  #     # Alternative (Docker):
+  #     # - name: Run seiton (SARIF, Docker)
+  #     #   run: |
+  #     #     docker run --rm \
+  #     #       -v "$PWD:/repo:ro" \
+  #     #       ghcr.io/guitarrapc/seiton:v0.9.27 \
+  #     #       --format sarif --include-actions > results.sarif
+  #
+  #     - name: Upload SARIF
+  #       if: always()
+  #       uses: github/codeql-action/upload-sarif@03e4368ac7daa2bd82b3e85262f3bf87ee112f57 # v3.36.0
+  #       with:
+  #         sarif_file: results.sarif
+  #         category: seiton
 
 ```
 
@@ -4035,7 +4234,7 @@ jobs:
         with:
           persist-credentials: false
       - name: Configure AWS Credentials
-        uses: aws-actions/configure-aws-credentials@8df5847569e6427dd6c4fb1cf565c83acfa8afa7 # v6.0.0
+        uses: aws-actions/configure-aws-credentials@ec61189d14ec14c8efccab744f656cffd0e33f37 # v6.1.0
         with:
           aws-region: ap-northeast-1
           role-to-assume: ${{ secrets.AWS_ROLE_TO_ASSUME }}
@@ -4077,7 +4276,7 @@ jobs:
       - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
         with:
           persist-credentials: false
-      - uses: actions/setup-go@7a3fe6cf4cb3a834922a1244abfce67bcef6a0c5 # v6.2.0
+      - uses: actions/setup-go@4a3601121dd01d1626a1e23e37211e3254c1c06c # v6.4.0
         with:
           go-version: "1.25"
       - name: Build
@@ -4343,9 +4542,9 @@ jobs:
 ```yaml
 # .github/workflows/_reusable-dump-context.yaml#L20-L22
 
-runs-on: ${{ matrix.runs-on }}
 timeout-minutes: 5
 steps:
+  # pull_request and pull_request_target event may begin concurrently and conflict git operation. So, let's wait random time.
 ```
 
 ## タグを取得する
@@ -4381,7 +4580,7 @@ jobs:
       - name: Show tag value by GITHUB_REF
         run: |
           echo "${{ steps.CI_TAG.outputs.GIT_TAG }}"
-          echo "${{ env.GIT_TAG }}"
+          echo "${GIT_TAG}"
       - name: Show tag value by github.ref_name
         run: echo "${GITHUB_REF_NAME}"
         env:
@@ -4475,7 +4674,7 @@ jobs:
     runs-on: ubuntu-24.04
     timeout-minutes: 3
     steps:
-      - uses: actions/stale@b5d41d4e1d5dceea10e7104786b73624c18a190f # v10.2.0
+      - uses: actions/stale@eb5cf3af3ac0a1aa4c9c45633dd1ae542a27a899 # v10.3.0
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
           # enable issue
@@ -4525,7 +4724,7 @@ jobs:
       - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
         with:
           persist-credentials: false
-      - uses: actions/setup-dotnet@baa11fbfe1d6520db94683bd5c7a3818018e4309 # v5.1.0
+      - uses: actions/setup-dotnet@c2fa09f4bde5ebb9d1777cf28262a3eb3db3ced7 # v5.2.0
         with:
           dotnet-version: 10.0.x
       - name: dotnet build

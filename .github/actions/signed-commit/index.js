@@ -27,11 +27,12 @@ async function getChangedFiles(workingDirectory) {
   }
 
   const files = [];
-  const lines = output.trim().split('\n');
+  const lines = output
+    .split('\n')
+    .map(line => line.replace(/\r$/, ''))
+    .filter(line => line.length > 0);
 
   for (const line of lines) {
-    if (!line) continue;
-
     const status = line.substring(0, 2);
     let filePath = line.substring(3);
 
