@@ -2,13 +2,13 @@
   "token": "<reducted>",
   "job": "dump-context",
   "ref": "refs/heads/main",
-  "sha": "dc649eced4cdefc6d90cc675e91a6c44964e381d",
+  "sha": "fb28368a5abac641eba8b6346daf34a53128110e",
   "repository": "guitarrapc/githubactions-lab",
   "repository_owner": "guitarrapc",
   "repository_owner_id": "3856350",
   "repositoryUrl": "git://github.com/guitarrapc/githubactions-lab.git",
-  "run_id": "27125706317",
-  "run_number": "1785",
+  "run_id": "27127378763",
+  "run_number": "1797",
   "retention_days": "90",
   "run_attempt": "1",
   "artifact_cache_size_limit": "10",
@@ -27,9 +27,9 @@
   "ref_type": "branch",
   "secret_source": "Actions",
   "event": {
-    "after": "dc649eced4cdefc6d90cc675e91a6c44964e381d",
+    "after": "fb28368a5abac641eba8b6346daf34a53128110e",
     "base_ref": null,
-    "before": "53e46d59ec4268d143c139b5522b392a19a3611b",
+    "before": "900576823a71c7215d2532d1efafc348a23975e8",
     "commits": [
       {
         "author": {
@@ -43,14 +43,14 @@
           "username": "web-flow"
         },
         "distinct": true,
-        "id": "dc649eced4cdefc6d90cc675e91a6c44964e381d",
-        "message": "chore: replace github actions linter to seiton (#324)\n\n* feat: apply seiton fix\n\n* ci: add ci\n\n* chore: replace github actions linter to seiton\n\n* docs: update README\n\n* [auto commit] update context (workflow=auto dump context, event=pull_request, action=opened)\n\n* Potential fix for pull request finding 'CodeQL / Excessive Secrets Exposure'\n\nCo-authored-by: Copilot Autofix powered by AI <62310815+github-advanced-security[bot]@users.noreply.github.com>\n\n* [auto commit] update context (workflow=auto dump context, event=pull_request, action=synchronize)\n\n* docs: update\n\n* [auto commit] update context (workflow=auto dump context, event=pull_request, action=synchronize)\n\n* [auto commit] Embedded code (workflow=auto doc)\n\n* [auto commit] Update TOC (workflow=auto doc)\n\n---------\n\nCo-authored-by: github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>\nCo-authored-by: Copilot Autofix powered by AI <62310815+github-advanced-security[bot]@users.noreply.github.com>",
-        "timestamp": "2026-06-08T17:35:50+09:00",
-        "tree_id": "847e514cd61f15807f78e8e4c635000402436ac6",
-        "url": "https://github.com/guitarrapc/githubactions-lab/commit/dc649eced4cdefc6d90cc675e91a6c44964e381d"
+        "id": "fb28368a5abac641eba8b6346daf34a53128110e",
+        "message": "ci: split README embedeed (#325)\n\n* docs: update README\n\n* fix: git push\n\n* [auto commit] update context (workflow=auto dump context, event=pull_request, action=synchronize)\n\n* [auto commit] Embedded code (workflow=auto doc)\n\n---------\n\nCo-authored-by: github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>",
+        "timestamp": "2026-06-08T18:08:51+09:00",
+        "tree_id": "f7e1897aa772858523909cc96249a20d9aa2ea92",
+        "url": "https://github.com/guitarrapc/githubactions-lab/commit/fb28368a5abac641eba8b6346daf34a53128110e"
       }
     ],
-    "compare": "https://github.com/guitarrapc/githubactions-lab/compare/53e46d59ec42...dc649eced4cd",
+    "compare": "https://github.com/guitarrapc/githubactions-lab/compare/900576823a71...fb28368a5aba",
     "created": false,
     "deleted": false,
     "forced": false,
@@ -66,11 +66,11 @@
         "username": "web-flow"
       },
       "distinct": true,
-      "id": "dc649eced4cdefc6d90cc675e91a6c44964e381d",
-      "message": "chore: replace github actions linter to seiton (#324)\n\n* feat: apply seiton fix\n\n* ci: add ci\n\n* chore: replace github actions linter to seiton\n\n* docs: update README\n\n* [auto commit] update context (workflow=auto dump context, event=pull_request, action=opened)\n\n* Potential fix for pull request finding 'CodeQL / Excessive Secrets Exposure'\n\nCo-authored-by: Copilot Autofix powered by AI <62310815+github-advanced-security[bot]@users.noreply.github.com>\n\n* [auto commit] update context (workflow=auto dump context, event=pull_request, action=synchronize)\n\n* docs: update\n\n* [auto commit] update context (workflow=auto dump context, event=pull_request, action=synchronize)\n\n* [auto commit] Embedded code (workflow=auto doc)\n\n* [auto commit] Update TOC (workflow=auto doc)\n\n---------\n\nCo-authored-by: github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>\nCo-authored-by: Copilot Autofix powered by AI <62310815+github-advanced-security[bot]@users.noreply.github.com>",
-      "timestamp": "2026-06-08T17:35:50+09:00",
-      "tree_id": "847e514cd61f15807f78e8e4c635000402436ac6",
-      "url": "https://github.com/guitarrapc/githubactions-lab/commit/dc649eced4cdefc6d90cc675e91a6c44964e381d"
+      "id": "fb28368a5abac641eba8b6346daf34a53128110e",
+      "message": "ci: split README embedeed (#325)\n\n* docs: update README\n\n* fix: git push\n\n* [auto commit] update context (workflow=auto dump context, event=pull_request, action=synchronize)\n\n* [auto commit] Embedded code (workflow=auto doc)\n\n---------\n\nCo-authored-by: github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>",
+      "timestamp": "2026-06-08T18:08:51+09:00",
+      "tree_id": "f7e1897aa772858523909cc96249a20d9aa2ea92",
+      "url": "https://github.com/guitarrapc/githubactions-lab/commit/fb28368a5abac641eba8b6346daf34a53128110e"
     },
     "pusher": {
       "email": "3856350+guitarrapc@users.noreply.github.com",
@@ -168,7 +168,7 @@
       "private": false,
       "pull_request_creation_policy": "all",
       "pulls_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls{/number}",
-      "pushed_at": 1780907751,
+      "pushed_at": 1780909732,
       "releases_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/releases{/id}",
       "size": 5716,
       "ssh_url": "git@github.com:guitarrapc/githubactions-lab.git",
@@ -185,7 +185,7 @@
         "github-actions"
       ],
       "trees_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/git/trees{/sha}",
-      "updated_at": "2026-06-08T08:32:03Z",
+      "updated_at": "2026-06-08T09:03:38Z",
       "url": "https://api.github.com/repos/guitarrapc/githubactions-lab",
       "visibility": "public",
       "watchers": 55,
@@ -215,7 +215,7 @@
     }
   },
   "workflow_ref": "guitarrapc/githubactions-lab/.github/workflows/auto-dump-context.yaml@refs/heads/main",
-  "workflow_sha": "dc649eced4cdefc6d90cc675e91a6c44964e381d",
+  "workflow_sha": "fb28368a5abac641eba8b6346daf34a53128110e",
   "repository_id": "257465468",
   "triggering_actor": "guitarrapc",
   "workspace": "/home/runner/work/githubactions-lab/githubactions-lab",
@@ -223,9 +223,9 @@
   "event_path": "/home/runner/work/_temp/_github_workflow/event.json",
   "action_repository": "",
   "action_ref": "",
-  "path": "/home/runner/work/_temp/_runner_file_commands/add_path_3429e77b-0824-46fd-8c70-636012438864",
-  "env": "/home/runner/work/_temp/_runner_file_commands/set_env_3429e77b-0824-46fd-8c70-636012438864",
-  "step_summary": "/home/runner/work/_temp/_runner_file_commands/step_summary_3429e77b-0824-46fd-8c70-636012438864",
-  "state": "/home/runner/work/_temp/_runner_file_commands/save_state_3429e77b-0824-46fd-8c70-636012438864",
-  "output": "/home/runner/work/_temp/_runner_file_commands/set_output_3429e77b-0824-46fd-8c70-636012438864"
+  "path": "/home/runner/work/_temp/_runner_file_commands/add_path_1c04d952-4d39-40b1-ba77-3f54d05db2b4",
+  "env": "/home/runner/work/_temp/_runner_file_commands/set_env_1c04d952-4d39-40b1-ba77-3f54d05db2b4",
+  "step_summary": "/home/runner/work/_temp/_runner_file_commands/step_summary_1c04d952-4d39-40b1-ba77-3f54d05db2b4",
+  "state": "/home/runner/work/_temp/_runner_file_commands/save_state_1c04d952-4d39-40b1-ba77-3f54d05db2b4",
+  "output": "/home/runner/work/_temp/_runner_file_commands/set_output_1c04d952-4d39-40b1-ba77-3f54d05db2b4"
 }
