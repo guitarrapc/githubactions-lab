@@ -658,11 +658,11 @@ jobs:
       - name: Add ENV and OUTPUT by shell
         id: shell
         run: |
-          echo "BRANCH=${{ env.BRANCH_NAME }}" | tee -a "$GITHUB_ENV"
-          echo "branch=${{ env.BRANCH_NAME }}" | tee -a "$GITHUB_OUTPUT"
+          echo "BRANCH=${BRANCH_NAME}" | tee -a "$GITHUB_ENV"
+          echo "branch=${BRANCH_NAME}" | tee -a "$GITHUB_OUTPUT"
       - name: Show ENV and OUTPUT
         run: |
-          echo ${{ env.BRANCH }}
+          echo ${BRANCH}
           echo ${{ steps.shell.outputs.branch }}
       - name: Add PATH
         run: echo "$HOME/foo/bar" | tee -a "$GITHUB_PATH"
@@ -687,11 +687,11 @@ jobs:
       - name: Add ENV and OUTPUT by shell
         id: shell
         run: |
-          echo "BRANCH=${{ env.BRANCH_NAME }}" | Tee-Object -Append -FilePath "${env:GITHUB_ENV}"
-          echo "branch=${{ env.BRANCH_NAME }}" | Tee-Object -Append -FilePath "${env:GITHUB_OUTPUT}"
+          echo "BRANCH=$env:BRANCH_NAME" | Tee-Object -Append -FilePath "${env:GITHUB_ENV}"
+          echo "branch=$env:BRANCH_NAME" | Tee-Object -Append -FilePath "${env:GITHUB_OUTPUT}"
       - name: Show ENV and OUTPUT
         run: |
-          echo "${{ env.BRANCH }}"
+          echo "$env:BRANCH"
           echo "${{ steps.shell.outputs.branch }}"
       - name: Add PATH
         run: echo "$HOME/foo/bar" | Tee-Object -Append -FilePath "${env:GITHUB_PATH}"
@@ -905,10 +905,10 @@ jobs:
           persist-credentials: false
       - name: Add ENV and OUTPUT by Script
         id: script
-        run: bash ./.github/scripts/setenv.sh --ref "${{ env.BRANCH_NAME }}"
+        run: bash ./.github/scripts/setenv.sh --ref "${BRANCH_NAME}"
       - name: Show Script  ENV and OUTPUT
         run: |
-          echo ${{ env.BRANCH_SCRIPT }}
+          echo ${BRANCH_SCRIPT}
           echo ${{ steps.script.outputs.branch }}
 
   pwsh:
@@ -928,10 +928,10 @@ jobs:
           persist-credentials: false
       - name: Add ENV and OUTPUT by Script
         id: script
-        run: ./.github/scripts/setenv.ps1 -Ref "${{ env.BRANCH_NAME }}"
+        run: ./.github/scripts/setenv.ps1 -Ref "$env:BRANCH_NAME"
       - name: Show Script ENV and OUTPUT
         run: |
-          echo "${{ env.BRANCH_SCRIPT }}"
+          echo "$env:BRANCH_SCRIPT"
           echo "${{ steps.script.outputs.branch }}"
 
 ```
@@ -1586,7 +1586,7 @@ on:
     branches: ["main"]
 
 env:
-  fruit: APPLES
+  FRUIT: APPLES
 
 jobs:
   dereference:
@@ -1609,9 +1609,9 @@ jobs:
       - run: echo "org:${{ matrix.org }} secret:${SECRET}"
         env:
           SECRET: ${{ secrets[matrix.secret] }} # zizmor: ignore[overprovisioned-secrets]
-      - run: echo "env:${{ env.fruit }} secret:${SECRET}"
+      - run: echo "env:${FRUIT} secret:${SECRET}"
         env:
-          SECRET: ${{ secrets[env.fruit] }} # zizmor: ignore[overprovisioned-secrets]
+          SECRET: ${{ secrets.APPLES }} # explicit secret reference avoids overprovisioned secrets
 
 ```
 
@@ -1725,7 +1725,7 @@ jobs:
     steps:
       - name: Show Environment Variables
         run: env
-      - run: echo "BRANCH=${{ env.BRANCH }}, LOGLEVEL=${{ env.LOGLEVEL }}, TAGS=${{ env.TAGS }}, DRY_RUN=${{ env.DRY_RUN }}"
+      - run: echo "BRANCH=${BRANCH}, LOGLEVEL=${LOGLEVEL}, TAGS=${TAGS}, DRY_RUN=${DRY_RUN}"
       - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
         with:
           ref: ${{ inputs.branch }}
@@ -1781,7 +1781,7 @@ jobs:
     steps:
       - name: Setup tag
         id: tag
-        run: echo "value=${{ env.TAG_VALUE }}" | tee -a "$GITHUB_OUTPUT"
+        run: echo "value=${TAG_VALUE}" | tee -a "$GITHUB_OUTPUT"
         env:
           TAG_VALUE: ${{ github.ref_name }}
       # create dummy files
@@ -2031,7 +2031,9 @@ jobs:
     steps:
       - name: Setup tag
         id: tag
-        run: echo "value=${{ inputs.tag || (github.event_name == 'pull_request' && '0.1.0-test' || github.ref_name) }}" | tee -a "$GITHUB_OUTPUT"
+        run: echo "value=${TAG}" | tee -a "$GITHUB_OUTPUT"
+        env:
+          TAG: ${{ inputs.tag || (github.event_name == 'pull_request' && '0.1.0-test' || github.ref_name) }}
       # Create Tag
       - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
         with:
@@ -2774,7 +2776,7 @@ jobs:
     runs-on: ubuntu-24.04
     timeout-minutes: 10
     container:
-      image: golang:1.25
+      image: golang:1.25@sha256:dd7d32e19b28621cd982082397fc0510d396805b717d5e77466aa2dd692340de
     steps:
       - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
         with:
@@ -2810,7 +2812,7 @@ jobs:
     timeout-minutes: 10
     services:
       redis:
-        image: redis:8
+        image: redis:8@sha256:aa049e689e141a4358ad1d4562dc49c88a89fbab711fd8fcc33f684c80b26301
         ports:
           - 6379:6379
     steps:
@@ -3687,7 +3689,7 @@ jobs:
         env:
           APPLES: ${{ secrets.APPLES }}
       - name: called env (global)
-        run: echo "called global env. ${{ env.FOO }}"
+        run: echo "called global env. ${FOO}"
       - name: output step1
         id: step1
         run: echo "firstword=hello" >> "$GITHUB_OUTPUT"
@@ -4118,6 +4120,84 @@ Linter will check follows.
 ```yaml
 # .github/workflows/github-actions-lint.yaml
 
+name: GitHub Actions Lint
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 0 * * *"
+  pull_request:
+    paths:
+      - ".github/workflows/**"
+      - ".github/actions/**"
+      - "action.yml"
+      - "action.yaml"
+
+permissions:
+  contents: read
+
+jobs:
+  lint:
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: read
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          persist-credentials: false
+
+      # Preferred: setup-seiton installs the native binary and keeps CI lightweight.
+      - uses: guitarrapc/setup-seiton@92f424f8dae8130d8f6299c74716356437d746ba # v1.0.2
+        with:
+          seiton-version: 0.9.27
+      # Default on GitHub Actions: --format github-actions (rich stdout + job summary).
+      # First adoption: fail only on errors until warnings are enforced:
+      # run: seiton --include-actions --min-severity error
+      - name: Run seiton
+        run: seiton --include-actions
+
+      # Alternative (containerized run): Use this instead of setup-seiton if needed.
+      # - name: Run seiton (Docker)
+      #   run: |
+      #     docker run --rm  -v "$PWD:/repo:ro" -e GITHUB_ACTIONS -e GITHUB_STEP_SUMMARY ghcr.io/guitarrapc/seiton:v0.9.27 --include-actions
+
+  # Optional: Docker-based run (if you prefer container execution over setup-seiton)
+  # Optional: GitHub Code Scanning (SARIF). Uncomment this job and add workflow permissions:
+  #   permissions:
+  #     contents: read
+  #     security-events: write
+  #
+  # code-scanning:
+  #   runs-on: ubuntu-24.04
+  #   timeout-minutes: 5
+  #   permissions:
+  #     contents: read
+  #     security-events: write
+  #   steps:
+  #     - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+  #       with:
+  #         persist-credentials: false
+  #
+  #     - uses: guitarrapc/setup-seiton@v1
+  #
+  #     - name: Run seiton (SARIF)
+  #       run: seiton --format sarif --include-actions > results.sarif
+  #
+  #     # Alternative (Docker):
+  #     # - name: Run seiton (SARIF, Docker)
+  #     #   run: |
+  #     #     docker run --rm \
+  #     #       -v "$PWD:/repo:ro" \
+  #     #       ghcr.io/guitarrapc/seiton:v0.9.27 \
+  #     #       --format sarif --include-actions > results.sarif
+  #
+  #     - name: Upload SARIF
+  #       if: always()
+  #       uses: github/codeql-action/upload-sarif@03e4368ac7daa2bd82b3e85262f3bf87ee112f57 # v3.36.0
+  #       with:
+  #         sarif_file: results.sarif
+  #         category: seiton
 
 ```
 
@@ -4500,7 +4580,7 @@ jobs:
       - name: Show tag value by GITHUB_REF
         run: |
           echo "${{ steps.CI_TAG.outputs.GIT_TAG }}"
-          echo "${{ env.GIT_TAG }}"
+          echo "${GIT_TAG}"
       - name: Show tag value by github.ref_name
         run: echo "${GITHUB_REF_NAME}"
         env:
