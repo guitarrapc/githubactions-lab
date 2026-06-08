@@ -1,0 +1,78 @@
+name: GitHub Actions Lint
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 0 * * *"
+  pull_request:
+    paths:
+      - ".github/workflows/**"
+      - ".github/actions/**"
+      - "action.yml"
+      - "action.yaml"
+
+permissions:
+  contents: read
+
+jobs:
+  lint:
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: read
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          persist-credentials: false
+
+      # Preferred: setup-seiton installs the native binary and keeps CI lightweight.
+      - uses: guitarrapc/setup-seiton@92f424f8dae8130d8f6299c74716356437d746ba # v1.0.2
+        with:
+          seiton-version: 0.9.27
+      # Default on GitHub Actions: --format github-actions (rich stdout + job summary).
+      # First adoption: fail only on errors until warnings are enforced:
+      # run: seiton --include-actions --min-severity error
+      - name: Run seiton
+        run: seiton --include-actions
+
+      # Alternative (containerized run): Use this instead of setup-seiton if needed.
+      # - name: Run seiton (Docker)
+      #   run: |
+      #     docker run --rm  -v "$PWD:/repo:ro" -e GITHUB_ACTIONS -e GITHUB_STEP_SUMMARY ghcr.io/guitarrapc/seiton:v0.9.27 --include-actions
+
+  # Optional: Docker-based run (if you prefer container execution over setup-seiton)
+  # Optional: GitHub Code Scanning (SARIF). Uncomment this job and add workflow permissions:
+  #   permissions:
+  #     contents: read
+  #     security-events: write
+  #
+  # code-scanning:
+  #   runs-on: ubuntu-24.04
+  #   timeout-minutes: 5
+  #   permissions:
+  #     contents: read
+  #     security-events: write
+  #   steps:
+  #     - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+  #       with:
+  #         persist-credentials: false
+  #
+  #     - uses: guitarrapc/setup-seiton@v1
+  #
+  #     - name: Run seiton (SARIF)
+  #       run: seiton --format sarif --include-actions > results.sarif
+  #
+  #     # Alternative (Docker):
+  #     # - name: Run seiton (SARIF, Docker)
+  #     #   run: |
+  #     #     docker run --rm \
+  #     #       -v "$PWD:/repo:ro" \
+  #     #       ghcr.io/guitarrapc/seiton:v0.9.27 \
+  #     #       --format sarif --include-actions > results.sarif
+  #
+  #     - name: Upload SARIF
+  #       if: always()
+  #       uses: github/codeql-action/upload-sarif@03e4368ac7daa2bd82b3e85262f3bf87ee112f57 # v3.36.0
+  #       with:
+  #         sarif_file: results.sarif
+  #         category: seiton
