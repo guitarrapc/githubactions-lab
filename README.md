@@ -1,6 +1,6 @@
 [![auto doc](https://github.com/guitarrapc/githubactions-lab/actions/workflows/auto-doc.yaml/badge.svg)](https://github.com/guitarrapc/githubactions-lab/actions/workflows/auto-doc.yaml)
 [![auto dump context](https://github.com/guitarrapc/githubactions-lab/actions/workflows/auto-dump-context.yaml/badge.svg)](https://github.com/guitarrapc/githubactions-lab/actions/workflows/auto-dump-context.yaml)
-[![actionlint](https://github.com/guitarrapc/githubactions-lab/actions/workflows/actionlint.yaml/badge.svg)](https://github.com/guitarrapc/githubactions-lab/actions/workflows/actionlint.yaml)
+[![GitHub Actions Lint](https://github.com/guitarrapc/githubactions-lab/actions/workflows/github-actions-lint.yaml/badge.svg)](https://github.com/guitarrapc/githubactions-lab/actions/workflows/github-actions-lint.yaml)
 
 English | [日本語](./README-ja.md)
 
