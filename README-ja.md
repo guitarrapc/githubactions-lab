@@ -3999,7 +3999,7 @@ GitHub ActionsのDependabotを設定するためのティップス:
 > ティップス: Aquaの使用方法については[AquaでのGitHub Actionsツール管理](#aquaでのgithub-actionsツール管理)を参照してください。
 
 ```yaml
-# .github/workflows/actionlint.yaml
+# .github/workflows/github-actions-lint.yaml
 
 ```
 
