@@ -91,7 +91,6 @@ GitHub Actionsの研究とテストラボです。
   - [ダウンロードされたリモートアクションのパス](#%E3%83%80%E3%82%A6%E3%83%B3%E3%83%AD%E3%83%BC%E3%83%89%E3%81%95%E3%82%8C%E3%81%9F%E3%83%AA%E3%83%A2%E3%83%BC%E3%83%88%E3%82%A2%E3%82%AF%E3%82%B7%E3%83%A7%E3%83%B3%E3%81%AE%E3%83%91%E3%82%B9)
   - [古いIssueとPRの自動クローズ](#%E5%8F%A4%E3%81%84issue%E3%81%A8pr%E3%81%AE%E8%87%AA%E5%8B%95%E3%82%AF%E3%83%AD%E3%83%BC%E3%82%BA)
   - [GitHubワークフロー実行のテレメトリー](#github%E3%83%AF%E3%83%BC%E3%82%AF%E3%83%95%E3%83%AD%E3%83%BC%E5%AE%9F%E8%A1%8C%E3%81%AE%E3%83%86%E3%83%AC%E3%83%A1%E3%83%88%E3%83%AA%E3%83%BC)
-  - [AquaでGitHub Actionsのツール管理](#aqua%E3%81%A7github-actions%E3%81%AE%E3%83%84%E3%83%BC%E3%83%AB%E7%AE%A1%E7%90%86)
   - [fromJsonを使用した型変換](#fromjson%E3%82%92%E4%BD%BF%E7%94%A8%E3%81%97%E3%81%9F%E5%9E%8B%E5%A4%89%E6%8F%9B)
   - [GitHub Actionsのスケジュールワークフロー一覧を取得したい](#github-actions%E3%81%AE%E3%82%B9%E3%82%B1%E3%82%B8%E3%83%A5%E3%83%BC%E3%83%AB%E3%83%AF%E3%83%BC%E3%82%AF%E3%83%95%E3%83%AD%E3%83%BC%E4%B8%80%E8%A6%A7%E3%82%92%E5%8F%96%E5%BE%97%E3%81%97%E3%81%9F%E3%81%84)
 
