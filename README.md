@@ -1806,7 +1806,7 @@ jobs:
 
 You can detect which files were changed with push or pull_request events in GitHub Actions. This is useful when you want to use `path-filter` but require further file handling. The following actions are available and can be used in the same way.
 
-`dorny/paths-filter` is still actively developed. However, its output is quite dynamic and hard to handle with static linters like actionlint.
+`dorny/paths-filter` is still actively developed. However, its output is quite dynamic and hard to handle with static linters.
 
 ```yaml
 # .github/workflows/file-change-detect-dorny.yaml
@@ -4104,10 +4104,11 @@ Here's some tips for configuring Dependabot for GitHub Actions.
 
 ## Lint GitHub Actions workflow
 
-You can lint GitHub Actions yaml via [actionlint](https://github.com/rhysd/actionlint), [ghalint](https://github.com/suzuki-shunsuke/ghalint) and [zizmor](https://github.com/woodruffw/zizmor). If you don't need automated PR review, run any of these linter on schedule may be fine.
+You can lint GitHub Actions yaml via [seiton](https://github.com/guitarrapc/seiton), [actionlint](https://github.com/rhysd/actionlint), [ghalint](https://github.com/suzuki-shunsuke/ghalint) and [zizmor](https://github.com/woodruffw/zizmor). If you don't need automated PR review, run any of these linter on schedule may be fine.
 
 Linter will check follows.
 
+* seiton: Check syntax and security practice issue of GitHub Actions workflow yaml.
 * actionlint: Check syntax and structure of GitHub Actions workflow yaml.
 * ghalint: Check actions/checkout should set `persist-credentials: false`, Reusable workflow's `secrets: inherit`.
 * zizmor: Check GitHub Action's security vulnerability.
@@ -4115,44 +4116,8 @@ Linter will check follows.
 > TIPS: See [Tool management in GitHub Actions with Aqua](#tool-management-in-github-actions-with-aqua) for Aqua usage.
 
 ```yaml
-# .github/workflows/actionlint.yaml
+# .github/workflows/github-actions-lint.yaml
 
-name: actionlint
-on:
-  workflow_dispatch:
-  pull_request:
-    branches: ["main"]
-    paths:
-      - ".github/workflows/**"
-  schedule:
-    - cron: "0 0 * * *"
-
-jobs:
-  lint:
-    permissions:
-      contents: read
-    runs-on: ubuntu-24.04
-    timeout-minutes: 5
-    steps:
-      - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
-        with:
-          persist-credentials: false
-      - uses: aquaproj/aqua-installer@9ebf656952a20c45a5d66606f083ff34f58b8ce0 # v4.0.0
-        with:
-          aqua_version: v2.43.1
-      # github workflows/action's Static Checker
-      - name: Run actionlint
-        run: actionlint -color -oneline
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      # # checkout's persist-credentials: false checker
-      # - name: Run ghalint
-      #   run: ghalint run
-      # A static analysis tool for GitHub Actions
-      - name: Run zizmor
-        run: docker run -t --env "GH_TOKEN=${GH_TOKEN}" -v .:/github ghcr.io/zizmorcore/zizmor:1.22.0 /github --config /github/.zizmor.yaml --min-severity medium --format github
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 ```
 
@@ -4699,52 +4664,6 @@ Also if workflow ran with `pull_request` trigger, then you can enable [PR commen
 
 ![GitHub Workflow Telemetry PR Comment](./images/workflow-telemetry-action-prcomment.png)
 
-## Tool management in GitHub Actions with Aqua
-
-[Aqua](https://aquaproj.github.io/) is a tool manager and useful for GitHub Actions. Aqua can install and manage multiple tools in your GitHub Actions workflow. Aqua uses `aqua.yaml` file to define which tools and versions to install. Just calling `aqua install` command will install all tools defined in `aqua.yaml`, you don't need to install each tool one by one.
-
-```yaml
-# .github/workflows/actionlint.yaml
-
-name: actionlint
-on:
-  workflow_dispatch:
-  pull_request:
-    branches: ["main"]
-    paths:
-      - ".github/workflows/**"
-  schedule:
-    - cron: "0 0 * * *"
-
-jobs:
-  lint:
-    permissions:
-      contents: read
-    runs-on: ubuntu-24.04
-    timeout-minutes: 5
-    steps:
-      - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
-        with:
-          persist-credentials: false
-      - uses: aquaproj/aqua-installer@9ebf656952a20c45a5d66606f083ff34f58b8ce0 # v4.0.0
-        with:
-          aqua_version: v2.43.1
-      # github workflows/action's Static Checker
-      - name: Run actionlint
-        run: actionlint -color -oneline
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      # # checkout's persist-credentials: false checker
-      # - name: Run ghalint
-      #   run: ghalint run
-      # A static analysis tool for GitHub Actions
-      - name: Run zizmor
-        run: docker run -t --env "GH_TOKEN=${GH_TOKEN}" -v .:/github ghcr.io/zizmorcore/zizmor:1.22.0 /github --config /github/.zizmor.yaml --min-severity medium --format github
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-```
-
 ## Type converter with fromJson
 
 There are some cases where you want to convert a string to another type.
@@ -4798,7 +4717,7 @@ Following is the result of the script.
 | Workflow | File Name | Schedule (UTC) | Last Commit by |
 | ---- | ---- | ---- | ---- |
 | action runner info | .github/workflows/action-runner-info.yaml | 0 0 * * 0 | guitarrapc |
-| actionlint | .github/workflows/actionlint.yaml | 0 0 * * * | guitarrapc |
+| GitHub Actions Lint | .github/workflows/github-actions-lint.yaml | 0 0 * * * | guitarrapc |
 | auto dump context | .github/workflows/auto-dump-context.yaml | 0 0 * * 0 | guitarrapc |
 | context github | .github/workflows/context-github.yaml | 0 0 * * 1 | guitarrapc |
 | dotnet lint | .github/workflows/dotnet-lint.yaml | 0 1 * * 1 | guitarrapc |
