@@ -2,13 +2,13 @@
   "token": "<reducted>",
   "job": "dump-context",
   "ref": "refs/heads/main",
-  "sha": "0cf1039c4a1a7d62f9b382506a2451cf6ff526f7",
+  "sha": "217db88a4b2bb16ff7f2a5a29be61fda4ec6dc7f",
   "repository": "guitarrapc/githubactions-lab",
   "repository_owner": "guitarrapc",
   "repository_owner_id": "3856350",
   "repositoryUrl": "git://github.com/guitarrapc/githubactions-lab.git",
-  "run_id": "27627661806",
-  "run_number": "1829",
+  "run_id": "27598585112",
+  "run_number": "1814",
   "retention_days": "90",
   "run_attempt": "1",
   "artifact_cache_size_limit": "10",
@@ -27,50 +27,68 @@
   "ref_type": "branch",
   "secret_source": "Actions",
   "event": {
-    "after": "0cf1039c4a1a7d62f9b382506a2451cf6ff526f7",
+    "after": "217db88a4b2bb16ff7f2a5a29be61fda4ec6dc7f",
     "base_ref": null,
-    "before": "f664746aa0056e24b9465884e55151851e8ab246",
+    "before": "61b0a6b527edb54331a17c2b264d9ad7d1522d5d",
     "commits": [
       {
         "author": {
-          "email": "49699333+dependabot[bot]@users.noreply.github.com",
-          "name": "dependabot[bot]",
-          "username": "dependabot[bot]"
+          "email": "3856350+guitarrapc@users.noreply.github.com",
+          "name": "Ikiru Yoshizaki",
+          "username": "guitarrapc"
         },
         "committer": {
-          "email": "noreply@github.com",
-          "name": "GitHub",
-          "username": "web-flow"
+          "email": "3856350+guitarrapc@users.noreply.github.com",
+          "name": "Ikiru Yoshizaki",
+          "username": "guitarrapc"
         },
         "distinct": true,
-        "id": "0cf1039c4a1a7d62f9b382506a2451cf6ff526f7",
-        "message": "chore(deps): bump the dependencies group across 1 directory with 3 updates (#327)\n\nBumps the dependencies group with 3 updates in the / directory: [actions/setup-dotnet](https://github.com/actions/setup-dotnet), [github/gh-aw-actions](https://github.com/github/gh-aw-actions) and [aws-actions/configure-aws-credentials](https://github.com/aws-actions/configure-aws-credentials).\n\n\nUpdates `actions/setup-dotnet` from 5.2.0 to 5.3.0\n- [Release notes](https://github.com/actions/setup-dotnet/releases)\n- [Commits](https://github.com/actions/setup-dotnet/compare/c2fa09f4bde5ebb9d1777cf28262a3eb3db3ced7...9a946fdbd5fb07b82b2f5a4466058b876ab72bb2)\n\nUpdates `github/gh-aw-actions` from 0.74.4 to 0.78.1\n- [Release notes](https://github.com/github/gh-aw-actions/releases)\n- [Changelog](https://github.com/github/gh-aw-actions/blob/main/CHANGELOG.md)\n- [Commits](https://github.com/github/gh-aw-actions/compare/d3abfe96a194bce3a523ed2093ddedd5704cdf62...73ed520ae4ecd087a485e1991605595978b32ac1)\n\nUpdates `aws-actions/configure-aws-credentials` from 6.1.0 to 6.2.0\n- [Release notes](https://github.com/aws-actions/configure-aws-credentials/releases)\n- [Changelog](https://github.com/aws-actions/configure-aws-credentials/blob/main/CHANGELOG.md)\n- [Commits](https://github.com/aws-actions/configure-aws-credentials/compare/ec61189d14ec14c8efccab744f656cffd0e33f37...e7f100cf4c008499ea8adda475de1042d6975c7b)\n\n---\nupdated-dependencies:\n- dependency-name: actions/setup-dotnet\n  dependency-version: 5.3.0\n  dependency-type: direct:production\n  update-type: version-update:semver-minor\n  dependency-group: dependencies\n- dependency-name: github/gh-aw-actions\n  dependency-version: 0.78.1\n  dependency-type: direct:production\n  update-type: version-update:semver-minor\n  dependency-group: dependencies\n- dependency-name: aws-actions/configure-aws-credentials\n  dependency-version: 6.2.0\n  dependency-type: direct:production\n  update-type: version-update:semver-minor\n  dependency-group: dependencies\n...\n\nSigned-off-by: dependabot[bot] <support@github.com>\nCo-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>",
-        "timestamp": "2026-06-17T00:11:23+09:00",
-        "tree_id": "caa3dddc62f1c106455cb08b9836762c29ca0bb0",
-        "url": "https://github.com/guitarrapc/githubactions-lab/commit/0cf1039c4a1a7d62f9b382506a2451cf6ff526f7"
+        "id": "e577dfe429085e8f2a4179c1d9992d60ffcf9c60",
+        "message": "chore: remove create-tag workflow",
+        "timestamp": "2026-06-16T15:19:43+09:00",
+        "tree_id": "400b8b9c53c7ca3708bd28a75c93ebd499daa09d",
+        "url": "https://github.com/guitarrapc/githubactions-lab/commit/e577dfe429085e8f2a4179c1d9992d60ffcf9c60"
+      },
+      {
+        "author": {
+          "email": "3856350+guitarrapc@users.noreply.github.com",
+          "name": "Ikiru Yoshizaki",
+          "username": "guitarrapc"
+        },
+        "committer": {
+          "email": "3856350+guitarrapc@users.noreply.github.com",
+          "name": "Ikiru Yoshizaki",
+          "username": "guitarrapc"
+        },
+        "distinct": true,
+        "id": "217db88a4b2bb16ff7f2a5a29be61fda4ec6dc7f",
+        "message": "ci: use reusable workflow for dotnet format",
+        "timestamp": "2026-06-16T15:25:40+09:00",
+        "tree_id": "4d28640db13980f53e5ef65ba17dacc56cb443ce",
+        "url": "https://github.com/guitarrapc/githubactions-lab/commit/217db88a4b2bb16ff7f2a5a29be61fda4ec6dc7f"
       }
     ],
-    "compare": "https://github.com/guitarrapc/githubactions-lab/compare/f664746aa005...0cf1039c4a1a",
+    "compare": "https://github.com/guitarrapc/githubactions-lab/compare/61b0a6b527ed...217db88a4b2b",
     "created": false,
     "deleted": false,
     "forced": false,
     "head_commit": {
       "author": {
-        "email": "49699333+dependabot[bot]@users.noreply.github.com",
-        "name": "dependabot[bot]",
-        "username": "dependabot[bot]"
+        "email": "3856350+guitarrapc@users.noreply.github.com",
+        "name": "Ikiru Yoshizaki",
+        "username": "guitarrapc"
       },
       "committer": {
-        "email": "noreply@github.com",
-        "name": "GitHub",
-        "username": "web-flow"
+        "email": "3856350+guitarrapc@users.noreply.github.com",
+        "name": "Ikiru Yoshizaki",
+        "username": "guitarrapc"
       },
       "distinct": true,
-      "id": "0cf1039c4a1a7d62f9b382506a2451cf6ff526f7",
-      "message": "chore(deps): bump the dependencies group across 1 directory with 3 updates (#327)\n\nBumps the dependencies group with 3 updates in the / directory: [actions/setup-dotnet](https://github.com/actions/setup-dotnet), [github/gh-aw-actions](https://github.com/github/gh-aw-actions) and [aws-actions/configure-aws-credentials](https://github.com/aws-actions/configure-aws-credentials).\n\n\nUpdates `actions/setup-dotnet` from 5.2.0 to 5.3.0\n- [Release notes](https://github.com/actions/setup-dotnet/releases)\n- [Commits](https://github.com/actions/setup-dotnet/compare/c2fa09f4bde5ebb9d1777cf28262a3eb3db3ced7...9a946fdbd5fb07b82b2f5a4466058b876ab72bb2)\n\nUpdates `github/gh-aw-actions` from 0.74.4 to 0.78.1\n- [Release notes](https://github.com/github/gh-aw-actions/releases)\n- [Changelog](https://github.com/github/gh-aw-actions/blob/main/CHANGELOG.md)\n- [Commits](https://github.com/github/gh-aw-actions/compare/d3abfe96a194bce3a523ed2093ddedd5704cdf62...73ed520ae4ecd087a485e1991605595978b32ac1)\n\nUpdates `aws-actions/configure-aws-credentials` from 6.1.0 to 6.2.0\n- [Release notes](https://github.com/aws-actions/configure-aws-credentials/releases)\n- [Changelog](https://github.com/aws-actions/configure-aws-credentials/blob/main/CHANGELOG.md)\n- [Commits](https://github.com/aws-actions/configure-aws-credentials/compare/ec61189d14ec14c8efccab744f656cffd0e33f37...e7f100cf4c008499ea8adda475de1042d6975c7b)\n\n---\nupdated-dependencies:\n- dependency-name: actions/setup-dotnet\n  dependency-version: 5.3.0\n  dependency-type: direct:production\n  update-type: version-update:semver-minor\n  dependency-group: dependencies\n- dependency-name: github/gh-aw-actions\n  dependency-version: 0.78.1\n  dependency-type: direct:production\n  update-type: version-update:semver-minor\n  dependency-group: dependencies\n- dependency-name: aws-actions/configure-aws-credentials\n  dependency-version: 6.2.0\n  dependency-type: direct:production\n  update-type: version-update:semver-minor\n  dependency-group: dependencies\n...\n\nSigned-off-by: dependabot[bot] <support@github.com>\nCo-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>",
-      "timestamp": "2026-06-17T00:11:23+09:00",
-      "tree_id": "caa3dddc62f1c106455cb08b9836762c29ca0bb0",
-      "url": "https://github.com/guitarrapc/githubactions-lab/commit/0cf1039c4a1a7d62f9b382506a2451cf6ff526f7"
+      "id": "217db88a4b2bb16ff7f2a5a29be61fda4ec6dc7f",
+      "message": "ci: use reusable workflow for dotnet format",
+      "timestamp": "2026-06-16T15:25:40+09:00",
+      "tree_id": "4d28640db13980f53e5ef65ba17dacc56cb443ce",
+      "url": "https://github.com/guitarrapc/githubactions-lab/commit/217db88a4b2bb16ff7f2a5a29be61fda4ec6dc7f"
     },
     "pusher": {
       "email": "3856350+guitarrapc@users.noreply.github.com",
@@ -140,8 +158,8 @@
       "name": "githubactions-lab",
       "node_id": "MDEwOlJlcG9zaXRvcnkyNTc0NjU0Njg=",
       "notifications_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/notifications{?since,all,participating}",
-      "open_issues": 2,
-      "open_issues_count": 2,
+      "open_issues": 3,
+      "open_issues_count": 3,
       "owner": {
         "avatar_url": "https://avatars.githubusercontent.com/u/3856350?v=4",
         "email": "3856350+guitarrapc@users.noreply.github.com",
@@ -168,9 +186,9 @@
       "private": false,
       "pull_request_creation_policy": "all",
       "pulls_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls{/number}",
-      "pushed_at": 1781622683,
+      "pushed_at": 1781591144,
       "releases_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/releases{/id}",
-      "size": 5816,
+      "size": 5808,
       "ssh_url": "git@github.com:guitarrapc/githubactions-lab.git",
       "stargazers": 56,
       "stargazers_count": 56,
@@ -185,7 +203,7 @@
         "github-actions"
       ],
       "trees_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/git/trees{/sha}",
-      "updated_at": "2026-06-16T06:26:13Z",
+      "updated_at": "2026-06-14T22:37:39Z",
       "url": "https://api.github.com/repos/guitarrapc/githubactions-lab",
       "visibility": "public",
       "watchers": 56,
@@ -215,7 +233,7 @@
     }
   },
   "workflow_ref": "guitarrapc/githubactions-lab/.github/workflows/auto-dump-context.yaml@refs/heads/main",
-  "workflow_sha": "0cf1039c4a1a7d62f9b382506a2451cf6ff526f7",
+  "workflow_sha": "217db88a4b2bb16ff7f2a5a29be61fda4ec6dc7f",
   "repository_id": "257465468",
   "triggering_actor": "guitarrapc",
   "workspace": "/home/runner/work/githubactions-lab/githubactions-lab",
@@ -223,9 +241,9 @@
   "event_path": "/home/runner/work/_temp/_github_workflow/event.json",
   "action_repository": "",
   "action_ref": "",
-  "path": "/home/runner/work/_temp/_runner_file_commands/add_path_df7e6329-b11c-4f51-9389-88b318931f02",
-  "env": "/home/runner/work/_temp/_runner_file_commands/set_env_df7e6329-b11c-4f51-9389-88b318931f02",
-  "step_summary": "/home/runner/work/_temp/_runner_file_commands/step_summary_df7e6329-b11c-4f51-9389-88b318931f02",
-  "state": "/home/runner/work/_temp/_runner_file_commands/save_state_df7e6329-b11c-4f51-9389-88b318931f02",
-  "output": "/home/runner/work/_temp/_runner_file_commands/set_output_df7e6329-b11c-4f51-9389-88b318931f02"
+  "path": "/home/runner/work/_temp/_runner_file_commands/add_path_209a2682-800b-4df8-9baf-bca89979253b",
+  "env": "/home/runner/work/_temp/_runner_file_commands/set_env_209a2682-800b-4df8-9baf-bca89979253b",
+  "step_summary": "/home/runner/work/_temp/_runner_file_commands/step_summary_209a2682-800b-4df8-9baf-bca89979253b",
+  "state": "/home/runner/work/_temp/_runner_file_commands/save_state_209a2682-800b-4df8-9baf-bca89979253b",
+  "output": "/home/runner/work/_temp/_runner_file_commands/set_output_209a2682-800b-4df8-9baf-bca89979253b"
 }
