@@ -8,6 +8,9 @@ rules:
       ubuntu-latest: "ubuntu-24.04"
       windows-latest: "windows-2025"
       macos-latest: "macos-15"
+  unpinned-uses:
+    ignore-actions:
+      - owner: "guitarrapc/actions"
 
   # Online rules (default: disabled). Enable individually:
   known-vulnerable-actions:
