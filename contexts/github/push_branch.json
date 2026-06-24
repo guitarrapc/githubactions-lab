@@ -2,13 +2,13 @@
   "token": "<reducted>",
   "job": "dump-context",
   "ref": "refs/heads/main",
-  "sha": "2fb397de02c0101c80c87625dbeed551a18eec2f",
+  "sha": "35ca014e1673b07deb557307e1dd9f00c283af1d",
   "repository": "guitarrapc/githubactions-lab",
   "repository_owner": "guitarrapc",
   "repository_owner_id": "3856350",
   "repositoryUrl": "git://github.com/guitarrapc/githubactions-lab.git",
-  "run_id": "28069856071",
-  "run_number": "1848",
+  "run_id": "28081116292",
+  "run_number": "1851",
   "retention_days": "90",
   "run_attempt": "1",
   "artifact_cache_size_limit": "10",
@@ -27,15 +27,15 @@
   "ref_type": "branch",
   "secret_source": "Actions",
   "event": {
-    "after": "2fb397de02c0101c80c87625dbeed551a18eec2f",
+    "after": "35ca014e1673b07deb557307e1dd9f00c283af1d",
     "base_ref": null,
-    "before": "206cbff0de7870d545c46ae1b99951df28c6e3a1",
+    "before": "3e06928cc2329637cabc4262ae3da6522b3da18a",
     "commits": [
       {
         "author": {
-          "email": "49699333+dependabot[bot]@users.noreply.github.com",
-          "name": "dependabot[bot]",
-          "username": "dependabot[bot]"
+          "email": "3856350+guitarrapc@users.noreply.github.com",
+          "name": "Ikiru Yoshizaki",
+          "username": "guitarrapc"
         },
         "committer": {
           "email": "noreply@github.com",
@@ -43,22 +43,22 @@
           "username": "web-flow"
         },
         "distinct": true,
-        "id": "2fb397de02c0101c80c87625dbeed551a18eec2f",
-        "message": "chore(deps): bump github/gh-aw-actions in the dependencies group (#328)\n\nBumps the dependencies group with 1 update: [github/gh-aw-actions](https://github.com/github/gh-aw-actions).\n\n\nUpdates `github/gh-aw-actions` from 0.78.1 to 0.79.2\n- [Release notes](https://github.com/github/gh-aw-actions/releases)\n- [Changelog](https://github.com/github/gh-aw-actions/blob/main/CHANGELOG.md)\n- [Commits](https://github.com/github/gh-aw-actions/compare/73ed520ae4ecd087a485e1991605595978b32ac1...9b1d730701c16b15673633e5696d01677fad9844)\n\n---\nupdated-dependencies:\n- dependency-name: github/gh-aw-actions\n  dependency-version: 0.79.2\n  dependency-type: direct:production\n  update-type: version-update:semver-minor\n  dependency-group: dependencies\n...\n\nSigned-off-by: dependabot[bot] <support@github.com>\nCo-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>",
-        "timestamp": "2026-06-24T10:56:54+09:00",
-        "tree_id": "f85cdaea76689b6e677dd95d204e414b5f141033",
-        "url": "https://github.com/guitarrapc/githubactions-lab/commit/2fb397de02c0101c80c87625dbeed551a18eec2f"
+        "id": "35ca014e1673b07deb557307e1dd9f00c283af1d",
+        "message": "Update auto-doc workflow to remove push trigger\n\nRemoved push trigger for the auto-doc workflow.",
+        "timestamp": "2026-06-24T15:59:30+09:00",
+        "tree_id": "288d3a19fae8dd582df5fa549d1e4ac81c3dbb8e",
+        "url": "https://github.com/guitarrapc/githubactions-lab/commit/35ca014e1673b07deb557307e1dd9f00c283af1d"
       }
     ],
-    "compare": "https://github.com/guitarrapc/githubactions-lab/compare/206cbff0de78...2fb397de02c0",
+    "compare": "https://github.com/guitarrapc/githubactions-lab/compare/3e06928cc232...35ca014e1673",
     "created": false,
     "deleted": false,
     "forced": false,
     "head_commit": {
       "author": {
-        "email": "49699333+dependabot[bot]@users.noreply.github.com",
-        "name": "dependabot[bot]",
-        "username": "dependabot[bot]"
+        "email": "3856350+guitarrapc@users.noreply.github.com",
+        "name": "Ikiru Yoshizaki",
+        "username": "guitarrapc"
       },
       "committer": {
         "email": "noreply@github.com",
@@ -66,11 +66,11 @@
         "username": "web-flow"
       },
       "distinct": true,
-      "id": "2fb397de02c0101c80c87625dbeed551a18eec2f",
-      "message": "chore(deps): bump github/gh-aw-actions in the dependencies group (#328)\n\nBumps the dependencies group with 1 update: [github/gh-aw-actions](https://github.com/github/gh-aw-actions).\n\n\nUpdates `github/gh-aw-actions` from 0.78.1 to 0.79.2\n- [Release notes](https://github.com/github/gh-aw-actions/releases)\n- [Changelog](https://github.com/github/gh-aw-actions/blob/main/CHANGELOG.md)\n- [Commits](https://github.com/github/gh-aw-actions/compare/73ed520ae4ecd087a485e1991605595978b32ac1...9b1d730701c16b15673633e5696d01677fad9844)\n\n---\nupdated-dependencies:\n- dependency-name: github/gh-aw-actions\n  dependency-version: 0.79.2\n  dependency-type: direct:production\n  update-type: version-update:semver-minor\n  dependency-group: dependencies\n...\n\nSigned-off-by: dependabot[bot] <support@github.com>\nCo-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>",
-      "timestamp": "2026-06-24T10:56:54+09:00",
-      "tree_id": "f85cdaea76689b6e677dd95d204e414b5f141033",
-      "url": "https://github.com/guitarrapc/githubactions-lab/commit/2fb397de02c0101c80c87625dbeed551a18eec2f"
+      "id": "35ca014e1673b07deb557307e1dd9f00c283af1d",
+      "message": "Update auto-doc workflow to remove push trigger\n\nRemoved push trigger for the auto-doc workflow.",
+      "timestamp": "2026-06-24T15:59:30+09:00",
+      "tree_id": "288d3a19fae8dd582df5fa549d1e4ac81c3dbb8e",
+      "url": "https://github.com/guitarrapc/githubactions-lab/commit/35ca014e1673b07deb557307e1dd9f00c283af1d"
     },
     "pusher": {
       "email": "3856350+guitarrapc@users.noreply.github.com",
@@ -168,9 +168,9 @@
       "private": false,
       "pull_request_creation_policy": "all",
       "pulls_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls{/number}",
-      "pushed_at": 1782266214,
+      "pushed_at": 1782284370,
       "releases_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/releases{/id}",
-      "size": 5818,
+      "size": 5848,
       "ssh_url": "git@github.com:guitarrapc/githubactions-lab.git",
       "stargazers": 56,
       "stargazers_count": 56,
@@ -185,7 +185,7 @@
         "github-actions"
       ],
       "trees_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/git/trees{/sha}",
-      "updated_at": "2026-06-21T00:56:02Z",
+      "updated_at": "2026-06-24T01:57:59Z",
       "url": "https://api.github.com/repos/guitarrapc/githubactions-lab",
       "visibility": "public",
       "watchers": 56,
@@ -215,7 +215,7 @@
     }
   },
   "workflow_ref": "guitarrapc/githubactions-lab/.github/workflows/auto-dump-context.yaml@refs/heads/main",
-  "workflow_sha": "2fb397de02c0101c80c87625dbeed551a18eec2f",
+  "workflow_sha": "35ca014e1673b07deb557307e1dd9f00c283af1d",
   "repository_id": "257465468",
   "triggering_actor": "guitarrapc",
   "workspace": "/home/runner/work/githubactions-lab/githubactions-lab",
@@ -223,9 +223,9 @@
   "event_path": "/home/runner/work/_temp/_github_workflow/event.json",
   "action_repository": "",
   "action_ref": "",
-  "path": "/home/runner/work/_temp/_runner_file_commands/add_path_cb01a8a1-cdbf-47af-947c-87eeb5d657bf",
-  "env": "/home/runner/work/_temp/_runner_file_commands/set_env_cb01a8a1-cdbf-47af-947c-87eeb5d657bf",
-  "step_summary": "/home/runner/work/_temp/_runner_file_commands/step_summary_cb01a8a1-cdbf-47af-947c-87eeb5d657bf",
-  "state": "/home/runner/work/_temp/_runner_file_commands/save_state_cb01a8a1-cdbf-47af-947c-87eeb5d657bf",
-  "output": "/home/runner/work/_temp/_runner_file_commands/set_output_cb01a8a1-cdbf-47af-947c-87eeb5d657bf"
+  "path": "/home/runner/work/_temp/_runner_file_commands/add_path_fb5f8d00-578c-4c51-910a-d24fcbf15fd5",
+  "env": "/home/runner/work/_temp/_runner_file_commands/set_env_fb5f8d00-578c-4c51-910a-d24fcbf15fd5",
+  "step_summary": "/home/runner/work/_temp/_runner_file_commands/step_summary_fb5f8d00-578c-4c51-910a-d24fcbf15fd5",
+  "state": "/home/runner/work/_temp/_runner_file_commands/save_state_fb5f8d00-578c-4c51-910a-d24fcbf15fd5",
+  "output": "/home/runner/work/_temp/_runner_file_commands/set_output_fb5f8d00-578c-4c51-910a-d24fcbf15fd5"
 }
