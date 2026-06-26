@@ -1,0 +1,36 @@
+name: parallel (parallel)
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  parallel:
+    permissions:
+      contents: read
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
+        with:
+          persist-credentials: false
+      # parallel waits for all steps to complete before continuing
+      # nested parallel `parallel.parallel` is not allowed
+      - parallel:
+          - name: Build dotnet
+            run: dotnet build ./src/dotnet -o publish/dotnet
+
+          - name: Build go
+            run: go build -o ../../publish/go/
+            working-directory: ./src/go/
+
+          - name: Build go-db
+            run: go build -o ../../publish/go-db/
+            working-directory: ./src/go-db/
+
+      # all published artifacts should be present at this point
+      - name: Check build results
+        run: ls -l ./publish/

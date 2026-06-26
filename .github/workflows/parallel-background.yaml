@@ -1,0 +1,159 @@
+name: parallel (background)
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  cancel:
+    permissions:
+      contents: read
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
+        with:
+          persist-credentials: false
+      - name: Build dotnet
+        id: build-dotnet
+        run: dotnet build ./src/dotnet -o publish/dotnet
+        background: true
+
+      - name: Build go
+        id: build-go
+        run: go build -o ../../publish/go/
+        working-directory: ./src/go/
+        background: true
+
+      - name: Build go-db
+        id: build-go-db
+        run: go build -o ../../publish/go-db/
+        working-directory: ./src/go-db/
+        background: true
+
+      - name: Check build results
+        run: ls -l ./publish/
+        continue-on-error: true
+
+      - name: Cancel background job
+        cancel: build-dotnet
+
+      - name: Cancel background job
+        cancel: build-go
+
+      - name: Cancel background job
+        cancel: build-go-db
+
+      - name: Check build results after wait
+        run: ls -lR ./publish/
+
+  wait:
+    permissions:
+      contents: read
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
+        with:
+          persist-credentials: false
+      - name: Build dotnet
+        id: build-dotnet
+        run: dotnet build ./src/dotnet -o publish/dotnet
+        background: true
+
+      - name: Build go
+        id: build-go
+        run: go build -o ../../publish/go/
+        working-directory: ./src/go/
+        background: true
+
+      - name: Build go-db
+        id: build-go-db
+        run: go build -o ../../publish/go-db/
+        working-directory: ./src/go-db/
+        background: true
+
+      - name: Check build results
+        run: ls -l ./publish/
+        continue-on-error: true
+
+      - name: Wait background job
+        wait: [build-dotnet]
+
+      - name: Check build results after wait
+        run: ls -lR ./publish/
+
+  wait-all:
+    permissions:
+      contents: read
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
+        with:
+          persist-credentials: false
+      - name: Build dotnet
+        id: build-dotnet
+        run: dotnet build ./src/dotnet -o publish/dotnet
+        background: true
+
+      - name: Build go
+        id: build-go
+        run: go build -o ../../publish/go/
+        working-directory: ./src/go/
+        background: true
+
+      - name: Build go-db
+        id: build-go-db
+        run: go build -o ../../publish/go-db/
+        working-directory: ./src/go-db/
+        background: true
+
+      - name: Check build results
+        run: ls -l ./publish/
+        continue-on-error: true
+
+      - name: Wait for all services to stop
+        wait-all:
+
+      - name: Check build results after wait
+        run: ls -lR ./publish/
+
+  no-wait:
+    permissions:
+      contents: read
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
+        with:
+          persist-credentials: false
+      - name: Build dotnet
+        id: build-dotnet
+        run: dotnet build ./src/dotnet -o publish/dotnet
+        background: true
+
+      - name: Build go
+        id: build-go
+        run: go build -o ../../publish/go/
+        working-directory: ./src/go/
+        background: true
+
+      - name: Build go-db
+        id: build-go-db
+        run: go build -o ../../publish/go-db/
+        working-directory: ./src/go-db/
+        background: true
+
+      - name: Check build results
+        run: ls -l ./publish/
+        continue-on-error: true
+
+      - name: Some long running task
+        run: sleep 30
+
+      - name: Check build results after wait
+        run: ls -lR ./publish/
