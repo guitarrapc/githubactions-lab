@@ -14,3 +14,14 @@ runs:
       run: echo "foo is ${VALUE}" # redirect to env when input is empty.
       env:
         VALUE: ${{ inputs.foo != '' && inputs.foo || env.FOO }}
+
+    - parallel:
+        - run: echo foo
+        - run: echo bar
+
+    - run: echo "background"
+      background: true
+      id: background
+
+    - name: wait
+      wait: background
