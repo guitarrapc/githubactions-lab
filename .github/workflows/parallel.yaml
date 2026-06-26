@@ -17,6 +17,7 @@ jobs:
       - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
         with:
           persist-credentials: false
+      # parallel waits for all steps to complete before continuing
       - parallel:
           - name: Build dotnet
             run: dotnet build ./src/dotnet -o publish/dotnet
@@ -29,11 +30,6 @@ jobs:
             run: go build -o ../../publish/go-db/
             working-directory: ./src/go-db/
 
+      # all published artifacts should be present at this point
       - name: Check build results
-        run: ls -l ./publish/
-
-      - name: Wait for all services to stop
-        wait-all:
-
-      - name: Check build results after wait
         run: ls -l ./publish/
