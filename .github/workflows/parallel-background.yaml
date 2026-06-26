@@ -18,12 +18,12 @@ jobs:
         with:
           persist-credentials: false
       - name: Build dotnet
-        id: build-dotnet
+        id: BUiLD-DOTNET
         run: dotnet build ./src/dotnet -o publish/dotnet
         background: true
 
       - name: Build go
-        id: BUILD-GO
+        id: build-go
         run: go build -o ../../publish/go/
         working-directory: ./src/go/
         background: true
