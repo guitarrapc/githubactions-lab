@@ -31,15 +31,6 @@ jobs:
             run: go build -o ../../publish/go-db/
             working-directory: ./src/go-db/
 
-          - parallel:
-              - name: Build go-db2
-                run: go build -o ../../publish/go-db2/
-                working-directory: ./src/go-db2/
-
-              - name: Build go-db3
-                run: go build -o ../../publish/go-db3/
-                working-directory: ./src/go-db3/
-
       # all published artifacts should be present at this point
       - name: Check build results
         run: ls -l ./publish/
