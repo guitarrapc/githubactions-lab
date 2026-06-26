@@ -1,7 +1,7 @@
 {
-  "after": "35ca014e1673b07deb557307e1dd9f00c283af1d",
+  "after": "43ae96eb5d52d062ea26cdb254750331590145d2",
   "base_ref": null,
-  "before": "3e06928cc2329637cabc4262ae3da6522b3da18a",
+  "before": "c8b349e9d0e2d75da51feafa791aef540095833f",
   "commits": [
     {
       "author": {
@@ -15,14 +15,14 @@
         "username": "web-flow"
       },
       "distinct": true,
-      "id": "35ca014e1673b07deb557307e1dd9f00c283af1d",
-      "message": "Update auto-doc workflow to remove push trigger\n\nRemoved push trigger for the auto-doc workflow.",
-      "timestamp": "2026-06-24T15:59:30+09:00",
-      "tree_id": "288d3a19fae8dd582df5fa549d1e4ac81c3dbb8e",
-      "url": "https://github.com/guitarrapc/githubactions-lab/commit/35ca014e1673b07deb557307e1dd9f00c283af1d"
+      "id": "43ae96eb5d52d062ea26cdb254750331590145d2",
+      "message": "feat: add parallel (#329)\n\n* feat: add parallel\n\n* chore: rename\n\n* [auto commit] Embedded code (workflow=auto doc)\n\n* [auto commit] update context (workflow=auto dump context, event=pull_request, action=opened)\n\n* ci: typo\n\n* [auto commit] update context (workflow=auto dump context, event=pull_request, action=synchronize)\n\n* fix: typo\n\n* [auto commit] update context (workflow=auto dump context, event=pull_request, action=synchronize)\n\n* chore: parallel nest\n\n* [auto commit] update context (workflow=auto dump context, event=pull_request, action=synchronize)\n\n* ci: nest parallel\n\n* [auto commit] update context (workflow=auto dump context, event=pull_request, action=synchronize)\n\n* feat: add parallel background example\n\n* [auto commit] update context (workflow=auto dump context, event=pull_request, action=synchronize)\n\n* fix: continue-on-error\n\n* [auto commit] update context (workflow=auto dump context, event=pull_request, action=synchronize)\n\n* chore: R\n\n* [auto commit] update context (workflow=auto dump context, event=pull_request, action=synchronize)\n\n* chore: nest\n\n* [auto commit] update context (workflow=auto dump context, event=pull_request, action=synchronize)\n\n* Revert \"chore: nest\"\n\nThis reverts commit ffaa6c7a4ad5a26066ca2204c2c92575bb5a63a9.\n\n* [auto commit] update context (workflow=auto dump context, event=pull_request, action=synchronize)\n\n* feat: actions parallel\n\n* [auto commit] update context (workflow=auto dump context, event=pull_request, action=synchronize)\n\n* ci: trigger\n\n* [auto commit] update context (workflow=auto dump context, event=pull_request, action=synchronize)\n\n* Revert \"ci: trigger\"\n\nThis reverts commit 275790202104a11e84295d8c527da43f9ca6cc3b.\n\n* Revert \"feat: actions parallel\"\n\nThis reverts commit 3bba013e39024b1ed5a81b6ebd794597bad5635b.\n\n* [auto commit] update context (workflow=auto dump context, event=pull_request, action=synchronize)\n\n---------\n\nCo-authored-by: github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>",
+      "timestamp": "2026-06-26T19:27:18+09:00",
+      "tree_id": "3a58dcadc845eaa17d088293ead0f9f23bded2da",
+      "url": "https://github.com/guitarrapc/githubactions-lab/commit/43ae96eb5d52d062ea26cdb254750331590145d2"
     }
   ],
-  "compare": "https://github.com/guitarrapc/githubactions-lab/compare/3e06928cc232...35ca014e1673",
+  "compare": "https://github.com/guitarrapc/githubactions-lab/compare/c8b349e9d0e2...43ae96eb5d52",
   "created": false,
   "deleted": false,
   "forced": false,
@@ -38,11 +38,11 @@
       "username": "web-flow"
     },
     "distinct": true,
-    "id": "35ca014e1673b07deb557307e1dd9f00c283af1d",
-    "message": "Update auto-doc workflow to remove push trigger\n\nRemoved push trigger for the auto-doc workflow.",
-    "timestamp": "2026-06-24T15:59:30+09:00",
-    "tree_id": "288d3a19fae8dd582df5fa549d1e4ac81c3dbb8e",
-    "url": "https://github.com/guitarrapc/githubactions-lab/commit/35ca014e1673b07deb557307e1dd9f00c283af1d"
+    "id": "43ae96eb5d52d062ea26cdb254750331590145d2",
+    "message": "feat: add parallel (#329)\n\n* feat: add parallel\n\n* chore: rename\n\n* [auto commit] Embedded code (workflow=auto doc)\n\n* [auto commit] update context (workflow=auto dump context, event=pull_request, action=opened)\n\n* ci: typo\n\n* [auto commit] update context (workflow=auto dump context, event=pull_request, action=synchronize)\n\n* fix: typo\n\n* [auto commit] update context (workflow=auto dump context, event=pull_request, action=synchronize)\n\n* chore: parallel nest\n\n* [auto commit] update context (workflow=auto dump context, event=pull_request, action=synchronize)\n\n* ci: nest parallel\n\n* [auto commit] update context (workflow=auto dump context, event=pull_request, action=synchronize)\n\n* feat: add parallel background example\n\n* [auto commit] update context (workflow=auto dump context, event=pull_request, action=synchronize)\n\n* fix: continue-on-error\n\n* [auto commit] update context (workflow=auto dump context, event=pull_request, action=synchronize)\n\n* chore: R\n\n* [auto commit] update context (workflow=auto dump context, event=pull_request, action=synchronize)\n\n* chore: nest\n\n* [auto commit] update context (workflow=auto dump context, event=pull_request, action=synchronize)\n\n* Revert \"chore: nest\"\n\nThis reverts commit ffaa6c7a4ad5a26066ca2204c2c92575bb5a63a9.\n\n* [auto commit] update context (workflow=auto dump context, event=pull_request, action=synchronize)\n\n* feat: actions parallel\n\n* [auto commit] update context (workflow=auto dump context, event=pull_request, action=synchronize)\n\n* ci: trigger\n\n* [auto commit] update context (workflow=auto dump context, event=pull_request, action=synchronize)\n\n* Revert \"ci: trigger\"\n\nThis reverts commit 275790202104a11e84295d8c527da43f9ca6cc3b.\n\n* Revert \"feat: actions parallel\"\n\nThis reverts commit 3bba013e39024b1ed5a81b6ebd794597bad5635b.\n\n* [auto commit] update context (workflow=auto dump context, event=pull_request, action=synchronize)\n\n---------\n\nCo-authored-by: github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>",
+    "timestamp": "2026-06-26T19:27:18+09:00",
+    "tree_id": "3a58dcadc845eaa17d088293ead0f9f23bded2da",
+    "url": "https://github.com/guitarrapc/githubactions-lab/commit/43ae96eb5d52d062ea26cdb254750331590145d2"
   },
   "pusher": {
     "email": "3856350+guitarrapc@users.noreply.github.com",
@@ -140,9 +140,9 @@
     "private": false,
     "pull_request_creation_policy": "all",
     "pulls_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls{/number}",
-    "pushed_at": 1782284370,
+    "pushed_at": 1782469638,
     "releases_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/releases{/id}",
-    "size": 5848,
+    "size": 6006,
     "ssh_url": "git@github.com:guitarrapc/githubactions-lab.git",
     "stargazers": 56,
     "stargazers_count": 56,
@@ -157,7 +157,7 @@
       "github-actions"
     ],
     "trees_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/git/trees{/sha}",
-    "updated_at": "2026-06-24T01:57:59Z",
+    "updated_at": "2026-06-26T10:25:57Z",
     "url": "https://api.github.com/repos/guitarrapc/githubactions-lab",
     "visibility": "public",
     "watchers": 56,
