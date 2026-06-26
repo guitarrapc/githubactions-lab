@@ -25,9 +25,9 @@ jobs:
             run: go build -o ../../publish/go/
             working-directory: ./src/go/
 
-          - name: Build go-build
-            run: go build -o ../../publish/go-build/
-            working-directory: ./src/go-build/
+          - name: Build go-db
+            run: go build -o ../../publish/go-db/
+            working-directory: ./src/go-db/
 
       - name: Check build results
         run: ls -l ./publish/
