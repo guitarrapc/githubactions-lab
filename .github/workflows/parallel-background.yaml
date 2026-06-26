@@ -48,7 +48,7 @@ jobs:
         cancel: build-go-db
 
       - name: Check build results after wait
-        run: ls -l ./publish/
+        run: ls -lR ./publish/
 
   wait:
     permissions:
@@ -84,7 +84,7 @@ jobs:
         wait: [build-dotnet]
 
       - name: Check build results after wait
-        run: ls -l ./publish/
+        run: ls -lR ./publish/
 
   wait-all:
     permissions:
@@ -120,7 +120,7 @@ jobs:
         wait-all:
 
       - name: Check build results after wait
-        run: ls -l ./publish/
+        run: ls -lR ./publish/
 
   no-wait:
     permissions:
@@ -156,4 +156,4 @@ jobs:
         run: sleep 30
 
       - name: Check build results after wait
-        run: ls -l ./publish/
+        run: ls -lR ./publish/
