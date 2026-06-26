@@ -23,7 +23,7 @@ jobs:
         background: true
 
       - name: Build go
-        id: build-go
+        id: BUILD-GO
         run: go build -o ../../publish/go/
         working-directory: ./src/go/
         background: true
