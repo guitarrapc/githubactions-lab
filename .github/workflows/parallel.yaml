@@ -20,6 +20,7 @@ jobs:
       # parallel waits for all steps to complete before continuing
       # nested parallel `parallel.parallel` is not allowed
       - parallel:
+        if: ${{ true }}
           - name: Build dotnet
             run: dotnet build ./src/dotnet -o publish/dotnet
 
