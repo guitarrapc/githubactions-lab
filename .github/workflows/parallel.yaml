@@ -14,12 +14,17 @@ jobs:
     runs-on: ubuntu-24.04
     timeout-minutes: 5
     steps:
-      - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
-        with:
-          persist-credentials: false
+      # parallel not allowed:
+      # nested parallel: `parallel.parallel`
+      # if section: `parallel.if:`
+      - parallel:
+          - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
+            with:
+              persist-credentials: false
+          - uses: actions/setup-dotnet@9a946fdbd5fb07b82b2f5a4466058b876ab72bb2 # v5.3.0
+            with:
+              dotnet-version: 10.0.x
       # parallel waits for all steps to complete before continuing
-      # nested parallel `parallel.parallel` is not allowed
-      # `parallel.if:` not allowed
       - parallel:
           - name: Build dotnet
             run: dotnet build ./src/dotnet -o publish/dotnet
