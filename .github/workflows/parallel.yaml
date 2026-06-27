@@ -3,6 +3,7 @@ on:
   push:
     branches:
       - main
+      - if
   pull_request:
     branches:
       - main
