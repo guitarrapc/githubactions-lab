@@ -19,7 +19,7 @@ jobs:
         with:
           persist-credentials: false
       - name: Build dotnet
-        id: build-dotnet # case insensitive
+        id: BUiLD-DOTNET # case insensitive
         run: dotnet build ./src/dotnet -o publish/dotnet
         background: true
 
@@ -41,7 +41,6 @@ jobs:
 
       - name: Cancel background job
         cancel: build-dotnet
-        if: ${{ true }}
 
       - name: Cancel background job
         cancel: build-go
@@ -84,7 +83,6 @@ jobs:
 
       - name: Wait background job
         wait: [build-dotnet]
-        if: ${{ true }}
 
       - name: Check build results after wait
         run: ls -lR ./publish/
@@ -121,7 +119,6 @@ jobs:
 
       - name: Wait for all services to stop
         wait-all:
-        if: ${{ true }}
 
       - name: Check build results after wait
         run: ls -lR ./publish/
