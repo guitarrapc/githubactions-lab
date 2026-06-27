@@ -2,13 +2,13 @@
   "token": "<reducted>",
   "job": "dump-context",
   "ref": "refs/heads/main",
-  "sha": "f01e11f2e12996a307c07c42e7a5156f0d9b74f5",
+  "sha": "c390407f8381b38bb5b67362b8cde3c9985f78ec",
   "repository": "guitarrapc/githubactions-lab",
   "repository_owner": "guitarrapc",
   "repository_owner_id": "3856350",
   "repositoryUrl": "git://github.com/guitarrapc/githubactions-lab.git",
-  "run_id": "28284877769",
-  "run_number": "1920",
+  "run_id": "28285873967",
+  "run_number": "1925",
   "retention_days": "90",
   "run_attempt": "1",
   "artifact_cache_size_limit": "10",
@@ -27,9 +27,9 @@
   "ref_type": "branch",
   "secret_source": "Actions",
   "event": {
-    "after": "f01e11f2e12996a307c07c42e7a5156f0d9b74f5",
+    "after": "c390407f8381b38bb5b67362b8cde3c9985f78ec",
     "base_ref": null,
-    "before": "1b7150b5e19d8d2ad5a8af3d7254f8053ce88855",
+    "before": "ddaf99abdeef04c138a57252c10d3760c9818bfc",
     "commits": [
       {
         "author": {
@@ -38,19 +38,19 @@
           "username": "guitarrapc"
         },
         "committer": {
-          "email": "noreply@github.com",
-          "name": "GitHub",
-          "username": "web-flow"
+          "email": "3856350+guitarrapc@users.noreply.github.com",
+          "name": "Ikiru Yoshizaki",
+          "username": "guitarrapc"
         },
         "distinct": true,
-        "id": "f01e11f2e12996a307c07c42e7a5156f0d9b74f5",
-        "message": "chore: validate if with parallel (#330)\n\n* chore: if allowed?\n\n* ci: push\n\n* chore: if step allowed?\n\n* chore: if allowed?\n\n* chore: trigger\n\n* Revert \"chore: if allowed?\"\n\nThis reverts commit 0acb7fcda7009f0c6231958bb6a250402af86370.\n\n* chore: comment\n\n* [auto commit] update context (workflow=auto dump context, event=pull_request, action=opened)\n\n---------\n\nCo-authored-by: github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>",
-        "timestamp": "2026-06-27T18:13:51+09:00",
-        "tree_id": "7731716615d6c82655dcdeface71c8d6a55b08a6",
-        "url": "https://github.com/guitarrapc/githubactions-lab/commit/f01e11f2e12996a307c07c42e7a5156f0d9b74f5"
+        "id": "c390407f8381b38bb5b67362b8cde3c9985f78ec",
+        "message": "chore: uses parallel",
+        "timestamp": "2026-06-27T18:58:32+09:00",
+        "tree_id": "6a89721ff77650eb111ad9811cb0a6b5a17e796d",
+        "url": "https://github.com/guitarrapc/githubactions-lab/commit/c390407f8381b38bb5b67362b8cde3c9985f78ec"
       }
     ],
-    "compare": "https://github.com/guitarrapc/githubactions-lab/compare/1b7150b5e19d...f01e11f2e129",
+    "compare": "https://github.com/guitarrapc/githubactions-lab/compare/ddaf99abdeef...c390407f8381",
     "created": false,
     "deleted": false,
     "forced": false,
@@ -61,16 +61,16 @@
         "username": "guitarrapc"
       },
       "committer": {
-        "email": "noreply@github.com",
-        "name": "GitHub",
-        "username": "web-flow"
+        "email": "3856350+guitarrapc@users.noreply.github.com",
+        "name": "Ikiru Yoshizaki",
+        "username": "guitarrapc"
       },
       "distinct": true,
-      "id": "f01e11f2e12996a307c07c42e7a5156f0d9b74f5",
-      "message": "chore: validate if with parallel (#330)\n\n* chore: if allowed?\n\n* ci: push\n\n* chore: if step allowed?\n\n* chore: if allowed?\n\n* chore: trigger\n\n* Revert \"chore: if allowed?\"\n\nThis reverts commit 0acb7fcda7009f0c6231958bb6a250402af86370.\n\n* chore: comment\n\n* [auto commit] update context (workflow=auto dump context, event=pull_request, action=opened)\n\n---------\n\nCo-authored-by: github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>",
-      "timestamp": "2026-06-27T18:13:51+09:00",
-      "tree_id": "7731716615d6c82655dcdeface71c8d6a55b08a6",
-      "url": "https://github.com/guitarrapc/githubactions-lab/commit/f01e11f2e12996a307c07c42e7a5156f0d9b74f5"
+      "id": "c390407f8381b38bb5b67362b8cde3c9985f78ec",
+      "message": "chore: uses parallel",
+      "timestamp": "2026-06-27T18:58:32+09:00",
+      "tree_id": "6a89721ff77650eb111ad9811cb0a6b5a17e796d",
+      "url": "https://github.com/guitarrapc/githubactions-lab/commit/c390407f8381b38bb5b67362b8cde3c9985f78ec"
     },
     "pusher": {
       "email": "3856350+guitarrapc@users.noreply.github.com",
@@ -168,7 +168,7 @@
       "private": false,
       "pull_request_creation_policy": "all",
       "pulls_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls{/number}",
-      "pushed_at": 1782551632,
+      "pushed_at": 1782554317,
       "releases_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/releases{/id}",
       "size": 5920,
       "ssh_url": "git@github.com:guitarrapc/githubactions-lab.git",
@@ -185,7 +185,7 @@
         "github-actions"
       ],
       "trees_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/git/trees{/sha}",
-      "updated_at": "2026-06-27T09:13:08Z",
+      "updated_at": "2026-06-27T09:15:30Z",
       "url": "https://api.github.com/repos/guitarrapc/githubactions-lab",
       "visibility": "public",
       "watchers": 56,
@@ -215,7 +215,7 @@
     }
   },
   "workflow_ref": "guitarrapc/githubactions-lab/.github/workflows/auto-dump-context.yaml@refs/heads/main",
-  "workflow_sha": "f01e11f2e12996a307c07c42e7a5156f0d9b74f5",
+  "workflow_sha": "c390407f8381b38bb5b67362b8cde3c9985f78ec",
   "repository_id": "257465468",
   "triggering_actor": "guitarrapc",
   "workspace": "/home/runner/work/githubactions-lab/githubactions-lab",
@@ -223,9 +223,9 @@
   "event_path": "/home/runner/work/_temp/_github_workflow/event.json",
   "action_repository": "",
   "action_ref": "",
-  "path": "/home/runner/work/_temp/_runner_file_commands/add_path_258f6b03-3dee-4b6c-b65f-9727291a6b1c",
-  "env": "/home/runner/work/_temp/_runner_file_commands/set_env_258f6b03-3dee-4b6c-b65f-9727291a6b1c",
-  "step_summary": "/home/runner/work/_temp/_runner_file_commands/step_summary_258f6b03-3dee-4b6c-b65f-9727291a6b1c",
-  "state": "/home/runner/work/_temp/_runner_file_commands/save_state_258f6b03-3dee-4b6c-b65f-9727291a6b1c",
-  "output": "/home/runner/work/_temp/_runner_file_commands/set_output_258f6b03-3dee-4b6c-b65f-9727291a6b1c"
+  "path": "/home/runner/work/_temp/_runner_file_commands/add_path_e93314b6-acf6-46e3-8cd9-72c37a39c42e",
+  "env": "/home/runner/work/_temp/_runner_file_commands/set_env_e93314b6-acf6-46e3-8cd9-72c37a39c42e",
+  "step_summary": "/home/runner/work/_temp/_runner_file_commands/step_summary_e93314b6-acf6-46e3-8cd9-72c37a39c42e",
+  "state": "/home/runner/work/_temp/_runner_file_commands/save_state_e93314b6-acf6-46e3-8cd9-72c37a39c42e",
+  "output": "/home/runner/work/_temp/_runner_file_commands/set_output_e93314b6-acf6-46e3-8cd9-72c37a39c42e"
 }
