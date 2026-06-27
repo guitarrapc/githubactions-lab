@@ -19,6 +19,7 @@ jobs:
           persist-credentials: false
       # parallel waits for all steps to complete before continuing
       # nested parallel `parallel.parallel` is not allowed
+      # `parallel.if:` not allowed
       - parallel:
           - name: Build dotnet
             run: dotnet build ./src/dotnet -o publish/dotnet
