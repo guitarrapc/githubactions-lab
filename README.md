@@ -4149,7 +4149,7 @@ jobs:
       # Preferred: setup-seiton installs the native binary and keeps CI lightweight.
       - uses: guitarrapc/setup-seiton@92f424f8dae8130d8f6299c74716356437d746ba # v1.0.2
         with:
-          seiton-version: 0.9.27
+          seiton-version: 1.2.0
       # Default on GitHub Actions: --format github-actions (rich stdout + job summary).
       # First adoption: fail only on errors until warnings are enforced:
       # run: seiton --include-actions --min-severity error
@@ -4159,7 +4159,7 @@ jobs:
       # Alternative (containerized run): Use this instead of setup-seiton if needed.
       # - name: Run seiton (Docker)
       #   run: |
-      #     docker run --rm  -v "$PWD:/repo:ro" -e GITHUB_ACTIONS -e GITHUB_STEP_SUMMARY ghcr.io/guitarrapc/seiton:v0.9.27 --include-actions
+      #     docker run --rm  -v "$PWD:/repo:ro" -e GITHUB_ACTIONS -e GITHUB_STEP_SUMMARY ghcr.io/guitarrapc/seiton:v1.2.0 --include-actions
 
   # Optional: Docker-based run (if you prefer container execution over setup-seiton)
   # Optional: GitHub Code Scanning (SARIF). Uncomment this job and add workflow permissions:
@@ -4188,7 +4188,7 @@ jobs:
   #     #   run: |
   #     #     docker run --rm \
   #     #       -v "$PWD:/repo:ro" \
-  #     #       ghcr.io/guitarrapc/seiton:v0.9.27 \
+  #     #       ghcr.io/guitarrapc/seiton:v1.2.0 \
   #     #       --format sarif --include-actions > results.sarif
   #
   #     - name: Upload SARIF

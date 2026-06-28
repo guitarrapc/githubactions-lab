@@ -38,7 +38,7 @@ jobs:
       # Alternative (containerized run): Use this instead of setup-seiton if needed.
       # - name: Run seiton (Docker)
       #   run: |
-      #     docker run --rm  -v "$PWD:/repo:ro" -e GITHUB_ACTIONS -e GITHUB_STEP_SUMMARY ghcr.io/guitarrapc/seiton:v0.9.27 --include-actions
+      #     docker run --rm  -v "$PWD:/repo:ro" -e GITHUB_ACTIONS -e GITHUB_STEP_SUMMARY ghcr.io/guitarrapc/seiton:v1.2.0 --include-actions
 
   # Optional: Docker-based run (if you prefer container execution over setup-seiton)
   # Optional: GitHub Code Scanning (SARIF). Uncomment this job and add workflow permissions:
@@ -67,7 +67,7 @@ jobs:
   #     #   run: |
   #     #     docker run --rm \
   #     #       -v "$PWD:/repo:ro" \
-  #     #       ghcr.io/guitarrapc/seiton:v0.9.27 \
+  #     #       ghcr.io/guitarrapc/seiton:v1.2.0 \
   #     #       --format sarif --include-actions > results.sarif
   #
   #     - name: Upload SARIF
