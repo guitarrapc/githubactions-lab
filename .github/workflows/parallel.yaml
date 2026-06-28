@@ -37,8 +37,9 @@ jobs:
             run: go build -o ../../publish/go-db/
             working-directory: ./src/go-db/
 
+          # can use if condition in parallel
           - run: echo foo
-            if: ${{ false }}
+            if: always()
 
       # all published artifacts should be present at this point
       - name: Check build results
