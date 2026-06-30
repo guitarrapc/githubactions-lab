@@ -6,7 +6,7 @@ on:
 
 jobs:
   embed-code:
-    if: ${{ github.actor != 'dependabot[bot]' }}
+    if: ${{ github.actor != 'dependabot[bot]' && github.actor != 'guitarrapc-github-actions-bot[bot]' }}
     permissions:
       contents: write
       pull-requests: write
