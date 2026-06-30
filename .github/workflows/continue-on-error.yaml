@@ -18,7 +18,12 @@ jobs:
         continue-on-error: true
       - run: exit 1
         continue-on-error: true
-      - run: echo success
       # never call failure(), as continue-on-error treat step error as success.
       - if: ${{ failure() }}
-        run: echo error happen
+        run: echo "error happen"
+      - if: ${{ success() }}
+        run: echo "continue-on-error:true overrite status with success"
+      - if: ${{ always() }}
+        run: echo "always trigger this step"
+      # called, because of continue-on-error: true
+      - run: echo success
