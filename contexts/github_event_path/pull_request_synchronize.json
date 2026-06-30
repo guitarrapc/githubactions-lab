@@ -1,37 +1,37 @@
 {
   "action": "synchronize",
-  "after": "8ae7e3f2788d428b0c0f216f1a5a6eebb4d351cc",
-  "before": "3d403fcaf9a04c5aafaaf4df9b45b227087b3f4b",
-  "number": 329,
+  "after": "7515be0b27f32d12fad4696f36b0cb3274e901f1",
+  "before": "fee60e7fe56c13ffca3cce3846bb1f9801e7c2b6",
+  "number": 331,
   "pull_request": {
     "_links": {
       "comments": {
-        "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/issues/329/comments"
+        "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/issues/331/comments"
       },
       "commits": {
-        "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/329/commits"
+        "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/331/commits"
       },
       "html": {
-        "href": "https://github.com/guitarrapc/githubactions-lab/pull/329"
+        "href": "https://github.com/guitarrapc/githubactions-lab/pull/331"
       },
       "issue": {
-        "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/issues/329"
+        "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/issues/331"
       },
       "review_comment": {
         "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/comments{/number}"
       },
       "review_comments": {
-        "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/329/comments"
+        "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/331/comments"
       },
       "self": {
-        "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/329"
+        "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/331"
       },
       "statuses": {
-        "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/statuses/8ae7e3f2788d428b0c0f216f1a5a6eebb4d351cc"
+        "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/statuses/7515be0b27f32d12fad4696f36b0cb3274e901f1"
       }
     },
     "active_lock_reason": null,
-    "additions": 526,
+    "additions": 182,
     "assignee": null,
     "assignees": [],
     "author_association": "OWNER",
@@ -135,9 +135,9 @@
         "private": false,
         "pull_request_creation_policy": "all",
         "pulls_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls{/number}",
-        "pushed_at": "2026-06-26T10:24:42Z",
+        "pushed_at": "2026-06-30T08:13:54Z",
         "releases_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/releases{/id}",
-        "size": 5865,
+        "size": 6059,
         "squash_merge_commit_message": "COMMIT_MESSAGES",
         "squash_merge_commit_title": "COMMIT_OR_PR_TITLE",
         "ssh_url": "git@github.com:guitarrapc/githubactions-lab.git",
@@ -153,7 +153,7 @@
           "github-actions"
         ],
         "trees_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/git/trees{/sha}",
-        "updated_at": "2026-06-26T10:22:45Z",
+        "updated_at": "2026-06-30T08:12:19Z",
         "url": "https://api.github.com/repos/guitarrapc/githubactions-lab",
         "use_squash_pr_title_as_default": false,
         "visibility": "public",
@@ -161,7 +161,7 @@
         "watchers_count": 56,
         "web_commit_signoff_required": false
       },
-      "sha": "32c8947169a5407e971fc36dadda5ac2993effae",
+      "sha": "6461c198f885dc29e52e1a94ecc09918004aa409",
       "user": {
         "avatar_url": "https://avatars.githubusercontent.com/u/3856350?v=4",
         "events_url": "https://api.github.com/users/guitarrapc/events{/privacy}",
@@ -184,20 +184,20 @@
         "user_view_type": "public"
       }
     },
-    "body": null,
-    "changed_files": 16,
+    "body": "Added a failure job to handle workflow failures and added corresponding steps.",
+    "changed_files": 9,
     "closed_at": null,
     "comments": 0,
-    "comments_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/issues/329/comments",
-    "commits": 28,
-    "commits_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/329/commits",
-    "created_at": "2026-06-26T09:27:17Z",
-    "deletions": 328,
-    "diff_url": "https://github.com/guitarrapc/githubactions-lab/pull/329.diff",
+    "comments_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/issues/331/comments",
+    "commits": 4,
+    "commits_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/331/commits",
+    "created_at": "2026-06-30T08:11:11Z",
+    "deletions": 128,
+    "diff_url": "https://github.com/guitarrapc/githubactions-lab/pull/331.diff",
     "draft": false,
     "head": {
-      "label": "guitarrapc:parallel",
-      "ref": "parallel",
+      "label": "guitarrapc:guitarrapc-patch-1",
+      "ref": "guitarrapc-patch-1",
       "repo": {
         "allow_auto_merge": true,
         "allow_forking": true,
@@ -294,9 +294,9 @@
         "private": false,
         "pull_request_creation_policy": "all",
         "pulls_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls{/number}",
-        "pushed_at": "2026-06-26T10:24:42Z",
+        "pushed_at": "2026-06-30T08:13:54Z",
         "releases_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/releases{/id}",
-        "size": 5865,
+        "size": 6059,
         "squash_merge_commit_message": "COMMIT_MESSAGES",
         "squash_merge_commit_title": "COMMIT_OR_PR_TITLE",
         "ssh_url": "git@github.com:guitarrapc/githubactions-lab.git",
@@ -312,7 +312,7 @@
           "github-actions"
         ],
         "trees_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/git/trees{/sha}",
-        "updated_at": "2026-06-26T10:22:45Z",
+        "updated_at": "2026-06-30T08:12:19Z",
         "url": "https://api.github.com/repos/guitarrapc/githubactions-lab",
         "use_squash_pr_title_as_default": false,
         "visibility": "public",
@@ -320,7 +320,7 @@
         "watchers_count": 56,
         "web_commit_signoff_required": false
       },
-      "sha": "8ae7e3f2788d428b0c0f216f1a5a6eebb4d351cc",
+      "sha": "7515be0b27f32d12fad4696f36b0cb3274e901f1",
       "user": {
         "avatar_url": "https://avatars.githubusercontent.com/u/3856350?v=4",
         "events_url": "https://api.github.com/users/guitarrapc/events{/privacy}",
@@ -343,33 +343,33 @@
         "user_view_type": "public"
       }
     },
-    "html_url": "https://github.com/guitarrapc/githubactions-lab/pull/329",
-    "id": 3941268996,
-    "issue_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/issues/329",
+    "html_url": "https://github.com/guitarrapc/githubactions-lab/pull/331",
+    "id": 3961563043,
+    "issue_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/issues/331",
     "labels": [],
     "locked": false,
     "maintainer_can_modify": false,
-    "merge_commit_sha": "b75357f73df8f643812a189a0b004d4b89bb1f89",
+    "merge_commit_sha": "48c16dee7d9125261c1a250c777ae45e5f611296",
     "mergeable": null,
     "mergeable_state": "unknown",
     "merged": false,
     "merged_at": null,
     "merged_by": null,
     "milestone": null,
-    "node_id": "PR_kwDOD1icfM7q6v4E",
-    "number": 329,
-    "patch_url": "https://github.com/guitarrapc/githubactions-lab/pull/329.patch",
+    "node_id": "PR_kwDOD1icfM7sIKej",
+    "number": 331,
+    "patch_url": "https://github.com/guitarrapc/githubactions-lab/pull/331.patch",
     "rebaseable": null,
     "requested_reviewers": [],
     "requested_teams": [],
     "review_comment_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/comments{/number}",
-    "review_comments": 2,
-    "review_comments_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/329/comments",
+    "review_comments": 0,
+    "review_comments_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/331/comments",
     "state": "open",
-    "statuses_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/statuses/8ae7e3f2788d428b0c0f216f1a5a6eebb4d351cc",
-    "title": "feat: add parallel",
-    "updated_at": "2026-06-26T10:24:43Z",
-    "url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/329",
+    "statuses_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/statuses/7515be0b27f32d12fad4696f36b0cb3274e901f1",
+    "title": "Add failure job to status-step workflow",
+    "updated_at": "2026-06-30T08:13:55Z",
+    "url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/331",
     "user": {
       "avatar_url": "https://avatars.githubusercontent.com/u/3856350?v=4",
       "events_url": "https://api.github.com/users/guitarrapc/events{/privacy}",
@@ -480,9 +480,9 @@
     "private": false,
     "pull_request_creation_policy": "all",
     "pulls_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls{/number}",
-    "pushed_at": "2026-06-26T10:24:42Z",
+    "pushed_at": "2026-06-30T08:13:54Z",
     "releases_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/releases{/id}",
-    "size": 5865,
+    "size": 6059,
     "ssh_url": "git@github.com:guitarrapc/githubactions-lab.git",
     "stargazers_count": 56,
     "stargazers_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/stargazers",
@@ -496,7 +496,7 @@
       "github-actions"
     ],
     "trees_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/git/trees{/sha}",
-    "updated_at": "2026-06-26T10:22:45Z",
+    "updated_at": "2026-06-30T08:12:19Z",
     "url": "https://api.github.com/repos/guitarrapc/githubactions-lab",
     "visibility": "public",
     "watchers": 56,
