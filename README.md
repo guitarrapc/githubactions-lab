@@ -1356,6 +1356,7 @@ jobs:
     timeout-minutes: 3
     steps:
       - run: echo "$COMMIT_MESSAGES"
+        id: echo
         env:
           COMMIT_MESSAGES: ${{ toJson(github.event.commits.*.message) }}
       - run: echo "success() runs when none of the previous steps have failed or been canceled"
@@ -1366,6 +1367,8 @@ jobs:
         if: ${{ cancelled() }}
       - run: echo "failure() runs when any previous step of a job fails."
         if: ${{ failure() }}
+      # success
+      - run: echo "${{ steps.echo.outcome }}"
 
   failure:
     permissions:
@@ -1374,6 +1377,7 @@ jobs:
     timeout-minutes: 3
     steps:
       - run: exit 1
+        id: echo
       - run: echo "success() runs when none of the previous steps have failed or been canceled"
         if: ${{ success() }}
       - run: echo "always() runs even when cancelled. It runs only when a critical failure prevents the task."
@@ -1382,6 +1386,8 @@ jobs:
         if: ${{ cancelled() }}
       - run: echo "failure() runs when any previous step of a job fails."
         if: ${{ failure() }}
+      # failure
+      - run: echo "${{ steps.echo.outcome }}"
 
 ```
 
