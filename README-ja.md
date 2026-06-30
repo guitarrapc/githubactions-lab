@@ -1343,10 +1343,6 @@ jobs:
 name: status step
 on:
   workflow_dispatch:
-  push:
-    branches: ["main"]
-  pull_request:
-    branches: ["main"]
 
 jobs:
   success:
@@ -1355,19 +1351,21 @@ jobs:
     runs-on: ubuntu-24.04
     timeout-minutes: 3
     steps:
-      - run: echo "$COMMIT_MESSAGES"
+      - run: echo "success"
         id: echo
-        env:
-          COMMIT_MESSAGES: ${{ toJson(github.event.commits.*.message) }}
+      # called
       - run: echo "success() runs when none of the previous steps have failed or been canceled"
         if: ${{ success() }}
+      # called
       - run: echo "always() runs even when cancelled. It runs only when a critical failure prevents the task."
         if: ${{ always() }}
+      # skipped
       - run: echo "cancelled() runs when workflow is cancelled."
         if: ${{ cancelled() }}
+      # skipped
       - run: echo "failure() runs when any previous step of a job fails."
         if: ${{ failure() }}
-      # success
+      # status=success
       - run: echo "${{ steps.echo.outcome }}"
         if: ${{ always() }}
 
@@ -1379,17 +1377,20 @@ jobs:
     steps:
       - run: exit 1
         id: echo
+      # skipped
       - run: echo "success() runs when none of the previous steps have failed or been canceled"
         if: ${{ success() }}
+      # called
       - run: echo "always() runs even when cancelled. It runs only when a critical failure prevents the task."
         if: ${{ always() }}
+      # skipped
       - run: echo "cancelled() runs when workflow is cancelled."
         if: ${{ cancelled() }}
+      # called
       - run: echo "failure() runs when any previous step of a job fails."
         if: ${{ failure() }}
-      # failure
-      - run: echo "${{ steps.echo.outcome }}"
-        if: ${{ always() }}
+      # status=failure
+      - run: echo "status=${{ steps.echo.outcome }}"
 
 ```
 
