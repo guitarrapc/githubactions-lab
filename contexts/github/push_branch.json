@@ -2,13 +2,13 @@
   "token": "<reducted>",
   "job": "dump-context",
   "ref": "refs/heads/main",
-  "sha": "cda8faf0e3a1036e8c06cdd4174f9f7f50a37401",
+  "sha": "35cad756649e3552eabb9c5c66f8a3f05a8077b9",
   "repository": "guitarrapc/githubactions-lab",
   "repository_owner": "guitarrapc",
   "repository_owner_id": "3856350",
   "repositoryUrl": "git://github.com/guitarrapc/githubactions-lab.git",
-  "run_id": "28316564289",
-  "run_number": "1935",
+  "run_id": "28430734474",
+  "run_number": "1961",
   "retention_days": "90",
   "run_attempt": "1",
   "artifact_cache_size_limit": "10",
@@ -27,9 +27,9 @@
   "ref_type": "branch",
   "secret_source": "Actions",
   "event": {
-    "after": "cda8faf0e3a1036e8c06cdd4174f9f7f50a37401",
+    "after": "35cad756649e3552eabb9c5c66f8a3f05a8077b9",
     "base_ref": null,
-    "before": "50e1b53fece38b85073cd121ebcb2a5c02cc180c",
+    "before": "516325a14354db7f7d5f105555ec9cd0a551157c",
     "commits": [
       {
         "author": {
@@ -38,37 +38,19 @@
           "username": "guitarrapc"
         },
         "committer": {
-          "email": "3856350+guitarrapc@users.noreply.github.com",
-          "name": "Ikiru Yoshizaki",
-          "username": "guitarrapc"
+          "email": "noreply@github.com",
+          "name": "GitHub",
+          "username": "web-flow"
         },
         "distinct": true,
-        "id": "7509b017aafda31eb48d96bbe6e60221f9acc5e0",
-        "message": "ci: specify seiton version",
-        "timestamp": "2026-06-28T17:30:39+09:00",
-        "tree_id": "a951fd8daf4105979c7dc99cea1427256c6c40c2",
-        "url": "https://github.com/guitarrapc/githubactions-lab/commit/7509b017aafda31eb48d96bbe6e60221f9acc5e0"
-      },
-      {
-        "author": {
-          "email": "3856350+guitarrapc@users.noreply.github.com",
-          "name": "Ikiru Yoshizaki",
-          "username": "guitarrapc"
-        },
-        "committer": {
-          "email": "3856350+guitarrapc@users.noreply.github.com",
-          "name": "Ikiru Yoshizaki",
-          "username": "guitarrapc"
-        },
-        "distinct": true,
-        "id": "cda8faf0e3a1036e8c06cdd4174f9f7f50a37401",
-        "message": "chore: specify version",
-        "timestamp": "2026-06-28T17:30:46+09:00",
-        "tree_id": "7daa26121798e125a19aca60ae6abd02bba31100",
-        "url": "https://github.com/guitarrapc/githubactions-lab/commit/cda8faf0e3a1036e8c06cdd4174f9f7f50a37401"
+        "id": "35cad756649e3552eabb9c5c66f8a3f05a8077b9",
+        "message": "Add failure job to status-step workflow (#331)\n\n* Add failure job to status-step workflow\n\nAdded a failure job to handle workflow failures and added corresponding steps.\n\n* [auto commit] update context (workflow=auto dump context, event=pull_request, action=opened)\n\n* [auto commit] Embedded code (workflow=auto doc)\n\n* Enhance status-step.yaml with outcome echo steps\n\nAdded echo steps to display outcomes of previous steps in both success and failure jobs.\n\n* [auto commit] Embedded code (workflow=auto doc)\n\n* [auto commit] update context (workflow=auto dump context, event=pull_request, action=synchronize)\n\n* Add always condition to echo step in workflow\n\n* [auto commit] update context (workflow=auto dump context, event=pull_request, action=synchronize)\n\n* [auto commit] Embedded code (workflow=auto doc)\n\n* Update status-step.yaml\n\n* [auto commit] Embedded code (workflow=auto doc)\n\n* [auto commit] update context (workflow=auto dump context, event=pull_request, action=synchronize)\n\n* Update status-step.yaml\n\n* [auto commit] Embedded code (workflow=auto doc)\n\n* [auto commit] update context (workflow=auto dump context, event=pull_request, action=synchronize)\n\n---------\n\nCo-authored-by: github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>",
+        "timestamp": "2026-06-30T17:24:26+09:00",
+        "tree_id": "2de69a0edbccdc43437b01779fb24a30d060d2a7",
+        "url": "https://github.com/guitarrapc/githubactions-lab/commit/35cad756649e3552eabb9c5c66f8a3f05a8077b9"
       }
     ],
-    "compare": "https://github.com/guitarrapc/githubactions-lab/compare/50e1b53fece3...cda8faf0e3a1",
+    "compare": "https://github.com/guitarrapc/githubactions-lab/compare/516325a14354...35cad756649e",
     "created": false,
     "deleted": false,
     "forced": false,
@@ -79,16 +61,16 @@
         "username": "guitarrapc"
       },
       "committer": {
-        "email": "3856350+guitarrapc@users.noreply.github.com",
-        "name": "Ikiru Yoshizaki",
-        "username": "guitarrapc"
+        "email": "noreply@github.com",
+        "name": "GitHub",
+        "username": "web-flow"
       },
       "distinct": true,
-      "id": "cda8faf0e3a1036e8c06cdd4174f9f7f50a37401",
-      "message": "chore: specify version",
-      "timestamp": "2026-06-28T17:30:46+09:00",
-      "tree_id": "7daa26121798e125a19aca60ae6abd02bba31100",
-      "url": "https://github.com/guitarrapc/githubactions-lab/commit/cda8faf0e3a1036e8c06cdd4174f9f7f50a37401"
+      "id": "35cad756649e3552eabb9c5c66f8a3f05a8077b9",
+      "message": "Add failure job to status-step workflow (#331)\n\n* Add failure job to status-step workflow\n\nAdded a failure job to handle workflow failures and added corresponding steps.\n\n* [auto commit] update context (workflow=auto dump context, event=pull_request, action=opened)\n\n* [auto commit] Embedded code (workflow=auto doc)\n\n* Enhance status-step.yaml with outcome echo steps\n\nAdded echo steps to display outcomes of previous steps in both success and failure jobs.\n\n* [auto commit] Embedded code (workflow=auto doc)\n\n* [auto commit] update context (workflow=auto dump context, event=pull_request, action=synchronize)\n\n* Add always condition to echo step in workflow\n\n* [auto commit] update context (workflow=auto dump context, event=pull_request, action=synchronize)\n\n* [auto commit] Embedded code (workflow=auto doc)\n\n* Update status-step.yaml\n\n* [auto commit] Embedded code (workflow=auto doc)\n\n* [auto commit] update context (workflow=auto dump context, event=pull_request, action=synchronize)\n\n* Update status-step.yaml\n\n* [auto commit] Embedded code (workflow=auto doc)\n\n* [auto commit] update context (workflow=auto dump context, event=pull_request, action=synchronize)\n\n---------\n\nCo-authored-by: github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>",
+      "timestamp": "2026-06-30T17:24:26+09:00",
+      "tree_id": "2de69a0edbccdc43437b01779fb24a30d060d2a7",
+      "url": "https://github.com/guitarrapc/githubactions-lab/commit/35cad756649e3552eabb9c5c66f8a3f05a8077b9"
     },
     "pusher": {
       "email": "3856350+guitarrapc@users.noreply.github.com",
@@ -186,9 +168,9 @@
       "private": false,
       "pull_request_creation_policy": "all",
       "pulls_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls{/number}",
-      "pushed_at": 1782635449,
+      "pushed_at": 1782807866,
       "releases_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/releases{/id}",
-      "size": 6026,
+      "size": 6059,
       "ssh_url": "git@github.com:guitarrapc/githubactions-lab.git",
       "stargazers": 56,
       "stargazers_count": 56,
@@ -203,7 +185,7 @@
         "github-actions"
       ],
       "trees_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/git/trees{/sha}",
-      "updated_at": "2026-06-28T08:14:15Z",
+      "updated_at": "2026-06-30T08:22:32Z",
       "url": "https://api.github.com/repos/guitarrapc/githubactions-lab",
       "visibility": "public",
       "watchers": 56,
@@ -233,7 +215,7 @@
     }
   },
   "workflow_ref": "guitarrapc/githubactions-lab/.github/workflows/auto-dump-context.yaml@refs/heads/main",
-  "workflow_sha": "cda8faf0e3a1036e8c06cdd4174f9f7f50a37401",
+  "workflow_sha": "35cad756649e3552eabb9c5c66f8a3f05a8077b9",
   "repository_id": "257465468",
   "triggering_actor": "guitarrapc",
   "workspace": "/home/runner/work/githubactions-lab/githubactions-lab",
@@ -241,9 +223,9 @@
   "event_path": "/home/runner/work/_temp/_github_workflow/event.json",
   "action_repository": "",
   "action_ref": "",
-  "path": "/home/runner/work/_temp/_runner_file_commands/add_path_f148c6e8-573a-4171-978a-146d75267df0",
-  "env": "/home/runner/work/_temp/_runner_file_commands/set_env_f148c6e8-573a-4171-978a-146d75267df0",
-  "step_summary": "/home/runner/work/_temp/_runner_file_commands/step_summary_f148c6e8-573a-4171-978a-146d75267df0",
-  "state": "/home/runner/work/_temp/_runner_file_commands/save_state_f148c6e8-573a-4171-978a-146d75267df0",
-  "output": "/home/runner/work/_temp/_runner_file_commands/set_output_f148c6e8-573a-4171-978a-146d75267df0"
+  "path": "/home/runner/work/_temp/_runner_file_commands/add_path_eb2f3f1e-6bd4-4d2a-8567-6296d3c8bbc1",
+  "env": "/home/runner/work/_temp/_runner_file_commands/set_env_eb2f3f1e-6bd4-4d2a-8567-6296d3c8bbc1",
+  "step_summary": "/home/runner/work/_temp/_runner_file_commands/step_summary_eb2f3f1e-6bd4-4d2a-8567-6296d3c8bbc1",
+  "state": "/home/runner/work/_temp/_runner_file_commands/save_state_eb2f3f1e-6bd4-4d2a-8567-6296d3c8bbc1",
+  "output": "/home/runner/work/_temp/_runner_file_commands/set_output_eb2f3f1e-6bd4-4d2a-8567-6296d3c8bbc1"
 }
