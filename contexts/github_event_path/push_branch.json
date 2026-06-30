@@ -1,7 +1,7 @@
 {
-  "after": "35cad756649e3552eabb9c5c66f8a3f05a8077b9",
+  "after": "b77938108c3bbe67f04c16a4772c95dd5ba4cdee",
   "base_ref": null,
-  "before": "516325a14354db7f7d5f105555ec9cd0a551157c",
+  "before": "208db29c1c7b40963d7eeb5dabb54bdae53ebf6d",
   "commits": [
     {
       "author": {
@@ -15,14 +15,14 @@
         "username": "web-flow"
       },
       "distinct": true,
-      "id": "35cad756649e3552eabb9c5c66f8a3f05a8077b9",
-      "message": "Add failure job to status-step workflow (#331)\n\n* Add failure job to status-step workflow\n\nAdded a failure job to handle workflow failures and added corresponding steps.\n\n* [auto commit] update context (workflow=auto dump context, event=pull_request, action=opened)\n\n* [auto commit] Embedded code (workflow=auto doc)\n\n* Enhance status-step.yaml with outcome echo steps\n\nAdded echo steps to display outcomes of previous steps in both success and failure jobs.\n\n* [auto commit] Embedded code (workflow=auto doc)\n\n* [auto commit] update context (workflow=auto dump context, event=pull_request, action=synchronize)\n\n* Add always condition to echo step in workflow\n\n* [auto commit] update context (workflow=auto dump context, event=pull_request, action=synchronize)\n\n* [auto commit] Embedded code (workflow=auto doc)\n\n* Update status-step.yaml\n\n* [auto commit] Embedded code (workflow=auto doc)\n\n* [auto commit] update context (workflow=auto dump context, event=pull_request, action=synchronize)\n\n* Update status-step.yaml\n\n* [auto commit] Embedded code (workflow=auto doc)\n\n* [auto commit] update context (workflow=auto dump context, event=pull_request, action=synchronize)\n\n---------\n\nCo-authored-by: github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>",
-      "timestamp": "2026-06-30T17:24:26+09:00",
-      "tree_id": "2de69a0edbccdc43437b01779fb24a30d060d2a7",
-      "url": "https://github.com/guitarrapc/githubactions-lab/commit/35cad756649e3552eabb9c5c66f8a3f05a8077b9"
+      "id": "b77938108c3bbe67f04c16a4772c95dd5ba4cdee",
+      "message": "Update continue-on-error.yaml (#332)\n\n* Update continue-on-error.yaml\n\n* [auto commit] update context (workflow=auto dump context, event=pull_request, action=opened)\n\n---------\n\nCo-authored-by: github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>\nCo-authored-by: copilot-swe-agent[bot] <198982749+Copilot@users.noreply.github.com>",
+      "timestamp": "2026-06-30T17:51:36+09:00",
+      "tree_id": "022722bf6ff8133a38c3a609bc74d750199c9b0d",
+      "url": "https://github.com/guitarrapc/githubactions-lab/commit/b77938108c3bbe67f04c16a4772c95dd5ba4cdee"
     }
   ],
-  "compare": "https://github.com/guitarrapc/githubactions-lab/compare/516325a14354...35cad756649e",
+  "compare": "https://github.com/guitarrapc/githubactions-lab/compare/208db29c1c7b...b77938108c3b",
   "created": false,
   "deleted": false,
   "forced": false,
@@ -38,11 +38,11 @@
       "username": "web-flow"
     },
     "distinct": true,
-    "id": "35cad756649e3552eabb9c5c66f8a3f05a8077b9",
-    "message": "Add failure job to status-step workflow (#331)\n\n* Add failure job to status-step workflow\n\nAdded a failure job to handle workflow failures and added corresponding steps.\n\n* [auto commit] update context (workflow=auto dump context, event=pull_request, action=opened)\n\n* [auto commit] Embedded code (workflow=auto doc)\n\n* Enhance status-step.yaml with outcome echo steps\n\nAdded echo steps to display outcomes of previous steps in both success and failure jobs.\n\n* [auto commit] Embedded code (workflow=auto doc)\n\n* [auto commit] update context (workflow=auto dump context, event=pull_request, action=synchronize)\n\n* Add always condition to echo step in workflow\n\n* [auto commit] update context (workflow=auto dump context, event=pull_request, action=synchronize)\n\n* [auto commit] Embedded code (workflow=auto doc)\n\n* Update status-step.yaml\n\n* [auto commit] Embedded code (workflow=auto doc)\n\n* [auto commit] update context (workflow=auto dump context, event=pull_request, action=synchronize)\n\n* Update status-step.yaml\n\n* [auto commit] Embedded code (workflow=auto doc)\n\n* [auto commit] update context (workflow=auto dump context, event=pull_request, action=synchronize)\n\n---------\n\nCo-authored-by: github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>",
-    "timestamp": "2026-06-30T17:24:26+09:00",
-    "tree_id": "2de69a0edbccdc43437b01779fb24a30d060d2a7",
-    "url": "https://github.com/guitarrapc/githubactions-lab/commit/35cad756649e3552eabb9c5c66f8a3f05a8077b9"
+    "id": "b77938108c3bbe67f04c16a4772c95dd5ba4cdee",
+    "message": "Update continue-on-error.yaml (#332)\n\n* Update continue-on-error.yaml\n\n* [auto commit] update context (workflow=auto dump context, event=pull_request, action=opened)\n\n---------\n\nCo-authored-by: github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>\nCo-authored-by: copilot-swe-agent[bot] <198982749+Copilot@users.noreply.github.com>",
+    "timestamp": "2026-06-30T17:51:36+09:00",
+    "tree_id": "022722bf6ff8133a38c3a609bc74d750199c9b0d",
+    "url": "https://github.com/guitarrapc/githubactions-lab/commit/b77938108c3bbe67f04c16a4772c95dd5ba4cdee"
   },
   "pusher": {
     "email": "3856350+guitarrapc@users.noreply.github.com",
@@ -140,7 +140,7 @@
     "private": false,
     "pull_request_creation_policy": "all",
     "pulls_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls{/number}",
-    "pushed_at": 1782807866,
+    "pushed_at": 1782809496,
     "releases_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/releases{/id}",
     "size": 6059,
     "ssh_url": "git@github.com:guitarrapc/githubactions-lab.git",
@@ -157,7 +157,7 @@
       "github-actions"
     ],
     "trees_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/git/trees{/sha}",
-    "updated_at": "2026-06-30T08:22:32Z",
+    "updated_at": "2026-06-30T08:40:12Z",
     "url": "https://api.github.com/repos/guitarrapc/githubactions-lab",
     "visibility": "public",
     "watchers": 56,
