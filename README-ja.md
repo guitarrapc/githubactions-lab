@@ -1379,7 +1379,6 @@ jobs:
     steps:
       - run: exit 1
         id: echo
-        continue-on-error: true
       - run: echo "success() runs when none of the previous steps have failed or been canceled"
         if: ${{ success() }}
       - run: echo "always() runs even when cancelled. It runs only when a critical failure prevents the task."
