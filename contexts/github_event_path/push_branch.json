@@ -1,7 +1,7 @@
 {
-  "after": "b77938108c3bbe67f04c16a4772c95dd5ba4cdee",
+  "after": "b2a8beb8bc68876c63fb600bc8f8f493096445fe",
   "base_ref": null,
-  "before": "208db29c1c7b40963d7eeb5dabb54bdae53ebf6d",
+  "before": "8d2e1a41ff2e62ab32bfe074c925f821ed43758d",
   "commits": [
     {
       "author": {
@@ -15,14 +15,14 @@
         "username": "web-flow"
       },
       "distinct": true,
-      "id": "b77938108c3bbe67f04c16a4772c95dd5ba4cdee",
-      "message": "Update continue-on-error.yaml (#332)\n\n* Update continue-on-error.yaml\n\n* [auto commit] update context (workflow=auto dump context, event=pull_request, action=opened)\n\n---------\n\nCo-authored-by: github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>\nCo-authored-by: copilot-swe-agent[bot] <198982749+Copilot@users.noreply.github.com>",
-      "timestamp": "2026-06-30T17:51:36+09:00",
-      "tree_id": "022722bf6ff8133a38c3a609bc74d750199c9b0d",
-      "url": "https://github.com/guitarrapc/githubactions-lab/commit/b77938108c3bbe67f04c16a4772c95dd5ba4cdee"
+      "id": "b2a8beb8bc68876c63fb600bc8f8f493096445fe",
+      "message": "Update status-step.yaml (#333)\n\n* Update status-step.yaml\n\n* [auto commit] Embedded code (workflow=auto doc)\n\n* [auto commit] update context (workflow=auto dump context, event=pull_request, action=opened)\n\n---------\n\nCo-authored-by: github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>",
+      "timestamp": "2026-06-30T17:58:32+09:00",
+      "tree_id": "82b8eb9ce3b6eb8165cb57fb24a1bbeb744a2f4c",
+      "url": "https://github.com/guitarrapc/githubactions-lab/commit/b2a8beb8bc68876c63fb600bc8f8f493096445fe"
     }
   ],
-  "compare": "https://github.com/guitarrapc/githubactions-lab/compare/208db29c1c7b...b77938108c3b",
+  "compare": "https://github.com/guitarrapc/githubactions-lab/compare/8d2e1a41ff2e...b2a8beb8bc68",
   "created": false,
   "deleted": false,
   "forced": false,
@@ -38,11 +38,11 @@
       "username": "web-flow"
     },
     "distinct": true,
-    "id": "b77938108c3bbe67f04c16a4772c95dd5ba4cdee",
-    "message": "Update continue-on-error.yaml (#332)\n\n* Update continue-on-error.yaml\n\n* [auto commit] update context (workflow=auto dump context, event=pull_request, action=opened)\n\n---------\n\nCo-authored-by: github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>\nCo-authored-by: copilot-swe-agent[bot] <198982749+Copilot@users.noreply.github.com>",
-    "timestamp": "2026-06-30T17:51:36+09:00",
-    "tree_id": "022722bf6ff8133a38c3a609bc74d750199c9b0d",
-    "url": "https://github.com/guitarrapc/githubactions-lab/commit/b77938108c3bbe67f04c16a4772c95dd5ba4cdee"
+    "id": "b2a8beb8bc68876c63fb600bc8f8f493096445fe",
+    "message": "Update status-step.yaml (#333)\n\n* Update status-step.yaml\n\n* [auto commit] Embedded code (workflow=auto doc)\n\n* [auto commit] update context (workflow=auto dump context, event=pull_request, action=opened)\n\n---------\n\nCo-authored-by: github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>",
+    "timestamp": "2026-06-30T17:58:32+09:00",
+    "tree_id": "82b8eb9ce3b6eb8165cb57fb24a1bbeb744a2f4c",
+    "url": "https://github.com/guitarrapc/githubactions-lab/commit/b2a8beb8bc68876c63fb600bc8f8f493096445fe"
   },
   "pusher": {
     "email": "3856350+guitarrapc@users.noreply.github.com",
@@ -140,7 +140,7 @@
     "private": false,
     "pull_request_creation_policy": "all",
     "pulls_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls{/number}",
-    "pushed_at": 1782809496,
+    "pushed_at": 1782809912,
     "releases_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/releases{/id}",
     "size": 6059,
     "ssh_url": "git@github.com:guitarrapc/githubactions-lab.git",
@@ -157,7 +157,7 @@
       "github-actions"
     ],
     "trees_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/git/trees{/sha}",
-    "updated_at": "2026-06-30T08:40:12Z",
+    "updated_at": "2026-06-30T08:58:17Z",
     "url": "https://api.github.com/repos/guitarrapc/githubactions-lab",
     "visibility": "public",
     "watchers": 56,
