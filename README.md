@@ -1369,6 +1369,7 @@ jobs:
         if: ${{ failure() }}
       # success
       - run: echo "${{ steps.echo.outcome }}"
+        if: ${{ always() }}
 
   failure:
     permissions:
@@ -1388,6 +1389,7 @@ jobs:
         if: ${{ failure() }}
       # failure
       - run: echo "${{ steps.echo.outcome }}"
+        if: ${{ always() }}
 
 ```
 
