@@ -2,13 +2,13 @@
   "token": "<reducted>",
   "job": "dump-context",
   "ref": "refs/heads/main",
-  "sha": "b2a8beb8bc68876c63fb600bc8f8f493096445fe",
+  "sha": "a405a0c9824afe80c818e7bd8dfa96d4877b8824",
   "repository": "guitarrapc/githubactions-lab",
   "repository_owner": "guitarrapc",
   "repository_owner_id": "3856350",
   "repositoryUrl": "git://github.com/guitarrapc/githubactions-lab.git",
-  "run_id": "28432612977",
-  "run_number": "1985",
+  "run_id": "28432711141",
+  "run_number": "1988",
   "retention_days": "90",
   "run_attempt": "1",
   "artifact_cache_size_limit": "10",
@@ -27,9 +27,9 @@
   "ref_type": "branch",
   "secret_source": "Actions",
   "event": {
-    "after": "b2a8beb8bc68876c63fb600bc8f8f493096445fe",
+    "after": "a405a0c9824afe80c818e7bd8dfa96d4877b8824",
     "base_ref": null,
-    "before": "8d2e1a41ff2e62ab32bfe074c925f821ed43758d",
+    "before": "0f9e6da62b10d69150732086678ae000538fd7ec",
     "commits": [
       {
         "author": {
@@ -43,14 +43,14 @@
           "username": "web-flow"
         },
         "distinct": true,
-        "id": "b2a8beb8bc68876c63fb600bc8f8f493096445fe",
-        "message": "Update status-step.yaml (#333)\n\n* Update status-step.yaml\n\n* [auto commit] Embedded code (workflow=auto doc)\n\n* [auto commit] update context (workflow=auto dump context, event=pull_request, action=opened)\n\n---------\n\nCo-authored-by: github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>",
-        "timestamp": "2026-06-30T17:58:32+09:00",
-        "tree_id": "82b8eb9ce3b6eb8165cb57fb24a1bbeb744a2f4c",
-        "url": "https://github.com/guitarrapc/githubactions-lab/commit/b2a8beb8bc68876c63fb600bc8f8f493096445fe"
+        "id": "a405a0c9824afe80c818e7bd8dfa96d4877b8824",
+        "message": "Update condition to exclude additional GitHub bot",
+        "timestamp": "2026-06-30T18:00:16+09:00",
+        "tree_id": "deed44c7576e5ec21fbbfc0679a99f1b1d59f7cb",
+        "url": "https://github.com/guitarrapc/githubactions-lab/commit/a405a0c9824afe80c818e7bd8dfa96d4877b8824"
       }
     ],
-    "compare": "https://github.com/guitarrapc/githubactions-lab/compare/8d2e1a41ff2e...b2a8beb8bc68",
+    "compare": "https://github.com/guitarrapc/githubactions-lab/compare/0f9e6da62b10...a405a0c9824a",
     "created": false,
     "deleted": false,
     "forced": false,
@@ -66,11 +66,11 @@
         "username": "web-flow"
       },
       "distinct": true,
-      "id": "b2a8beb8bc68876c63fb600bc8f8f493096445fe",
-      "message": "Update status-step.yaml (#333)\n\n* Update status-step.yaml\n\n* [auto commit] Embedded code (workflow=auto doc)\n\n* [auto commit] update context (workflow=auto dump context, event=pull_request, action=opened)\n\n---------\n\nCo-authored-by: github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>",
-      "timestamp": "2026-06-30T17:58:32+09:00",
-      "tree_id": "82b8eb9ce3b6eb8165cb57fb24a1bbeb744a2f4c",
-      "url": "https://github.com/guitarrapc/githubactions-lab/commit/b2a8beb8bc68876c63fb600bc8f8f493096445fe"
+      "id": "a405a0c9824afe80c818e7bd8dfa96d4877b8824",
+      "message": "Update condition to exclude additional GitHub bot",
+      "timestamp": "2026-06-30T18:00:16+09:00",
+      "tree_id": "deed44c7576e5ec21fbbfc0679a99f1b1d59f7cb",
+      "url": "https://github.com/guitarrapc/githubactions-lab/commit/a405a0c9824afe80c818e7bd8dfa96d4877b8824"
     },
     "pusher": {
       "email": "3856350+guitarrapc@users.noreply.github.com",
@@ -168,7 +168,7 @@
       "private": false,
       "pull_request_creation_policy": "all",
       "pulls_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls{/number}",
-      "pushed_at": 1782809912,
+      "pushed_at": 1782810016,
       "releases_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/releases{/id}",
       "size": 6059,
       "ssh_url": "git@github.com:guitarrapc/githubactions-lab.git",
@@ -185,7 +185,7 @@
         "github-actions"
       ],
       "trees_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/git/trees{/sha}",
-      "updated_at": "2026-06-30T08:58:17Z",
+      "updated_at": "2026-06-30T08:59:59Z",
       "url": "https://api.github.com/repos/guitarrapc/githubactions-lab",
       "visibility": "public",
       "watchers": 56,
@@ -215,7 +215,7 @@
     }
   },
   "workflow_ref": "guitarrapc/githubactions-lab/.github/workflows/auto-dump-context.yaml@refs/heads/main",
-  "workflow_sha": "b2a8beb8bc68876c63fb600bc8f8f493096445fe",
+  "workflow_sha": "a405a0c9824afe80c818e7bd8dfa96d4877b8824",
   "repository_id": "257465468",
   "triggering_actor": "guitarrapc",
   "workspace": "/home/runner/work/githubactions-lab/githubactions-lab",
@@ -223,9 +223,9 @@
   "event_path": "/home/runner/work/_temp/_github_workflow/event.json",
   "action_repository": "",
   "action_ref": "",
-  "path": "/home/runner/work/_temp/_runner_file_commands/add_path_75ab8fbd-72c5-4ef4-82d6-aee03b64eb31",
-  "env": "/home/runner/work/_temp/_runner_file_commands/set_env_75ab8fbd-72c5-4ef4-82d6-aee03b64eb31",
-  "step_summary": "/home/runner/work/_temp/_runner_file_commands/step_summary_75ab8fbd-72c5-4ef4-82d6-aee03b64eb31",
-  "state": "/home/runner/work/_temp/_runner_file_commands/save_state_75ab8fbd-72c5-4ef4-82d6-aee03b64eb31",
-  "output": "/home/runner/work/_temp/_runner_file_commands/set_output_75ab8fbd-72c5-4ef4-82d6-aee03b64eb31"
+  "path": "/home/runner/work/_temp/_runner_file_commands/add_path_a46316c2-0696-4db9-b9ca-5732081c8c83",
+  "env": "/home/runner/work/_temp/_runner_file_commands/set_env_a46316c2-0696-4db9-b9ca-5732081c8c83",
+  "step_summary": "/home/runner/work/_temp/_runner_file_commands/step_summary_a46316c2-0696-4db9-b9ca-5732081c8c83",
+  "state": "/home/runner/work/_temp/_runner_file_commands/save_state_a46316c2-0696-4db9-b9ca-5732081c8c83",
+  "output": "/home/runner/work/_temp/_runner_file_commands/set_output_a46316c2-0696-4db9-b9ca-5732081c8c83"
 }
