@@ -3140,7 +3140,7 @@ Use `pull_request` and compare `head.repo.full_name` with `base.repo.full_name` 
 ```yaml
 # .github/workflows/prevent-file-change.yaml
 
-name: prevent file change 2
+name: prevent file change
 
 on:
   pull_request:

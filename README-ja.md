@@ -3141,7 +3141,7 @@ GitHub Actionsで特に注意すべき変更の1つが、workflowやaction定義
 ```yaml
 # .github/workflows/prevent-file-change.yaml
 
-name: prevent file change 2
+name: prevent file change
 
 on:
   pull_request:
