@@ -3141,95 +3141,51 @@ GitHub Actionsで特に注意すべき変更の1つが、workflowやaction定義
 ```yaml
 # .github/workflows/prevent-file-change.yaml
 
-name: prevent file change 2
+name: prevent file change
 
 on:
   pull_request:
     branches: ["main"]
 
 jobs:
-  dependabot:
-    permissions:
-      pull-requests: read
-    runs-on: ubuntu-24.04
-    timeout-minutes: 3
-    outputs:
-      result: ${{ steps.check.outputs.result }}
-    steps:
-      - uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
-        id: check
-        with:
-          script: |
-            const isDependabot = context.actor === "dependabot[bot]";
-
-            if (!isDependabot) {
-              core.info("Not a Dependabot PR.");
-              core.setOutput("result", "ok");
-              return;
-            }
-
-            const files = await github.paginate(github.rest.pulls.listFiles, {
-              ...context.repo,
-              pull_number: context.payload.pull_request.number,
-              per_page: 100,
-            });
-
-            const blocked = files
-              .map(file => file.filename)
-              .filter(name =>
-                !/^\.github\/workflows\/.*\.ya?ml$/.test(name)
-              );
-
-            if (blocked.length > 0) {
-              core.setOutput("result", "failed");
-              core.setFailed(
-                `Dependabot may only change .github/workflows/*.yml or *.yaml:\n${blocked.join("\n")}`
-              );
-              return;
-            }
-
-            core.info("Dependabot changed only workflow files.");
-            core.setOutput("result", "ok");
-
   external:
     permissions:
       pull-requests: read
     runs-on: ubuntu-24.04
     timeout-minutes: 3
-    outputs:
-      result: ${{ steps.check.outputs.result }}
     steps:
       - uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
-        id: check
         with:
           script: |
             const pr = context.payload.pull_request;
+
+            if (!pr) {
+              core.info("This workflow only checks pull request events.");
+              return;
+            }
+
             const files = await github.paginate(github.rest.pulls.listFiles, {
               ...context.repo,
               pull_number: pr.number,
               per_page: 100,
             });
 
-            const isDependabot = context.actor === "dependabot[bot]";
+            const changedFiles = files.map(file => file.filename);
             const isExternalPr = pr.head.repo.full_name !== pr.base.repo.full_name;
 
-            if (isDependabot || !isExternalPr) {
+            if (!isExternalPr) {
               core.info("Not an external contributor PR.");
-              core.setOutput("result", "ok");
               return;
             }
 
-            const blocked = files
-              .map(file => file.filename)
-              .filter(name =>
-                /^\.github\/workflows\/.*\.ya?ml$/.test(name) ||
-                /^\.github\/actions\/.*$/.test(name) ||
-                /^\.github\/dependabot\.ya?ml$/.test(name) ||
-                name === ".github/CODEOWNERS"
-              );
+            const blocked = changedFiles.filter(name =>
+              /^\.github\/workflows\/.*\.ya?ml$/.test(name) ||
+              /^\.github\/actions\/.*$/.test(name) ||
+              /^\.github\/dependabot\.ya?ml$/.test(name) ||
+              name === ".github/CODEOWNERS"
+            );
 
             if (blocked.length > 0) {
-              core.setOutput("result", "failed");
               core.setFailed(
                 `External contributor PR may not change protected files:\n${blocked.join("\n")}`
               );
@@ -3237,28 +3193,6 @@ jobs:
             }
 
             core.info("No protected files changed by external contributor.");
-            core.setOutput("result", "ok");
-
-  protect-github-files:
-    needs: [dependabot, external]
-    permissions: {}
-    runs-on: ubuntu-24.04
-    timeout-minutes: 1
-    if: ${{ always() }}
-    steps:
-      - name: Check results
-        run: |
-          if [[ "${{ needs.dependabot.result }}" != "success" ]]; then
-            echo "::error::dependabot changes check failed"
-            exit 1
-          fi
-
-          if [[ "${{ needs.external.result }}" != "success" ]]; then
-            echo "::error::external contributor changes check failed"
-            exit 1
-          fi
-
-          echo "All protected file checks passed."
 
 ```
 
