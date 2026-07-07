@@ -3127,14 +3127,16 @@ jobs:
 
 One of the high-risk areas in GitHub Actions is workflow and action definition changes. If your workflows use `secrets` or privileged tokens, treat updates to `.github/**` as protected changes.
 
-In practice, it helps to split the policy into two cases:
+Policy is simple, prevent external contributors from changing workflow and action definitions.
 
-- `dependabot[bot]`: allow updates only under `.github/workflows/`
 - external pull requests: block edits to protected GitHub configuration such as workflows, custom actions, Dependabot config, and `CODEOWNERS`
 
-Use `pull_request` and compare `head.repo.full_name` with `base.repo.full_name` when you want to detect an external PR. `github.event.pull_request.head.repo.fork` only tells you whether the head repository itself is a fork repository, which is not the same thing.
+Use `pull_request` and compare `head.repo.full_name` with `base.repo.full_name` when you want to detect an external PR.
 
-> [!Warning]
+> [!WARNING]
+> `github.event.pull_request.head.repo.fork` only tells you whether the head repository itself is a fork repository, which is not the same thing.
+
+> [!ERROR]
 > Stop using `tj-actions/changed-files` as of reaction to the [security vulnerbility](https://www.stepsecurity.io/blog/harden-runner-detection-tj-actions-changed-files-action-is-compromised)
 
 ```yaml
