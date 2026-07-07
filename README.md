@@ -3136,7 +3136,7 @@ Use `pull_request` and compare `head.repo.full_name` with `base.repo.full_name` 
 > [!WARNING]
 > `github.event.pull_request.head.repo.fork` only tells you whether the head repository itself is a fork repository, which is not the same thing.
 
-> [!ERROR]
+> [!CAUTION]
 > Stop using `tj-actions/changed-files` as of reaction to the [security vulnerbility](https://www.stepsecurity.io/blog/harden-runner-detection-tj-actions-changed-files-action-is-compromised)
 
 ```yaml
