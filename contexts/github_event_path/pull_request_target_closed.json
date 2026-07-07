@@ -1,38 +1,38 @@
 {
   "action": "closed",
-  "number": 334,
+  "number": 336,
   "pull_request": {
     "_links": {
       "comments": {
-        "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/issues/334/comments"
+        "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/issues/336/comments"
       },
       "commits": {
-        "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/334/commits"
+        "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/336/commits"
       },
       "html": {
-        "href": "https://github.com/guitarrapc/githubactions-lab/pull/334"
+        "href": "https://github.com/guitarrapc/githubactions-lab/pull/336"
       },
       "issue": {
-        "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/issues/334"
+        "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/issues/336"
       },
       "review_comment": {
         "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/comments{/number}"
       },
       "review_comments": {
-        "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/334/comments"
+        "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/336/comments"
       },
       "self": {
-        "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/334"
+        "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/336"
       },
       "statuses": {
-        "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/statuses/553ee75571729a1cff2d828bee8a94d2337a3d21"
+        "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/statuses/dea24d18bf95109b94daab3550d2e503f4cde5ac"
       }
     },
     "active_lock_reason": null,
-    "additions": 21,
+    "additions": 290,
     "assignee": null,
     "assignees": [],
-    "author_association": "CONTRIBUTOR",
+    "author_association": "OWNER",
     "auto_merge": null,
     "base": {
       "label": "guitarrapc:main",
@@ -133,9 +133,9 @@
         "private": false,
         "pull_request_creation_policy": "all",
         "pulls_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls{/number}",
-        "pushed_at": "2026-06-30T15:39:51Z",
+        "pushed_at": "2026-07-07T06:36:18Z",
         "releases_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/releases{/id}",
-        "size": 5978,
+        "size": 6019,
         "squash_merge_commit_message": "COMMIT_MESSAGES",
         "squash_merge_commit_title": "COMMIT_OR_PR_TITLE",
         "ssh_url": "git@github.com:guitarrapc/githubactions-lab.git",
@@ -151,7 +151,7 @@
           "github-actions"
         ],
         "trees_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/git/trees{/sha}",
-        "updated_at": "2026-06-30T09:01:24Z",
+        "updated_at": "2026-07-07T06:36:21Z",
         "url": "https://api.github.com/repos/guitarrapc/githubactions-lab",
         "use_squash_pr_title_as_default": false,
         "visibility": "public",
@@ -159,7 +159,7 @@
         "watchers_count": 56,
         "web_commit_signoff_required": false
       },
-      "sha": "07e9c96c887b79bba6a54711f67aa89d57a19d8f",
+      "sha": "235fc0ccdae4fa8a1e1a73851fbc074c23eefd5b",
       "user": {
         "avatar_url": "https://avatars.githubusercontent.com/u/3856350?v=4",
         "events_url": "https://api.github.com/users/guitarrapc/events{/privacy}",
@@ -182,20 +182,20 @@
         "user_view_type": "public"
       }
     },
-    "body": "Bumps the dependencies group with 2 updates: [github/gh-aw-actions/setup](https://github.com/github/gh-aw-actions) and [github/gh-aw-actions/setup-cli](https://github.com/github/gh-aw-actions).\n\nUpdates `github/gh-aw-actions/setup` from 0.79.2 to 0.80.1\n<details>\n<summary>Release notes</summary>\n<p><em>Sourced from <a href=\"https://github.com/github/gh-aw-actions/releases\">github/gh-aw-actions/setup's releases</a>.</em></p>\n<blockquote>\n<h2>v0.80.1</h2>\n<p>Sync of actions from <a href=\"https://github.com/github/gh-aw\">gh-aw</a> at <code>v0.80.1</code>.</p>\n<h2>v0.80.0</h2>\n<p>Sync of actions from <a href=\"https://github.com/github/gh-aw\">gh-aw</a> at <code>v0.80.0</code>.</p>\n<h2>v0.79.8</h2>\n<p>Sync of actions from <a href=\"https://github.com/github/gh-aw\">gh-aw</a> at <code>v0.79.8</code>.</p>\n<h2>v0.79.7</h2>\n<p>Sync of actions from <a href=\"https://github.com/github/gh-aw\">gh-aw</a> at <code>v0.79.7</code>.</p>\n<h2>v0.79.6</h2>\n<p>Sync of actions from <a href=\"https://github.com/github/gh-aw\">gh-aw</a> at <code>v0.79.6</code>.</p>\n<h2>v0.79.5</h2>\n<p>Sync of actions from <a href=\"https://github.com/github/gh-aw\">gh-aw</a> at <code>v0.79.5</code>.</p>\n<h2>v0.79.4</h2>\n<p>Sync of actions from <a href=\"https://github.com/github/gh-aw\">gh-aw</a> at <code>v0.79.4</code>.</p>\n<h2>v0.79.3</h2>\n<p>Sync of actions from <a href=\"https://github.com/github/gh-aw\">gh-aw</a> at <code>v0.79.3</code>.</p>\n</blockquote>\n</details>\n<details>\n<summary>Commits</summary>\n<ul>\n<li><a href=\"https://github.com/github/gh-aw-actions/commit/489221ef1ac02b327e3f92e76c558e7680340cf4\"><code>489221e</code></a> chore: sync actions from gh-aw@v0.80.1 (<a href=\"https://redirect.github.com/github/gh-aw-actions/issues/156\">#156</a>)</li>\n<li><a href=\"https://github.com/github/gh-aw-actions/commit/c106acf3789e3bb0c846e86f50c3f743396dbc21\"><code>c106acf</code></a> chore: sync actions from gh-aw@v0.80.0 (<a href=\"https://redirect.github.com/github/gh-aw-actions/issues/155\">#155</a>)</li>\n<li><a href=\"https://github.com/github/gh-aw-actions/commit/a22c32462be0cfa6944eff020a20e8809eab2793\"><code>a22c324</code></a> Migrate runtime threat scan to CopilotRequestWrite (<a href=\"https://redirect.github.com/github/gh-aw-actions/issues/153\">#153</a>)</li>\n<li><a href=\"https://github.com/github/gh-aw-actions/commit/c0338fef4749d08c21f8f975fb0e37efa17dda47\"><code>c0338fe</code></a> chore: sync actions from gh-aw@v0.79.8 (<a href=\"https://redirect.github.com/github/gh-aw-actions/issues/154\">#154</a>)</li>\n<li><a href=\"https://github.com/github/gh-aw-actions/commit/c71b1e20fb7b3dc52409b0088673d7ba3e3c22b9\"><code>c71b1e2</code></a> chore: sync actions from gh-aw@v0.79.7 (<a href=\"https://redirect.github.com/github/gh-aw-actions/issues/152\">#152</a>)</li>\n<li><a href=\"https://github.com/github/gh-aw-actions/commit/5c2fe865bb4dc46e1450f6ee0d0541d759aea73a\"><code>5c2fe86</code></a> chore: sync actions from gh-aw@v0.79.6 (<a href=\"https://redirect.github.com/github/gh-aw-actions/issues/150\">#150</a>)</li>\n<li><a href=\"https://github.com/github/gh-aw-actions/commit/8462d2654e8682e6d6b67cf2bd1621adeaa5db12\"><code>8462d26</code></a> chore: sync actions from gh-aw@v0.79.5 (<a href=\"https://redirect.github.com/github/gh-aw-actions/issues/149\">#149</a>)</li>\n<li><a href=\"https://github.com/github/gh-aw-actions/commit/d059700c6a8ec3b5fd798b9ea60f5d048447b918\"><code>d059700</code></a> chore: sync actions from gh-aw@v0.79.4 (<a href=\"https://redirect.github.com/github/gh-aw-actions/issues/148\">#148</a>)</li>\n<li><a href=\"https://github.com/github/gh-aw-actions/commit/ff3d7ecc684ffaf8c99e9ac7e40536e955a9776b\"><code>ff3d7ec</code></a> chore: sync actions from gh-aw@v0.79.3 (<a href=\"https://redirect.github.com/github/gh-aw-actions/issues/147\">#147</a>)</li>\n<li>See full diff in <a href=\"https://github.com/github/gh-aw-actions/compare/9b1d730701c16b15673633e5696d01677fad9844...489221ef1ac02b327e3f92e76c558e7680340cf4\">compare view</a></li>\n</ul>\n</details>\n<br />\n\nUpdates `github/gh-aw-actions/setup-cli` from 0.79.2 to 0.80.1\n<details>\n<summary>Release notes</summary>\n<p><em>Sourced from <a href=\"https://github.com/github/gh-aw-actions/releases\">github/gh-aw-actions/setup-cli's releases</a>.</em></p>\n<blockquote>\n<h2>v0.80.1</h2>\n<p>Sync of actions from <a href=\"https://github.com/github/gh-aw\">gh-aw</a> at <code>v0.80.1</code>.</p>\n<h2>v0.80.0</h2>\n<p>Sync of actions from <a href=\"https://github.com/github/gh-aw\">gh-aw</a> at <code>v0.80.0</code>.</p>\n<h2>v0.79.8</h2>\n<p>Sync of actions from <a href=\"https://github.com/github/gh-aw\">gh-aw</a> at <code>v0.79.8</code>.</p>\n<h2>v0.79.7</h2>\n<p>Sync of actions from <a href=\"https://github.com/github/gh-aw\">gh-aw</a> at <code>v0.79.7</code>.</p>\n<h2>v0.79.6</h2>\n<p>Sync of actions from <a href=\"https://github.com/github/gh-aw\">gh-aw</a> at <code>v0.79.6</code>.</p>\n<h2>v0.79.5</h2>\n<p>Sync of actions from <a href=\"https://github.com/github/gh-aw\">gh-aw</a> at <code>v0.79.5</code>.</p>\n<h2>v0.79.4</h2>\n<p>Sync of actions from <a href=\"https://github.com/github/gh-aw\">gh-aw</a> at <code>v0.79.4</code>.</p>\n<h2>v0.79.3</h2>\n<p>Sync of actions from <a href=\"https://github.com/github/gh-aw\">gh-aw</a> at <code>v0.79.3</code>.</p>\n</blockquote>\n</details>\n<details>\n<summary>Commits</summary>\n<ul>\n<li><a href=\"https://github.com/github/gh-aw-actions/commit/489221ef1ac02b327e3f92e76c558e7680340cf4\"><code>489221e</code></a> chore: sync actions from gh-aw@v0.80.1 (<a href=\"https://redirect.github.com/github/gh-aw-actions/issues/156\">#156</a>)</li>\n<li><a href=\"https://github.com/github/gh-aw-actions/commit/c106acf3789e3bb0c846e86f50c3f743396dbc21\"><code>c106acf</code></a> chore: sync actions from gh-aw@v0.80.0 (<a href=\"https://redirect.github.com/github/gh-aw-actions/issues/155\">#155</a>)</li>\n<li><a href=\"https://github.com/github/gh-aw-actions/commit/a22c32462be0cfa6944eff020a20e8809eab2793\"><code>a22c324</code></a> Migrate runtime threat scan to CopilotRequestWrite (<a href=\"https://redirect.github.com/github/gh-aw-actions/issues/153\">#153</a>)</li>\n<li><a href=\"https://github.com/github/gh-aw-actions/commit/c0338fef4749d08c21f8f975fb0e37efa17dda47\"><code>c0338fe</code></a> chore: sync actions from gh-aw@v0.79.8 (<a href=\"https://redirect.github.com/github/gh-aw-actions/issues/154\">#154</a>)</li>\n<li><a href=\"https://github.com/github/gh-aw-actions/commit/c71b1e20fb7b3dc52409b0088673d7ba3e3c22b9\"><code>c71b1e2</code></a> chore: sync actions from gh-aw@v0.79.7 (<a href=\"https://redirect.github.com/github/gh-aw-actions/issues/152\">#152</a>)</li>\n<li><a href=\"https://github.com/github/gh-aw-actions/commit/5c2fe865bb4dc46e1450f6ee0d0541d759aea73a\"><code>5c2fe86</code></a> chore: sync actions from gh-aw@v0.79.6 (<a href=\"https://redirect.github.com/github/gh-aw-actions/issues/150\">#150</a>)</li>\n<li><a href=\"https://github.com/github/gh-aw-actions/commit/8462d2654e8682e6d6b67cf2bd1621adeaa5db12\"><code>8462d26</code></a> chore: sync actions from gh-aw@v0.79.5 (<a href=\"https://redirect.github.com/github/gh-aw-actions/issues/149\">#149</a>)</li>\n<li><a href=\"https://github.com/github/gh-aw-actions/commit/d059700c6a8ec3b5fd798b9ea60f5d048447b918\"><code>d059700</code></a> chore: sync actions from gh-aw@v0.79.4 (<a href=\"https://redirect.github.com/github/gh-aw-actions/issues/148\">#148</a>)</li>\n<li><a href=\"https://github.com/github/gh-aw-actions/commit/ff3d7ecc684ffaf8c99e9ac7e40536e955a9776b\"><code>ff3d7ec</code></a> chore: sync actions from gh-aw@v0.79.3 (<a href=\"https://redirect.github.com/github/gh-aw-actions/issues/147\">#147</a>)</li>\n<li>See full diff in <a href=\"https://github.com/github/gh-aw-actions/compare/9b1d730701c16b15673633e5696d01677fad9844...489221ef1ac02b327e3f92e76c558e7680340cf4\">compare view</a></li>\n</ul>\n</details>\n<br />\n\n\nDependabot will resolve any conflicts with this PR as long as you don't alter it yourself. You can also trigger a rebase manually by commenting `@dependabot rebase`.\n\n[//]: # (dependabot-automerge-start)\n[//]: # (dependabot-automerge-end)\n\n---\n\n<details>\n<summary>Dependabot commands and options</summary>\n<br />\n\nYou can trigger Dependabot actions by commenting on this PR:\n- `@dependabot rebase` will rebase this PR\n- `@dependabot recreate` will recreate this PR, overwriting any edits that have been made to it\n- `@dependabot show <dependency name> ignore conditions` will show all of the ignore conditions of the specified dependency\n- `@dependabot ignore <dependency name> major version` will close this group update PR and stop Dependabot creating any more for the specific dependency's major version (unless you unignore this specific dependency's major version or upgrade to it yourself)\n- `@dependabot ignore <dependency name> minor version` will close this group update PR and stop Dependabot creating any more for the specific dependency's minor version (unless you unignore this specific dependency's minor version or upgrade to it yourself)\n- `@dependabot ignore <dependency name>` will close this group update PR and stop Dependabot creating any more for the specific dependency (unless you unignore this specific dependency or upgrade to it yourself)\n- `@dependabot unignore <dependency name>` will remove all of the ignore conditions of the specified dependency\n- `@dependabot unignore <dependency name> <ignore condition>` will remove the ignore condition of the specified dependency and ignore conditions\n\n\n</details>",
-    "changed_files": 2,
-    "closed_at": "2026-07-01T03:29:58Z",
+    "body": "No need check dependabot, just fork PR is a dangerous signal.",
+    "changed_files": 13,
+    "closed_at": "2026-07-07T06:37:51Z",
     "comments": 0,
-    "comments_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/issues/334/comments",
-    "commits": 1,
-    "commits_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/334/commits",
-    "created_at": "2026-06-30T15:39:24Z",
-    "deletions": 21,
-    "diff_url": "https://github.com/guitarrapc/githubactions-lab/pull/334.diff",
+    "comments_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/issues/336/comments",
+    "commits": 7,
+    "commits_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/336/commits",
+    "created_at": "2026-07-07T06:30:24Z",
+    "deletions": 488,
+    "diff_url": "https://github.com/guitarrapc/githubactions-lab/pull/336.diff",
     "draft": false,
     "head": {
-      "label": "guitarrapc:dependabot/github_actions/dependencies-061bf70239",
-      "ref": "dependabot/github_actions/dependencies-061bf70239",
+      "label": "guitarrapc:guitarrapc-patch-1",
+      "ref": "guitarrapc-patch-1",
       "repo": {
         "allow_auto_merge": true,
         "allow_forking": true,
@@ -292,9 +292,9 @@
         "private": false,
         "pull_request_creation_policy": "all",
         "pulls_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls{/number}",
-        "pushed_at": "2026-06-30T15:39:51Z",
+        "pushed_at": "2026-07-07T06:36:18Z",
         "releases_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/releases{/id}",
-        "size": 5978,
+        "size": 6019,
         "squash_merge_commit_message": "COMMIT_MESSAGES",
         "squash_merge_commit_title": "COMMIT_OR_PR_TITLE",
         "ssh_url": "git@github.com:guitarrapc/githubactions-lab.git",
@@ -310,7 +310,7 @@
           "github-actions"
         ],
         "trees_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/git/trees{/sha}",
-        "updated_at": "2026-06-30T09:01:24Z",
+        "updated_at": "2026-07-07T06:36:21Z",
         "url": "https://api.github.com/repos/guitarrapc/githubactions-lab",
         "use_squash_pr_title_as_default": false,
         "visibility": "public",
@@ -318,7 +318,7 @@
         "watchers_count": 56,
         "web_commit_signoff_required": false
       },
-      "sha": "553ee75571729a1cff2d828bee8a94d2337a3d21",
+      "sha": "dea24d18bf95109b94daab3550d2e503f4cde5ac",
       "user": {
         "avatar_url": "https://avatars.githubusercontent.com/u/3856350?v=4",
         "events_url": "https://api.github.com/users/guitarrapc/events{/privacy}",
@@ -341,36 +341,17 @@
         "user_view_type": "public"
       }
     },
-    "html_url": "https://github.com/guitarrapc/githubactions-lab/pull/334",
-    "id": 3964417004,
-    "issue_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/issues/334",
-    "labels": [
-      {
-        "color": "0366d6",
-        "default": false,
-        "description": "Pull requests that update a dependency file",
-        "id": 5238199298,
-        "name": "dependencies",
-        "node_id": "LA_kwDOD1icfM8AAAABODiUAg",
-        "url": "https://api.github.com/repos/guitarrapc/githubactions-lab/labels/dependencies"
-      },
-      {
-        "color": "000000",
-        "default": false,
-        "description": "Pull requests that update GitHub Actions code",
-        "id": 8308588862,
-        "name": "github_actions",
-        "node_id": "LA_kwDOD1icfM8AAAAB7zsBPg",
-        "url": "https://api.github.com/repos/guitarrapc/githubactions-lab/labels/github_actions"
-      }
-    ],
+    "html_url": "https://github.com/guitarrapc/githubactions-lab/pull/336",
+    "id": 4004519599,
+    "issue_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/issues/336",
+    "labels": [],
     "locked": false,
     "maintainer_can_modify": false,
-    "merge_commit_sha": "15c04b4a54ea864790143cf5efa275c3bd044f5b",
+    "merge_commit_sha": "e904042d1cab27606a8ee920f36d9241cbba6b83",
     "mergeable": null,
     "mergeable_state": "unknown",
     "merged": true,
-    "merged_at": "2026-07-01T03:29:58Z",
+    "merged_at": "2026-07-07T06:37:51Z",
     "merged_by": {
       "avatar_url": "https://avatars.githubusercontent.com/u/3856350?v=4",
       "events_url": "https://api.github.com/users/guitarrapc/events{/privacy}",
@@ -393,61 +374,39 @@
       "user_view_type": "public"
     },
     "milestone": null,
-    "node_id": "PR_kwDOD1icfM7sTDPs",
-    "number": 334,
-    "patch_url": "https://github.com/guitarrapc/githubactions-lab/pull/334.patch",
+    "node_id": "PR_kwDOD1icfM7usB6v",
+    "number": 336,
+    "patch_url": "https://github.com/guitarrapc/githubactions-lab/pull/336.patch",
     "rebaseable": null,
-    "requested_reviewers": [
-      {
-        "avatar_url": "https://avatars.githubusercontent.com/u/3856350?v=4",
-        "events_url": "https://api.github.com/users/guitarrapc/events{/privacy}",
-        "followers_url": "https://api.github.com/users/guitarrapc/followers",
-        "following_url": "https://api.github.com/users/guitarrapc/following{/other_user}",
-        "gists_url": "https://api.github.com/users/guitarrapc/gists{/gist_id}",
-        "gravatar_id": "",
-        "html_url": "https://github.com/guitarrapc",
-        "id": 3856350,
-        "login": "guitarrapc",
-        "node_id": "MDQ6VXNlcjM4NTYzNTA=",
-        "organizations_url": "https://api.github.com/users/guitarrapc/orgs",
-        "received_events_url": "https://api.github.com/users/guitarrapc/received_events",
-        "repos_url": "https://api.github.com/users/guitarrapc/repos",
-        "site_admin": false,
-        "starred_url": "https://api.github.com/users/guitarrapc/starred{/owner}{/repo}",
-        "subscriptions_url": "https://api.github.com/users/guitarrapc/subscriptions",
-        "type": "User",
-        "url": "https://api.github.com/users/guitarrapc",
-        "user_view_type": "public"
-      }
-    ],
+    "requested_reviewers": [],
     "requested_teams": [],
     "review_comment_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/comments{/number}",
     "review_comments": 0,
-    "review_comments_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/334/comments",
+    "review_comments_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/336/comments",
     "state": "closed",
-    "statuses_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/statuses/553ee75571729a1cff2d828bee8a94d2337a3d21",
-    "title": "chore(deps): bump the dependencies group with 2 updates",
-    "updated_at": "2026-07-01T03:29:58Z",
-    "url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/334",
+    "statuses_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/statuses/dea24d18bf95109b94daab3550d2e503f4cde5ac",
+    "title": "refactor: GitHub Actions workflow for file change prevention",
+    "updated_at": "2026-07-07T06:37:51Z",
+    "url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/336",
     "user": {
-      "avatar_url": "https://avatars.githubusercontent.com/in/29110?v=4",
-      "events_url": "https://api.github.com/users/dependabot%5Bbot%5D/events{/privacy}",
-      "followers_url": "https://api.github.com/users/dependabot%5Bbot%5D/followers",
-      "following_url": "https://api.github.com/users/dependabot%5Bbot%5D/following{/other_user}",
-      "gists_url": "https://api.github.com/users/dependabot%5Bbot%5D/gists{/gist_id}",
+      "avatar_url": "https://avatars.githubusercontent.com/u/3856350?v=4",
+      "events_url": "https://api.github.com/users/guitarrapc/events{/privacy}",
+      "followers_url": "https://api.github.com/users/guitarrapc/followers",
+      "following_url": "https://api.github.com/users/guitarrapc/following{/other_user}",
+      "gists_url": "https://api.github.com/users/guitarrapc/gists{/gist_id}",
       "gravatar_id": "",
-      "html_url": "https://github.com/apps/dependabot",
-      "id": 49699333,
-      "login": "dependabot[bot]",
-      "node_id": "MDM6Qm90NDk2OTkzMzM=",
-      "organizations_url": "https://api.github.com/users/dependabot%5Bbot%5D/orgs",
-      "received_events_url": "https://api.github.com/users/dependabot%5Bbot%5D/received_events",
-      "repos_url": "https://api.github.com/users/dependabot%5Bbot%5D/repos",
+      "html_url": "https://github.com/guitarrapc",
+      "id": 3856350,
+      "login": "guitarrapc",
+      "node_id": "MDQ6VXNlcjM4NTYzNTA=",
+      "organizations_url": "https://api.github.com/users/guitarrapc/orgs",
+      "received_events_url": "https://api.github.com/users/guitarrapc/received_events",
+      "repos_url": "https://api.github.com/users/guitarrapc/repos",
       "site_admin": false,
-      "starred_url": "https://api.github.com/users/dependabot%5Bbot%5D/starred{/owner}{/repo}",
-      "subscriptions_url": "https://api.github.com/users/dependabot%5Bbot%5D/subscriptions",
-      "type": "Bot",
-      "url": "https://api.github.com/users/dependabot%5Bbot%5D",
+      "starred_url": "https://api.github.com/users/guitarrapc/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/guitarrapc/subscriptions",
+      "type": "User",
+      "url": "https://api.github.com/users/guitarrapc",
       "user_view_type": "public"
     }
   },
@@ -539,9 +498,9 @@
     "private": false,
     "pull_request_creation_policy": "all",
     "pulls_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls{/number}",
-    "pushed_at": "2026-06-30T15:39:51Z",
+    "pushed_at": "2026-07-07T06:36:18Z",
     "releases_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/releases{/id}",
-    "size": 5978,
+    "size": 6019,
     "ssh_url": "git@github.com:guitarrapc/githubactions-lab.git",
     "stargazers_count": 56,
     "stargazers_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/stargazers",
@@ -555,7 +514,7 @@
       "github-actions"
     ],
     "trees_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/git/trees{/sha}",
-    "updated_at": "2026-06-30T09:01:24Z",
+    "updated_at": "2026-07-07T06:36:21Z",
     "url": "https://api.github.com/repos/guitarrapc/githubactions-lab",
     "visibility": "public",
     "watchers": 56,
