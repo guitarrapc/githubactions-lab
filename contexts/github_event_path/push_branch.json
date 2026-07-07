@@ -1,48 +1,48 @@
 {
-  "after": "c9b4374b8d435a9a94d1cf851102e7107f2205af",
+  "after": "6e60b12c77921c105a9a78d0a6b156371d9781e9",
   "base_ref": null,
-  "before": "7351f382d9e1b41e1243400fc0b50deff593d5a9",
+  "before": "c508fdf53b1f4256debb3f1c50f9bd7a4d0a38e3",
   "commits": [
     {
       "author": {
-        "email": "3856350+guitarrapc@users.noreply.github.com",
-        "name": "Ikiru Yoshizaki",
-        "username": "guitarrapc"
+        "email": "49699333+dependabot[bot]@users.noreply.github.com",
+        "name": "dependabot[bot]",
+        "username": "dependabot[bot]"
       },
       "committer": {
-        "email": "3856350+guitarrapc@users.noreply.github.com",
-        "name": "Ikiru Yoshizaki",
-        "username": "guitarrapc"
+        "email": "noreply@github.com",
+        "name": "GitHub",
+        "username": "web-flow"
       },
       "distinct": true,
-      "id": "c9b4374b8d435a9a94d1cf851102e7107f2205af",
-      "message": "ci: add pr-harness-check",
-      "timestamp": "2026-07-07T18:19:22+09:00",
-      "tree_id": "72d4a69001cb453d37b407ffe7a22e96ea3971a7",
-      "url": "https://github.com/guitarrapc/githubactions-lab/commit/c9b4374b8d435a9a94d1cf851102e7107f2205af"
+      "id": "6e60b12c77921c105a9a78d0a6b156371d9781e9",
+      "message": "chore(deps): bump the dependencies group with 7 updates (#337)\n\n* chore(deps): bump the dependencies group with 7 updates\n\nBumps the dependencies group with 7 updates:\n\n| Package | From | To |\n| --- | --- | --- |\n| [actions/checkout](https://github.com/actions/checkout) | `6.0.1` | `7.0.0` |\n| [github/gh-aw-actions/setup](https://github.com/github/gh-aw-actions) | `0.80.1` | `0.81.1` |\n| [github/gh-aw-actions/setup-cli](https://github.com/github/gh-aw-actions) | `0.80.1` | `0.81.1` |\n| [actions/cache/restore](https://github.com/actions/cache) | `5.0.5` | `6.1.0` |\n| [actions/cache/save](https://github.com/actions/cache) | `5.0.5` | `6.1.0` |\n| [actions/cache](https://github.com/actions/cache) | `5.0.1` | `6.1.0` |\n| [actions/setup-go](https://github.com/actions/setup-go) | `6.4.0` | `6.5.0` |\n\n\nUpdates `actions/checkout` from 6.0.1 to 7.0.0\n- [Release notes](https://github.com/actions/checkout/releases)\n- [Changelog](https://github.com/actions/checkout/blob/main/CHANGELOG.md)\n- [Commits](https://github.com/actions/checkout/compare/v6.0.1...9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0)\n\nUpdates `github/gh-aw-actions/setup` from 0.80.1 to 0.81.1\n- [Release notes](https://github.com/github/gh-aw-actions/releases)\n- [Changelog](https://github.com/github/gh-aw-actions/blob/main/CHANGELOG.md)\n- [Commits](https://github.com/github/gh-aw-actions/compare/489221ef1ac02b327e3f92e76c558e7680340cf4...4f64d3872d104d9597f706236f0b3de3b4e18252)\n\nUpdates `github/gh-aw-actions/setup-cli` from 0.80.1 to 0.81.1\n- [Release notes](https://github.com/github/gh-aw-actions/releases)\n- [Changelog](https://github.com/github/gh-aw-actions/blob/main/CHANGELOG.md)\n- [Commits](https://github.com/github/gh-aw-actions/compare/489221ef1ac02b327e3f92e76c558e7680340cf4...4f64d3872d104d9597f706236f0b3de3b4e18252)\n\nUpdates `actions/cache/restore` from 5.0.5 to 6.1.0\n- [Release notes](https://github.com/actions/cache/releases)\n- [Changelog](https://github.com/actions/cache/blob/main/RELEASES.md)\n- [Commits](https://github.com/actions/cache/compare/27d5ce7f107fe9357f9df03efb73ab90386fccae...55cc8345863c7cc4c66a329aec7e433d2d1c52a9)\n\nUpdates `actions/cache/save` from 5.0.5 to 6.1.0\n- [Release notes](https://github.com/actions/cache/releases)\n- [Changelog](https://github.com/actions/cache/blob/main/RELEASES.md)\n- [Commits](https://github.com/actions/cache/compare/27d5ce7f107fe9357f9df03efb73ab90386fccae...55cc8345863c7cc4c66a329aec7e433d2d1c52a9)\n\nUpdates `actions/cache` from 5.0.1 to 6.1.0\n- [Release notes](https://github.com/actions/cache/releases)\n- [Changelog](https://github.com/actions/cache/blob/main/RELEASES.md)\n- [Commits](https://github.com/actions/cache/compare/9255dc7a253b0ccc959486e2bca901246202afeb...55cc8345863c7cc4c66a329aec7e433d2d1c52a9)\n\nUpdates `actions/setup-go` from 6.4.0 to 6.5.0\n- [Release notes](https://github.com/actions/setup-go/releases)\n- [Commits](https://github.com/actions/setup-go/compare/4a3601121dd01d1626a1e23e37211e3254c1c06c...924ae3a1cded613372ab5595356fb5720e22ba16)\n\n---\nupdated-dependencies:\n- dependency-name: actions/checkout\n  dependency-version: 7.0.0\n  dependency-type: direct:production\n  update-type: version-update:semver-major\n  dependency-group: dependencies\n- dependency-name: github/gh-aw-actions/setup\n  dependency-version: 0.81.1\n  dependency-type: direct:production\n  update-type: version-update:semver-minor\n  dependency-group: dependencies\n- dependency-name: github/gh-aw-actions/setup-cli\n  dependency-version: 0.81.1\n  dependency-type: direct:production\n  update-type: version-update:semver-minor\n  dependency-group: dependencies\n- dependency-name: actions/cache/restore\n  dependency-version: 6.1.0\n  dependency-type: direct:production\n  update-type: version-update:semver-major\n  dependency-group: dependencies\n- dependency-name: actions/cache/save\n  dependency-version: 6.1.0\n  dependency-type: direct:production\n  update-type: version-update:semver-major\n  dependency-group: dependencies\n- dependency-name: actions/cache\n  dependency-version: 6.1.0\n  dependency-type: direct:production\n  update-type: version-update:semver-major\n  dependency-group: dependencies\n- dependency-name: actions/setup-go\n  dependency-version: 6.5.0\n  dependency-type: direct:production\n  update-type: version-update:semver-minor\n  dependency-group: dependencies\n...\n\nSigned-off-by: dependabot[bot] <support@github.com>\n\n* chore: update sha\n\n* [auto commit] Embedded code (workflow=auto doc)\n\n* [auto commit] update context (workflow=auto dump context, event=pull_request, action=synchronize)\n\n---------\n\nSigned-off-by: dependabot[bot] <support@github.com>\nCo-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>\nCo-authored-by: Ikiru Yoshizaki <3856350+guitarrapc@users.noreply.github.com>\nCo-authored-by: github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>",
+      "timestamp": "2026-07-08T07:28:45+09:00",
+      "tree_id": "336950bba267c6a8c1c31b7938d01b0cfe4d7e78",
+      "url": "https://github.com/guitarrapc/githubactions-lab/commit/6e60b12c77921c105a9a78d0a6b156371d9781e9"
     }
   ],
-  "compare": "https://github.com/guitarrapc/githubactions-lab/compare/7351f382d9e1...c9b4374b8d43",
+  "compare": "https://github.com/guitarrapc/githubactions-lab/compare/c508fdf53b1f...6e60b12c7792",
   "created": false,
   "deleted": false,
   "forced": false,
   "head_commit": {
     "author": {
-      "email": "3856350+guitarrapc@users.noreply.github.com",
-      "name": "Ikiru Yoshizaki",
-      "username": "guitarrapc"
+      "email": "49699333+dependabot[bot]@users.noreply.github.com",
+      "name": "dependabot[bot]",
+      "username": "dependabot[bot]"
     },
     "committer": {
-      "email": "3856350+guitarrapc@users.noreply.github.com",
-      "name": "Ikiru Yoshizaki",
-      "username": "guitarrapc"
+      "email": "noreply@github.com",
+      "name": "GitHub",
+      "username": "web-flow"
     },
     "distinct": true,
-    "id": "c9b4374b8d435a9a94d1cf851102e7107f2205af",
-    "message": "ci: add pr-harness-check",
-    "timestamp": "2026-07-07T18:19:22+09:00",
-    "tree_id": "72d4a69001cb453d37b407ffe7a22e96ea3971a7",
-    "url": "https://github.com/guitarrapc/githubactions-lab/commit/c9b4374b8d435a9a94d1cf851102e7107f2205af"
+    "id": "6e60b12c77921c105a9a78d0a6b156371d9781e9",
+    "message": "chore(deps): bump the dependencies group with 7 updates (#337)\n\n* chore(deps): bump the dependencies group with 7 updates\n\nBumps the dependencies group with 7 updates:\n\n| Package | From | To |\n| --- | --- | --- |\n| [actions/checkout](https://github.com/actions/checkout) | `6.0.1` | `7.0.0` |\n| [github/gh-aw-actions/setup](https://github.com/github/gh-aw-actions) | `0.80.1` | `0.81.1` |\n| [github/gh-aw-actions/setup-cli](https://github.com/github/gh-aw-actions) | `0.80.1` | `0.81.1` |\n| [actions/cache/restore](https://github.com/actions/cache) | `5.0.5` | `6.1.0` |\n| [actions/cache/save](https://github.com/actions/cache) | `5.0.5` | `6.1.0` |\n| [actions/cache](https://github.com/actions/cache) | `5.0.1` | `6.1.0` |\n| [actions/setup-go](https://github.com/actions/setup-go) | `6.4.0` | `6.5.0` |\n\n\nUpdates `actions/checkout` from 6.0.1 to 7.0.0\n- [Release notes](https://github.com/actions/checkout/releases)\n- [Changelog](https://github.com/actions/checkout/blob/main/CHANGELOG.md)\n- [Commits](https://github.com/actions/checkout/compare/v6.0.1...9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0)\n\nUpdates `github/gh-aw-actions/setup` from 0.80.1 to 0.81.1\n- [Release notes](https://github.com/github/gh-aw-actions/releases)\n- [Changelog](https://github.com/github/gh-aw-actions/blob/main/CHANGELOG.md)\n- [Commits](https://github.com/github/gh-aw-actions/compare/489221ef1ac02b327e3f92e76c558e7680340cf4...4f64d3872d104d9597f706236f0b3de3b4e18252)\n\nUpdates `github/gh-aw-actions/setup-cli` from 0.80.1 to 0.81.1\n- [Release notes](https://github.com/github/gh-aw-actions/releases)\n- [Changelog](https://github.com/github/gh-aw-actions/blob/main/CHANGELOG.md)\n- [Commits](https://github.com/github/gh-aw-actions/compare/489221ef1ac02b327e3f92e76c558e7680340cf4...4f64d3872d104d9597f706236f0b3de3b4e18252)\n\nUpdates `actions/cache/restore` from 5.0.5 to 6.1.0\n- [Release notes](https://github.com/actions/cache/releases)\n- [Changelog](https://github.com/actions/cache/blob/main/RELEASES.md)\n- [Commits](https://github.com/actions/cache/compare/27d5ce7f107fe9357f9df03efb73ab90386fccae...55cc8345863c7cc4c66a329aec7e433d2d1c52a9)\n\nUpdates `actions/cache/save` from 5.0.5 to 6.1.0\n- [Release notes](https://github.com/actions/cache/releases)\n- [Changelog](https://github.com/actions/cache/blob/main/RELEASES.md)\n- [Commits](https://github.com/actions/cache/compare/27d5ce7f107fe9357f9df03efb73ab90386fccae...55cc8345863c7cc4c66a329aec7e433d2d1c52a9)\n\nUpdates `actions/cache` from 5.0.1 to 6.1.0\n- [Release notes](https://github.com/actions/cache/releases)\n- [Changelog](https://github.com/actions/cache/blob/main/RELEASES.md)\n- [Commits](https://github.com/actions/cache/compare/9255dc7a253b0ccc959486e2bca901246202afeb...55cc8345863c7cc4c66a329aec7e433d2d1c52a9)\n\nUpdates `actions/setup-go` from 6.4.0 to 6.5.0\n- [Release notes](https://github.com/actions/setup-go/releases)\n- [Commits](https://github.com/actions/setup-go/compare/4a3601121dd01d1626a1e23e37211e3254c1c06c...924ae3a1cded613372ab5595356fb5720e22ba16)\n\n---\nupdated-dependencies:\n- dependency-name: actions/checkout\n  dependency-version: 7.0.0\n  dependency-type: direct:production\n  update-type: version-update:semver-major\n  dependency-group: dependencies\n- dependency-name: github/gh-aw-actions/setup\n  dependency-version: 0.81.1\n  dependency-type: direct:production\n  update-type: version-update:semver-minor\n  dependency-group: dependencies\n- dependency-name: github/gh-aw-actions/setup-cli\n  dependency-version: 0.81.1\n  dependency-type: direct:production\n  update-type: version-update:semver-minor\n  dependency-group: dependencies\n- dependency-name: actions/cache/restore\n  dependency-version: 6.1.0\n  dependency-type: direct:production\n  update-type: version-update:semver-major\n  dependency-group: dependencies\n- dependency-name: actions/cache/save\n  dependency-version: 6.1.0\n  dependency-type: direct:production\n  update-type: version-update:semver-major\n  dependency-group: dependencies\n- dependency-name: actions/cache\n  dependency-version: 6.1.0\n  dependency-type: direct:production\n  update-type: version-update:semver-major\n  dependency-group: dependencies\n- dependency-name: actions/setup-go\n  dependency-version: 6.5.0\n  dependency-type: direct:production\n  update-type: version-update:semver-minor\n  dependency-group: dependencies\n...\n\nSigned-off-by: dependabot[bot] <support@github.com>\n\n* chore: update sha\n\n* [auto commit] Embedded code (workflow=auto doc)\n\n* [auto commit] update context (workflow=auto dump context, event=pull_request, action=synchronize)\n\n---------\n\nSigned-off-by: dependabot[bot] <support@github.com>\nCo-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>\nCo-authored-by: Ikiru Yoshizaki <3856350+guitarrapc@users.noreply.github.com>\nCo-authored-by: github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>",
+    "timestamp": "2026-07-08T07:28:45+09:00",
+    "tree_id": "336950bba267c6a8c1c31b7938d01b0cfe4d7e78",
+    "url": "https://github.com/guitarrapc/githubactions-lab/commit/6e60b12c77921c105a9a78d0a6b156371d9781e9"
   },
   "pusher": {
     "email": "3856350+guitarrapc@users.noreply.github.com",
@@ -140,9 +140,9 @@
     "private": false,
     "pull_request_creation_policy": "all",
     "pulls_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls{/number}",
-    "pushed_at": 1783415967,
+    "pushed_at": 1783463325,
     "releases_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/releases{/id}",
-    "size": 6225,
+    "size": 6272,
     "ssh_url": "git@github.com:guitarrapc/githubactions-lab.git",
     "stargazers": 56,
     "stargazers_count": 56,
@@ -157,7 +157,7 @@
       "github-actions"
     ],
     "trees_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/git/trees{/sha}",
-    "updated_at": "2026-07-07T06:46:31Z",
+    "updated_at": "2026-07-07T21:36:55Z",
     "url": "https://api.github.com/repos/guitarrapc/githubactions-lab",
     "visibility": "public",
     "watchers": 56,
