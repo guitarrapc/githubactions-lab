@@ -1,13 +1,13 @@
 {
-  "after": "15c04b4a54ea864790143cf5efa275c3bd044f5b",
+  "after": "e904042d1cab27606a8ee920f36d9241cbba6b83",
   "base_ref": null,
-  "before": "07e9c96c887b79bba6a54711f67aa89d57a19d8f",
+  "before": "e49c7b457a8a4015561643ac2b7cd487e3fb5d54",
   "commits": [
     {
       "author": {
-        "email": "49699333+dependabot[bot]@users.noreply.github.com",
-        "name": "dependabot[bot]",
-        "username": "dependabot[bot]"
+        "email": "3856350+guitarrapc@users.noreply.github.com",
+        "name": "Ikiru Yoshizaki",
+        "username": "guitarrapc"
       },
       "committer": {
         "email": "noreply@github.com",
@@ -15,22 +15,22 @@
         "username": "web-flow"
       },
       "distinct": true,
-      "id": "15c04b4a54ea864790143cf5efa275c3bd044f5b",
-      "message": "chore(deps): bump the dependencies group with 2 updates (#334)\n\nBumps the dependencies group with 2 updates: [github/gh-aw-actions/setup](https://github.com/github/gh-aw-actions) and [github/gh-aw-actions/setup-cli](https://github.com/github/gh-aw-actions).\n\n\nUpdates `github/gh-aw-actions/setup` from 0.79.2 to 0.80.1\n- [Release notes](https://github.com/github/gh-aw-actions/releases)\n- [Changelog](https://github.com/github/gh-aw-actions/blob/main/CHANGELOG.md)\n- [Commits](https://github.com/github/gh-aw-actions/compare/9b1d730701c16b15673633e5696d01677fad9844...489221ef1ac02b327e3f92e76c558e7680340cf4)\n\nUpdates `github/gh-aw-actions/setup-cli` from 0.79.2 to 0.80.1\n- [Release notes](https://github.com/github/gh-aw-actions/releases)\n- [Changelog](https://github.com/github/gh-aw-actions/blob/main/CHANGELOG.md)\n- [Commits](https://github.com/github/gh-aw-actions/compare/9b1d730701c16b15673633e5696d01677fad9844...489221ef1ac02b327e3f92e76c558e7680340cf4)\n\n---\nupdated-dependencies:\n- dependency-name: github/gh-aw-actions/setup\n  dependency-version: 0.80.1\n  dependency-type: direct:production\n  update-type: version-update:semver-minor\n  dependency-group: dependencies\n- dependency-name: github/gh-aw-actions/setup-cli\n  dependency-version: 0.80.1\n  dependency-type: direct:production\n  update-type: version-update:semver-minor\n  dependency-group: dependencies\n...\n\nSigned-off-by: dependabot[bot] <support@github.com>\nCo-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>",
-      "timestamp": "2026-07-01T12:29:58+09:00",
-      "tree_id": "64c897544e256d1112ce77b45a5a6e0f526b1cbd",
-      "url": "https://github.com/guitarrapc/githubactions-lab/commit/15c04b4a54ea864790143cf5efa275c3bd044f5b"
+      "id": "e904042d1cab27606a8ee920f36d9241cbba6b83",
+      "message": "refactor: GitHub Actions workflow for file change prevention (#336)\n\n* Refactor GitHub Actions workflow for file change prevention\n\n* [auto commit] Embedded code (workflow=auto doc)\n\n* [auto commit] update context (workflow=auto dump context, event=pull_request, action=opened)\n\n* chore: rename workflow\n\n* chore: rename workflow\n\n* [auto commit] Embedded code (workflow=auto doc)\n\n* [auto commit] update context (workflow=auto dump context, event=pull_request, action=synchronize)\n\n---------\n\nCo-authored-by: github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>",
+      "timestamp": "2026-07-07T15:37:51+09:00",
+      "tree_id": "10f65e8977c5ecbe9cd986589d976aadc0b9c46c",
+      "url": "https://github.com/guitarrapc/githubactions-lab/commit/e904042d1cab27606a8ee920f36d9241cbba6b83"
     }
   ],
-  "compare": "https://github.com/guitarrapc/githubactions-lab/compare/07e9c96c887b...15c04b4a54ea",
+  "compare": "https://github.com/guitarrapc/githubactions-lab/compare/e49c7b457a8a...e904042d1cab",
   "created": false,
   "deleted": false,
   "forced": false,
   "head_commit": {
     "author": {
-      "email": "49699333+dependabot[bot]@users.noreply.github.com",
-      "name": "dependabot[bot]",
-      "username": "dependabot[bot]"
+      "email": "3856350+guitarrapc@users.noreply.github.com",
+      "name": "Ikiru Yoshizaki",
+      "username": "guitarrapc"
     },
     "committer": {
       "email": "noreply@github.com",
@@ -38,11 +38,11 @@
       "username": "web-flow"
     },
     "distinct": true,
-    "id": "15c04b4a54ea864790143cf5efa275c3bd044f5b",
-    "message": "chore(deps): bump the dependencies group with 2 updates (#334)\n\nBumps the dependencies group with 2 updates: [github/gh-aw-actions/setup](https://github.com/github/gh-aw-actions) and [github/gh-aw-actions/setup-cli](https://github.com/github/gh-aw-actions).\n\n\nUpdates `github/gh-aw-actions/setup` from 0.79.2 to 0.80.1\n- [Release notes](https://github.com/github/gh-aw-actions/releases)\n- [Changelog](https://github.com/github/gh-aw-actions/blob/main/CHANGELOG.md)\n- [Commits](https://github.com/github/gh-aw-actions/compare/9b1d730701c16b15673633e5696d01677fad9844...489221ef1ac02b327e3f92e76c558e7680340cf4)\n\nUpdates `github/gh-aw-actions/setup-cli` from 0.79.2 to 0.80.1\n- [Release notes](https://github.com/github/gh-aw-actions/releases)\n- [Changelog](https://github.com/github/gh-aw-actions/blob/main/CHANGELOG.md)\n- [Commits](https://github.com/github/gh-aw-actions/compare/9b1d730701c16b15673633e5696d01677fad9844...489221ef1ac02b327e3f92e76c558e7680340cf4)\n\n---\nupdated-dependencies:\n- dependency-name: github/gh-aw-actions/setup\n  dependency-version: 0.80.1\n  dependency-type: direct:production\n  update-type: version-update:semver-minor\n  dependency-group: dependencies\n- dependency-name: github/gh-aw-actions/setup-cli\n  dependency-version: 0.80.1\n  dependency-type: direct:production\n  update-type: version-update:semver-minor\n  dependency-group: dependencies\n...\n\nSigned-off-by: dependabot[bot] <support@github.com>\nCo-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>",
-    "timestamp": "2026-07-01T12:29:58+09:00",
-    "tree_id": "64c897544e256d1112ce77b45a5a6e0f526b1cbd",
-    "url": "https://github.com/guitarrapc/githubactions-lab/commit/15c04b4a54ea864790143cf5efa275c3bd044f5b"
+    "id": "e904042d1cab27606a8ee920f36d9241cbba6b83",
+    "message": "refactor: GitHub Actions workflow for file change prevention (#336)\n\n* Refactor GitHub Actions workflow for file change prevention\n\n* [auto commit] Embedded code (workflow=auto doc)\n\n* [auto commit] update context (workflow=auto dump context, event=pull_request, action=opened)\n\n* chore: rename workflow\n\n* chore: rename workflow\n\n* [auto commit] Embedded code (workflow=auto doc)\n\n* [auto commit] update context (workflow=auto dump context, event=pull_request, action=synchronize)\n\n---------\n\nCo-authored-by: github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>",
+    "timestamp": "2026-07-07T15:37:51+09:00",
+    "tree_id": "10f65e8977c5ecbe9cd986589d976aadc0b9c46c",
+    "url": "https://github.com/guitarrapc/githubactions-lab/commit/e904042d1cab27606a8ee920f36d9241cbba6b83"
   },
   "pusher": {
     "email": "3856350+guitarrapc@users.noreply.github.com",
@@ -140,9 +140,9 @@
     "private": false,
     "pull_request_creation_policy": "all",
     "pulls_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls{/number}",
-    "pushed_at": 1782876598,
+    "pushed_at": 1783406271,
     "releases_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/releases{/id}",
-    "size": 5978,
+    "size": 6019,
     "ssh_url": "git@github.com:guitarrapc/githubactions-lab.git",
     "stargazers": 56,
     "stargazers_count": 56,
@@ -157,7 +157,7 @@
       "github-actions"
     ],
     "trees_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/git/trees{/sha}",
-    "updated_at": "2026-06-30T09:01:24Z",
+    "updated_at": "2026-07-07T06:36:21Z",
     "url": "https://api.github.com/repos/guitarrapc/githubactions-lab",
     "visibility": "public",
     "watchers": 56,
