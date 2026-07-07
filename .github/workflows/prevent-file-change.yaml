@@ -1,4 +1,4 @@
-name: prevent file change 2
+name: prevent file change
 
 on:
   pull_request:
