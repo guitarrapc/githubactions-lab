@@ -1,7 +1,7 @@
 {
-  "after": "e904042d1cab27606a8ee920f36d9241cbba6b83",
+  "after": "942568536a377bf0d57fc1b2773de02a8d017f05",
   "base_ref": null,
-  "before": "e49c7b457a8a4015561643ac2b7cd487e3fb5d54",
+  "before": "448f9362637c159a371cd78aa3e05e8bdb45bf83",
   "commits": [
     {
       "author": {
@@ -10,19 +10,19 @@
         "username": "guitarrapc"
       },
       "committer": {
-        "email": "noreply@github.com",
-        "name": "GitHub",
-        "username": "web-flow"
+        "email": "3856350+guitarrapc@users.noreply.github.com",
+        "name": "Ikiru Yoshizaki",
+        "username": "guitarrapc"
       },
       "distinct": true,
-      "id": "e904042d1cab27606a8ee920f36d9241cbba6b83",
-      "message": "refactor: GitHub Actions workflow for file change prevention (#336)\n\n* Refactor GitHub Actions workflow for file change prevention\n\n* [auto commit] Embedded code (workflow=auto doc)\n\n* [auto commit] update context (workflow=auto dump context, event=pull_request, action=opened)\n\n* chore: rename workflow\n\n* chore: rename workflow\n\n* [auto commit] Embedded code (workflow=auto doc)\n\n* [auto commit] update context (workflow=auto dump context, event=pull_request, action=synchronize)\n\n---------\n\nCo-authored-by: github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>",
-      "timestamp": "2026-07-07T15:37:51+09:00",
-      "tree_id": "10f65e8977c5ecbe9cd986589d976aadc0b9c46c",
-      "url": "https://github.com/guitarrapc/githubactions-lab/commit/e904042d1cab27606a8ee920f36d9241cbba6b83"
+      "id": "942568536a377bf0d57fc1b2773de02a8d017f05",
+      "message": "docs: update README",
+      "timestamp": "2026-07-07T15:44:23+09:00",
+      "tree_id": "28fd4d69cd7d2f6ac38765d289b0c1bd24b50241",
+      "url": "https://github.com/guitarrapc/githubactions-lab/commit/942568536a377bf0d57fc1b2773de02a8d017f05"
     }
   ],
-  "compare": "https://github.com/guitarrapc/githubactions-lab/compare/e49c7b457a8a...e904042d1cab",
+  "compare": "https://github.com/guitarrapc/githubactions-lab/compare/448f9362637c...942568536a37",
   "created": false,
   "deleted": false,
   "forced": false,
@@ -33,16 +33,16 @@
       "username": "guitarrapc"
     },
     "committer": {
-      "email": "noreply@github.com",
-      "name": "GitHub",
-      "username": "web-flow"
+      "email": "3856350+guitarrapc@users.noreply.github.com",
+      "name": "Ikiru Yoshizaki",
+      "username": "guitarrapc"
     },
     "distinct": true,
-    "id": "e904042d1cab27606a8ee920f36d9241cbba6b83",
-    "message": "refactor: GitHub Actions workflow for file change prevention (#336)\n\n* Refactor GitHub Actions workflow for file change prevention\n\n* [auto commit] Embedded code (workflow=auto doc)\n\n* [auto commit] update context (workflow=auto dump context, event=pull_request, action=opened)\n\n* chore: rename workflow\n\n* chore: rename workflow\n\n* [auto commit] Embedded code (workflow=auto doc)\n\n* [auto commit] update context (workflow=auto dump context, event=pull_request, action=synchronize)\n\n---------\n\nCo-authored-by: github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>",
-    "timestamp": "2026-07-07T15:37:51+09:00",
-    "tree_id": "10f65e8977c5ecbe9cd986589d976aadc0b9c46c",
-    "url": "https://github.com/guitarrapc/githubactions-lab/commit/e904042d1cab27606a8ee920f36d9241cbba6b83"
+    "id": "942568536a377bf0d57fc1b2773de02a8d017f05",
+    "message": "docs: update README",
+    "timestamp": "2026-07-07T15:44:23+09:00",
+    "tree_id": "28fd4d69cd7d2f6ac38765d289b0c1bd24b50241",
+    "url": "https://github.com/guitarrapc/githubactions-lab/commit/942568536a377bf0d57fc1b2773de02a8d017f05"
   },
   "pusher": {
     "email": "3856350+guitarrapc@users.noreply.github.com",
@@ -140,7 +140,7 @@
     "private": false,
     "pull_request_creation_policy": "all",
     "pulls_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls{/number}",
-    "pushed_at": 1783406271,
+    "pushed_at": 1783406667,
     "releases_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/releases{/id}",
     "size": 6019,
     "ssh_url": "git@github.com:guitarrapc/githubactions-lab.git",
@@ -157,7 +157,7 @@
       "github-actions"
     ],
     "trees_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/git/trees{/sha}",
-    "updated_at": "2026-07-07T06:36:21Z",
+    "updated_at": "2026-07-07T06:39:17Z",
     "url": "https://api.github.com/repos/guitarrapc/githubactions-lab",
     "visibility": "public",
     "watchers": 56,
