@@ -1,48 +1,48 @@
 {
-  "after": "a0e83d155649a1ac9eb7c9ae578625acfd301a57",
+  "after": "ff87162b16e4f345a86f95acbb44df771bb64cb7",
   "base_ref": null,
-  "before": "bd15272138625306c49921cf920284f63a6a3527",
+  "before": "fcf2ec6bc014d63c54fdea8ddebada2cc4e29bf5",
   "commits": [
     {
       "author": {
-        "email": "49699333+dependabot[bot]@users.noreply.github.com",
-        "name": "dependabot[bot]",
-        "username": "dependabot[bot]"
+        "email": "3856350+guitarrapc@users.noreply.github.com",
+        "name": "Ikiru Yoshizaki",
+        "username": "guitarrapc"
       },
       "committer": {
-        "email": "noreply@github.com",
-        "name": "GitHub",
-        "username": "web-flow"
+        "email": "3856350+guitarrapc@users.noreply.github.com",
+        "name": "Ikiru Yoshizaki",
+        "username": "guitarrapc"
       },
       "distinct": true,
-      "id": "a0e83d155649a1ac9eb7c9ae578625acfd301a57",
-      "message": "chore(deps): bump the dependencies group with 3 updates (#338)\n\nBumps the dependencies group with 3 updates: [actions/setup-dotnet](https://github.com/actions/setup-dotnet), [github/gh-aw-actions/setup](https://github.com/github/gh-aw-actions) and [github/gh-aw-actions/setup-cli](https://github.com/github/gh-aw-actions).\n\n\nUpdates `actions/setup-dotnet` from 5.3.0 to 5.4.0\n- [Release notes](https://github.com/actions/setup-dotnet/releases)\n- [Commits](https://github.com/actions/setup-dotnet/compare/9a946fdbd5fb07b82b2f5a4466058b876ab72bb2...26b0ec14cb23fa6904739307f278c14f94c95bf1)\n\nUpdates `github/gh-aw-actions/setup` from 0.81.1 to 0.82.1\n- [Release notes](https://github.com/github/gh-aw-actions/releases)\n- [Changelog](https://github.com/github/gh-aw-actions/blob/main/CHANGELOG.md)\n- [Commits](https://github.com/github/gh-aw-actions/compare/4f64d3872d104d9597f706236f0b3de3b4e18252...dadd6a0a0f4d1087fbd3e115776f28471388d6db)\n\nUpdates `github/gh-aw-actions/setup-cli` from 0.81.1 to 0.82.1\n- [Release notes](https://github.com/github/gh-aw-actions/releases)\n- [Changelog](https://github.com/github/gh-aw-actions/blob/main/CHANGELOG.md)\n- [Commits](https://github.com/github/gh-aw-actions/compare/4f64d3872d104d9597f706236f0b3de3b4e18252...dadd6a0a0f4d1087fbd3e115776f28471388d6db)\n\n---\nupdated-dependencies:\n- dependency-name: actions/setup-dotnet\n  dependency-version: 5.4.0\n  dependency-type: direct:production\n  update-type: version-update:semver-minor\n  dependency-group: dependencies\n- dependency-name: github/gh-aw-actions/setup\n  dependency-version: 0.82.1\n  dependency-type: direct:production\n  update-type: version-update:semver-minor\n  dependency-group: dependencies\n- dependency-name: github/gh-aw-actions/setup-cli\n  dependency-version: 0.82.1\n  dependency-type: direct:production\n  update-type: version-update:semver-minor\n  dependency-group: dependencies\n...\n\nSigned-off-by: dependabot[bot] <support@github.com>\nCo-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>",
-      "timestamp": "2026-07-15T19:20:01+09:00",
-      "tree_id": "a34712fc84eefd0f98e1763061be66df8dc93379",
-      "url": "https://github.com/guitarrapc/githubactions-lab/commit/a0e83d155649a1ac9eb7c9ae578625acfd301a57"
+      "id": "ff87162b16e4f345a86f95acbb44df771bb64cb7",
+      "message": "chore: runs-on",
+      "timestamp": "2026-07-21T23:38:25+09:00",
+      "tree_id": "ebb09b7448ab1655101d48c4391280f0ea7d6152",
+      "url": "https://github.com/guitarrapc/githubactions-lab/commit/ff87162b16e4f345a86f95acbb44df771bb64cb7"
     }
   ],
-  "compare": "https://github.com/guitarrapc/githubactions-lab/compare/bd1527213862...a0e83d155649",
+  "compare": "https://github.com/guitarrapc/githubactions-lab/compare/fcf2ec6bc014...ff87162b16e4",
   "created": false,
   "deleted": false,
   "forced": false,
   "head_commit": {
     "author": {
-      "email": "49699333+dependabot[bot]@users.noreply.github.com",
-      "name": "dependabot[bot]",
-      "username": "dependabot[bot]"
+      "email": "3856350+guitarrapc@users.noreply.github.com",
+      "name": "Ikiru Yoshizaki",
+      "username": "guitarrapc"
     },
     "committer": {
-      "email": "noreply@github.com",
-      "name": "GitHub",
-      "username": "web-flow"
+      "email": "3856350+guitarrapc@users.noreply.github.com",
+      "name": "Ikiru Yoshizaki",
+      "username": "guitarrapc"
     },
     "distinct": true,
-    "id": "a0e83d155649a1ac9eb7c9ae578625acfd301a57",
-    "message": "chore(deps): bump the dependencies group with 3 updates (#338)\n\nBumps the dependencies group with 3 updates: [actions/setup-dotnet](https://github.com/actions/setup-dotnet), [github/gh-aw-actions/setup](https://github.com/github/gh-aw-actions) and [github/gh-aw-actions/setup-cli](https://github.com/github/gh-aw-actions).\n\n\nUpdates `actions/setup-dotnet` from 5.3.0 to 5.4.0\n- [Release notes](https://github.com/actions/setup-dotnet/releases)\n- [Commits](https://github.com/actions/setup-dotnet/compare/9a946fdbd5fb07b82b2f5a4466058b876ab72bb2...26b0ec14cb23fa6904739307f278c14f94c95bf1)\n\nUpdates `github/gh-aw-actions/setup` from 0.81.1 to 0.82.1\n- [Release notes](https://github.com/github/gh-aw-actions/releases)\n- [Changelog](https://github.com/github/gh-aw-actions/blob/main/CHANGELOG.md)\n- [Commits](https://github.com/github/gh-aw-actions/compare/4f64d3872d104d9597f706236f0b3de3b4e18252...dadd6a0a0f4d1087fbd3e115776f28471388d6db)\n\nUpdates `github/gh-aw-actions/setup-cli` from 0.81.1 to 0.82.1\n- [Release notes](https://github.com/github/gh-aw-actions/releases)\n- [Changelog](https://github.com/github/gh-aw-actions/blob/main/CHANGELOG.md)\n- [Commits](https://github.com/github/gh-aw-actions/compare/4f64d3872d104d9597f706236f0b3de3b4e18252...dadd6a0a0f4d1087fbd3e115776f28471388d6db)\n\n---\nupdated-dependencies:\n- dependency-name: actions/setup-dotnet\n  dependency-version: 5.4.0\n  dependency-type: direct:production\n  update-type: version-update:semver-minor\n  dependency-group: dependencies\n- dependency-name: github/gh-aw-actions/setup\n  dependency-version: 0.82.1\n  dependency-type: direct:production\n  update-type: version-update:semver-minor\n  dependency-group: dependencies\n- dependency-name: github/gh-aw-actions/setup-cli\n  dependency-version: 0.82.1\n  dependency-type: direct:production\n  update-type: version-update:semver-minor\n  dependency-group: dependencies\n...\n\nSigned-off-by: dependabot[bot] <support@github.com>\nCo-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>",
-    "timestamp": "2026-07-15T19:20:01+09:00",
-    "tree_id": "a34712fc84eefd0f98e1763061be66df8dc93379",
-    "url": "https://github.com/guitarrapc/githubactions-lab/commit/a0e83d155649a1ac9eb7c9ae578625acfd301a57"
+    "id": "ff87162b16e4f345a86f95acbb44df771bb64cb7",
+    "message": "chore: runs-on",
+    "timestamp": "2026-07-21T23:38:25+09:00",
+    "tree_id": "ebb09b7448ab1655101d48c4391280f0ea7d6152",
+    "url": "https://github.com/guitarrapc/githubactions-lab/commit/ff87162b16e4f345a86f95acbb44df771bb64cb7"
   },
   "pusher": {
     "email": "3856350+guitarrapc@users.noreply.github.com",
@@ -140,9 +140,9 @@
     "private": false,
     "pull_request_creation_policy": "all",
     "pulls_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls{/number}",
-    "pushed_at": 1784110801,
+    "pushed_at": 1784644710,
     "releases_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/releases{/id}",
-    "size": 6099,
+    "size": 6143,
     "ssh_url": "git@github.com:guitarrapc/githubactions-lab.git",
     "stargazers": 56,
     "stargazers_count": 56,
@@ -157,7 +157,7 @@
       "github-actions"
     ],
     "trees_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/git/trees{/sha}",
-    "updated_at": "2026-07-12T00:36:16Z",
+    "updated_at": "2026-07-19T00:35:03Z",
     "url": "https://api.github.com/repos/guitarrapc/githubactions-lab",
     "visibility": "public",
     "watchers": 56,
