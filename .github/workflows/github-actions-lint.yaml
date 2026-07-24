@@ -28,7 +28,7 @@ jobs:
       # Preferred: setup-seiton installs the native binary and keeps CI lightweight.
       - uses: guitarrapc/setup-seiton@92f424f8dae8130d8f6299c74716356437d746ba # v1.0.2
         with:
-          seiton-version: 1.2.0
+          seiton-version: 1.7.4
       # Default on GitHub Actions: --format github-actions (rich stdout + job summary).
       # First adoption: fail only on errors until warnings are enforced:
       # run: seiton --include-actions --min-severity error
