@@ -13,6 +13,7 @@ jobs:
           - xcode-27
           - windows-11-arm
     runs-on: ${{ matrix.runs-on }}
+    timeout-minutes: 1
     steps:
       - name: echo
         run: echo "Hello world!"
