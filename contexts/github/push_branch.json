@@ -2,13 +2,13 @@
   "token": "<reducted>",
   "job": "dump-context",
   "ref": "refs/heads/main",
-  "sha": "39e584dd94e6688e58213e5466d685b209efc7d0",
+  "sha": "952cd56b33760e66a6910df99f58ac667b27a400",
   "repository": "guitarrapc/githubactions-lab",
   "repository_owner": "guitarrapc",
   "repository_owner_id": "3856350",
   "repositoryUrl": "git://github.com/guitarrapc/githubactions-lab.git",
-  "run_id": "30056865689",
-  "run_number": "2066",
+  "run_id": "30056925755",
+  "run_number": "2068",
   "retention_days": "90",
   "run_attempt": "1",
   "artifact_cache_size_limit": "10",
@@ -27,9 +27,9 @@
   "ref_type": "branch",
   "secret_source": "Actions",
   "event": {
-    "after": "39e584dd94e6688e58213e5466d685b209efc7d0",
+    "after": "952cd56b33760e66a6910df99f58ac667b27a400",
     "base_ref": null,
-    "before": "67a0f4f6341ace1528c07944cc8b385df252299b",
+    "before": "8d87d2fbcb1b8bb76c7da7640d9076a1f52c164f",
     "commits": [
       {
         "author": {
@@ -43,14 +43,14 @@
           "username": "guitarrapc"
         },
         "distinct": true,
-        "id": "39e584dd94e6688e58213e5466d685b209efc7d0",
-        "message": "chore: timeout minutes",
-        "timestamp": "2026-07-24T09:40:33+09:00",
-        "tree_id": "0f4f5c14bc9accc06cfb3d02317e93fe88032b84",
-        "url": "https://github.com/guitarrapc/githubactions-lab/commit/39e584dd94e6688e58213e5466d685b209efc7d0"
+        "id": "952cd56b33760e66a6910df99f58ac667b27a400",
+        "message": "ci: update seiton to 1.7.4",
+        "timestamp": "2026-07-24T09:41:51+09:00",
+        "tree_id": "e9aebea6895ce3b5b8f478b847c29e383caf141a",
+        "url": "https://github.com/guitarrapc/githubactions-lab/commit/952cd56b33760e66a6910df99f58ac667b27a400"
       }
     ],
-    "compare": "https://github.com/guitarrapc/githubactions-lab/compare/67a0f4f6341a...39e584dd94e6",
+    "compare": "https://github.com/guitarrapc/githubactions-lab/compare/8d87d2fbcb1b...952cd56b3376",
     "created": false,
     "deleted": false,
     "forced": false,
@@ -66,11 +66,11 @@
         "username": "guitarrapc"
       },
       "distinct": true,
-      "id": "39e584dd94e6688e58213e5466d685b209efc7d0",
-      "message": "chore: timeout minutes",
-      "timestamp": "2026-07-24T09:40:33+09:00",
-      "tree_id": "0f4f5c14bc9accc06cfb3d02317e93fe88032b84",
-      "url": "https://github.com/guitarrapc/githubactions-lab/commit/39e584dd94e6688e58213e5466d685b209efc7d0"
+      "id": "952cd56b33760e66a6910df99f58ac667b27a400",
+      "message": "ci: update seiton to 1.7.4",
+      "timestamp": "2026-07-24T09:41:51+09:00",
+      "tree_id": "e9aebea6895ce3b5b8f478b847c29e383caf141a",
+      "url": "https://github.com/guitarrapc/githubactions-lab/commit/952cd56b33760e66a6910df99f58ac667b27a400"
     },
     "pusher": {
       "email": "3856350+guitarrapc@users.noreply.github.com",
@@ -168,7 +168,7 @@
       "private": false,
       "pull_request_creation_policy": "all",
       "pulls_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls{/number}",
-      "pushed_at": 1784853636,
+      "pushed_at": 1784853714,
       "releases_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/releases{/id}",
       "size": 6155,
       "ssh_url": "git@github.com:guitarrapc/githubactions-lab.git",
@@ -185,7 +185,7 @@
         "github-actions"
       ],
       "trees_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/git/trees{/sha}",
-      "updated_at": "2026-07-21T14:43:26Z",
+      "updated_at": "2026-07-24T00:41:13Z",
       "url": "https://api.github.com/repos/guitarrapc/githubactions-lab",
       "visibility": "public",
       "watchers": 56,
@@ -215,7 +215,7 @@
     }
   },
   "workflow_ref": "guitarrapc/githubactions-lab/.github/workflows/auto-dump-context.yaml@refs/heads/main",
-  "workflow_sha": "39e584dd94e6688e58213e5466d685b209efc7d0",
+  "workflow_sha": "952cd56b33760e66a6910df99f58ac667b27a400",
   "repository_id": "257465468",
   "triggering_actor": "guitarrapc",
   "workspace": "/home/runner/work/githubactions-lab/githubactions-lab",
@@ -223,9 +223,11 @@
   "event_path": "/home/runner/work/_temp/_github_workflow/event.json",
   "action_repository": "",
   "action_ref": "",
-  "path": "/home/runner/work/_temp/_runner_file_commands/add_path_1120fbe2-5b23-499b-b81b-6cedcf369e01",
-  "env": "/home/runner/work/_temp/_runner_file_commands/set_env_1120fbe2-5b23-499b-b81b-6cedcf369e01",
-  "step_summary": "/home/runner/work/_temp/_runner_file_commands/step_summary_1120fbe2-5b23-499b-b81b-6cedcf369e01",
-  "state": "/home/runner/work/_temp/_runner_file_commands/save_state_1120fbe2-5b23-499b-b81b-6cedcf369e01",
-  "output": "/home/runner/work/_temp/_runner_file_commands/set_output_1120fbe2-5b23-499b-b81b-6cedcf369e01"
+  "path": "/home/runner/work/_temp/_runner_file_commands/add_path_88471302-8eb4-491b-9451-1a81a3128c27",
+  "env": "/home/runner/work/_temp/_runner_file_commands/set_env_88471302-8eb4-491b-9451-1a81a3128c27",
+  "step_summary": "/home/runner/work/_temp/_runner_file_commands/step_summary_88471302-8eb4-491b-9451-1a81a3128c27",
+  "state": "/home/runner/work/_temp/_runner_file_commands/save_state_88471302-8eb4-491b-9451-1a81a3128c27",
+  "output": "/home/runner/work/_temp/_runner_file_commands/set_output_88471302-8eb4-491b-9451-1a81a3128c27",
+  "artifacts": "/home/runner/work/_temp/_runner_file_commands/artifacts_88471302-8eb4-491b-9451-1a81a3128c27",
+  "artifacts_list": "/home/runner/work/_temp/_runner_file_commands/artifacts_list_88471302-8eb4-491b-9451-1a81a3128c27"
 }
