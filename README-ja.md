@@ -4109,7 +4109,7 @@ jobs:
       # Preferred: setup-seiton installs the native binary and keeps CI lightweight.
       - uses: guitarrapc/setup-seiton@92f424f8dae8130d8f6299c74716356437d746ba # v1.0.2
         with:
-          seiton-version: 1.2.0
+          seiton-version: 1.7.4
       # Default on GitHub Actions: --format github-actions (rich stdout + job summary).
       # First adoption: fail only on errors until warnings are enforced:
       # run: seiton --include-actions --min-severity error
@@ -4633,7 +4633,7 @@ jobs:
     runs-on: ubuntu-24.04
     timeout-minutes: 3
     steps:
-      - uses: actions/stale@eb5cf3af3ac0a1aa4c9c45633dd1ae542a27a899 # v10.3.0
+      - uses: actions/stale@1e223db275d687790206a7acac4d1a11bd6fe629 # v10.4.0
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
           # enable issue
@@ -4683,7 +4683,7 @@ jobs:
       - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
         with:
           persist-credentials: false
-      - uses: actions/setup-dotnet@9a946fdbd5fb07b82b2f5a4466058b876ab72bb2 # v5.3.0
+      - uses: actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1 # v5.4.0
         with:
           dotnet-version: 10.0.x
       - name: dotnet build
