@@ -1,48 +1,48 @@
 {
-  "after": "952cd56b33760e66a6910df99f58ac667b27a400",
+  "after": "a6808cb22caf04f5360eb4b9cc46c4dedcb5c99e",
   "base_ref": null,
-  "before": "8d87d2fbcb1b8bb76c7da7640d9076a1f52c164f",
+  "before": "edcc755a9a47566ac6edd08430794cf1d23f2671",
   "commits": [
     {
       "author": {
-        "email": "3856350+guitarrapc@users.noreply.github.com",
-        "name": "Ikiru Yoshizaki",
-        "username": "guitarrapc"
+        "email": "49699333+dependabot[bot]@users.noreply.github.com",
+        "name": "dependabot[bot]",
+        "username": "dependabot[bot]"
       },
       "committer": {
-        "email": "3856350+guitarrapc@users.noreply.github.com",
-        "name": "Ikiru Yoshizaki",
-        "username": "guitarrapc"
+        "email": "noreply@github.com",
+        "name": "GitHub",
+        "username": "web-flow"
       },
       "distinct": true,
-      "id": "952cd56b33760e66a6910df99f58ac667b27a400",
-      "message": "ci: update seiton to 1.7.4",
-      "timestamp": "2026-07-24T09:41:51+09:00",
-      "tree_id": "e9aebea6895ce3b5b8f478b847c29e383caf141a",
-      "url": "https://github.com/guitarrapc/githubactions-lab/commit/952cd56b33760e66a6910df99f58ac667b27a400"
+      "id": "a6808cb22caf04f5360eb4b9cc46c4dedcb5c99e",
+      "message": "chore(deps): bump the dependencies group with 2 updates (#339)\n\n* chore(deps): bump the dependencies group with 2 updates\n\nBumps the dependencies group with 2 updates: [actions/setup-node](https://github.com/actions/setup-node) and [actions/stale](https://github.com/actions/stale).\n\n\nUpdates `actions/setup-node` from 6.4.0 to 7.0.0\n- [Release notes](https://github.com/actions/setup-node/releases)\n- [Commits](https://github.com/actions/setup-node/compare/48b55a011bda9f5d6aeb4c2d9c7362e8dae4041e...820762786026740c76f36085b0efc47a31fe5020)\n\nUpdates `actions/stale` from 10.3.0 to 10.4.0\n- [Release notes](https://github.com/actions/stale/releases)\n- [Changelog](https://github.com/actions/stale/blob/main/CHANGELOG.md)\n- [Commits](https://github.com/actions/stale/compare/eb5cf3af3ac0a1aa4c9c45633dd1ae542a27a899...1e223db275d687790206a7acac4d1a11bd6fe629)\n\n---\nupdated-dependencies:\n- dependency-name: actions/setup-node\n  dependency-version: 7.0.0\n  dependency-type: direct:production\n  update-type: version-update:semver-major\n  dependency-group: dependencies\n- dependency-name: actions/stale\n  dependency-version: 10.4.0\n  dependency-type: direct:production\n  update-type: version-update:semver-minor\n  dependency-group: dependencies\n...\n\nSigned-off-by: dependabot[bot] <support@github.com>\n\n* ci: recompile agentic workflow\n\n* [auto commit] Embedded code (workflow=auto doc)\n\n* [auto commit] update context (workflow=auto dump context, event=pull_request, action=synchronize)\n\n---------\n\nSigned-off-by: dependabot[bot] <support@github.com>\nCo-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>\nCo-authored-by: Ikiru Yoshizaki <3856350+guitarrapc@users.noreply.github.com>\nCo-authored-by: github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>",
+      "timestamp": "2026-07-29T12:02:48+09:00",
+      "tree_id": "cf474b976807b9cce617126521a322b9db77574e",
+      "url": "https://github.com/guitarrapc/githubactions-lab/commit/a6808cb22caf04f5360eb4b9cc46c4dedcb5c99e"
     }
   ],
-  "compare": "https://github.com/guitarrapc/githubactions-lab/compare/8d87d2fbcb1b...952cd56b3376",
+  "compare": "https://github.com/guitarrapc/githubactions-lab/compare/edcc755a9a47...a6808cb22caf",
   "created": false,
   "deleted": false,
   "forced": false,
   "head_commit": {
     "author": {
-      "email": "3856350+guitarrapc@users.noreply.github.com",
-      "name": "Ikiru Yoshizaki",
-      "username": "guitarrapc"
+      "email": "49699333+dependabot[bot]@users.noreply.github.com",
+      "name": "dependabot[bot]",
+      "username": "dependabot[bot]"
     },
     "committer": {
-      "email": "3856350+guitarrapc@users.noreply.github.com",
-      "name": "Ikiru Yoshizaki",
-      "username": "guitarrapc"
+      "email": "noreply@github.com",
+      "name": "GitHub",
+      "username": "web-flow"
     },
     "distinct": true,
-    "id": "952cd56b33760e66a6910df99f58ac667b27a400",
-    "message": "ci: update seiton to 1.7.4",
-    "timestamp": "2026-07-24T09:41:51+09:00",
-    "tree_id": "e9aebea6895ce3b5b8f478b847c29e383caf141a",
-    "url": "https://github.com/guitarrapc/githubactions-lab/commit/952cd56b33760e66a6910df99f58ac667b27a400"
+    "id": "a6808cb22caf04f5360eb4b9cc46c4dedcb5c99e",
+    "message": "chore(deps): bump the dependencies group with 2 updates (#339)\n\n* chore(deps): bump the dependencies group with 2 updates\n\nBumps the dependencies group with 2 updates: [actions/setup-node](https://github.com/actions/setup-node) and [actions/stale](https://github.com/actions/stale).\n\n\nUpdates `actions/setup-node` from 6.4.0 to 7.0.0\n- [Release notes](https://github.com/actions/setup-node/releases)\n- [Commits](https://github.com/actions/setup-node/compare/48b55a011bda9f5d6aeb4c2d9c7362e8dae4041e...820762786026740c76f36085b0efc47a31fe5020)\n\nUpdates `actions/stale` from 10.3.0 to 10.4.0\n- [Release notes](https://github.com/actions/stale/releases)\n- [Changelog](https://github.com/actions/stale/blob/main/CHANGELOG.md)\n- [Commits](https://github.com/actions/stale/compare/eb5cf3af3ac0a1aa4c9c45633dd1ae542a27a899...1e223db275d687790206a7acac4d1a11bd6fe629)\n\n---\nupdated-dependencies:\n- dependency-name: actions/setup-node\n  dependency-version: 7.0.0\n  dependency-type: direct:production\n  update-type: version-update:semver-major\n  dependency-group: dependencies\n- dependency-name: actions/stale\n  dependency-version: 10.4.0\n  dependency-type: direct:production\n  update-type: version-update:semver-minor\n  dependency-group: dependencies\n...\n\nSigned-off-by: dependabot[bot] <support@github.com>\n\n* ci: recompile agentic workflow\n\n* [auto commit] Embedded code (workflow=auto doc)\n\n* [auto commit] update context (workflow=auto dump context, event=pull_request, action=synchronize)\n\n---------\n\nSigned-off-by: dependabot[bot] <support@github.com>\nCo-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>\nCo-authored-by: Ikiru Yoshizaki <3856350+guitarrapc@users.noreply.github.com>\nCo-authored-by: github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>",
+    "timestamp": "2026-07-29T12:02:48+09:00",
+    "tree_id": "cf474b976807b9cce617126521a322b9db77574e",
+    "url": "https://github.com/guitarrapc/githubactions-lab/commit/a6808cb22caf04f5360eb4b9cc46c4dedcb5c99e"
   },
   "pusher": {
     "email": "3856350+guitarrapc@users.noreply.github.com",
@@ -140,9 +140,9 @@
     "private": false,
     "pull_request_creation_policy": "all",
     "pulls_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls{/number}",
-    "pushed_at": 1784853714,
+    "pushed_at": 1785294168,
     "releases_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/releases{/id}",
-    "size": 6155,
+    "size": 6195,
     "ssh_url": "git@github.com:guitarrapc/githubactions-lab.git",
     "stargazers": 56,
     "stargazers_count": 56,
@@ -157,7 +157,7 @@
       "github-actions"
     ],
     "trees_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/git/trees{/sha}",
-    "updated_at": "2026-07-24T00:41:13Z",
+    "updated_at": "2026-07-29T02:52:55Z",
     "url": "https://api.github.com/repos/guitarrapc/githubactions-lab",
     "visibility": "public",
     "watchers": 56,
