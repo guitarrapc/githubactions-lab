@@ -1,48 +1,48 @@
 {
-  "after": "fe9c95c7296a15a03ed1236f1164137089cac73a",
+  "after": "b7495a90a42646114830cc02c8edb80381b972f6",
   "base_ref": null,
-  "before": "0cc6e76cf027eafe95fd2e9bac13e51a7e1fccfb",
+  "before": "fa9b84d8382c33b1a09060cd0f93794f1896c7ab",
   "commits": [
     {
       "author": {
-        "email": "49699333+dependabot[bot]@users.noreply.github.com",
-        "name": "dependabot[bot]",
-        "username": "dependabot[bot]"
+        "email": "3856350+guitarrapc@users.noreply.github.com",
+        "name": "Ikiru Yoshizaki",
+        "username": "guitarrapc"
       },
       "committer": {
-        "email": "noreply@github.com",
-        "name": "GitHub",
-        "username": "web-flow"
+        "email": "3856350+guitarrapc@users.noreply.github.com",
+        "name": "Ikiru Yoshizaki",
+        "username": "guitarrapc"
       },
       "distinct": true,
-      "id": "fe9c95c7296a15a03ed1236f1164137089cac73a",
-      "message": "chore(deps): bump actions/stale in the dependencies group (#342)\n\nBumps the dependencies group with 1 update: [actions/stale](https://github.com/actions/stale).\n\n\nUpdates `actions/stale` from 10.4.0 to 11.0.0\n- [Release notes](https://github.com/actions/stale/releases)\n- [Changelog](https://github.com/actions/stale/blob/main/CHANGELOG.md)\n- [Commits](https://github.com/actions/stale/compare/1e223db275d687790206a7acac4d1a11bd6fe629...4391f3da665fdf50b6810c1a66712fb9ba21aa93)\n\n---\nupdated-dependencies:\n- dependency-name: actions/stale\n  dependency-version: 11.0.0\n  dependency-type: direct:production\n  update-type: version-update:semver-major\n  dependency-group: dependencies\n...\n\nSigned-off-by: dependabot[bot] <support@github.com>\nCo-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>",
-      "timestamp": "2026-08-12T01:08:11+09:00",
-      "tree_id": "583f55a447a037578e2f4af084fbd25571c4644a",
-      "url": "https://github.com/guitarrapc/githubactions-lab/commit/fe9c95c7296a15a03ed1236f1164137089cac73a"
+      "id": "b7495a90a42646114830cc02c8edb80381b972f6",
+      "message": "fix: remove none exists permissions",
+      "timestamp": "2026-08-12T12:36:53+09:00",
+      "tree_id": "11895720c1303b19f06b4163c86b912cc2f16964",
+      "url": "https://github.com/guitarrapc/githubactions-lab/commit/b7495a90a42646114830cc02c8edb80381b972f6"
     }
   ],
-  "compare": "https://github.com/guitarrapc/githubactions-lab/compare/0cc6e76cf027...fe9c95c7296a",
+  "compare": "https://github.com/guitarrapc/githubactions-lab/compare/fa9b84d8382c...b7495a90a426",
   "created": false,
   "deleted": false,
   "forced": false,
   "head_commit": {
     "author": {
-      "email": "49699333+dependabot[bot]@users.noreply.github.com",
-      "name": "dependabot[bot]",
-      "username": "dependabot[bot]"
+      "email": "3856350+guitarrapc@users.noreply.github.com",
+      "name": "Ikiru Yoshizaki",
+      "username": "guitarrapc"
     },
     "committer": {
-      "email": "noreply@github.com",
-      "name": "GitHub",
-      "username": "web-flow"
+      "email": "3856350+guitarrapc@users.noreply.github.com",
+      "name": "Ikiru Yoshizaki",
+      "username": "guitarrapc"
     },
     "distinct": true,
-    "id": "fe9c95c7296a15a03ed1236f1164137089cac73a",
-    "message": "chore(deps): bump actions/stale in the dependencies group (#342)\n\nBumps the dependencies group with 1 update: [actions/stale](https://github.com/actions/stale).\n\n\nUpdates `actions/stale` from 10.4.0 to 11.0.0\n- [Release notes](https://github.com/actions/stale/releases)\n- [Changelog](https://github.com/actions/stale/blob/main/CHANGELOG.md)\n- [Commits](https://github.com/actions/stale/compare/1e223db275d687790206a7acac4d1a11bd6fe629...4391f3da665fdf50b6810c1a66712fb9ba21aa93)\n\n---\nupdated-dependencies:\n- dependency-name: actions/stale\n  dependency-version: 11.0.0\n  dependency-type: direct:production\n  update-type: version-update:semver-major\n  dependency-group: dependencies\n...\n\nSigned-off-by: dependabot[bot] <support@github.com>\nCo-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>",
-    "timestamp": "2026-08-12T01:08:11+09:00",
-    "tree_id": "583f55a447a037578e2f4af084fbd25571c4644a",
-    "url": "https://github.com/guitarrapc/githubactions-lab/commit/fe9c95c7296a15a03ed1236f1164137089cac73a"
+    "id": "b7495a90a42646114830cc02c8edb80381b972f6",
+    "message": "fix: remove none exists permissions",
+    "timestamp": "2026-08-12T12:36:53+09:00",
+    "tree_id": "11895720c1303b19f06b4163c86b912cc2f16964",
+    "url": "https://github.com/guitarrapc/githubactions-lab/commit/b7495a90a42646114830cc02c8edb80381b972f6"
   },
   "pusher": {
     "email": "3856350+guitarrapc@users.noreply.github.com",
@@ -140,9 +140,9 @@
     "private": false,
     "pull_request_creation_policy": "all",
     "pulls_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls{/number}",
-    "pushed_at": 1786464491,
+    "pushed_at": 1786505821,
     "releases_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/releases{/id}",
-    "size": 6167,
+    "size": 6203,
     "ssh_url": "git@github.com:guitarrapc/githubactions-lab.git",
     "stargazers": 56,
     "stargazers_count": 56,
@@ -157,7 +157,7 @@
       "github-actions"
     ],
     "trees_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/git/trees{/sha}",
-    "updated_at": "2026-08-09T00:18:49Z",
+    "updated_at": "2026-08-11T16:11:14Z",
     "url": "https://api.github.com/repos/guitarrapc/githubactions-lab",
     "visibility": "public",
     "watchers": 56,
