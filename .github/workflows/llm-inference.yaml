@@ -7,7 +7,6 @@ jobs:
   run:
     permissions:
       contents: read
-      models: read
     runs-on: ubuntu-24.04
     timeout-minutes: 10
     steps:
