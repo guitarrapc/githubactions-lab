@@ -2,13 +2,13 @@
   "token": "<reducted>",
   "job": "dump-context",
   "ref": "refs/heads/main",
-  "sha": "b7495a90a42646114830cc02c8edb80381b972f6",
+  "sha": "e2346aa7322e0c3cb6e3231ae655459dd10cddc2",
   "repository": "guitarrapc/githubactions-lab",
   "repository_owner": "guitarrapc",
   "repository_owner_id": "3856350",
   "repositoryUrl": "git://github.com/guitarrapc/githubactions-lab.git",
-  "run_id": "31560629176",
-  "run_number": "2128",
+  "run_id": "32237543965",
+  "run_number": "2144",
   "retention_days": "90",
   "run_attempt": "1",
   "artifact_cache_size_limit": "10",
@@ -27,50 +27,50 @@
   "ref_type": "branch",
   "secret_source": "Actions",
   "event": {
-    "after": "b7495a90a42646114830cc02c8edb80381b972f6",
+    "after": "e2346aa7322e0c3cb6e3231ae655459dd10cddc2",
     "base_ref": null,
-    "before": "fa9b84d8382c33b1a09060cd0f93794f1896c7ab",
+    "before": "bb59af81386ba4a52c32ad290689edfaf3128cc0",
     "commits": [
       {
         "author": {
-          "email": "3856350+guitarrapc@users.noreply.github.com",
-          "name": "Ikiru Yoshizaki",
-          "username": "guitarrapc"
+          "email": "49699333+dependabot[bot]@users.noreply.github.com",
+          "name": "dependabot[bot]",
+          "username": "dependabot[bot]"
         },
         "committer": {
-          "email": "3856350+guitarrapc@users.noreply.github.com",
-          "name": "Ikiru Yoshizaki",
-          "username": "guitarrapc"
+          "email": "noreply@github.com",
+          "name": "GitHub",
+          "username": "web-flow"
         },
         "distinct": true,
-        "id": "b7495a90a42646114830cc02c8edb80381b972f6",
-        "message": "fix: remove none exists permissions",
-        "timestamp": "2026-08-12T12:36:53+09:00",
-        "tree_id": "11895720c1303b19f06b4163c86b912cc2f16964",
-        "url": "https://github.com/guitarrapc/githubactions-lab/commit/b7495a90a42646114830cc02c8edb80381b972f6"
+        "id": "e2346aa7322e0c3cb6e3231ae655459dd10cddc2",
+        "message": "chore(deps): bump the dependencies group with 3 updates (#343)\n\nBumps the dependencies group with 3 updates: [Kesin11/actions-timeline](https://github.com/kesin11/actions-timeline), [github/gh-aw-actions/setup](https://github.com/github/gh-aw-actions) and [github/gh-aw-actions/setup-cli](https://github.com/github/gh-aw-actions).\n\n\nUpdates `Kesin11/actions-timeline` from 3.1.0 to 3.2.0\n- [Release notes](https://github.com/kesin11/actions-timeline/releases)\n- [Commits](https://github.com/kesin11/actions-timeline/compare/44c9c178ffb2fb1d9859614a3ffa79ccfb77565e...57fc93f20c6da7fbc14063c6d24a2a5627c799ad)\n\nUpdates `github/gh-aw-actions/setup` from 0.83.4 to 0.85.0\n- [Release notes](https://github.com/github/gh-aw-actions/releases)\n- [Changelog](https://github.com/github/gh-aw-actions/blob/main/CHANGELOG.md)\n- [Commits](https://github.com/github/gh-aw-actions/compare/e89c65e17eb281bbd5ff2ff9e9199a03e96654c7...32d9b58ee2cb05ad425047708d978e258d7b09ac)\n\nUpdates `github/gh-aw-actions/setup-cli` from 0.83.4 to 0.85.0\n- [Release notes](https://github.com/github/gh-aw-actions/releases)\n- [Changelog](https://github.com/github/gh-aw-actions/blob/main/CHANGELOG.md)\n- [Commits](https://github.com/github/gh-aw-actions/compare/e89c65e17eb281bbd5ff2ff9e9199a03e96654c7...32d9b58ee2cb05ad425047708d978e258d7b09ac)\n\n---\nupdated-dependencies:\n- dependency-name: Kesin11/actions-timeline\n  dependency-version: 3.2.0\n  dependency-type: direct:production\n  update-type: version-update:semver-minor\n  dependency-group: dependencies\n- dependency-name: github/gh-aw-actions/setup\n  dependency-version: 0.85.0\n  dependency-type: direct:production\n  update-type: version-update:semver-minor\n  dependency-group: dependencies\n- dependency-name: github/gh-aw-actions/setup-cli\n  dependency-version: 0.85.0\n  dependency-type: direct:production\n  update-type: version-update:semver-minor\n  dependency-group: dependencies\n...\n\nSigned-off-by: dependabot[bot] <support@github.com>\nCo-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>",
+        "timestamp": "2026-08-19T18:25:37+09:00",
+        "tree_id": "a78c752c51b8b9da5f67bbc50138892b5d20210e",
+        "url": "https://github.com/guitarrapc/githubactions-lab/commit/e2346aa7322e0c3cb6e3231ae655459dd10cddc2"
       }
     ],
-    "compare": "https://github.com/guitarrapc/githubactions-lab/compare/fa9b84d8382c...b7495a90a426",
+    "compare": "https://github.com/guitarrapc/githubactions-lab/compare/bb59af81386b...e2346aa7322e",
     "created": false,
     "deleted": false,
     "forced": false,
     "head_commit": {
       "author": {
-        "email": "3856350+guitarrapc@users.noreply.github.com",
-        "name": "Ikiru Yoshizaki",
-        "username": "guitarrapc"
+        "email": "49699333+dependabot[bot]@users.noreply.github.com",
+        "name": "dependabot[bot]",
+        "username": "dependabot[bot]"
       },
       "committer": {
-        "email": "3856350+guitarrapc@users.noreply.github.com",
-        "name": "Ikiru Yoshizaki",
-        "username": "guitarrapc"
+        "email": "noreply@github.com",
+        "name": "GitHub",
+        "username": "web-flow"
       },
       "distinct": true,
-      "id": "b7495a90a42646114830cc02c8edb80381b972f6",
-      "message": "fix: remove none exists permissions",
-      "timestamp": "2026-08-12T12:36:53+09:00",
-      "tree_id": "11895720c1303b19f06b4163c86b912cc2f16964",
-      "url": "https://github.com/guitarrapc/githubactions-lab/commit/b7495a90a42646114830cc02c8edb80381b972f6"
+      "id": "e2346aa7322e0c3cb6e3231ae655459dd10cddc2",
+      "message": "chore(deps): bump the dependencies group with 3 updates (#343)\n\nBumps the dependencies group with 3 updates: [Kesin11/actions-timeline](https://github.com/kesin11/actions-timeline), [github/gh-aw-actions/setup](https://github.com/github/gh-aw-actions) and [github/gh-aw-actions/setup-cli](https://github.com/github/gh-aw-actions).\n\n\nUpdates `Kesin11/actions-timeline` from 3.1.0 to 3.2.0\n- [Release notes](https://github.com/kesin11/actions-timeline/releases)\n- [Commits](https://github.com/kesin11/actions-timeline/compare/44c9c178ffb2fb1d9859614a3ffa79ccfb77565e...57fc93f20c6da7fbc14063c6d24a2a5627c799ad)\n\nUpdates `github/gh-aw-actions/setup` from 0.83.4 to 0.85.0\n- [Release notes](https://github.com/github/gh-aw-actions/releases)\n- [Changelog](https://github.com/github/gh-aw-actions/blob/main/CHANGELOG.md)\n- [Commits](https://github.com/github/gh-aw-actions/compare/e89c65e17eb281bbd5ff2ff9e9199a03e96654c7...32d9b58ee2cb05ad425047708d978e258d7b09ac)\n\nUpdates `github/gh-aw-actions/setup-cli` from 0.83.4 to 0.85.0\n- [Release notes](https://github.com/github/gh-aw-actions/releases)\n- [Changelog](https://github.com/github/gh-aw-actions/blob/main/CHANGELOG.md)\n- [Commits](https://github.com/github/gh-aw-actions/compare/e89c65e17eb281bbd5ff2ff9e9199a03e96654c7...32d9b58ee2cb05ad425047708d978e258d7b09ac)\n\n---\nupdated-dependencies:\n- dependency-name: Kesin11/actions-timeline\n  dependency-version: 3.2.0\n  dependency-type: direct:production\n  update-type: version-update:semver-minor\n  dependency-group: dependencies\n- dependency-name: github/gh-aw-actions/setup\n  dependency-version: 0.85.0\n  dependency-type: direct:production\n  update-type: version-update:semver-minor\n  dependency-group: dependencies\n- dependency-name: github/gh-aw-actions/setup-cli\n  dependency-version: 0.85.0\n  dependency-type: direct:production\n  update-type: version-update:semver-minor\n  dependency-group: dependencies\n...\n\nSigned-off-by: dependabot[bot] <support@github.com>\nCo-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>",
+      "timestamp": "2026-08-19T18:25:37+09:00",
+      "tree_id": "a78c752c51b8b9da5f67bbc50138892b5d20210e",
+      "url": "https://github.com/guitarrapc/githubactions-lab/commit/e2346aa7322e0c3cb6e3231ae655459dd10cddc2"
     },
     "pusher": {
       "email": "3856350+guitarrapc@users.noreply.github.com",
@@ -168,9 +168,9 @@
       "private": false,
       "pull_request_creation_policy": "all",
       "pulls_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls{/number}",
-      "pushed_at": 1786505821,
+      "pushed_at": 1787131537,
       "releases_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/releases{/id}",
-      "size": 6203,
+      "size": 6235,
       "ssh_url": "git@github.com:guitarrapc/githubactions-lab.git",
       "stargazers": 56,
       "stargazers_count": 56,
@@ -185,7 +185,7 @@
         "github-actions"
       ],
       "trees_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/git/trees{/sha}",
-      "updated_at": "2026-08-11T16:11:14Z",
+      "updated_at": "2026-08-16T01:09:10Z",
       "url": "https://api.github.com/repos/guitarrapc/githubactions-lab",
       "visibility": "public",
       "watchers": 56,
@@ -215,7 +215,7 @@
     }
   },
   "workflow_ref": "guitarrapc/githubactions-lab/.github/workflows/auto-dump-context.yaml@refs/heads/main",
-  "workflow_sha": "b7495a90a42646114830cc02c8edb80381b972f6",
+  "workflow_sha": "e2346aa7322e0c3cb6e3231ae655459dd10cddc2",
   "repository_id": "257465468",
   "triggering_actor": "guitarrapc",
   "workspace": "/home/runner/work/githubactions-lab/githubactions-lab",
@@ -223,11 +223,11 @@
   "event_path": "/home/runner/work/_temp/_github_workflow/event.json",
   "action_repository": "",
   "action_ref": "",
-  "path": "/home/runner/work/_temp/_runner_file_commands/add_path_6ffa0fea-32c2-45f0-85a8-c61af257ac88",
-  "env": "/home/runner/work/_temp/_runner_file_commands/set_env_6ffa0fea-32c2-45f0-85a8-c61af257ac88",
-  "step_summary": "/home/runner/work/_temp/_runner_file_commands/step_summary_6ffa0fea-32c2-45f0-85a8-c61af257ac88",
-  "state": "/home/runner/work/_temp/_runner_file_commands/save_state_6ffa0fea-32c2-45f0-85a8-c61af257ac88",
-  "output": "/home/runner/work/_temp/_runner_file_commands/set_output_6ffa0fea-32c2-45f0-85a8-c61af257ac88",
-  "artifacts": "/home/runner/work/_temp/_runner_file_commands/artifacts_6ffa0fea-32c2-45f0-85a8-c61af257ac88",
-  "artifacts_list": "/home/runner/work/_temp/_runner_file_commands/artifacts_list_6ffa0fea-32c2-45f0-85a8-c61af257ac88"
+  "path": "/home/runner/work/_temp/_runner_file_commands/add_path_4ae56267-87e0-491e-97b2-f8859850931f",
+  "env": "/home/runner/work/_temp/_runner_file_commands/set_env_4ae56267-87e0-491e-97b2-f8859850931f",
+  "step_summary": "/home/runner/work/_temp/_runner_file_commands/step_summary_4ae56267-87e0-491e-97b2-f8859850931f",
+  "state": "/home/runner/work/_temp/_runner_file_commands/save_state_4ae56267-87e0-491e-97b2-f8859850931f",
+  "output": "/home/runner/work/_temp/_runner_file_commands/set_output_4ae56267-87e0-491e-97b2-f8859850931f",
+  "artifacts": "/home/runner/work/_temp/_runner_file_commands/artifacts_4ae56267-87e0-491e-97b2-f8859850931f",
+  "artifacts_list": "/home/runner/work/_temp/_runner_file_commands/artifacts_list_4ae56267-87e0-491e-97b2-f8859850931f"
 }
