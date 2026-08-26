@@ -1,31 +1,31 @@
 {
   "action": "closed",
-  "number": 343,
+  "number": 344,
   "pull_request": {
     "_links": {
       "comments": {
-        "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/issues/343/comments"
+        "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/issues/344/comments"
       },
       "commits": {
-        "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/343/commits"
+        "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/344/commits"
       },
       "html": {
-        "href": "https://github.com/guitarrapc/githubactions-lab/pull/343"
+        "href": "https://github.com/guitarrapc/githubactions-lab/pull/344"
       },
       "issue": {
-        "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/issues/343"
+        "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/issues/344"
       },
       "review_comment": {
         "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/comments{/number}"
       },
       "review_comments": {
-        "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/343/comments"
+        "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/344/comments"
       },
       "self": {
-        "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/343"
+        "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/344"
       },
       "statuses": {
-        "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/statuses/d5c5a1037ecf51a1f11cbacc294a174cd6f6204b"
+        "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/statuses/2bc03e7e588354cd352e8097879987c9530fbf9a"
       }
     },
     "active_lock_reason": null,
@@ -65,8 +65,8 @@
         "downloads_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/downloads",
         "events_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/events",
         "fork": false,
-        "forks": 6,
-        "forks_count": 6,
+        "forks": 5,
+        "forks_count": 5,
         "forks_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/forks",
         "full_name": "guitarrapc/githubactions-lab",
         "git_commits_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/git/commits{/sha}",
@@ -133,9 +133,9 @@
         "private": false,
         "pull_request_creation_policy": "all",
         "pulls_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls{/number}",
-        "pushed_at": "2026-08-18T15:39:58Z",
+        "pushed_at": "2026-08-25T15:41:41Z",
         "releases_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/releases{/id}",
-        "size": 6235,
+        "size": 6286,
         "squash_merge_commit_message": "COMMIT_MESSAGES",
         "squash_merge_commit_title": "COMMIT_OR_PR_TITLE",
         "ssh_url": "git@github.com:guitarrapc/githubactions-lab.git",
@@ -151,7 +151,7 @@
           "github-actions"
         ],
         "trees_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/git/trees{/sha}",
-        "updated_at": "2026-08-16T01:09:10Z",
+        "updated_at": "2026-08-23T01:10:42Z",
         "url": "https://api.github.com/repos/guitarrapc/githubactions-lab",
         "use_squash_pr_title_as_default": false,
         "visibility": "public",
@@ -159,7 +159,7 @@
         "watchers_count": 56,
         "web_commit_signoff_required": false
       },
-      "sha": "bb59af81386ba4a52c32ad290689edfaf3128cc0",
+      "sha": "35707af7d147c30a8388a00f3b400c70183efa63",
       "user": {
         "avatar_url": "https://avatars.githubusercontent.com/u/3856350?v=4",
         "events_url": "https://api.github.com/users/guitarrapc/events{/privacy}",
@@ -182,20 +182,20 @@
         "user_view_type": "public"
       }
     },
-    "body": "Bumps the dependencies group with 3 updates: [Kesin11/actions-timeline](https://github.com/kesin11/actions-timeline), [github/gh-aw-actions/setup](https://github.com/github/gh-aw-actions) and [github/gh-aw-actions/setup-cli](https://github.com/github/gh-aw-actions).\n\nUpdates `Kesin11/actions-timeline` from 3.1.0 to 3.2.0\n<details>\n<summary>Release notes</summary>\n<p><em>Sourced from <a href=\"https://github.com/kesin11/actions-timeline/releases\">Kesin11/actions-timeline's releases</a>.</em></p>\n<blockquote>\n<h2>v3.2.0</h2>\n<h2><a href=\"https://github.com/Kesin11/actions-timeline/compare/v3.1.1...v3.2.0\">v3.2.0</a></h2>\n<h2>Changes</h2>\n<p><strong>Support new <a href=\"https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-syntax#jobsjob_idstepsparallel\"><code>parallel</code> syntax</a></strong>.</p>\n<p>Similar to composite action expansion, an overall parent span is created for steps executed in parallel. Child span names for steps running in parallel in the background are prefixed with (bg).</p>\n<p>Sample screenshot:\n<a href=\"https://github.com/user-attachments/assets/d92027fc-ded2-4b6e-9ab0-e3923b698ec3\">https://github.com/user-attachments/assets/d92027fc-ded2-4b6e-9ab0-e3923b698ec3</a></p>\n<h2>Features</h2>\n<ul>\n<li>timeline: Render parallel steps concurrently <a href=\"https://github.com/Kesin11\"><code>@​Kesin11</code></a> (<a href=\"https://redirect.github.com/kesin11/actions-timeline/issues/362\">#362</a>)</li>\n</ul>\n<h2>Fixes</h2>\n<ul>\n<li>composite: Skip synthetic parallel parents <a href=\"https://github.com/Kesin11\"><code>@​Kesin11</code></a> (<a href=\"https://redirect.github.com/kesin11/actions-timeline/issues/363\">#363</a>)</li>\n</ul>\n<h2>Dependencies</h2>\n<!-- raw HTML omitted -->\n<ul>\n<li>chore(deps): update node.js to v24.18.1 @<a href=\"https://github.com/apps/renovate\">renovate[bot]</a> (<a href=\"https://redirect.github.com/kesin11/actions-timeline/issues/361\">#361</a>)</li>\n<li>chore(deps): update dependency deno to v2.9.4 @<a href=\"https://github.com/apps/renovate\">renovate[bot]</a> (<a href=\"https://redirect.github.com/kesin11/actions-timeline/issues/360\">#360</a>)</li>\n<li>chore(deps): update jdx/mise-action action to v4.2.3 @<a href=\"https://github.com/apps/renovate\">renovate[bot]</a> (<a href=\"https://redirect.github.com/kesin11/actions-timeline/issues/357\">#357</a>)</li>\n<li>chore(deps): update dependency deno to v2.9.3 @<a href=\"https://github.com/apps/renovate\">renovate[bot]</a> (<a href=\"https://redirect.github.com/kesin11/actions-timeline/issues/356\">#356</a>)</li>\n<li>chore(deps): update actions/setup-node action to v7 @<a href=\"https://github.com/apps/renovate\">renovate[bot]</a> (<a href=\"https://redirect.github.com/kesin11/actions-timeline/issues/355\">#355</a>)</li>\n<li>chore(deps): update auto merge major github-actions @<a href=\"https://github.com/apps/renovate\">renovate[bot]</a> (<a href=\"https://redirect.github.com/kesin11/actions-timeline/issues/354\">#354</a>)</li>\n<li>chore(deps): update dependency deno to v2.9.2 @<a href=\"https://github.com/apps/renovate\">renovate[bot]</a> (<a href=\"https://redirect.github.com/kesin11/actions-timeline/issues/353\">#353</a>)</li>\n<li>chore(deps): update dependency deno to v2.9.1 @<a href=\"https://github.com/apps/renovate\">renovate[bot]</a> (<a href=\"https://redirect.github.com/kesin11/actions-timeline/issues/352\">#352</a>)</li>\n<li>chore(deps): update dependency deno to v2.9.0 @<a href=\"https://github.com/apps/renovate\">renovate[bot]</a> (<a href=\"https://redirect.github.com/kesin11/actions-timeline/issues/351\">#351</a>)</li>\n<li>chore(deps): update dependency <code>@​std/collections</code> to ^1.3.0 @<a href=\"https://github.com/apps/renovate\">renovate[bot]</a> (<a href=\"https://redirect.github.com/kesin11/actions-timeline/issues/350\">#350</a>)</li>\n<li>chore(deps): update dependency <code>@​std/yaml</code> to ^1.1.2 @<a href=\"https://github.com/apps/renovate\">renovate[bot]</a> (<a href=\"https://redirect.github.com/kesin11/actions-timeline/issues/349\">#349</a>)</li>\n<li>chore(deps): update dependency <code>@​std/encoding</code> to ^1.0.11 @<a href=\"https://github.com/apps/renovate\">renovate[bot]</a> (<a href=\"https://redirect.github.com/kesin11/actions-timeline/issues/348\">#348</a>)</li>\n<li>chore(deps): update node.js to v24 @<a href=\"https://github.com/apps/renovate\">renovate[bot]</a> (<a href=\"https://redirect.github.com/kesin11/actions-timeline/issues/346\">#346</a>)</li>\n</ul>\n<!-- raw HTML omitted -->\n<h2>Internal improvement</h2>\n<ul>\n<li>Fix GitHub App token creation in rebundle workflow <a href=\"https://github.com/Kesin11\"><code>@​Kesin11</code></a> (<a href=\"https://redirect.github.com/kesin11/actions-timeline/issues/359\">#359</a>)</li>\n<li>Using new parallel syntax for dogfooding <a href=\"https://github.com/Kesin11\"><code>@​Kesin11</code></a> (<a href=\"https://redirect.github.com/kesin11/actions-timeline/issues/358\">#358</a>)</li>\n<li>fix: migrate release-drafter.yml to v7 config schema <a href=\"https://github.com/Kesin11\"><code>@​Kesin11</code></a> (<a href=\"https://redirect.github.com/kesin11/actions-timeline/issues/347\">#347</a>)</li>\n</ul>\n<h2>v3.1.1</h2>\n<h2><a href=\"https://github.com/Kesin11/actions-timeline/compare/v3.1.0...v3.1.1\">v3.1.1</a></h2>\n<h2>Changes</h2>\n<h2>Fixes</h2>\n<!-- raw HTML omitted -->\n</blockquote>\n<p>... (truncated)</p>\n</details>\n<details>\n<summary>Commits</summary>\n<ul>\n<li><a href=\"https://github.com/Kesin11/actions-timeline/commit/57fc93f20c6da7fbc14063c6d24a2a5627c799ad\"><code>57fc93f</code></a> composite: Skip synthetic parallel parents (<a href=\"https://redirect.github.com/kesin11/actions-timeline/issues/363\">#363</a>)</li>\n<li><a href=\"https://github.com/Kesin11/actions-timeline/commit/b387c7a3a185d596a717192adc28851939b2dca8\"><code>b387c7a</code></a> Skip parallel parents during composite matching</li>\n<li><a href=\"https://github.com/Kesin11/actions-timeline/commit/74e45cd1271e9010cdd8c09330dde741fad97643\"><code>74e45cd</code></a> timeline: Render parallel steps concurrently (<a href=\"https://redirect.github.com/kesin11/actions-timeline/issues/362\">#362</a>)</li>\n<li><a href=\"https://github.com/Kesin11/actions-timeline/commit/845b827e8e332e7f69e3948f12417f3a2bfbc290\"><code>845b827</code></a> Ignore parent-like names inside parallel groups</li>\n<li><a href=\"https://github.com/Kesin11/actions-timeline/commit/e503bd9be17bc9c5e80e4c50072e64bc7777d754\"><code>e503bd9</code></a> Update sample screenshot</li>\n<li><a href=\"https://github.com/Kesin11/actions-timeline/commit/f76d69a02a0548525a92530bf3871b79f0c4cbe2\"><code>f76d69a</code></a> Derive parallel children from log markers</li>\n<li><a href=\"https://github.com/Kesin11/actions-timeline/commit/6a2cd4e49f18d1d3276061890a4ab7d21ba66a21\"><code>6a2cd4e</code></a> Omit too detailed description</li>\n<li><a href=\"https://github.com/Kesin11/actions-timeline/commit/375498b7ea3b526b793a3eefa03b57bccb1f5aa8\"><code>375498b</code></a> Avoid parallel and composite name collisions</li>\n<li><a href=\"https://github.com/Kesin11/actions-timeline/commit/097feef23d6399fdfcded2c120b29118cef6c7ee\"><code>097feef</code></a> Model composite actions inside parallel steps</li>\n<li><a href=\"https://github.com/Kesin11/actions-timeline/commit/51d502d35f60daa972740b0d2266179071fdf761\"><code>51d502d</code></a> Preserve source names for parallel children</li>\n<li>Additional commits viewable in <a href=\"https://github.com/kesin11/actions-timeline/compare/44c9c178ffb2fb1d9859614a3ffa79ccfb77565e...57fc93f20c6da7fbc14063c6d24a2a5627c799ad\">compare view</a></li>\n</ul>\n</details>\n<br />\n\nUpdates `github/gh-aw-actions/setup` from 0.83.4 to 0.85.0\n<details>\n<summary>Release notes</summary>\n<p><em>Sourced from <a href=\"https://github.com/github/gh-aw-actions/releases\">github/gh-aw-actions/setup's releases</a>.</em></p>\n<blockquote>\n<h2>v0.85.0</h2>\n<p>Sync of actions from <a href=\"https://github.com/github/gh-aw\">gh-aw</a> at <code>v0.85.0</code>.</p>\n<h2>v0.84.4</h2>\n<p>Sync of actions from <a href=\"https://github.com/github/gh-aw\">gh-aw</a> at <code>v0.84.4</code>.</p>\n<h2>v0.84.3</h2>\n<p>Sync of actions from <a href=\"https://github.com/github/gh-aw\">gh-aw</a> at <code>v0.84.3</code>.</p>\n<h2>v0.84.2</h2>\n<p>Sync of actions from <a href=\"https://github.com/github/gh-aw\">gh-aw</a> at <code>v0.84.2</code>.</p>\n<h2>v0.84.1</h2>\n<p>Sync of actions from <a href=\"https://github.com/github/gh-aw\">gh-aw</a> at <code>v0.84.1</code>.</p>\n<h2>v0.84.0</h2>\n<p>Sync of actions from <a href=\"https://github.com/github/gh-aw\">gh-aw</a> at <code>v0.84.0</code>.</p>\n<h2>v0.83.5</h2>\n<p>Sync of actions from <a href=\"https://github.com/github/gh-aw\">gh-aw</a> at <code>v0.83.5</code>.</p>\n</blockquote>\n</details>\n<details>\n<summary>Commits</summary>\n<ul>\n<li><a href=\"https://github.com/github/gh-aw-actions/commit/32d9b58ee2cb05ad425047708d978e258d7b09ac\"><code>32d9b58</code></a> chore: sync actions from gh-aw@v0.85.0 (<a href=\"https://redirect.github.com/github/gh-aw-actions/issues/207\">#207</a>)</li>\n<li><a href=\"https://github.com/github/gh-aw-actions/commit/4f46189e0dfaf63988118c40003c30652d562906\"><code>4f46189</code></a> chore: sync actions from gh-aw@v0.84.4 (<a href=\"https://redirect.github.com/github/gh-aw-actions/issues/206\">#206</a>)</li>\n<li><a href=\"https://github.com/github/gh-aw-actions/commit/c863074b673419603d146aab585e2986ef08deec\"><code>c863074</code></a> chore: sync actions from gh-aw@v0.84.3 (<a href=\"https://redirect.github.com/github/gh-aw-actions/issues/205\">#205</a>)</li>\n<li><a href=\"https://github.com/github/gh-aw-actions/commit/fd783ac87efde5e0c0e05d593f1906ea25b5d92e\"><code>fd783ac</code></a> chore: sync actions from gh-aw@v0.84.2 (<a href=\"https://redirect.github.com/github/gh-aw-actions/issues/204\">#204</a>)</li>\n<li><a href=\"https://github.com/github/gh-aw-actions/commit/029204130cb73f6ba684e56428c7f3e9319b708c\"><code>0292041</code></a> chore: sync actions from gh-aw@v0.84.1 (<a href=\"https://redirect.github.com/github/gh-aw-actions/issues/203\">#203</a>)</li>\n<li><a href=\"https://github.com/github/gh-aw-actions/commit/f3ca20900e2363607992fb61b46fc687d4b56ba3\"><code>f3ca209</code></a> chore: sync actions from gh-aw@v0.84.0 (<a href=\"https://redirect.github.com/github/gh-aw-actions/issues/202\">#202</a>)</li>\n<li><a href=\"https://github.com/github/gh-aw-actions/commit/696e63acbcc80e7cb5604653ee12014762d100e4\"><code>696e63a</code></a> chore: sync actions from gh-aw@v0.83.5 (<a href=\"https://redirect.github.com/github/gh-aw-actions/issues/201\">#201</a>)</li>\n<li>See full diff in <a href=\"https://github.com/github/gh-aw-actions/compare/e89c65e17eb281bbd5ff2ff9e9199a03e96654c7...32d9b58ee2cb05ad425047708d978e258d7b09ac\">compare view</a></li>\n</ul>\n</details>\n<br />\n\nUpdates `github/gh-aw-actions/setup-cli` from 0.83.4 to 0.85.0\n<details>\n<summary>Release notes</summary>\n<p><em>Sourced from <a href=\"https://github.com/github/gh-aw-actions/releases\">github/gh-aw-actions/setup-cli's releases</a>.</em></p>\n<blockquote>\n<h2>v0.85.0</h2>\n<p>Sync of actions from <a href=\"https://github.com/github/gh-aw\">gh-aw</a> at <code>v0.85.0</code>.</p>\n<h2>v0.84.4</h2>\n<p>Sync of actions from <a href=\"https://github.com/github/gh-aw\">gh-aw</a> at <code>v0.84.4</code>.</p>\n<h2>v0.84.3</h2>\n<p>Sync of actions from <a href=\"https://github.com/github/gh-aw\">gh-aw</a> at <code>v0.84.3</code>.</p>\n<h2>v0.84.2</h2>\n<p>Sync of actions from <a href=\"https://github.com/github/gh-aw\">gh-aw</a> at <code>v0.84.2</code>.</p>\n<h2>v0.84.1</h2>\n<p>Sync of actions from <a href=\"https://github.com/github/gh-aw\">gh-aw</a> at <code>v0.84.1</code>.</p>\n<h2>v0.84.0</h2>\n<p>Sync of actions from <a href=\"https://github.com/github/gh-aw\">gh-aw</a> at <code>v0.84.0</code>.</p>\n<h2>v0.83.5</h2>\n<p>Sync of actions from <a href=\"https://github.com/github/gh-aw\">gh-aw</a> at <code>v0.83.5</code>.</p>\n</blockquote>\n</details>\n<details>\n<summary>Commits</summary>\n<ul>\n<li><a href=\"https://github.com/github/gh-aw-actions/commit/32d9b58ee2cb05ad425047708d978e258d7b09ac\"><code>32d9b58</code></a> chore: sync actions from gh-aw@v0.85.0 (<a href=\"https://redirect.github.com/github/gh-aw-actions/issues/207\">#207</a>)</li>\n<li><a href=\"https://github.com/github/gh-aw-actions/commit/4f46189e0dfaf63988118c40003c30652d562906\"><code>4f46189</code></a> chore: sync actions from gh-aw@v0.84.4 (<a href=\"https://redirect.github.com/github/gh-aw-actions/issues/206\">#206</a>)</li>\n<li><a href=\"https://github.com/github/gh-aw-actions/commit/c863074b673419603d146aab585e2986ef08deec\"><code>c863074</code></a> chore: sync actions from gh-aw@v0.84.3 (<a href=\"https://redirect.github.com/github/gh-aw-actions/issues/205\">#205</a>)</li>\n<li><a href=\"https://github.com/github/gh-aw-actions/commit/fd783ac87efde5e0c0e05d593f1906ea25b5d92e\"><code>fd783ac</code></a> chore: sync actions from gh-aw@v0.84.2 (<a href=\"https://redirect.github.com/github/gh-aw-actions/issues/204\">#204</a>)</li>\n<li><a href=\"https://github.com/github/gh-aw-actions/commit/029204130cb73f6ba684e56428c7f3e9319b708c\"><code>0292041</code></a> chore: sync actions from gh-aw@v0.84.1 (<a href=\"https://redirect.github.com/github/gh-aw-actions/issues/203\">#203</a>)</li>\n<li><a href=\"https://github.com/github/gh-aw-actions/commit/f3ca20900e2363607992fb61b46fc687d4b56ba3\"><code>f3ca209</code></a> chore: sync actions from gh-aw@v0.84.0 (<a href=\"https://redirect.github.com/github/gh-aw-actions/issues/202\">#202</a>)</li>\n<li><a href=\"https://github.com/github/gh-aw-actions/commit/696e63acbcc80e7cb5604653ee12014762d100e4\"><code>696e63a</code></a> chore: sync actions from gh-aw@v0.83.5 (<a href=\"https://redirect.github.com/github/gh-aw-actions/issues/201\">#201</a>)</li>\n<li>See full diff in <a href=\"https://github.com/github/gh-aw-actions/compare/e89c65e17eb281bbd5ff2ff9e9199a03e96654c7...32d9b58ee2cb05ad425047708d978e258d7b09ac\">compare view</a></li>\n</ul>\n</details>\n<br />\n\n\nDependabot will resolve any conflicts with this PR as long as you don't alter it yourself. You can also trigger a rebase manually by commenting `@dependabot rebase`.\n\n[//]: # (dependabot-automerge-start)\n[//]: # (dependabot-automerge-end)\n\n---\n\n<details>\n<summary>Dependabot commands and options</summary>\n<br />\n\nYou can trigger Dependabot actions by commenting on this PR:\n- `@dependabot rebase` will rebase this PR\n- `@dependabot recreate` will recreate this PR, overwriting any edits that have been made to it\n- `@dependabot show <dependency name> ignore conditions` will show all of the ignore conditions of the specified dependency\n- `@dependabot ignore <dependency name> major version` will close this group update PR and stop Dependabot creating any more for the specific dependency's major version (unless you unignore this specific dependency's major version or upgrade to it yourself)\n- `@dependabot ignore <dependency name> minor version` will close this group update PR and stop Dependabot creating any more for the specific dependency's minor version (unless you unignore this specific dependency's minor version or upgrade to it yourself)\n- `@dependabot ignore <dependency name>` will close this group update PR and stop Dependabot creating any more for the specific dependency (unless you unignore this specific dependency or upgrade to it yourself)\n- `@dependabot unignore <dependency name>` will remove all of the ignore conditions of the specified dependency\n- `@dependabot unignore <dependency name> <ignore condition>` will remove the ignore condition of the specified dependency and ignore conditions\n\n\n</details>",
+    "body": "Bumps the dependencies group with 3 updates: [github/gh-aw-actions/setup](https://github.com/github/gh-aw-actions), [github/gh-aw-actions/setup-cli](https://github.com/github/gh-aw-actions) and [actions/ai-inference](https://github.com/actions/ai-inference).\n\nUpdates `github/gh-aw-actions/setup` from 0.85.0 to 0.86.2\n<details>\n<summary>Release notes</summary>\n<p><em>Sourced from <a href=\"https://github.com/github/gh-aw-actions/releases\">github/gh-aw-actions/setup's releases</a>.</em></p>\n<blockquote>\n<h2>v0.86.2</h2>\n<p>Sync of actions from <a href=\"https://github.com/github/gh-aw\">gh-aw</a> at <code>v0.86.2</code>.</p>\n<h2>v0.86.1</h2>\n<p>Sync of actions from <a href=\"https://github.com/github/gh-aw\">gh-aw</a> at <code>v0.86.1</code>.</p>\n<h2>v0.86.0</h2>\n<p>Sync of actions from <a href=\"https://github.com/github/gh-aw\">gh-aw</a> at <code>v0.86.0</code>.</p>\n<h2>v0.85.4</h2>\n<p>Sync of actions from <a href=\"https://github.com/github/gh-aw\">gh-aw</a> at <code>v0.85.4</code>.</p>\n<h2>v0.85.1</h2>\n<p>Sync of actions from <a href=\"https://github.com/github/gh-aw\">gh-aw</a> at <code>v0.85.1</code>.</p>\n</blockquote>\n</details>\n<details>\n<summary>Commits</summary>\n<ul>\n<li><a href=\"https://github.com/github/gh-aw-actions/commit/6aab9e5b5c91c615506061f09bedd81a23babe3c\"><code>6aab9e5</code></a> chore: sync actions from gh-aw@v0.86.2 (<a href=\"https://redirect.github.com/github/gh-aw-actions/issues/212\">#212</a>)</li>\n<li><a href=\"https://github.com/github/gh-aw-actions/commit/8914f47b6c1bb8a802c7549f5ac1a81434b66403\"><code>8914f47</code></a> chore: sync actions from gh-aw@v0.86.1 (<a href=\"https://redirect.github.com/github/gh-aw-actions/issues/211\">#211</a>)</li>\n<li><a href=\"https://github.com/github/gh-aw-actions/commit/19356acbcf6b0677aa06bacc1b9894fe883ae751\"><code>19356ac</code></a> chore: sync actions from gh-aw@v0.86.0 (<a href=\"https://redirect.github.com/github/gh-aw-actions/issues/210\">#210</a>)</li>\n<li><a href=\"https://github.com/github/gh-aw-actions/commit/2709137ea6c5b0e19aa621454dc643ea8dc526b1\"><code>2709137</code></a> chore: sync actions from gh-aw@v0.85.4 (<a href=\"https://redirect.github.com/github/gh-aw-actions/issues/209\">#209</a>)</li>\n<li><a href=\"https://github.com/github/gh-aw-actions/commit/b078ca291c0c4d3f7bfb88b0f9a01dfb718671e3\"><code>b078ca2</code></a> chore: sync actions from gh-aw@v0.85.1 (<a href=\"https://redirect.github.com/github/gh-aw-actions/issues/208\">#208</a>)</li>\n<li>See full diff in <a href=\"https://github.com/github/gh-aw-actions/compare/32d9b58ee2cb05ad425047708d978e258d7b09ac...6aab9e5b5c91c615506061f09bedd81a23babe3c\">compare view</a></li>\n</ul>\n</details>\n<br />\n\nUpdates `github/gh-aw-actions/setup-cli` from 0.85.0 to 0.86.2\n<details>\n<summary>Release notes</summary>\n<p><em>Sourced from <a href=\"https://github.com/github/gh-aw-actions/releases\">github/gh-aw-actions/setup-cli's releases</a>.</em></p>\n<blockquote>\n<h2>v0.86.2</h2>\n<p>Sync of actions from <a href=\"https://github.com/github/gh-aw\">gh-aw</a> at <code>v0.86.2</code>.</p>\n<h2>v0.86.1</h2>\n<p>Sync of actions from <a href=\"https://github.com/github/gh-aw\">gh-aw</a> at <code>v0.86.1</code>.</p>\n<h2>v0.86.0</h2>\n<p>Sync of actions from <a href=\"https://github.com/github/gh-aw\">gh-aw</a> at <code>v0.86.0</code>.</p>\n<h2>v0.85.4</h2>\n<p>Sync of actions from <a href=\"https://github.com/github/gh-aw\">gh-aw</a> at <code>v0.85.4</code>.</p>\n<h2>v0.85.1</h2>\n<p>Sync of actions from <a href=\"https://github.com/github/gh-aw\">gh-aw</a> at <code>v0.85.1</code>.</p>\n</blockquote>\n</details>\n<details>\n<summary>Commits</summary>\n<ul>\n<li><a href=\"https://github.com/github/gh-aw-actions/commit/6aab9e5b5c91c615506061f09bedd81a23babe3c\"><code>6aab9e5</code></a> chore: sync actions from gh-aw@v0.86.2 (<a href=\"https://redirect.github.com/github/gh-aw-actions/issues/212\">#212</a>)</li>\n<li><a href=\"https://github.com/github/gh-aw-actions/commit/8914f47b6c1bb8a802c7549f5ac1a81434b66403\"><code>8914f47</code></a> chore: sync actions from gh-aw@v0.86.1 (<a href=\"https://redirect.github.com/github/gh-aw-actions/issues/211\">#211</a>)</li>\n<li><a href=\"https://github.com/github/gh-aw-actions/commit/19356acbcf6b0677aa06bacc1b9894fe883ae751\"><code>19356ac</code></a> chore: sync actions from gh-aw@v0.86.0 (<a href=\"https://redirect.github.com/github/gh-aw-actions/issues/210\">#210</a>)</li>\n<li><a href=\"https://github.com/github/gh-aw-actions/commit/2709137ea6c5b0e19aa621454dc643ea8dc526b1\"><code>2709137</code></a> chore: sync actions from gh-aw@v0.85.4 (<a href=\"https://redirect.github.com/github/gh-aw-actions/issues/209\">#209</a>)</li>\n<li><a href=\"https://github.com/github/gh-aw-actions/commit/b078ca291c0c4d3f7bfb88b0f9a01dfb718671e3\"><code>b078ca2</code></a> chore: sync actions from gh-aw@v0.85.1 (<a href=\"https://redirect.github.com/github/gh-aw-actions/issues/208\">#208</a>)</li>\n<li>See full diff in <a href=\"https://github.com/github/gh-aw-actions/compare/32d9b58ee2cb05ad425047708d978e258d7b09ac...6aab9e5b5c91c615506061f09bedd81a23babe3c\">compare view</a></li>\n</ul>\n</details>\n<br />\n\nUpdates `actions/ai-inference` from 2.1.0 to 3\n<details>\n<summary>Release notes</summary>\n<p><em>Sourced from <a href=\"https://github.com/actions/ai-inference/releases\">actions/ai-inference's releases</a>.</em></p>\n<blockquote>\n<h2>v3</h2>\n<h2>What's Changed</h2>\n<ul>\n<li>\n<p>Feat: remove github-models support and make copilot the only provider by <a href=\"https://github.com/jalafel\"><code>@​jalafel</code></a> in <a href=\"https://redirect.github.com/actions/ai-inference/pull/236\">actions/ai-inference#236</a></p>\n</li>\n<li>\n<p>chore(deps): bump js-yaml from 4.1.1 to 4.3.0 by <a href=\"https://github.com/dependabot\"><code>@​dependabot</code></a>[bot] in <a href=\"https://redirect.github.com/actions/ai-inference/pull/242\">actions/ai-inference#242</a></p>\n</li>\n<li>\n<p>chore(deps): bump hono from 4.12.22 to 4.12.26 by <a href=\"https://github.com/dependabot\"><code>@​dependabot</code></a>[bot] in <a href=\"https://redirect.github.com/actions/ai-inference/pull/241\">actions/ai-inference#241</a></p>\n</li>\n<li>\n<p>chore(deps-dev): bump vite from 7.3.3 to 7.3.6 by <a href=\"https://github.com/dependabot\"><code>@​dependabot</code></a>[bot] in <a href=\"https://redirect.github.com/actions/ai-inference/pull/245\">actions/ai-inference#245</a></p>\n</li>\n<li>\n<p>chore(deps): bump the actions-minor group across 1 directory with 2 updates by <a href=\"https://github.com/dependabot\"><code>@​dependabot</code></a>[bot] in <a href=\"https://redirect.github.com/actions/ai-inference/pull/246\">actions/ai-inference#246</a></p>\n</li>\n<li>\n<p>chore(deps): bump actions/setup-node from 4 to 6 by <a href=\"https://github.com/dependabot\"><code>@​dependabot</code></a>[bot] in <a href=\"https://redirect.github.com/actions/ai-inference/pull/194\">actions/ai-inference#194</a></p>\n</li>\n<li>\n<p>chore(deps): bump actions/upload-artifact from 5 to 7 by <a href=\"https://github.com/dependabot\"><code>@​dependabot</code></a>[bot] in <a href=\"https://redirect.github.com/actions/ai-inference/pull/195\">actions/ai-inference#195</a></p>\n</li>\n<li>\n<p>chore(deps-dev): bump <code>@​rollup/plugin-commonjs</code> from 28.0.5 to 29.0.3 by <a href=\"https://github.com/dependabot\"><code>@​dependabot</code></a>[bot] in <a href=\"https://redirect.github.com/actions/ai-inference/pull/197\">actions/ai-inference#197</a></p>\n</li>\n<li>\n<p>chore(deps): bump tmp from 0.2.5 to 0.2.7 by <a href=\"https://github.com/dependabot\"><code>@​dependabot</code></a>[bot] in <a href=\"https://redirect.github.com/actions/ai-inference/pull/232\">actions/ai-inference#232</a></p>\n</li>\n<li>\n<p>chore(deps-dev): bump the npm-development group across 1 directory with 7 updates by <a href=\"https://github.com/dependabot\"><code>@​dependabot</code></a>[bot] in <a href=\"https://redirect.github.com/actions/ai-inference/pull/237\">actions/ai-inference#237</a></p>\n</li>\n</ul>\n<h2>New Contributors</h2>\n<ul>\n<li><a href=\"https://github.com/jalafel\"><code>@​jalafel</code></a> made their first contribution in <a href=\"https://redirect.github.com/actions/ai-inference/pull/236\">actions/ai-inference#236</a></li>\n</ul>\n<p><strong>Full Changelog</strong>: <a href=\"https://github.com/actions/ai-inference/compare/v2...v3\">https://github.com/actions/ai-inference/compare/v2...v3</a></p>\n<h2>v2.1.1</h2>\n<h2>What's Changed</h2>\n<ul>\n<li>fix: delay process.exit on Windows to dodge libuv UV_HANDLE_CLOSING crash by <a href=\"https://github.com/mickey-mikey\"><code>@​mickey-mikey</code></a> in <a href=\"https://redirect.github.com/actions/ai-inference/pull/228\">actions/ai-inference#228</a></li>\n</ul>\n<h2>New Contributors</h2>\n<ul>\n<li><a href=\"https://github.com/mickey-mikey\"><code>@​mickey-mikey</code></a> made their first contribution in <a href=\"https://redirect.github.com/actions/ai-inference/pull/228\">actions/ai-inference#228</a></li>\n</ul>\n<p><strong>Full Changelog</strong>: <a href=\"https://github.com/actions/ai-inference/compare/v2...v2.1.1\">https://github.com/actions/ai-inference/compare/v2...v2.1.1</a></p>\n</blockquote>\n</details>\n<details>\n<summary>Commits</summary>\n<ul>\n<li><a href=\"https://github.com/actions/ai-inference/commit/2c43c91ae16266ca159d311430343c67a5ffa222\"><code>2c43c91</code></a> Merge pull request <a href=\"https://redirect.github.com/actions/ai-inference/issues/236\">#236</a> from jalafel/jalafel/delete-github-models</li>\n<li><a href=\"https://github.com/actions/ai-inference/commit/0ac1e35b6f7e297dffc5a6b17512d3510d0b1b96\"><code>0ac1e35</code></a> refine test response</li>\n<li><a href=\"https://github.com/actions/ai-inference/commit/aacc9f22932323936593790a25978a1da3a0dd4a\"><code>aacc9f2</code></a> Fix local actions test with mock Copilot CLI</li>\n<li><a href=\"https://github.com/actions/ai-inference/commit/8359fe64c9d60bf67e65ceb33221590a0167d00c\"><code>8359fe6</code></a> add step to ci to install copilot cli</li>\n<li><a href=\"https://github.com/actions/ai-inference/commit/498d1c108adace67c10556c088914e588b8db17e\"><code>498d1c1</code></a> Refresh Licensed cache</li>\n<li><a href=\"https://github.com/actions/ai-inference/commit/9bd16ce9860c8b0af72c1d845cdbd12c7225c956\"><code>9bd16ce</code></a> Merge remote-tracking branch 'upstream/main' into jalafel/delete-github-models</li>\n<li><a href=\"https://github.com/actions/ai-inference/commit/5709758de3b919cd1bf5cf23e463922fdb9c3e6b\"><code>5709758</code></a> run prettier on README.md</li>\n<li><a href=\"https://github.com/actions/ai-inference/commit/726535a2041afe16039bfcea42a64ae4e1645d5e\"><code>726535a</code></a> Merge pull request <a href=\"https://redirect.github.com/actions/ai-inference/issues/237\">#237</a> from actions/dependabot/npm_and_yarn/npm-development-...</li>\n<li><a href=\"https://github.com/actions/ai-inference/commit/396a40a5f294a95d4ea72bd5d2d9eea789a65275\"><code>396a40a</code></a> chore(deps-dev): bump the npm-development group across 1 directory with 7 upd...</li>\n<li><a href=\"https://github.com/actions/ai-inference/commit/b246edcc129d62d451f838d73ad8740792869e29\"><code>b246edc</code></a> Merge pull request <a href=\"https://redirect.github.com/actions/ai-inference/issues/232\">#232</a> from actions/dependabot/npm_and_yarn/tmp-0.2.6</li>\n<li>Additional commits viewable in <a href=\"https://github.com/actions/ai-inference/compare/17ff458cb182449bbb2e43701fcd98f6af8f6570...2c43c91ae16266ca159d311430343c67a5ffa222\">compare view</a></li>\n</ul>\n</details>\n<br />\n\n\nDependabot will resolve any conflicts with this PR as long as you don't alter it yourself. You can also trigger a rebase manually by commenting `@dependabot rebase`.\n\n[//]: # (dependabot-automerge-start)\n[//]: # (dependabot-automerge-end)\n\n---\n\n<details>\n<summary>Dependabot commands and options</summary>\n<br />\n\nYou can trigger Dependabot actions by commenting on this PR:\n- `@dependabot rebase` will rebase this PR\n- `@dependabot recreate` will recreate this PR, overwriting any edits that have been made to it\n- `@dependabot show <dependency name> ignore conditions` will show all of the ignore conditions of the specified dependency\n- `@dependabot ignore <dependency name> major version` will close this group update PR and stop Dependabot creating any more for the specific dependency's major version (unless you unignore this specific dependency's major version or upgrade to it yourself)\n- `@dependabot ignore <dependency name> minor version` will close this group update PR and stop Dependabot creating any more for the specific dependency's minor version (unless you unignore this specific dependency's minor version or upgrade to it yourself)\n- `@dependabot ignore <dependency name>` will close this group update PR and stop Dependabot creating any more for the specific dependency (unless you unignore this specific dependency or upgrade to it yourself)\n- `@dependabot unignore <dependency name>` will remove all of the ignore conditions of the specified dependency\n- `@dependabot unignore <dependency name> <ignore condition>` will remove the ignore condition of the specified dependency and ignore conditions\n\n\n</details>",
     "changed_files": 3,
-    "closed_at": "2026-08-19T09:25:37Z",
+    "closed_at": "2026-08-26T00:55:34Z",
     "comments": 0,
-    "comments_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/issues/343/comments",
+    "comments_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/issues/344/comments",
     "commits": 1,
-    "commits_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/343/commits",
-    "created_at": "2026-08-18T15:39:43Z",
+    "commits_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/344/commits",
+    "created_at": "2026-08-25T15:41:29Z",
     "deletions": 24,
-    "diff_url": "https://github.com/guitarrapc/githubactions-lab/pull/343.diff",
+    "diff_url": "https://github.com/guitarrapc/githubactions-lab/pull/344.diff",
     "draft": false,
     "head": {
-      "label": "guitarrapc:dependabot/github_actions/dependencies-d266f7611d",
-      "ref": "dependabot/github_actions/dependencies-d266f7611d",
+      "label": "guitarrapc:dependabot/github_actions/dependencies-254003d198",
+      "ref": "dependabot/github_actions/dependencies-254003d198",
       "repo": {
         "allow_auto_merge": true,
         "allow_forking": true,
@@ -224,8 +224,8 @@
         "downloads_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/downloads",
         "events_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/events",
         "fork": false,
-        "forks": 6,
-        "forks_count": 6,
+        "forks": 5,
+        "forks_count": 5,
         "forks_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/forks",
         "full_name": "guitarrapc/githubactions-lab",
         "git_commits_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/git/commits{/sha}",
@@ -292,9 +292,9 @@
         "private": false,
         "pull_request_creation_policy": "all",
         "pulls_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls{/number}",
-        "pushed_at": "2026-08-18T15:39:58Z",
+        "pushed_at": "2026-08-25T15:41:41Z",
         "releases_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/releases{/id}",
-        "size": 6235,
+        "size": 6286,
         "squash_merge_commit_message": "COMMIT_MESSAGES",
         "squash_merge_commit_title": "COMMIT_OR_PR_TITLE",
         "ssh_url": "git@github.com:guitarrapc/githubactions-lab.git",
@@ -310,7 +310,7 @@
           "github-actions"
         ],
         "trees_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/git/trees{/sha}",
-        "updated_at": "2026-08-16T01:09:10Z",
+        "updated_at": "2026-08-23T01:10:42Z",
         "url": "https://api.github.com/repos/guitarrapc/githubactions-lab",
         "use_squash_pr_title_as_default": false,
         "visibility": "public",
@@ -318,7 +318,7 @@
         "watchers_count": 56,
         "web_commit_signoff_required": false
       },
-      "sha": "d5c5a1037ecf51a1f11cbacc294a174cd6f6204b",
+      "sha": "2bc03e7e588354cd352e8097879987c9530fbf9a",
       "user": {
         "avatar_url": "https://avatars.githubusercontent.com/u/3856350?v=4",
         "events_url": "https://api.github.com/users/guitarrapc/events{/privacy}",
@@ -341,9 +341,9 @@
         "user_view_type": "public"
       }
     },
-    "html_url": "https://github.com/guitarrapc/githubactions-lab/pull/343",
-    "id": 4306133649,
-    "issue_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/issues/343",
+    "html_url": "https://github.com/guitarrapc/githubactions-lab/pull/344",
+    "id": 4359304904,
+    "issue_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/issues/344",
     "labels": [
       {
         "color": "0366d6",
@@ -366,11 +366,11 @@
     ],
     "locked": false,
     "maintainer_can_modify": false,
-    "merge_commit_sha": "e2346aa7322e0c3cb6e3231ae655459dd10cddc2",
+    "merge_commit_sha": "e9ba9310654b2a094c0f84609c38c7823f907740",
     "mergeable": null,
     "mergeable_state": "unknown",
     "merged": true,
-    "merged_at": "2026-08-19T09:25:37Z",
+    "merged_at": "2026-08-26T00:55:34Z",
     "merged_by": {
       "avatar_url": "https://avatars.githubusercontent.com/u/3856350?v=4",
       "events_url": "https://api.github.com/users/guitarrapc/events{/privacy}",
@@ -393,9 +393,9 @@
       "user_view_type": "public"
     },
     "milestone": null,
-    "node_id": "PR_kwDOD1icfM8AAAABAKpikQ",
-    "number": 343,
-    "patch_url": "https://github.com/guitarrapc/githubactions-lab/pull/343.patch",
+    "node_id": "PR_kwDOD1icfM8AAAABA9W2yA",
+    "number": 344,
+    "patch_url": "https://github.com/guitarrapc/githubactions-lab/pull/344.patch",
     "rebaseable": null,
     "requested_reviewers": [
       {
@@ -423,12 +423,12 @@
     "requested_teams": [],
     "review_comment_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/comments{/number}",
     "review_comments": 0,
-    "review_comments_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/343/comments",
+    "review_comments_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/344/comments",
     "state": "closed",
-    "statuses_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/statuses/d5c5a1037ecf51a1f11cbacc294a174cd6f6204b",
+    "statuses_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/statuses/2bc03e7e588354cd352e8097879987c9530fbf9a",
     "title": "chore(deps): bump the dependencies group with 3 updates",
-    "updated_at": "2026-08-19T09:25:37Z",
-    "url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/343",
+    "updated_at": "2026-08-26T00:55:34Z",
+    "url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/344",
     "user": {
       "avatar_url": "https://avatars.githubusercontent.com/in/29110?v=4",
       "events_url": "https://api.github.com/users/dependabot%5Bbot%5D/events{/privacy}",
@@ -473,8 +473,8 @@
     "downloads_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/downloads",
     "events_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/events",
     "fork": false,
-    "forks": 6,
-    "forks_count": 6,
+    "forks": 5,
+    "forks_count": 5,
     "forks_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/forks",
     "full_name": "guitarrapc/githubactions-lab",
     "git_commits_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/git/commits{/sha}",
@@ -539,9 +539,9 @@
     "private": false,
     "pull_request_creation_policy": "all",
     "pulls_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls{/number}",
-    "pushed_at": "2026-08-18T15:39:58Z",
+    "pushed_at": "2026-08-25T15:41:41Z",
     "releases_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/releases{/id}",
-    "size": 6235,
+    "size": 6286,
     "ssh_url": "git@github.com:guitarrapc/githubactions-lab.git",
     "stargazers_count": 56,
     "stargazers_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/stargazers",
@@ -555,7 +555,7 @@
       "github-actions"
     ],
     "trees_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/git/trees{/sha}",
-    "updated_at": "2026-08-16T01:09:10Z",
+    "updated_at": "2026-08-23T01:10:42Z",
     "url": "https://api.github.com/repos/guitarrapc/githubactions-lab",
     "visibility": "public",
     "watchers": 56,
