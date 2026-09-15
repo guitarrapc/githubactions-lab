@@ -1,48 +1,48 @@
 {
-  "after": "6d7259967b4c5baf08f8de914f40d5f67f455e20",
+  "after": "104fc8cce83b582dfc20a3526a39aa19bc238f9a",
   "base_ref": null,
-  "before": "27aa7022ae30dcb2dd6adfda747a531eb28c0954",
+  "before": "a8f077258290eb5f62ce370e74ef45874b7e7ea5",
   "commits": [
     {
       "author": {
-        "email": "3856350+guitarrapc@users.noreply.github.com",
-        "name": "Ikiru Yoshizaki",
-        "username": "guitarrapc"
+        "email": "49699333+dependabot[bot]@users.noreply.github.com",
+        "name": "dependabot[bot]",
+        "username": "dependabot[bot]"
       },
       "committer": {
-        "email": "3856350+guitarrapc@users.noreply.github.com",
-        "name": "Ikiru Yoshizaki",
-        "username": "guitarrapc"
+        "email": "noreply@github.com",
+        "name": "GitHub",
+        "username": "web-flow"
       },
       "distinct": true,
-      "id": "6d7259967b4c5baf08f8de914f40d5f67f455e20",
-      "message": "chore: recompile aw",
-      "timestamp": "2026-09-01T12:03:27+09:00",
-      "tree_id": "d07117982bf31e4052bfd518284b286154933a69",
-      "url": "https://github.com/guitarrapc/githubactions-lab/commit/6d7259967b4c5baf08f8de914f40d5f67f455e20"
+      "id": "104fc8cce83b582dfc20a3526a39aa19bc238f9a",
+      "message": "chore(deps): bump the dependencies group with 2 updates (#347)\n\nBumps the dependencies group with 2 updates: [github/gh-aw-actions/setup](https://github.com/github/gh-aw-actions) and [github/gh-aw-actions/setup-cli](https://github.com/github/gh-aw-actions).\n\n\nUpdates `github/gh-aw-actions/setup` from 0.87.10 to 0.88.0\n- [Release notes](https://github.com/github/gh-aw-actions/releases)\n- [Changelog](https://github.com/github/gh-aw-actions/blob/main/CHANGELOG.md)\n- [Commits](https://github.com/github/gh-aw-actions/compare/bc8c008a419c5b7a29df6f5641edd35fd1c6ea85...afc709f45ed6a3f756eb4551856c6a9c42e15b2c)\n\nUpdates `github/gh-aw-actions/setup-cli` from 0.87.10 to 0.88.0\n- [Release notes](https://github.com/github/gh-aw-actions/releases)\n- [Changelog](https://github.com/github/gh-aw-actions/blob/main/CHANGELOG.md)\n- [Commits](https://github.com/github/gh-aw-actions/compare/bc8c008a419c5b7a29df6f5641edd35fd1c6ea85...afc709f45ed6a3f756eb4551856c6a9c42e15b2c)\n\n---\nupdated-dependencies:\n- dependency-name: github/gh-aw-actions/setup\n  dependency-version: 0.88.0\n  dependency-type: direct:production\n  update-type: version-update:semver-minor\n  dependency-group: dependencies\n- dependency-name: github/gh-aw-actions/setup-cli\n  dependency-version: 0.88.0\n  dependency-type: direct:production\n  update-type: version-update:semver-minor\n  dependency-group: dependencies\n...\n\nSigned-off-by: dependabot[bot] <support@github.com>\nCo-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>",
+      "timestamp": "2026-09-16T03:53:57+09:00",
+      "tree_id": "7b443139dacae67fe87542db08bfa9c43ffa992e",
+      "url": "https://github.com/guitarrapc/githubactions-lab/commit/104fc8cce83b582dfc20a3526a39aa19bc238f9a"
     }
   ],
-  "compare": "https://github.com/guitarrapc/githubactions-lab/compare/27aa7022ae30...6d7259967b4c",
+  "compare": "https://github.com/guitarrapc/githubactions-lab/compare/a8f077258290...104fc8cce83b",
   "created": false,
   "deleted": false,
   "forced": false,
   "head_commit": {
     "author": {
-      "email": "3856350+guitarrapc@users.noreply.github.com",
-      "name": "Ikiru Yoshizaki",
-      "username": "guitarrapc"
+      "email": "49699333+dependabot[bot]@users.noreply.github.com",
+      "name": "dependabot[bot]",
+      "username": "dependabot[bot]"
     },
     "committer": {
-      "email": "3856350+guitarrapc@users.noreply.github.com",
-      "name": "Ikiru Yoshizaki",
-      "username": "guitarrapc"
+      "email": "noreply@github.com",
+      "name": "GitHub",
+      "username": "web-flow"
     },
     "distinct": true,
-    "id": "6d7259967b4c5baf08f8de914f40d5f67f455e20",
-    "message": "chore: recompile aw",
-    "timestamp": "2026-09-01T12:03:27+09:00",
-    "tree_id": "d07117982bf31e4052bfd518284b286154933a69",
-    "url": "https://github.com/guitarrapc/githubactions-lab/commit/6d7259967b4c5baf08f8de914f40d5f67f455e20"
+    "id": "104fc8cce83b582dfc20a3526a39aa19bc238f9a",
+    "message": "chore(deps): bump the dependencies group with 2 updates (#347)\n\nBumps the dependencies group with 2 updates: [github/gh-aw-actions/setup](https://github.com/github/gh-aw-actions) and [github/gh-aw-actions/setup-cli](https://github.com/github/gh-aw-actions).\n\n\nUpdates `github/gh-aw-actions/setup` from 0.87.10 to 0.88.0\n- [Release notes](https://github.com/github/gh-aw-actions/releases)\n- [Changelog](https://github.com/github/gh-aw-actions/blob/main/CHANGELOG.md)\n- [Commits](https://github.com/github/gh-aw-actions/compare/bc8c008a419c5b7a29df6f5641edd35fd1c6ea85...afc709f45ed6a3f756eb4551856c6a9c42e15b2c)\n\nUpdates `github/gh-aw-actions/setup-cli` from 0.87.10 to 0.88.0\n- [Release notes](https://github.com/github/gh-aw-actions/releases)\n- [Changelog](https://github.com/github/gh-aw-actions/blob/main/CHANGELOG.md)\n- [Commits](https://github.com/github/gh-aw-actions/compare/bc8c008a419c5b7a29df6f5641edd35fd1c6ea85...afc709f45ed6a3f756eb4551856c6a9c42e15b2c)\n\n---\nupdated-dependencies:\n- dependency-name: github/gh-aw-actions/setup\n  dependency-version: 0.88.0\n  dependency-type: direct:production\n  update-type: version-update:semver-minor\n  dependency-group: dependencies\n- dependency-name: github/gh-aw-actions/setup-cli\n  dependency-version: 0.88.0\n  dependency-type: direct:production\n  update-type: version-update:semver-minor\n  dependency-group: dependencies\n...\n\nSigned-off-by: dependabot[bot] <support@github.com>\nCo-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>",
+    "timestamp": "2026-09-16T03:53:57+09:00",
+    "tree_id": "7b443139dacae67fe87542db08bfa9c43ffa992e",
+    "url": "https://github.com/guitarrapc/githubactions-lab/commit/104fc8cce83b582dfc20a3526a39aa19bc238f9a"
   },
   "pusher": {
     "email": "3856350+guitarrapc@users.noreply.github.com",
@@ -140,9 +140,9 @@
     "private": false,
     "pull_request_creation_policy": "all",
     "pulls_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls{/number}",
-    "pushed_at": 1788231813,
+    "pushed_at": 1789498438,
     "releases_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/releases{/id}",
-    "size": 6330,
+    "size": 6388,
     "ssh_url": "git@github.com:guitarrapc/githubactions-lab.git",
     "stargazers": 56,
     "stargazers_count": 56,
@@ -157,7 +157,7 @@
       "github-actions"
     ],
     "trees_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/git/trees{/sha}",
-    "updated_at": "2026-08-30T03:38:21Z",
+    "updated_at": "2026-09-13T03:09:38Z",
     "url": "https://api.github.com/repos/guitarrapc/githubactions-lab",
     "visibility": "public",
     "watchers": 56,
