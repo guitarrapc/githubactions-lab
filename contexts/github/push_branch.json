@@ -2,13 +2,13 @@
   "token": "<reducted>",
   "job": "dump-context",
   "ref": "refs/heads/main",
-  "sha": "4f3606a05e0574f141a7bc580e222a39ebbd0778",
+  "sha": "070984d71d5ddce4ffd7e1d5f37c66b4704302ea",
   "repository": "guitarrapc/githubactions-lab",
   "repository_owner": "guitarrapc",
   "repository_owner_id": "3856350",
   "repositoryUrl": "git://github.com/guitarrapc/githubactions-lab.git",
-  "run_id": "36607100665",
-  "run_number": "2200",
+  "run_id": "38696900185",
+  "run_number": "2215",
   "retention_days": "90",
   "run_attempt": "1",
   "artifact_cache_size_limit": "10",
@@ -27,9 +27,9 @@
   "ref_type": "branch",
   "secret_source": "Actions",
   "event": {
-    "after": "4f3606a05e0574f141a7bc580e222a39ebbd0778",
+    "after": "070984d71d5ddce4ffd7e1d5f37c66b4704302ea",
     "base_ref": null,
-    "before": "ee7b3cf6e9be210e1af7571caaae6237fd386153",
+    "before": "8789932934c4fee8baeb9356cc4dc7c1e29de3d0",
     "commits": [
       {
         "author": {
@@ -43,14 +43,14 @@
           "username": "web-flow"
         },
         "distinct": true,
-        "id": "4f3606a05e0574f141a7bc580e222a39ebbd0778",
-        "message": "chore(deps): bump the dependencies group with 3 updates (#348)\n\nBumps the dependencies group with 3 updates: [github/gh-aw-actions/setup](https://github.com/github/gh-aw-actions), [github/gh-aw-actions/setup-cli](https://github.com/github/gh-aw-actions) and [aws-actions/configure-aws-credentials](https://github.com/aws-actions/configure-aws-credentials).\n\n\nUpdates `github/gh-aw-actions/setup` from 0.88.0 to 0.89.15\n- [Release notes](https://github.com/github/gh-aw-actions/releases)\n- [Changelog](https://github.com/github/gh-aw-actions/blob/main/CHANGELOG.md)\n- [Commits](https://github.com/github/gh-aw-actions/compare/afc709f45ed6a3f756eb4551856c6a9c42e15b2c...045beb2d14bda8d0c1f2e83b41527f63770d2855)\n\nUpdates `github/gh-aw-actions/setup-cli` from 0.88.0 to 0.89.15\n- [Release notes](https://github.com/github/gh-aw-actions/releases)\n- [Changelog](https://github.com/github/gh-aw-actions/blob/main/CHANGELOG.md)\n- [Commits](https://github.com/github/gh-aw-actions/compare/afc709f45ed6a3f756eb4551856c6a9c42e15b2c...045beb2d14bda8d0c1f2e83b41527f63770d2855)\n\nUpdates `aws-actions/configure-aws-credentials` from 6.2.0 to 6.3.0\n- [Release notes](https://github.com/aws-actions/configure-aws-credentials/releases)\n- [Changelog](https://github.com/aws-actions/configure-aws-credentials/blob/main/CHANGELOG.md)\n- [Commits](https://github.com/aws-actions/configure-aws-credentials/compare/e7f100cf4c008499ea8adda475de1042d6975c7b...e1253824e5c10ff9df46874f81ed3ec929e19cfd)\n\n---\nupdated-dependencies:\n- dependency-name: github/gh-aw-actions/setup\n  dependency-version: 0.89.15\n  dependency-type: direct:production\n  update-type: version-update:semver-minor\n  dependency-group: dependencies\n- dependency-name: github/gh-aw-actions/setup-cli\n  dependency-version: 0.89.15\n  dependency-type: direct:production\n  update-type: version-update:semver-minor\n  dependency-group: dependencies\n- dependency-name: aws-actions/configure-aws-credentials\n  dependency-version: 6.3.0\n  dependency-type: direct:production\n  update-type: version-update:semver-minor\n  dependency-group: dependencies\n...\n\nSigned-off-by: dependabot[bot] <support@github.com>\nCo-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>",
-        "timestamp": "2026-09-30T02:44:35+09:00",
-        "tree_id": "87c55fc99bc36e6149c80dfefa9ba83161830711",
-        "url": "https://github.com/guitarrapc/githubactions-lab/commit/4f3606a05e0574f141a7bc580e222a39ebbd0778"
+        "id": "070984d71d5ddce4ffd7e1d5f37c66b4704302ea",
+        "message": "chore(deps): bump the dependencies group with 4 updates (#351)\n\nBumps the dependencies group with 4 updates: [github/gh-aw-actions/setup](https://github.com/github/gh-aw-actions), [github/gh-aw-actions/setup-cli](https://github.com/github/gh-aw-actions), [guitarrapc/actions/.github/workflows/reusable-dotnet-lint.yaml](https://github.com/guitarrapc/actions) and [guitarrapc/actions/.github/workflows/pr-harness.yaml](https://github.com/guitarrapc/actions).\n\n\nUpdates `github/gh-aw-actions/setup` from 0.89.15 to 0.90.1\n- [Release notes](https://github.com/github/gh-aw-actions/releases)\n- [Changelog](https://github.com/github/gh-aw-actions/blob/main/CHANGELOG.md)\n- [Commits](https://github.com/github/gh-aw-actions/compare/045beb2d14bda8d0c1f2e83b41527f63770d2855...7c1d4b7ab319216ef4a931cc3dcb0d7245144ff1)\n\nUpdates `github/gh-aw-actions/setup-cli` from 0.89.15 to 0.90.1\n- [Release notes](https://github.com/github/gh-aw-actions/releases)\n- [Changelog](https://github.com/github/gh-aw-actions/blob/main/CHANGELOG.md)\n- [Commits](https://github.com/github/gh-aw-actions/compare/045beb2d14bda8d0c1f2e83b41527f63770d2855...7c1d4b7ab319216ef4a931cc3dcb0d7245144ff1)\n\nUpdates `guitarrapc/actions/.github/workflows/reusable-dotnet-lint.yaml` from 1.0.1 to 1.1.0\n- [Release notes](https://github.com/guitarrapc/actions/releases)\n- [Commits](https://github.com/guitarrapc/actions/compare/9122a18b0dea07585a242b9eb6ed7886f8587c49...758ef555e15e5d390a495fee02a8e31ec8141293)\n\nUpdates `guitarrapc/actions/.github/workflows/pr-harness.yaml` from 1.0.1 to 1.1.0\n- [Release notes](https://github.com/guitarrapc/actions/releases)\n- [Commits](https://github.com/guitarrapc/actions/compare/9122a18b0dea07585a242b9eb6ed7886f8587c49...758ef555e15e5d390a495fee02a8e31ec8141293)\n\n---\nupdated-dependencies:\n- dependency-name: github/gh-aw-actions/setup\n  dependency-version: 0.90.1\n  dependency-type: direct:production\n  update-type: version-update:semver-minor\n  dependency-group: dependencies\n- dependency-name: github/gh-aw-actions/setup-cli\n  dependency-version: 0.90.1\n  dependency-type: direct:production\n  update-type: version-update:semver-minor\n  dependency-group: dependencies\n- dependency-name: guitarrapc/actions/.github/workflows/reusable-dotnet-lint.yaml\n  dependency-version: 1.1.0\n  dependency-type: direct:production\n  update-type: version-update:semver-minor\n  dependency-group: dependencies\n- dependency-name: guitarrapc/actions/.github/workflows/pr-harness.yaml\n  dependency-version: 1.1.0\n  dependency-type: direct:production\n  update-type: version-update:semver-minor\n  dependency-group: dependencies\n...\n\nSigned-off-by: dependabot[bot] <support@github.com>\nCo-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>",
+        "timestamp": "2026-10-15T16:09:39+09:00",
+        "tree_id": "fadd1eb6490f86754a7cd7f24508c0f268af70ba",
+        "url": "https://github.com/guitarrapc/githubactions-lab/commit/070984d71d5ddce4ffd7e1d5f37c66b4704302ea"
       }
     ],
-    "compare": "https://github.com/guitarrapc/githubactions-lab/compare/ee7b3cf6e9be...4f3606a05e05",
+    "compare": "https://github.com/guitarrapc/githubactions-lab/compare/8789932934c4...070984d71d5d",
     "created": false,
     "deleted": false,
     "forced": false,
@@ -66,11 +66,11 @@
         "username": "web-flow"
       },
       "distinct": true,
-      "id": "4f3606a05e0574f141a7bc580e222a39ebbd0778",
-      "message": "chore(deps): bump the dependencies group with 3 updates (#348)\n\nBumps the dependencies group with 3 updates: [github/gh-aw-actions/setup](https://github.com/github/gh-aw-actions), [github/gh-aw-actions/setup-cli](https://github.com/github/gh-aw-actions) and [aws-actions/configure-aws-credentials](https://github.com/aws-actions/configure-aws-credentials).\n\n\nUpdates `github/gh-aw-actions/setup` from 0.88.0 to 0.89.15\n- [Release notes](https://github.com/github/gh-aw-actions/releases)\n- [Changelog](https://github.com/github/gh-aw-actions/blob/main/CHANGELOG.md)\n- [Commits](https://github.com/github/gh-aw-actions/compare/afc709f45ed6a3f756eb4551856c6a9c42e15b2c...045beb2d14bda8d0c1f2e83b41527f63770d2855)\n\nUpdates `github/gh-aw-actions/setup-cli` from 0.88.0 to 0.89.15\n- [Release notes](https://github.com/github/gh-aw-actions/releases)\n- [Changelog](https://github.com/github/gh-aw-actions/blob/main/CHANGELOG.md)\n- [Commits](https://github.com/github/gh-aw-actions/compare/afc709f45ed6a3f756eb4551856c6a9c42e15b2c...045beb2d14bda8d0c1f2e83b41527f63770d2855)\n\nUpdates `aws-actions/configure-aws-credentials` from 6.2.0 to 6.3.0\n- [Release notes](https://github.com/aws-actions/configure-aws-credentials/releases)\n- [Changelog](https://github.com/aws-actions/configure-aws-credentials/blob/main/CHANGELOG.md)\n- [Commits](https://github.com/aws-actions/configure-aws-credentials/compare/e7f100cf4c008499ea8adda475de1042d6975c7b...e1253824e5c10ff9df46874f81ed3ec929e19cfd)\n\n---\nupdated-dependencies:\n- dependency-name: github/gh-aw-actions/setup\n  dependency-version: 0.89.15\n  dependency-type: direct:production\n  update-type: version-update:semver-minor\n  dependency-group: dependencies\n- dependency-name: github/gh-aw-actions/setup-cli\n  dependency-version: 0.89.15\n  dependency-type: direct:production\n  update-type: version-update:semver-minor\n  dependency-group: dependencies\n- dependency-name: aws-actions/configure-aws-credentials\n  dependency-version: 6.3.0\n  dependency-type: direct:production\n  update-type: version-update:semver-minor\n  dependency-group: dependencies\n...\n\nSigned-off-by: dependabot[bot] <support@github.com>\nCo-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>",
-      "timestamp": "2026-09-30T02:44:35+09:00",
-      "tree_id": "87c55fc99bc36e6149c80dfefa9ba83161830711",
-      "url": "https://github.com/guitarrapc/githubactions-lab/commit/4f3606a05e0574f141a7bc580e222a39ebbd0778"
+      "id": "070984d71d5ddce4ffd7e1d5f37c66b4704302ea",
+      "message": "chore(deps): bump the dependencies group with 4 updates (#351)\n\nBumps the dependencies group with 4 updates: [github/gh-aw-actions/setup](https://github.com/github/gh-aw-actions), [github/gh-aw-actions/setup-cli](https://github.com/github/gh-aw-actions), [guitarrapc/actions/.github/workflows/reusable-dotnet-lint.yaml](https://github.com/guitarrapc/actions) and [guitarrapc/actions/.github/workflows/pr-harness.yaml](https://github.com/guitarrapc/actions).\n\n\nUpdates `github/gh-aw-actions/setup` from 0.89.15 to 0.90.1\n- [Release notes](https://github.com/github/gh-aw-actions/releases)\n- [Changelog](https://github.com/github/gh-aw-actions/blob/main/CHANGELOG.md)\n- [Commits](https://github.com/github/gh-aw-actions/compare/045beb2d14bda8d0c1f2e83b41527f63770d2855...7c1d4b7ab319216ef4a931cc3dcb0d7245144ff1)\n\nUpdates `github/gh-aw-actions/setup-cli` from 0.89.15 to 0.90.1\n- [Release notes](https://github.com/github/gh-aw-actions/releases)\n- [Changelog](https://github.com/github/gh-aw-actions/blob/main/CHANGELOG.md)\n- [Commits](https://github.com/github/gh-aw-actions/compare/045beb2d14bda8d0c1f2e83b41527f63770d2855...7c1d4b7ab319216ef4a931cc3dcb0d7245144ff1)\n\nUpdates `guitarrapc/actions/.github/workflows/reusable-dotnet-lint.yaml` from 1.0.1 to 1.1.0\n- [Release notes](https://github.com/guitarrapc/actions/releases)\n- [Commits](https://github.com/guitarrapc/actions/compare/9122a18b0dea07585a242b9eb6ed7886f8587c49...758ef555e15e5d390a495fee02a8e31ec8141293)\n\nUpdates `guitarrapc/actions/.github/workflows/pr-harness.yaml` from 1.0.1 to 1.1.0\n- [Release notes](https://github.com/guitarrapc/actions/releases)\n- [Commits](https://github.com/guitarrapc/actions/compare/9122a18b0dea07585a242b9eb6ed7886f8587c49...758ef555e15e5d390a495fee02a8e31ec8141293)\n\n---\nupdated-dependencies:\n- dependency-name: github/gh-aw-actions/setup\n  dependency-version: 0.90.1\n  dependency-type: direct:production\n  update-type: version-update:semver-minor\n  dependency-group: dependencies\n- dependency-name: github/gh-aw-actions/setup-cli\n  dependency-version: 0.90.1\n  dependency-type: direct:production\n  update-type: version-update:semver-minor\n  dependency-group: dependencies\n- dependency-name: guitarrapc/actions/.github/workflows/reusable-dotnet-lint.yaml\n  dependency-version: 1.1.0\n  dependency-type: direct:production\n  update-type: version-update:semver-minor\n  dependency-group: dependencies\n- dependency-name: guitarrapc/actions/.github/workflows/pr-harness.yaml\n  dependency-version: 1.1.0\n  dependency-type: direct:production\n  update-type: version-update:semver-minor\n  dependency-group: dependencies\n...\n\nSigned-off-by: dependabot[bot] <support@github.com>\nCo-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>",
+      "timestamp": "2026-10-15T16:09:39+09:00",
+      "tree_id": "fadd1eb6490f86754a7cd7f24508c0f268af70ba",
+      "url": "https://github.com/guitarrapc/githubactions-lab/commit/070984d71d5ddce4ffd7e1d5f37c66b4704302ea"
     },
     "pusher": {
       "email": "3856350+guitarrapc@users.noreply.github.com",
@@ -140,8 +140,8 @@
       "name": "githubactions-lab",
       "node_id": "MDEwOlJlcG9zaXRvcnkyNTc0NjU0Njg=",
       "notifications_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/notifications{?since,all,participating}",
-      "open_issues": 2,
-      "open_issues_count": 2,
+      "open_issues": 3,
+      "open_issues_count": 3,
       "owner": {
         "avatar_url": "https://avatars.githubusercontent.com/u/3856350?v=4",
         "email": "3856350+guitarrapc@users.noreply.github.com",
@@ -168,9 +168,9 @@
       "private": false,
       "pull_request_creation_policy": "all",
       "pulls_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls{/number}",
-      "pushed_at": 1790703876,
+      "pushed_at": 1792048180,
       "releases_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/releases{/id}",
-      "size": 6447,
+      "size": 6322,
       "ssh_url": "git@github.com:guitarrapc/githubactions-lab.git",
       "stargazers": 56,
       "stargazers_count": 56,
@@ -185,7 +185,7 @@
         "github-actions"
       ],
       "trees_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/git/trees{/sha}",
-      "updated_at": "2026-09-27T03:40:34Z",
+      "updated_at": "2026-10-11T04:00:13Z",
       "url": "https://api.github.com/repos/guitarrapc/githubactions-lab",
       "visibility": "public",
       "watchers": 56,
@@ -215,7 +215,7 @@
     }
   },
   "workflow_ref": "guitarrapc/githubactions-lab/.github/workflows/auto-dump-context.yaml@refs/heads/main",
-  "workflow_sha": "4f3606a05e0574f141a7bc580e222a39ebbd0778",
+  "workflow_sha": "070984d71d5ddce4ffd7e1d5f37c66b4704302ea",
   "repository_id": "257465468",
   "triggering_actor": "guitarrapc",
   "workspace": "/home/runner/work/githubactions-lab/githubactions-lab",
@@ -223,11 +223,11 @@
   "event_path": "/home/runner/work/_temp/_github_workflow/event.json",
   "action_repository": "",
   "action_ref": "",
-  "path": "/home/runner/work/_temp/_runner_file_commands/add_path_337c3bc9-f3de-48dd-b84d-d0c16d45c7fd",
-  "env": "/home/runner/work/_temp/_runner_file_commands/set_env_337c3bc9-f3de-48dd-b84d-d0c16d45c7fd",
-  "step_summary": "/home/runner/work/_temp/_runner_file_commands/step_summary_337c3bc9-f3de-48dd-b84d-d0c16d45c7fd",
-  "state": "/home/runner/work/_temp/_runner_file_commands/save_state_337c3bc9-f3de-48dd-b84d-d0c16d45c7fd",
-  "output": "/home/runner/work/_temp/_runner_file_commands/set_output_337c3bc9-f3de-48dd-b84d-d0c16d45c7fd",
-  "artifacts": "/home/runner/work/_temp/_runner_file_commands/artifacts_337c3bc9-f3de-48dd-b84d-d0c16d45c7fd",
-  "artifacts_list": "/home/runner/work/_temp/_runner_file_commands/artifacts_list_337c3bc9-f3de-48dd-b84d-d0c16d45c7fd"
+  "path": "/home/runner/work/_temp/_runner_file_commands/add_path_42306521-a8a0-4ee7-9a75-31feb0626775",
+  "env": "/home/runner/work/_temp/_runner_file_commands/set_env_42306521-a8a0-4ee7-9a75-31feb0626775",
+  "step_summary": "/home/runner/work/_temp/_runner_file_commands/step_summary_42306521-a8a0-4ee7-9a75-31feb0626775",
+  "state": "/home/runner/work/_temp/_runner_file_commands/save_state_42306521-a8a0-4ee7-9a75-31feb0626775",
+  "output": "/home/runner/work/_temp/_runner_file_commands/set_output_42306521-a8a0-4ee7-9a75-31feb0626775",
+  "artifacts": "/home/runner/work/_temp/_runner_file_commands/artifacts_42306521-a8a0-4ee7-9a75-31feb0626775",
+  "artifacts_list": "/home/runner/work/_temp/_runner_file_commands/artifacts_list_42306521-a8a0-4ee7-9a75-31feb0626775"
 }
