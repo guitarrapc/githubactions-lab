@@ -9,6 +9,6 @@ jobs:
     permissions:
       contents: write
       pull-requests: write
-    uses: guitarrapc/actions/.github/workflows/reusable-dotnet-lint.yaml@9122a18b0dea07585a242b9eb6ed7886f8587c49 # v1.0.1
+    uses: guitarrapc/actions/.github/workflows/reusable-dotnet-lint.yaml@758ef555e15e5d390a495fee02a8e31ec8141293 # v1.1.0
     with:
       sln-root: "src/dotnet/"
