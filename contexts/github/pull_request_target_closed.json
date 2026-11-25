@@ -2,13 +2,13 @@
   "token": "<reducted>",
   "job": "dump-context",
   "ref": "refs/heads/main",
-  "sha": "64fc1883f6f8e99bf51634af4cbadcc2da5afb22",
+  "sha": "449c9638aeadbb6c3e4c8ea2eec69df66b339002",
   "repository": "guitarrapc/githubactions-lab",
   "repository_owner": "guitarrapc",
   "repository_owner_id": "3856350",
   "repositoryUrl": "git://github.com/guitarrapc/githubactions-lab.git",
-  "run_id": "44219729285",
-  "run_number": "2279",
+  "run_id": "45540497940",
+  "run_number": "2292",
   "retention_days": "90",
   "run_attempt": "1",
   "artifact_cache_size_limit": "10",
@@ -16,7 +16,7 @@
   "actor_id": "3856350",
   "actor": "guitarrapc",
   "workflow": "auto dump context",
-  "head_ref": "dependabot/github_actions/dependencies-39799580c0",
+  "head_ref": "dependabot/github_actions/dependencies-bcb514e414",
   "base_ref": "main",
   "event_name": "pull_request_target",
   "server_url": "https://github.com",
@@ -28,36 +28,36 @@
   "secret_source": "Actions",
   "event": {
     "action": "closed",
-    "number": 357,
+    "number": 358,
     "pull_request": {
       "_links": {
         "comments": {
-          "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/issues/357/comments"
+          "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/issues/358/comments"
         },
         "commits": {
-          "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/357/commits"
+          "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/358/commits"
         },
         "html": {
-          "href": "https://github.com/guitarrapc/githubactions-lab/pull/357"
+          "href": "https://github.com/guitarrapc/githubactions-lab/pull/358"
         },
         "issue": {
-          "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/issues/357"
+          "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/issues/358"
         },
         "review_comment": {
           "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/comments{/number}"
         },
         "review_comments": {
-          "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/357/comments"
+          "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/358/comments"
         },
         "self": {
-          "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/357"
+          "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/358"
         },
         "statuses": {
-          "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/statuses/116b498a6818203248dd96effcea0b516389b9dd"
+          "href": "https://api.github.com/repos/guitarrapc/githubactions-lab/statuses/7b53d3bdd8cad2110e9b2153a1904d4fd30b5a85"
         }
       },
       "active_lock_reason": null,
-      "additions": 9,
+      "additions": 22,
       "assignee": null,
       "assignees": [],
       "author_association": "CONTRIBUTOR",
@@ -161,9 +161,9 @@
           "private": false,
           "pull_request_creation_policy": "all",
           "pulls_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls{/number}",
-          "pushed_at": "2026-11-17T15:37:23Z",
+          "pushed_at": "2026-11-24T15:38:18Z",
           "releases_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/releases{/id}",
-          "size": 6532,
+          "size": 6582,
           "squash_merge_commit_message": "COMMIT_MESSAGES",
           "squash_merge_commit_title": "COMMIT_OR_PR_TITLE",
           "ssh_url": "git@github.com:guitarrapc/githubactions-lab.git",
@@ -187,7 +187,7 @@
           "watchers_count": 56,
           "web_commit_signoff_required": false
         },
-        "sha": "44639758fcb2fc609294b124410c6f5362b894f5",
+        "sha": "3ee8db7fbe2ebcd90072de4c83b897295fd04b34",
         "user": {
           "avatar_url": "https://avatars.githubusercontent.com/u/3856350?v=4",
           "events_url": "https://api.github.com/users/guitarrapc/events{/privacy}",
@@ -210,20 +210,20 @@
           "user_view_type": "public"
         }
       },
-      "body": "Bumps the dependencies group with 1 update: [actions/setup-dotnet](https://github.com/actions/setup-dotnet).\n\nUpdates `actions/setup-dotnet` from 6.0.0 to 6.1.0\n<details>\n<summary>Release notes</summary>\n<p><em>Sourced from <a href=\"https://github.com/actions/setup-dotnet/releases\">actions/setup-dotnet's releases</a>.</em></p>\n<blockquote>\n<h2>v6.1.0</h2>\n<h2>What's Changed</h2>\n<h3>Enhancements</h3>\n<ul>\n<li>Add check-latest input to reuse a locally installed .NET SDK and skip network calls by <a href=\"https://github.com/v-mahabaleshwars\"><code>@​v-mahabaleshwars</code></a> in <a href=\"https://redirect.github.com/actions/setup-dotnet/pull/774\">actions/setup-dotnet#774</a></li>\n<li>Add skip-lts-prepass input to optimize .NET SDK installation process by <a href=\"https://github.com/v-chiranjib-swain\"><code>@​v-chiranjib-swain</code></a> in <a href=\"https://redirect.github.com/actions/setup-dotnet/pull/791\">actions/setup-dotnet#791</a></li>\n<li>Add fallback install directory when default is not writable by <a href=\"https://github.com/v-priyagupta108\"><code>@​v-priyagupta108</code></a> in <a href=\"https://redirect.github.com/actions/setup-dotnet/pull/785\">actions/setup-dotnet#785</a></li>\n</ul>\n<h3>Documentation</h3>\n<ul>\n<li>Document sdk.version validation for rollForward in global.json by <a href=\"https://github.com/v-priyagupta108\"><code>@​v-priyagupta108</code></a> in <a href=\"https://redirect.github.com/actions/setup-dotnet/pull/763\">actions/setup-dotnet#763</a></li>\n<li>Docs: Add Microsoft docs link for dotnet-quality options by <a href=\"https://github.com/v-priyagupta108\"><code>@​v-priyagupta108</code></a> in <a href=\"https://redirect.github.com/actions/setup-dotnet/pull/773\">actions/setup-dotnet#773</a></li>\n<li>Docs: Updating Documentation in README by <a href=\"https://github.com/v-lmvysakh\"><code>@​v-lmvysakh</code></a> in <a href=\"https://redirect.github.com/actions/setup-dotnet/pull/776\">actions/setup-dotnet#776</a></li>\n<li>Clarify dotnet-quality behavior for multiple SDK versions by <a href=\"https://github.com/v-mahabaleshwars\"><code>@​v-mahabaleshwars</code></a> in <a href=\"https://redirect.github.com/actions/setup-dotnet/pull/780\">actions/setup-dotnet#780</a></li>\n</ul>\n<h3>Dependency Updates</h3>\n<ul>\n<li>Fix security vulnerabilities by <a href=\"https://github.com/v-HarithaVattikuti\"><code>@​v-HarithaVattikuti</code></a> in <a href=\"https://redirect.github.com/actions/setup-dotnet/pull/767\">actions/setup-dotnet#767</a></li>\n<li>ci: make validation caches read-only by <a href=\"https://github.com/philip-gai\"><code>@​philip-gai</code></a> in <a href=\"https://redirect.github.com/actions/setup-dotnet/pull/777\">actions/setup-dotnet#777</a></li>\n<li>Bump actions/checkout from 7.0.0 to 7.0.1 by <a href=\"https://github.com/dependabot\"><code>@​dependabot</code></a> in <a href=\"https://redirect.github.com/actions/setup-dotnet/pull/764\">actions/setup-dotnet#764</a></li>\n<li>Bump browserslist from 4.28.2 to 4.28.8 by <a href=\"https://github.com/dependabot\"><code>@​dependabot</code></a> in <a href=\"https://redirect.github.com/actions/setup-dotnet/pull/781\">actions/setup-dotnet#781</a></li>\n<li>Bump eslint from 10.5.0 to 10.11.0 by <a href=\"https://github.com/dependabot\"><code>@​dependabot</code></a> in <a href=\"https://redirect.github.com/actions/setup-dotnet/pull/772\">actions/setup-dotnet#772</a></li>\n<li>Bump eslint-plugin-jest from 29.15.2 to 29.16.6 by <a href=\"https://github.com/dependabot\"><code>@​dependabot</code></a> in <a href=\"https://redirect.github.com/actions/setup-dotnet/pull/771\">actions/setup-dotnet#771</a></li>\n<li>Bump undici from 6.28.0 to 6.29.1 by <a href=\"https://github.com/dependabot\"><code>@​dependabot</code></a> in <a href=\"https://redirect.github.com/actions/setup-dotnet/pull/784\">actions/setup-dotnet#784</a></li>\n<li>Bump actions/checkout from 7.0.0 to 7.0.1 by <a href=\"https://github.com/dependabot\"><code>@​dependabot</code></a> in <a href=\"https://redirect.github.com/actions/setup-dotnet/pull/788\">actions/setup-dotnet#788</a></li>\n<li>Bump handlebars from 4.7.9 to 4.7.10 by <a href=\"https://github.com/dependabot\"><code>@​dependabot</code></a> in <a href=\"https://redirect.github.com/actions/setup-dotnet/pull/792\">actions/setup-dotnet#792</a></li>\n<li>Bump brace-expansion by <a href=\"https://github.com/dependabot\"><code>@​dependabot</code></a> in <a href=\"https://redirect.github.com/actions/setup-dotnet/pull/790\">actions/setup-dotnet#790</a></li>\n<li>Prepare v6.1.0 release with updated cache dependency by <a href=\"https://github.com/v-HarithaVattikuti\"><code>@​v-HarithaVattikuti</code></a> in <a href=\"https://redirect.github.com/actions/setup-dotnet/pull/798\">actions/setup-dotnet#798</a></li>\n</ul>\n<h2>New Contributors</h2>\n<ul>\n<li><a href=\"https://github.com/v-lmvysakh\"><code>@​v-lmvysakh</code></a> made their first contribution in <a href=\"https://redirect.github.com/actions/setup-dotnet/pull/776\">actions/setup-dotnet#776</a></li>\n<li><a href=\"https://github.com/v-chiranjib-swain\"><code>@​v-chiranjib-swain</code></a> made their first contribution in <a href=\"https://redirect.github.com/actions/setup-dotnet/pull/791\">actions/setup-dotnet#791</a></li>\n</ul>\n<p><strong>Full Changelog</strong>: <a href=\"https://github.com/actions/setup-dotnet/compare/v6.0.0...v6.1.0\">https://github.com/actions/setup-dotnet/compare/v6.0.0...v6.1.0</a></p>\n</blockquote>\n</details>\n<details>\n<summary>Commits</summary>\n<ul>\n<li><a href=\"https://github.com/actions/setup-dotnet/commit/0f4a354dd5547a28c70b7853dbd95d5b67886e73\"><code>0f4a354</code></a> Prepare v6.1.0 release with updated cache dependency (<a href=\"https://redirect.github.com/actions/setup-dotnet/issues/798\">#798</a>)</li>\n<li><a href=\"https://github.com/actions/setup-dotnet/commit/6ec5c6b286b66cf79f015cd3276f2eab462ba1b9\"><code>6ec5c6b</code></a> Add fallback install directory when default is not writable (<a href=\"https://redirect.github.com/actions/setup-dotnet/issues/785\">#785</a>)</li>\n<li><a href=\"https://github.com/actions/setup-dotnet/commit/62573f4b60b156cb305166dcca336c2a9574d6ea\"><code>62573f4</code></a> Bump brace-expansion (<a href=\"https://redirect.github.com/actions/setup-dotnet/issues/790\">#790</a>)</li>\n<li><a href=\"https://github.com/actions/setup-dotnet/commit/67290a9d23faa2b6594ee5c5b2d3338b56d927b2\"><code>67290a9</code></a> Bump handlebars from 4.7.9 to 4.7.10 (<a href=\"https://redirect.github.com/actions/setup-dotnet/issues/792\">#792</a>)</li>\n<li><a href=\"https://github.com/actions/setup-dotnet/commit/0072421cf6e93abd8c31251a408e089304f1f9d9\"><code>0072421</code></a> Bump actions/checkout from 7.0.0 to 7.0.1 (<a href=\"https://redirect.github.com/actions/setup-dotnet/issues/788\">#788</a>)</li>\n<li><a href=\"https://github.com/actions/setup-dotnet/commit/9ead3175a9e8a676412315ab4ab2773dac3e0875\"><code>9ead317</code></a> Bump undici from 6.28.0 to 6.29.1 (<a href=\"https://redirect.github.com/actions/setup-dotnet/issues/784\">#784</a>)</li>\n<li><a href=\"https://github.com/actions/setup-dotnet/commit/349aa191ae05aee6d53db4bcba37bd6980e812fe\"><code>349aa19</code></a> Add skip-lts-prepass input to optimize .NET SDK installation process (<a href=\"https://redirect.github.com/actions/setup-dotnet/issues/791\">#791</a>)</li>\n<li><a href=\"https://github.com/actions/setup-dotnet/commit/e2cf7c663b93c38144629f5d40b62d3eaaa63a03\"><code>e2cf7c6</code></a> Bump eslint-plugin-jest from 29.15.2 to 29.16.6 (<a href=\"https://redirect.github.com/actions/setup-dotnet/issues/771\">#771</a>)</li>\n<li><a href=\"https://github.com/actions/setup-dotnet/commit/75763629d4dad645cf9bda516293f9a79adc490d\"><code>7576362</code></a> Bump eslint from 10.5.0 to 10.11.0 (<a href=\"https://redirect.github.com/actions/setup-dotnet/issues/772\">#772</a>)</li>\n<li><a href=\"https://github.com/actions/setup-dotnet/commit/074373ff885ac73f77e5f1d46785eeb8c925e06a\"><code>074373f</code></a> Add check-latest input to reuse a locally installed .NET SDK and skip network...</li>\n<li>Additional commits viewable in <a href=\"https://github.com/actions/setup-dotnet/compare/a98b56852c35b8e3190ac28c8c2271da59106c68...0f4a354dd5547a28c70b7853dbd95d5b67886e73\">compare view</a></li>\n</ul>\n</details>\n<br />\n\n\n[![Dependabot compatibility score](https://dependabot-badges.githubapp.com/badges/compatibility_score?dependency-name=actions/setup-dotnet&package-manager=github_actions&previous-version=6.0.0&new-version=6.1.0)](https://docs.github.com/en/github/managing-security-vulnerabilities/about-dependabot-security-updates#about-compatibility-scores)\n\nDependabot will resolve any conflicts with this PR as long as you don't alter it yourself. You can also trigger a rebase manually by commenting `@dependabot rebase`.\n\n[//]: # (dependabot-automerge-start)\n[//]: # (dependabot-automerge-end)\n\n---\n\n<details>\n<summary>Dependabot commands and options</summary>\n<br />\n\nYou can trigger Dependabot actions by commenting on this PR:\n- `@dependabot rebase` will rebase this PR\n- `@dependabot recreate` will recreate this PR, overwriting any edits that have been made to it\n- `@dependabot show <dependency name> ignore conditions` will show all of the ignore conditions of the specified dependency\n- `@dependabot ignore <dependency name> major version` will close this group update PR and stop Dependabot creating any more for the specific dependency's major version (unless you unignore this specific dependency's major version or upgrade to it yourself)\n- `@dependabot ignore <dependency name> minor version` will close this group update PR and stop Dependabot creating any more for the specific dependency's minor version (unless you unignore this specific dependency's minor version or upgrade to it yourself)\n- `@dependabot ignore <dependency name>` will close this group update PR and stop Dependabot creating any more for the specific dependency (unless you unignore this specific dependency or upgrade to it yourself)\n- `@dependabot unignore <dependency name>` will remove all of the ignore conditions of the specified dependency\n- `@dependabot unignore <dependency name> <ignore condition>` will remove the ignore condition of the specified dependency and ignore conditions\n\n\n</details>",
-      "changed_files": 7,
-      "closed_at": "2026-11-18T01:57:49Z",
+      "body": "Bumps the dependencies group with 2 updates: [github/gh-aw-actions/setup](https://github.com/github/gh-aw-actions) and [github/gh-aw-actions/setup-cli](https://github.com/github/gh-aw-actions).\n\nUpdates `github/gh-aw-actions/setup` from 1.0.1 to 1.2.2\n<details>\n<summary>Release notes</summary>\n<p><em>Sourced from <a href=\"https://github.com/github/gh-aw-actions/releases\">github/gh-aw-actions/setup's releases</a>.</em></p>\n<blockquote>\n<h2>v1.2.2</h2>\n<p>Sync of actions from <a href=\"https://github.com/github/gh-aw\">gh-aw</a> at <code>v1.2.2</code>.</p>\n</blockquote>\n</details>\n<details>\n<summary>Commits</summary>\n<ul>\n<li><a href=\"https://github.com/github/gh-aw-actions/commit/53d0749e19424a918acd82b4d140264ce48f2f14\"><code>53d0749</code></a> chore: sync actions from gh-aw@v1.2.2 (<a href=\"https://redirect.github.com/github/gh-aw-actions/issues/298\">#298</a>)</li>\n<li><a href=\"https://github.com/github/gh-aw-actions/commit/406c7719e31d7fe354224d4bb8fe3d4aeb47da1c\"><code>406c771</code></a> chore: sync actions from gh-aw@v1.2.1 (<a href=\"https://redirect.github.com/github/gh-aw-actions/issues/297\">#297</a>)</li>\n<li><a href=\"https://github.com/github/gh-aw-actions/commit/4607d462dc213dbe54d02f77ec31215776fd5554\"><code>4607d46</code></a> chore: sync actions from gh-aw@v1.2.0 (<a href=\"https://redirect.github.com/github/gh-aw-actions/issues/296\">#296</a>)</li>\n<li>See full diff in <a href=\"https://github.com/github/gh-aw-actions/compare/221ba4f4319de6b8e809d1a15528b3ae6a818aa5...53d0749e19424a918acd82b4d140264ce48f2f14\">compare view</a></li>\n</ul>\n</details>\n<br />\n\nUpdates `github/gh-aw-actions/setup-cli` from 1.0.1 to 1.2.2\n<details>\n<summary>Release notes</summary>\n<p><em>Sourced from <a href=\"https://github.com/github/gh-aw-actions/releases\">github/gh-aw-actions/setup-cli's releases</a>.</em></p>\n<blockquote>\n<h2>v1.2.2</h2>\n<p>Sync of actions from <a href=\"https://github.com/github/gh-aw\">gh-aw</a> at <code>v1.2.2</code>.</p>\n</blockquote>\n</details>\n<details>\n<summary>Commits</summary>\n<ul>\n<li><a href=\"https://github.com/github/gh-aw-actions/commit/53d0749e19424a918acd82b4d140264ce48f2f14\"><code>53d0749</code></a> chore: sync actions from gh-aw@v1.2.2 (<a href=\"https://redirect.github.com/github/gh-aw-actions/issues/298\">#298</a>)</li>\n<li><a href=\"https://github.com/github/gh-aw-actions/commit/406c7719e31d7fe354224d4bb8fe3d4aeb47da1c\"><code>406c771</code></a> chore: sync actions from gh-aw@v1.2.1 (<a href=\"https://redirect.github.com/github/gh-aw-actions/issues/297\">#297</a>)</li>\n<li><a href=\"https://github.com/github/gh-aw-actions/commit/4607d462dc213dbe54d02f77ec31215776fd5554\"><code>4607d46</code></a> chore: sync actions from gh-aw@v1.2.0 (<a href=\"https://redirect.github.com/github/gh-aw-actions/issues/296\">#296</a>)</li>\n<li>See full diff in <a href=\"https://github.com/github/gh-aw-actions/compare/221ba4f4319de6b8e809d1a15528b3ae6a818aa5...53d0749e19424a918acd82b4d140264ce48f2f14\">compare view</a></li>\n</ul>\n</details>\n<br />\n\n\nDependabot will resolve any conflicts with this PR as long as you don't alter it yourself. You can also trigger a rebase manually by commenting `@dependabot rebase`.\n\n[//]: # (dependabot-automerge-start)\n[//]: # (dependabot-automerge-end)\n\n---\n\n<details>\n<summary>Dependabot commands and options</summary>\n<br />\n\nYou can trigger Dependabot actions by commenting on this PR:\n- `@dependabot rebase` will rebase this PR\n- `@dependabot recreate` will recreate this PR, overwriting any edits that have been made to it\n- `@dependabot show <dependency name> ignore conditions` will show all of the ignore conditions of the specified dependency\n- `@dependabot ignore <dependency name> major version` will close this group update PR and stop Dependabot creating any more for the specific dependency's major version (unless you unignore this specific dependency's major version or upgrade to it yourself)\n- `@dependabot ignore <dependency name> minor version` will close this group update PR and stop Dependabot creating any more for the specific dependency's minor version (unless you unignore this specific dependency's minor version or upgrade to it yourself)\n- `@dependabot ignore <dependency name>` will close this group update PR and stop Dependabot creating any more for the specific dependency (unless you unignore this specific dependency or upgrade to it yourself)\n- `@dependabot unignore <dependency name>` will remove all of the ignore conditions of the specified dependency\n- `@dependabot unignore <dependency name> <ignore condition>` will remove the ignore condition of the specified dependency and ignore conditions\n\n\n</details>",
+      "changed_files": 2,
+      "closed_at": "2026-11-25T03:30:49Z",
       "comments": 0,
-      "comments_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/issues/357/comments",
+      "comments_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/issues/358/comments",
       "commits": 1,
-      "commits_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/357/commits",
-      "created_at": "2026-11-17T15:37:07Z",
-      "deletions": 9,
-      "diff_url": "https://github.com/guitarrapc/githubactions-lab/pull/357.diff",
+      "commits_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/358/commits",
+      "created_at": "2026-11-24T15:37:45Z",
+      "deletions": 22,
+      "diff_url": "https://github.com/guitarrapc/githubactions-lab/pull/358.diff",
       "draft": false,
       "head": {
-        "label": "guitarrapc:dependabot/github_actions/dependencies-39799580c0",
-        "ref": "dependabot/github_actions/dependencies-39799580c0",
+        "label": "guitarrapc:dependabot/github_actions/dependencies-bcb514e414",
+        "ref": "dependabot/github_actions/dependencies-bcb514e414",
         "repo": {
           "allow_auto_merge": true,
           "allow_forking": true,
@@ -320,9 +320,9 @@
           "private": false,
           "pull_request_creation_policy": "all",
           "pulls_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls{/number}",
-          "pushed_at": "2026-11-17T15:37:23Z",
+          "pushed_at": "2026-11-24T15:38:18Z",
           "releases_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/releases{/id}",
-          "size": 6532,
+          "size": 6582,
           "squash_merge_commit_message": "COMMIT_MESSAGES",
           "squash_merge_commit_title": "COMMIT_OR_PR_TITLE",
           "ssh_url": "git@github.com:guitarrapc/githubactions-lab.git",
@@ -346,7 +346,7 @@
           "watchers_count": 56,
           "web_commit_signoff_required": false
         },
-        "sha": "116b498a6818203248dd96effcea0b516389b9dd",
+        "sha": "7b53d3bdd8cad2110e9b2153a1904d4fd30b5a85",
         "user": {
           "avatar_url": "https://avatars.githubusercontent.com/u/3856350?v=4",
           "events_url": "https://api.github.com/users/guitarrapc/events{/privacy}",
@@ -369,9 +369,9 @@
           "user_view_type": "public"
         }
       },
-      "html_url": "https://github.com/guitarrapc/githubactions-lab/pull/357",
-      "id": 5359912313,
-      "issue_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/issues/357",
+      "html_url": "https://github.com/guitarrapc/githubactions-lab/pull/358",
+      "id": 5475326283,
+      "issue_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/issues/358",
       "labels": [
         {
           "archived_at": null,
@@ -398,11 +398,11 @@
       ],
       "locked": false,
       "maintainer_can_modify": false,
-      "merge_commit_sha": "64fc1883f6f8e99bf51634af4cbadcc2da5afb22",
+      "merge_commit_sha": "449c9638aeadbb6c3e4c8ea2eec69df66b339002",
       "mergeable": null,
       "mergeable_state": "unknown",
       "merged": true,
-      "merged_at": "2026-11-18T01:57:49Z",
+      "merged_at": "2026-11-25T03:30:49Z",
       "merged_by": {
         "avatar_url": "https://avatars.githubusercontent.com/u/3856350?v=4",
         "events_url": "https://api.github.com/users/guitarrapc/events{/privacy}",
@@ -425,9 +425,9 @@
         "user_view_type": "public"
       },
       "milestone": null,
-      "node_id": "PR_kwDOD1icfM8AAAABP3nFeQ",
-      "number": 357,
-      "patch_url": "https://github.com/guitarrapc/githubactions-lab/pull/357.patch",
+      "node_id": "PR_kwDOD1icfM8AAAABRlrZSw",
+      "number": 358,
+      "patch_url": "https://github.com/guitarrapc/githubactions-lab/pull/358.patch",
       "rebaseable": null,
       "requested_reviewers": [
         {
@@ -455,12 +455,12 @@
       "requested_teams": [],
       "review_comment_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/comments{/number}",
       "review_comments": 0,
-      "review_comments_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/357/comments",
+      "review_comments_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/358/comments",
       "state": "closed",
-      "statuses_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/statuses/116b498a6818203248dd96effcea0b516389b9dd",
-      "title": "chore(deps): bump actions/setup-dotnet from 6.0.0 to 6.1.0 in the dependencies group",
-      "updated_at": "2026-11-18T01:57:49Z",
-      "url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/357",
+      "statuses_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/statuses/7b53d3bdd8cad2110e9b2153a1904d4fd30b5a85",
+      "title": "chore(deps): bump the dependencies group with 2 updates",
+      "updated_at": "2026-11-25T03:30:49Z",
+      "url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls/358",
       "user": {
         "avatar_url": "https://avatars.githubusercontent.com/in/29110?v=4",
         "events_url": "https://api.github.com/users/dependabot%5Bbot%5D/events{/privacy}",
@@ -571,9 +571,9 @@
       "private": false,
       "pull_request_creation_policy": "all",
       "pulls_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/pulls{/number}",
-      "pushed_at": "2026-11-17T15:37:23Z",
+      "pushed_at": "2026-11-24T15:38:18Z",
       "releases_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/releases{/id}",
-      "size": 6532,
+      "size": 6582,
       "ssh_url": "git@github.com:guitarrapc/githubactions-lab.git",
       "stargazers_count": 56,
       "stargazers_url": "https://api.github.com/repos/guitarrapc/githubactions-lab/stargazers",
@@ -617,7 +617,7 @@
     }
   },
   "workflow_ref": "guitarrapc/githubactions-lab/.github/workflows/auto-dump-context.yaml@refs/heads/main",
-  "workflow_sha": "64fc1883f6f8e99bf51634af4cbadcc2da5afb22",
+  "workflow_sha": "449c9638aeadbb6c3e4c8ea2eec69df66b339002",
   "repository_id": "257465468",
   "triggering_actor": "guitarrapc",
   "workspace": "/home/runner/work/githubactions-lab/githubactions-lab",
@@ -625,11 +625,11 @@
   "event_path": "/home/runner/work/_temp/_github_workflow/event.json",
   "action_repository": "",
   "action_ref": "",
-  "path": "/home/runner/work/_temp/_runner_file_commands/add_path_648eec35-a530-43ef-b1a5-4739263bd8b0",
-  "env": "/home/runner/work/_temp/_runner_file_commands/set_env_648eec35-a530-43ef-b1a5-4739263bd8b0",
-  "step_summary": "/home/runner/work/_temp/_runner_file_commands/step_summary_648eec35-a530-43ef-b1a5-4739263bd8b0",
-  "state": "/home/runner/work/_temp/_runner_file_commands/save_state_648eec35-a530-43ef-b1a5-4739263bd8b0",
-  "output": "/home/runner/work/_temp/_runner_file_commands/set_output_648eec35-a530-43ef-b1a5-4739263bd8b0",
-  "artifacts": "/home/runner/work/_temp/_runner_file_commands/artifacts_648eec35-a530-43ef-b1a5-4739263bd8b0",
-  "artifacts_list": "/home/runner/work/_temp/_runner_file_commands/artifacts_list_648eec35-a530-43ef-b1a5-4739263bd8b0"
+  "path": "/home/runner/work/_temp/_runner_file_commands/add_path_3571bed7-6d03-4942-bd24-1dbaf7f54801",
+  "env": "/home/runner/work/_temp/_runner_file_commands/set_env_3571bed7-6d03-4942-bd24-1dbaf7f54801",
+  "step_summary": "/home/runner/work/_temp/_runner_file_commands/step_summary_3571bed7-6d03-4942-bd24-1dbaf7f54801",
+  "state": "/home/runner/work/_temp/_runner_file_commands/save_state_3571bed7-6d03-4942-bd24-1dbaf7f54801",
+  "output": "/home/runner/work/_temp/_runner_file_commands/set_output_3571bed7-6d03-4942-bd24-1dbaf7f54801",
+  "artifacts": "/home/runner/work/_temp/_runner_file_commands/artifacts_3571bed7-6d03-4942-bd24-1dbaf7f54801",
+  "artifacts_list": "/home/runner/work/_temp/_runner_file_commands/artifacts_list_3571bed7-6d03-4942-bd24-1dbaf7f54801"
 }
